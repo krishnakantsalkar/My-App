@@ -1,0 +1,149 @@
+body,
+html {
+  position: relative;
+  min-height: 100%;
+  background-color: rgb(95, 95, 95);
+}
+div.top-panel {
+  background-color: rgb(58, 58, 58);
+  height: 80px;
+  width: 100%;
+}
+div.top-panel h3 {
+  color: white;
+  padding-top: 5px;
+}
+
+div.image-area img {
+  background-image: url(../../../assets/images/fb-cover.jpg);
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  scroll-behavior: smooth;
+}
+
+div.container {
+  height: 350px;
+  margin-bottom: 50px;
+}
+
+div.angular,
+div.html5,
+div.typescript,
+div.nodejs {
+  border: 2px solid black;
+  margin-top: 100px;
+  height: 150px;
+  width: auto;
+  background-color: red;
+  margin-right: auto;
+  border-radius: 5px;
+  transition: ease 1s;
+  position: relative;
+}
+
+div.typescript {
+  background-color: rgb(0, 122, 204);
+}
+div.html5 {
+  background-color: rgb(77, 77, 77);
+}
+div.nodejs {
+  background-color: greenyellow;
+}
+.footer {
+  background-color: rgb(61, 61, 61);
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.angular-img,
+.typescript-img {
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  width: 50%;
+  display: block;
+}
+
+.html5-img {
+  height: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  width: 45%;
+  left: 10px;
+  display: block;
+  position: absolute;
+}
+
+.css3-img {
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  width: 50%;
+  right: 0px;
+  display: block;
+  position: absolute;
+}
+.nodejs-img {
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  width: 45%;
+  display: block;
+}
+
+div.angular:hover,
+div.html5:hover,
+div.nodejs:hover {
+  background-color: black;
+  margin-top: 50px;
+}
+div.typescript:hover {
+  margin-top: 50px;
+}
+
+div.copyright a,
+div.copyright p {
+  position: relative;
+  color: white;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.git {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  display: block;
+  left: 50px;
+  top: 0;
+}
+
+.image-area {
+  position: relative;
+}
+
+.aboutme {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+}
+div.aboutme img {
+  border-radius: 5px;
+  height: auto;
+  width: 100%;
+  margin: auto;
+  background-size: contain;
+}
+div.aboutme h4,
+p {
+  color: white;
+}

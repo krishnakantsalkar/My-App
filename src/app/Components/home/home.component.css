@@ -1,8 +1,7 @@
-body,
-html {
-  position: relative;
-  min-height: 100%;
-  background-color: rgb(95, 95, 95);
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 div.top-panel {
   background-color: rgb(58, 58, 58);
@@ -29,86 +28,12 @@ div.container {
   margin-bottom: 50px;
 }
 
-div.angular,
-div.html5,
-div.typescript,
-div.nodejs {
-  border: 2px solid black;
-  margin-top: 100px;
-  height: 150px;
-  width: auto;
-  background-color: red;
-  margin-right: auto;
-  border-radius: 5px;
-  transition: ease 1s;
-  position: relative;
-}
-
-div.typescript {
-  background-color: rgb(0, 122, 204);
-}
-div.html5 {
-  background-color: rgb(77, 77, 77);
-}
-div.nodejs {
-  background-color: greenyellow;
-}
-.footer {
+.footer-area {
   background-color: rgb(61, 61, 61);
-  height: 50px;
+  height: 70px;
   width: 100%;
   position: fixed;
   bottom: 0;
-}
-
-.angular-img,
-.typescript-img {
-  height: 120px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 12px;
-  width: 50%;
-  display: block;
-}
-
-.html5-img {
-  height: 110px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  width: 45%;
-  left: 10px;
-  display: block;
-  position: absolute;
-}
-
-.css3-img {
-  height: 120px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 12px;
-  width: 50%;
-  right: 0px;
-  display: block;
-  position: absolute;
-}
-.nodejs-img {
-  height: 120px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 12px;
-  width: 45%;
-  display: block;
-}
-
-div.angular:hover,
-div.html5:hover,
-div.nodejs:hover {
-  background-color: black;
-  margin-top: 50px;
-}
-div.typescript:hover {
-  margin-top: 50px;
 }
 
 div.copyright a,
@@ -131,19 +56,221 @@ div.copyright p {
   position: relative;
 }
 
-.aboutme {
-  position: absolute;
-  top: 40px;
-  left: 30px;
-}
-div.aboutme img {
+.aboutme-img {
   border-radius: 5px;
-  height: auto;
-  width: 100%;
-  margin: auto;
+  height: 60%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: 2px solid gray;
   background-size: contain;
 }
+
 div.aboutme h4,
 p {
-  color: white;
+  color: black;
+  text-align: center;
+}
+
+.skills {
+  margin-top: 10px;
+  padding-left: 20px;
+  height: auto;
+  width: auto;
+}
+
+.label {
+  text-align: center;
+  /* margin-left: -150px; */
+  font-size: 35px;
+}
+
+.angular {
+  float: left;
+}
+.angular-img {
+  margin-top: 8px;
+  max-height: 150px;
+  height: auto;
+  width: auto;
+  margin-left: 30px;
+}
+
+.html5 {
+  float: left;
+}
+.html5-img {
+  margin-top: 24px;
+  margin-left: 30px;
+  max-height: 120px;
+  height: auto;
+  width: auto;
+}
+.css {
+  float: left;
+}
+.css-img {
+  margin-top: 16px;
+  margin-left: 30px;
+  max-height: 140px;
+  height: auto;
+  width: auto;
+}
+.javascript {
+  float: left;
+}
+.javascript-img {
+  margin-top: 30px;
+  margin-left: 30px;
+  max-height: 107px;
+  height: auto;
+  width: auto;
+}
+
+.typescript {
+  float: left;
+}
+.typescript-img {
+  margin-top: 30px;
+  margin-left: 50px;
+  max-height: 107px;
+  height: auto;
+  width: auto;
+}
+
+div.info {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.maps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  div.card h3,
+  div.card h4 {
+    font-size: 25px;
+  }
+  div.top-panel h3 {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  div.card h3,
+  div.card h4 {
+    font-size: 18px;
+  }
+}
+
+.backend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.more-skills {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nodejs {
+  float: left;
+}
+.nodejs-img {
+  margin-top: 20px;
+  max-height: 140px;
+  height: auto;
+  width: auto;
+}
+.mongodb-img {
+  margin-top: 20px;
+  margin-left: 60px;
+  max-height: 140px;
+  height: auto;
+  width: auto;
+}
+
+.express-img {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 140px;
+  height: auto;
+  width: auto;
+}
+
+.other-skills {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: -100px; */
+}
+
+.photoshop {
+  max-height: 150px;
+  height: auto;
+  width: auto;
+}
+
+.githb {
+  max-height: 130px;
+  height: auto;
+  width: auto;
+  background-size: contain;
+}
+
+div.connections h3 {
+  text-align: center;
+}
+.connect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.whatsapp {
+  font-size: 50px;
+  color: rgb(53, 235, 8);
+  margin-right: 20px;
+}
+.instagram {
+  font-size: 50px;
+  margin-right: 20px;
+}
+.instagram a {
+  color: red;
+}
+
+.telegram {
+  font-size: 50px;
+  margin-right: 20px;
+}
+.facebook {
+  font-size: 50px;
+  margin-right: 20px;
+}
+
+.disclaimer {
+  position: fixed;
+  bottom: 68px;
+  right: 0;
+}
+
+.disclaimer h6 {
+  font-size: 10px;
+  float: left;
+}
+
+.git-icon {
+  opacity: 0.7;
+}
+.git-icon:hover {
+  opacity: 1;
 }

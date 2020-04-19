@@ -40,7 +40,7 @@ div.copyright a,
 div.copyright p {
   position: relative;
   color: white;
-  margin-top: 10px;
+  margin-top: 6px;
   font-size: 15px;
 }
 .git {
@@ -58,6 +58,7 @@ div.copyright p {
 
 .aboutme-img {
   border-radius: 5px;
+  box-shadow: 8px 10px 8px grey;
   height: 60%;
   width: 60%;
   margin-left: auto;
@@ -70,7 +71,8 @@ div.copyright p {
 }
 
 div.aboutme h4,
-p {
+div.aboutme p {
+  margin-top: 10px;
   color: black;
   text-align: center;
 }
@@ -96,7 +98,7 @@ p {
   max-height: 150px;
   height: auto;
   width: auto;
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 .html5 {
@@ -113,7 +115,7 @@ p {
   float: left;
 }
 .css-img {
-  margin-top: 16px;
+  margin-top: 25px;
   margin-left: 30px;
   max-height: 140px;
   height: auto;
@@ -123,7 +125,7 @@ p {
   float: left;
 }
 .javascript-img {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 30px;
   max-height: 107px;
   height: auto;
@@ -134,11 +136,26 @@ p {
   float: left;
 }
 .typescript-img {
-  margin-top: 30px;
+  margin-top: 25px;
   margin-left: 50px;
   max-height: 107px;
   height: auto;
   width: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .html5-img {
+    margin-left: 20px;
+  }
+  .css-img {
+    margin-left: 0px;
+  }
+  .javascript-img {
+    margin-top: 8px;
+  }
+  .typescript-img {
+    margin-left: 30px;
+  }
 }
 
 div.info {
@@ -176,6 +193,7 @@ div.info {
 }
 
 .more-skills {
+  padding-top: 50px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -229,6 +247,7 @@ div.info {
 
 div.connections h3 {
   text-align: center;
+  color: white;
 }
 .connect {
   display: flex;
@@ -259,12 +278,14 @@ div.connections h3 {
 
 .disclaimer {
   position: fixed;
-  bottom: 68px;
+  bottom: 0;
+  z-index: 10;
+  color: white;
   right: 0;
 }
 
 .disclaimer h6 {
-  font-size: 10px;
+  font-size: 11px;
   float: left;
 }
 
@@ -273,4 +294,28 @@ div.connections h3 {
 }
 .git-icon:hover {
   opacity: 1;
+}
+
+.frontend,
+.test {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connections {
+  background-image: url(/assets/images/stock_background.jpg);
+  background-size: cover;
+  padding-top: 50px;
+  height: 350px;
+}
+
+div.aboutme .card-body {
+  background-image: radial-gradient(
+    rgb(206, 204, 204) 30%,
+    rgb(240, 240, 240) 50%
+  );
+}
+div.aboutme hr {
+  border: 1px solid black;
 }

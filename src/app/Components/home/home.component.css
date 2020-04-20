@@ -98,7 +98,7 @@ div.aboutme p {
   max-height: 150px;
   height: auto;
   width: auto;
-  /* margin-left: 30px; */
+  transition: ease 1s;
 }
 
 .html5 {
@@ -110,6 +110,7 @@ div.aboutme p {
   max-height: 120px;
   height: auto;
   width: auto;
+  transition: ease 1s;
 }
 .css {
   float: left;
@@ -120,6 +121,7 @@ div.aboutme p {
   max-height: 140px;
   height: auto;
   width: auto;
+  transition: ease 1s;
 }
 .javascript {
   float: left;
@@ -130,6 +132,7 @@ div.aboutme p {
   max-height: 107px;
   height: auto;
   width: auto;
+  transition: ease 1s;
 }
 
 .typescript {
@@ -141,6 +144,7 @@ div.aboutme p {
   max-height: 107px;
   height: auto;
   width: auto;
+  transition: ease 1s;
 }
 
 @media only screen and (max-width: 576px) {
@@ -318,4 +322,12 @@ div.aboutme .card-body {
 }
 div.aboutme hr {
   border: 1px solid black;
+}
+
+.angular-img:hover,
+.html5-img:hover,
+.css-img:hover,
+.javascript-img:hover,
+.typescript-img:hover {
+  margin-top: -20px;
 }

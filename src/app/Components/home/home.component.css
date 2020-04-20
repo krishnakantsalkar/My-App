@@ -98,7 +98,9 @@ div.aboutme p {
 }
 
 .test {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .angular-img {
   margin-top: 8px;
@@ -153,11 +155,7 @@ div.aboutme p {
   width: auto;
   transition: ease 1s;
 }
-.try {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 @media only screen and (max-width: 576px) {
   .html5-img {
     margin-left: 20px;
@@ -166,7 +164,7 @@ div.aboutme p {
     margin-left: 0px;
   }
   .javascript-img {
-    margin-top: 8px;
+    margin-top: 20px;
   }
   .typescript-img {
     margin-left: 30px;
@@ -237,6 +235,18 @@ div.info {
   max-height: 120px;
   height: auto;
   width: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .nodejs-img {
+    max-height: 130px;
+  }
+  .mongodb-img {
+    max-height: 130px;
+  }
+  .express-img {
+    max-height: 130px;
+  }
 }
 
 .other-skills {
@@ -334,4 +344,14 @@ div.aboutme hr {
 .javascript-img:hover,
 .typescript-img:hover {
   margin-top: -20px;
+}
+
+@media screen and (max-width: 768px) {
+  div.copyright a,
+  div.copyright p {
+    font-size: 11px;
+  }
+  div.disclaimer h6 {
+    font-size: 9px;
+  }
 }

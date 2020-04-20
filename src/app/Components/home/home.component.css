@@ -93,6 +93,13 @@ div.aboutme p {
 .angular {
   float: left;
 }
+.test {
+  width: 100%;
+}
+
+.test {
+  text-align: center;
+}
 .angular-img {
   margin-top: 8px;
   max-height: 150px;
@@ -127,7 +134,7 @@ div.aboutme p {
   float: left;
 }
 .javascript-img {
-  margin-top: 25px;
+  margin-top: 30px;
   margin-left: 30px;
   max-height: 107px;
   height: auto;
@@ -146,7 +153,11 @@ div.aboutme p {
   width: auto;
   transition: ease 1s;
 }
-
+.try {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media only screen and (max-width: 576px) {
   .html5-img {
     margin-left: 20px;
@@ -300,15 +311,8 @@ div.connections h3 {
   opacity: 1;
 }
 
-.frontend,
-.test {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .connections {
-  background-image: url(/assets/images/stock_background.jpg);
+  background-image: url("https://github.com/krishnakantsalkar/My-App/raw/master/src/assets/images/stock_background.jpg");
   background-size: cover;
   padding-top: 50px;
   height: 350px;

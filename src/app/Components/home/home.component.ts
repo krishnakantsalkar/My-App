@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     AOS.init({
-      startEvent: 'load',
+      startEvent: 'scroll',
     });
   }
 }

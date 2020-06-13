@@ -1,0 +1,149 @@
+.sidenav {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  padding-top: 50px;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.2s ease;
+}
+
+.sidenav span {
+  position: fixed;
+  top: 15px;
+  color: white;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 50px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: white;
+}
+
+.sidenav:hover {
+  width: 300px;
+}
+
+div.top-panel {
+  background-color: rgb(37, 38, 39);
+  height: 80px;
+  width: 100%;
+}
+
+div.nametag h3 {
+  padding-top: 20px;
+  color: gray;
+}
+
+div.nametag span {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+  }
+}
+
+div.content {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+}
+
+div.imagesection {
+  text-align: center;
+  padding-top: 150px;
+  background-color: rgb(41, 42, 45);
+}
+
+div.imagesection img {
+  height: 300px;
+  width: 300px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav:hover {
+    width: 150px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+  div.top-panel {
+    height: 60px;
+  }
+  div.nametag h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+  div.imagesection {
+    padding-top: 100px;
+  }
+
+  div.imagesection img {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+div.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(37, 38, 39);
+  height: 80px;
+}
+
+div.footer-text {
+  text-align: center;
+  padding-top: 20px;
+}
+div.footer h5,
+div.footer i {
+  color: #818181;
+}
+
+div.motto {
+  padding-top: 40px;
+  text-align: center;
+  background-color: rgb(41, 42, 45);
+}
+div.motto h4 {
+  color: #818181;
+}
+
+@media only screen and (max-width: 600px) {
+  div.footer {
+    height: 60px;
+  }
+  div.footer h5 {
+    font-size: 15px;
+  }
+  div.motto h4 {
+    font-size: 14px;
+  }
+}

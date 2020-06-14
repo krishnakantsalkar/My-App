@@ -396,10 +396,11 @@ div.links {
     text-align: center;
   }
   div.links button {
+    margin-top: -50px;
     font-size: 10px;
   }
   div.top-panel {
-    height: 100px;
+    height: 90px;
   }
 }
 

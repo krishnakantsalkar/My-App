@@ -46,9 +46,14 @@ div.nametag h3 {
   color: gray;
 }
 
-div.nametag span {
+span.one {
   color: violet;
   animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
 }
 
 @keyframes cursor {
@@ -58,6 +63,16 @@ div.nametag span {
   }
   50% {
     color: violet;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
   }
 }
 

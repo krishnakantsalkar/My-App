@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { blog } from '../../data/data';
+import { blog } from 'src/app/Shared/data';
 
 @Component({
   selector: 'app-blogposts',
@@ -22,7 +22,8 @@ export class BlogpostsComponent implements OnInit {
   postfunc() {
     let blogpostdata = new blog();
     let data = window.location.href.split('/');
-    this.pageno = data[4];
+    this.pageno = data[5];
+    // console.log(data);
     if (this.pageno == 1) {
       this.posttitle = blogpostdata.post1title;
       this.post = blogpostdata.post1;

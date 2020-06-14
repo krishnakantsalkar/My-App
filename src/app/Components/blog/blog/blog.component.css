@@ -1,0 +1,150 @@
+div.top-panel {
+  background-color: rgb(37, 38, 39);
+  width: 100%;
+  height: 80px;
+}
+
+div.nametag h3 {
+  padding-top: 20px;
+  color: gray;
+  font-size: 25px;
+}
+
+div.links {
+  padding-top: 20px;
+}
+
+span.one {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  div.nametag h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  div.links {
+    text-align: center;
+  }
+  div.links button {
+    margin-top: -50px;
+    font-size: 10px;
+  }
+  div.top-panel {
+    height: 90px;
+  }
+}
+
+div.links {
+  font-size: 25px;
+}
+div.links a {
+  padding: 8px 8px 8px;
+  padding-top: 20px;
+  color: #818181;
+  /* display: block; */
+}
+
+.togglemode {
+  color: #818181;
+  padding-top: 20px;
+  font-size: 25px;
+  position: absolute;
+  right: 20px;
+  z-index: 1;
+  top: 4px;
+}
+
+div.content {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+}
+
+.togglemode:hover {
+  color: white;
+}
+
+div.bloglinks {
+  padding-top: 100px;
+  background-color: rgb(41, 42, 45);
+  padding-bottom: 100px;
+}
+
+div.bloglinks h1 {
+  color: #818181;
+}
+
+div.card-body h2 {
+  text-decoration: dotted;
+}
+
+div.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(37, 38, 39);
+  height: 70px;
+}
+
+div.footer-text {
+  text-align: center;
+  padding-top: 20px;
+}
+div.footer h6,
+div.footer i {
+  color: #818181;
+  font-size: 17px;
+}
+
+@media only screen and (max-width: 600px) {
+  div.footer {
+    height: 50px;
+  }
+  div.footer h6,
+  div.footer i {
+    font-size: 12px;
+  }
+  div.motto h5 {
+    font-size: 14px;
+  }
+}
+
+div.nextprev button {
+  margin-top: 20px;
+  margin-right: 10px;
+}

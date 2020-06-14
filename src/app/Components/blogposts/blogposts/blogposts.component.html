@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <a class="togglemode" (click)="mode()"><i class="fas fa-adjust"></i></a>
+    <div
+      class="top-panel"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container myname">
+        <div class="row">
+          <div class="col-sm-6 nametag">
+            <h3
+              *ngIf="!brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span>$</span>
+            </h3>
+            <h3
+              *ngIf="brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span>$</span>
+            </h3>
+          </div>
+          <div class="col-sm-6 links">
+            <a routerLink="/Home">
+              <button type="button" class="btn btn-success btn-xs">
+                Home
+              </button></a
+            >
+
+            <a routerLink="/About">
+              <button type="button" class="btn btn-primary btn-xs">
+                About
+              </button></a
+            >
+            <a routerLink="/Support">
+              <button type="button" class="btn btn-warning btn-xs">
+                Support
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+      <div></div>
+    </div>
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    ></div>
+
+    <div
+      class="main"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <a class="float-right btn btn-warning" routerLink="/Blog">
+              <i class="fas fa-arrow-circle-left"></i> Blog
+            </a>
+            <a
+              class="postlink"
+              *ngIf="postlink"
+              class="float-right btn btn-success"
+              href="{{ postlink }}"
+            >
+              Visit
+            </a>
+            <h2>{{ posttitle }}</h2>
+          </div>
+          <div class="card-body">
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="30"
+              style="width: 100%; border: none;"
+              >{{ post }}</textarea
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer area -->
+    <div
+      class="footer"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="footer-text">
+        <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+          <i
+            class="fas fa-copyright"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          2020 Krishnakant Salkar, Made with
+          <i
+            class="fas fa-heartbeat"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          using Angular 9...
+        </h6>
+      </div>
+    </div>
+  </body>
+</html>

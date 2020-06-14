@@ -10,9 +10,11 @@ export class BlogComponent implements OnInit {
   public date = new Date();
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mode();
+  }
 
   mode() {
-    this.brightness = !this.brightness;
+    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 }

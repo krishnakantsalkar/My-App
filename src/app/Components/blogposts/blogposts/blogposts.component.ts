@@ -11,18 +11,18 @@ export class BlogpostsComponent implements OnInit {
   public brightness: boolean;
   public post;
   public posttitle;
-  public postlink;
+  public postlink: string;
   constructor() {}
 
   ngOnInit(): void {
     this.postfunc();
+    this.mode();
   }
 
   postfunc() {
     let blogpostdata = new blog();
     let data = window.location.href.split('/');
     this.pageno = data[4];
-    console.log(this.pageno);
     if (this.pageno == 1) {
       this.posttitle = blogpostdata.post1title;
       this.post = blogpostdata.post1;
@@ -47,21 +47,10 @@ export class BlogpostsComponent implements OnInit {
       if (blogpostdata.postlink4) {
         this.postlink = blogpostdata.postlink4;
       }
-    } else if (this.pageno == 5) {
-      this.posttitle = blogpostdata.post5title;
-      this.post = blogpostdata.post5;
-      if (blogpostdata.postlink5) {
-        this.postlink = blogpostdata.postlink5;
-      }
     }
   }
 
-  adjustHeight(el) {
-    el.style.height =
-      el.scrollHeight > el.clientHeight ? el.scrollHeight + 'px' : '60px';
-  }
-
   mode() {
-    this.brightness = !this.brightness;
+    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 }

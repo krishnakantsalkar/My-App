@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <a class="togglemode" (click)="mode()"><i class="fas fa-adjust"></i></a>
+    <!-- <a class="togglemode" (click)="mode()"><i class="fas fa-adjust"></i></a> -->
     <div
       class="top-panel"
       [ngStyle]="{
@@ -74,7 +74,6 @@
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>
             <a
-              class="postlink"
               *ngIf="postlink"
               class="float-right btn btn-success"
               href="{{ postlink }}"

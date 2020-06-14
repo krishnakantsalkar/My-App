@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 50px;
+  width: 45px;
   padding-top: 50px;
   background-color: #111;
   overflow-x: hidden;
@@ -15,13 +15,13 @@
   top: 15px;
   color: white;
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 .sidenav a {
   padding: 8px 8px 8px 50px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 22px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -32,7 +32,7 @@
 }
 
 .sidenav:hover {
-  width: 300px;
+  width: 280px;
 }
 
 div.top-panel {
@@ -41,7 +41,9 @@ div.top-panel {
   width: 100%;
 }
 
-div.nametag h3 {
+div.nametag h4 {
+  margin-left: 70px;
+  font-size: 25px;
   padding-top: 20px;
   color: gray;
 }
@@ -91,13 +93,13 @@ div.content {
 
 div.imagesection {
   text-align: center;
-  padding-top: 150px;
+  padding-top: 120px;
   background-color: rgb(41, 42, 45);
 }
 
 div.imagesection img {
-  height: 300px;
-  width: 300px;
+  height: 270px;
+  width: 270px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -111,8 +113,9 @@ div.imagesection img {
   div.top-panel {
     height: 60px;
   }
-  div.nametag h3 {
+  div.nametag h4 {
     font-size: 15px;
+    margin-left: 0px;
     text-align: center;
   }
   div.imagesection {
@@ -130,16 +133,17 @@ div.footer {
   bottom: 0;
   width: 100%;
   background-color: rgb(37, 38, 39);
-  height: 80px;
+  height: 70px;
 }
 
 div.footer-text {
   text-align: center;
   padding-top: 20px;
 }
-div.footer h5,
+div.footer h6,
 div.footer i {
   color: #818181;
+  font-size: 17px;
 }
 
 div.motto {
@@ -147,18 +151,19 @@ div.motto {
   text-align: center;
   background-color: rgb(41, 42, 45);
 }
-div.motto h4 {
+div.motto h5 {
   color: #818181;
 }
 
 @media only screen and (max-width: 600px) {
   div.footer {
-    height: 60px;
+    height: 50px;
   }
-  div.footer h5 {
-    font-size: 15px;
+  div.footer h6,
+  div.footer i {
+    font-size: 12px;
   }
-  div.motto h4 {
+  div.motto h5 {
     font-size: 14px;
   }
 }

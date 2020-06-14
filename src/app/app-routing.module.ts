@@ -21,6 +21,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Components/blog/blog.module').then((m) => m.BlogModule),
   },
+  {
+    path: 'Blogposts',
+    loadChildren: () =>
+      import('./Components/blogposts/blogposts.module').then(
+        (m) => m.BlogpostsModule
+      ),
+  },
+
+  {
+    path: 'Blogposts/:id',
+    loadChildren: () =>
+      import('./Components/blogposts/blogposts.module').then(
+        (m) => m.BlogpostsModule
+      ),
+  },
 ];
 
 @NgModule({

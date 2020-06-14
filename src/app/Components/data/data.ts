@@ -47,7 +47,7 @@ export class blog {
 
 
   `;
-  public postlink1: string = ` https://downloads.pixelexperience.org/X00TD`;
+  public postlink1: any = 'https://download.pixelexperience.org/X00TD';
 
   ///////
 
@@ -138,4 +138,5 @@ export class blog {
   
   
   `;
+  public postlink4: string = null;
 }

@@ -72,7 +72,7 @@ div.copyright p {
 
 .aboutme-img {
   border-radius: 5px;
-  box-shadow: 8px 10px 8px grey;
+  /* box-shadow: 8px 10px 8px grey; */
   height: 60%;
   width: 60%;
   margin-left: auto;
@@ -287,7 +287,7 @@ div.info {
 }
 
 .githb {
-  max-height: 130px;
+  max-height: 100px;
   height: auto;
   width: auto;
   background-size: contain;
@@ -335,13 +335,6 @@ div.connections h3 {
 .disclaimer h6 {
   font-size: 11px;
   float: left;
-}
-
-.git-icon {
-  opacity: 0.7;
-}
-.git-icon:hover {
-  opacity: 1;
 }
 
 .connections {

@@ -7,11 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <div class="top-panel">
+    <div
+      class="top-panel"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
       <div class="container myname">
         <div class="row">
           <div class="col-sm-6 nametag">
-            <h3>> krishnakantsalkar@prototype:~<span>$</span></h3>
+            <h3
+              *ngIf="!brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span class="one">$</span>
+            </h3>
+            <h3
+              *ngIf="brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span class="two">$</span>
+            </h3>
           </div>
           <div class="col-sm-6 links">
             <a routerLink="/Home">
@@ -37,22 +55,49 @@
     <div class="image-area">
       <img class="image" src="assets/images/fb-cover.jpg" />
     </div>
-    <div class="container-fluid skills">
+    <div
+      class="container-fluid skills"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
       <div class="row">
         <div class="col-sm-4 about">
           <div class="aboutme">
-            <div class="card">
+            <div
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+              }"
+            >
               <div class="card-body">
                 <img class="aboutme-img" src="assets/images/about_me.jpg" />
-                <h4>Krishnakant S. Salkar</h4>
-                <p>MEAN Stack Developer</p>
-                <hr />
+                <h4
+                  [ngStyle]="{
+                    color: brightness ? ' rgb(41, 42, 45)' : 'white'
+                  }"
+                >
+                  Krishnakant S. Salkar
+                </h4>
+                <p
+                  [ngStyle]="{
+                    color: brightness ? ' rgb(41, 42, 45)' : 'white'
+                  }"
+                >
+                  MEAN Stack Developer
+                </p>
+                <!-- <hr /> -->
               </div>
             </div>
           </div>
         </div>
         <div class="col-sm-8 this">
-          <div class="label"><b>Frontend Technologies</b></div>
+          <div
+            class="label"
+            [ngStyle]="{ color: brightness ? ' rgb(41, 42, 45)' : 'white' }"
+          >
+            <b>Frontend Technologies</b>
+          </div>
           <div class="frontend">
             <div class="row test">
               <div class="angular" data-aos="fade-left">
@@ -97,17 +142,28 @@
         </div>
       </div>
     </div>
-    <hr style="border: 2px solid black;" />
-    <div class="container-fluid info">
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    ></div>
+    <!-- <hr style="border: 2px solid black;" /> -->
+    <div
+      class="container-fluid info"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
       <div class="row card-block">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div
-            class="card"
+            class="card contact"
             data-aos="flip-left"
             data-aos-delay="300"
             data-aos-duration="1000"
           >
-            <div class="card-header">
+            <div class="card-header" style="width: 100%;">
               <h3>
                 <b><u>Contact Information</u></b>
               </h3>
@@ -125,7 +181,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <div class="maps">
             <iframe
               data-aos="flip-down"
@@ -144,9 +200,18 @@
         </div>
       </div>
     </div>
-    <hr />
-    <div class="container more-skills">
-      <h2><b>Backend Technologies</b></h2>
+    <!-- <hr /> -->
+    <div
+      class="container-fluid more-skills"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <h2>
+        <b [ngStyle]="{ color: brightness ? ' rgb(41, 42, 45)' : 'white' }"
+          >Backend Technologies</b
+        >
+      </h2>
       <div class="row backend">
         <div
           class="nodejs"
@@ -156,7 +221,13 @@
         >
           <a href="https://nodejs.org/en/about/">
             <img
+              *ngIf="brightness"
               src="assets/images/nodejs-logo-png-node-js-development-296.png"
+              class="nodejs-img"
+            />
+            <img
+              *ngIf="!brightness"
+              src="assets/images/nodejslight.png"
               class="nodejs-img"
             />
           </a>
@@ -182,13 +253,27 @@
           data-aos-duration="1000"
         >
           <a href="https://expressjs.com/">
-            <img src="assets/images/Expressjs.png" class="express-img" />
+            <img
+              *ngIf="brightness"
+              src="assets/images/Expressjs.png"
+              class="express-img"
+            />
+            <img
+              *ngIf="!brightness"
+              src="assets/images/expressjslight.png"
+              class="express-img"
+            />
           </a>
         </div>
       </div>
     </div>
-    <hr />
-    <div class="container-fluid other-skills">
+    <!-- <hr /> -->
+    <div
+      class="container-fluid other-skills"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
       <div class="row">
         <div
           class="col-sm-6 col-xs-6"
@@ -196,7 +281,9 @@
           data-aos-delay="300"
           data-aos-duration="1000"
         >
-          <h3>Graphic Design</h3>
+          <h3 [ngStyle]="{ color: brightness ? ' rgb(41, 42, 45)' : 'white' }">
+            Graphic Design
+          </h3>
           <a href="https://helpx.adobe.com/in/photoshop/user-guide.html">
             <img
               src="assets/images/how-to-change-the-color-of-a-png-logo-in-photoshop-4-transparent.png"
@@ -210,15 +297,17 @@
           data-aos-delay="300"
           data-aos-duration="1000"
         >
-          <h3>Version Control</h3>
+          <h3 [ngStyle]="{ color: brightness ? ' rgb(41, 42, 45)' : 'white' }">
+            Version Control
+          </h3>
           <a href="http://github.com/">
-            <img src="assets/images/github_PNG40.png" class="githb" />
+            <img src="assets/images/gitlogo.png" class="githb" />
           </a>
         </div>
       </div>
     </div>
 
-    <br />
+    <!-- <br /> -->
     <div class="container-fluid connections">
       <h3>Lets Connect!</h3>
       <br />
@@ -229,7 +318,10 @@
           data-aos-delay="300"
           data-aos-duration="1000"
         >
-          <i class="fab fa-whatsapp" onClick="alert('+919619705613')"></i>
+          <i
+            class="fab fa-whatsapp-square"
+            onClick="alert('+919619705613')"
+          ></i>
         </div>
 
         <div
@@ -249,7 +341,7 @@
           data-aos-duration="1000"
         >
           <a href="https://www.instagram.com/that_detective_kid/"
-            ><i class="fab fa-instagram"></i
+            ><i class="fab fa-instagram-square"></i
           ></a>
         </div>
         <div
@@ -269,22 +361,27 @@
         *All icons used are intellectual properties of their respective owners!
       </h6>
     </div>
-    <div class="footer-area">
-      <div class="footer">
-        <div class="container">
-          <div class="copyright">
-            <p>
-              &copy; 2019-2020 Credits @Krishakant_Salkar. All Rights Reserved.
-              <a
-                href="http://github.com/Krishnakantsalkar/My-Page"
-                target="_blank"
-              >
-                Github
-                <i class="fab fa-github git-icon"></i
-              ></a>
-            </p>
-          </div>
-        </div>
+    <div
+      class="footer"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="footer-text">
+        <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+          <i
+            class="fas fa-copyright"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          2020 Krishnakant Salkar, Made with
+          <i
+            class="fas fa-heartbeat"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          using Angular 9...
+        </h6>
       </div>
     </div>
   </body>

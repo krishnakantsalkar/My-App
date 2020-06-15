@@ -4,6 +4,19 @@ body {
   margin: 0;
 }
 
+div.content {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+}
+
 div.image-area img {
   background-image: url(../../../../assets/images/fb-cover.jpg);
   height: 100%;
@@ -19,12 +32,22 @@ div.myname {
   margin-bottom: 50px;
 }
 
-.footer-area {
-  background-color: rgb(61, 61, 61);
-  height: 70px;
-  width: 100%;
+div.footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  background-color: rgb(37, 38, 39);
+  height: 70px;
+}
+
+div.footer-text {
+  text-align: center;
+  padding-top: 20px;
+}
+div.footer h6,
+div.footer i {
+  color: #818181;
+  font-size: 17px;
 }
 
 div.copyright a,
@@ -69,7 +92,7 @@ div.aboutme p {
 }
 
 .skills {
-  margin-top: 10px;
+  padding-top: 20px;
   padding-left: 20px;
   height: auto;
   width: auto;
@@ -163,11 +186,18 @@ div.aboutme p {
 }
 
 div.info {
-  margin-top: 50px;
-  margin-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 100px;
 }
 
-.maps {
+.contact {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.maps,
+.contact {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,6 +271,8 @@ div.info {
 }
 
 .other-skills {
+  padding-top: 70px;
+  padding-bottom: 30px;
   display: flex;
   text-align: center;
   align-items: center;
@@ -319,12 +351,12 @@ div.connections h3 {
   height: 350px;
 }
 
-div.aboutme .card-body {
+/* div.aboutme .card-body {
   background-image: radial-gradient(
     rgb(206, 204, 204) 30%,
     rgb(240, 240, 240) 50%
   );
-}
+} */
 div.aboutme hr {
   border: 1px solid black;
 }
@@ -356,11 +388,6 @@ div.top-panel {
 div.nametag h3 {
   padding-top: 20px;
   color: gray;
-}
-
-div.nametag span {
-  color: violet;
-  animation: cursor 1s infinite;
 }
 
 div.links {
@@ -402,6 +429,24 @@ div.links {
   div.top-panel {
     height: 90px;
   }
+
+  div.footer {
+    height: 50px;
+  }
+  div.footer h6,
+  div.footer i {
+    font-size: 12px;
+  }
+  div.contact {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .githb {
+    height: 100px;
+    width: 100px;
+  }
 }
 
 div.links {
@@ -412,4 +457,34 @@ div.links a {
   padding-top: 20px;
   color: #818181;
   /* display: block; */
+}
+
+span.one {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { blog } from 'src/app/Shared/data';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-blog',
@@ -24,6 +25,9 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this.mode();
     this.datadisplay();
+    AOS.init({
+      startEvent: 'scroll',
+    });
   }
 
   mode() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { blog } from 'src/app/Shared/data';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-blogposts',
@@ -17,6 +18,9 @@ export class BlogpostsComponent implements OnInit {
   ngOnInit(): void {
     this.postfunc();
     this.mode();
+    AOS.init({
+      startEvent: 'scroll',
+    });
   }
 
   postfunc() {

@@ -14,11 +14,13 @@ export class BlogComponent implements OnInit {
   public data2;
   public data3;
   public data4;
+  public data5;
 
   public title1;
   public title2;
   public title3;
   public title4;
+  public title5;
 
   constructor() {}
 
@@ -40,10 +42,12 @@ export class BlogComponent implements OnInit {
     this.data2 = blogdata.post2.substring(1, 90) + '....';
     this.data3 = blogdata.post3.substring(1, 90) + '....';
     this.data4 = blogdata.post4.substring(1, 90) + '....';
+    this.data5 = blogdata.post5.substring(1, 90) + '....';
 
     this.title1 = blogdata.post1title;
     this.title2 = blogdata.post2title;
     this.title3 = blogdata.post3title;
     this.title4 = blogdata.post4title;
+    this.title5 = blogdata.post5title;
   }
 }

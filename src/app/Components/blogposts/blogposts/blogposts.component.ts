@@ -52,6 +52,12 @@ export class BlogpostsComponent implements OnInit {
       if (blogpostdata.postlink4) {
         this.postlink = blogpostdata.postlink4;
       }
+    } else if (this.pageno == 5) {
+      this.posttitle = blogpostdata.post5title;
+      this.post = blogpostdata.post5;
+      if (blogpostdata.postlink5) {
+        this.postlink = blogpostdata.postlink5;
+      }
     }
   }
 

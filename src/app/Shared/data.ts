@@ -139,4 +139,56 @@ export class blog {
   
   `;
   public postlink4: string = null;
+
+  //
+  public post5title: string = `Pixel Experience for X00TD [2nd June update]`;
+  public post5: string = ` The 'Ring of fire' Solar eclipse was amazing to watch (on Youtube Live)
+  
+  After a whole week of rigorous testing, this 2nd half of 
+  the month I was able to push yet another update ..
+  
+  In May update touch screen gestures were added , but because the source was broken that came out as huge issue soon 
+  after its release 
+  This time a "New implementation" based on Lineage OS touch hals was added!
+  
+  This took quite some time to fix, test and release give the HUGE size of the rom (1.0GB~)
+
+  Adding tiktok blocker was great, but then again this thing becomes a responsibility as a maintainer.
+  Hence it was removed in today's update!
+
+  Heres the official post:
+
+
+  🔔 Pixel Experience & Pixel Experience Plus Edition Android 10 Official update is up for X00T! 
+
+  📅 Build Date: 21/06/20
+
+  😎 By: @alex_mercer09 
+
+  📝 Changelog:-
+
+  - PE source changes since last build
+  - Added Touch Gestures support
+  - improved app launching & sys ui performance
+  - removed tiktok blocker
+  - upstreamed to .227 & CAF tag in kernel
+  - improvements in kernel & device tree!
+
+
+  ✅ Thnx to all testers for help with bug fixing and evrything! 
+  If you like my work , leave a thanks on XDA!
+
+  ✏️ Notes:
+
+  min firmware 059
+  magisk 20.3 recommended to pass CTS
+  incremental and OTA update available!
+
+  #rom #Android10 #pe
+  Follow:@Asus_X00TD
+  Join:@AsusX00TD
+
+
+  `;
+  postlink5: string = 'https://download.pixelexperience.org/X00TD';
 }

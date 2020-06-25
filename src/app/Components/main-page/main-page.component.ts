@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
-import { userloginservices } from '../../Shared/services/userloginservice';
+import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 
 @Component({

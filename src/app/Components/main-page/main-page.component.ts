@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
+import { userloginservices } from '../../Shared/services/userloginservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -9,10 +11,14 @@ import * as AOS from 'aos';
 export class MainPageComponent implements OnInit {
   public brightness: boolean;
   public special: boolean;
-  constructor() {}
+  constructor(
+    private loginservice: userloginservices,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.defaultmode();
+    this.getspecials();
     AOS.init();
   }
 
@@ -25,6 +31,17 @@ export class MainPageComponent implements OnInit {
   }
 
   getspecials() {
-    this.special = JSON.parse(localStorage.getItem('credentials'));
+    let temp = JSON.parse(localStorage.getItem('credentials'));
+    if (temp === true) {
+      this.special = true;
+    } else {
+      this.special = false;
+    }
+    console.log(this.special);
+  }
+
+  logout() {
+    localStorage.removeItem('credentials');
+    location.reload();
   }
 }

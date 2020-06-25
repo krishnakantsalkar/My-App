@@ -9,7 +9,7 @@ div.content {
   height: 100%;
   width: 100%;
   /* background-color: rgb(41, 42, 45); */
-  background-image: url("/assets/images/hbd.jpg");
+  background-image: url("https://raw.githubusercontent.com/krishnakantsalkar/My-App/master/src/assets/images/hbd.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -44,7 +44,7 @@ div.data h5 {
 }
 @media only screen and (max-width: 600px) {
   div.content {
-    background-image: url("/assets/images/hbd-pot.jpg");
+    background-image: url("https://raw.githubusercontent.com/krishnakantsalkar/My-App/master/src/assets/images/hbd-pot.jpg");
   }
   .bdayimg {
     margin-left: 93px;

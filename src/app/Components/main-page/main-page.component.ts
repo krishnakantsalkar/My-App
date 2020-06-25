@@ -8,6 +8,7 @@ import * as AOS from 'aos';
 })
 export class MainPageComponent implements OnInit {
   public brightness: boolean;
+  public special: boolean;
   constructor() {}
 
   ngOnInit(): void {
@@ -21,5 +22,9 @@ export class MainPageComponent implements OnInit {
   }
   defaultmode() {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
+  }
+
+  getspecials() {
+    this.special = JSON.parse(localStorage.getItem('credentials'));
   }
 }

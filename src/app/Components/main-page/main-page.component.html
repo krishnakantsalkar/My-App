@@ -12,6 +12,7 @@
       <a routerLink="/About"> About</a>
       <a routerLink="/Blog"> Blog</a>
       <a href="https://github.com/krishnakantsalkar/My-App"> Github</a>
+      <a routerLink="/Login"> Login</a>
       <a routerLink="/About"> Support</a>
       <a (click)="mode()"><i class="fas fa-adjust"></i></a>
     </div>
@@ -93,6 +94,11 @@
           [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
         ></i>
       </h5>
+      <div class="special" *ngIf="!special" align="center">
+        <a routerLink="/Bday">
+          <button class="btn btn-info btn-md">Specials</button></a
+        >
+      </div>
     </div>
 
     <div

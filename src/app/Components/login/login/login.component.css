@@ -96,6 +96,12 @@ div.footer i {
   font-size: 17px;
 }
 
+div.login-card .card {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 50px;
@@ -106,6 +112,11 @@ div.footer i {
   }
   div.motto h5 {
     font-size: 14px;
+  }
+  div.login-card .card {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -130,12 +141,6 @@ div.logindata {
 
 .submit {
   margin-right: 15px;
-}
-
-div.login-card .card {
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div.login-card .card-header {

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div
+      class="top-panel"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container myname">
+        <div class="row">
+          <div class="col-sm-6 nametag">
+            <h3
+              *ngIf="!brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span>$</span>
+            </h3>
+            <h3
+              *ngIf="brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span>$</span>
+            </h3>
+          </div>
+          <div class="col-sm-6 links">
+            <a routerLink="/Home">
+              <button type="button" class="btn btn-success btn-xs">
+                Home
+              </button></a
+            >
+
+            <a routerLink="/About">
+              <button type="button" class="btn btn-primary btn-xs">
+                About
+              </button></a
+            >
+            <a routerLink="/Support">
+              <button type="button" class="btn btn-warning btn-xs">
+                Support
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background color -->
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    ></div>
+
+    <div
+      class="logindata"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container login-card">
+        <div class="card">
+          <div class="card-header">
+            <a class="float-right btn btn-warning" routerLink="/Blog">
+              <i class="fas fa-arrow-circle-left"></i> Blog
+            </a>
+            <h4>Welcome Superuser!</h4>
+          </div>
+          <article class="card-body">
+            <form [formGroup]="newLogin" (ngSubmit)="Save(newLogin.value)">
+              <div class="form-row">
+                <div class="col form-group" formGroupName="userLogin">
+                  <label>Email Id</label>
+                  <input
+                    class="form-control email-tag"
+                    type="email"
+                    placeholder="Enter Email ID"
+                    formControlName="email"
+                    [class.is-valid]="newLogin.get('userLogin.email').valid"
+                    [class.is-invalid]="
+                      !newLogin.get('userLogin.email').valid && submitted
+                    "
+                  />
+                  <div class="valid-feedback">
+                    looking good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Check entered email!
+                  </div>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      newLogin.get('userLogin.email').errors?.required &&
+                      newLogin.get('userLogin.email').touched
+                    "
+                  >
+                    Email id is required!
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div class="row">
+                      <input
+                        class="form-control password-tag col-10"
+                        type="password"
+                        placeholder="Enter Password"
+                        formControlName="password"
+                        [class.is-valid]="
+                          newLogin.get('userLogin.password').valid
+                        "
+                        [class.is-invalid]="
+                          !newLogin.get('userLogin.password').valid && submitted
+                        "
+                        [type]="showpass ? 'text' : 'password'"
+                      /><span class="col-2">
+                        <button
+                          class="showpassbtn btn btn-primary"
+                          type="button"
+                          (click)="showPass()"
+                          [ngClass]="{ 'btn-danger': showpass }"
+                        >
+                          <i
+                            class="fa fa-eye"
+                            aria-hidden="true"
+                            [ngClass]="{ 'fa-eye-slash': showpass }"
+                          ></i>
+                        </button>
+                      </span>
+                      <div class="valid-feedback">
+                        looking good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Check your password!
+                      </div>
+                      <div
+                        class="alert alert-danger col-10"
+                        *ngIf="
+                          newLogin.get('userLogin.password').errors?.required &&
+                          newLogin.get('userLogin.password').touched
+                        "
+                      >
+                        Password is required!
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="buttons">
+                      <button
+                        class="btn btn-danger float-right forgot"
+                        onclick="alert('Coming soon!')"
+                      >
+                        Forgot Password?
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn btn-success float-right submit"
+                        [disabled]="!newLogin.valid"
+                      >
+                        Log In
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer area -->
+    <div
+      class="footer"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="footer-text">
+        <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+          <i
+            class="fas fa-copyright"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          2020 Krishnakant Salkar, Made with
+          <i
+            class="fas fa-heartbeat"
+            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          ></i>
+          using Angular 9...
+        </h6>
+      </div>
+    </div>
+  </body>
+</html>

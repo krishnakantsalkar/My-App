@@ -79,13 +79,13 @@
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>
             <a
-              *ngIf="postlink"
+              *ngIf="url"
               class="float-right btn btn-success"
-              href="{{ postlink }}"
+              [href]="getLink()"
             >
               Visit
             </a>
-            <h2>{{ posttitle }}</h2>
+            <h2 *ngIf="data">{{ data.postTitle }}</h2>
           </div>
           <div class="card-body">
             <textarea
@@ -93,7 +93,8 @@
               rows="30"
               style="width: 100%; border: none;"
               readonly
-              >{{ post }}</textarea
+              *ngIf="data"
+              >{{ data.post }}</textarea
             >
           </div>
         </div>

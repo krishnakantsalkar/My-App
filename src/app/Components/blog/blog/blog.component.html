@@ -73,6 +73,9 @@
         </h1>
         <br />
         <!-- <hr style="background-color: white;" /> -->
+
+        <!-- post 5 -->
+
         <div class="card">
           <div
             class="card-body"
@@ -81,17 +84,22 @@
             data-aos-duration="1000"
           >
             <h2>
-              <a routerLink="/Blogposts/5" *ngIf="data">{{
+              <a routerLink="/Blog/{{ data[4]._id }}" *ngIf="data">{{
                 data[4].postTitle
               }}</a>
-              <h5>Sun Jun 21 2020 22:24:33 GMT+0530 (India Standard Time)</h5>
+              <h5 *ngIf="data">
+                Sun Jun 21 2020 22:24:33 GMT+0530 (India Standard Time)
+              </h5>
             </h2>
-            <p>
-              {{ data[4].post | slice: 0:100 }}....
-              <a routerLink="/Blogposts/5"> Read more</a>
+            <p *ngIf="data">
+              {{ data[4].post | slice: 0:130 }}....
+              <a routerLink="/Blog/{{ data[4]._id }}"> Read more</a>
             </p>
           </div>
         </div>
+
+        <!-- post 4 -->
+
         <hr style="background-color: white;" />
         <div class="card">
           <div
@@ -101,17 +109,22 @@
             data-aos-duration="1000"
           >
             <h2>
-              <a routerLink="/Blogposts/4" *ngIf="data">{{
+              <a routerLink="/Blog/{{ data[3]._id }}" *ngIf="data">{{
                 data[3].postTitle
               }}</a>
-              <h5>Sun Jun 14 2020 16:39:10 GMT+0530 (India Standard Time)</h5>
+              <h5 *ngIf="data">
+                Sun Jun 14 2020 16:39:10 GMT+0530 (India Standard Time)
+              </h5>
             </h2>
-            <p>
-              {{ data[3].post | slice: 0:100 }}.....
-              <a routerLink="/Blogposts/4"> Read more</a>
+            <p *ngIf="data">
+              {{ data[3].post | slice: 0:130 }}.....
+              <a routerLink="/Blog/{{ data[3]._id }}"> Read more</a>
             </p>
           </div>
         </div>
+
+        <!-- post 3 -->
+
         <hr style="background-color: white;" />
         <div class="card">
           <div
@@ -121,17 +134,22 @@
             data-aos-duration="1000"
           >
             <h2>
-              <a routerLink="/Blogposts/3" *ngIf="data">{{
+              <a routerLink="/Blog/{{ data[2]._id }}" *ngIf="data">{{
                 data[2].postTitle
               }}</a>
-              <h5>Sat Jun 13 2020 10:55:30 GMT+0530 (India Standard Time)</h5>
+              <h5 *ngIf="data">
+                Sat Jun 13 2020 10:55:30 GMT+0530 (India Standard Time)
+              </h5>
             </h2>
-            <p>
-              {{ data[2].post | slice: 0:100 }}...
-              <a routerLink="/Blogposts/3"> Read more</a>
+            <p *ngIf="data">
+              {{ data[2].post | slice: 0:130 }}...
+              <a routerLink="/Blog/{{ data[2]._id }}"> Read more</a>
             </p>
           </div>
         </div>
+
+        <!-- post 2 -->
+
         <hr style="background-color: white;" />
         <div class="card">
           <div
@@ -141,17 +159,22 @@
             data-aos-duration="1000"
           >
             <h2>
-              <a routerLink="/Blogposts/2" *ngIf="data">{{
+              <a routerLink="/Blog/{{ data[1]._id }}" *ngIf="data">{{
                 data[1].postTitle
               }}</a>
-              <h5>Mon Jun 8 2020 12:13:05 GMT+0530 (India Standard Time)</h5>
+              <h5 *ngIf="data">
+                Mon Jun 8 2020 12:13:05 GMT+0530 (India Standard Time)
+              </h5>
             </h2>
-            <p>
-              {{ data[1].post | slice: 0:100 }}...
-              <a routerLink="/Blogposts/2"> Read more</a>
+            <p *ngIf="data">
+              {{ data[1].post | slice: 0:130 }}...
+              <a routerLink="/Blog/{{ data[1]._id }}"> Read more</a>
             </p>
           </div>
         </div>
+
+        <!-- post 1 -->
+
         <hr style="background-color: white;" />
         <div class="card">
           <div
@@ -161,14 +184,16 @@
             data-aos-duration="1000"
           >
             <h2>
-              <a routerLink="/Blogposts/1" *ngIf="data">{{
+              <a routerLink="/Blog/{{ data[0]._id }}" *ngIf="data">{{
                 data[0].postTitle
               }}</a>
-              <h5>Sat Jun 06 2020 18:24:10 GMT+0530 (India Standard Time)</h5>
+              <h5 *ngIf="data">
+                Sat Jun 06 2020 18:24:10 GMT+0530 (India Standard Time)
+              </h5>
             </h2>
-            <p>
-              {{ data[0].post | slice: 0:90 }}...
-              <a routerLink="/Blogposts/1"> Read more</a>
+            <p *ngIf="data">
+              {{ data[0].post | slice: 0:130 }}...
+              <a routerLink="/Blog/{{ data[0]._id }}"> Read more</a>
             </p>
           </div>
         </div>

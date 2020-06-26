@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { Iblog } from 'src/app/Shared/model/blogmodel';
 
 @Component({
   selector: 'app-blog',
@@ -18,7 +17,6 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.mode();
-    // this.datadisplay();
     this.blogs();
     AOS.init({
       startEvent: 'scroll',
@@ -32,6 +30,7 @@ export class BlogComponent implements OnInit {
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.data = item;
+      console.log(this.data);
     });
   }
 }

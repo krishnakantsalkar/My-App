@@ -7,12 +7,17 @@ import { Iblog } from '../model/blogmodel';
 @Injectable({ providedIn: 'root' })
 export class blogpostservice {
   public header: HttpHeaders;
-  public blogAPI: string = 'https://mybackend-1911.herokuapp.com/api/blog/Blog';
+  public blogAPI: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/Blog/';
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
 
   getBlogs(): Observable<Iblog> {
     return this.http.get<Iblog>(this.blogAPI);
+  }
+
+  getBlogsbyId(id): Observable<Iblog> {
+    return this.http.get<Iblog>(this.blogAPI + id);
   }
 }

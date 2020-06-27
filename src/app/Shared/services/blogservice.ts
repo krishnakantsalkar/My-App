@@ -13,6 +13,12 @@ export class blogpostservice {
   public addBlogApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/AddBlog';
 
+  public updateBlogApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/updateBlog/';
+
+  public deleteBlogApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/deleteBlog/';
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
@@ -29,5 +35,15 @@ export class blogpostservice {
     return this.http.post<Iblog>(this.addBlogApi, JSON.stringify(data), {
       headers: this.header,
     });
+  }
+
+  updateBlog(data, id): Observable<Iblog> {
+    return this.http.put<Iblog>(this.updateBlogApi + id, JSON.stringify(data), {
+      headers: this.header,
+    });
+  }
+
+  deleteBlog(id): Observable<Iblog> {
+    return this.http.delete<Iblog>(this.deleteBlogApi + id);
   }
 }

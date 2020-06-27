@@ -13,11 +13,15 @@ export class BlogComponent implements OnInit {
 
   public data;
 
+  public checkUser;
+
+  public createPost: boolean;
   constructor(private blogservice: blogpostservice) {}
 
   ngOnInit(): void {
     this.mode();
     this.blogs();
+    this.checkUserPresent();
     AOS.init({
       startEvent: 'scroll',
     });
@@ -32,5 +36,12 @@ export class BlogComponent implements OnInit {
       this.data = item;
       console.log(this.data);
     });
+  }
+
+  checkUserPresent() {
+    this.checkUser = localStorage.getItem('credentials');
+    if (!this.checkUser) {
+      console.log('user not logged in');
+    }
   }
 }

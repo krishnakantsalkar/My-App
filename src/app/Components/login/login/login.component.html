@@ -75,7 +75,12 @@
             </a>
             <h4>Welcome Superuser!</h4>
           </div>
-          <article class="card-body">
+          <article
+            class="card-body"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+          >
             <form [formGroup]="newLogin" (ngSubmit)="Save(newLogin.value)">
               <div class="form-row">
                 <div class="col form-group" formGroupName="userLogin">

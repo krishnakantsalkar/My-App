@@ -23,7 +23,7 @@ export class BlogpostsComponent implements OnInit {
     this.mode(); // dark-light mode toggle
 
     AOS.init({
-      startEvent: 'scroll',
+      startEvent: 'DOMContentLoaded',
     });
     this.AR.params.subscribe((item) => {
       let id = item['id'];

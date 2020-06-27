@@ -27,7 +27,7 @@ export class BlogComponent implements OnInit {
     this.blogs();
     this.checkUserPresent();
     AOS.init({
-      startEvent: 'scroll',
+      startEvent: 'DOMContentLoaded',
     });
 
     this.newPost = this.fb.group({

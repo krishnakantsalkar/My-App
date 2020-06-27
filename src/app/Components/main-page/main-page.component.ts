@@ -19,7 +19,9 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.defaultmode();
     this.getspecials();
-    AOS.init();
+    AOS.init({
+      startEvent: 'DOMContentLoaded',
+    });
   }
 
   mode() {

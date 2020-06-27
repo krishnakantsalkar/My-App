@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     AOS.init({
-      startEvent: 'scroll',
+      startEvent: 'DOMContentLoaded',
     });
 
     this.mode();

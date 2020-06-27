@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,9 @@ export class LoginComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
       }),
+    });
+    AOS.init({
+      startEvent: 'DOMContentLoaded',
     });
   }
 

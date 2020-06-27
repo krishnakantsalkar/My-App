@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Iblog } from 'src/app/Shared/model/blogmodel';
 
 @Component({
   selector: 'app-blog',
@@ -16,7 +18,9 @@ export class BlogComponent implements OnInit {
   public checkUser;
 
   public createPost: boolean;
-  constructor(private blogservice: blogpostservice) {}
+
+  public newPost: FormGroup;
+  constructor(private blogservice: blogpostservice, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.mode();
@@ -24,6 +28,13 @@ export class BlogComponent implements OnInit {
     this.checkUserPresent();
     AOS.init({
       startEvent: 'scroll',
+    });
+
+    this.newPost = this.fb.group({
+      postNumber: ['', [Validators.required]],
+      postTitle: ['', Validators.required],
+      post: ['', Validators.required],
+      postLink: [''],
     });
   }
 
@@ -43,5 +54,27 @@ export class BlogComponent implements OnInit {
     if (!this.checkUser) {
       console.log('user not logged in');
     }
+  }
+
+  createPostmethod() {
+    this.createPost = !this.createPost;
+    // console.log(this.createPost);
+  }
+
+  SubmitPost(data: Iblog) {
+    if (!this.newPost.valid) {
+      return;
+    }
+    // console.log(data);
+    this.blogservice.publishBlog(data).subscribe(
+      (item) => {
+        let title = item.result.postTitle;
+        alert(`Post added successfully! \n New post: ${title}`);
+        location.reload();
+      },
+      (err) => {
+        alert(err.error);
+      }
+    );
   }
 }

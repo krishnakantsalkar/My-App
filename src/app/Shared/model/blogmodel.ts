@@ -3,4 +3,5 @@ export interface Iblog {
   postTitle: string;
   post: string;
   postLink?: string;
+  result?: any;
 }

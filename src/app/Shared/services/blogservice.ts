@@ -9,6 +9,10 @@ export class blogpostservice {
   public header: HttpHeaders;
   public blogAPI: string =
     'https://mybackend-1911.herokuapp.com/api/blog/Blog/';
+
+  public addBlogApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/AddBlog';
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
@@ -19,5 +23,11 @@ export class blogpostservice {
 
   getBlogsbyId(id): Observable<Iblog> {
     return this.http.get<Iblog>(this.blogAPI + id);
+  }
+
+  publishBlog(data): Observable<Iblog> {
+    return this.http.post<Iblog>(this.addBlogApi, JSON.stringify(data), {
+      headers: this.header,
+    });
   }
 }

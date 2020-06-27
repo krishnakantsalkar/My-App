@@ -71,37 +71,105 @@
         <h1>
           <b>June 2020</b>
         </h1>
-        <button class="btn btn-warning" style="float: right;" *ngIf="checkUser">
+        <button
+          class="btn btn-warning"
+          style="float: right;"
+          *ngIf="checkUser"
+          (click)="createPostmethod()"
+        >
           Create post
         </button>
         <br />
         <br />
 
-        <!-- Create post button -->
+        <!-- Create post area -->
+
+        <div class="createpost" *ngIf="createPost">
+          <h1>create post</h1>
+          <div class="card">
+            <div class="card-header">
+              <form
+                [formGroup]="newPost"
+                (ngSubmit)="SubmitPost(newPost.value)"
+              >
+                <div class="form-group">
+                  <div class="form-row">
+                    <label>Post Number</label>
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="postNumber"
+                      placeholder="#"
+                      min="2"
+                      onKeyPress="if(this.value.length==10) return false;"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <label>Post Title</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="postTitle"
+                      placeholder="Enter Title"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <label>Post Content</label>
+                    <textarea
+                      class="form-control"
+                      type="text"
+                      formControlName="post"
+                      placeholder="Post"
+                    >
+                    </textarea>
+                  </div>
+                  <div class="form-row">
+                    <label>External Link</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="postLink"
+                      placeholder="Link"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="reset"
+                  class="btn btn-primary cancel"
+                  (click)="createPostmethod()"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
 
         <!-- Blog data -->
-
-        <div class="loopdata" *ngFor="let d of data.slice().reverse()">
-          <hr style="background-color: white;" />
-          <div class="card">
-            <div
-              class="card-body"
-              data-aos="fade-up"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-            >
-              <h2>
-                <a routerLink="/Blog/{{ d._id }}" *ngIf="data">{{
-                  d.postTitle
-                }}</a>
-                <h5 *ngIf="data">
-                  {{ d.postDate }}
-                </h5>
-              </h2>
-              <p *ngIf="data">
-                {{ d.post | slice: 0:130 }}...
-                <a routerLink="/Blog/{{ d._id }}"> Read more</a>
-              </p>
+        <div class="blogdata" *ngIf="data">
+          <div class="loopdata" *ngFor="let d of data">
+            <hr style="background-color: white;" />
+            <div class="card">
+              <div
+                class="card-body"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+              >
+                <h2>
+                  <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
+                    >#{{ d.postNumber }}: {{ d.postTitle }}</a
+                  >
+                  <h5 *ngIf="data">
+                    {{ d.postDate }}
+                  </h5>
+                </h2>
+                <p *ngIf="data">
+                  {{ d.post | slice: 0:130 }}...
+                  <a routerLink="/Blog/{{ d._id }}"> Read more</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

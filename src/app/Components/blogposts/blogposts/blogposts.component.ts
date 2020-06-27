@@ -29,7 +29,7 @@ export class BlogpostsComponent implements OnInit {
       let id = item['id'];
       this.blogservice.getBlogsbyId(id).subscribe((items) => {
         this.data = items;
-        if (this.data.postLink) {
+        if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;
         }
       });

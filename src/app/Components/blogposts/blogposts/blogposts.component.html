@@ -68,11 +68,33 @@
       }"
     >
       <div class="container">
+        <!-- switch to edit post -->
+        <button
+          *ngIf="checkUser"
+          class="btn btn-info"
+          style="margin-bottom: 10px;"
+          (click)="switchToEdit()"
+        >
+          Edit
+        </button>
+
+        <!-- delete post button -->
+        <button
+          *ngIf="checkUser"
+          class="btn btn-danger"
+          style="margin-bottom: 10px; margin-left: 10px;"
+          (click)="deletePostById()"
+        >
+          Delete
+        </button>
+
+        <!-- blog post -->
         <div
           class="card"
           data-aos="fade-up"
           data-aos-delay="300"
           data-aos-duration="1000"
+          *ngIf="!switchtoedit"
         >
           <div class="card-header">
             <a class="float-right btn btn-warning" routerLink="/Blog">
@@ -85,7 +107,14 @@
             >
               Visit
             </a>
+            <!-- post edited or not -->
+
             <h2 *ngIf="data">{{ data.postTitle }}</h2>
+            <h6 *ngIf="data">
+              <span *ngIf="data.edited == true"
+                ><i class="fas fa-pencil-alt"></i> edited.</span
+              >
+            </h6>
           </div>
           <div class="card-body">
             <textarea
@@ -96,6 +125,68 @@
               *ngIf="data"
               >{{ data.post }}</textarea
             >
+          </div>
+        </div>
+      </div>
+
+      <!-- edit post menu -->
+      <div class="container">
+        <div class="editpostmenu" *ngIf="switchtoedit">
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-edit"></i> Edit post</h3>
+            </div>
+            <article class="card-body">
+              <form
+                [formGroup]="newEdit"
+                (ngSubmit)="editPostById(newEdit.value)"
+              >
+                <div class="form-group">
+                  <h6>Title: {{ data.postTitle }}</h6>
+                  <div class="form-row">
+                    <label>Post Title</label>
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Title"
+                      formControlName="postTitle"
+                    />
+                  </div>
+                  <br />
+                  <h6>Post: {{ data.post | json }}</h6>
+                  <div class="form-row">
+                    <label>Post Content</label>
+                    <textarea
+                      type="text"
+                      class="form-control"
+                      placeholder="Content"
+                      formControlName="post"
+                    ></textarea>
+                  </div>
+                  <br />
+                  <h6>current: {{ data.postLink }}</h6>
+                  <div class="form-row">
+                    <label>Post Link</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Link"
+                      formControlName="postLink"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="reset"
+                  class="btn btn-primary cancel"
+                  style="margin-right: 10px;"
+                  (click)="switchToEdit()"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </form>
+            </article>
           </div>
         </div>
       </div>

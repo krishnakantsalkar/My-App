@@ -85,9 +85,11 @@
         <!-- Create post area -->
 
         <div class="createpost" *ngIf="createPost">
-          <h1>create post</h1>
           <div class="card">
             <div class="card-header">
+              <h1>Create post</h1>
+            </div>
+            <div class="card-body">
               <form
                 [formGroup]="newPost"
                 (ngSubmit)="SubmitPost(newPost.value)"
@@ -161,6 +163,12 @@
                   <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
                     >#{{ d.postNumber }}: {{ d.postTitle }}</a
                   >
+                  <!-- post edited or not -->
+                  <h6>
+                    <span *ngIf="d.edited == true"
+                      ><i class="fas fa-pencil-alt"></i> edited.</span
+                    >
+                  </h6>
                   <h5 *ngIf="data">
                     {{ d.postDate }}
                   </h5>

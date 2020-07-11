@@ -21,6 +21,7 @@ export class BlogpostsComponent implements OnInit {
   public newEdit: FormGroup; // update by Id method
 
   post;
+  public adminName;
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -33,6 +34,8 @@ export class BlogpostsComponent implements OnInit {
     this.mode(); // dark-light mode toggle
 
     this.checkUserPresent();
+
+    this.showAdmin();
 
     // AOS animation
     AOS.init({
@@ -116,5 +119,13 @@ export class BlogpostsComponent implements OnInit {
         alert(err.message);
       }
     );
+  }
+
+  showAdmin() {
+    let currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser) {
+      return;
+    }
+    this.adminName = currentUser.name;
   }
 }

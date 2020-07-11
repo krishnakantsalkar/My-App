@@ -90,13 +90,13 @@
 
         <!-- blog post -->
         <div
-          class="card"
+          class="container"
           data-aos="fade-up"
           data-aos-delay="300"
           data-aos-duration="1000"
           *ngIf="!switchtoedit"
         >
-          <div class="card-header">
+          <div class="header">
             <a class="float-right btn btn-warning" routerLink="/Blog">
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>
@@ -109,32 +109,51 @@
             </a>
             <!-- post edited or not -->
 
-            <h2 *ngIf="data">{{ data.postTitle }}</h2>
+            <h2
+              *ngIf="data"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+            >
+              {{ data.postTitle }}
+            </h2>
             <h6 *ngIf="data">
               <span *ngIf="data.edited == true"
                 ><i class="fas fa-pencil-alt"></i> edited.</span
               >
             </h6>
           </div>
-          <div class="card-body">
-            <textarea
-              cols="30"
-              rows="30"
-              style="width: 100%; border: none;"
-              readonly
-              *ngIf="data"
-              >{{ data.post }}</textarea
-            >
+          <hr
+            [ngStyle]="{
+              'background-color': brightness ? 'black' : 'rgb(160,160,160)'
+            }"
+            *ngIf="data"
+          />
+          <div class="body">
+            <div *ngIf="data">
+              <pre
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+                >{{ data.post }}</pre
+              >
+            </div>
           </div>
+          <h3
+            *ngIf="checkUser"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+          >
+            Admin: {{ adminName }} 😎
+          </h3>
         </div>
       </div>
 
       <!-- edit post menu -->
       <div class="container">
         <div class="editpostmenu" *ngIf="switchtoedit">
-          <div class="card">
-            <div class="card-header">
-              <h3><i class="fas fa-edit"></i> Edit post</h3>
+          <div class="container">
+            <div class="header">
+              <h3
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+              >
+                <i class="fas fa-edit"></i> Edit post
+              </h3>
             </div>
             <article class="card-body">
               <form
@@ -142,7 +161,13 @@
                 (ngSubmit)="editPostById(newEdit.value)"
               >
                 <div class="form-group">
-                  <h6>Title: {{ data.postTitle }}</h6>
+                  <h6
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(160,160,160)'
+                    }"
+                  >
+                    Title: {{ data.postTitle }}
+                  </h6>
                   <div class="form-row">
                     <label>Post Title</label>
 
@@ -152,9 +177,22 @@
                       placeholder="Title"
                       formControlName="postTitle"
                     />
+                    <p
+                      [ngStyle]="{
+                        color: brightness ? 'black' : 'rgb(160,160,160)'
+                      }"
+                    >
+                      {{ data.postTitle.value }}
+                    </p>
                   </div>
                   <br />
-                  <h6>Post: {{ data.post | json }}</h6>
+                  <pre
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(160,160,160)'
+                    }"
+                  >
+Post: {{ data.post }}</pre
+                  >
                   <div class="form-row">
                     <label>Post Content</label>
                     <textarea
@@ -165,7 +203,13 @@
                     ></textarea>
                   </div>
                   <br />
-                  <h6>current: {{ data.postLink }}</h6>
+                  <h6
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(160,160,160)'
+                    }"
+                  >
+                    current: {{ data.postLink }}
+                  </h6>
                   <div class="form-row">
                     <label>Post Link</label>
                     <input

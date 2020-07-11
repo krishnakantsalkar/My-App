@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import * as AOS from 'aos';
+import { clientIpService } from '../../../Shared/services/clientip-service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +21,15 @@ export class LoginComponent implements OnInit {
   public brightness: boolean;
   public showpass: boolean;
   public submitted: boolean;
+
+  public ipdata;
+  public useragent;
+  public userdata = [this.ipdata, this.useragent];
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginservice: userloginservices
+    private loginservice: userloginservices,
+    private userlogservice: clientIpService
   ) {}
 
   ngOnInit(): void {
@@ -28,10 +39,24 @@ export class LoginComponent implements OnInit {
       userLogin: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
+        userip: [''],
+        useragent: [''],
       }),
     });
     AOS.init({
       startEvent: 'DOMContentLoaded',
+    });
+
+    this.userlogservice.getClientIp().subscribe((item) => {
+      this.ipdata = item;
+      this.useragent = { useragent: window.navigator.userAgent };
+      console.log(this.ipdata, this.useragent);
+      this.newLogin.patchValue({
+        userLogin: {
+          userip: JSON.stringify(this.ipdata),
+          useragent: JSON.stringify(this.useragent),
+        },
+      });
     });
   }
 

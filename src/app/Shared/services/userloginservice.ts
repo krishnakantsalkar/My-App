@@ -7,7 +7,7 @@ import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 @Injectable({ providedIn: 'root' })
 export class userloginservices {
   public loginAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/users/Login';
+    'https://mybackend-1911.herokuapp.com/api/users/login';
   public header: HttpHeaders;
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });

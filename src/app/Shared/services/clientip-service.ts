@@ -5,7 +5,7 @@ import { JsonPipe } from '@angular/common';
 @Injectable({ providedIn: 'root' })
 export class clientIpService {
   public header: HttpHeaders;
-  public clienIpApi: string = 'http://api.ipify.org/?format=json';
+  public clienIpApi: string = 'https://api.ipify.org/?format=json';
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }

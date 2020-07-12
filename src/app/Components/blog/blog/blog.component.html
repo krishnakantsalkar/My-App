@@ -69,7 +69,7 @@
     >
       <div class="container">
         <h1>
-          <b>June 2020</b>
+          <b>2020</b>
         </h1>
         <button
           class="btn btn-warning"
@@ -151,29 +151,52 @@
         <!-- Blog data -->
         <div class="blogdata" *ngIf="data">
           <div class="loopdata" *ngFor="let d of data">
-            <hr style="background-color: white;" />
-            <div class="card">
+            <hr *ngIf="data" style="background-color: white;" />
+            <div class="container">
               <div
-                class="card-body"
+                class="body"
                 data-aos="fade-up"
                 data-aos-delay="300"
                 data-aos-duration="1000"
               >
-                <h2>
+                <h2
+                  [ngStyle]="{
+                    color: brightness ? 'black' : 'rgb(129,129,129)'
+                  }"
+                  style="padding-top: 20px;"
+                >
                   <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
                     >#{{ d.postNumber }}: {{ d.postTitle }}</a
                   >
                   <!-- post edited or not -->
-                  <h6>
+                  <h6
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(129,129,129)'
+                    }"
+                  >
                     <span *ngIf="d.edited == true"
                       ><i class="fas fa-pencil-alt"></i> edited.</span
                     >
+                    <span style="float: right;"
+                      ><i class="fas fa-eye"></i
+                    ></span>
                   </h6>
-                  <h5 *ngIf="data">
+                  <h5
+                    *ngIf="data"
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(129,129,129)'
+                    }"
+                  >
                     {{ d.postDate }}
                   </h5>
                 </h2>
-                <p *ngIf="data">
+                <p
+                  *ngIf="data"
+                  [ngStyle]="{
+                    color: brightness ? 'black' : 'rgb(129,129,129)'
+                  }"
+                  style="padding-bottom: 30px;"
+                >
                   {{ d.post | slice: 0:130 }}...
                   <a routerLink="/Blog/{{ d._id }}"> Read more</a>
                 </p>

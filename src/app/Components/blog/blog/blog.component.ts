@@ -45,7 +45,6 @@ export class BlogComponent implements OnInit {
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.data = item;
-      console.log(this.data);
     });
   }
 

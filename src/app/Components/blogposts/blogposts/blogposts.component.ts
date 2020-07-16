@@ -109,7 +109,7 @@ export class BlogpostsComponent implements OnInit {
   //delete post by id
   deletePostById() {
     let getBlogId = window.location.href.split('/');
-    let id = getBlogId[5];
+    let id = getBlogId[4];
     this.blogservice.deleteBlog(id).subscribe(
       (item) => {
         alert(item.message);

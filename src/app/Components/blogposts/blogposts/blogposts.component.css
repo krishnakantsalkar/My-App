@@ -29,6 +29,15 @@ span.two {
   animation: cursor1 1s infinite;
 }
 
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
 @keyframes cursor {
   from,
   to {

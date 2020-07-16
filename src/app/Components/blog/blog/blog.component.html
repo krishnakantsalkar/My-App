@@ -71,6 +71,14 @@
         <h1>
           <b>2020</b>
         </h1>
+
+        <!-- add a loading... animation -->
+
+        <div class="loading" *ngIf="!data">
+          <h4 *ngIf="!brightness" class="loadinganimDark">Loading...</h4>
+          <h4 *ngIf="brightness" class="loadinganimLight">Loading...</h4>
+        </div>
+
         <button
           class="btn btn-warning"
           style="float: right;"

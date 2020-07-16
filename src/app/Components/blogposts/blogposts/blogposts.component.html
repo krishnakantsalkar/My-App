@@ -68,6 +68,13 @@
       }"
     >
       <div class="container">
+        <!-- add a loading... animation -->
+
+        <div class="loading" *ngIf="!data">
+          <h4 *ngIf="!brightness" class="loadinganimDark">Loading...</h4>
+          <h4 *ngIf="brightness" class="loadinganimLight">Loading...</h4>
+        </div>
+
         <!-- switch to edit post -->
         <button
           *ngIf="checkUser"

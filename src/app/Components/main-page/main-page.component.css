@@ -8,6 +8,7 @@
   background-color: #111;
   overflow-x: hidden;
   transition: 0.2s ease;
+  z-index: 1;
 }
 
 .sidenav span {
@@ -153,11 +154,28 @@ div.motto {
 }
 div.motto h5 {
   color: #818181;
+  padding-bottom: 20px;
+}
+
+.recentupdates h3 {
+  text-align: center;
+}
+
+.recentposts {
+  padding-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-bottom: 100px;
+}
+div.recentposts .seemore {
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 50px;
+    z-index: 2;
   }
   div.footer h6,
   div.footer i {
@@ -165,5 +183,17 @@ div.motto h5 {
   }
   div.motto h5 {
     font-size: 14px;
+  }
+  .recentposts {
+    width: 75%;
+  }
+  div.recentposts h3 {
+    font-size: 22px;
+  }
+  div.recentposts h4 {
+    font-size: 17px;
+  }
+  div.recentposts h5 {
+    font-size: 15px;
   }
 }

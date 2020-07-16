@@ -100,6 +100,58 @@
           <button class="btn btn-info btn-md">Specials</button></a
         >
       </div>
+      <br />
+    </div>
+    <!-- recent posts -->
+
+    <div
+      class="container-fluid"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="recentposts">
+        <div
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+          }"
+        >
+          <div
+            class="insider"
+            [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+          >
+            <div
+              class="card-header recentupdates"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(223, 223, 223)'
+                  : ' rgb(35, 36, 38)'
+              }"
+            >
+              <h3>Recent Updates</h3>
+            </div>
+            <div class="card-body">
+              <div
+                class="recentcontent"
+                *ngFor="let recent of recentblogs | slice: 0:3"
+              >
+                <h3>
+                  <a routerLink="/Blog/{{ recent._id }}"
+                    >#{{ recent.postNumber }}. {{ recent.postTitle }}</a
+                  >
+                </h3>
+                <h5>{{ recent.postDate | slice: 0:70 }}..</h5>
+                <h5>{{ recent.post | slice: 0:90 }}...</h5>
+                <br />
+              </div>
+              <h4 class="seemore" *ngIf="recentblogs">
+                <a routerLink="/Blog"> more.....</a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div

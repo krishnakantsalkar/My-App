@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
+import { blogpostservice } from '../../Shared/services/blogservice';
 
 @Component({
   selector: 'app-main-page',
@@ -11,9 +12,11 @@ import { Router } from '@angular/router';
 export class MainPageComponent implements OnInit {
   public brightness: boolean;
   public special: boolean;
+  public recentblogs;
   constructor(
     private loginservice: userloginservices,
-    private router: Router
+    private router: Router,
+    private blogservice: blogpostservice
   ) {}
 
   ngOnInit(): void {
@@ -22,6 +25,7 @@ export class MainPageComponent implements OnInit {
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
+    this.recentUpdates();
   }
 
   mode() {
@@ -45,5 +49,11 @@ export class MainPageComponent implements OnInit {
   logout() {
     localStorage.removeItem('credentials');
     location.reload();
+  }
+
+  recentUpdates() {
+    this.blogservice.getBlogs().subscribe((item) => {
+      this.recentblogs = item;
+    });
   }
 }

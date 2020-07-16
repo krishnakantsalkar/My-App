@@ -92,7 +92,9 @@
             <div class="card-body">
               <form
                 [formGroup]="newPost"
-                (ngSubmit)="SubmitPost(newPost.value)"
+                (ngSubmit)="
+                  SubmitPost(newPost.value); channelPost(newPost.value)
+                "
               >
                 <div class="form-group">
                   <div class="form-row">

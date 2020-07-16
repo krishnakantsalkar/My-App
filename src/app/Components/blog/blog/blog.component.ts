@@ -69,11 +69,18 @@ export class BlogComponent implements OnInit {
       (item) => {
         let title = item.result.postTitle;
         alert(`Post added successfully! \n New post: ${title}`);
-        location.reload();
       },
       (err) => {
         alert(err.error);
       }
     );
+  }
+  channelPost(data) {
+    let title = data.postTitle;
+    let post = data.post;
+    this.blogservice.tgpost(title, post).subscribe((item) => {
+      console.log(item);
+      location.reload();
+    });
   }
 }

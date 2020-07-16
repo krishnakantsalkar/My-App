@@ -19,6 +19,8 @@ export class blogpostservice {
   public deleteBlogApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/deleteBlog/';
 
+  public telegrampostApi: string = ''; // removed bot token for github upload
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
@@ -45,5 +47,17 @@ export class blogpostservice {
 
   deleteBlog(id): Observable<Iblog> {
     return this.http.delete<Iblog>(this.deleteBlogApi + id);
+  }
+
+  tgpost(title, post) {
+    return this.http.post(
+      this.telegrampostApi +
+        '&' +
+        encodeURI(`text=Title: ${title}\n\n`) +
+        encodeURIComponent(`Post:\n\n${post}`),
+      {
+        headers: this.header,
+      }
+    );
   }
 }

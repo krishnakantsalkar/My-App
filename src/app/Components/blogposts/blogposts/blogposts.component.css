@@ -161,4 +161,8 @@ div.header a {
   div.card-header h2 {
     font-size: 25px;
   }
+  .body pre {
+    white-space: pre-wrap;
+    /* word-break: break-all; */
+  }
 }

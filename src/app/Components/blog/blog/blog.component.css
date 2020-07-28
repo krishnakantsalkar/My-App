@@ -151,6 +151,10 @@ div.footer i {
   div.motto h5 {
     font-size: 14px;
   }
+
+  .pstimg {
+    text-align: center;
+  }
 }
 
 div.nextprev button {

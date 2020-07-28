@@ -104,6 +104,9 @@
           *ngIf="!switchtoedit"
         >
           <div class="header">
+            <div class="blogimg" *ngIf="data">
+              <img src="{{ data.postImage }}" />
+            </div>
             <a class="float-right btn btn-warning" routerLink="/Blog">
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>

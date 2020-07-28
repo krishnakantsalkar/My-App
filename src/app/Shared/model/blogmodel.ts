@@ -1,4 +1,5 @@
 export interface Iblog {
+  postImage?: string;
   postNumber?: number;
   postTitle?: string;
   postDate?: string;

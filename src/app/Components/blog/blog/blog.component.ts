@@ -20,6 +20,9 @@ export class BlogComponent implements OnInit {
   public createPost: boolean;
 
   public newPost: FormGroup;
+  public currentBlogImgP;
+  public currentBlogImg;
+  public storeBlogImg;
   constructor(private blogservice: blogpostservice, private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class BlogComponent implements OnInit {
     });
 
     this.newPost = this.fb.group({
+      postImage: [''],
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
       post: ['', Validators.required],
@@ -60,11 +64,33 @@ export class BlogComponent implements OnInit {
     // console.log(this.createPost);
   }
 
+  selection(event) {
+    // if (event.target.files.length > 0) {
+    //   const file = event.target.files[0];
+    //   this.currentBlogImg = file;
+
+    // }
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.currentBlogImgP = event.target.result;
+      };
+      const file = event.target.files[0];
+      this.currentBlogImg = file;
+    }
+  }
+
   SubmitPost(data: Iblog) {
     if (!this.newPost.valid) {
       return;
     }
-    // console.log(data);
+    console.log(this.storeBlogImg.result['postImage']);
+
+    console.log(data);
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         let title = item.result.postTitle;
@@ -75,6 +101,20 @@ export class BlogComponent implements OnInit {
       }
     );
   }
+
+  SubmitFile() {
+    const formData = new FormData();
+    formData.append('postImage', this.currentBlogImg);
+    this.blogservice.uploadImg(formData).subscribe((item) => {
+      this.storeBlogImg = item;
+      console.log(this.storeBlogImg);
+      alert(this.storeBlogImg.message);
+      this.newPost.patchValue({
+        postImage: this.storeBlogImg.result['postImage'],
+      });
+    });
+  }
+
   channelPost(data) {
     let title = data.postTitle;
     let post = data.post;

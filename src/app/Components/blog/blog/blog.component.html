@@ -98,6 +98,42 @@
               <h1>Create post</h1>
             </div>
             <div class="card-body">
+              <h3>Upload image</h3>
+              <div *ngIf="currentBlogImgP">
+                <img
+                  [src]="currentBlogImgP"
+                  style="height: 200px; width: auto;"
+                />
+              </div>
+
+              <br />
+
+              <input
+                type="file"
+                class="blogpimg"
+                fomrControlName="postImage"
+                multiple
+                (change)="selection($event)"
+              />
+              <br />
+              <br />
+              <button
+                type="submit"
+                class="btn btn-info"
+                (click)="SubmitFile()"
+                style="margin-right: 15px;"
+              >
+                upload
+              </button>
+              <button
+                type="reset"
+                class="btn btn-danger"
+                (click)="currentBlogImgP = null"
+              >
+                reset
+              </button>
+              <br />
+              <br />
               <form
                 [formGroup]="newPost"
                 (ngSubmit)="
@@ -163,53 +199,62 @@
           <div class="loopdata" *ngFor="let d of data">
             <hr *ngIf="data" style="background-color: white;" />
             <div class="container">
-              <div
-                class="body"
-                data-aos="fade-up"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-              >
-                <h2
-                  [ngStyle]="{
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                  style="padding-top: 20px;"
+              <div class="row">
+                <div class="col-sm-4" *ngIf="d.postImage">
+                  <img
+                    src="{{ d.postImage }}"
+                    style="height: 200px; width: auto;"
+                  />
+                </div>
+                <div
+                  class="body col-sm-8"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                  data-aos-duration="1000"
+                  [ngClass]="{ 'col-sm-12': !d.postImage }"
                 >
-                  <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
-                    >#{{ d.postNumber }}: {{ d.postTitle }}</a
-                  >
-                  <!-- post edited or not -->
-                  <h6
+                  <h2
                     [ngStyle]="{
                       color: brightness ? 'black' : 'rgb(129,129,129)'
                     }"
+                    style="padding-top: 20px;"
                   >
-                    <span *ngIf="d.edited == true"
-                      ><i class="fas fa-pencil-alt"></i> edited.</span
+                    <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
+                      >#{{ d.postNumber }}: {{ d.postTitle }}</a
                     >
-                    <span style="float: right;"
-                      ><i class="fas fa-eye"></i
-                    ></span>
-                  </h6>
-                  <h5
+                    <!-- post edited or not -->
+                    <h6
+                      [ngStyle]="{
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <span *ngIf="d.edited == true"
+                        ><i class="fas fa-pencil-alt"></i> edited.</span
+                      >
+                      <span style="float: right;"
+                        ><i class="fas fa-eye"></i
+                      ></span>
+                    </h6>
+                    <h5
+                      *ngIf="data"
+                      [ngStyle]="{
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      {{ d.postDate }}
+                    </h5>
+                  </h2>
+                  <p
                     *ngIf="data"
                     [ngStyle]="{
                       color: brightness ? 'black' : 'rgb(129,129,129)'
                     }"
+                    style="padding-bottom: 30px;"
                   >
-                    {{ d.postDate }}
-                  </h5>
-                </h2>
-                <p
-                  *ngIf="data"
-                  [ngStyle]="{
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                  style="padding-bottom: 30px;"
-                >
-                  {{ d.post | slice: 0:130 }}...
-                  <a routerLink="/Blog/{{ d._id }}"> Read more</a>
-                </p>
+                    {{ d.post | slice: 0:130 }}...
+                    <a routerLink="/Blog/{{ d._id }}"> Read more</a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

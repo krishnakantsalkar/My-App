@@ -13,6 +13,9 @@ export class blogpostservice {
   public addBlogApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/AddBlog';
 
+  public uploadApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/blogImage';
+
   public updateBlogApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/updateBlog/';
 
@@ -37,6 +40,10 @@ export class blogpostservice {
     return this.http.post<Iblog>(this.addBlogApi, JSON.stringify(data), {
       headers: this.header,
     });
+  }
+
+  uploadImg(data) {
+    return this.http.post(this.uploadApi, data);
   }
 
   updateBlog(data, id): Observable<Iblog> {

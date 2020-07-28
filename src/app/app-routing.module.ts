@@ -48,6 +48,14 @@ const routes: Routes = [
       import('./Components/bday/bday.module').then((m) => m.BdayModule),
     canActivate: [authGuard],
   },
+  {
+    path: 'Profile',
+    loadChildren: () =>
+      import('./Components/profile/profile.module').then(
+        (m) => m.ProfileModule
+      ),
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({

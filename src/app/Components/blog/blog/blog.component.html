@@ -200,7 +200,13 @@
             <hr *ngIf="data" style="background-color: white;" />
             <div class="container">
               <div class="row">
-                <div class="col-sm-4 pstimg" *ngIf="d.postImage">
+                <div
+                  class="col-sm-4 pstimg"
+                  data-aos="fade-right"
+                  data-aos-delay="300"
+                  data-aos-duration="1000"
+                  *ngIf="d.postImage"
+                >
                   <img src="{{ d.postImage }}" />
                 </div>
                 <div

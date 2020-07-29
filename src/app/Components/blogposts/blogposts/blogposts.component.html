@@ -95,6 +95,51 @@
           Delete
         </button>
 
+        <a
+          class="shareenv"
+          *ngIf="blogURL"
+          data-aos="fade-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          href="mailto:someone@example.com?subject=Heyy!%20Check%20out%20this%20Post%20!!&amp;body=%20{{
+            blogURL
+          }}"
+          ><img
+            class="shareenvImg1"
+            src="https://img.icons8.com/fluent/48/000000/gmail.png"
+            height="50"
+            width="55"
+          />
+          <img
+            class="shareenvImg2"
+            src="https://img.icons8.com/fluent/48/000000/gmail.png"
+            height="40"
+            width="40"
+          />
+        </a>
+
+        <a
+          class="share"
+          *ngIf="blogURL"
+          data-aos="fade-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          href="https://www.facebook.com/sharer/sharer.php?u={{ blogURL }}"
+          target="_blank"
+          ><i class="fab fa-facebook-square fb"></i
+        ></a>
+
+        <a
+          class="share"
+          *ngIf="blogURL"
+          data-aos="fade-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          href="https://telegram.me/share/url?url={{ blogURL }}"
+          target="_blank"
+          ><i class="fab fa-telegram tg"></i
+        ></a>
+
         <!-- blog post -->
         <div
           class="container"

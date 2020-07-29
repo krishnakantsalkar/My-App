@@ -166,6 +166,32 @@ div.blogimg img {
   /* align-items: center; */
   height: 400px;
 }
+.fb {
+  font-size: 44px;
+}
+.tg {
+  font-size: 44px;
+}
+
+.share {
+  /* margin-top: -9px; */
+  margin-left: 10px;
+  float: right;
+  position: relative;
+  z-index: 1000;
+  margin-bottom: 10px;
+}
+.shareenv {
+  margin-top: -3px;
+  float: right;
+  margin-left: 8px;
+  position: relative;
+  z-index: 1000;
+  margin-bottom: 10px;
+}
+.shareenvImg2 {
+  display: none;
+}
 
 @media only screen and (max-width: 600px) {
   div.card-header h2 {
@@ -180,5 +206,20 @@ div.blogimg img {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+  }
+  .fa-facebook-square,
+  .fa-telegram {
+    font-size: 35px;
+  }
+  .shareenvImg1 {
+    display: none;
+  }
+  .shareenvImg2 {
+    display: block;
+    margin-right: 20px;
+    margin-left: 8px;
+    position: relative;
+    z-index: 1000;
+    margin-bottom: 10px;
   }
 }

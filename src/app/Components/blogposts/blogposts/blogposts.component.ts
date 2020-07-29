@@ -22,6 +22,7 @@ export class BlogpostsComponent implements OnInit {
 
   post;
   public adminName;
+  public blogURL;
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -48,6 +49,7 @@ export class BlogpostsComponent implements OnInit {
       this.blogservice.getBlogsbyId(id).subscribe((items) => {
         this.data = items;
         this.post = this.data.post;
+        this.blogURL = window.location.href;
         if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;
         }

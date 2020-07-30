@@ -13,6 +13,7 @@ export class MainPageComponent implements OnInit {
   public brightness: boolean;
   public special: boolean;
   public recentblogs;
+  public loggedInUser;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -26,6 +27,7 @@ export class MainPageComponent implements OnInit {
       startEvent: 'DOMContentLoaded',
     });
     this.recentUpdates();
+    this.getUserId();
   }
 
   mode() {
@@ -48,6 +50,7 @@ export class MainPageComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('id');
     location.reload();
   }
 
@@ -55,5 +58,9 @@ export class MainPageComponent implements OnInit {
     this.blogservice.getBlogs().subscribe((item) => {
       this.recentblogs = item;
     });
+  }
+
+  getUserId() {
+    this.loggedInUser = JSON.parse(localStorage.getItem('id'));
   }
 }

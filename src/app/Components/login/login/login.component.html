@@ -114,19 +114,23 @@
                   <div class="form-group">
                     <label>Password</label>
                     <div class="row">
-                      <input
-                        class="form-control password-tag col-10"
-                        type="password"
-                        placeholder="Enter Password"
-                        formControlName="password"
-                        [class.is-valid]="
-                          newLogin.get('userLogin.password').valid
-                        "
-                        [class.is-invalid]="
-                          !newLogin.get('userLogin.password').valid && submitted
-                        "
-                        [type]="showpass ? 'text' : 'password'"
-                      /><span class="col-2">
+                      <div class="passinput">
+                        <input
+                          class="form-control password-tag col-11"
+                          type="password"
+                          placeholder="Enter Password"
+                          formControlName="password"
+                          [class.is-valid]="
+                            newLogin.get('userLogin.password').valid
+                          "
+                          [class.is-invalid]="
+                            !newLogin.get('userLogin.password').valid &&
+                            submitted
+                          "
+                          [type]="showpass ? 'text' : 'password'"
+                        />
+                      </div>
+                      <span class="col-1 eye">
                         <button
                           class="showpassbtn btn btn-primary"
                           type="button"
@@ -147,7 +151,7 @@
                         Check your password!
                       </div>
                       <div
-                        class="alert alert-danger col-10"
+                        class="alert alert-danger pass col-11"
                         *ngIf="
                           newLogin.get('userLogin.password').errors?.required &&
                           newLogin.get('userLogin.password').touched

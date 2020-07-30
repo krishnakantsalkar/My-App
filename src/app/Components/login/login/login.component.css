@@ -102,6 +102,18 @@ div.login-card .card {
   margin-right: auto;
 }
 
+.passinput {
+  width: 100%;
+  margin-left: 14px;
+}
+.pass {
+  margin-left: 14px;
+}
+
+.eye {
+  margin-left: -90px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 50px;

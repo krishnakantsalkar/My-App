@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { uploadservices } from '../../../Shared/services/uploadservice';
+import { ActivatedRoute } from '@angular/router';
+import { userloginservices } from '../../../Shared/services/userloginservice';
 
 @Component({
   selector: 'app-profile',
@@ -8,15 +10,40 @@ import { uploadservices } from '../../../Shared/services/uploadservice';
 })
 export class ProfileComponent implements OnInit {
   public image;
+  public user;
+  public brightness: boolean;
+  public currentProfImgP;
+  public currentProfImg;
+  public editDp: boolean;
 
-  constructor(private upload: uploadservices) {}
+  constructor(
+    private upload: uploadservices,
+    private AR: ActivatedRoute,
+    private loginService: userloginservices
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mode();
+    this.AR.params.subscribe((item) => {
+      let id = item['id'];
+      this.loginService.getUsersById(id).subscribe((items) => {
+        this.user = items;
+      });
+    });
+  }
 
   selection(event) {
-    if (event.target.files.length > 0) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.currentProfImgP = event.target.result;
+      };
       const file = event.target.files[0];
-      this.image = file;
+      this.currentProfImg = file;
     }
   }
 
@@ -27,5 +54,24 @@ export class ProfileComponent implements OnInit {
       console.log(item);
       alert('image uploaded');
     });
+  }
+  //dark-light mode
+  mode() {
+    this.brightness = JSON.parse(localStorage.getItem('mode'));
+  }
+  pic() {
+    this.editDp = !this.editDp;
+  }
+
+  SubmitFile() {
+    let currentUserID = JSON.parse(localStorage.getItem('id'));
+    const formData = new FormData();
+    formData.append('userImage', this.currentProfImg);
+    this.loginService
+      .updateProfPic(formData, currentUserID)
+      .subscribe((item) => {
+        alert('profile pic updated successfully!');
+        location.reload();
+      });
   }
 }

@@ -1,0 +1,207 @@
+div.top-panel {
+  background-color: rgb(37, 38, 39);
+  width: 100%;
+  height: 80px;
+}
+
+div.nametag h3 {
+  padding-top: 20px;
+  color: gray;
+  font-size: 25px;
+}
+
+div.nametag span {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+div.links {
+  padding-top: 20px;
+}
+
+span.one {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+  }
+}
+@media only screen and (max-width: 600px) {
+  div.nametag h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  div.links {
+    text-align: center;
+  }
+  div.links button {
+    margin-top: -50px;
+    font-size: 10px;
+  }
+  div.top-panel {
+    height: 90px;
+  }
+}
+
+div.links {
+  font-size: 25px;
+}
+div.links a {
+  padding: 8px 8px 8px;
+  padding-top: 20px;
+  color: #818181;
+  /* display: block; */
+}
+
+.togglemode {
+  color: #818181;
+  padding-top: 20px;
+  font-size: 25px;
+  position: fixed;
+  right: 20px;
+  z-index: 1;
+  top: 4px;
+}
+
+div.content {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+}
+
+.togglemode:hover {
+  color: white;
+}
+
+div.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(37, 38, 39);
+  height: 70px;
+}
+
+div.footer-text {
+  text-align: center;
+  padding-top: 20px;
+}
+div.footer h6,
+div.footer i {
+  color: #818181;
+  font-size: 17px;
+}
+
+.data {
+  padding-top: 10px;
+}
+.profileArea {
+  padding-top: 40px;
+}
+div.profImg img {
+  max-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  overflow: hidden;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+  }
+}
+
+.profile {
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  div.footer {
+    height: 50px;
+  }
+  div.footer h6,
+  div.footer i {
+    font-size: 12px;
+  }
+  div.motto h5 {
+    font-size: 14px;
+  }
+  .profImg {
+    text-align: center;
+  }
+
+  div.profImg img {
+    max-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    margin-bottom: 40px;
+  }
+  div.info h3 {
+    font-size: 20px;
+    text-align: center;
+  }
+}

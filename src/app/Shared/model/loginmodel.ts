@@ -4,4 +4,5 @@ export interface IuserLogin {
     password: string;
   };
   token?: boolean;
+  id?: string;
 }

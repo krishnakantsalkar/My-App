@@ -8,6 +8,13 @@ import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 export class userloginservices {
   public loginAPI: string =
     'https://mybackend-1911.herokuapp.com/api/users/login';
+
+  public profileAPI: string =
+    'https://mybackend-1911.herokuapp.com/api/users/getUsers/';
+
+  public profilePicAPI: string =
+    'https://mybackend-1911.herokuapp.com/api/users/editProfImg/';
+
   public header: HttpHeaders;
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -20,6 +27,15 @@ export class userloginservices {
   }
   Logout() {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('id');
     this.router.navigateByUrl('/Home');
+  }
+
+  getUsersById(id) {
+    return this.http.get(this.profileAPI + id);
+  }
+
+  updateProfPic(data, id) {
+    return this.http.put(this.profilePicAPI + id, data);
   }
 }

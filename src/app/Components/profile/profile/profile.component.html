@@ -113,6 +113,9 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(160,160,160)'
                       }"
+                      data-aos="zoom-out"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
                     >
                       <h3>Upload image</h3>
                       <div>
@@ -153,7 +156,13 @@
                     </div>
 
                     <!-- prof img -->
-                    <div class="profImg" *ngIf="!editDp">
+                    <div
+                      class="profImg"
+                      *ngIf="!editDp"
+                      data-aos="zoom-in"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
+                    >
                       <img class="Img" src="{{ user.userImage }}" alt="" />
                     </div>
                   </div>
@@ -163,6 +172,9 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(160,160,160)'
                       }"
+                      data-aos="fade-up"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
                     >
                       <!-- <h3> {{ user._id }}</h3> -->
                       <h3>User: {{ user.name }}</h3>

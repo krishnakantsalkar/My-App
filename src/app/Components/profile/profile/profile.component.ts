@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { uploadservices } from '../../../Shared/services/uploadservice';
 import { ActivatedRoute } from '@angular/router';
 import { userloginservices } from '../../../Shared/services/userloginservice';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +30,10 @@ export class ProfileComponent implements OnInit {
       this.loginService.getUsersById(id).subscribe((items) => {
         this.user = items;
       });
+    });
+
+    AOS.init({
+      startEvent: 'DOMContentLoaded',
     });
   }
 

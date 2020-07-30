@@ -181,6 +181,10 @@ div.recentposts .seemore {
   text-align: center;
 }
 
+.clickable:hover {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 50px;

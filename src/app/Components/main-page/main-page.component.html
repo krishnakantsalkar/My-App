@@ -14,7 +14,7 @@
       <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
       <a href="https://github.com/krishnakantsalkar/My-App"> Github</a>
       <a routerLink="/Login" *ngIf="!special"> Login</a>
-      <a *ngIf="special" (click)="logout()"> Logout</a>
+      <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
       <a routerLink="/About"> Support</a>
       <a (click)="mode()"><i class="fas fa-adjust"></i></a>
     </div>

@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       if (item && item.token === true) {
         localStorage.setItem('credentials', JSON.stringify(item.token));
         localStorage.setItem('user', JSON.stringify(item));
+        localStorage.setItem('id', JSON.stringify(item.id));
       }
       alert('login successful!');
       this.router.navigateByUrl('/Home');

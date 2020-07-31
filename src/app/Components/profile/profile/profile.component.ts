@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { uploadservices } from '../../../Shared/services/uploadservice';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { userloginservices } from '../../../Shared/services/userloginservice';
 import * as AOS from 'aos';
 
@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private upload: uploadservices,
     private AR: ActivatedRoute,
-    private loginService: userloginservices
+    private loginService: userloginservices,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -78,5 +79,11 @@ export class ProfileComponent implements OnInit {
         alert('profile pic updated successfully!');
         location.reload();
       });
+  }
+
+  logout() {
+    localStorage.removeItem('credentials');
+    localStorage.removeItem('id');
+    this.router.navigateByUrl('/Home');
   }
 }

@@ -94,6 +94,13 @@
                   : ' rgb(35, 36, 38)'
               }"
             >
+              <a
+                class="logoutbtn"
+                [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+                (click)="logout()"
+              >
+                Logout</a
+              >
               <h4>Welcome SuperUser!</h4>
             </div>
             <div class="card-body">

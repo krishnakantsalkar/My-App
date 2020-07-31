@@ -182,7 +182,14 @@ div.profImg img {
 .profile {
   text-align: center;
 }
+.profile a:hover {
+  cursor: pointer;
+}
 
+.logoutbtn {
+  float: right;
+  margin-top: 5px;
+}
 .editPic {
   text-align: center;
 }

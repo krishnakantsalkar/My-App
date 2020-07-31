@@ -143,7 +143,7 @@ div.footer {
   bottom: 0;
   width: 100%;
   background-color: rgb(37, 38, 39);
-  height: 70px;
+  height: 60px;
 }
 
 div.footer-text {
@@ -187,12 +187,15 @@ div.recentposts .seemore {
 
 @media only screen and (max-width: 600px) {
   div.footer {
-    height: 50px;
+    height: 25px;
     z-index: 2;
+  }
+  .footer-text {
+    margin-top: -13px;
   }
   div.footer h6,
   div.footer i {
-    font-size: 12px;
+    font-size: 8px;
   }
   div.motto h5 {
     font-size: 14px;

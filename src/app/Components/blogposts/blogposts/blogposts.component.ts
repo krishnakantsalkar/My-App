@@ -63,6 +63,25 @@ export class BlogpostsComponent implements OnInit {
       postLink: [''],
       edited: ['true'], // send a default edited = true on every API call (since its edited)!
     });
+
+    //Get the button
+    var mybutton = document.getElementById('myBtn');
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = 'block';
+      } else {
+        mybutton.style.display = 'none';
+      }
+    }
   }
 
   //sanitize url method
@@ -129,5 +148,9 @@ export class BlogpostsComponent implements OnInit {
       return;
     }
     this.adminName = currentUser.name;
+  }
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

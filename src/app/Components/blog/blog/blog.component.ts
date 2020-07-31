@@ -40,6 +40,25 @@ export class BlogComponent implements OnInit {
       post: ['', Validators.required],
       postLink: [''],
     });
+
+    //Get the button
+    var mybutton = document.getElementById('myBtn');
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = 'block';
+      } else {
+        mybutton.style.display = 'none';
+      }
+    }
   }
 
   mode() {
@@ -122,5 +141,9 @@ export class BlogComponent implements OnInit {
       // console.log(item);
       location.reload();
     });
+  }
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

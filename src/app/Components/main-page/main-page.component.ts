@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
-import { blogpostservice } from '../../Shared/services/blogservice';
+import { blogpostservice } from 'src/app/Shared/services/blogservice';
 
 @Component({
   selector: 'app-main-page',

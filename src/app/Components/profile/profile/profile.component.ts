@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { uploadservices } from '../../../Shared/services/uploadservice';
+import { uploadservices } from 'src/app/Shared/services/uploadservice';
 import { ActivatedRoute, Router } from '@angular/router';
-import { userloginservices } from '../../../Shared/services/userloginservice';
+import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import * as AOS from 'aos';
 
 @Component({

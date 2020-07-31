@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import * as AOS from 'aos';
-import { clientIpService } from '../../../Shared/services/clientip-service';
+import { clientIpService } from 'src/app/Shared/services/clientip-service';
 
 @Component({
   selector: 'app-login',

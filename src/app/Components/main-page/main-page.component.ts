@@ -3,6 +3,9 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { contactService } from '../../Shared/services/contactUSservice';
+import { IcontactUs } from '../../Shared/model/contactUsmodel';
 
 @Component({
   selector: 'app-main-page',
@@ -14,10 +17,13 @@ export class MainPageComponent implements OnInit {
   public special: boolean;
   public recentblogs;
   public loggedInUser;
+  public sendFeedback: FormGroup;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
-    private blogservice: blogpostservice
+    private blogservice: blogpostservice,
+    private fb: FormBuilder,
+    private contactServices: contactService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +34,12 @@ export class MainPageComponent implements OnInit {
     });
     this.recentUpdates();
     this.getUserId();
+
+    this.sendFeedback = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required, Validators.min(2)]],
+    });
   }
 
   mode() {
@@ -62,5 +74,21 @@ export class MainPageComponent implements OnInit {
 
   getUserId() {
     this.loggedInUser = JSON.parse(localStorage.getItem('id'));
+  }
+
+  Send(data: IcontactUs) {
+    if (!this.sendFeedback.valid) {
+      return;
+    }
+    console.log(data);
+    this.contactServices.contact(data).subscribe(
+      (item) => {
+        alert('message sent successfully!');
+        location.reload();
+      },
+      (error) => {
+        alert('somethng went wrong, please try again');
+      }
+    );
   }
 }

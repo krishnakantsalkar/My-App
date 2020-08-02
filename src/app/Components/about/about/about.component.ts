@@ -7,7 +7,7 @@ import * as AOS from 'aos';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
-  public email: string = 'Krishnakantsalkar@gmail.com';
+  public email: string = 'dev@krishnakantsalkar.gq';
   public phone: string = '+919619705613';
   public github: string = 'https://github.com/krishnakantsalkar';
   public brightness: boolean;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'My-App';
+  title = 'The-Arsonist~';
+  constructor(private titleService: Title) {}
 
   onActivate(event) {
     let scrollToTop = window.setInterval(() => {
@@ -17,5 +19,8 @@ export class AppComponent {
         window.clearInterval(scrollToTop);
       }
     }, 16);
+  }
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
 }

@@ -10,10 +10,10 @@ div.nametag h3 {
   font-size: 25px;
 }
 
-div.nametag span {
+/* div.nametag span {
   color: violet;
   animation: cursor 1s infinite;
-}
+} */
 
 div.links {
   padding-top: 20px;

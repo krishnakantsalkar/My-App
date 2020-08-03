@@ -384,7 +384,8 @@ div.nametag h3 {
 }
 
 div.links {
-  padding-top: 20px;
+  padding-top: 18px;
+  font-size: 22px;
 }
 @keyframes cursor {
   from,
@@ -414,6 +415,8 @@ div.links {
 
   div.links {
     text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
   }
   div.links button {
     margin-top: -50px;
@@ -442,14 +445,15 @@ div.links {
   }
 }
 
-div.links {
-  font-size: 25px;
-}
 div.links a {
-  padding: 8px 8px 8px;
-  padding-top: 20px;
+  padding: 15px 12px 15px 12px;
   color: #818181;
+  border-radius: 5px;
   /* display: block; */
+}
+div.links a:hover {
+  color: white;
+  text-decoration: none;
 }
 
 span.one {
@@ -480,4 +484,7 @@ span.two {
   50% {
     color: red;
   }
+}
+div.links a:hover {
+  background-color: tomato;
 }

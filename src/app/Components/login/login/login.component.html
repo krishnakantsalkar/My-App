@@ -19,16 +19,18 @@
         <div class="row">
           <div class="col-sm-6 nametag">
             <h3
+              class="n1"
               *ngIf="!brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >
-              > krishnakantsalkar@prototype:~<span>$</span>
+              > krishnakantsalkar@prototype:~<span class="one">$</span>
             </h3>
             <h3
+              class="n2"
               *ngIf="brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >
-              > krishnakantsalkar@prototype:~<span>$</span>
+              > krishnakantsalkar@prototype:~<span class="two">$</span>
             </h3>
           </div>
           <div class="col-sm-6 links">

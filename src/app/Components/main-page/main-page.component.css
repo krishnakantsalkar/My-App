@@ -47,6 +47,13 @@ div.nametag h4 {
   font-size: 25px;
   padding-top: 20px;
   color: gray;
+  cursor: pointer;
+}
+.n1:hover {
+  opacity: 0.7;
+}
+.n2:hover {
+  opacity: 0.7;
 }
 
 span.one {
@@ -75,6 +82,7 @@ span.two {
   }
   50% {
     color: violet;
+    text-shadow: 0px 0px 15px;
   }
 }
 
@@ -85,6 +93,7 @@ span.two {
   }
   50% {
     color: red;
+    text-shadow: 0px 0px 15px rgb(243, 50, 82);
   }
 }
 

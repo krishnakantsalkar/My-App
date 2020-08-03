@@ -24,6 +24,7 @@
         <div class="row">
           <div class="col-sm-6 nametag">
             <h3
+              class="n1"
               *ngIf="!brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >
@@ -31,6 +32,7 @@
             </h3>
 
             <h3
+              class="n2"
               *ngIf="brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >

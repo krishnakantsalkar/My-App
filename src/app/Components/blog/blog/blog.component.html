@@ -201,7 +201,8 @@
         <!-- Blog data -->
         <div class="blogdata" *ngIf="data">
           <div class="loopdata" *ngFor="let d of data">
-            <hr *ngIf="data" style="background-color: white;" />
+            <!-- <hr *ngIf="data" style="background-color: white;" /> -->
+            <br />
             <div class="container">
               <div class="row">
                 <div
@@ -210,6 +211,12 @@
                   data-aos-delay="300"
                   data-aos-duration="1000"
                   *ngIf="d.postImage"
+                  [ngStyle]="{
+                    'border-color': brightness ? 'rgb(255, 77, 77)' : 'violet'
+                  }"
+                  [ngClass]="{
+                    blgdata: d.postImage
+                  }"
                 >
                   <img src="{{ d.postImage }}" />
                 </div>
@@ -218,7 +225,13 @@
                   data-aos="fade-up"
                   data-aos-delay="300"
                   data-aos-duration="1000"
-                  [ngClass]="{ 'col-sm-12': !d.postImage }"
+                  [ngClass]="{
+                    'col-sm-12': !d.postImage,
+                    blgdata: !d.postImage
+                  }"
+                  [ngStyle]="{
+                    'border-color': brightness ? 'rgb(255, 77, 77)' : 'violet'
+                  }"
                 >
                   <h2
                     [ngStyle]="{
@@ -264,6 +277,8 @@
                 </div>
               </div>
             </div>
+            <br />
+            <br />
           </div>
         </div>
       </div>

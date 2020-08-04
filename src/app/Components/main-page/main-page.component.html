@@ -127,6 +127,9 @@
         >
           <div
             class="insider"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            data-aos-duration="1000"
             [ngStyle]="{ color: brightness ? 'black' : 'white' }"
           >
             <div
@@ -183,18 +186,30 @@
         <div class="bottom-content">
           <div class="row">
             <div class="col-sm-3">
-              <h4>
-                <span><u>The Arsonist~</u> </span>
-              </h4>
-              <p>It'll Blow you Away!</p>
-              <p>
-                Hey there, Welcome to my blog page, If you what you see, read...
-                feel free to share it with your friends! Just a regular noob
-                programmer from Mumbai learning new things
-              </p>
+              <div
+                class="shortbio"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+              >
+                <h4>
+                  <span><u>The Arsonist~</u> </span>
+                </h4>
+                <p>It'll Blow you Away!</p>
+                <p>
+                  Hey there, Welcome to my blog page, If you what you see,
+                  read... feel free to share it with your friends! Just a
+                  regular noob programmer from Mumbai learning new things
+                </p>
+              </div>
             </div>
             <div class="col-sm-3">
-              <div class="footer-social">
+              <div
+                class="footer-social"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+              >
                 <a
                   href="https://www.facebook.com/Supremegod.of.war/"
                   target="_blank"
@@ -208,7 +223,12 @@
               </div>
             </div>
             <div class="col-sm-3">
-              <div class="menu">
+              <div
+                class="menu"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+              >
                 <ul>
                   <li>
                     <a
@@ -259,53 +279,60 @@
               </div>
             </div>
             <div class="col-sm-3 feedback-form">
-              <h2 class="footer-wid-title">Feedback?</h2>
-              <p>
-                Hey there, Send us a quick feedback or any message regarding any
-                query you have!
-              </p>
-              <div class="feedback-form">
-                <form
-                  class="feedback"
-                  [formGroup]="sendFeedback"
-                  (ngSubmit)="Send(sendFeedback.value)"
-                >
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="name"
-                    formControlName="name"
-                    [ngStyle]="{
-                      'background-color': sendFeedback.get('name').valid
-                        ? 'rgb(160, 237, 115)'
-                        : 'rgb(239, 133, 133)'
-                    }"
-                  />
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Type your email"
-                    formControlName="email"
-                    [ngStyle]="{
-                      'background-color': sendFeedback.get('email').valid
-                        ? 'rgb(160, 237, 115)'
-                        : 'rgb(239, 133, 133)'
-                    }"
-                  />
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="message"
-                    formControlName="message"
-                    min="5"
-                    [ngStyle]="{
-                      'background-color': sendFeedback.get('message').valid
-                        ? 'rgb(160, 237, 115)'
-                        : 'rgb(239, 133, 133)'
-                    }"
-                  />
-                  <button class="btn btn-success" type="submit">Send</button>
-                </form>
+              <div
+                class="feedbckfrm"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+              >
+                <h2 class="footer-wid-title">Feedback?</h2>
+                <p>
+                  Hey there, Send us a quick feedback or any message regarding
+                  any query you have!
+                </p>
+                <div class="feedback-form">
+                  <form
+                    class="feedback"
+                    [formGroup]="sendFeedback"
+                    (ngSubmit)="Send(sendFeedback.value)"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="name"
+                      formControlName="name"
+                      [ngStyle]="{
+                        'background-color': sendFeedback.get('name').valid
+                          ? 'rgb(160, 237, 115)'
+                          : 'rgb(239, 133, 133)'
+                      }"
+                    />
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Type your email"
+                      formControlName="email"
+                      [ngStyle]="{
+                        'background-color': sendFeedback.get('email').valid
+                          ? 'rgb(160, 237, 115)'
+                          : 'rgb(239, 133, 133)'
+                      }"
+                    />
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="message"
+                      formControlName="message"
+                      min="5"
+                      [ngStyle]="{
+                        'background-color': sendFeedback.get('message').valid
+                          ? 'rgb(160, 237, 115)'
+                          : 'rgb(239, 133, 133)'
+                      }"
+                    />
+                    <button class="btn btn-success" type="submit">Send</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

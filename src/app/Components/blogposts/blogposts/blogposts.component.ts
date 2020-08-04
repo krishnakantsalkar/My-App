@@ -115,7 +115,7 @@ export class BlogpostsComponent implements OnInit {
   //edit post by id [4], here id = [5] because the array elements are higher in the deployed page
   editPostById(data) {
     let getBlogId = window.location.href.split('/');
-    let id = getBlogId[5];
+    let id = getBlogId[4];
     this.blogservice.updateBlog(data, id).subscribe(
       (item) => {
         alert(item.message);

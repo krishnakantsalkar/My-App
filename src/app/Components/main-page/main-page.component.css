@@ -135,15 +135,17 @@ div.imagesection img {
   div.nametag h4 {
     font-size: 15px;
     margin-left: 0px;
+    padding-left: 41px;
     text-align: center;
   }
   div.imagesection {
     padding-top: 100px;
+    padding-left: 41px;
   }
 
   div.imagesection img {
-    height: 200px;
-    width: 200px;
+    height: 230px;
+    width: 230px;
   }
 }
 
@@ -265,8 +267,12 @@ div.recentposts .seemore {
   div.motto h5 {
     font-size: 14px;
   }
+  .motto {
+    padding-left: 41px;
+  }
   .recentposts {
-    width: 75%;
+    width: 90%;
+    padding-left: 41px;
   }
   div.recentposts h3 {
     font-size: 22px;

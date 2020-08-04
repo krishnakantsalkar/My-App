@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <div class="sidenav">
+    <div class="sidenav" [ngClass]="{ sidenavL: brightness }">
       <span>&#9776;</span>
       <a routerLink="/About"> About</a>
       <a routerLink="/Blog"> Blog</a>
@@ -16,7 +16,12 @@
       <a routerLink="/Login" *ngIf="!special"> Login</a>
       <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
       <a routerLink="/About"> Support</a>
-      <a (click)="mode()"><i class="fas fa-adjust"></i></a>
+      <a (click)="mode()"
+        ><i
+          class="fas"
+          [ngClass]="{ 'fa-sun': brightness, 'fa-moon': !brightness }"
+        ></i
+      ></a>
     </div>
     <div
       class="top-panel"

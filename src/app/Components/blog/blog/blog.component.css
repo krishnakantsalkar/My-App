@@ -185,6 +185,35 @@ div.links a:hover {
   background-color: tomato;
 }
 
+.twtwarea h2,
+.twtwarea h1 {
+  display: inline;
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 3px;
+}
+.twtwareaD h2:hover {
+  background-color: violet;
+  border-radius: 5px;
+}
+.twtwareaL h2:hover {
+  background-color: rgb(243, 61, 61);
+  border-radius: 5px;
+  color: white;
+}
+#expand {
+  margin-top: 15px;
+  /* left: -300px; */
+  display: none;
+  /* z-index: -10;
+  transition: 0.7s ease-in; */
+}
+#angleRight {
+  /* position: relative; */
+  margin-top: 20px;
+  margin-left: 4px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 25px;
@@ -202,6 +231,16 @@ div.links a:hover {
 
   .pstimg {
     text-align: center;
+  }
+  .scrolls {
+    margin-top: 0px;
+  }
+  .twtwarea h1 {
+    font-size: 30px;
+  }
+  .scrolls h2 {
+    font-size: 20px;
+    margin-left: 7px;
   }
 }
 

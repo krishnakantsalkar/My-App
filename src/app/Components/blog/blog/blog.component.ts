@@ -71,6 +71,11 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  scroll(mo) {
+    let elem = document.getElementById(`${mo}`);
+    elem.scrollIntoView();
+  }
+
   checkUserPresent() {
     this.checkUser = localStorage.getItem('credentials');
     if (!this.checkUser) {
@@ -145,5 +150,19 @@ export class BlogComponent implements OnInit {
   topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }
+
+  expand() {
+    var exp = document.getElementById('expand');
+    exp.style.display = 'inline';
+    var angle = document.getElementById('angleRight');
+    angle.style.display = 'none';
+  }
+
+  unexpand() {
+    var exp = document.getElementById('expand');
+    exp.style.display = 'none';
+    var angle = document.getElementById('angleRight');
+    angle.style.display = 'inline';
   }
 }

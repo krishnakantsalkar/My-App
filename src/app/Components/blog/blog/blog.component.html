@@ -324,6 +324,66 @@
             <br />
           </div>
         </div>
+        <div class="pagebtn" *ngIf="data">
+          <button
+            class="btn"
+            [disabled]="pageNo == 1"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(1)"
+          >
+            1
+          </button>
+          <button
+            class="btn"
+            [disabled]="pageNo == 2"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(2)"
+          >
+            2
+          </button>
+
+          <button
+            class="btn"
+            [disabled]="pageNo == 3"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(3)"
+          >
+            3
+          </button>
+          <button
+            *ngIf="datacount > 15"
+            class="btn"
+            [disabled]="pageNo == 4"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(4)"
+          >
+            4
+          </button>
+          <button
+            *ngIf="datacount > 20"
+            class="btn"
+            [disabled]="pageNo == 5"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(5)"
+          >
+            5
+          </button>
+        </div>
       </div>
     </div>
 

@@ -213,6 +213,12 @@ div.links a:hover {
   margin-top: 20px;
   margin-left: 4px;
 }
+.pagebtn {
+  text-align: center;
+}
+.pagebtn button {
+  margin: 10px;
+}
 
 @media only screen and (max-width: 600px) {
   div.footer {

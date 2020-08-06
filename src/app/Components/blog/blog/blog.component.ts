@@ -3,6 +3,7 @@ import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -23,11 +24,17 @@ export class BlogComponent implements OnInit {
   public currentBlogImgP;
   public currentBlogImg;
   public storeBlogImg;
-  constructor(private blogservice: blogpostservice, private fb: FormBuilder) {}
+  public pageNo;
+  public datacount;
+  constructor(
+    private blogservice: blogpostservice,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.mode();
-    this.blogs();
+    this.blogsP(1);
     this.checkUserPresent();
     AOS.init({
       startEvent: 'DOMContentLoaded',
@@ -65,10 +72,19 @@ export class BlogComponent implements OnInit {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
-  blogs() {
-    this.blogservice.getBlogs().subscribe((item) => {
-      this.data = item;
+  // blogs() {
+  //   this.blogservice.getBlogs().subscribe((item) => {
+  //     this.data = item.dataSize;
+  //   });
+  // }
+
+  blogsP(pg) {
+    this.blogservice.getBlogsP(pg).subscribe((item) => {
+      this.data = item.dataSize;
+      this.datacount = item.dataCount;
+      this.router.navigateByUrl(`/Blog/page/${pg}`);
     });
+    this.pageNo = pg;
   }
 
   scroll(mo) {
@@ -89,11 +105,6 @@ export class BlogComponent implements OnInit {
   }
 
   selection(event) {
-    // if (event.target.files.length > 0) {
-    //   const file = event.target.files[0];
-    //   this.currentBlogImg = file;
-
-    // }
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
@@ -112,9 +123,6 @@ export class BlogComponent implements OnInit {
     if (!this.newPost.valid) {
       return;
     }
-    // console.log(this.storeBlogImg.result['postImage']);
-
-    // console.log(data);
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         let title = item.result.postTitle;

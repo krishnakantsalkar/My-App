@@ -10,6 +10,9 @@ export class blogpostservice {
   public blogAPI: string =
     'https://mybackend-1911.herokuapp.com/api/blog/Blog/';
 
+  public testPage: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/Blog/page/';
+
   public addBlogApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/AddBlog';
 
@@ -30,6 +33,10 @@ export class blogpostservice {
 
   getBlogs(): Observable<Iblog> {
     return this.http.get<Iblog>(this.blogAPI);
+  }
+
+  getBlogsP(pg): Observable<Iblog> {
+    return this.http.get<Iblog>(this.testPage + pg);
   }
 
   getBlogsbyId(id): Observable<Iblog> {

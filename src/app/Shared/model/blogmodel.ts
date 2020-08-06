@@ -7,4 +7,6 @@ export interface Iblog {
   postLink?: string;
   result?: any;
   message?: any;
+  dataSize?: any;
+  dataCount?: any;
 }

@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./Components/about/about.module').then((m) => m.AboutModule),
   },
   {
-    path: 'Blog',
+    path: 'Blog/page/:page',
     loadChildren: () =>
       import('./Components/blog/blog.module').then((m) => m.BlogModule),
   },
@@ -59,7 +59,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

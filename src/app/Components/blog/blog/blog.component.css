@@ -225,6 +225,7 @@ div.cvrimg {
     margin-left: auto;
     right: auto;
     width: 90%;
+    background-position: center;
   }
 }
 

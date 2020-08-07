@@ -82,7 +82,12 @@ export class BlogComponent implements OnInit {
     this.blogservice.getBlogsP(pg).subscribe((item) => {
       this.data = item.dataSize;
       this.datacount = item.dataCount;
-      this.router.navigateByUrl(`/Blog/page/${pg}`);
+      this.router.navigateByUrl(`/Blog/page/${pg}`).then(() => {
+        var elmnt = document.getElementById('scrolldata');
+        if (elmnt) {
+          elmnt.scrollIntoView();
+        }
+      });
     });
     this.pageNo = pg;
   }

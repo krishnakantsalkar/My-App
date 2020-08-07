@@ -47,7 +47,6 @@
           </div>
         </div>
       </div>
-      <div></div>
     </div>
     <div
       class="content"
@@ -55,6 +54,14 @@
         'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
       }"
     ></div>
+    <div
+      class="cvrimg"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="coverimg container"></div>
+    </div>
     <div
       class="bloglinks"
       [ngStyle]="{
@@ -99,7 +106,7 @@
         >
           Create post
         </button>
-        <br />
+
         <br />
 
         <!-- Create post area -->
@@ -322,6 +329,15 @@
               </div>
             </div>
             <br />
+            <hr
+              *ngIf="data"
+              data-aos="fade-up"
+              data-aos-delay="300"
+              data-aos-duration="1000"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white'
+              }"
+            />
           </div>
         </div>
         <div class="pagebtn" *ngIf="data">

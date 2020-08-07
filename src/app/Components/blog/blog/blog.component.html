@@ -69,27 +69,9 @@
       }"
     >
       <div class="container">
-        <div
-          class="twtwarea"
-          [ngClass]="{ twtwareaD: !brightness, twtwareaL: brightness }"
-          [ngStyle]="{ color: brightness ? '#818181' : 'rgb(129,129,129)' }"
-        >
-          <div>
-            <h1 class="col-sm-1" (click)="expand()">
-              <b>2020</b>
-            </h1>
-            <h1 class="col-sm-1" id="angleRight">
-              <i class="fas fa-angle-right"></i>
-            </h1>
-
-            <div class="col-sm-1 scrolls" id="expand">
-              <h2 (click)="scroll('June')">June</h2>
-              <h2 (click)="scroll('July')">July</h2>
-              <h2 (click)="unexpand()"><i class="fas fa-angle-left"></i></h2>
-            </div>
-          </div>
-          <br />
-        </div>
+        <h1>
+          <b>2020</b>
+        </h1>
 
         <!-- add a loading... animation -->
 
@@ -215,46 +197,10 @@
 
         <!-- Blog data -->
         <div class="blogdata" *ngIf="data">
-          <div class="container">
-            <h2
-              [ngStyle]="{
-                color: brightness ? 'black' : 'rgb(129,129,129)'
-              }"
-            >
-              Latest
-            </h2>
-          </div>
           <div class="loopdata" *ngFor="let d of data">
             <!-- <hr *ngIf="data" style="background-color: white;" /> -->
+            <br />
             <div class="container">
-              <div class="month">
-                <br />
-                <h2
-                  *ngIf="d.postNumber == 7"
-                  id="June"
-                  [ngStyle]="{
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                >
-                  June
-                </h2>
-                <h2
-                  data-aos="fade-up"
-                  data-aos-delay="300"
-                  data-aos-duration="1000"
-                  *ngIf="d.postNumber == 12"
-                  id="July"
-                  [ngStyle]="{
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                >
-                  July
-                </h2>
-
-                <br />
-                <br />
-              </div>
-
               <div class="row">
                 <div
                   class="col-sm-4 pstimg"

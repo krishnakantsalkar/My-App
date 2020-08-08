@@ -3,6 +3,7 @@ import { uploadservices } from 'src/app/Shared/services/uploadservice';
 import { ActivatedRoute, Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import * as AOS from 'aos';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
     private upload: uploadservices,
     private AR: ActivatedRoute,
     private loginService: userloginservices,
-    private router: Router
+    private router: Router,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -82,7 +84,8 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('credentials');
+    // localStorage.removeItem('credentials');
+    this.cookies.delete('credentials');
     localStorage.removeItem('id');
     this.router.navigateByUrl('/Home');
   }

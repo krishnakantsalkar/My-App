@@ -4,6 +4,7 @@ import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-blogposts',
@@ -28,7 +29,8 @@ export class BlogpostsComponent implements OnInit {
     private AR: ActivatedRoute,
     private sanitizer: DomSanitizer, // to sanitize urls , method below
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +103,8 @@ export class BlogpostsComponent implements OnInit {
 
   //check if user logged in
   checkUserPresent() {
-    this.checkUser = localStorage.getItem('credentials');
+    // this.checkUser = localStorage.getItem('credentials');
+    this.checkUser = this.cookies.get('credentials');
     if (!this.checkUser) {
       console.log('user not logged in');
     }

@@ -10,6 +10,7 @@ import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import * as AOS from 'aos';
 import { clientIpService } from 'src/app/Shared/services/clientip-service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private loginservice: userloginservices,
-    private userlogservice: clientIpService
+    private userlogservice: clientIpService,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +70,8 @@ export class LoginComponent implements OnInit {
     console.log(data);
     this.loginservice.Login(data).subscribe((item) => {
       if (item && item.token === true) {
-        localStorage.setItem('credentials', JSON.stringify(item.token));
+        // localStorage.setItem('credentials', JSON.stringify(item.token));
+        this.cookies.set('credentials', JSON.stringify(item.token));
         localStorage.setItem('user', JSON.stringify(item));
         localStorage.setItem('id', JSON.stringify(item.id));
       }

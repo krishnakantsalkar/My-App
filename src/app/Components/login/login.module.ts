@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { loginRoutes } from './login-routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -12,5 +13,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild(loginRoutes),
     ReactiveFormsModule,
   ],
+  providers: [CookieService],
 })
 export class LoginModule {}

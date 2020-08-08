@@ -4,6 +4,7 @@ import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-blog',
@@ -29,7 +30,8 @@ export class BlogComponent implements OnInit {
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +95,8 @@ export class BlogComponent implements OnInit {
   }
 
   checkUserPresent() {
-    this.checkUser = localStorage.getItem('credentials');
+    // this.checkUser = localStorage.getItem('credentials');
+    this.checkUser = this.cookies.get('credentials');
     if (!this.checkUser) {
       console.log('user not logged in');
     }

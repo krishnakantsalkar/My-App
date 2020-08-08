@@ -7,6 +7,7 @@ import { MainPageComponent } from './Components/main-page/main-page.component';
 import { userloginservices } from './Shared/services/userloginservice';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent, MainPageComponent],
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [userloginservices],
+  providers: [userloginservices, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

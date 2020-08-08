@@ -6,6 +6,7 @@ import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-main-page',
@@ -23,7 +24,8 @@ export class MainPageComponent implements OnInit {
     private router: Router,
     private blogservice: blogpostservice,
     private fb: FormBuilder,
-    private contactServices: contactService
+    private contactServices: contactService,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -51,17 +53,23 @@ export class MainPageComponent implements OnInit {
   }
 
   getspecials() {
-    let temp = JSON.parse(localStorage.getItem('credentials'));
-    if (temp === true) {
-      this.special = true;
-    } else {
-      this.special = false;
+    // let temp = JSON.parse(localStorage.getItem('credentials'));
+    let loggedinUser = this.cookies.get('credentials');
+    if (loggedinUser) {
+      let temp = JSON.parse(this.cookies.get('credentials'));
+      if (temp === true) {
+        this.special = true;
+      } else {
+        this.special = false;
+      }
+      console.log(this.special);
     }
-    console.log(this.special);
   }
 
   logout() {
-    localStorage.removeItem('credentials');
+    // localStorage.removeItem('credentials');
+    this.cookies.delete('credentials');
+
     localStorage.removeItem('id');
     location.reload();
   }

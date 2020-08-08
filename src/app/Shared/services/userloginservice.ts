@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class userloginservices {
@@ -16,7 +17,11 @@ export class userloginservices {
     'https://mybackend-1911.herokuapp.com/api/users/editProfImg/';
 
   public header: HttpHeaders;
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookies: CookieService
+  ) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
 
@@ -26,7 +31,8 @@ export class userloginservices {
     });
   }
   Logout() {
-    localStorage.removeItem('credentials');
+    // localStorage.removeItem('credentials');
+    this.cookies.delete('credentials');
     localStorage.removeItem('id');
     this.router.navigateByUrl('/Home');
   }

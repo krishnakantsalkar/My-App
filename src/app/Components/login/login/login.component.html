@@ -58,8 +58,21 @@
       }"
     >
       <div class="container login-card">
-        <div class="card">
-          <div class="card-header">
+        <div
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+          }"
+        >
+          <div
+            class="card-header"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(223, 223, 223)'
+                : ' rgb(35, 36, 38)',
+              color: brightness ? 'black' : 'white'
+            }"
+          >
             <a class="float-right btn btn-warning" routerLink="/Blog/page/1">
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>
@@ -70,6 +83,7 @@
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1000"
+            [ngStyle]="{ color: brightness ? 'black' : 'white' }"
           >
             <form [formGroup]="newLogin" (ngSubmit)="Save(newLogin.value)">
               <div class="form-row">
@@ -84,6 +98,11 @@
                     [class.is-invalid]="
                       !newLogin.get('userLogin.email').valid && submitted
                     "
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'white'
+                        : ' rgb(41, 42, 45)'
+                    }"
                   />
                   <div class="valid-feedback">
                     looking good!
@@ -118,6 +137,11 @@
                             submitted
                           "
                           [type]="showpass ? 'text' : 'password'"
+                          [ngStyle]="{
+                            'background-color': brightness
+                              ? 'white'
+                              : ' rgb(41, 42, 45)'
+                          }"
                         />
                       </div>
                       <span class="col-1 eye">

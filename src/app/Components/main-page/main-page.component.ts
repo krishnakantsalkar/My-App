@@ -62,7 +62,7 @@ export class MainPageComponent implements OnInit {
       } else {
         this.special = false;
       }
-      console.log(this.special);
+      // console.log(this.special);
     }
   }
 
@@ -88,7 +88,7 @@ export class MainPageComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    console.log(data);
+    // console.log(data);
     this.contactServices.contact(data).subscribe(
       (item) => {
         alert('message sent successfully!');

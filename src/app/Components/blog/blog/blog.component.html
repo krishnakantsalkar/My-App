@@ -101,7 +101,12 @@
           </div>
         </form>
         <div class="searchResult" *ngIf="searchResult">
-          <div class="card">
+          <div
+            class="card"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+          >
             <h3 align="center">Search Results</h3>
             <p align="center" *ngIf="searchResult.length == 0">
               Doesnt look like anythng~

@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpParams } from '@angular/common/http';
+import { IsearchResult } from 'src/app/Shared/model/searchResult';
 
 @Component({
   selector: 'app-blog',
@@ -22,11 +24,13 @@ export class BlogComponent implements OnInit {
   public createPost: boolean;
 
   public newPost: FormGroup;
+  public newSearch: FormGroup;
   public currentBlogImgP;
   public currentBlogImg;
   public storeBlogImg;
   public pageNo;
   public datacount;
+  public searchResult;
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -48,6 +52,10 @@ export class BlogComponent implements OnInit {
       postTitle: ['', Validators.required],
       post: ['', Validators.required],
       postLink: [''],
+    });
+
+    this.newSearch = this.fb.group({
+      post: [''],
     });
 
     //Get the button
@@ -161,5 +169,62 @@ export class BlogComponent implements OnInit {
   topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+  }
+
+  showsearch() {
+    if (document.getElementById('searchbar')) {
+      var element = document.getElementById('searchbar');
+      var elementico = document.getElementById('searchicon');
+      var elementcancl = document.getElementById('searchcancel');
+      var elementsubmt = document.getElementById('searchsubmit');
+      element.style.zIndex = '0';
+      element.style.width = '100%';
+      element.style.marginTop = '0px';
+
+      elementico.style.zIndex = '0';
+      elementico.style.marginTop = '0px';
+
+      elementcancl.style.zIndex = '0';
+      elementcancl.style.marginTop = '0px';
+      elementcancl.style.background = 'red';
+
+      elementsubmt.style.zIndex = '0';
+      elementsubmt.style.marginTop = '0px';
+      elementsubmt.style.background = 'green';
+    }
+  }
+
+  hidesearch() {
+    if (document.getElementById('searchbar')) {
+      var element = document.getElementById('searchbar');
+      var elementico = document.getElementById('searchicon');
+      var elementcancl = document.getElementById('searchcancel');
+      var elementsubmt = document.getElementById('searchsubmit');
+      element.style.zIndex = '-1';
+      element.style.width = '10%';
+      element.style.marginTop = '-200px';
+
+      elementico.style.zIndex = '-1';
+      elementico.style.marginTop = '-200px';
+
+      elementcancl.style.zIndex = '-1';
+      elementcancl.style.marginTop = '-200px';
+      elementcancl.style.background = 'red';
+
+      elementsubmt.style.zIndex = '-1';
+      elementsubmt.style.marginTop = '-200px';
+      elementsubmt.style.background = 'red';
+    }
+    this.searchResult = null;
+    location.reload();
+  }
+
+  Search(data: IsearchResult) {
+    if (data) {
+      this.blogservice.searchBlog(data.post).subscribe((item) => {
+        this.searchResult = item.data;
+        console.log(this.searchResult);
+      });
+    }
   }
 }

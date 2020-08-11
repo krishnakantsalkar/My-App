@@ -202,6 +202,48 @@ div.cvrimg {
   background-color: rgb(41, 42, 45);
   padding-top: 40px;
 }
+
+#searchbar {
+  position: relative;
+  z-index: -1;
+  margin-top: -200px;
+  width: 0;
+  transition: width 0.4s ease-in-out;
+}
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  position: relative;
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  z-index: -1;
+  margin-top: -200px;
+  transition: width 0.4s ease-in-out;
+}
+
+.input-field {
+  /* padding: 10px; */
+  outline: none;
+}
+.input-container button {
+  z-index: -1;
+  margin-top: -200px;
+}
+
+div.searchResult h3 {
+  padding-top: 5px;
+}
+.queryResult {
+  width: 50%;
+  padding: 10px;
+}
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 25px;

@@ -71,7 +71,60 @@
       <div class="container">
         <h1>
           <b>2020</b>
+          <i
+            class="fab fa-searchengin"
+            style="margin-left: 20px;"
+            (click)="showsearch()"
+          ></i>
         </h1>
+        <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)">
+          <div class="input-container">
+            <!-- <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)"> -->
+            <i class="fas fa-search icon" id="searchicon"></i>
+            <input
+              type="text"
+              id="searchbar"
+              placeholder="Search.."
+              formControlName="post"
+              class="input-field"
+            />
+            <button class="btn btn-success" id="searchsubmit" type="submit">
+              <i class="fas fa-check-square"></i>
+            </button>
+            <button
+              class="btn btn-danger"
+              id="searchcancel"
+              (click)="hidesearch()"
+            >
+              <i class="fas fa-window-close"></i>
+            </button>
+          </div>
+        </form>
+        <div class="searchResult" *ngIf="searchResult">
+          <div class="card">
+            <h3 align="center">Search Results</h3>
+            <p align="center" *ngIf="searchResult.length == 0">
+              Doesnt look like anythng~
+            </p>
+            <div class="card-body" *ngIf="searchResult.length > 0">
+              <div class="row">
+                <div
+                  class="col-xs-3 queryResult"
+                  *ngFor="let result of searchResult"
+                >
+                  <a routerLink="/Blog/{{ result._id }}">
+                    {{ result.postNumber }}: {{ result.postTitle }}</a
+                  >
+                  <br />
+                  {{ result.post | slice: 0:90 }}
+                  <span routerLink="/Blog/{{ result._id }}">....</span>
+
+                  <br *ngIf="searchResult" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- add a loading... animation -->
 

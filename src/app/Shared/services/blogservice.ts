@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Iblog } from '../model/blogmodel';
+import { IsearchResult } from '../model/searchResult';
 
 @Injectable({ providedIn: 'root' })
 export class blogpostservice {
@@ -26,6 +27,9 @@ export class blogpostservice {
     'https://mybackend-1911.herokuapp.com/api/blog/deleteBlog/';
 
   public telegrampostApi: string = ''; // removed bot token for github upload
+
+  public searchApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/search';
 
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -73,5 +77,12 @@ export class blogpostservice {
         headers: this.header,
       }
     );
+  }
+  searchBlog(data): Observable<IsearchResult> {
+    return this.http.get<IsearchResult>(this.searchApi, {
+      params: {
+        post: data,
+      },
+    });
   }
 }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpParams } from '@angular/common/http';
 import { IsearchResult } from 'src/app/Shared/model/searchResult';
+import * as superplaceholder from 'superplaceholder';
 
 @Component({
   selector: 'app-blog',
@@ -76,6 +77,22 @@ export class BlogComponent implements OnInit {
         mybutton.style.display = 'none';
       }
     }
+    superplaceholder({
+      el: document.getElementById('searchbar'),
+      sentences: [
+        'roms..',
+        'pixel experience..',
+        'coronavirus..',
+        'corvus..',
+        'search something..',
+        'henlo fren..',
+      ],
+      options: {
+        shuffle: true,
+        cursor: '$',
+        autoStart: true,
+      },
+    });
   }
 
   mode() {

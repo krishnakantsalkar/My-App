@@ -209,6 +209,8 @@ div.cvrimg {
   margin-top: -200px;
   width: 0;
   transition: width 0.4s ease-in-out;
+  border: 1px solid;
+  border-radius: 5px;
 }
 .input-container {
   display: flex;
@@ -243,6 +245,35 @@ div.searchResult h3 {
 .queryResult {
   width: 50%;
   padding: 10px;
+}
+
+.divider {
+  opacity: 0.6;
+}
+.clearbtn {
+  text-align: center;
+}
+
+.fa-searchengin {
+  cursor: pointer;
+  animation: searchanim 1s 3;
+}
+
+.searchenginD:hover {
+  color: violet;
+}
+.searchenginL:hover {
+  color: red;
+}
+
+@keyframes searchanim {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 @media only screen and (max-width: 600px) {
   div.footer {

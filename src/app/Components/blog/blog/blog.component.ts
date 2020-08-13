@@ -231,9 +231,9 @@ export class BlogComponent implements OnInit {
       elementsubmt.style.zIndex = '-1';
       elementsubmt.style.marginTop = '-200px';
       elementsubmt.style.background = 'red';
+      this.searchResult = null;
+      location.reload();
     }
-    this.searchResult = null;
-    location.reload();
   }
 
   Search(data: IsearchResult) {
@@ -243,5 +243,8 @@ export class BlogComponent implements OnInit {
         console.log(this.searchResult);
       });
     }
+  }
+  cancel() {
+    this.searchResult = null;
   }
 }

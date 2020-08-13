@@ -75,11 +75,12 @@
             class="fab fa-searchengin"
             style="margin-left: 20px;"
             (click)="showsearch()"
+            [ngClass]="{ searchenginL: brightness, searchenginD: !brightness }"
+            title="Search!"
           ></i>
         </h1>
         <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)">
           <div class="input-container">
-            <!-- <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)"> -->
             <i class="fas fa-search icon" id="searchicon"></i>
             <input
               type="text"
@@ -126,6 +127,11 @@
 
                   <br *ngIf="searchResult" />
                 </div>
+              </div>
+              <div class="clearbtn">
+                <button class="btn btn-danger" (click)="cancel()">
+                  Clear
+                </button>
               </div>
             </div>
           </div>
@@ -339,6 +345,7 @@
               data-aos="fade-up"
               data-aos-delay="300"
               data-aos-duration="1000"
+              class="divider"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white'
               }"

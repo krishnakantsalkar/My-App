@@ -11,6 +11,7 @@ import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import * as AOS from 'aos';
 import { clientIpService } from 'src/app/Shared/services/clientip-service';
 import { CookieService } from 'ngx-cookie-service';
+import { Iforgot } from 'src/app/Shared/model/forgotPass';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
   public newLogin: FormGroup;
+  public forgotPass: FormGroup;
   public brightness: boolean;
   public showpass: boolean;
   public submitted: boolean;
@@ -26,6 +28,8 @@ export class LoginComponent implements OnInit {
   public ipdata;
   public useragent;
   public userdata = [this.ipdata, this.useragent];
+  public showForgot: boolean;
+  public response: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -37,12 +41,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.mode();
     this.showpass = false;
+
+    // login formgroup
     this.newLogin = this.fb.group({
       userLogin: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
         userip: [''],
         useragent: [''],
+      }),
+    });
+
+    // forgot pass formgroup
+    this.forgotPass = this.fb.group({
+      userLogin: this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
       }),
     });
     AOS.init({
@@ -79,6 +92,25 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/Home');
       // console.log(item);
     });
+  }
+
+  Forgot(data: Iforgot) {
+    if (!this.forgotPass.valid) {
+      return;
+    }
+    this.loginservice.forgotPassMailer(data).subscribe(
+      (item) => {
+        alert(item.message);
+        this.router.navigateByUrl('/Home');
+      },
+      (error) => {
+        this.response = error.error.message;
+      }
+    );
+  }
+
+  switchToForgot() {
+    this.showForgot = !this.showForgot;
   }
 
   mode() {

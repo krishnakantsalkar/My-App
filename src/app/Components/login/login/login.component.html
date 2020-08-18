@@ -85,7 +85,11 @@
             data-aos-duration="1000"
             [ngStyle]="{ color: brightness ? 'black' : 'white' }"
           >
-            <form [formGroup]="newLogin" (ngSubmit)="Save(newLogin.value)">
+            <form
+              [formGroup]="newLogin"
+              (ngSubmit)="Save(newLogin.value)"
+              *ngIf="!showForgot"
+            >
               <div class="form-row">
                 <div class="col form-group" formGroupName="userLogin">
                   <label>Email Id</label>
@@ -179,7 +183,7 @@
                     <div class="buttons">
                       <button
                         class="btn btn-danger float-right forgot"
-                        onclick="alert('Coming soon!')"
+                        (click)="switchToForgot()"
                       >
                         Forgot Password?
                       </button>
@@ -189,6 +193,68 @@
                         [disabled]="!newLogin.valid"
                       >
                         Log In
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form
+              [formGroup]="forgotPass"
+              (ngSubmit)="Forgot(forgotPass.value)"
+              *ngIf="showForgot"
+            >
+              <div class="form-row">
+                <div class="col form-group" formGroupName="userLogin">
+                  <label>Email Id</label>
+                  <input
+                    class="form-control email-tag"
+                    type="email"
+                    placeholder="Enter Email ID"
+                    formControlName="email"
+                    [class.is-valid]="forgotPass.get('userLogin.email').valid"
+                    [class.is-invalid]="
+                      !forgotPass.get('userLogin.email').valid && submitted
+                    "
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'white'
+                        : ' rgb(41, 42, 45)'
+                    }"
+                  />
+                  <div class="valid-feedback">
+                    looking good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Check entered email!
+                  </div>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="
+                      forgotPass.get('userLogin.email').errors?.required &&
+                      forgotPass.get('userLogin.email').touched
+                    "
+                  >
+                    Email id is required!
+                  </div>
+                  <div class="alert alert-danger" *ngIf="response">
+                    {{ response }}
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <div class="buttons">
+                      <button
+                        class="btn btn-danger float-right forgot"
+                        (click)="switchToForgot()"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn btn-success float-right submit"
+                        [disabled]="!forgotPass.valid"
+                      >
+                        Submit
                       </button>
                     </div>
                   </div>

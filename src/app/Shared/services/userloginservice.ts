@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import { CookieService } from 'ngx-cookie-service';
+import { Iforgot } from '../model/forgotPass';
 
 @Injectable({ providedIn: 'root' })
 export class userloginservices {
@@ -15,6 +16,12 @@ export class userloginservices {
 
   public profilePicAPI: string =
     'https://mybackend-1911.herokuapp.com/api/users/editProfImg/';
+
+  public forgotPassAPI: string =
+    'https://mybackend-1911.herokuapp.com/api/reset/resetMailer';
+
+  public resetPassAPI: string =
+    'https://mybackend-1911.herokuapp.com/api/reset/forgotPassword/';
 
   public header: HttpHeaders;
   constructor(
@@ -43,5 +50,19 @@ export class userloginservices {
 
   updateProfPic(data, id) {
     return this.http.put(this.profilePicAPI + id, data);
+  }
+
+  forgotPassMailer(data): Observable<Iforgot> {
+    return this.http.post<Iforgot>(this.forgotPassAPI, JSON.stringify(data), {
+      headers: this.header,
+    });
+  }
+
+  resetPass(data, id): Observable<Iforgot> {
+    return this.http.post<Iforgot>(
+      this.resetPassAPI + id,
+      JSON.stringify(data),
+      { headers: this.header }
+    );
   }
 }

@@ -56,6 +56,13 @@ const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: 'ResetPassword/:id',
+    loadChildren: () =>
+      import('./Components/resetpassword/resetpassword.module').then(
+        (m) => m.ResetpasswordModule
+      ),
+  },
 ];
 
 @NgModule({

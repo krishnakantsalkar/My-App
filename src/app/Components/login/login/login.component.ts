@@ -81,17 +81,22 @@ export class LoginComponent implements OnInit {
       return;
     }
     // console.log(data);
-    this.loginservice.Login(data).subscribe((item) => {
-      if (item && item.token === true) {
-        // localStorage.setItem('credentials', JSON.stringify(item.token));
-        this.cookies.set('credentials', JSON.stringify(item.token), 1);
-        localStorage.setItem('user', JSON.stringify(item));
-        localStorage.setItem('id', JSON.stringify(item.id));
+    this.loginservice.Login(data).subscribe(
+      (item) => {
+        if (item && item.token === true) {
+          // localStorage.setItem('credentials', JSON.stringify(item.token));
+          this.cookies.set('credentials', JSON.stringify(item.token), 1);
+          localStorage.setItem('user', JSON.stringify(item));
+          localStorage.setItem('id', JSON.stringify(item.id));
+        }
+        alert('login successful!');
+        this.router.navigateByUrl('/Home');
+        // console.log(item);
+      },
+      (error) => {
+        this.response = error.error.message;
       }
-      alert('login successful!');
-      this.router.navigateByUrl('/Home');
-      // console.log(item);
-    });
+    );
   }
 
   Forgot(data: Iforgot) {

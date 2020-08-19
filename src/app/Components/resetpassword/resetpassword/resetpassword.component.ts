@@ -29,6 +29,7 @@ export class ResetpasswordComponent implements OnInit {
     this.resetForm = this.fb.group({
       userLogin: this.fb.group({
         password: ['', [Validators.required, Validators.min(5)]],
+        repassword: ['', [Validators.required, Validators.min(5)]],
       }),
     });
 
@@ -39,6 +40,12 @@ export class ResetpasswordComponent implements OnInit {
 
   Reset(data: Iforgot) {
     if (!this.resetForm.valid) {
+      return;
+    }
+    let p1 = this.resetForm.get('userLogin.password').value;
+    let p2 = this.resetForm.get('userLogin.repassword').value;
+    if (p1 != p2) {
+      this.response = ' Passwords dont match! ';
       return;
     }
     let getUrl = window.location.href.split('/');

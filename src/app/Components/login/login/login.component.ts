@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
     this.loginservice.Login(data).subscribe((item) => {
       if (item && item.token === true) {
         // localStorage.setItem('credentials', JSON.stringify(item.token));
-        this.cookies.set('credentials', JSON.stringify(item.token));
+        this.cookies.set('credentials', JSON.stringify(item.token), 1);
         localStorage.setItem('user', JSON.stringify(item));
         localStorage.setItem('id', JSON.stringify(item.id));
       }

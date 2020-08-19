@@ -116,6 +116,7 @@ export class LoginComponent implements OnInit {
 
   switchToForgot() {
     this.showForgot = !this.showForgot;
+    this.response = undefined;
   }
 
   mode() {

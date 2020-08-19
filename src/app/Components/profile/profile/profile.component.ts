@@ -59,7 +59,6 @@ export class ProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('image', this.image);
     this.upload.uploadImg(formData).subscribe((item) => {
-      // console.log(item);
       alert('image uploaded');
     });
   }

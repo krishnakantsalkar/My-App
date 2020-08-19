@@ -62,12 +62,10 @@ export class MainPageComponent implements OnInit {
       } else {
         this.special = false;
       }
-      // console.log(this.special);
     }
   }
 
   logout() {
-    // localStorage.removeItem('credentials');
     this.cookies.delete('credentials');
 
     localStorage.removeItem('id');
@@ -88,7 +86,6 @@ export class MainPageComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    // console.log(data);
     this.contactServices.contact(data).subscribe(
       (item) => {
         alert('message sent successfully!');

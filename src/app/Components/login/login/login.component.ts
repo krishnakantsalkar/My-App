@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
     this.userlogservice.getClientIp().subscribe((item) => {
       this.ipdata = item;
       this.useragent = { useragent: window.navigator.userAgent };
-      // console.log(this.ipdata, this.useragent);
       this.newLogin.patchValue({
         userLogin: {
           userip: JSON.stringify(this.ipdata),
@@ -77,10 +76,8 @@ export class LoginComponent implements OnInit {
 
   Save(data: IuserLogin) {
     if (!this.newLogin.valid) {
-      // if login form not valid , return
       return;
     }
-    // console.log(data);
     this.loginservice.Login(data).subscribe(
       (item) => {
         if (item && item.token === true) {
@@ -91,7 +88,6 @@ export class LoginComponent implements OnInit {
         }
         alert('login successful!');
         this.router.navigateByUrl('/Home');
-        // console.log(item);
       },
       (error) => {
         this.response = error.error.message;

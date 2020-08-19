@@ -123,13 +123,11 @@ export class BlogComponent implements OnInit {
     // this.checkUser = localStorage.getItem('credentials');
     this.checkUser = this.cookies.get('credentials');
     if (!this.checkUser) {
-      // console.log('user not logged in');
     }
   }
 
   createPostmethod() {
     this.createPost = !this.createPost;
-    // console.log(this.createPost);
   }
 
   selection(event) {
@@ -167,7 +165,6 @@ export class BlogComponent implements OnInit {
     formData.append('postImage', this.currentBlogImg);
     this.blogservice.uploadImg(formData).subscribe((item) => {
       this.storeBlogImg = item;
-      // console.log(this.storeBlogImg);
       alert(this.storeBlogImg.message);
       this.newPost.patchValue({
         postImage: this.storeBlogImg.result['postImage'],
@@ -179,7 +176,6 @@ export class BlogComponent implements OnInit {
     let title = data.postTitle;
     let post = data.post;
     this.blogservice.tgpost(title, post).subscribe((item) => {
-      // console.log(item);
       location.reload();
     });
   }
@@ -240,7 +236,6 @@ export class BlogComponent implements OnInit {
     if (data) {
       this.blogservice.searchBlog(data.post).subscribe((item) => {
         this.searchResult = item.data;
-        console.log(this.searchResult);
       });
     }
   }

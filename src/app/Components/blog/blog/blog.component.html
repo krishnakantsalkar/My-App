@@ -7,6 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <div id="overlay" (click)="off()">
+      <div class="overlay-content">
+        <div
+          data-aos="zoom-in"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(223, 223, 223)'
+              : ' rgb(41, 42, 45)'
+          }"
+        >
+          <div
+            class="card-header"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          >
+            <h3>TheArsonist~</h3>
+          </div>
+          <article
+            *ngIf="logResponse"
+            class="card-body"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          >
+            <h4>New post Added!</h4>
+            <br />
+            <h5>#{{ logResponse.postNumber }}</h5>
+            <h5>Post Title: {{ logResponse.postTitle }}</h5>
+          </article>
+          <article
+            *ngIf="errResponse"
+            class="card-body"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          >
+            <h4>{{ errResponse }}</h4>
+          </article>
+          <div class="card-footer">
+            <button class="btn btn-success" (click)="off()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button (click)="topFunction()" id="myBtn" title="Go to top">
       <i class="fas fa-angle-up" aria-hidden="true"></i>
     </button>

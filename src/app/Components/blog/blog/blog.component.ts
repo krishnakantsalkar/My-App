@@ -32,6 +32,8 @@ export class BlogComponent implements OnInit {
   public pageNo;
   public datacount;
   public searchResult;
+  public logResponse;
+  public errResponse;
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -147,17 +149,30 @@ export class BlogComponent implements OnInit {
 
   SubmitPost(data: Iblog) {
     if (!this.newPost.valid) {
+      this.errResponse = 'Required fields cannot be empty*';
+      let elemnt = document.getElementById('overlay');
+      elemnt.style.zIndex = '3';
       return;
     }
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
-        let title = item.result.postTitle;
-        alert(`Post added successfully! \n New post: ${title}`);
+        this.logResponse = item.result;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       },
       (err) => {
-        alert(err.error);
+        this.errResponse = err.error;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       }
     );
+  }
+
+  off() {
+    var elemnt = document.getElementById('overlay');
+
+    elemnt.style.zIndex = '-10';
+    location.reload();
   }
 
   SubmitFile() {
@@ -175,9 +190,7 @@ export class BlogComponent implements OnInit {
   channelPost(data) {
     let title = data.postTitle;
     let post = data.post;
-    this.blogservice.tgpost(title, post).subscribe((item) => {
-      location.reload();
-    });
+    this.blogservice.tgpost(title, post).subscribe((item) => {});
   }
   topFunction() {
     document.body.scrollTop = 0;

@@ -107,8 +107,9 @@ export class LoginComponent implements OnInit {
     }
     this.loginservice.forgotPassMailer(data).subscribe(
       (item) => {
-        alert(item.message);
-        this.router.navigateByUrl('/Home');
+        this.loginresponse = item;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       },
       (error) => {
         this.response = error.error.message;

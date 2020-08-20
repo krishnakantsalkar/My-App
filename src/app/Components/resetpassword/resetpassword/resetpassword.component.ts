@@ -16,6 +16,7 @@ export class ResetpasswordComponent implements OnInit {
   public showpass: boolean;
   public submitted: boolean;
   public response: any;
+  public logResponse;
   constructor(
     private fb: FormBuilder,
     private loginServices: userloginservices,
@@ -51,13 +52,24 @@ export class ResetpasswordComponent implements OnInit {
     let getUrl = window.location.href.split('/');
     this.loginServices.resetPass(data, getUrl[4]).subscribe(
       (item) => {
-        alert(item.message);
-        this.router.navigateByUrl('/Login');
+        this.logResponse = item;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       },
       (error) => {
         this.response = error.error.message;
       }
     );
+  }
+  logintoHome() {
+    this.router.navigateByUrl('/Login');
+  }
+
+  off() {
+    var elemnt = document.getElementById('overlay');
+
+    elemnt.style.zIndex = '-10';
+    this.router.navigateByUrl('/Login');
   }
 
   mode() {

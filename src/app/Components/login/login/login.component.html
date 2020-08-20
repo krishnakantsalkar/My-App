@@ -32,7 +32,7 @@
             [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
           >
             <h4>{{ loginresponse.message }}</h4>
-            <h5>
+            <h5 *ngIf="loginresponse.name">
               Welcome:
               <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
                 {{ loginresponse.name }}</span

@@ -132,6 +132,8 @@
           target="_blank"
           ><i class="fab fa-telegram tg"></i
         ></a>
+        <br />
+        <br />
 
         <!-- blog post -->
         <div
@@ -142,8 +144,8 @@
           *ngIf="!switchtoedit"
         >
           <div class="header">
-            <div class="blogimg" *ngIf="data.postImage">
-              <img src="{{ data.postImage }}" />
+            <div class="blogimg" *ngIf="data">
+              <img *ngIf="data.postImage" [src]="data.postImage" />
             </div>
             <a
               class="float-right btn btn-warning"

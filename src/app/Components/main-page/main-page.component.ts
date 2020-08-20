@@ -19,6 +19,8 @@ export class MainPageComponent implements OnInit {
   public recentblogs;
   public loggedInUser;
   public sendFeedback: FormGroup;
+  public logResponse;
+  public errResponse;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -40,7 +42,7 @@ export class MainPageComponent implements OnInit {
     this.sendFeedback = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      message: ['', [Validators.required, Validators.min(2)]],
+      message: ['', [Validators.required, Validators.min(5)]],
     });
   }
 
@@ -88,12 +90,22 @@ export class MainPageComponent implements OnInit {
     }
     this.contactServices.contact(data).subscribe(
       (item) => {
-        alert('message sent successfully!');
-        location.reload();
+        this.logResponse = item;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       },
       (error) => {
-        alert('somethng went wrong, please try again');
+        this.errResponse = error.error;
+        let elemnt = document.getElementById('overlay');
+        elemnt.style.zIndex = '3';
       }
     );
+  }
+
+  off() {
+    var elemnt = document.getElementById('overlay');
+
+    elemnt.style.zIndex = '-10';
+    location.reload();
   }
 }

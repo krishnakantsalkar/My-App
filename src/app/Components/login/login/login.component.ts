@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   public userdata = [this.ipdata, this.useragent];
   public showForgot: boolean;
   public response: any;
+  public loginresponse;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -85,14 +86,19 @@ export class LoginComponent implements OnInit {
           this.cookies.set('credentials', JSON.stringify(item.token), 1);
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
+          this.loginresponse = item;
+          let elemnt = document.getElementById('overlay');
+          elemnt.style.zIndex = '3';
         }
-        alert('login successful!');
-        this.router.navigateByUrl('/Home');
       },
       (error) => {
         this.response = error.error.message;
       }
     );
+  }
+
+  logintoHome() {
+    this.router.navigateByUrl('/Home');
   }
 
   Forgot(data: Iforgot) {
@@ -125,5 +131,12 @@ export class LoginComponent implements OnInit {
 
   get f() {
     return this.newLogin.controls;
+  }
+
+  off() {
+    var elemnt = document.getElementById('overlay');
+
+    elemnt.style.zIndex = '-10';
+    this.router.navigateByUrl('/Home');
   }
 }

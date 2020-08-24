@@ -23,7 +23,8 @@ div.nametag h3 {
 } */
 
 div.links {
-  padding-top: 18px;
+  margin-top: 5px;
+  padding: 15px;
   font-size: 22px;
 }
 
@@ -88,14 +89,22 @@ span.two {
 }
 
 div.links a {
-  padding: 15px 12px 15px 12px;
+  padding: 10px;
+  margin: 0px 10px;
   color: #818181;
   border-radius: 5px;
   /* display: block; */
 }
-div.links a:hover {
-  color: white;
+div.links .aLight:hover {
+  background-color: red;
   text-decoration: none;
+  color: white;
+}
+
+div.links .aDark:hover {
+  background-color: violet;
+  text-decoration: none;
+  color: white;
 }
 
 .togglemode {

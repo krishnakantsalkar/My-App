@@ -13,6 +13,7 @@
     <!-- <a class="togglemode" (click)="mode()"><i class="fas fa-adjust"></i></a> -->
     <div
       class="top-panel"
+      id="top-panel"
       [ngStyle]="{
         'background-color': brightness
           ? 'rgb(223, 223, 223)'
@@ -24,6 +25,7 @@
           <div class="col-sm-6 nametag">
             <h3
               class="n1"
+              id="top-panel-nametag"
               *ngIf="!brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >
@@ -31,13 +33,14 @@
             </h3>
             <h3
               class="n2"
+              id="top-panel-nametag"
               *ngIf="brightness"
               [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
             >
               > krishnakantsalkar@prototype:~<span class="two">$</span>
             </h3>
           </div>
-          <div class="col-sm-6 links">
+          <div class="col-sm-6 links" id="links">
             <a
               routerLink="/Home"
               [ngClass]="{ aLight: brightness, aDark: !brightness }"

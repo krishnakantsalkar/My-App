@@ -77,17 +77,19 @@ export class BlogComponent implements OnInit {
         document.documentElement.scrollTop > 50
       ) {
         mybutton.style.display = 'block';
-        document.getElementById('top-panel').style.height = '75px';
-        document.getElementById('top-panel').style.transitionDuration = '0.3s';
+        document.getElementById('top-panel').style.height = '60px';
+        document.getElementById('top-panel').style.transitionDuration = '0.2s';
         document.getElementById('top-panel').style.transitionTimingFunction =
           'ease-in';
-        document.getElementById('top-panel-nametag').style.paddingTop = '20px';
-        document.getElementById('links').style.marginTop = '5px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '10px';
+        document.getElementById('links').style.marginTop = '0px';
+        document.getElementById('links').style.padding = ' 11px';
       } else {
         mybutton.style.display = 'none';
         document.getElementById('top-panel').style.height = '90px';
         document.getElementById('top-panel-nametag').style.paddingTop = '25px';
         document.getElementById('links').style.marginTop = '10px';
+        document.getElementById('links').style.padding = ' 15px';
       }
     }
 

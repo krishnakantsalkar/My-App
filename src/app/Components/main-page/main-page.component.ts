@@ -44,6 +44,46 @@ export class MainPageComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.min(5)]],
     });
+
+    // animate navbar on scroll
+    let mediaQ = window.matchMedia('(max-width: 600px)');
+
+    window.onscroll = function () {
+      scrollFunction();
+      scrollFunctionMedia(mediaQ);
+    };
+
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 50 ||
+        document.documentElement.scrollTop > 50
+      ) {
+        document.getElementById('top-panel').style.height = '60px';
+        document.getElementById('top-panel').style.transitionDuration = '0.2s';
+        document.getElementById('top-panel').style.transitionTimingFunction =
+          'ease-in';
+        document.getElementById('top-panel-nametag').style.paddingTop = '10px';
+      } else {
+        document.getElementById('top-panel').style.height = '90px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '25px';
+      }
+    }
+
+    function scrollFunctionMedia(mediaQuery) {
+      if (
+        (mediaQuery.matches && document.body.scrollTop > 50) ||
+        (mediaQuery.matches && document.documentElement.scrollTop > 50)
+      ) {
+        document.getElementById('top-panel').style.height = '55px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '15px';
+      } else if (
+        (mediaQuery.matches && document.body.scrollTop < 50) ||
+        (mediaQuery.matches && document.documentElement.scrollTop < 50)
+      ) {
+        document.getElementById('top-panel').style.height = '75px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '25px';
+      }
+    }
   }
 
   mode() {

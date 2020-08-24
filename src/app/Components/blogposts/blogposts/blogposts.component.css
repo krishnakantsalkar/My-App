@@ -1,14 +1,17 @@
 div.top-panel {
   background-color: rgb(37, 38, 39);
   width: 100%;
-  height: 80px;
+  height: 90px;
+  position: fixed;
+  z-index: 3;
 }
 
 div.nametag h3 {
-  padding-top: 20px;
+  padding-top: 25px;
   color: gray;
   font-size: 25px;
   cursor: pointer;
+  transition: 0.2s ease-in;
 }
 .n1:hover {
   opacity: 0.7;
@@ -23,9 +26,10 @@ div.nametag h3 {
 } */
 
 div.links {
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 15px;
   font-size: 22px;
+  transition: 0.2s ease-in;
 }
 
 span.one {
@@ -75,8 +79,8 @@ span.two {
   }
 
   div.links {
+    margin-top: -10px;
     text-align: center;
-    padding-top: 5px;
     font-size: 18px;
   }
   div.links button {
@@ -84,7 +88,7 @@ span.two {
     font-size: 10px;
   }
   div.top-panel {
-    height: 90px;
+    height: 110px;
   }
 }
 
@@ -206,7 +210,7 @@ div.blogimg img {
   margin-left: 10px;
   float: right;
   position: relative;
-  z-index: 1000;
+  z-index: 2;
   margin-bottom: 10px;
 }
 .shareenv {
@@ -214,7 +218,7 @@ div.blogimg img {
   float: right;
   margin-left: 8px;
   position: relative;
-  z-index: 1000;
+  z-index: 2;
   margin-bottom: 10px;
 }
 .shareenvImg2 {
@@ -268,7 +272,11 @@ div.blogimg img {
     margin-left: 2px;
     margin-top: -1px;
     position: relative;
-    z-index: 1000;
+    z-index: 2;
     margin-bottom: 10px;
+  }
+
+  div.main {
+    padding-top: 125px;
   }
 }

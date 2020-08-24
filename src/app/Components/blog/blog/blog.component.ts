@@ -63,22 +63,52 @@ export class BlogComponent implements OnInit {
 
     //Get the button
     var mybutton = document.getElementById('myBtn');
+    let mediaQ = window.matchMedia('(max-width: 600px)');
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function () {
       scrollFunction();
+      scrollFunctionMedia(mediaQ);
     };
 
     function scrollFunction() {
       if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
+        document.body.scrollTop > 50 ||
+        document.documentElement.scrollTop > 50
       ) {
         mybutton.style.display = 'block';
+        document.getElementById('top-panel').style.height = '75px';
+        document.getElementById('top-panel').style.transitionDuration = '0.3s';
+        document.getElementById('top-panel').style.transitionTimingFunction =
+          'ease-in';
+        document.getElementById('top-panel-nametag').style.paddingTop = '20px';
+        document.getElementById('links').style.marginTop = '5px';
       } else {
         mybutton.style.display = 'none';
+        document.getElementById('top-panel').style.height = '90px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '25px';
+        document.getElementById('links').style.marginTop = '10px';
       }
     }
+
+    function scrollFunctionMedia(mediaQuery) {
+      if (
+        (mediaQuery.matches && document.body.scrollTop > 50) ||
+        (mediaQuery.matches && document.documentElement.scrollTop > 50)
+      ) {
+        document.getElementById('top-panel').style.height = '85px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '15px';
+        document.getElementById('links').style.marginTop = '-15px';
+      } else if (
+        (mediaQuery.matches && document.body.scrollTop < 50) ||
+        (mediaQuery.matches && document.documentElement.scrollTop < 50)
+      ) {
+        document.getElementById('top-panel').style.height = '110px';
+        document.getElementById('top-panel-nametag').style.paddingTop = '25px';
+        document.getElementById('links').style.marginTop = '-5px';
+      }
+    }
+
     superplaceholder({
       el: document.getElementById('searchbar'),
       sentences: [

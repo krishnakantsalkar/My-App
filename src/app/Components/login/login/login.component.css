@@ -191,6 +191,14 @@ div.links a:hover {
     margin-left: auto;
     margin-right: auto;
   }
+  div.buttons {
+    margin-top: 15px;
+  }
+  #captcha {
+    display: block;
+    padding: 0;
+    margin: 10px 20px;
+  }
 }
 
 div.content {

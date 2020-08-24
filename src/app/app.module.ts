@@ -8,6 +8,7 @@ import { userloginservices } from './Shared/services/userloginservice';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [AppComponent, MainPageComponent],
@@ -16,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxCaptchaModule,
   ],
   providers: [userloginservices, CookieService],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -31,12 +31,25 @@ export class LoginComponent implements OnInit {
   public showForgot: boolean;
   public response: any;
   public loginresponse;
+
+  // captcha properties
+  public captchaIsLoaded = false;
+  public captchaSuccess = false;
+  public captchaIsExpired = false;
+  public captchaResponse?: string;
+
+  public theme: 'light' | 'dark' = 'light';
+  public size: 'compact' | 'normal' = 'normal';
+  public lang = 'en';
+  public type: 'image' | 'audio';
+  public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private loginservice: userloginservices,
     private userlogservice: clientIpService,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +63,7 @@ export class LoginComponent implements OnInit {
         password: ['', [Validators.required]],
         userip: [''],
         useragent: [''],
+        recaptcha: ['', Validators.required],
       }),
     });
 
@@ -140,4 +154,48 @@ export class LoginComponent implements OnInit {
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/Home');
   }
+
+  //captcha logics
+
+  handleReset(): void {
+    this.captchaSuccess = false;
+    this.captchaResponse = undefined;
+    this.captchaIsExpired = false;
+    this.cdr.detectChanges();
+  }
+
+  handleSuccess(captchaResponse: string): void {
+    this.captchaSuccess = true;
+    this.captchaResponse = captchaResponse;
+    this.captchaIsExpired = false;
+    this.cdr.detectChanges();
+  }
+
+  handleLoad(): void {
+    this.captchaIsLoaded = true;
+    this.captchaIsExpired = false;
+    this.cdr.detectChanges();
+  }
+
+  handleExpire(): void {
+    this.captchaSuccess = false;
+    this.captchaIsExpired = true;
+    this.cdr.detectChanges();
+  }
+
+  changeTheme(theme: 'light' | 'dark'): void {
+    this.theme = theme;
+  }
+
+  changeSize(size: 'compact' | 'normal'): void {
+    this.size = size;
+  }
+
+  changeType(type: 'image' | 'audio'): void {
+    this.type = type;
+  }
+
+  // setLanguage(): void {
+  //   this.lang = this.langInput.nativeElement.value;
+  // }
 }

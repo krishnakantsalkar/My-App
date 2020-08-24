@@ -83,10 +83,26 @@
             </h3>
           </div>
           <div class="col-sm-6 links">
-            <a class="navlink" routerLink="/Home"> Home</a>
+            <a
+              class="navlink"
+              routerLink="/Home"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+            >
+              Home</a
+            >
 
-            <a class="navlink" routerLink="/About">About</a>
-            <a class="navlink" routerLink="/Support">Support</a>
+            <a
+              class="navlink"
+              routerLink="/About"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+              >About</a
+            >
+            <a
+              class="navlink"
+              routerLink="/Support"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+              >Support</a
+            >
           </div>
         </div>
       </div>

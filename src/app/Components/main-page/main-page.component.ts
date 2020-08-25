@@ -87,14 +87,26 @@ export class MainPageComponent implements OnInit {
         (mediaQuery.matches && document.body.scrollTop > 50) ||
         (mediaQuery.matches && document.documentElement.scrollTop > 50)
       ) {
-        document.getElementById('top-panel').style.height = '55px';
-        document.getElementById('top-panel-nametag').style.paddingTop = '15px';
+        if (
+          document.getElementById('top-panel') ||
+          document.getElementById('top-panel-nametag')
+        ) {
+          document.getElementById('top-panel').style.height = '55px';
+          document.getElementById('top-panel-nametag').style.paddingTop =
+            '15px';
+        }
       } else if (
         (mediaQuery.matches && document.body.scrollTop < 50) ||
         (mediaQuery.matches && document.documentElement.scrollTop < 50)
       ) {
-        document.getElementById('top-panel').style.height = '75px';
-        document.getElementById('top-panel-nametag').style.paddingTop = '25px';
+        if (
+          document.getElementById('top-panel') ||
+          document.getElementById('top-panel-nametag')
+        ) {
+          document.getElementById('top-panel').style.height = '75px';
+          document.getElementById('top-panel-nametag').style.paddingTop =
+            '25px';
+        }
       }
     }
   }

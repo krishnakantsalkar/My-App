@@ -108,235 +108,271 @@
         'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
       }"
     >
-      <div class="container login-card">
-        <div
-          class="card"
-          [ngStyle]="{
-            'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-          }"
-        >
+      <div class="container loginContainer">
+        <div class="row">
           <div
-            class="card-header"
-            [ngStyle]="{
-              'background-color': brightness
-                ? 'rgb(223, 223, 223)'
-                : ' rgb(35, 36, 38)',
-              color: brightness ? 'black' : 'white'
-            }"
+            class="col-sm-6 shortInfo"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
           >
-            <a class="float-right btn btn-warning" routerLink="/Blog/page/1">
-              <i class="fas fa-arrow-circle-left"></i> Blog
-            </a>
-            <h4>Welcome Superuser!</h4>
+            <h1>Web Development</h1>
+            <p [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+              Welcome superuser, Join me & my team in a venture to develop and
+              build fast & mobile Web Apps for the greatest platform available!
+              <br />
+              i.e.
+              <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+                Angular 9
+              </span>
+              <i
+                class="fas fa-fire-alt"
+                [ngStyle]="{ color: brightness ? 'red' : 'rgb(255, 144, 8)' }"
+              ></i>
+              <br />
+              contact<span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+                dev@krishnakantsalkar.gq</span
+              >
+              to sign up!
+            </p>
           </div>
-          <article
-            class="card-body"
-            data-aos="fade-up"
-            data-aos-delay="300"
-            data-aos-duration="1000"
-            [ngStyle]="{ color: brightness ? 'black' : 'white' }"
-          >
-            <form
-              [formGroup]="newLogin"
-              (ngSubmit)="Save(newLogin.value)"
-              *ngIf="!showForgot"
+
+          <div class="col-sm-6 container login-card">
+            <div class="signInLogo">
+              <img
+                class="logoImage rounded-circle"
+                src="assets/images/mylogo.jpg"
+                alt=""
+              />
+            </div>
+            <div
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'white'
+                  : ' rgb(
+                  48, 49, 51
+                  )'
+              }"
             >
-              <div class="form-row">
-                <div class="col form-group" formGroupName="userLogin">
-                  <label>Email Id</label>
-                  <input
-                    class="form-control email-tag"
-                    type="email"
-                    placeholder="Enter Email ID"
-                    formControlName="email"
-                    [class.is-valid]="newLogin.get('userLogin.email').valid"
-                    [class.is-invalid]="
-                      !newLogin.get('userLogin.email').valid && submitted
-                    "
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'white'
-                        : ' rgb(41, 42, 45)',
-                      color: brightness ? 'black' : 'white'
-                    }"
-                  />
-                  <div class="valid-feedback">
-                    looking good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Check entered email!
-                  </div>
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      newLogin.get('userLogin.email').errors?.required &&
-                      newLogin.get('userLogin.email').touched
-                    "
-                  >
-                    Email id is required!
-                  </div>
-                  <br />
-                  <div class="form-group">
-                    <label>Password</label>
-                    <div class="row">
-                      <div class="passinput">
-                        <input
-                          class="form-control password-tag col-11"
-                          type="password"
-                          placeholder="Enter Password"
-                          formControlName="password"
-                          [class.is-valid]="
-                            newLogin.get('userLogin.password').valid
-                          "
-                          [class.is-invalid]="
-                            !newLogin.get('userLogin.password').valid &&
-                            submitted
-                          "
-                          [type]="showpass ? 'text' : 'password'"
-                          [ngStyle]="{
-                            'background-color': brightness
-                              ? 'white'
-                              : ' rgb(41, 42, 45)',
-                            color: brightness ? 'black' : 'white'
-                          }"
-                        />
-                      </div>
-                      <span class="col-1 eye">
-                        <button
-                          class="showpassbtn btn btn-primary"
-                          type="button"
-                          (click)="showPass()"
-                          [ngClass]="{ 'btn-danger': showpass }"
-                        >
-                          <i
-                            class="fa fa-eye"
-                            aria-hidden="true"
-                            [ngClass]="{ 'fa-eye-slash': showpass }"
-                          ></i>
-                        </button>
-                      </span>
+              <article
+                class="card-body"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+              >
+                <form
+                  [formGroup]="newLogin"
+                  (ngSubmit)="Save(newLogin.value)"
+                  *ngIf="!showForgot"
+                >
+                  <div class="form-row">
+                    <div class="col form-group" formGroupName="userLogin">
+                      <label>Email Id</label>
+                      <input
+                        class="form-control email-tag"
+                        type="email"
+                        placeholder="Enter Email ID"
+                        formControlName="email"
+                        [class.is-valid]="newLogin.get('userLogin.email').valid"
+                        [class.is-invalid]="
+                          !newLogin.get('userLogin.email').valid && submitted
+                        "
+                        [ngStyle]="{
+                          'background-color': brightness
+                            ? 'white'
+                            : ' rgb(68, 70, 74)',
+                          color: brightness ? 'black' : 'white'
+                        }"
+                      />
                       <div class="valid-feedback">
                         looking good!
                       </div>
                       <div class="invalid-feedback">
-                        Check your password!
+                        Check entered email!
                       </div>
                       <div
-                        class="alert alert-danger pass col-11"
+                        class="alert alert-danger"
                         *ngIf="
-                          newLogin.get('userLogin.password').errors?.required &&
-                          newLogin.get('userLogin.password').touched
+                          newLogin.get('userLogin.email').errors?.required &&
+                          newLogin.get('userLogin.email').touched
                         "
                       >
-                        Password is required!
+                        Email id is required!
+                      </div>
+                      <br />
+                      <div class="form-group">
+                        <label>Password</label>
+                        <div class="row">
+                          <div class="passinput">
+                            <input
+                              class="form-control password-tag col-11"
+                              type="password"
+                              placeholder="Enter Password"
+                              formControlName="password"
+                              [class.is-valid]="
+                                newLogin.get('userLogin.password').valid
+                              "
+                              [class.is-invalid]="
+                                !newLogin.get('userLogin.password').valid &&
+                                submitted
+                              "
+                              [type]="showpass ? 'text' : 'password'"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'white'
+                                  : ' rgb(68, 70, 74)',
+                                color: brightness ? 'black' : 'white'
+                              }"
+                            />
+                          </div>
+                          <span class="col-1 eye">
+                            <button
+                              class="showpassbtn btn btn-primary"
+                              type="button"
+                              (click)="showPass()"
+                              [ngClass]="{ 'btn-danger': showpass }"
+                            >
+                              <i
+                                class="fa fa-eye"
+                                aria-hidden="true"
+                                [ngClass]="{ 'fa-eye-slash': showpass }"
+                              ></i>
+                            </button>
+                          </span>
+                          <span
+                            class="passwordMsg"
+                            [ngStyle]="{
+                              color: brightness ? 'rgb(90, 94, 90);' : 'white'
+                            }"
+                            >make sure its atleast 5 characters!</span
+                          >
+                          <div class="valid-feedback">
+                            looking good!
+                          </div>
+                          <div class="invalid-feedback">
+                            Check your password!
+                          </div>
+                          <div
+                            class="alert alert-danger pass col-11"
+                            *ngIf="
+                              newLogin.get('userLogin.password').errors
+                                ?.required &&
+                              newLogin.get('userLogin.password').touched
+                            "
+                          >
+                            Password is required!
+                          </div>
+                          <div
+                            class="alert alert-danger pass col-11"
+                            *ngIf="response && !showForgot"
+                          >
+                            {{ response }}
+                          </div>
+                        </div>
+                      </div>
+                      <ngx-recaptcha2
+                        #captchaElem
+                        id="captcha"
+                        [siteKey]="siteKey"
+                        (reset)="handleReset()"
+                        (expire)="handleExpire()"
+                        (load)="handleLoad()"
+                        (success)="handleSuccess($event)"
+                        [useGlobalDomain]="false"
+                        [size]="size"
+                        [theme]="theme"
+                        [type]="type"
+                        formControlName="recaptcha"
+                      >
+                      </ngx-recaptcha2>
+                      <div class="form-group">
+                        <div class="buttons">
+                          <button
+                            type="submit"
+                            class="btn btn-success float-right submit"
+                            [disabled]="!newLogin.valid"
+                          >
+                            Log In
+                          </button>
+                          <button
+                            class="btn btn-danger float-right forgot"
+                            (click)="switchToForgot()"
+                          >
+                            Forgot Password?
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <form
+                  [formGroup]="forgotPass"
+                  (ngSubmit)="Forgot(forgotPass.value)"
+                  *ngIf="showForgot"
+                >
+                  <div class="form-row">
+                    <div class="col form-group" formGroupName="userLogin">
+                      <label>Email Id</label>
+                      <input
+                        class="form-control email-tag"
+                        type="email"
+                        placeholder="Enter Email ID"
+                        formControlName="email"
+                        [class.is-valid]="
+                          forgotPass.get('userLogin.email').valid
+                        "
+                        [class.is-invalid]="
+                          !forgotPass.get('userLogin.email').valid && submitted
+                        "
+                        [ngStyle]="{
+                          'background-color': brightness
+                            ? 'white'
+                            : ' rgb(41, 42, 45)',
+                          color: brightness ? 'black' : 'white'
+                        }"
+                      />
+                      <div class="valid-feedback">
+                        looking good!
+                      </div>
+                      <div class="invalid-feedback">
+                        Check entered email!
                       </div>
                       <div
-                        class="alert alert-danger pass col-11"
-                        *ngIf="response && !showForgot"
+                        class="alert alert-danger"
+                        *ngIf="
+                          forgotPass.get('userLogin.email').errors?.required &&
+                          forgotPass.get('userLogin.email').touched
+                        "
                       >
+                        Email id is required!
+                      </div>
+                      <div class="alert alert-danger" *ngIf="response">
                         {{ response }}
+                      </div>
+                      <br />
+                      <div class="form-group">
+                        <div class="buttons">
+                          <button
+                            class="btn btn-danger float-right forgot"
+                            (click)="switchToForgot()"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="submit"
+                            class="btn btn-success float-right submit"
+                            [disabled]="!forgotPass.valid"
+                          >
+                            Submit
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <ngx-recaptcha2
-                    #captchaElem
-                    id="captcha"
-                    [siteKey]="siteKey"
-                    (reset)="handleReset()"
-                    (expire)="handleExpire()"
-                    (load)="handleLoad()"
-                    (success)="handleSuccess($event)"
-                    [useGlobalDomain]="false"
-                    [size]="size"
-                    [theme]="theme"
-                    [type]="type"
-                    formControlName="recaptcha"
-                  >
-                  </ngx-recaptcha2>
-                  <div class="form-group">
-                    <div class="buttons">
-                      <button
-                        class="btn btn-danger float-right forgot"
-                        (click)="switchToForgot()"
-                      >
-                        Forgot Password?
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-success float-right submit"
-                        [disabled]="!newLogin.valid"
-                      >
-                        Log In
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <form
-              [formGroup]="forgotPass"
-              (ngSubmit)="Forgot(forgotPass.value)"
-              *ngIf="showForgot"
-            >
-              <div class="form-row">
-                <div class="col form-group" formGroupName="userLogin">
-                  <label>Email Id</label>
-                  <input
-                    class="form-control email-tag"
-                    type="email"
-                    placeholder="Enter Email ID"
-                    formControlName="email"
-                    [class.is-valid]="forgotPass.get('userLogin.email').valid"
-                    [class.is-invalid]="
-                      !forgotPass.get('userLogin.email').valid && submitted
-                    "
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'white'
-                        : ' rgb(41, 42, 45)',
-                      color: brightness ? 'black' : 'white'
-                    }"
-                  />
-                  <div class="valid-feedback">
-                    looking good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Check entered email!
-                  </div>
-                  <div
-                    class="alert alert-danger"
-                    *ngIf="
-                      forgotPass.get('userLogin.email').errors?.required &&
-                      forgotPass.get('userLogin.email').touched
-                    "
-                  >
-                    Email id is required!
-                  </div>
-                  <div class="alert alert-danger" *ngIf="response">
-                    {{ response }}
-                  </div>
-                  <br />
-                  <div class="form-group">
-                    <div class="buttons">
-                      <button
-                        class="btn btn-danger float-right forgot"
-                        (click)="switchToForgot()"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-success float-right submit"
-                        [disabled]="!forgotPass.valid"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </article>
+                </form>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </div>

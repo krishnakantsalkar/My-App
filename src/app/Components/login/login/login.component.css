@@ -117,6 +117,7 @@ div.login-card .card {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
 
 .passinput {
@@ -172,6 +173,47 @@ div.links a:hover {
   padding: 10px 20px;
 }
 
+div.buttons {
+  display: flex;
+  justify-content: center;
+}
+div.buttons .btn {
+  margin: 0px 10px;
+}
+
+#captcha {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.shortInfo h1,
+.shortInfo p {
+  font-family: "Andale Mono", AndaleMono, monospace;
+}
+
+.shortInfo {
+  padding-left: 80px;
+  padding-top: 150px;
+}
+
+.passwordMsg {
+  font-size: 12px;
+  color: rgb(90, 94, 90);
+  opacity: 0.7;
+  margin-left: 14px;
+}
+
+.signInLogo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logoImage {
+  height: 100px;
+  width: 100px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 25px;
@@ -199,6 +241,11 @@ div.links a:hover {
     padding: 0;
     margin: 10px 20px;
   }
+
+  .shortInfo {
+    padding: 30px 5px 30px;
+    text-align: center;
+  }
 }
 
 div.content {
@@ -215,9 +262,9 @@ div.content {
 }
 
 div.logindata {
-  padding-top: 100px;
+  padding-top: 20px;
   background-color: rgb(41, 42, 45);
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 .submit {

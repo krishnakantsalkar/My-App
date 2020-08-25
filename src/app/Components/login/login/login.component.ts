@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   public lang = 'en';
   public type: 'image' | 'audio';
   public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
+  public captchaTheme;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.mode();
     this.showpass = false;
+    this.changeTheme(this.captchaTheme);
 
     // login formgroup
     this.newLogin = this.fb.group({
@@ -138,6 +140,11 @@ export class LoginComponent implements OnInit {
 
   mode() {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
+    if (this.brightness === true) {
+      this.captchaTheme = 'light';
+    } else {
+      this.captchaTheme = 'dark';
+    }
   }
 
   showPass() {

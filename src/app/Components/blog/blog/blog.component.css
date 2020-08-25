@@ -147,6 +147,7 @@ div.footer {
   width: 100%;
   background-color: rgb(37, 38, 39);
   height: 60px;
+  z-index: 2;
 }
 
 div.footer-text {
@@ -326,6 +327,20 @@ div.searchResult h3 {
   padding: 10px 20px;
 }
 
+.widget-area {
+  padding: 0px 0px 80px;
+}
+.widget-area .row {
+  margin: 0px 0px;
+}
+
+.covidApp {
+  height: auto;
+  width: auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 25px;
@@ -353,6 +368,16 @@ div.searchResult h3 {
     right: auto;
     width: 90%;
     background-position: center;
+  }
+
+  .covidApp {
+    width: 100%;
+  }
+  .widget-area .col-sm-6 {
+    margin-bottom: 20px;
+  }
+  .widget-area {
+    padding: 0px 0px 40px;
   }
 }
 

@@ -318,6 +318,12 @@ div.recentposts .seemore {
   div.footer i {
     font-size: 8px;
   }
+
+  div.footer h6 {
+    margin-left: 50px;
+    /* margin-top: 5px; */
+  }
+
   div.motto h5 {
     font-size: 14px;
   }

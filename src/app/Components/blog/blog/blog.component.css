@@ -343,14 +343,14 @@ div.searchResult h3 {
 
 @media only screen and (max-width: 600px) {
   div.footer {
-    height: 25px;
+    height: 30px;
   }
   .footer-text {
-    margin-top: -13px;
+    margin-top: -9px;
   }
   div.footer h6,
   div.footer i {
-    font-size: 8px;
+    font-size: 9px;
   }
   div.motto h5 {
     font-size: 14px;

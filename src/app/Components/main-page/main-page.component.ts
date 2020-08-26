@@ -45,6 +45,9 @@ export class MainPageComponent implements OnInit {
       message: ['', [Validators.required, Validators.min(5)]],
     });
 
+    // show only preloader first and hide Main Page
+    document.getElementById('MainPage').style.display = 'none';
+
     // animate navbar on scroll
     let mediaQ = window.matchMedia('(max-width: 600px)');
 
@@ -106,6 +109,62 @@ export class MainPageComponent implements OnInit {
           document.getElementById('top-panel').style.height = '75px';
           document.getElementById('top-panel-nametag').style.paddingTop =
             '25px';
+        }
+      }
+    }
+
+    // Preloading Page logic
+
+    // loop text using javascript
+    var textLoop = [
+      'Preparing...',
+      'adding Bugs..',
+      'Catching Exceptions',
+      'Initializing the Prototype..',
+      'Systems Ready..',
+    ];
+
+    // loop text function
+    textSequence(0);
+    function textSequence(i) {
+      if (document.getElementById('loopText')) {
+        if (textLoop.length > i) {
+          setTimeout(function () {
+            if (document.getElementById('loopText')) {
+              document.getElementById('loopText').innerHTML = textLoop[i];
+              document.getElementById('loopText').style.fontFamily =
+                "'Lucida Console', 'LucidaConsole', 'monospace'";
+              textSequence(++i);
+            }
+          }, 800); // enter seconds (in milliseconds)
+        } else if (textLoop.length == i) {
+          // Loop
+          textSequence(0);
+        }
+      }
+    }
+
+    // progress bar logic
+    update();
+    function update() {
+      if (document.getElementById('progress')) {
+        var element = document.getElementById('progress');
+        var width = 1;
+        var identity = setInterval(scene, 45);
+        function scene() {
+          if (width >= 100) {
+            clearInterval(identity);
+
+            //show Main Page and hide preloader page once width reaches 100%
+            document.getElementById('MainPage').style.display = 'block';
+            document.getElementById('preloader').style.display = 'none';
+          } else {
+            width++;
+
+            // increase progessbar and % width
+            element.style.width = width + '%';
+            document.getElementById('percent').innerHTML = width * 1 + '%';
+          }
         }
       }
     }

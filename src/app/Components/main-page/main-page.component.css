@@ -314,6 +314,78 @@ div.recentposts .seemore {
   padding: 10px 20px;
 }
 
+/* Preload page content css */
+.preloadContent {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+  z-index: 5;
+  overflow: hidden;
+  margin-right: -50px;
+  padding-right: 50px;
+}
+
+.preloaderLogo {
+  height: auto;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -110px;
+  box-shadow: 0 10px 10px black, 0 8px 8px violet;
+  border-radius: 10px;
+}
+
+.progressBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.progressText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.progressText h6 {
+  margin-top: -40px;
+}
+
+.progress {
+  border-radius: 20px;
+  width: 2%;
+  height: 20px;
+  line-height: 30px;
+  text-align: center;
+  transition: 0.045s ease-in;
+}
+
+#loopText {
+  transition: 1s ease-in-out;
+}
+
+.preloaderFooter {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#percent {
+  position: absolute;
+  left: 50%;
+  margin-top: -5px;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 25px;
@@ -354,5 +426,19 @@ div.recentposts .seemore {
   .content-new {
     padding-bottom: 40px;
     text-align: center;
+  }
+
+  /* preload page content css Mobile */
+  .preloaderLogo {
+    height: auto;
+    width: 90%;
+  }
+
+  .progressBar {
+    width: 70%;
+    margin-top: 20px;
+  }
+  .preloaderFooter h6 {
+    font-size: 13px;
   }
 }

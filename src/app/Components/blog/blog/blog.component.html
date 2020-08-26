@@ -367,7 +367,10 @@
                     }"
                     style="padding-top: 20px;"
                   >
-                    <a routerLink="/Blog/{{ d._id }}" *ngIf="data"
+                    <a
+                      routerLink="/Blog/{{ d._id }}"
+                      *ngIf="data"
+                      [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                       >#{{ d.postNumber }}: {{ d.postTitle }}</a
                     >
                     <!-- post edited or not -->
@@ -376,7 +379,9 @@
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
                     >
-                      <span *ngIf="d.edited == true"
+                      <span
+                        *ngIf="d.edited == true"
+                        [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                         ><i class="fas fa-pencil-alt"></i> edited.</span
                       >
                       <span style="float: right;"
@@ -400,7 +405,12 @@
                     style="padding-bottom: 30px;"
                   >
                     {{ d.post | slice: 0:130 }}...
-                    <a routerLink="/Blog/{{ d._id }}"> Read more</a>
+                    <a
+                      routerLink="/Blog/{{ d._id }}"
+                      [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                    >
+                      Read more</a
+                    >
                   </p>
                 </div>
               </div>

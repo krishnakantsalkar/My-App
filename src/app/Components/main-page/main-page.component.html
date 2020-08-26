@@ -16,6 +16,7 @@
           background: brightness ? 'white' : ' rgb(41, 42, 45)'
         }"
       >
+        <div class="preloaderBg"></div>
         <!-- Preload page Logo  -->
         <div>
           <img class="preloaderLogo" src="assets/images/preloadLogo.png" />
@@ -156,9 +157,7 @@
             *ngIf="brightness"
             [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
           >
-            > krishnakantsalkar@prototype:~<span class="two">
-              $
-            </span>
+            > krishnakantsalkar@prototype:~<span class="two"> $ </span>
           </h4>
         </div>
       </div>
@@ -235,7 +234,7 @@
         <div
           class="container-fluid"
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
-          style="height: auto; width: auto; padding-left: 50px;"
+          style="height: auto; width: auto; padding-left: 50px"
         >
           <div class="bottom-content">
             <div class="row">

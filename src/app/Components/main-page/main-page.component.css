@@ -322,8 +322,19 @@ div.recentposts .seemore {
   background-color: rgb(41, 42, 45);
   z-index: 5;
   overflow: hidden;
-  margin-right: -50px;
-  padding-right: 50px;
+}
+
+.preloaderBg {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("../../../assets/images/pexels-markus-spiske-1936299.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.2;
 }
 
 .preloaderLogo {

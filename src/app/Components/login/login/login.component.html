@@ -102,20 +102,16 @@
       }"
     ></div>
 
-    <div
-      class="logindata"
-      [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-      }"
-    >
+    <div class="logindata">
+      <div class="bgImage"></div>
       <div class="container loginContainer">
         <div class="row">
           <div
             class="col-sm-6 shortInfo"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            [ngStyle]="{ color: brightness ? 'white' : 'rgb(129,129,129)' }"
           >
             <h1>Web Development</h1>
-            <p [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+            <p [ngStyle]="{ color: brightness ? 'white' : 'rgb(129,129,129)' }">
               Welcome superuser, Join me & my team in a venture to develop and
               build fast & mobile Web Apps for the greatest platform available!
               <br />
@@ -145,6 +141,9 @@
             </div>
             <div
               class="card"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              data-aos-duration="1000"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'white'
@@ -155,9 +154,6 @@
             >
               <article
                 class="card-body"
-                data-aos="fade-up"
-                data-aos-delay="300"
-                data-aos-duration="1000"
                 [ngStyle]="{ color: brightness ? 'black' : 'white' }"
               >
                 <form
@@ -184,12 +180,8 @@
                           color: brightness ? 'black' : 'white'
                         }"
                       />
-                      <div class="valid-feedback">
-                        looking good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Check entered email!
-                      </div>
+                      <div class="valid-feedback">looking good!</div>
+                      <div class="invalid-feedback">Check entered email!</div>
                       <div
                         class="alert alert-danger"
                         *ngIf="
@@ -246,9 +238,7 @@
                             }"
                             >make sure its atleast 5 characters!</span
                           >
-                          <div class="valid-feedback">
-                            looking good!
-                          </div>
+                          <div class="valid-feedback">looking good!</div>
                           <div class="invalid-feedback">
                             Check your password!
                           </div>
@@ -331,12 +321,8 @@
                           color: brightness ? 'black' : 'white'
                         }"
                       />
-                      <div class="valid-feedback">
-                        looking good!
-                      </div>
-                      <div class="invalid-feedback">
-                        Check entered email!
-                      </div>
+                      <div class="valid-feedback">looking good!</div>
+                      <div class="invalid-feedback">Check entered email!</div>
                       <div
                         class="alert alert-danger"
                         *ngIf="

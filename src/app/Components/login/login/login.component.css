@@ -2,6 +2,8 @@ div.top-panel {
   background-color: rgb(37, 38, 39);
   width: 100%;
   height: 80px;
+  position: fixed;
+  z-index: 3;
 }
 
 div.nametag h3 {
@@ -262,9 +264,20 @@ div.content {
 }
 
 div.logindata {
-  padding-top: 20px;
+  padding-top: 120px;
   background-color: rgb(41, 42, 45);
-  padding-bottom: 120px;
+}
+.bgImage {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: url("../../../../assets/images/pexels-markus-spiske-1936299.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.2;
 }
 
 .submit {

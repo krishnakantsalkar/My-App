@@ -154,64 +154,6 @@
       </div>
       <br />
     </div>
-    <!-- recent posts -->
-
-    <div
-      class="container-fluid"
-      [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-      }"
-    >
-      <div class="recentposts">
-        <div
-          class="card"
-          data-aos="fade-up"
-          data-aos-delay="100"
-          data-aos-duration="1000"
-          [ngStyle]="{
-            'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-          }"
-        >
-          <div
-            class="insider"
-            [ngStyle]="{ color: brightness ? 'black' : 'white' }"
-          >
-            <div
-              class="card-header recentupdates"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(35, 36, 38)'
-              }"
-            >
-              <h3>Recent Updates</h3>
-            </div>
-            <div class="card-body">
-              <div class="loading" *ngIf="!recentblogs">
-                <h4 *ngIf="!brightness" class="loadinganimDark">Loading...</h4>
-                <h4 *ngIf="brightness" class="loadinganimLight">Loading...</h4>
-              </div>
-              <div
-                class="recentcontent"
-                *ngFor="let recent of recentblogs | slice: 0:3"
-              >
-                <h3>
-                  <a routerLink="/Blog/{{ recent._id }}"
-                    >#{{ recent.postNumber }}. {{ recent.postTitle }}</a
-                  >
-                </h3>
-                <h5>{{ recent.postDate | slice: 0:70 }}..</h5>
-                <h5>{{ recent.post | slice: 0:90 }}...</h5>
-                <br />
-              </div>
-              <h4 class="seemore" *ngIf="recentblogs">
-                <a routerLink="/Blog/page/1"> more.....</a>
-              </h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Footer top area -->
     <div
@@ -248,22 +190,58 @@
               </div>
             </div>
             <div class="col-sm-3">
-              <div
-                class="footer-social"
-                data-aos="zoom-in"
-                data-aos-delay="100"
-                data-aos-duration="1000"
-              >
-                <a
-                  href="https://www.facebook.com/Supremegod.of.war/"
-                  target="_blank"
-                  ><i class="fab fa-facebook"></i
-                ></a>
-                <a href="https://twitter.com/Rohan_Salkar" target="_blank"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <div class="recentposts">
+                <div
+                  class="card"
+                  data-aos="zoom-in"
+                  data-aos-delay="100"
+                  data-aos-duration="1000"
+                  [ngStyle]="{
+                    'background-color': brightness
+                      ? 'white'
+                      : ' rgb(41, 42, 45)'
+                  }"
+                >
+                  <div
+                    class="insider"
+                    [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+                  >
+                    <div class="card-body">
+                      <h3>Recent Updates</h3>
+                      <div class="loading" *ngIf="!recentblogs">
+                        <h4 *ngIf="!brightness" class="loadinganimDark">
+                          Loading...
+                        </h4>
+                        <h4 *ngIf="brightness" class="loadinganimLight">
+                          Loading...
+                        </h4>
+                      </div>
+                      <div
+                        class="recentcontent"
+                        *ngFor="let recent of recentblogs | slice: 0:1"
+                      >
+                        <h5>
+                          <a
+                            routerLink="/Blog/{{ recent._id }}"
+                            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                            >#{{ recent.postNumber }}. {{ recent.postTitle }}</a
+                          >
+                        </h5>
+                        <h6>{{ recent.postDate | slice: 0:70 }}..</h6>
+                        <h6>
+                          {{ recent.post | slice: 0:90 }}...
+                          <span
+                            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                            routerLink="/Blog/page/1"
+                            >more</span
+                          >
+                        </h6>
+
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-sm-3">

@@ -128,7 +128,7 @@ div.content {
 
 div.imagesection {
   text-align: center;
-  padding-top: 120px;
+  padding-top: 200px;
   background-color: rgb(41, 42, 45);
 }
 
@@ -155,7 +155,7 @@ div.imagesection img {
     text-align: center;
   }
   div.imagesection {
-    padding-top: 100px;
+    padding-top: 150px;
     padding-left: 41px;
   }
 
@@ -163,10 +163,6 @@ div.imagesection img {
     height: 230px;
     width: 230px;
   }
-}
-
-div.bottom-content {
-  padding-top: 10px;
 }
 
 .content-new {
@@ -243,6 +239,7 @@ div.motto {
   padding-top: 40px;
   text-align: center;
   background-color: rgb(41, 42, 45);
+  padding-bottom: 150px;
 }
 div.motto h5 {
   color: #818181;
@@ -254,14 +251,25 @@ div.motto h5 {
 }
 
 .recentposts {
-  padding-top: 60px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  padding-bottom: 100px;
 }
 div.recentposts .seemore {
   text-align: center;
+}
+
+.recentposts .card-body {
+  padding-top: 10px;
+  border-radius: 10px;
+}
+
+.shortbio {
+  padding-top: 10px;
+}
+
+.recentposts span {
+  cursor: pointer;
+  color: rgb(78, 132, 248);
 }
 
 .clickable:hover {
@@ -329,10 +337,7 @@ div.recentposts .seemore {
   }
   .motto {
     padding-left: 41px;
-  }
-  .recentposts {
-    width: 90%;
-    padding-left: 41px;
+    padding-bottom: 80px;
   }
   div.recentposts h3 {
     font-size: 22px;

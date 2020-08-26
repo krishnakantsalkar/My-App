@@ -137,6 +137,10 @@ div.bloglinks h1 {
   color: #818181;
 }
 
+.blogdataCard {
+  border-radius: 20px;
+}
+
 div.card-body h2 {
   text-decoration: dotted;
 }

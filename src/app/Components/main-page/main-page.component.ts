@@ -45,8 +45,8 @@ export class MainPageComponent implements OnInit {
       message: ['', [Validators.required, Validators.min(5)]],
     });
 
-    // show only preloader first and hide Main Page
-    document.getElementById('MainPage').style.display = 'none';
+    // show only preloader only first time the session loads
+    preloaderPage();
 
     // animate navbar on scroll
     let mediaQ = window.matchMedia('(max-width: 600px)');
@@ -115,18 +115,17 @@ export class MainPageComponent implements OnInit {
 
     // Preloading Page logic
 
-    // loop text using javascript
-    var textLoop = [
-      'Preparing...',
-      'adding Bugs..',
-      'Catching Exceptions',
-      'Initializing the Prototype..',
-      'Systems Ready..',
-    ];
-
     // loop text function
-    textSequence(0);
-    function textSequence(i) {
+
+    async function textSequence(i) {
+      var textLoop = [
+        'Preparing...',
+        'adding Bugs..',
+        'Catching Exceptions',
+        'Initializing the Prototype..',
+        'Systems Ready..',
+      ];
+
       if (document.getElementById('loopText')) {
         if (textLoop.length > i) {
           setTimeout(function () {
@@ -136,7 +135,7 @@ export class MainPageComponent implements OnInit {
                 "'Lucida Console', 'LucidaConsole', 'monospace'";
               textSequence(++i);
             }
-          }, 800); // enter seconds (in milliseconds)
+          }, 1000); // enter seconds (in milliseconds)
         } else if (textLoop.length == i) {
           // Loop
           textSequence(0);
@@ -145,12 +144,12 @@ export class MainPageComponent implements OnInit {
     }
 
     // progress bar logic
-    update();
-    function update() {
+
+    async function update() {
       if (document.getElementById('progress')) {
         var element = document.getElementById('progress');
         var width = 1;
-        var identity = setInterval(scene, 45);
+        var identity = setInterval(scene, 50);
         function scene() {
           if (width >= 100) {
             clearInterval(identity);
@@ -167,6 +166,19 @@ export class MainPageComponent implements OnInit {
           }
         }
       }
+    }
+
+    function preloaderPage() {
+      let session = sessionStorage.getItem('session');
+      if (!session) {
+        document.getElementById('MainPage').style.display = 'none';
+        textSequence(0);
+        update();
+      } else {
+        document.getElementById('MainPage').style.display = 'block';
+        document.getElementById('preloader').style.display = 'none';
+      }
+      sessionStorage.setItem('session', 'onGoing');
     }
   }
 

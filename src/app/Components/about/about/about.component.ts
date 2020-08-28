@@ -7,18 +7,17 @@ import * as AOS from 'aos';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
-  public email: string = 'dev@krishnakantsalkar.gq';
-  public phone: string = '+919619705613';
-  public github: string = 'https://github.com/krishnakantsalkar';
   public copied;
   public brightness: boolean;
   constructor() {}
 
   ngOnInit() {
+    // aos animations
     AOS.init({
       startEvent: 'scroll',
     });
 
+    // brightness mode
     this.mode();
 
     //Get the button
@@ -31,6 +30,7 @@ export class AboutComponent implements OnInit {
       scrollFunctionMedia(mediaQ);
     };
 
+    // various methods on scroll
     function scrollFunction() {
       if (
         document.body.scrollTop > 50 ||
@@ -69,6 +69,7 @@ export class AboutComponent implements OnInit {
       }
     }
 
+    // text loop
     textSequence(0);
     async function textSequence(i) {
       var textLoop = [
@@ -97,14 +98,17 @@ export class AboutComponent implements OnInit {
       }
     }
   }
+  // brightness mode
   mode() {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
+  // scroll to page section
   scrollTo(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
+  // copy to clipboard
   copyToClip() {
     var data = document.createElement('input');
     data.setAttribute('value', document.getElementById('copyText').innerHTML);
@@ -118,6 +122,7 @@ export class AboutComponent implements OnInit {
     }, 3000);
   }
 
+  // scroll to topg
   topFunction() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

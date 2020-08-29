@@ -7,8 +7,10 @@ import * as AOS from 'aos';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
-  public copied;
+  public copiedMail;
+  public copiedNumber;
   public brightness: boolean;
+  public copyObjId;
   constructor() {}
 
   ngOnInit() {
@@ -73,7 +75,7 @@ export class AboutComponent implements OnInit {
     textSequence(0);
     async function textSequence(i) {
       var textLoop = [
-        '"Indulge in the fast Experience.. Build the Future!"',
+        '"Built using Angular 9 & NodeJS.."',
         `"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
          - Martin Golding"`,
         '"Computers make very fast, very accurate mistakes."',
@@ -109,17 +111,34 @@ export class AboutComponent implements OnInit {
   }
 
   // copy to clipboard
-  copyToClip() {
+  copyToClip(param) {
     var data = document.createElement('input');
-    data.setAttribute('value', document.getElementById('copyText').innerHTML);
-    var elemnt = document.getElementById('copyText').innerHTML;
+
+    if (param == 'mail') {
+      this.copyObjId = 'copyMail';
+    } else if (param == 'number') {
+      this.copyObjId = 'copyNumber';
+    }
+
+    data.setAttribute(
+      'value',
+      document.getElementById(this.copyObjId).innerHTML
+    );
+    var elemnt = document.getElementById(this.copyObjId).innerHTML;
     document.body.appendChild(data);
     data.select();
     document.execCommand('copy');
-    this.copied = elemnt;
-    setTimeout(() => {
-      document.getElementById('copyAlert').classList.add('hidden');
-    }, 3000);
+    if (param == 'mail') {
+      this.copiedMail = elemnt;
+      setTimeout(() => {
+        document.getElementById('copyAlert1').classList.add('hidden');
+      }, 3000);
+    } else {
+      this.copiedNumber = elemnt;
+      setTimeout(() => {
+        document.getElementById('copyAlert2').classList.add('hidden');
+      }, 3000);
+    }
   }
 
   // scroll to topg

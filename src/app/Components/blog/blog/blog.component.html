@@ -398,8 +398,10 @@
                             [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                             ><i class="fas fa-pencil-alt"></i> edited.</span
                           >
-                          <span style="float: right"
-                            ><i class="fas fa-eye"></i
+                          <span
+                            style="float: right"
+                            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                            >{{ d.userViews.length }} <i class="fas fa-eye"></i
                           ></span>
                         </h6>
                         <h5

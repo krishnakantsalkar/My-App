@@ -31,6 +31,9 @@ export class blogpostservice {
   public searchApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/search';
 
+  public postViewApi: string =
+    'https://mybackend-1911.herokuapp.com/api/blog/postView/';
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
@@ -84,5 +87,15 @@ export class blogpostservice {
         post: data,
       },
     });
+  }
+
+  trackPostViews(id, data) {
+    return this.http.put(
+      this.postViewApi + id,
+      JSON.stringify({ userViews: data }),
+      {
+        headers: this.header,
+      }
+    );
   }
 }

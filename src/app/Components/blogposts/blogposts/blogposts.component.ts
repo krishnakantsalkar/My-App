@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { clientIpService } from '../../../Shared/services/clientip-service';
+import { userIp } from '../../../Shared/model/userViewModel';
 
 @Component({
   selector: 'app-blogposts',
@@ -24,13 +26,16 @@ export class BlogpostsComponent implements OnInit {
   post;
   public adminName;
   public blogURL;
+  public userIpObj;
+  public postId;
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
     private sanitizer: DomSanitizer, // to sanitize urls , method below
     private fb: FormBuilder,
     private router: Router,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private clientIpObj: clientIpService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +60,13 @@ export class BlogpostsComponent implements OnInit {
         if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;
         }
+        this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
+          let ip = ipObj.ip;
+          this.postId = window.location.href.split('/');
+          this.blogservice
+            .trackPostViews(this.postId[4], ip)
+            .subscribe((response) => {});
+        });
       });
     });
 

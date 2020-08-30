@@ -404,6 +404,74 @@ div.connections .fa-telegram {
   border-radius: 4px;
 }
 
+/* Position the tooltip 1 */
+.tooltips1 {
+  position: absolute;
+  visibility: hidden;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -70px;
+  padding: 5px;
+}
+.tooltipText1 {
+  background-color: black;
+  width: 150px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+}
+
+.tooltipHover1:hover > .tooltips1 {
+  visibility: visible;
+}
+
+.tooltips1 .tooltipText1::after {
+  content: " ";
+  position: absolute;
+  top: 98%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+/* Position the tooltip 2 */
+.tooltips2 {
+  position: absolute;
+  visibility: hidden;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -70px;
+  padding: 5px;
+}
+.tooltipText2 {
+  background-color: black;
+  width: 150px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+}
+
+.tooltipHover2:hover > .tooltips2 {
+  visibility: visible;
+}
+
+.tooltips2 .tooltipText2::after {
+  content: " ";
+  position: absolute;
+  top: 98%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {

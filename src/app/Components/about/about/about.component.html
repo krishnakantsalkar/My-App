@@ -306,10 +306,13 @@
                   <div class="card">
                     <div class="card-body">
                       <div>
-                        <h6 (click)="copyToClip('mail')">
+                        <h6 class="tooltipHover1" (click)="copyToClip('mail')">
                           <i id="copyMail" class="fas fa-envelope">
                             dev@krishnakantsalkar.gq</i
                           >
+                          <div class="tooltips1">
+                            <span class="tooltipText1">click to copy!</span>
+                          </div>
                         </h6>
                         <div
                           id="copyAlert1"
@@ -326,10 +329,13 @@
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
-                      <h6 (click)="copyToClip('number')">
+                      <h6 class="tooltipHover2" (click)="copyToClip('number')">
                         <i id="copyNumber" class="fas fa-mobile">
                           +919619705613</i
                         >
+                        <div class="tooltips2">
+                          <span class="tooltipText2">click to copy!</span>
+                        </div>
                       </h6>
                       <div
                         id="copyAlert2"

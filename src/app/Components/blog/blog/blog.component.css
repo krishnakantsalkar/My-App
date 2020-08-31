@@ -208,13 +208,31 @@ div.links .aDark:hover {
   margin: 10px;
 }
 
-div.coverimg {
-  background-image: url("https://res.cloudinary.com/dq766ltjh/image/upload/v1596802791/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 500px;
-  border-radius: 5px;
+/* Bootstrap Carousel css */
+#carousel {
+  z-index: 2;
+  border-radius: 10px;
 }
+
+.carousel-inner {
+  border-radius: 10px;
+}
+.carousel-inner img {
+  height: 520px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.carouselImgLinks {
+  text-decoration: none;
+  color: grey;
+  float: right;
+  font-size: 12px;
+}
+.carouselImgLinks:hover {
+  color: yellow;
+}
+
 div.cvrimg {
   background-color: rgb(41, 42, 45);
   padding-top: 120px;
@@ -366,14 +384,10 @@ div.searchResult h3 {
   div.cvrimg {
     padding-top: 140px;
   }
-  div.coverimg {
+  .carousel-inner img {
     height: 200px;
-    margin-left: auto;
-    right: auto;
-    width: 90%;
-    background-position: center;
+    width: 100%;
   }
-
   .covidApp {
     width: 100%;
   }

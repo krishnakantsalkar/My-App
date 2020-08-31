@@ -120,14 +120,86 @@
         'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
       }"
     ></div>
+
+    <!-- cover img container -->
     <div
-      class="cvrimg"
+      class="cvrimg container"
       [ngStyle]="{
         'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
       }"
     >
-      <div class="coverimg container"></div>
+      <!-- Bootstrap Carousel -->
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel" data-slide-to="1"></li>
+          <li data-target="#carousel" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://res.cloudinary.com/dq766ltjh/image/upload/v1596802791/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg"
+              alt="Photo By Negative Space, Pexels"
+            />
+            <div class="carousel-caption">
+              <h6>Web | Android | Python | Gaming</h6>
+              <a
+                class="carouselImgLinks"
+                href="https://www.pexels.com/photo/office-working-app-computer-97077/"
+                >Photo by Negative Space, Pexels</a
+              >
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/images/pexels-luis-gomes-546819.jpg"
+              alt="Photo By Luis Gomes, Pexels"
+            />
+            <div class="carousel-caption">
+              <h3>Custom Development</h3>
+              <p>Fast, Detailed, Material Design</p>
+              <p>
+                <a
+                  class="carouselImgLinks"
+                  href="https://www.pexels.com/photo/blur-close-up-code-computer-546819/"
+                  >Photo by Luis Gomes, Pexels</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="assets/images/pexels-neo-2653362.jpg"
+              alt="Photo By Neo, Pexels"
+            />
+            <div class="carousel-caption">
+              <h3>Debug</h3>
+              <p>"Hello World"</p>
+              <p>
+                <a
+                  style="float: left; margin-bottom: 20px"
+                  class="carouselImgLinks"
+                  href="https://www.pexels.com/photo/lines-of-code-2653362/"
+                  >Photo by Neo, Pexels</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
     </div>
+
     <div
       class="bloglinks"
       [ngStyle]="{

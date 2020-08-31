@@ -180,6 +180,8 @@ export class MainPageComponent implements OnInit {
       }
       sessionStorage.setItem('session', 'onGoing');
     }
+
+    (<any>$('.toast')).toast('show');
   }
 
   mode() {

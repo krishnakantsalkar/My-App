@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
+import { Jquery } from 'typings';
 
 @Component({
   selector: 'app-main-page',
@@ -181,7 +182,7 @@ export class MainPageComponent implements OnInit {
       sessionStorage.setItem('session', 'onGoing');
     }
 
-    (<any>$('.toast')).toast('show');
+    (<Jquery>$('.toast')).toast('show');
   }
 
   mode() {

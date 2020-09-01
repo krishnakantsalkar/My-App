@@ -166,6 +166,7 @@ div.imagesection img {
 }
 
 .content-new {
+  padding-top: 60px;
   padding-bottom: 60px;
 }
 
@@ -207,6 +208,7 @@ div.imagesection img {
 .feedback-form ::placeholder {
   color: black;
 }
+
 .bottom-content p {
   font-family: Comic Sans MS, cursive, sans-serif;
 }

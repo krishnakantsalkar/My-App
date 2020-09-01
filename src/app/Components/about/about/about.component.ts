@@ -113,7 +113,6 @@ export class AboutComponent implements OnInit {
   // copy to clipboard
   copyToClip(param) {
     var data = document.createElement('input');
-
     if (param == 'mail') {
       this.copyObjId = 'copyMail';
     } else if (param == 'number') {

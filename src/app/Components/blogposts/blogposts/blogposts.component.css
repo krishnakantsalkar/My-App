@@ -138,38 +138,11 @@ div.content {
   color: white;
 }
 
-div.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(37, 38, 39);
-  height: 60px;
-}
-
-div.footer-text {
-  text-align: center;
-  padding-top: 20px;
-}
-div.footer h6,
-div.footer i {
-  color: #818181;
-  font-size: 17px;
-}
 div.links a:hover {
   background-color: tomato;
 }
 
 @media only screen and (max-width: 600px) {
-  div.footer {
-    height: 30px;
-  }
-  .footer-text {
-    margin-top: -9px;
-  }
-  div.footer h6,
-  div.footer i {
-    font-size: 9px;
-  }
   div.motto h5 {
     font-size: 14px;
   }

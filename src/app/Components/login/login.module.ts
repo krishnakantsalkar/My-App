@@ -6,6 +6,7 @@ import { loginRoutes } from './login-routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { SharedModuleModule } from '../shared-module/shared-module.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,6 +15,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     RouterModule.forChild(loginRoutes),
     ReactiveFormsModule,
     NgxCaptchaModule,
+    SharedModuleModule,
   ],
   providers: [CookieService],
 })

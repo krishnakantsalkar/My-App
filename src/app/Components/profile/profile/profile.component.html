@@ -136,7 +136,7 @@
                       <div>
                         <img
                           [src]="currentProfImgP"
-                          style="height: 200px; width: auto;"
+                          style="height: 200px; width: auto"
                         />
                       </div>
 
@@ -154,7 +154,7 @@
                       <button
                         type="submit"
                         class="btn btn-info"
-                        style="margin-right: 15px;"
+                        style="margin-right: 15px"
                         (click)="SubmitFile()"
                       >
                         upload
@@ -205,28 +205,7 @@
       </div>
     </div>
     <!-- Footer area -->
-    <div
-      class="footer"
-      [ngStyle]="{
-        'background-color': brightness
-          ? 'rgb(223, 223, 223)'
-          : ' rgb(41, 42, 45)'
-      }"
-    >
-      <div class="footer-text">
-        <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
-          <i
-            class="fas fa-copyright"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-          2020 Krishnakant Salkar, Made with
-          <i
-            class="fas fa-heartbeat"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-          using Angular 9...
-        </h6>
-      </div>
-    </div>
+
+    <app-footer></app-footer>
   </body>
 </html>

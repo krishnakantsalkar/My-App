@@ -1,27 +1,31 @@
-# MyApp
+# The-Arsonist~
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version `9.1.1`
 
-## Development server
+## Welcome to My Page built in Angular & NodeJS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To start Development Server install Angular CLI from npm and run `ng serve`
 
-## Code scaffolding
+### Features :fire::
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Component based structure
+* Node + Express APIs backed with MongoDB
+* Cloudinary Image storage and API 
+* Global Dark/Light mode implementation
+* Reactive forms for data submissions
+* Bootstrap, fontawesome, ngx-cookies, Superplaceholder etc.
+* login page with captcha protection
+* Create/Edit/Delete New Blog from UI (Admin only)
+* Lazy Loading
+* AOS animations library
+* Pagination
+* widgets
+* Search & Display data in Database
+* Fully Optimized for mobile devices
+* Send email on Login with host IP and host Machine 
+* APIs to track blog post views
+* HTTPS via Cloudflare
+* much more... check commit history.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Contact me on `dev@krishnakantsalkar.gq` 

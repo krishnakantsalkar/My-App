@@ -95,10 +95,6 @@ div.links .aDark:hover {
   color: white;
 }
 
-.content-new {
-  position: absolute;
-}
-
 div.login-card .card {
   width: 75%;
   margin-left: auto;
@@ -265,4 +261,7 @@ div.logindata {
 
 div.login-card .card-header {
   background-color: rgba(146, 218, 247, 0.788);
+}
+.content-new {
+  position: absolute;
 }

@@ -89,6 +89,16 @@ export class LoginComponent implements OnInit {
         },
       });
     });
+
+    footerBackground();
+    function footerBackground() {
+      var footerArea = (document.getElementsByClassName(
+        'content-new'
+      ) as unknown) as HTMLCollectionOf<HTMLElement>;
+      if (footerArea) {
+        footerArea[0].style.position = 'absolute';
+      }
+    }
   }
 
   Save(data: IuserLogin) {

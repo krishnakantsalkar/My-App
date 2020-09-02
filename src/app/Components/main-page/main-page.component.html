@@ -113,8 +113,12 @@
         <a routerLink="/About"> About</a>
         <a routerLink="/Blog/page/1"> Blog</a>
         <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
-        <a href="https://guides.krishnakantsalkar.gq/index.php">Guides</a>
-        <a href="https://github.com/krishnakantsalkar/My-App"> Github</a>
+        <a href="https://guides.krishnakantsalkar.gq/index.php" target="_blank"
+          >Guides</a
+        >
+        <a href="https://github.com/krishnakantsalkar/My-App" target="_blank">
+          Github</a
+        >
         <a routerLink="/Login" *ngIf="!special"> Login</a>
         <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
         <a routerLink="/About"> Support</a>
@@ -138,27 +142,46 @@
       >
         <!-- Name tag on top panel -->
         <div class="container nametag">
-          <h4
-            class="n1"
-            id="top-panel-nametag"
-            *ngIf="!brightness"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            > krishnakantsalkar@prototype:~<span
-              class="one"
-              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-            >
-              $
-            </span>
-          </h4>
-          <h4
-            class="n2"
-            id="top-panel-nametag"
-            *ngIf="brightness"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            > krishnakantsalkar@prototype:~<span class="two"> $ </span>
-          </h4>
+          <div class="row">
+            <div class="col-sm-6">
+              <h4
+                class="n1"
+                id="top-panel-nametag"
+                *ngIf="!brightness"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+              >
+                > krishnakantsalkar@prototype:~<span
+                  class="one"
+                  [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                >
+                  $
+                </span>
+              </h4>
+              <h4
+                class="n2"
+                id="top-panel-nametag"
+                *ngIf="brightness"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+              >
+                > krishnakantsalkar@prototype:~<span class="two"> $ </span>
+              </h4>
+            </div>
+            <div class="col-sm-6">
+              <h6
+                id="userName"
+                *ngIf="userName"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+              >
+                Admin:
+                <span
+                  [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                  routerLink="/Profile/{{ loggedInUser }}"
+                >
+                  {{ userName.name }} {{ userName.surname }}
+                </span>
+              </h6>
+            </div>
+          </div>
         </div>
       </div>
 

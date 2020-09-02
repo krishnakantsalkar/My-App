@@ -22,6 +22,7 @@ export class MainPageComponent implements OnInit {
   public sendFeedback: FormGroup;
   public logResponse;
   public errResponse;
+  public userName;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -32,14 +33,19 @@ export class MainPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // call methods
     this.defaultmode();
     this.getspecials();
+    this.recentUpdates();
+    this.getUserId();
+    this.showAdmin();
+
+    // aos animation init.
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
-    this.recentUpdates();
-    this.getUserId();
 
+    // Feedback, Reactive form
     this.sendFeedback = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -63,8 +69,9 @@ export class MainPageComponent implements OnInit {
         document.documentElement.scrollTop > 50
       ) {
         if (
-          document.getElementById('top-panel') ||
-          document.getElementById('top-panel-nametag')
+          document.getElementById('top-panel') &&
+          document.getElementById('top-panel-nametag') &&
+          document.getElementById('userName')
         ) {
           document.getElementById('top-panel').style.height = '60px';
           document.getElementById('top-panel').style.transitionDuration =
@@ -73,15 +80,18 @@ export class MainPageComponent implements OnInit {
             'ease-in';
           document.getElementById('top-panel-nametag').style.paddingTop =
             '10px';
+          document.getElementById('userName').style.paddingTop = '20px';
         }
       } else {
         if (
-          document.getElementById('top-panel') ||
-          document.getElementById('top-panel-nametag')
+          document.getElementById('top-panel') &&
+          document.getElementById('top-panel-nametag') &&
+          document.getElementById('userName')
         ) {
           document.getElementById('top-panel').style.height = '90px';
           document.getElementById('top-panel-nametag').style.paddingTop =
             '25px';
+          document.getElementById('userName').style.paddingTop = '30px';
         }
       }
     }
@@ -92,24 +102,31 @@ export class MainPageComponent implements OnInit {
         (mediaQuery.matches && document.documentElement.scrollTop > 50)
       ) {
         if (
-          document.getElementById('top-panel') ||
-          document.getElementById('top-panel-nametag')
+          document.getElementById('top-panel') &&
+          document.getElementById('top-panel-nametag') &&
+          document.getElementById('userName')
         ) {
           document.getElementById('top-panel').style.height = '55px';
           document.getElementById('top-panel-nametag').style.paddingTop =
             '15px';
+
+          document.getElementById('userName').style.marginTop = '-8px';
+          document.getElementById('userName').style.paddingTop = '0px';
         }
       } else if (
         (mediaQuery.matches && document.body.scrollTop < 50) ||
         (mediaQuery.matches && document.documentElement.scrollTop < 50)
       ) {
         if (
-          document.getElementById('top-panel') ||
-          document.getElementById('top-panel-nametag')
+          document.getElementById('top-panel') &&
+          document.getElementById('top-panel-nametag') &&
+          document.getElementById('userName')
         ) {
           document.getElementById('top-panel').style.height = '75px';
           document.getElementById('top-panel-nametag').style.paddingTop =
             '25px';
+          document.getElementById('userName').style.marginTop = '-5px';
+          document.getElementById('userName').style.paddingTop = '0px';
         }
       }
     }
@@ -182,17 +199,22 @@ export class MainPageComponent implements OnInit {
       sessionStorage.setItem('session', 'onGoing');
     }
 
+    // Toast initialize
     (<Jquery>$('.toast')).toast('show');
   }
 
+  // set global Light/Dark mode
   mode() {
     this.brightness = !this.brightness;
     localStorage.setItem('mode', JSON.stringify(this.brightness));
   }
+
+  // global Light/Dark mode
   defaultmode() {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
+  // show special
   getspecials() {
     // let temp = JSON.parse(localStorage.getItem('credentials'));
     let loggedinUser = this.cookies.get('credentials');
@@ -206,23 +228,37 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  // show admin
+  showAdmin() {
+    let loggedinUser = this.cookies.get('credentials');
+
+    if (loggedinUser) {
+      let userData = JSON.parse(localStorage.getItem('user'));
+      this.userName = userData;
+    }
+  }
+
+  // logout method
   logout() {
     this.cookies.delete('credentials');
-
+    localStorage.removeItem('user');
     localStorage.removeItem('id');
     location.reload();
   }
 
+  // show latest blog post
   recentUpdates() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.recentblogs = item;
     });
   }
 
+  // get id for profile page navigation
   getUserId() {
     this.loggedInUser = JSON.parse(localStorage.getItem('id'));
   }
 
+  // send feedback
   Send(data: IcontactUs) {
     if (!this.sendFeedback.valid) {
       return;
@@ -241,6 +277,7 @@ export class MainPageComponent implements OnInit {
     );
   }
 
+  // turn off notif overlay
   off() {
     var elemnt = document.getElementById('overlay');
 

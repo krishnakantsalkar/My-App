@@ -113,6 +113,17 @@ span.two {
   }
 }
 
+/* user name on nav */
+#userName {
+  padding-top: 30px;
+  text-align: center;
+  transition: 0.2s ease-in;
+}
+
+#userName span {
+  cursor: pointer;
+}
+
 div.content {
   margin: 0;
   position: absolute;
@@ -453,5 +464,12 @@ div.recentposts .seemore {
   }
   .preloaderFooter h6 {
     font-size: 13px;
+  }
+
+  #userName {
+    padding-top: 0px;
+    margin-top: -5px;
+    font-size: 12px;
+    margin-left: 50px;
   }
 }

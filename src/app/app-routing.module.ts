@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './Components/main-page/main-page.component';
 import { authGuard } from './Shared/services/authguard';
+import { Page404Component } from './Components/page404/page404.component';
 
 const routes: Routes = [
   // default route
@@ -85,6 +86,12 @@ const routes: Routes = [
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
       ),
+  },
+
+  //wildcard route
+  {
+    path: '**',
+    component: Page404Component,
   },
 ];
 

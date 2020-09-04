@@ -11,13 +11,15 @@ export class MoviesComponent implements OnInit {
   public brightness: boolean; // light/dark mode
   public movieData;
   public pageNo;
+  public currentList; // save current list in variable
+  public currentListType;
 
   constructor(private movieService: MovieServices, private router: Router) {}
 
   ngOnInit(): void {
     // method calls
     this.mode();
-    this.getPopularMoviesList(1);
+    this.getTheLists(1, 'movie', 'now_playing');
 
     //Get the button
     var mybutton = document.getElementById('myBtn');
@@ -82,17 +84,30 @@ export class MoviesComponent implements OnInit {
 
   // movie api usage
 
-  getPopularMoviesList(pageNo) {
-    this.movieService.getPopularMovies(pageNo).subscribe((item) => {
-      this.movieData = item.results;
+  getTheLists(pageNo, listType, listName) {
+    this.currentList = listName;
+    this.currentListType = listType;
+    sessionStorage.setItem('listType', this.currentListType);
+    console.log(this.currentList);
 
-      this.router.navigateByUrl('/Movies/Popular/1').then(() => {
-        let elemnt = document.getElementById('movieList');
-        if (elemnt) {
-          elemnt.scrollIntoView({ behavior: 'smooth' });
-        }
+    this.movieService
+      .getTheList(pageNo, listType, listName)
+      .subscribe((item) => {
+        this.movieData = item.results;
+        this.router.navigateByUrl('/Movies').then(() => {
+          let elemnt = document.getElementById('movieList');
+          if (elemnt) {
+            elemnt.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        this.pageNo = pageNo;
       });
-      this.pageNo = pageNo;
-    });
+  }
+
+  // remove active button
+  removeActiveBtn() {
+    let activeBtn = document
+      .getElementById('now_playing')
+      .classList.remove('active');
   }
 }

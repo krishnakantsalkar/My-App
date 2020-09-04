@@ -10,7 +10,9 @@ export class MovieServices {
   private movieAPIKey: string = ''; //api id removed for public upload
   private movieLang: string = 'en-US'; // data language
   private moviePage: number = 1; // data page no.
-  private movieListType: string = 'popular'; // movie list type
+
+  //listType = movie or tv //
+  //listName= popular, top_rated etc//
 
   public header: HttpHeaders;
   constructor(private http: HttpClient, private router: Router) {
@@ -18,23 +20,23 @@ export class MovieServices {
   }
 
   // get all data from API
-  public getPopularMovies(pageNo): Observable<Imovies> {
+  public getTheList(pageNo, listType, listName): Observable<Imovies> {
     return this.http.get<Imovies>(
-      `${this.movieAPI}popular?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=${pageNo}`
+      `${this.movieAPI}${listType}/${listName}?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=${pageNo}`
     );
   }
 
   // get single data by id
-  public getMoviesById(id): Observable<ImovieDetails> {
+  public getMoviesById(id, listType): Observable<ImovieDetails> {
     return this.http.get<ImovieDetails>(
-      `${this.movieAPI}${id}?api_key=${this.movieAPIKey}&language=${this.movieLang}`
+      `${this.movieAPI}${listType}/${id}?api_key=${this.movieAPIKey}&language=${this.movieLang}`
     );
   }
 
   // get movie review by id
-  public movieReviewsById(id) {
+  public movieReviewsById(id, listType) {
     return this.http.get(
-      `${this.movieAPI}${id}/reviews?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=1`
+      `${this.movieAPI}${listType}/${id}/reviews?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=1`
     );
   }
 }

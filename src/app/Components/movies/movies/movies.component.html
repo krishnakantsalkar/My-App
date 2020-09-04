@@ -89,14 +89,72 @@
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
         >
           <h1>Here's a List of 100 Latest & Popular movies!</h1>
+
+          <div class="listButtons">
+            <h5>Movies:</h5>
+            <button
+              class="btn btn1 active"
+              id="now_playing"
+              (click)="getTheLists(1, 'movie', 'now_playing')"
+            >
+              Now Playing
+            </button>
+            <button
+              class="btn btn2"
+              id="popular"
+              (click)="getTheLists(1, 'movie', 'popular'); removeActiveBtn()"
+            >
+              Popular
+            </button>
+            <button
+              class="btn btn3"
+              id="top_rated"
+              (click)="getTheLists(1, 'movie', 'top_rated'); removeActiveBtn()"
+            >
+              Top Rated
+            </button>
+            <button
+              class="btn btn4"
+              id="upcoming"
+              (click)="getTheLists(1, 'movie', 'upcoming'); removeActiveBtn()"
+            >
+              Upcoming
+            </button>
+            <br />
+            <h5>Tv:</h5>
+            <button
+              class="btn btn5"
+              id="now_playing1"
+              (click)="getTheLists(1, 'tv', 'on_the_air'); removeActiveBtn()"
+            >
+              Now Playing
+            </button>
+            <button
+              class="btn btn6"
+              id="popular1"
+              (click)="getTheLists(1, 'tv', 'popular'); removeActiveBtn()"
+            >
+              Popular
+            </button>
+            <button
+              class="btn btn7"
+              id="top_rated1"
+              (click)="getTheLists(1, 'tv', 'top_rated'); removeActiveBtn()"
+            >
+              Top Rated
+            </button>
+          </div>
         </div>
+        <h5>Now viewing: '{{ currentListType }}'</h5>
+        <h5>List: '{{ currentList }}',</h5>
+        <h5>pageno: '{{ pageNo }}'</h5>
         <div class="row">
           <!-- movie list -->
           <div
             class="movieData col-sm-3 col-6 col-md-3"
             *ngFor="let movies of movieData"
           >
-            <div class="card" id="movieCard">
+            <div class="card" id="movieCard" *ngIf="movieData">
               <!-- movie image -->
               <a routerLink="/Movies/{{ movies.id }}">
                 <img
@@ -104,7 +162,10 @@
                   alt=""
               /></a>
               <div class="middle">
-                <div class="text">Imdb: {{ movies.vote_average }}/10</div>
+                <div class="text">
+                  <h4><i class="fas fa-star"></i></h4>
+                </div>
+                <h4>{{ movies.vote_average }} / 10</h4>
                 <div class="text1" routerLink="/Movies/{{ movies.id }}">
                   view details
                 </div>
@@ -114,9 +175,20 @@
                   'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
+                *ngIf="movies.original_title"
                 routerLink="/Movies/{{ movies.id }}"
               >
                 {{ movies.title }}
+              </h6>
+              <h6
+                [ngStyle]="{
+                  'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+                  color: brightness ? 'black' : 'white'
+                }"
+                routerLink="/Movies/{{ movies.id }}"
+                *ngIf="movies.name"
+              >
+                {{ movies.name }}
               </h6>
             </div>
             <br />
@@ -133,7 +205,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="getPopularMoviesList(1)"
+            (click)="getTheLists(1, currentListType, currentList)"
           >
             1
           </button>
@@ -144,7 +216,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="getPopularMoviesList(2)"
+            (click)="getTheLists(2, currentListType, currentList)"
           >
             2
           </button>
@@ -156,7 +228,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="getPopularMoviesList(3)"
+            (click)="getTheLists(3, currentListType, currentList)"
           >
             3
           </button>
@@ -167,7 +239,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="getPopularMoviesList(4)"
+            (click)="getTheLists(4, currentListType, currentList)"
           >
             4
           </button>
@@ -178,7 +250,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="getPopularMoviesList(5)"
+            (click)="getTheLists(5, currentListType, currentList)"
           >
             5
           </button>

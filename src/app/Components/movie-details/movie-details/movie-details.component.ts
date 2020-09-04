@@ -25,10 +25,11 @@ export class MovieDetailsComponent implements OnInit {
 
     this.AR.params.subscribe((item) => {
       let id = item['id'];
-      this.movieService.getMoviesById(id).subscribe((item) => {
+      let listType = sessionStorage.getItem('listType');
+      this.movieService.getMoviesById(id, listType).subscribe((item) => {
         this.movieDetails = item;
       });
-      this.movieService.movieReviewsById(id).subscribe((review) => {
+      this.movieService.movieReviewsById(id, listType).subscribe((review) => {
         this.movieReviews = review;
       });
     });

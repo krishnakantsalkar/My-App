@@ -76,7 +76,7 @@ const routes: Routes = [
   // movie component route
 
   {
-    path: 'Movies/Popular/1',
+    path: 'Movies',
     loadChildren: () =>
       import('./Components/movies/movies.module').then((m) => m.MoviesModule),
   },

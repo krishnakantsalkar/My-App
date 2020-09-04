@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- background -->
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+        color: brightness ? 'black' : 'white'
+      }"
+    ></div>
+
+    <!-- main content -->
+    <div
+      class="content404"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+        color: brightness ? 'black' : 'white'
+      }"
+    >
+      <!-- 404 page container -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- img -->
+            <div>
+              <a
+                class="errorimg"
+                href="https://pngtree.com/so/astronaut"
+                target="_blank"
+              >
+                <img
+                  src="assets/images/—Pngtree—astronaut space planet 404 error_5330067.png"
+                  alt="astronaut png from pngtree.com"
+                />
+              </a>
+            </div>
+          </div>
+          <!-- short msg -->
+          <div class="col-sm-6">
+            <div class="textMsg">
+              <h1>Uh-Oh!</h1>
+              <h3>The page you're looking for doesn't exist</h3>
+              <button class="btn" routerLink="/Home">Home</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

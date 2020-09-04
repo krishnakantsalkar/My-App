@@ -4,6 +4,7 @@ import { MainPageComponent } from './Components/main-page/main-page.component';
 import { authGuard } from './Shared/services/authguard';
 
 const routes: Routes = [
+  // default route
   {
     path: '',
     component: MainPageComponent,
@@ -12,16 +13,19 @@ const routes: Routes = [
     path: 'Home',
     component: MainPageComponent,
   },
+  // about page
   {
     path: 'About',
     loadChildren: () =>
       import('./Components/about/about.module').then((m) => m.AboutModule),
   },
+  // blog page
   {
     path: 'Blog/page/:page',
     loadChildren: () =>
       import('./Components/blog/blog.module').then((m) => m.BlogModule),
   },
+  // blogpost page
   {
     path: 'Blogposts',
     loadChildren: () =>
@@ -29,7 +33,7 @@ const routes: Routes = [
         (m) => m.BlogpostsModule
       ),
   },
-
+  // blogpost by id
   {
     path: 'Blog/:id',
     loadChildren: () =>
@@ -37,17 +41,20 @@ const routes: Routes = [
         (m) => m.BlogpostsModule
       ),
   },
+  // login page
   {
     path: 'Login',
     loadChildren: () =>
       import('./Components/login/login.module').then((m) => m.LoginModule),
   },
+  // bday page
   {
     path: 'Bday',
     loadChildren: () =>
       import('./Components/bday/bday.module').then((m) => m.BdayModule),
     canActivate: [authGuard],
   },
+  // profile page
   {
     path: 'Profile/:id',
     loadChildren: () =>
@@ -56,11 +63,27 @@ const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  // reset password page
   {
     path: 'ResetPassword/:id',
     loadChildren: () =>
       import('./Components/resetpassword/resetpassword.module').then(
         (m) => m.ResetpasswordModule
+      ),
+  },
+
+  // movie component route
+
+  {
+    path: 'Movies/Popular/1',
+    loadChildren: () =>
+      import('./Components/movies/movies.module').then((m) => m.MoviesModule),
+  },
+  {
+    path: 'Movies/:id',
+    loadChildren: () =>
+      import('./Components/movie-details/movie-details.module').then(
+        (m) => m.MovieDetailsModule
       ),
   },
 ];

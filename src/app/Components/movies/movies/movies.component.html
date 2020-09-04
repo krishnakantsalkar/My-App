@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- scroll to top button -->
+    <button (click)="topFunction()" id="myBtn" title="Go to top">
+      <i class="fas fa-angle-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- top panel navbar -->
+    <div
+      class="top-panel"
+      id="top-panel"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container myname">
+        <div class="row">
+          <div class="col-sm-6 nametag">
+            <h3
+              class="n1"
+              id="top-panel-nametag"
+              *ngIf="!brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span class="one">$</span>
+            </h3>
+
+            <h3
+              class="n2"
+              id="top-panel-nametag"
+              *ngIf="brightness"
+              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            >
+              > krishnakantsalkar@prototype:~<span class="two">$</span>
+            </h3>
+          </div>
+          <div class="col-sm-6 links" id="links">
+            <a
+              class="navlink"
+              routerLink="/Home"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+            >
+              Home</a
+            >
+
+            <a
+              class="navlink"
+              routerLink="/About"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+              >About</a
+            >
+            <a
+              class="navlink"
+              routerLink="/Support"
+              [ngClass]="{ aLight: brightness, aDark: !brightness }"
+              >Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- background -->
+    <div class="content"></div>
+
+    <!-- main content -->
+    <div
+      class="movieList"
+      id="movieList"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+        color: brightness ? 'black' : 'white'
+      }"
+    >
+      <!-- movie list container -->
+      <div class="container">
+        <!-- top title text -->
+        <div
+          class="topText"
+          [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+        >
+          <h1>Here's a List of 100 Latest & Popular movies!</h1>
+        </div>
+        <div class="row">
+          <!-- movie list -->
+          <div
+            class="movieData col-sm-3 col-6 col-md-3"
+            *ngFor="let movies of movieData"
+          >
+            <div class="card" id="movieCard">
+              <!-- movie image -->
+              <a routerLink="/Movies/{{ movies.id }}">
+                <img
+                  src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
+                  alt=""
+              /></a>
+              <div class="middle">
+                <div class="text">Imdb: {{ movies.vote_average }}/10</div>
+                <div class="text1" routerLink="/Movies/{{ movies.id }}">
+                  view details
+                </div>
+              </div>
+              <h6
+                [ngStyle]="{
+                  'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+                  color: brightness ? 'black' : 'white'
+                }"
+                routerLink="/Movies/{{ movies.id }}"
+              >
+                {{ movies.title }}
+              </h6>
+            </div>
+            <br />
+            <br />
+          </div>
+        </div>
+
+        <!-- pagination implementation -->
+        <div class="pagebtn" *ngIf="movieData">
+          <button
+            class="btn"
+            [disabled]="pageNo == 1"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getPopularMoviesList(1)"
+          >
+            1
+          </button>
+          <button
+            class="btn"
+            [disabled]="pageNo == 2"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getPopularMoviesList(2)"
+          >
+            2
+          </button>
+
+          <button
+            class="btn"
+            [disabled]="pageNo == 3"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getPopularMoviesList(3)"
+          >
+            3
+          </button>
+          <button
+            class="btn"
+            [disabled]="pageNo == 4"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getPopularMoviesList(4)"
+          >
+            4
+          </button>
+          <button
+            class="btn"
+            [disabled]="pageNo == 5"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getPopularMoviesList(5)"
+          >
+            5
+          </button>
+        </div>
+
+        <!-- disclaimer & credits -->
+        <div class="disclaimerInfo">
+          <div class="alert alert-danger">
+            <h6>
+              <i class="fas fa-info-circle"></i> Disclaimer: Displayed data on
+              this website is for Information purpose only. This website doesn't
+              redirect/provide links to any illegal download of movies etc.
+            </h6>
+          </div>
+        </div>
+        <div class="creditsInfo">
+          <div class="alert alert-success">
+            <h6>
+              <i class="fas fa-check-circle"></i> Movie database API Powered By:
+              <a href="https://www.themoviedb.org" target="_blank">
+                <strong> TheMovieDB.ORG</strong></a
+              >
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer area -->
+    <app-footer></app-footer>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+div.top-panel {
+  background-color: rgb(37, 38, 39);
+  width: 100%;
+  height: 90px;
+  position: fixed;
+  z-index: 3;
+}
+
+div.nametag h3 {
+  padding-top: 25px;
+  color: gray;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+.n1:hover {
+  opacity: 0.7;
+}
+.n2:hover {
+  opacity: 0.7;
+}
+
+div.links {
+  margin-top: 10px;
+  padding: 15px;
+  font-size: 22px;
+  transition: 0.2s ease-in;
+}
+
+span.one {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+    text-shadow: 0px 0px 15px;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+    text-shadow: 0px 0px 15px rgb(243, 50, 82);
+  }
+}
+
+div.links a {
+  padding: 10px;
+  margin: 0px 10px;
+  color: #818181;
+  border-radius: 5px;
+  /* display: block; */
+}
+div.links a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+div.links .aLight:hover {
+  background-color: red;
+}
+
+div.links .aDark:hover {
+  background-color: violet;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+div.content {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(41, 42, 45);
+}
+
+/* main content css */
+
+#movieList {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.topText {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+#movieCard {
+  border: 10px solid grey;
+}
+#movieCard:hover {
+  border: 10px solid violet;
+}
+
+#movieCard a {
+  cursor: pointer;
+}
+
+#movieCard h6 {
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
+.pagebtn {
+  text-align: center;
+}
+.pagebtn button {
+  margin: 10px;
+}
+
+.movieData {
+  position: relative;
+}
+
+.movieData img {
+  height: auto;
+  width: 100%;
+  transition: 0.5s ease;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.movieData img:hover {
+  opacity: 0.2;
+}
+
+.movieData:hover .middle {
+  opacity: 1;
+}
+
+.text,
+.text1 {
+  background-color: yellow;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin: 25px 0;
+  border-radius: 8px;
+  color: black;
+  font-weight: bolder;
+}
+
+.text1 {
+  cursor: pointer;
+}
+.text1:hover {
+  background-color: rgb(86, 148, 240);
+  color: black;
+}
+
+.disclaimerInfo {
+  margin-top: 80px;
+}
+.creditsInfo {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  div.nametag h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  div.links {
+    margin-top: -10px;
+    text-align: center;
+    font-size: 18px;
+  }
+  div.links button {
+    margin-top: -50px;
+    font-size: 10px;
+  }
+  div.top-panel {
+    height: 110px;
+  }
+
+  .movieData img {
+    height: 200px;
+    width: 100%;
+  }
+  .movieData h6 {
+    font-size: 13px;
+  }
+}

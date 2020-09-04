@@ -112,6 +112,7 @@
         <span>&#9776;</span>
         <a routerLink="/About"> About</a>
         <a routerLink="/Blog/page/1"> Blog</a>
+        <a routerLink="/Movies/Popular/1">Movies</a>
         <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
         <a href="https://guides.krishnakantsalkar.gq/index.php" target="_blank"
           >Guides</a
@@ -423,6 +424,15 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                         >Blog</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        routerLink="/Movies/Popular/1"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Movies</a
                       >
                     </li>
                     <li>

@@ -159,6 +159,15 @@
                     </li>
                     <li>
                       <a
+                        routerLink="/Movies/Popular/1"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Movies</a
+                      >
+                    </li>
+                    <li>
+                      <a
                         routerLink="/Profile/{{ loggedInUser }}"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'

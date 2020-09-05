@@ -112,7 +112,7 @@
         <span>&#9776;</span>
         <a routerLink="/About"> About</a>
         <a routerLink="/Blog/page/1"> Blog</a>
-        <a routerLink="/Movies">Movies & TV</a>
+        <a routerLink="/Movies&TV">Movies & TV</a>
         <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
         <a href="https://guides.krishnakantsalkar.gq/index.php" target="_blank"
           >Guides</a
@@ -428,7 +428,7 @@
                     </li>
                     <li>
                       <a
-                        routerLink="/Movies"
+                        routerLink="/Movies&TV"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"

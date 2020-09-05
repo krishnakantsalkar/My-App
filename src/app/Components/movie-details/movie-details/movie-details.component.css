@@ -135,6 +135,28 @@ div.movieDetails {
   margin: 10px;
 }
 
+/* similar movies/tv */
+
+#similarsCard img {
+  height: 320px;
+  width: 100%;
+}
+
+#similarsCard {
+  border: 10px solid grey;
+}
+
+#similarsCard:hover {
+  border: 10px solid violet;
+}
+
+#similarsCard h6 {
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   div.nametag h3 {
     font-size: 15px;
@@ -159,5 +181,14 @@ div.movieDetails {
   }
   .movieDetailsInfo {
     margin-top: 60px;
+  }
+
+  #similarsCard img {
+    height: 150px;
+    width: 100%;
+  }
+
+  #similarsCard h6 {
+    font-size: 13px;
   }
 }

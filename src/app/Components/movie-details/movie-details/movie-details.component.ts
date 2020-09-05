@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieServices } from '../../../Shared/services/movieservice';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
@@ -11,18 +12,22 @@ export class MovieDetailsComponent implements OnInit {
   public brightness: boolean;
   public movieDetails;
   public movieReviews;
+  public movieSimilars;
+  public listDataType = sessionStorage.getItem('listType');
   public pageNo;
 
   constructor(
     private movieService: MovieServices,
     private router: Router,
-    private AR: ActivatedRoute
+    private AR: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     // method calls
     this.mode();
 
+    // Activated routing
     this.AR.params.subscribe((item) => {
       let id = item['id'];
       let listType = sessionStorage.getItem('listType');
@@ -32,6 +37,11 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService.movieReviewsById(id, listType).subscribe((review) => {
         this.movieReviews = review;
       });
+      this.movieService
+        .getSimilarMoviesTV(id, listType)
+        .subscribe((similar) => {
+          this.movieSimilars = similar;
+        });
     });
 
     //Get the button
@@ -90,5 +100,10 @@ export class MovieDetailsComponent implements OnInit {
 
   topFunction() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // back to page
+  backToPage() {
+    this.location.back();
   }
 }

@@ -100,7 +100,7 @@
                 background-color: rgb(82, 82, 82);
                 float: right;
               "
-              routerLink="/Movies"
+              (click)="backToPage()"
             >
               <i class="fas fa-arrow-left"></i> List
             </button>
@@ -201,6 +201,20 @@
 
                       {{ movieDetails.runtime }} mins
                     </button>
+                    <button
+                      class="btn"
+                      *ngIf="listDataType == 'tv'"
+                      style="background-color: teal; color: white"
+                    >
+                      Type: TV Show
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="listDataType == 'movie'"
+                      style="background-color: teal; color: white"
+                    >
+                      Type: Movie
+                    </button>
                   </div>
 
                   <br />
@@ -235,6 +249,53 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="card-footer" *ngIf="movieSimilars">
+              <h4>Similar Titles:</h4>
+              <br />
+              <div class="row">
+                <div
+                  class="col-6 col-sm-3"
+                  *ngFor="let similars of movieSimilars.results | slice: 0:4"
+                >
+                  <div class="card" id="similarsCard">
+                    <a routerLink="/Movies&TV/{{ similars.id }}">
+                      <img
+                        src="https://image.tmdb.org/t/p/w300{{
+                          similars.poster_path
+                        }}"
+                        alt=""
+                    /></a>
+                    <h6
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'white'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'white'
+                      }"
+                      *ngIf="similars.original_title"
+                      routerLink="/Movies&TV/{{ similars.id }}"
+                    >
+                      {{ similars.title }}
+                    </h6>
+                    <h6
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'white'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'white'
+                      }"
+                      routerLink="/Movies&TV/{{ similars.id }}"
+                      *ngIf="similars.name"
+                    >
+                      {{ similars.name }}
+                    </h6>
+                  </div>
+                  <br />
+                  <br />
                 </div>
               </div>
             </div>

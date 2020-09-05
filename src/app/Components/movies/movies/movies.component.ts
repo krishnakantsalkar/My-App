@@ -88,13 +88,12 @@ export class MoviesComponent implements OnInit {
     this.currentList = listName;
     this.currentListType = listType;
     sessionStorage.setItem('listType', this.currentListType);
-    console.log(this.currentList);
 
     this.movieService
       .getTheList(pageNo, listType, listName)
       .subscribe((item) => {
         this.movieData = item.results;
-        this.router.navigateByUrl('/Movies').then(() => {
+        this.router.navigateByUrl('/Movies&TV').then(() => {
           let elemnt = document.getElementById('movieList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });

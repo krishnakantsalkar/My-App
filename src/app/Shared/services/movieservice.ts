@@ -6,8 +6,9 @@ import { Imovies, ImovieDetails } from '../model/movieModel';
 
 @Injectable({ providedIn: 'root' })
 export class MovieServices {
-  private movieAPI: string = 'https://api.themoviedb.org/3/movie/'; //popular movies base API
-  private movieAPIKey: string = ''; //api id removed for public upload
+  private movieDbAPI: string = 'https://api.themoviedb.org/3/movie/'; //popular movies base API
+  private movieDbAPIKey: string = ''; //api id removed for public upload
+
   private movieLang: string = 'en-US'; // data language
   private moviePage: number = 1; // data page no.
 
@@ -22,21 +23,28 @@ export class MovieServices {
   // get all data from API
   public getTheList(pageNo, listType, listName): Observable<Imovies> {
     return this.http.get<Imovies>(
-      `${this.movieAPI}${listType}/${listName}?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=${pageNo}`
+      `${this.movieDbAPI}${listType}/${listName}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&page=${pageNo}`
     );
   }
 
   // get single data by id
   public getMoviesById(id, listType): Observable<ImovieDetails> {
     return this.http.get<ImovieDetails>(
-      `${this.movieAPI}${listType}/${id}?api_key=${this.movieAPIKey}&language=${this.movieLang}`
+      `${this.movieDbAPI}${listType}/${id}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
     );
   }
 
   // get movie review by id
   public movieReviewsById(id, listType) {
     return this.http.get(
-      `${this.movieAPI}${listType}/${id}/reviews?api_key=${this.movieAPIKey}&language=${this.movieLang}&page=1`
+      `${this.movieDbAPI}${listType}/${id}/reviews?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&page=1`
+    );
+  }
+
+  // get similar movie & tv shows
+  public getSimilarMoviesTV(id, listType) {
+    return this.http.get(
+      `${this.movieDbAPI}${listType}/${id}/similar?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&page=1`
     );
   }
 }

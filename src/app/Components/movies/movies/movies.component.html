@@ -88,7 +88,7 @@
           class="topText"
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
         >
-          <h1>Here's a List of 100 Latest & Popular movies!</h1>
+          <h1>Here's a List of 100 Latest & Popular Movies & TV shows!</h1>
 
           <div class="listButtons">
             <h5>Movies:</h5>
@@ -156,7 +156,7 @@
           >
             <div class="card" id="movieCard" *ngIf="movieData">
               <!-- movie image -->
-              <a routerLink="/Movies/{{ movies.id }}">
+              <a routerLink="/Movies&TV/{{ movies.id }}">
                 <img
                   src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
                   alt=""
@@ -176,7 +176,7 @@
                   color: brightness ? 'black' : 'white'
                 }"
                 *ngIf="movies.original_title"
-                routerLink="/Movies/{{ movies.id }}"
+                routerLink="/Movies&TV/{{ movies.id }}"
               >
                 {{ movies.title }}
               </h6>
@@ -185,7 +185,7 @@
                   'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
-                routerLink="/Movies/{{ movies.id }}"
+                routerLink="/Movies&TV/{{ movies.id }}"
                 *ngIf="movies.name"
               >
                 {{ movies.name }}

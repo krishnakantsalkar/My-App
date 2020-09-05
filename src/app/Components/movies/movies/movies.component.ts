@@ -13,6 +13,9 @@ export class MoviesComponent implements OnInit {
   public pageNo;
   public currentList; // save current list in variable
   public currentListType;
+  public searchResults;
+  public searchErr;
+  public mediaType;
 
   constructor(private movieService: MovieServices, private router: Router) {}
 
@@ -100,6 +103,7 @@ export class MoviesComponent implements OnInit {
           }
         });
         this.pageNo = pageNo;
+        $('#MovieBox').prop('checked', true);
       });
   }
 
@@ -108,5 +112,24 @@ export class MoviesComponent implements OnInit {
     let activeBtn = document
       .getElementById('now_playing')
       .classList.remove('active');
+  }
+
+  //Search movie/tv API multi search
+
+  SearchMedia() {
+    let query = $('#movieTvSearch').val();
+    this.movieService.searchByString(query).subscribe(
+      (searchResult) => {
+        this.searchResults = searchResult;
+      },
+      (err) => {
+        this.searchErr = err.error;
+      }
+    );
+  }
+
+  // set listtype while navigating from search result!!
+  setSearchListType(listType) {
+    sessionStorage.setItem('listType', listType);
   }
 }

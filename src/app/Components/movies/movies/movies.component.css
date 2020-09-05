@@ -237,6 +237,10 @@ div.content {
   margin-top: 20px;
 }
 
+.searchArea input {
+  width: 70%;
+}
+
 @media only screen and (max-width: 600px) {
   div.nametag h3 {
     font-size: 15px;
@@ -262,5 +266,8 @@ div.content {
   }
   .movieData h6 {
     font-size: 13px;
+  }
+  .searchArea input {
+    margin-left: 50px;
   }
 }

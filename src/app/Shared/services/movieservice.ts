@@ -47,4 +47,12 @@ export class MovieServices {
       `${this.movieDbAPI}${listType}/${id}/similar?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&page=1`
     );
   }
+
+  //search by string
+
+  public searchByString(query) {
+    return this.http.get(
+      `${this.movieDbAPI}search/multi?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&query=${query}&page=1&include_adult=true`
+    );
+  }
 }

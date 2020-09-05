@@ -99,10 +99,22 @@
                 color: rgb(230, 230, 230);
                 background-color: rgb(82, 82, 82);
                 float: right;
+                margin-left: 5px;
               "
               (click)="backToPage()"
             >
-              <i class="fas fa-arrow-left"></i> List
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button
+              class="btn"
+              style="
+                color: rgb(230, 230, 230);
+                background-color: rgb(82, 82, 82);
+                float: right;
+              "
+              routerLink="/Movies&TV"
+            >
+              <i class="fas fa-arrow-up"></i> List
             </button>
           </div>
           <div class="card-body" *ngIf="movieDetails">
@@ -253,7 +265,10 @@
               </div>
             </div>
             <br />
-            <div class="card-footer" *ngIf="movieSimilars">
+            <div
+              class="card-footer"
+              *ngIf="movieSimilars && movieSimilars.results.length > 0"
+            >
               <h4>Similar Titles:</h4>
               <br />
               <div class="row">

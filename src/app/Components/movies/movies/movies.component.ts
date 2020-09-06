@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieServices } from 'src/app/Shared/services/movieservice';
 import { Router } from '@angular/router';
+import * as superplaceholder from 'superplaceholder';
 
 @Component({
   selector: 'app-movies',
@@ -73,6 +74,27 @@ export class MoviesComponent implements OnInit {
         document.getElementById('links').style.marginTop = '-5px';
       }
     }
+
+    superplaceholder({
+      el: document.getElementById('movieTvSearch'),
+      sentences: [
+        'Breaking Bad',
+        'F.R.I.E.N.D.S',
+        'Rick and Morty',
+        'Lucifer',
+        'Stranger Things',
+        'The Boys',
+        'Avatar',
+        'Avengers: Infinity war',
+        'The Godfather',
+        'Pulp Fiction',
+      ],
+      options: {
+        shuffle: true,
+        autoStart: true,
+        letterDelay: 300,
+      },
+    });
   }
 
   // dark/light mode method

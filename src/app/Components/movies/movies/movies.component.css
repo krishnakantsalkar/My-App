@@ -154,18 +154,22 @@ div.content {
   color: black;
 }
 
-#movieCard {
+#movieCard,
+#genreCard {
   border: 10px solid grey;
 }
-#movieCard:hover {
+#movieCard:hover,
+#genreCard:hover {
   border: 10px solid violet;
 }
 
-#movieCard a {
+#movieCard a,
+#genreCard a {
   cursor: pointer;
 }
 
-#movieCard h6 {
+#movieCard h6,
+#genreCard h6 {
   padding: 5px;
   margin: 0;
   text-align: center;
@@ -178,11 +182,13 @@ div.content {
   margin: 10px;
 }
 
-.movieData {
+.movieData,
+.genreData {
   position: relative;
 }
 
-.movieData img {
+.movieData img,
+.genreData img {
   height: auto;
   width: 100%;
   transition: 0.5s ease;
@@ -200,16 +206,20 @@ div.content {
   pointer-events: none;
 }
 
-.movieData img:hover {
+.movieData img:hover,
+.genreData img:hover {
   filter: brightness(30%);
 }
 
-#movieCard:hover .middle {
+#movieCard:hover .middle,
+#genreCard:hover .middle {
   opacity: 1;
 }
 
 .movieData .text,
-.movieData h4 {
+.movieData h4,
+.genreData .text,
+.genreData h4 {
   color: white;
 }
 .text1 {
@@ -239,6 +249,33 @@ div.content {
 
 .searchArea input {
   width: 70%;
+  margin-left: 42px;
+}
+
+/* genre section css */
+.genreList .card {
+  height: 30px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.3s ease-in;
+}
+
+.genreButtons button {
+  background-color: white;
+  margin: 10px;
+}
+.displayGenreResults {
+  margin-top: 30px;
+}
+
+.genreDropdownIcon {
+  padding: 7px 10px;
+  border-radius: 50%;
+}
+.genreDropdownIcon:hover {
+  background-color: yellowgreen;
+  color: black;
 }
 
 @media only screen and (max-width: 600px) {
@@ -268,6 +305,14 @@ div.content {
     font-size: 13px;
   }
   .searchArea input {
-    margin-left: 50px;
+    margin-left: 42px;
+  }
+
+  .displayGenreResults {
+    margin-top: 60px;
+  }
+
+  .genreOptions h4 {
+    font-size: 17px;
   }
 }

@@ -18,6 +18,33 @@ export class MoviesComponent implements OnInit {
   public searchErr;
   public mediaType;
 
+  public genreData;
+  public genreSwitch: boolean;
+  public movieGenreCollection = {
+    action: 28,
+    adventure: 12,
+    animation: 16,
+    comedy: 35,
+    family: 10751,
+    fantasy: 14,
+    horror: 27,
+    romance: 10749,
+    scifi: 878,
+  };
+  private movieGenreCollectString = {
+    28: 'action',
+    12: 'adventure',
+    16: 'animation',
+    35: 'comedy',
+    10751: 'family',
+    14: 'fantasy',
+    27: 'horror',
+    10749: 'romance',
+    878: 'sci-fi',
+  };
+  public currentGenre;
+  public currentGenreId;
+
   constructor(private movieService: MovieServices, private router: Router) {}
 
   ngOnInit(): void {
@@ -95,6 +122,9 @@ export class MoviesComponent implements OnInit {
         letterDelay: 300,
       },
     });
+    $(document).ready(() => {
+      $('#genreButtons').hide();
+    });
   }
 
   // dark/light mode method
@@ -153,5 +183,38 @@ export class MoviesComponent implements OnInit {
   // set listtype while navigating from search result!!
   setSearchListType(listType) {
     sessionStorage.setItem('listType', listType);
+  }
+
+  // genre switch
+
+  genreMenu() {
+    this.genreSwitch = !this.genreSwitch;
+    if (this.genreSwitch) {
+      $('#genreButtons').show(300);
+    }
+    if (!this.genreSwitch) {
+      $('#genreButtons').hide(300);
+    }
+  }
+
+  // discover by genre API method
+
+  discoverByGenre(pageNo, listType, genreId) {
+    this.currentGenreId = genreId;
+    this.currentGenre = this.movieGenreCollectString[`${this.currentGenreId}`];
+    sessionStorage.setItem('listType', listType);
+
+    this.movieService
+      .discoverByListId(pageNo, listType, genreId)
+      .subscribe((item) => {
+        this.genreData = item.results;
+        this.router.navigateByUrl('/Movies&TV').then(() => {
+          let elemnt = document.getElementById('genreList');
+          if (elemnt) {
+            elemnt.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        this.pageNo = pageNo;
+      });
   }
 }

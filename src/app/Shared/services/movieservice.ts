@@ -55,4 +55,11 @@ export class MovieServices {
       `${this.movieDbAPI}search/multi?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&query=${query}&page=1&include_adult=true`
     );
   }
+
+  //discover movies/tv by genres
+  public discoverByListId(pageNo, listType, genreId): Observable<Imovies> {
+    return this.http.get<Imovies>(
+      `${this.movieDbAPI}discover/${listType}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&sort_by=popularity.desc&include_adult=true&include_video=false&page=${pageNo}&with_genres=${genreId}`
+    );
+  }
 }

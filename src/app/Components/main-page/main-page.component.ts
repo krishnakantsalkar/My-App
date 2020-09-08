@@ -153,7 +153,7 @@ export class MainPageComponent implements OnInit {
                 "'Lucida Console', 'LucidaConsole', 'monospace'";
               textSequence(++i);
             }
-          }, 1000); // enter seconds (in milliseconds)
+          }, 900); // enter seconds (in milliseconds)
         } else if (textLoop.length == i) {
           // Loop
           textSequence(0);

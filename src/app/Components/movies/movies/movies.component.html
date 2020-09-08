@@ -223,16 +223,13 @@
 
                 <br />
 
-                <!-- genre buttons -->
                 <div
-                  class="genreCollectionTitle"
+                  class="genreButtons"
+                  id="genreButtons"
                   style="text-align: center"
-                  *ngIf="genreSwitch"
                 >
+                  <!-- movie genre buttons -->
                   <h5>Movies:</h5>
-                </div>
-
-                <div class="genreButtons" id="genreButtons">
                   <button
                     class="btn genre1 active"
                     id="genre1"
@@ -322,6 +319,78 @@
                   >
                     Romance
                   </button>
+
+                  <!-- tv genre buttons -->
+                  <h5>Tv:</h5>
+                  <button
+                    class="btn genre10 active"
+                    id="genre10"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.action)"
+                  >
+                    Action
+                  </button>
+                  <button
+                    class="btn genre11"
+                    id="genre11"
+                    (click)="
+                      discoverByGenre(1, 'tv', tvGenreCollection.animation)
+                    "
+                  >
+                    Animation
+                  </button>
+                  <button
+                    class="btn genre12"
+                    id="genre12"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.comedy)"
+                  >
+                    Comedy
+                  </button>
+                  <button
+                    class="btn genre13"
+                    id="genre13"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.crime)"
+                  >
+                    Crime
+                  </button>
+                  <button
+                    class="btn genre14"
+                    id="genre14"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.drama)"
+                  >
+                    Drama
+                  </button>
+                  <button
+                    class="btn genre15"
+                    id="genre15"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.family)"
+                  >
+                    Family
+                  </button>
+                  <button
+                    class="btn genre16"
+                    id="genre16"
+                    (click)="
+                      discoverByGenre(1, 'tv', tvGenreCollection.mystery)
+                    "
+                  >
+                    Mystery
+                  </button>
+                  <button
+                    class="btn genre17"
+                    id="genre17"
+                    (click)="
+                      discoverByGenre(1, 'tv', tvGenreCollection.reality)
+                    "
+                  >
+                    Reality
+                  </button>
+                  <button
+                    class="btn genre18"
+                    id="genre18"
+                    (click)="discoverByGenre(1, 'tv', tvGenreCollection.scifi)"
+                  >
+                    Sci-fi
+                  </button>
                 </div>
               </div>
             </div>
@@ -331,6 +400,7 @@
           <div class="genreOptions" *ngIf="currentGenre">
             <div class="genreOptionsText" style="float: left">
               <h4>now viewing, Genre: {{ currentGenre }}</h4>
+              <h4>list: {{ currentListType }}</h4>
               <h4>page: {{ pageNo }}</h4>
             </div>
             <!-- reload page btn to hide genre-->
@@ -341,6 +411,8 @@
             >
               Clear Genre
             </button>
+            <br />
+            <br />
             <br />
             <br />
           </div>
@@ -432,7 +504,7 @@
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
                   color: brightness ? 'white' : 'black'
                 }"
-                (click)="discoverByGenre(1, 'movie', currentGenreId)"
+                (click)="discoverByGenre(1, currentListType, currentGenreId)"
               >
                 1
               </button>
@@ -443,7 +515,7 @@
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
                   color: brightness ? 'white' : 'black'
                 }"
-                (click)="discoverByGenre(2, 'movie', currentGenreId)"
+                (click)="discoverByGenre(2, currentListType, currentGenreId)"
               >
                 2
               </button>
@@ -455,7 +527,7 @@
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
                   color: brightness ? 'white' : 'black'
                 }"
-                (click)="discoverByGenre(3, 'movie', currentGenreId)"
+                (click)="discoverByGenre(3, currentListType, currentGenreId)"
               >
                 3
               </button>
@@ -466,7 +538,7 @@
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
                   color: brightness ? 'white' : 'black'
                 }"
-                (click)="discoverByGenre(4, 'movie', currentGenreId)"
+                (click)="discoverByGenre(4, currentListType, currentGenreId)"
               >
                 4
               </button>
@@ -477,7 +549,7 @@
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
                   color: brightness ? 'white' : 'black'
                 }"
-                (click)="discoverByGenre(5, 'movie', currentGenreId)"
+                (click)="discoverByGenre(5, currentListType, currentGenreId)"
               >
                 5
               </button>

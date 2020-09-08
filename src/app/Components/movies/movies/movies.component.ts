@@ -20,6 +20,8 @@ export class MoviesComponent implements OnInit {
 
   public genreData;
   public genreSwitch: boolean;
+
+  // movie genre collection
   public movieGenreCollection = {
     action: 28,
     adventure: 12,
@@ -42,6 +44,31 @@ export class MoviesComponent implements OnInit {
     10749: 'romance',
     878: 'sci-fi',
   };
+
+  // tv genre collection
+  public tvGenreCollection = {
+    action: 10759,
+    animation: 16,
+    comedy: 35,
+    crime: 80,
+    drama: 18,
+    family: 10751,
+    mystery: 9648,
+    reality: 10764,
+    scifi: 10765,
+  };
+  private tvGenreCollectString = {
+    10759: 'action',
+    16: 'animation',
+    35: 'comedy',
+    80: 'crime',
+    18: 'drama',
+    10751: 'family',
+    9648: 'mystery',
+    10764: 'reality',
+    10765: 'sci-fi',
+  };
+
   public currentGenre;
   public currentGenreId;
 
@@ -201,8 +228,16 @@ export class MoviesComponent implements OnInit {
 
   discoverByGenre(pageNo, listType, genreId) {
     this.currentGenreId = genreId;
-    this.currentGenre = this.movieGenreCollectString[`${this.currentGenreId}`];
+    this.currentListType = listType;
     sessionStorage.setItem('listType', listType);
+
+    if (listType == 'movie') {
+      this.currentGenre = this.movieGenreCollectString[
+        `${this.currentGenreId}`
+      ];
+    } else if (listType == 'tv') {
+      this.currentGenre = this.tvGenreCollectString[`${this.currentGenreId}`];
+    }
 
     this.movieService
       .discoverByListId(pageNo, listType, genreId)

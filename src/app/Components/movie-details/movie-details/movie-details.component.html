@@ -346,7 +346,9 @@
                   <div class="card" id="similarsCard">
                     <a
                       *ngIf="similars.original_title"
-                      routerLink="/Movies&TV/Movie/{{ similars.id }}"
+                      routerLink="/Movies&TV/Movie/{{ similars.title }}/{{
+                        similars.id
+                      }}"
                     >
                       <img
                         src="https://image.tmdb.org/t/p/w300{{
@@ -356,7 +358,9 @@
                     /></a>
                     <a
                       *ngIf="similars.name"
-                      routerLink="/Movies&TV/TV/{{ similars.id }}"
+                      routerLink="/Movies&TV/TV/{{ similars.name }}/{{
+                        similars.id
+                      }}"
                     >
                       <img
                         src="https://image.tmdb.org/t/p/w300{{
@@ -372,7 +376,9 @@
                         color: brightness ? 'black' : 'white'
                       }"
                       *ngIf="similars.original_title"
-                      routerLink="/Movies&TV/Movie/{{ similars.id }}"
+                      routerLink="/Movies&TV/Movie/{{ similars.title }}/{{
+                        similars.id
+                      }}"
                     >
                       {{ similars.title }}
                     </h6>
@@ -383,7 +389,9 @@
                           : ' rgb(41, 42, 45)',
                         color: brightness ? 'black' : 'white'
                       }"
-                      routerLink="/Movies&TV/TV/{{ similars.id }}"
+                      routerLink="/Movies&TV/TV/{{ similars.name }}/{{
+                        similars.id
+                      }}"
                       *ngIf="similars.name"
                     >
                       {{ similars.name }}

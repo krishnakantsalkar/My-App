@@ -82,18 +82,20 @@ const routes: Routes = [
   },
   // Activated routing for movie/tv
   {
-    path: 'Movies&TV/Movie/:id',
+    path: 'Movies&TV/Movie/:name/:id',
     loadChildren: () =>
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
       ),
+    pathMatch: 'full',
   },
   {
-    path: 'Movies&TV/TV/:id',
+    path: 'Movies&TV/TV/:name/:id',
     loadChildren: () =>
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
       ),
+    pathMatch: 'full',
   },
 
   //wildcard route

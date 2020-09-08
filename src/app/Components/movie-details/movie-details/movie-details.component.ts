@@ -31,7 +31,7 @@ export class MovieDetailsComponent implements OnInit {
     // Activated routing
     this.AR.params.subscribe((item) => {
       let id = item['id'];
-      // let listType = sessionStorage.getItem('listType');
+
       let url = window.location.href.split('/');
       if (url[4] == 'Movie') {
         this.listType = 'movie';

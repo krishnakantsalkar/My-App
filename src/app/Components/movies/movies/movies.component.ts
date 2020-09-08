@@ -129,6 +129,7 @@ export class MoviesComponent implements OnInit {
       }
     }
 
+    // animated placeholder
     superplaceholder({
       el: document.getElementById('movieTvSearch'),
       sentences: [
@@ -149,6 +150,8 @@ export class MoviesComponent implements OnInit {
         letterDelay: 300,
       },
     });
+
+    // remove active state from default button
     $(document).ready(() => {
       $('#genreButtons').hide();
     });
@@ -197,12 +200,17 @@ export class MoviesComponent implements OnInit {
 
   SearchMedia() {
     let query = $('#movieTvSearch').val();
+    if (!query) {
+      return (this.searchErr = "Can't send empty query mate... :/");
+    }
     this.movieService.searchByString(query).subscribe(
       (searchResult) => {
         this.searchResults = searchResult;
+        console.log(this.searchResults);
       },
       (err) => {
-        this.searchErr = err.error;
+        this.searchErr = err;
+        console.log(this.searchErr);
       }
     );
   }

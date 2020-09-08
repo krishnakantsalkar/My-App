@@ -324,4 +324,7 @@ div.content {
   .genreList .card {
     width: 100%;
   }
+  .searchResultTitle h5 {
+    font-size: 13px;
+  }
 }

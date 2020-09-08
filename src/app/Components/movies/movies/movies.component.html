@@ -356,7 +356,21 @@
                 <!-- genre card -->
                 <div class="card" id="genreCard">
                   <!-- genre data image -->
-                  <a routerLink="/Movies&TV/{{ genre.id }}">
+                  <a
+                    *ngIf="genre.original_title"
+                    routerLink="/Movies&TV/Movie/{{ genre.id }}"
+                  >
+                    <img
+                      src="https://image.tmdb.org/t/p/w300{{
+                        genre.poster_path
+                      }}"
+                      alt=""
+                  /></a>
+
+                  <a
+                    *ngIf="genre.name"
+                    routerLink="/Movies&TV/TV/{{ genre.id }}"
+                  >
                     <img
                       src="https://image.tmdb.org/t/p/w300{{
                         genre.poster_path
@@ -384,24 +398,24 @@
                       color: brightness ? 'black' : 'white'
                     }"
                     *ngIf="genre.original_title"
-                    routerLink="/Movies&TV/{{ genre.id }}"
+                    routerLink="/Movies&TV/Movie/{{ genre.id }}"
                   >
                     {{ genre.title }}
                   </h6>
 
                   <!-- tv title -->
-                  <!-- <h6
+                  <h6
                     [ngStyle]="{
                       'background-color': brightness
                         ? 'white'
                         : ' rgb(41, 42, 45)',
                       color: brightness ? 'black' : 'white'
                     }"
-                    routerLink="/Movies&TV/{{ genre.id }}"
+                    routerLink="/Movies&TV/TV/{{ genre.id }}"
                     *ngIf="genre.name"
                   >
                     {{ genre.name }}
-                  </h6> -->
+                  </h6>
                 </div>
                 <br />
                 <br />
@@ -515,7 +529,7 @@
                     <div class="movieSearchResults">
                       <a
                         *ngIf="results.media_type == 'movie'"
-                        routerLink="/Movies&TV/{{ results.id }}"
+                        routerLink="/Movies&TV/Movie/{{ results.id }}"
                         (click)="setSearchListType('movie')"
                         ><h5>
                           {{ results.title }}
@@ -534,7 +548,7 @@
                   >
                     <a
                       *ngIf="results.media_type == 'tv'"
-                      routerLink="/Movies&TV/{{ results.id }}"
+                      routerLink="/Movies&TV/TV/{{ results.id }}"
                       (click)="setSearchListType('tv')"
                       ><h5>
                         {{ results.name }}
@@ -569,7 +583,15 @@
             <!-- movie card -->
             <div class="card" id="movieCard" *ngIf="movieData">
               <!-- movie image -->
-              <a routerLink="/Movies&TV/{{ movies.id }}">
+              <a
+                *ngIf="movies.original_title"
+                routerLink="/Movies&TV/Movie/{{ movies.id }}"
+              >
+                <img
+                  src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
+                  alt=""
+              /></a>
+              <a *ngIf="movies.name" routerLink="/Movies&TV/TV/{{ movies.id }}">
                 <img
                   src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
                   alt=""
@@ -593,7 +615,7 @@
                   color: brightness ? 'black' : 'white'
                 }"
                 *ngIf="movies.original_title"
-                routerLink="/Movies&TV/{{ movies.id }}"
+                routerLink="/Movies&TV/Movie/{{ movies.id }}"
               >
                 {{ movies.title }}
               </h6>
@@ -604,7 +626,7 @@
                   'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
-                routerLink="/Movies&TV/{{ movies.id }}"
+                routerLink="/Movies&TV/TV/{{ movies.id }}"
                 *ngIf="movies.name"
               >
                 {{ movies.name }}

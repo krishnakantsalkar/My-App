@@ -80,8 +80,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Components/movies/movies.module').then((m) => m.MoviesModule),
   },
+  // Activated routing for movie/tv
   {
-    path: 'Movies&TV/:id',
+    path: 'Movies&TV/Movie/:id',
+    loadChildren: () =>
+      import('./Components/movie-details/movie-details.module').then(
+        (m) => m.MovieDetailsModule
+      ),
+  },
+  {
+    path: 'Movies&TV/TV/:id',
     loadChildren: () =>
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule

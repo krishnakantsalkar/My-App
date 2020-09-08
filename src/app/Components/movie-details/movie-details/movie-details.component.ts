@@ -13,8 +13,8 @@ export class MovieDetailsComponent implements OnInit {
   public movieDetails;
   public movieReviews;
   public movieSimilars;
-  public listDataType = sessionStorage.getItem('listType');
   public pageNo;
+  public listType;
 
   constructor(
     private movieService: MovieServices,
@@ -30,15 +30,23 @@ export class MovieDetailsComponent implements OnInit {
     // Activated routing
     this.AR.params.subscribe((item) => {
       let id = item['id'];
-      let listType = sessionStorage.getItem('listType');
-      this.movieService.getMoviesById(id, listType).subscribe((item) => {
+      // let listType = sessionStorage.getItem('listType');
+      let url = window.location.href.split('/');
+      if (url[4] == 'Movie') {
+        this.listType = 'movie';
+      } else if (url[4] == 'TV') {
+        this.listType = 'tv';
+      }
+      this.movieService.getMoviesById(id, this.listType).subscribe((item) => {
         this.movieDetails = item;
       });
-      this.movieService.movieReviewsById(id, listType).subscribe((review) => {
-        this.movieReviews = review;
-      });
       this.movieService
-        .getSimilarMoviesTV(id, listType)
+        .movieReviewsById(id, this.listType)
+        .subscribe((review) => {
+          this.movieReviews = review;
+        });
+      this.movieService
+        .getSimilarMoviesTV(id, this.listType)
         .subscribe((similar) => {
           this.movieSimilars = similar;
         });

@@ -152,6 +152,7 @@
                   </p>
                   <div class="buttonsArea">
                     <a
+                      *ngIf="movieDetails.imdb_id"
                       href="https://www.imdb.com/title/{{
                         movieDetails.imdb_id
                       }}/?ref_=ttls_li_tt"
@@ -218,9 +219,84 @@
                     >
                       Type: Movie
                     </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.tagline"
+                      style="background-color: papayawhip; color: black"
+                    >
+                      Tagline: "{{ movieDetails.tagline }}"
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.number_of_seasons"
+                      style="background-color: burlywood; color: black"
+                    >
+                      Seasons: {{ movieDetails.number_of_seasons }}
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.number_of_episodes"
+                      style="background-color: tomato; color: white"
+                    >
+                      Total Episodes: {{ movieDetails.number_of_episodes }}
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.last_episode_to_air"
+                      style="background-color: darkseagreen; color: black"
+                    >
+                      Last Episode:
+                      {{ movieDetails.last_episode_to_air.air_date }}
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.next_episode_to_air"
+                      style="background-color: rebeccapurple; color: white"
+                    >
+                      Next Episode:
+                      {{ movieDetails.next_episode_to_air.air_date }}
+                    </button>
                   </div>
 
                   <br />
+                  <!-- movie credits area -->
+                  <div class="movieCreditsArea" *ngIf="movieCredits">
+                    <div
+                      class="card"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(223, 223, 223)'
+                          : ' rgb(41, 42, 45)'
+                      }"
+                    >
+                      <div class="card-body">
+                        <h5>Cast:</h5>
+                        <br />
+                        <div class="row">
+                          <div
+                            class="col-12 col-sm-6"
+                            *ngFor="
+                              let credits of movieCredits.cast | slice: 0:8
+                            "
+                          >
+                            <h6>
+                              {{ credits.character }}
+                              :
+                              <a
+                                href="http://www.google.com/search?q={{
+                                  credits.name
+                                }}"
+                                target="_blank"
+                              >
+                                {{ credits.name }}</a
+                              >
+                            </h6>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <br />
                   <!-- movie reviews card -->
                   <div

@@ -62,4 +62,11 @@ export class MovieServices {
       `${this.movieDbAPI}discover/${listType}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&sort_by=popularity.desc&include_adult=true&include_video=false&page=${pageNo}&with_genres=${genreId}`
     );
   }
+
+  //get movie credits by id
+  public getMovieTvCredits(id, listType) {
+    return this.http.get(
+      `${this.movieDbAPI}${listType}/${id}/credits?api_key=${this.movieDbAPIKey}`
+    );
+  }
 }

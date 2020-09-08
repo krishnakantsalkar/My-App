@@ -15,6 +15,7 @@ export class MovieDetailsComponent implements OnInit {
   public movieSimilars;
   public pageNo;
   public listType;
+  public movieCredits;
 
   constructor(
     private movieService: MovieServices,
@@ -37,18 +38,28 @@ export class MovieDetailsComponent implements OnInit {
       } else if (url[4] == 'TV') {
         this.listType = 'tv';
       }
+      // get movie data by id
       this.movieService.getMoviesById(id, this.listType).subscribe((item) => {
         this.movieDetails = item;
+        console.log(this.movieDetails);
       });
+      // get movie review by id
       this.movieService
         .movieReviewsById(id, this.listType)
         .subscribe((review) => {
           this.movieReviews = review;
         });
+      // get movie similar to current by id
       this.movieService
         .getSimilarMoviesTV(id, this.listType)
         .subscribe((similar) => {
           this.movieSimilars = similar;
+        });
+      // get credits of current movie by id
+      this.movieService
+        .getMovieTvCredits(id, this.listType)
+        .subscribe((credits) => {
+          this.movieCredits = credits;
         });
     });
 

@@ -69,4 +69,11 @@ export class MovieServices {
       `${this.movieDbAPI}${listType}/${id}/credits?api_key=${this.movieDbAPIKey}`
     );
   }
+
+  //get tv season details by id
+  public getTvSeasonDetails(id, seasonNo) {
+    return this.http.get(
+      `${this.movieDbAPI}tv/${id}/season/${seasonNo}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
+    );
+  }
 }

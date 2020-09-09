@@ -298,6 +298,200 @@
                     </div>
                   </div>
                   <br />
+
+                  <!-- movie season/ep list area -->
+
+                  <div
+                    class="card epListCard"
+                    id="epListCard"
+                    *ngIf="listType == 'tv'"
+                    [ngStyle]="{
+                      height: epSwitch ? '100%' : '30px',
+                      'background-color': brightness
+                        ? 'rgb(223, 223, 223)'
+                        : ' rgb(41, 42, 45)',
+                      color: brightness ? 'black' : 'white'
+                    }"
+                  >
+                    <div class="card-body testEp">
+                      <h5 style="float: left">Episodes</h5>
+                      <!-- list of episode dropdown -->
+
+                      <br />
+
+                      <div class="displaySeasonsList">
+                        <br />
+                        <div class="seasonsButtonList" id="generateEpBtn">
+                          <!-- seasons switcher -->
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 1"
+                            (click)="seasonsEpList(movieDetails.id, 1)"
+                          >
+                            Season 1
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 2"
+                            (click)="seasonsEpList(movieDetails.id, 2)"
+                          >
+                            Season 2
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 3"
+                            (click)="seasonsEpList(movieDetails.id, 3)"
+                          >
+                            Season 3
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 4"
+                            (click)="seasonsEpList(movieDetails.id, 4)"
+                          >
+                            Season 4
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 5"
+                            (click)="seasonsEpList(movieDetails.id, 5)"
+                          >
+                            Season 5
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 6"
+                            (click)="seasonsEpList(movieDetails.id, 6)"
+                          >
+                            Season 6
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 7"
+                            (click)="seasonsEpList(movieDetails.id, 7)"
+                          >
+                            Season 7
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 8"
+                            (click)="seasonsEpList(movieDetails.id, 8)"
+                          >
+                            Season 8
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 9"
+                            (click)="seasonsEpList(movieDetails.id, 9)"
+                          >
+                            Season 9
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 10"
+                            (click)="seasonsEpList(movieDetails.id, 10)"
+                          >
+                            Season 10
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 11"
+                            (click)="seasonsEpList(movieDetails.id, 11)"
+                          >
+                            Season 11
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 12"
+                            (click)="seasonsEpList(movieDetails.id, 12)"
+                          >
+                            Season 12
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 13"
+                            (click)="seasonsEpList(movieDetails.id, 13)"
+                          >
+                            Season 13
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 14"
+                            (click)="seasonsEpList(movieDetails.id, 14)"
+                          >
+                            Season 14
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 15"
+                            (click)="seasonsEpList(movieDetails.id, 15)"
+                          >
+                            Season 15
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 16"
+                            (click)="seasonsEpList(movieDetails.id, 16)"
+                          >
+                            Season 16
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 17"
+                            (click)="seasonsEpList(movieDetails.id, 17)"
+                          >
+                            Season 17
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 18"
+                            (click)="seasonsEpList(movieDetails.id, 18)"
+                          >
+                            Season 18
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 19"
+                            (click)="seasonsEpList(movieDetails.id, 19)"
+                          >
+                            Season 19
+                          </button>
+                          <button
+                            class="btn btn-dark"
+                            *ngIf="tvSeasonsTotal >= 20"
+                            (click)="seasonsEpList(movieDetails.id, 20)"
+                          >
+                            Season 20
+                          </button>
+                        </div>
+                        <br />
+                        <!-- show episode name  -->
+                        <div *ngIf="eps">
+                          <div
+                            class="displaySeasonsList"
+                            *ngFor="let ep of eps.episodes"
+                          >
+                            <h6>
+                              {{ ep.episode_number }}:
+                              <a
+                                href="http://www.google.com/search?q={{
+                                  movieDetails.name
+                                }}+{{ ep.name }}"
+                                target="_blank"
+                              >
+                                {{ ep.name }}</a
+                              >
+                            </h6>
+                            <h6>air date: {{ ep.air_date }}</h6>
+                            <h6>rating: {{ ep.vote_average }} / 10</h6>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br />
                   <!-- movie reviews card -->
                   <div
                     class="card"

@@ -10,12 +10,15 @@ import { Location } from '@angular/common';
 })
 export class MovieDetailsComponent implements OnInit {
   public brightness: boolean;
-  public movieDetails;
-  public movieReviews;
-  public movieSimilars;
+  public movieDetails; // main movie details
+  public movieReviews; // movie reviews
+  public movieSimilars; // similar movies
   public pageNo;
   public listType;
-  public movieCredits;
+  public movieCredits; //list type
+  public epSwitch: boolean;
+  public tvSeasonsTotal;
+  public eps;
 
   constructor(
     private movieService: MovieServices,
@@ -27,6 +30,7 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     // method calls
     this.mode();
+    this.epMenu();
 
     // Activated routing
     this.AR.params.subscribe((item) => {
@@ -41,7 +45,7 @@ export class MovieDetailsComponent implements OnInit {
       // get movie data by id
       this.movieService.getMoviesById(id, this.listType).subscribe((item) => {
         this.movieDetails = item;
-        console.log(this.movieDetails);
+        this.tvSeasonsTotal = this.movieDetails.number_of_seasons;
       });
       // get movie review by id
       this.movieService
@@ -124,5 +128,18 @@ export class MovieDetailsComponent implements OnInit {
   // back to page
   backToPage() {
     this.location.back();
+  }
+
+  // epDropDown
+  epMenu() {
+    this.epSwitch = !this.epSwitch;
+  }
+
+  // movie season ep list service
+
+  seasonsEpList(id: number, seasonsNo: number) {
+    this.movieService.getTvSeasonDetails(id, seasonsNo).subscribe((item) => {
+      this.eps = item;
+    });
   }
 }

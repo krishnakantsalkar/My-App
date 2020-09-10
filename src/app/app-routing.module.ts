@@ -97,6 +97,13 @@ const routes: Routes = [
       ),
     pathMatch: 'full',
   },
+  {
+    path: 'Privacy',
+    loadChildren: () =>
+      import('./Components/privacy/privacy.module').then(
+        (m) => m.PrivacyModule
+      ),
+  },
 
   //wildcard route
   {

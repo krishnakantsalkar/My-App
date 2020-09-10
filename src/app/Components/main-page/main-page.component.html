@@ -114,14 +114,12 @@
         <a routerLink="/Blog/page/1"> Blog</a>
         <a routerLink="/Movies&TV">Movies & TV</a>
         <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
-        <a href="https://guides.krishnakantsalkar.gq/index.php" target="_blank"
-          >Guides</a
-        >
         <a href="https://github.com/krishnakantsalkar/My-App" target="_blank">
           Github</a
         >
         <a routerLink="/Login" *ngIf="!special"> Login</a>
         <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
+        <a routerLink="/Privacy">Privacy Policy</a>
         <a routerLink="/About"> Support</a>
         <a (click)="mode()"
           ><i
@@ -444,6 +442,15 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                         >Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        routerLink="/Privacy"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Privacy Policy</a
                       >
                     </li>
                     <li>

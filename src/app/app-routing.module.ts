@@ -36,11 +36,12 @@ const routes: Routes = [
   },
   // blogpost by id
   {
-    path: 'Blog/:id',
+    path: 'Blog/:postNumber/:postTitle/:id',
     loadChildren: () =>
       import('./Components/blogposts/blogposts.module').then(
         (m) => m.BlogpostsModule
       ),
+    pathMatch: 'full',
   },
   // login page
   {

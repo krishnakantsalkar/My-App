@@ -118,7 +118,9 @@
                         >
                           <h5>
                             <a
-                              routerLink="/Blog/{{ recent._id }}"
+                              routerLink="/Blog/{{ recent.postNumber }}/{{
+                                recent.postTitle
+                              }}/{{ recent._id }}"
                               [ngStyle]="{
                                 color: brightness ? 'red' : 'violet'
                               }"

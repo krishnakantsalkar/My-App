@@ -256,12 +256,21 @@
                   class="col-xs-3 queryResult"
                   *ngFor="let result of searchResult"
                 >
-                  <a routerLink="/Blog/{{ result._id }}">
+                  <a
+                    routerLink="/Blog/{{ result.postNumber }}/{{
+                      result.postTitle
+                    }}/{{ result._id }}"
+                  >
                     {{ result.postNumber }}: {{ result.postTitle }}</a
                   >
                   <br />
                   {{ result.post | slice: 0:90 }}
-                  <span routerLink="/Blog/{{ result._id }}">....</span>
+                  <span
+                    routerLink="/Blog/{{ result.postNumber }}/{{
+                      result.postTitle
+                    }}/{{ result._id }}"
+                    >....</span
+                  >
 
                   <br *ngIf="searchResult" />
                 </div>
@@ -458,7 +467,9 @@
                         style="padding-top: 20px"
                       >
                         <a
-                          routerLink="/Blog/{{ d._id }}"
+                          routerLink="/Blog/{{ d.postNumber }}/{{
+                            d.postTitle
+                          }}/{{ d._id }}"
                           *ngIf="data"
                           [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                           >#{{ d.postNumber }}: {{ d.postTitle }}</a
@@ -505,7 +516,9 @@
                       >
                         {{ d.post | slice: 0:130 }}...
                         <a
-                          routerLink="/Blog/{{ d._id }}"
+                          routerLink="/Blog/{{ d.postNumber }}/{{
+                            d.postTitle
+                          }}/{{ d._id }}"
                           [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                         >
                           Read more</a

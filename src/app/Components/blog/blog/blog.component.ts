@@ -76,7 +76,7 @@ export class BlogComponent implements OnInit {
         document.body.scrollTop > 50 ||
         document.documentElement.scrollTop > 50
       ) {
-        mybutton.style.display = 'block';
+        mybutton.style.bottom = '20px';
         document.getElementById('top-panel').style.height = '60px';
         document.getElementById('top-panel').style.transitionDuration = '0.2s';
         document.getElementById('top-panel').style.transitionTimingFunction =
@@ -85,7 +85,7 @@ export class BlogComponent implements OnInit {
         document.getElementById('links').style.marginTop = '0px';
         document.getElementById('links').style.padding = ' 11px';
       } else {
-        mybutton.style.display = 'none';
+        mybutton.style.bottom = '-50px';
         document.getElementById('top-panel').style.height = '90px';
         document.getElementById('top-panel-nametag').style.paddingTop = '25px';
         document.getElementById('links').style.marginTop = '10px';

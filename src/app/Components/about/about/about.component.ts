@@ -38,7 +38,7 @@ export class AboutComponent implements OnInit {
         document.body.scrollTop > 50 ||
         document.documentElement.scrollTop > 50
       ) {
-        mybutton.style.display = 'block';
+        mybutton.style.bottom = '20px';
         document.getElementById('top-panel').style.height = '75px';
         document.getElementById('top-panel').style.transitionDuration = '0.3s';
         document.getElementById('top-panel').style.transitionTimingFunction =
@@ -46,7 +46,7 @@ export class AboutComponent implements OnInit {
         document.getElementById('top-panel-nametag').style.paddingTop = '20px';
         document.getElementById('links').style.marginTop = '5px';
       } else {
-        mybutton.style.display = 'none';
+        mybutton.style.bottom = '-50px';
         document.getElementById('top-panel').style.height = '90px';
         document.getElementById('top-panel-nametag').style.paddingTop = '25px';
         document.getElementById('links').style.marginTop = '10px';

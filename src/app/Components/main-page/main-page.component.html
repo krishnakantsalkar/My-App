@@ -120,6 +120,7 @@
         <a routerLink="/Login" *ngIf="!special"> Login</a>
         <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
         <a routerLink="/Privacy">Privacy Policy</a>
+        <a routerLink="/Disclaimer">Disclaimer</a>
         <a routerLink="/About"> Support</a>
         <a (click)="mode()"
           ><i
@@ -453,6 +454,15 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                         >Privacy Policy</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        routerLink="/Disclaimer"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Disclaimer</a
                       >
                     </li>
                     <li>

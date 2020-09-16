@@ -98,11 +98,22 @@ const routes: Routes = [
       ),
     pathMatch: 'full',
   },
+
+  // privacy page route
   {
     path: 'Privacy',
     loadChildren: () =>
       import('./Components/privacy/privacy.module').then(
         (m) => m.PrivacyModule
+      ),
+  },
+
+  // disclaimer page route
+  {
+    path: 'Disclaimer',
+    loadChildren: () =>
+      import('./Components/disclaimer/disclaimer.module').then(
+        (m) => m.DisclaimerModule
       ),
   },
 

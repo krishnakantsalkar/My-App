@@ -212,6 +212,18 @@
                   >
                   <br />
 
+                  <!-- postAuthor -->
+                  <h5 *ngIf="data.postAuthor">
+                    Author:
+                    <span
+                      [ngStyle]="{
+                        color: brightness ? 'red' : 'violet'
+                      }"
+                    >
+                      {{ data.postAuthor }}</span
+                    >
+                  </h5>
+
                   <!-- post link buttons -->
                   <div class="linkbtns" *ngIf="url || url2 || url3 || url4">
                     <br />

@@ -49,14 +49,29 @@ export class BlogComponent implements OnInit {
       startEvent: 'DOMContentLoaded',
     });
 
+    // blog post reactive form
     this.newPost = this.fb.group({
       postImage: [''],
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
       post: ['', Validators.required],
       postLink: [''],
+      postLink2: [''],
+      postLink3: [''],
+      postLink4: [''],
+      postAuthor: [''],
     });
 
+    // patch value for postAuthor
+    let adminUser: any = JSON.parse(localStorage.getItem('user'));
+    if (adminUser) {
+      let adminName = `${adminUser.name} ${adminUser.surname}`;
+      this.newPost.patchValue({
+        postAuthor: `${adminName}`,
+      });
+    }
+
+    // blog searach
     this.newSearch = this.fb.group({
       post: [''],
     });
@@ -186,6 +201,7 @@ export class BlogComponent implements OnInit {
       elemnt.style.zIndex = '3';
       return;
     }
+    console.log(data);
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         this.logResponse = item.result;

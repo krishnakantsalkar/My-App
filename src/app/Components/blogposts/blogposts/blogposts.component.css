@@ -217,6 +217,19 @@ div.blogimg img {
   background-color: #555;
 }
 
+.linkbtns a {
+  max-width: 53px;
+  transition: max-width 1s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 8px;
+}
+.linkbtns a:hover {
+  max-width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
   div.card-header h2 {
     font-size: 25px;

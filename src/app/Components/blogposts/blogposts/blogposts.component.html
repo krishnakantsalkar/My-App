@@ -170,13 +170,7 @@
             >
               <i class="fas fa-arrow-circle-left"></i> Blog
             </a>
-            <a
-              *ngIf="url"
-              class="float-right btn btn-success"
-              [href]="getLink()"
-            >
-              Visit
-            </a>
+
             <!-- post edited or not -->
 
             <h2
@@ -199,10 +193,64 @@
           />
           <div class="body">
             <div *ngIf="data">
-              <pre
-                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
-                >{{ data.post }}</pre
+              <div
+                class="card"
+                [ngStyle]="{
+                  'background-color': brightness
+                    ? 'rgb(223, 223, 223)'
+                    : ' rgb(32, 33, 33)'
+                }"
               >
+                <div class="card-body">
+                  <!-- blogpost -->
+
+                  <pre
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(160,160,160)'
+                    }"
+                    >{{ data.post }}</pre
+                  >
+                  <br />
+
+                  <!-- post link buttons -->
+                  <div class="linkbtns" *ngIf="url || url2 || url3 || url4">
+                    <br />
+                    <h6>Reference Links:</h6>
+                    <a
+                      *ngIf="url"
+                      class="float-left btn btn-dark"
+                      [href]="getLink(url)"
+                      target="_blank"
+                    >
+                      Link &nbsp; : {{ url }}
+                    </a>
+                    <a
+                      *ngIf="url2"
+                      class="url2 float-left btn btn-dark"
+                      [href]="getLink(url2)"
+                      target="_blank"
+                    >
+                      Link &nbsp; : {{ url2 }}
+                    </a>
+                    <a
+                      *ngIf="url3"
+                      class="url3 float-left btn btn-dark"
+                      [href]="getLink(url3)"
+                      target="_blank"
+                    >
+                      Link &nbsp; : {{ url3 }}
+                    </a>
+                    <a
+                      *ngIf="url4"
+                      class="url4 float-left btn btn-dark"
+                      [href]="getLink(url4)"
+                      target="_blank"
+                    >
+                      Link &nbsp; : {{ url4 }}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <h3

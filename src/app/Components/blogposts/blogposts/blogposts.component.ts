@@ -17,6 +17,9 @@ export class BlogpostsComponent implements OnInit {
   public brightness: boolean;
   public data;
   public url; // dom sanitizer url
+  public url2; // dom sanitizer url
+  public url3; // dom sanitizer url
+  public url4; // dom sanitizer url
   public edit: boolean;
   public checkUser; //check user logged in
   public switchtoedit: boolean; //switch edit > blog panel
@@ -59,6 +62,9 @@ export class BlogpostsComponent implements OnInit {
         this.blogURL = window.location.href;
         if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;
+          this.url2 = this.data.postLink2;
+          this.url3 = this.data.postLink3;
+          this.url4 = this.data.postLink4;
         }
         this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
           let ip = ipObj.ip;
@@ -133,8 +139,8 @@ export class BlogpostsComponent implements OnInit {
   }
 
   //sanitize url method
-  getLink(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl(this.url);
+  getLink(urlParam): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(urlParam);
   }
 
   //dark-light mode

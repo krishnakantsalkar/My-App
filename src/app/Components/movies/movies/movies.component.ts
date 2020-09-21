@@ -206,11 +206,9 @@ export class MoviesComponent implements OnInit {
     this.movieService.searchByString(query).subscribe(
       (searchResult) => {
         this.searchResults = searchResult;
-        console.log(this.searchResults);
       },
       (err) => {
         this.searchErr = err;
-        console.log(this.searchErr);
       }
     );
   }

@@ -74,7 +74,6 @@ export class FooterComponent implements OnInit {
         elemnt.style.zIndex = '3';
       }
     );
-    console.log(this.logResponse, this.errResponse);
   }
 
   off() {

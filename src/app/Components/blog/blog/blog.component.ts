@@ -201,7 +201,6 @@ export class BlogComponent implements OnInit {
       elemnt.style.zIndex = '3';
       return;
     }
-    console.log(data);
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         this.logResponse = item.result;

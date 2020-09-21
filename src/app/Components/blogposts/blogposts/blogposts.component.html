@@ -213,7 +213,12 @@
                   <br />
 
                   <!-- postAuthor -->
-                  <h5 *ngIf="data.postAuthor">
+                  <h5
+                    *ngIf="data.postAuthor"
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'rgb(160,160,160)'
+                    }"
+                  >
                     Author:
                     <span
                       [ngStyle]="{
@@ -227,7 +232,13 @@
                   <!-- post link buttons -->
                   <div class="linkbtns" *ngIf="url || url2 || url3 || url4">
                     <br />
-                    <h6>Reference Links:</h6>
+                    <h6
+                      [ngStyle]="{
+                        color: brightness ? 'black' : 'rgb(160,160,160)'
+                      }"
+                    >
+                      Reference Links:
+                    </h6>
                     <a
                       *ngIf="url"
                       class="float-left btn btn-dark"

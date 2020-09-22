@@ -31,6 +31,10 @@ export class BlogpostsComponent implements OnInit {
   public blogURL;
   public userIpObj;
   public postId;
+  public postStuff;
+  public postCollection = [];
+  public nextPostData;
+  public prevPostData;
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -42,6 +46,7 @@ export class BlogpostsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // method calls
     this.mode(); // dark-light mode toggle
 
     this.checkUserPresent();
@@ -60,12 +65,19 @@ export class BlogpostsComponent implements OnInit {
         this.data = items;
         this.post = this.data.post;
         this.blogURL = window.location.href;
+        // save reference urls
         if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;
           this.url2 = this.data.postLink2;
           this.url3 = this.data.postLink3;
           this.url4 = this.data.postLink4;
         }
+        // next and prev post impl
+        this.nextPostData = undefined;
+        this.prevPostData = undefined;
+        this.getAllBlogsId();
+
+        // get client IP to track views
         this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
           let ip = ipObj.ip;
           this.postId = window.location.href.split('/');
@@ -196,6 +208,7 @@ export class BlogpostsComponent implements OnInit {
     );
   }
 
+  // show admin method
   showAdmin() {
     let currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser) {
@@ -203,7 +216,71 @@ export class BlogpostsComponent implements OnInit {
     }
     this.adminName = currentUser.name;
   }
+
+  // scroll to top method
   topFunction() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // method to navigate between posts
+
+  // get all blogs
+  getAllBlogsId() {
+    this.blogservice.getBlogs().subscribe((item) => {
+      this.postStuff = item;
+      // console.log(this.postStuff);
+      if (this.postStuff && this.postStuff.length > 0) {
+        var n = this.postStuff.length;
+        for (let i of this.postStuff) {
+          this.postCollection.push({ [n--]: i._id });
+        }
+      }
+      this.getNextandPrev();
+    });
+  }
+
+  // next and prev post method
+  getNextandPrev() {
+    // get current post details
+    let currentPostId = window.location.href.split('/');
+    let currentPostNumber = parseInt(currentPostId[4]);
+
+    // wait for all blog posts in collection
+    if (this.postCollection) {
+      for (let obj of this.postCollection) {
+        // get key of the object
+        let keys = Object.keys(obj);
+
+        // match current postNumber with objkey from collection
+        if (currentPostNumber == parseInt(keys[0])) {
+          let nextPost = currentPostNumber + 1;
+          let prevPost = currentPostNumber - 1;
+
+          // now compare newPostId with existing obj keys
+          for (let newPostData of this.postCollection) {
+            let newKeys = Object.keys(newPostData);
+            if (nextPost == parseInt(newKeys[0]))
+              //pass nextPost id to api call
+              this.blogservice
+                .getBlogsbyId(newPostData[nextPost])
+                .subscribe((item) => {
+                  this.nextPostData = item;
+                });
+          }
+
+          // compare prevPostId with existing obj keys
+          for (let prevPostData of this.postCollection) {
+            let oldKeys = Object.keys(prevPostData);
+            if (prevPost == parseInt(oldKeys[0]))
+              // pass prevPost id to api call
+              this.blogservice
+                .getBlogsbyId(prevPostData[prevPost])
+                .subscribe((item) => {
+                  this.prevPostData = item;
+                });
+          }
+        }
+      }
+    }
   }
 }

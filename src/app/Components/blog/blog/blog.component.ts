@@ -34,6 +34,10 @@ export class BlogComponent implements OnInit {
   public searchResult;
   public logResponse;
   public errResponse;
+
+  public markdown = `## Enter content in Markdown format __here__!
+  ---`;
+
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -54,7 +58,7 @@ export class BlogComponent implements OnInit {
       postImage: [''],
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
-      post: ['', Validators.required],
+      post: [''],
       postLink: [''],
       postLink2: [''],
       postLink3: [''],
@@ -192,6 +196,15 @@ export class BlogComponent implements OnInit {
       const file = event.target.files[0];
       this.currentBlogImg = file;
     }
+  }
+
+  submitAll() {
+    let postBindedData = $('#dataBindings').val();
+
+    this.newPost.patchValue({ post: postBindedData });
+
+    this.SubmitPost(this.newPost.value);
+    // this.channelPost(this.newPost.value);
   }
 
   SubmitPost(data: Iblog) {

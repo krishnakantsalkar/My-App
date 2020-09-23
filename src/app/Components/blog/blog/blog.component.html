@@ -207,6 +207,7 @@
       }"
     >
       <div class="container">
+        <br />
         <h1>
           <b>2020</b>
           <i
@@ -307,7 +308,15 @@
         <!-- Create post area -->
 
         <div class="createpost" *ngIf="createPost">
-          <div class="card">
+          <div
+            class="card"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(223, 223, 223)'
+                : ' rgb(35, 36, 38)',
+              color: brightness ? 'black' : 'white'
+            }"
+          >
             <div class="card-header">
               <h1>Create post</h1>
             </div>
@@ -375,7 +384,7 @@
                       placeholder="Enter Title"
                     />
                   </div>
-                  <div class="form-row">
+                  <!-- <div class="form-row">
                     <label>Post Content</label>
                     <textarea
                       class="form-control"
@@ -384,7 +393,7 @@
                       placeholder="Post"
                     >
                     </textarea>
-                  </div>
+                  </div> -->
                   <div class="form-row">
                     <label>External Link</label>
                     <input
@@ -422,15 +431,71 @@
                     />
                   </div>
                 </div>
-                <button
+                <!-- <button
                   type="reset"
                   class="btn btn-primary cancel"
                   (click)="createPostmethod()"
                 >
                   Cancel
                 </button>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!newPost.valid"
+                >
+                  Submit
+                </button> -->
               </form>
+              <br />
+              <div>
+                <label>Post Content</label>
+                <br />
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <textarea
+                      id="dataBindings"
+                      class="variable-textarea"
+                      [(ngModel)]="markdown"
+                      name="textareas"
+                    ></textarea>
+                  </div>
+
+                  <div
+                    class="col-sm-12"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(223, 223, 223)'
+                        : ' #F5F5F5',
+                      color: brightness ? 'black' : 'black'
+                    }"
+                    style="border-radius: 8px; margin-top: 8px"
+                  >
+                    <h5>Preview:</h5>
+                    <markdown
+                      class="variable-binding"
+                      [data]="markdown"
+                      emoji
+                    ></markdown>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <button
+                type="reset"
+                class="btn btn-primary cancel"
+                (click)="createPostmethod()"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn btn-success"
+                [disabled]="!newPost.valid"
+                (click)="submitAll()"
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
@@ -534,7 +599,7 @@
                           {{ d.postDate }}
                         </h5>
                       </h2>
-                      <p
+                      <!-- <p
                         *ngIf="data"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'
@@ -550,7 +615,25 @@
                         >
                           Read more</a
                         >
-                      </p>
+                      </p> -->
+                      <markdown
+                        *ngIf="data"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        style="padding-bottom: 30px"
+                        class="variable-binding"
+                        emoji
+                        >{{ d.post | slice: 0:130 }}...
+                        <a
+                          routerLink="/Blog/{{ d.postNumber }}/{{
+                            d.postTitle
+                          }}/{{ d._id }}"
+                          [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                        >
+                          Read more</a
+                        ></markdown
+                      >
                     </div>
                   </div>
                 </div>

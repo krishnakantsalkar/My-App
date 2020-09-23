@@ -206,12 +206,17 @@
                 <div class="card-body">
                   <!-- blogpost -->
 
-                  <pre
+                  <!-- <pre
                     [ngStyle]="{
                       color: brightness ? 'black' : 'rgb(160,160,160)'
                     }"
                     >{{ data.post }}</pre
-                  >
+                  > -->
+                  <markdown
+                    class="variable-binding"
+                    [data]="markdown"
+                    emoji
+                  ></markdown>
                   <br />
 
                   <!-- post link buttons -->

@@ -35,6 +35,7 @@ export class BlogpostsComponent implements OnInit {
   public postCollection = [];
   public nextPostData;
   public prevPostData;
+  public markdown;
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -63,7 +64,7 @@ export class BlogpostsComponent implements OnInit {
       let id = item['id'];
       this.blogservice.getBlogsbyId(id).subscribe((items) => {
         this.data = items;
-        this.post = this.data.post;
+        this.markdown = this.data.post;
         this.blogURL = window.location.href;
         // save reference urls
         if (this.data.postLink.length > 3) {

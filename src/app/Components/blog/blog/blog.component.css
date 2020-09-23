@@ -150,6 +150,7 @@ div.pstimg img {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  object-fit: contain;
 }
 #myBtn {
   position: fixed;
@@ -369,6 +370,14 @@ div.searchResult h3 {
   float: right;
 }
 
+#scrolldata a {
+  text-decoration: none;
+  cursor: pointer;
+}
+#scrolldata a:hover {
+  text-shadow: 0 0 1px white;
+}
+
 @media only screen and (max-width: 600px) {
   div.motto h5 {
     font-size: 14px;
@@ -392,6 +401,9 @@ div.searchResult h3 {
   }
   .widget-area {
     padding: 0px 0px 40px;
+  }
+  #gridIcon {
+    display: none;
   }
 }
 

@@ -39,6 +39,7 @@ export class BlogComponent implements OnInit {
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
 
+  public grid: boolean;
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -51,6 +52,7 @@ export class BlogComponent implements OnInit {
     this.mode();
     this.blogsP(1);
     this.checkUserPresent();
+
     // aos animation
     AOS.init({
       startEvent: 'DOMContentLoaded',
@@ -334,5 +336,10 @@ export class BlogComponent implements OnInit {
   // clear search result
   cancel() {
     this.searchResult = null;
+  }
+
+  // list / grid switch
+  switchGrid() {
+    this.grid = !this.grid;
   }
 }

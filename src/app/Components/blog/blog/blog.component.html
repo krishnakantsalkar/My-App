@@ -477,16 +477,46 @@
         </div>
 
         <!-- Blog data -->
-        <div class="blogdata" *ngIf="data">
-          <div class="loopdata" *ngFor="let d of data">
-            <!-- <hr *ngIf="data" style="background-color: white;" /> -->
-            <br />
-            <div>
+        <div class="blogdata container" *ngIf="data">
+          <div class="row">
+            <div class="gridIcon col-12" id="gridIcon">
+              <button
+                class="btn btn-outline-secondary"
+                (click)="switchGrid()"
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+              >
+                <i
+                  class="fas"
+                  style="cursor: pointer; font-size: 15px; color: black"
+                  [ngClass]="{
+                    'fa-grip-vertical': !grid,
+                    'fa-grip-horizontal': grid
+                  }"
+                  [ngStyle]="{
+                    color: brightness ? 'black' : 'white'
+                  }"
+                ></i>
+                <span *ngIf="!grid"> &nbsp;List </span>
+                <span *ngIf="grid"> &nbsp;Grid </span>
+              </button>
+            </div>
+
+            <div
+              class="loopdata"
+              *ngFor="let d of data"
+              [ngClass]="{ 'col-sm-6': grid, 'col-12': grid }"
+            >
+              <!-- <hr *ngIf="data" style="background-color: white;" /> -->
+              <br />
+
               <div
                 class="card blogdataCard"
                 data-aos="fade-up"
                 data-aos-delay="300"
                 data-aos-duration="1000"
+                data-aos-once="true"
                 [ngStyle]="{
                   'background-color': brightness
                     ? 'rgb(223, 223, 223)'
@@ -500,6 +530,7 @@
                       data-aos="fade-right"
                       data-aos-delay="300"
                       data-aos-duration="1000"
+                      data-aos-once="true"
                       *ngIf="d.postImage"
                       [ngStyle]="{
                         'border-color': brightness
@@ -518,6 +549,7 @@
                       data-aos="fade-up"
                       data-aos-delay="300"
                       data-aos-duration="1000"
+                      data-aos-once="true"
                       [ngClass]="{
                         'col-sm-12': !d.postImage,
                         blgdata: !d.postImage
@@ -530,7 +562,8 @@
                     >
                       <h2
                         [ngStyle]="{
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                          color: brightness ? 'black' : 'rgb(129,129,129)',
+                          'font-size': grid ? '23px' : '30px'
                         }"
                         style="padding-top: 20px"
                       >
@@ -539,10 +572,12 @@
                             d.postTitle
                           }}/{{ d._id }}"
                           *ngIf="data"
-                          [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                          [ngStyle]="{
+                            color: brightness ? 'red' : 'violet'
+                          }"
                           >#{{ d.postNumber }}: {{ d.postTitle }}</a
                         >
-                        <h3>
+                        <h3 [ngStyle]="{ 'font-size': grid ? '18px' : '24px' }">
                           <span
                             *ngIf="d.postNumber == datacount"
                             class="badge badge-secondary"
@@ -569,7 +604,8 @@
                         <h5
                           *ngIf="data"
                           [ngStyle]="{
-                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                            color: brightness ? 'black' : 'rgb(129,129,129)',
+                            'font-size': grid ? '16px' : '20px'
                           }"
                         >
                           {{ d.postDate }}
@@ -588,6 +624,7 @@
                           routerLink="/Blog/{{ d.postNumber }}/{{
                             d.postTitle
                           }}/{{ d._id }}"
+                          style="text-decoration: none; cursor: pointer"
                           [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                         >
                           Read more</a
@@ -601,6 +638,7 @@
             <br />
           </div>
         </div>
+        <br />
         <div class="pagebtn" *ngIf="data">
           <button
             class="btn"

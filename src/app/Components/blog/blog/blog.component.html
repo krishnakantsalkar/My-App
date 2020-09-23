@@ -384,16 +384,6 @@
                       placeholder="Enter Title"
                     />
                   </div>
-                  <!-- <div class="form-row">
-                    <label>Post Content</label>
-                    <textarea
-                      class="form-control"
-                      type="text"
-                      formControlName="post"
-                      placeholder="Post"
-                    >
-                    </textarea>
-                  </div> -->
                   <div class="form-row">
                     <label>External Link</label>
                     <input
@@ -431,20 +421,6 @@
                     />
                   </div>
                 </div>
-                <!-- <button
-                  type="reset"
-                  class="btn btn-primary cancel"
-                  (click)="createPostmethod()"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  [disabled]="!newPost.valid"
-                >
-                  Submit
-                </button> -->
               </form>
               <br />
               <div>
@@ -599,23 +575,6 @@
                           {{ d.postDate }}
                         </h5>
                       </h2>
-                      <!-- <p
-                        *ngIf="data"
-                        [ngStyle]="{
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                        style="padding-bottom: 30px"
-                      >
-                        {{ d.post | slice: 0:130 }}...
-                        <a
-                          routerLink="/Blog/{{ d.postNumber }}/{{
-                            d.postTitle
-                          }}/{{ d._id }}"
-                          [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-                        >
-                          Read more</a
-                        >
-                      </p> -->
                       <markdown
                         *ngIf="data"
                         [ngStyle]="{

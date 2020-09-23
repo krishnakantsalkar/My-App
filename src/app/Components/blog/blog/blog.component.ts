@@ -35,6 +35,7 @@ export class BlogComponent implements OnInit {
   public logResponse;
   public errResponse;
 
+  // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
 
@@ -46,9 +47,11 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // method calls
     this.mode();
     this.blogsP(1);
     this.checkUserPresent();
+    // aos animation
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
@@ -130,6 +133,7 @@ export class BlogComponent implements OnInit {
       }
     }
 
+    // animated placeholder text
     superplaceholder({
       el: document.getElementById('searchbar'),
       sentences: [
@@ -148,16 +152,19 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  // light & dark mode
   mode() {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
+  // get all blogs
   // blogs() {
   //   this.blogservice.getBlogs().subscribe((item) => {
   //     this.data = item.dataSize;
   //   });
   // }
 
+  // get blogs by pagination
   blogsP(pg) {
     this.blogservice.getBlogsP(pg).subscribe((item) => {
       this.data = item.dataSize;
@@ -172,6 +179,7 @@ export class BlogComponent implements OnInit {
     this.pageNo = pg;
   }
 
+  // check if admin present
   checkUserPresent() {
     // this.checkUser = localStorage.getItem('credentials');
     this.checkUser = this.cookies.get('credentials');
@@ -179,10 +187,12 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  // hide & show create post window
   createPostmethod() {
     this.createPost = !this.createPost;
   }
 
+  // upload img live preview
   selection(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -198,6 +208,7 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  // submit post method
   submitAll() {
     let postBindedData = $('#dataBindings').val();
 
@@ -207,6 +218,7 @@ export class BlogComponent implements OnInit {
     // this.channelPost(this.newPost.value);
   }
 
+  // submit form method !!! MAIN !!!
   SubmitPost(data: Iblog) {
     if (!this.newPost.valid) {
       this.errResponse = 'Required fields cannot be empty*';
@@ -228,6 +240,7 @@ export class BlogComponent implements OnInit {
     );
   }
 
+  // remove notification overlay method
   off() {
     var elemnt = document.getElementById('overlay');
 
@@ -235,6 +248,7 @@ export class BlogComponent implements OnInit {
     location.reload();
   }
 
+  // upload image method
   SubmitFile() {
     const formData = new FormData();
     formData.append('postImage', this.currentBlogImg);
@@ -247,15 +261,19 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  // post to telegram channel
   channelPost(data) {
     let title = data.postTitle;
     let post = data.post;
     this.blogservice.tgpost(title, post).subscribe((item) => {});
   }
+
+  // scroll to top method
   topFunction() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // show & hide search method
   showsearch() {
     if (document.getElementById('searchbar')) {
       var element = document.getElementById('searchbar');
@@ -304,6 +322,7 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  //search method api
   Search(data: IsearchResult) {
     if (data) {
       this.blogservice.searchBlog(data.post).subscribe((item) => {
@@ -311,6 +330,8 @@ export class BlogComponent implements OnInit {
       });
     }
   }
+
+  // clear search result
   cancel() {
     this.searchResult = null;
   }

@@ -5,3 +5,7 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "app/css/animate.css";
 @import "../node_modules/aos/dist/aos.css";
+/* markdown */
+@import "prismjs/themes/prism-okaidia.css";
+@import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import "prismjs/plugins/line-highlight/prism-line-highlight.css";

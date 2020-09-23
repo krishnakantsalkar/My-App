@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlogComponent } from './blog/blog.component';
 import { RouterModule } from '@angular/router';
 import { blogRoutes } from './blog-routes';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 @NgModule({
   declarations: [BlogComponent],
@@ -14,6 +15,20 @@ import { SharedModuleModule } from '../shared-module/shared-module.module';
     RouterModule.forChild(blogRoutes),
     ReactiveFormsModule,
     SharedModuleModule,
+    FormsModule,
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE,
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+          smartLists: true,
+          smartypants: true,
+        },
+      },
+    }),
   ],
   providers: [CookieService],
 })

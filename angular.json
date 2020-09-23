@@ -26,6 +26,9 @@
               "./node_modules/@fortawesome/fontawesome-free/css/all.css",
               "./src/app/css/animate.css",
               "./node_modules/aos/dist/aos.css",
+              "./node_modules/prismjs/themes/prism-okaidia.css",
+              "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+              "./node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -33,7 +36,13 @@
               "./node_modules/bootstrap/dist/js/bootstrap.js",
               "./node_modules/wowjs/dist/wow.js",
               "./node_modules/aos/dist/aos.js",
-              "./src/assets/js/platform.js"
+              "./src/assets/js/platform.js",
+              "./node_modules/marked/lib/marked.js",
+              "./node_modules/prismjs/prism.js",
+              "./node_modules/prismjs/components/prism-css.min.js",
+              "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+              "./node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
+              "./node_modules/emoji-toolkit/lib/js/joypixels.min.js"
             ]
           },
           "configurations": {

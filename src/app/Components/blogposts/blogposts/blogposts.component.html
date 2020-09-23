@@ -199,7 +199,7 @@
                 class="card"
                 [ngStyle]="{
                   'background-color': brightness
-                    ? 'rgb(223, 223, 223)'
+                    ? 'rgb(245, 245, 245)'
                     : ' rgb(32, 33, 33)'
                 }"
               >
@@ -207,6 +207,9 @@
                   <!-- blogpost -->
 
                   <markdown
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'white'
+                    }"
                     class="variable-binding"
                     [data]="markdown"
                     emoji

@@ -22,7 +22,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
         provide: MarkedOptions,
         useValue: {
           gfm: true,
-          breaks: false,
+          breaks: true,
           pedantic: false,
           smartLists: true,
           smartypants: true,

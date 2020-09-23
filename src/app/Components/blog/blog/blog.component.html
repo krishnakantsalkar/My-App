@@ -481,7 +481,7 @@
           <div class="loopdata" *ngFor="let d of data">
             <!-- <hr *ngIf="data" style="background-color: white;" /> -->
             <br />
-            <div class="container">
+            <div>
               <div
                 class="card blogdataCard"
                 data-aos="fade-up"
@@ -657,6 +657,19 @@
               color: brightness ? 'white' : 'black'
             }"
             (click)="blogsP(5)"
+          >
+            5
+          </button>
+
+          <button
+            *ngIf="datacount > 25"
+            class="btn"
+            [disabled]="pageNo == 6"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(6)"
           >
             5
           </button>

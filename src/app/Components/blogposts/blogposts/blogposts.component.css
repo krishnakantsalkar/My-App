@@ -234,6 +234,12 @@ div.blogimg img {
   max-width: 100%;
 }
 
+/* shadow-piercer css method */
+markdown ::ng-deep img {
+  width: auto;
+  object-fit: contain;
+}
+
 @media only screen and (max-width: 600px) {
   div.card-header h2 {
     font-size: 25px;
@@ -268,5 +274,11 @@ div.blogimg img {
 
   div.main {
     padding-top: 125px;
+  }
+
+  /* shadow-piercer css method */
+  markdown ::ng-deep img {
+    width: 100%;
+    object-fit: contain;
   }
 }

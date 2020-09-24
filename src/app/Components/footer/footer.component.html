@@ -170,6 +170,17 @@
                     </li>
                     <li>
                       <a
+                        href="http://downloads.krishnakantsalkar.gq/"
+                        target="_blank"
+                        target="_blank"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Downloads</a
+                      >
+                    </li>
+                    <li>
+                      <a
                         routerLink="/Profile/{{ loggedInUser }}"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'
@@ -211,15 +222,6 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                         >About</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        routerLink="/Home"
-                        [ngStyle]="{
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                        >Home</a
                       >
                     </li>
                   </ul>

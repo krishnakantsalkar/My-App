@@ -113,6 +113,9 @@
         <a routerLink="/About"> About</a>
         <a routerLink="/Blog/page/1"> Blog</a>
         <a routerLink="/Movies&TV">Movies & TV</a>
+        <a href="http://downloads.krishnakantsalkar.gq" target="_blank"
+          >Downloads</a
+        >
         <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
         <a href="https://github.com/krishnakantsalkar/My-App" target="_blank">
           Github</a
@@ -121,7 +124,6 @@
         <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
         <a routerLink="/Privacy">Privacy Policy</a>
         <a routerLink="/Disclaimer">Disclaimer</a>
-        <a routerLink="/About"> Support</a>
         <a (click)="mode()"
           ><i
             class="fas"
@@ -440,6 +442,17 @@
                     </li>
                     <li>
                       <a
+                        href="http://downloads.krishnakantsalkar.gq/"
+                        target="_blank"
+                        target="_blank"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >Downloads</a
+                      >
+                    </li>
+                    <li>
+                      <a
                         routerLink="/Profile/{{ loggedInUser }}"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'
@@ -481,15 +494,6 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                         >About</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        routerLink="/Home"
-                        [ngStyle]="{
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                        >Home</a
                       >
                     </li>
                   </ul>

@@ -83,10 +83,10 @@
                 Frontend
               </button>
               <button class="btn btn2" (click)="scrollTo('backend')">
-                Backend
+                Screenshots
               </button>
               <button class="btn btn3" (click)="scrollTo('extras')">
-                Github
+                Source Code
               </button>
               <button class="btn btn4" (click)="scrollTo('developer')">
                 Author
@@ -149,43 +149,36 @@
     <div class="third-content" id="backend">
       <!-- container -->
       <div class="backend-component container">
-        <!-- row -->
-        <div class="row">
-          <!-- Backend card -->
-          <div class="col-sm-12">
-            <div class="backend">
-              <div class="card">
-                <div class="card-body">
-                  <div class="images-area">
-                    <img
-                      src="assets/images/nodejs-new-pantone-black.svg"
-                      alt="Node logo"
-                    />
-                  </div>
-                  <a href="https://nodejs.org/en" target="_blank">
-                    <h1>NodeJS</h1></a
-                  >
+        <!-- title alert  -->
+        <h4
+          class="screenshots alert alert-success"
+          style="display: flex; justify-content: center"
+        >
+          Screenshots:
+        </h4>
 
-                  <h4>Features:</h4>
-                  <ul>
-                    <li>Asynchronous and Event Driven. ...</li>
-                    <li>Very Fast − Being built on Google Chrome's V8</li>
-                    <li>Fast <strong>Express</strong> API framework</li>
-                    <li>Efficient MongoDB integration</li>
-                    <li>Single Threaded but Highly Scalable. ...</li>
-                    <li>
-                      No Buffering − Node.js applications never buffer any data.
-                      ...
-                    </li>
-                    <li>
-                      License − Node.js is released under the MIT license..
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        <!-- swiper component -->
+        <swiper [config]="config" #usefulSwiper>
+          <div class="swiper-wrapper">
+            <!-- image slides -->
+            <img
+              class="swiper-slide"
+              *ngFor="let slide of slides"
+              [src]="slide"
+              style="height: auto; object-fit: contain; border-radius: 8px"
+              [ngStyle]="{
+                border: brightness ? '2px solid red' : '2px solid violet'
+              }"
+            />
           </div>
-        </div>
+          <br />
+
+          <!-- swiper options -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-scrollbar"></div>
+        </swiper>
       </div>
     </div>
 
@@ -206,17 +199,36 @@
                       alt="Github logo"
                     />
                   </div>
-                  <h1>Additional & Required Components</h1>
+                  <h1>Source Code & Extras</h1>
 
-                  <h4>Version Control:</h4>
                   <ul>
-                    <li>Git & Github</li>
+                    <li>Version Control: Github</li>
+                    <li>Graphic Design: Adobe Photoshop</li>
+                  </ul>
+
+                  <ul>
+                    <li>
+                      Mobile Wallpapers Collection:
+                      <a
+                        href="http://downloads.krishnakantsalkar.gq/Wallpapers"
+                        target="_blank"
+                        style="cursor: pointer; text-decoration: none"
+                        >Downloads</a
+                      >
+                    </li>
+
+                    <li>
+                      The Movie Database:
+                      <a
+                        href="https://www.krishnakantsalkar.gq/Movies&TV"
+                        target="_blank"
+                        style="cursor: pointer; text-decoration: none"
+                        >TheMovieDB</a
+                      >
+                    </li>
                   </ul>
                   <br />
-                  <h4>Graphic Design:</h4>
-                  <ul>
-                    <li>Adobe Photoshop</li>
-                  </ul>
+
                   <div class="sourceCode">
                     <div class="card">
                       <a href="https://github.com/krishnakantsalkar/My-App">
@@ -257,45 +269,133 @@
                   <div class="devdetails">
                     <h4><strong> Krishnakant S. Salkar</strong></h4>
                     <h5>Full Stack Web Developer</h5>
-                    <br />
                   </div>
-                  <h4>Languages & Frameworks:</h4>
+                  <hr />
+
+                  <h4 class="langAndfr">
+                    <i class="fas fa-code"></i> Languages & Frameworks:
+                  </h4>
+
                   <!-- languages row -->
                   <div class="row">
                     <br />
                     <!-- column 1 -->
                     <div class="col-xs-4">
                       <ul>
-                        <li>
-                          Angular 9
-                          <ul>
-                            <li>Typescsript</li>
-                            <li>Javascript</li>
-                            <li>Html</li>
-                            <li>CSS</li>
-                            <li>PHP</li>
-                          </ul>
-                        </li>
+                        <li>Angular 9+</li>
+                        <li>Typescript</li>
+                        <li>Javascript</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>php</li>
                       </ul>
                     </div>
                     <!-- column 2 -->
                     <div class="col-xs-4">
                       <ul>
-                        <li>
-                          NodeJs
-                          <ul>
-                            <li>ExpressJS</li>
-                            <li>MongoDB</li>
-                          </ul>
-                        </li>
+                        <li>NodeJS</li>
+                        <li>ExpressJS</li>
+                        <li>MongoDB</li>
                       </ul>
                     </div>
                     <!-- column 3 -->
                     <div class="col-xs-4">
                       <ul>
+                        <li>Dart</li>
                         <li>Python</li>
                       </ul>
                     </div>
+                  </div>
+                  <hr />
+
+                  <!-- currently learning -->
+                  <h5 class="currentlyLearning">
+                    <i class="fas fa-star" style="color: red"></i> Currently
+                    Learning: Flutter
+                    <i class="fas fa-laptop-code"></i>
+                  </h5>
+                  <hr />
+
+                  <!-- hobbies -->
+                  <h5 class="hobbies" style="margin-top: 12px">
+                    <i class="fas fa-check-circle" style="color: green"></i>
+                    Hobbies:
+                  </h5>
+                  <p>
+                    Exploring & Writing Code, Drawing, Maintaining custom roms
+                    for my device, Reading, Cooking, Watching Movies
+                  </p>
+                  <hr />
+
+                  <!-- social links -->
+                  <h5><i class="fas fa-link"></i> Socials</h5>
+                  <div
+                    class="social-icons"
+                    style="padding-left: 0; margin-bottom: 0; list-style: none"
+                  >
+                    <ul>
+                      <li>
+                        <a
+                          class="telegram-icon"
+                          href="https://t.me/Alex_merecer09"
+                          target="_blank"
+                          ><i class="fab fa-telegram-plane"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="git-icon"
+                          href="https://github.com/krishnakantsalkar"
+                          target="_blank"
+                        >
+                          <i class="fab fa-github"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="facebook-icon"
+                          href="https://www.facebook.com/Supremegod.of.war"
+                          target="_blank"
+                          ><i class="fab fa-facebook"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="email-icon"
+                          href="mailto:dev@krishnakantsalkar.gq"
+                          target="_blank"
+                          ><i class="fas fa-at"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="instagram-icon"
+                          href="https://instagram.com/that_detective_kid"
+                          target="_blank"
+                        >
+                          <i
+                            class="fab fa-instagram"
+                            style="font-style: bold"
+                          ></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="snapchat-icon"
+                          href="https://www.snapchat.com/add/aaron_stone99"
+                          target="_blank"
+                          ><i class="fab fa-snapchat-ghost"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="blog-icon"
+                          href="https://www.krishnakantsalkar.gq/Blog/page/1"
+                          target="_blank"
+                          ><i class="fab fa-blogger-b"></i
+                        ></a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -331,7 +431,11 @@
                   <div class="card">
                     <div class="card-body">
                       <h6 class="tooltipHover2" (click)="copyToClip('number')">
-                        <i id="copyNumber" class="fas fa-mobile">
+                        <i
+                          id="copyNumber"
+                          class="fab fa-whatsapp"
+                          style="font-style: bold"
+                        >
                           +919619705613</i
                         >
                         <div class="tooltips2">
@@ -344,26 +448,6 @@
                         *ngIf="copiedNumber"
                       >
                         <h6 id="copyAlertText">copied to clipboard</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- dev social media section -->
-              <div class="row devinfo2">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="connections">
-                        <a href="https://www.facebook.com/Supremegod.of.war">
-                          <i class="fab fa-facebook"></i
-                        ></a>
-                        <a href="https://www.instagram.com/that_detective_kid/"
-                          ><i class="fab fa-instagram"></i
-                        ></a>
-                        <a href="https://t.me/Alex_mercer09">
-                          <i class="fab fa-telegram"></i
-                        ></a>
                       </div>
                     </div>
                   </div>

@@ -236,7 +236,7 @@ div.blogimg img {
 
 /* shadow-piercer css method */
 markdown ::ng-deep img {
-  width: auto;
+  width: 100%;
   object-fit: contain;
 }
 

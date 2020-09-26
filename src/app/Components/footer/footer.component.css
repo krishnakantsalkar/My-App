@@ -46,6 +46,8 @@ div.footer {
   width: 100%;
   background-color: rgb(37, 38, 39);
   height: 60px;
+
+  z-index: 10;
 }
 
 div.footer-text {

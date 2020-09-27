@@ -342,4 +342,9 @@ export class BlogComponent implements OnInit {
   switchGrid() {
     this.grid = !this.grid;
   }
+
+  // navigate to post author
+  gotoAuthor() {
+    this.router.navigateByUrl('/About#developer');
+  }
 }

@@ -640,9 +640,12 @@
                         >
                           <i class="fas fa-user"></i> By:
                           <span
+                            class="postauthor"
                             [ngStyle]="{
                               color: brightness ? 'red' : 'violet'
                             }"
+                            (click)="gotoAuthor()"
+                            style="cursor: pointer"
                           >
                             {{ d.postAuthor }}</span
                           >

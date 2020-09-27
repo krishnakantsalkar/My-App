@@ -40,10 +40,10 @@ export class AboutComponent implements OnInit {
     direction: 'horizontal',
     // autoplay
     autoplay: {
-      delay: 1000,
+      delay: 1600,
       disableOnInteraction: true,
     },
-    speed: 1000,
+    speed: 200,
 
     // effect options
     coverflowEffect: {

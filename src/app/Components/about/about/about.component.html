@@ -166,9 +166,6 @@
               *ngFor="let slide of slides"
               [src]="slide"
               style="height: auto; object-fit: contain; border-radius: 8px"
-              [ngStyle]="{
-                border: brightness ? '2px solid red' : '2px solid violet'
-              }"
             />
           </div>
           <br />
@@ -310,9 +307,8 @@
 
                   <!-- currently learning -->
                   <h5 class="currentlyLearning">
-                    <i class="fas fa-star" style="color: red"></i> Currently
-                    Learning: Flutter
-                    <i class="fas fa-laptop-code"></i>
+                    <i class="fas fa-laptop-code"></i> Currently Learning:
+                    Flutter
                   </h5>
                   <hr />
 
@@ -323,7 +319,7 @@
                   </h5>
                   <p>
                     Exploring & Writing Code, Drawing, Maintaining custom roms
-                    for my device, Reading, Cooking, Watching Movies
+                    for my device, Reading, Cooking, Watching Movies, Gaming
                   </p>
                   <hr />
 
@@ -393,6 +389,14 @@
                           href="https://www.krishnakantsalkar.gq/Blog/page/1"
                           target="_blank"
                           ><i class="fab fa-blogger-b"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          class="steam-icon"
+                          href="https://steamcommunity.com/id/alex_mercer09"
+                          target="_blank"
+                          ><i class="fab fa-steam"></i
                         ></a>
                       </li>
                     </ul>

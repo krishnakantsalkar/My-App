@@ -507,6 +507,13 @@ swiper {
   background-color: violet;
   color: white;
 }
+.social-icons .steam-icon:hover {
+  background-color: darkblue;
+  color: white;
+}
+.social-icons ul {
+  padding-inline-start: 20px;
+}
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
@@ -627,6 +634,6 @@ swiper {
   }
 
   .social-icons ul {
-    padding-inline-start: 20px;
+    padding-inline-start: 0px;
   }
 }

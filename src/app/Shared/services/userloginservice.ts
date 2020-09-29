@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from '../model/forgotPass';
@@ -24,12 +24,19 @@ export class userloginservices {
     'https://mybackend-1911.herokuapp.com/api/reset/forgotPassword/';
 
   public header: HttpHeaders;
+  public loggedIn: BehaviorSubject<any>;
+  public currentUsers: Observable<any>;
   constructor(
     private http: HttpClient,
     private router: Router,
     private cookies: CookieService
   ) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //  behavior subject for login/logout
+    this.loggedIn = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem('user'))
+    );
+    this.currentUsers = this.loggedIn.asObservable();
   }
 
   Login(data: IuserLogin): Observable<IuserLogin> {

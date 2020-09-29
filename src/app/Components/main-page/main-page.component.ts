@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
@@ -69,29 +69,29 @@ export class MainPageComponent implements OnInit {
         document.documentElement.scrollTop > 50
       ) {
         if (
-          document.getElementById('top-panel') &&
-          document.getElementById('top-panel-nametag') &&
-          document.getElementById('userName')
+          document.getElementById('top-panel') //&&
+          // document.getElementById('top-panel-nametag') &&
+          // document.getElementById('userName')
         ) {
-          document.getElementById('top-panel').style.height = '60px';
+          document.getElementById('top-panel').style.padding = '13px 10px 13px';
           document.getElementById('top-panel').style.transitionDuration =
             '0.2s';
           document.getElementById('top-panel').style.transitionTimingFunction =
             'ease-in';
-          document.getElementById('top-panel-nametag').style.paddingTop =
-            '10px';
-          document.getElementById('userName').style.paddingTop = '20px';
+          // document.getElementById('top-panel-nametag').style.paddingTop =
+          //   '10px';
+          // document.getElementById('userName').style.paddingTop = '20px';
         }
       } else {
         if (
-          document.getElementById('top-panel') &&
-          document.getElementById('top-panel-nametag') &&
-          document.getElementById('userName')
+          document.getElementById('top-panel') //&&
+          // document.getElementById('top-panel-nametag') &&
+          // document.getElementById('userName')
         ) {
-          document.getElementById('top-panel').style.height = '90px';
-          document.getElementById('top-panel-nametag').style.paddingTop =
-            '25px';
-          document.getElementById('userName').style.paddingTop = '30px';
+          document.getElementById('top-panel').style.padding = '20px 10px 20px';
+          // document.getElementById('top-panel-nametag').style.paddingTop =
+          //   '25px';
+          // document.getElementById('userName').style.paddingTop = '30px';
         }
       }
     }
@@ -102,31 +102,32 @@ export class MainPageComponent implements OnInit {
         (mediaQuery.matches && document.documentElement.scrollTop > 50)
       ) {
         if (
-          document.getElementById('top-panel') &&
-          document.getElementById('top-panel-nametag') &&
-          document.getElementById('userName')
+          document.getElementById('top-panel') // &&
+          // document.getElementById('top-panel-nametag') &&
+          // document.getElementById('userName')
         ) {
-          document.getElementById('top-panel').style.height = '55px';
-          document.getElementById('top-panel-nametag').style.paddingTop =
-            '15px';
+          document.getElementById('top-panel').style.padding = '15px 10px 15px';
 
-          document.getElementById('userName').style.marginTop = '-8px';
-          document.getElementById('userName').style.paddingTop = '0px';
+          // document.getElementById('top-panel-nametag').style.paddingTop =
+          //   '13px';
+
+          // document.getElementById('userName').style.marginTop = '-8px';
+          // document.getElementById('userName').style.paddingTop = '0px';
         }
       } else if (
         (mediaQuery.matches && document.body.scrollTop < 50) ||
         (mediaQuery.matches && document.documentElement.scrollTop < 50)
       ) {
         if (
-          document.getElementById('top-panel') &&
-          document.getElementById('top-panel-nametag') &&
-          document.getElementById('userName')
+          document.getElementById('top-panel') //&&
+          // document.getElementById('top-panel-nametag') &&
+          // document.getElementById('userName')
         ) {
-          document.getElementById('top-panel').style.height = '75px';
-          document.getElementById('top-panel-nametag').style.paddingTop =
-            '25px';
-          document.getElementById('userName').style.marginTop = '-5px';
-          document.getElementById('userName').style.paddingTop = '0px';
+          document.getElementById('top-panel').style.padding = '20px 10px 20px';
+          // document.getElementById('top-panel-nametag').style.paddingTop =
+          //   '25px';
+          // document.getElementById('userName').style.marginTop = '-5px';
+          // document.getElementById('userName').style.paddingTop = '0px';
         }
       }
     }
@@ -201,6 +202,11 @@ export class MainPageComponent implements OnInit {
 
     // Toast initialize
     (<Jquery>$('.toast')).toast('show');
+
+    // dark and light mode listener
+    $('.modeLD a').on('click', () => {
+      this.ngOnInit();
+    });
   }
 
   // set global Light/Dark mode

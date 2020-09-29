@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
   }
 
   logintoHome() {
-    this.router.navigateByUrl('/Home');
+    this.router.navigate(['Home']).then(() => location.reload());
   }
 
   Forgot(data: Iforgot) {

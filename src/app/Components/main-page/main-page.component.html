@@ -107,85 +107,9 @@
         </div>
       </div>
 
-      <!-- side navigation panel -->
-      <div class="sidenav" [ngClass]="{ sidenavL: brightness }">
-        <span>&#9776;</span>
-        <a routerLink="/About"> About</a>
-        <a routerLink="/Blog/page/1"> Blog</a>
-        <a routerLink="/Movies&TV">Movies & TV</a>
-        <a href="http://downloads.krishnakantsalkar.gq" target="_blank"
-          >Downloads</a
-        >
-        <a *ngIf="special" routerLink="/Profile/{{ loggedInUser }}">Profile</a>
-        <a href="https://github.com/krishnakantsalkar/My-App" target="_blank">
-          Github</a
-        >
-        <a routerLink="/Login" *ngIf="!special"> Login</a>
-        <a *ngIf="special" class="clickable" (click)="logout()"> Logout</a>
-        <a routerLink="/Privacy">Privacy Policy</a>
-        <a routerLink="/Disclaimer">Disclaimer</a>
-        <a (click)="mode()"
-          ><i
-            class="fas"
-            [ngClass]="{ 'fa-sun': brightness, 'fa-moon': !brightness }"
-          ></i
-        ></a>
-      </div>
+      <!-- navbar -->
 
-      <!-- Top panel -->
-      <div
-        class="top-panel"
-        id="top-panel"
-        [ngStyle]="{
-          'background-color': brightness
-            ? 'rgb(223, 223, 223)'
-            : ' rgb(41, 42, 45)'
-        }"
-      >
-        <!-- Name tag on top panel -->
-        <div class="container nametag">
-          <div class="row">
-            <div class="col-sm-6">
-              <h4
-                class="n1"
-                id="top-panel-nametag"
-                *ngIf="!brightness"
-                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-              >
-                > krishnakantsalkar@prototype:~<span
-                  class="one"
-                  [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-                >
-                  $
-                </span>
-              </h4>
-              <h4
-                class="n2"
-                id="top-panel-nametag"
-                *ngIf="brightness"
-                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-              >
-                > krishnakantsalkar@prototype:~<span class="two"> $ </span>
-              </h4>
-            </div>
-            <div class="col-sm-6">
-              <h6
-                id="userName"
-                *ngIf="userName"
-                [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-              >
-                Admin:
-                <span
-                  [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-                  routerLink="/Profile/{{ loggedInUser }}"
-                >
-                  {{ userName.name }} {{ userName.surname }}
-                </span>
-              </h6>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- <app-navbar></app-navbar> -->
 
       <!-- background color under all other components (Old logic) -->
       <div
@@ -196,6 +120,8 @@
       ></div>
 
       <!-- Add personal image -->
+
+      <div class="nametag"></div>
       <div
         class="imagesection"
         [ngStyle]="{
@@ -330,7 +256,7 @@
         <div
           class="container-fluid"
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
-          style="height: auto; width: auto; padding-left: 50px"
+          style="height: auto; width: auto"
         >
           <div class="bottom-content">
             <div class="row">

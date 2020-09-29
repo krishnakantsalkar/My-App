@@ -80,13 +80,13 @@
           <div class="col-sm-6">
             <div class="buttons">
               <button class="btn btn1" (click)="scrollTo('frontend')">
-                Frontend
+                Frameworks
               </button>
               <button class="btn btn2" (click)="scrollTo('backend')">
                 Screenshots
               </button>
               <button class="btn btn3" (click)="scrollTo('extras')">
-                Source Code
+                Extras
               </button>
               <button class="btn btn4" (click)="scrollTo('developer')">
                 Author
@@ -107,39 +107,39 @@
       <div class="frontend-component container">
         <!-- row -->
         <div class="row">
-          <!-- Angular card -->
-          <div class="col-sm-12">
-            <div class="angular">
-              <div class="card">
-                <div class="card-body">
-                  <div class="images-area">
-                    <a href="https://angular.io" target="_blank">
-                      <img
-                        class="img1"
-                        src="assets/images/Angular-wallpaper.png"
-                        alt="Angular logo"
-                      />
-                    </a>
-                  </div>
-                  <a href="https://angular.io" target="_blank">
-                    <h1>Angular 9</h1></a
-                  >
-                  <h4>Features:</h4>
-                  <ul>
-                    <li>
-                      Cross-Platform. With Angular, you can develop progressive
-                      web applications (PWA)..
-                    </li>
-                    <li>High Speed & Optimum Performance. ...</li>
-                    <li>Advanced Typescript. ...</li>
-                    <li>MVC Architecture. ...</li>
-                    <li>Efficient Two-Way Data Binding. ...</li>
-                    <li>Less Code Framework. ...</li>
-                    <li>Angular CLI (Command Line Interface) ...</li>
-                  </ul>
-                </div>
-              </div>
+          <!-- angular framework -->
+          <div class="col-sm-6" id="angularDesc">
+            <h1>Built using Angular 9+</h1>
+            <p>One framework. Mobile & desktop.</p>
+            <a href="https://angular.io/docs" target="_blank"
+              ><button class="btn">LEARN MORE</button></a
+            >
+            <hr style="border-top: 1px dashed white" />
+
+            <!-- backend nodejs -->
+            <h1>NodeJS Backend</h1>
+            <p>NodeJS server & ExpressJS APIs with MongoDB support.</p>
+            <a href="https://nodejs.org/en/docs/" target="_blank"
+              ><button class="btn">Documentation</button></a
+            >
+            <br />
+            <br />
+            <!-- other logos -->
+            <h2>
+              <i class="fab fa-html5"></i>&nbsp;
+              <i class="fab fa-css3-alt"></i>&nbsp;
+              <i class="fab fa-js"></i>&nbsp;
+              <i class="fas fa-server"></i>
+            </h2>
+          </div>
+          <!-- angular & node logo icon -->
+          <div class="col-sm-6" style="display: flex; justify-content: center">
+            <div class="angularNodeIcons">
+              <h2>
+                <i class="fab fa-angular"></i> + <i class="fab fa-node"> </i>
+              </h2>
             </div>
+            <br />
           </div>
         </div>
       </div>
@@ -149,14 +149,6 @@
     <div class="third-content" id="backend">
       <!-- container -->
       <div class="backend-component container">
-        <!-- title alert  -->
-        <h4
-          class="screenshots alert alert-success"
-          style="display: flex; justify-content: center"
-        >
-          Screenshots:
-        </h4>
-
         <!-- swiper component -->
         <swiper [config]="config" #usefulSwiper>
           <div class="swiper-wrapper">
@@ -184,58 +176,48 @@
       <!-- container -->
       <div class="extras-component container">
         <!-- row -->
+
+        <h1>Source Code & Extras</h1>
+        <br />
+        <br />
         <div class="row">
-          <!-- Github & Photoshop -->
-          <div class="col-sm-12">
-            <div class="extras">
-              <div class="card">
-                <div class="card-body">
-                  <div class="images-area">
-                    <img
-                      src="assets/images/GitHub-Mark-120px-plus.png"
-                      alt="Github logo"
-                    />
-                  </div>
-                  <h1>Source Code & Extras</h1>
+          <!-- github link -->
+          <div class="col-6 col-sm-3">
+            <h2><i class="fab fa-github"></i></h2>
+            <a
+              href="https://github.com/krishnakantsalkar/My-App"
+              target="_blank"
+              ><button class="btn">Source Code</button></a
+            >
+          </div>
+          <!-- wallpapers link -->
+          <div class="col-6 col-sm-3">
+            <h2><i class="fas fa-image" style="color: white"></i></h2>
+            <a
+              href="http://downloads.krishnakantsalkar.gq/Wallpapers"
+              target="_blank"
+              ><button class="btn">Mobile Wallpapers</button></a
+            >
+          </div>
 
-                  <ul>
-                    <li>Version Control: Github</li>
-                    <li>Graphic Design: Adobe Photoshop</li>
-                  </ul>
+          <!-- movie db link -->
+          <div class="col-6 col-sm-3">
+            <h2>
+              <i class="fas fa-video" style="color: green"></i>
+            </h2>
+            <a href="https://www.krishnakantsalkar.gq/Movies&TV" target="_blank"
+              ><button class="btn">The MovieDB</button></a
+            >
+          </div>
 
-                  <ul>
-                    <li>
-                      Mobile Wallpapers Collection:
-                      <a
-                        href="http://downloads.krishnakantsalkar.gq/Wallpapers"
-                        target="_blank"
-                        style="cursor: pointer; text-decoration: none"
-                        >Downloads</a
-                      >
-                    </li>
-
-                    <li>
-                      The Movie Database:
-                      <a
-                        href="https://www.krishnakantsalkar.gq/Movies&TV"
-                        target="_blank"
-                        style="cursor: pointer; text-decoration: none"
-                        >TheMovieDB</a
-                      >
-                    </li>
-                  </ul>
-                  <br />
-
-                  <div class="sourceCode">
-                    <div class="card">
-                      <a href="https://github.com/krishnakantsalkar/My-App">
-                        <div class="card-body">Source Code</div></a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- blog link -->
+          <div class="col-6 col-sm-3">
+            <h2><i class="fas fa-blog" style="color: blueviolet"></i></h2>
+            <a
+              href="https://www.krishnakantsalkar.gq/Blog/page/1"
+              target="_blank"
+              ><button class="btn">Blog</button></a
+            >
           </div>
         </div>
       </div>

@@ -289,24 +289,6 @@ div.extras .card h1 {
   text-align: center;
 }
 
-/* source code button css */
-div.sourceCode {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-div.sourceCode .card {
-  width: 50%;
-  background-color: rgba(52, 235, 110, 0.8);
-}
-div.sourceCode a {
-  text-decoration: none;
-}
-div.sourceCode a:hover {
-  background-color: rgba(24, 201, 80, 0.8);
-  border-radius: 10px;
-}
-
 .devinfo {
   text-align: center;
   padding-top: 10%;
@@ -458,7 +440,7 @@ div.content-new {
 }
 
 swiper {
-  margin-top: 0px;
+  margin-top: 8%;
 }
 
 .social-icons li {
@@ -514,6 +496,61 @@ swiper {
 .social-icons ul {
   padding-inline-start: 20px;
 }
+
+/* framework, second component, angular */
+#angularDesc {
+  margin-top: 17%;
+  text-align: center;
+  color: white;
+}
+#angularDesc h1,
+#angularDesc p {
+  font-family: Bahnschrift SemiBold, BahnschriftSemiBold;
+}
+.angularNodeIcons h2 {
+  margin-top: 45%;
+  font-size: 150px;
+  color: white;
+}
+#angularDesc a button,
+div.extras-component a button {
+  background-color: white;
+  color: #3288db;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgb(20, 20, 20);
+}
+
+#angularDesc a button:hover,
+div.extras-component a button:hover {
+  color: orangered;
+  box-shadow: 0 0 1px rgb(20, 20, 20);
+}
+
+/* extras component */
+div.extras-component h1 {
+  margin-top: 10%;
+  font-family: Bahnschrift SemiBold, BahnschriftSemiBold;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+div.extras-component h2 {
+  text-align: center;
+  margin-top: 5%;
+  font-size: 100px;
+}
+div.extras-component a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
@@ -611,7 +648,7 @@ swiper {
     margin-top: 40%;
   }
   .third-content swiper {
-    margin-top: 0;
+    margin-top: 50%;
   }
   swiper .swiper-pagination {
     margin-bottom: -7px;
@@ -635,5 +672,18 @@ swiper {
 
   .social-icons ul {
     padding-inline-start: 0px;
+  }
+
+  #angularDesc {
+    margin-top: 30%;
+  }
+  .angularNodeIcons h2 {
+    margin-top: 5px;
+    font-size: 100px;
+    color: white;
+  }
+  div.extras-component h1 {
+    margin-top: 25%;
+    width: 100%;
   }
 }

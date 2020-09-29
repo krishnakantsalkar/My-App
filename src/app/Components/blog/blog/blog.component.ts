@@ -34,6 +34,7 @@ export class BlogComponent implements OnInit {
   public searchResult;
   public logResponse;
   public errResponse;
+  public blogURL;
 
   // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
@@ -52,6 +53,9 @@ export class BlogComponent implements OnInit {
     this.mode();
     this.blogsP(1);
     this.checkUserPresent();
+
+    // blogURL for share btns
+    this.blogURL = window.location.href;
 
     // aos animation
     AOS.init({

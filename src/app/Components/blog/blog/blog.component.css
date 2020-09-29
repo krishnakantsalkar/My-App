@@ -378,6 +378,91 @@ div.searchResult h3 {
   text-shadow: 0 0 1px white;
 }
 
+/* sharing buttons  */
+div.sharingBtns {
+  position: fixed;
+  right: 0;
+  top: 30%;
+  z-index: 10;
+  opacity: 0.7;
+  transition: 0.2s ease-in;
+}
+div.sharingBtns:hover {
+  opacity: 1;
+}
+div.sharingBtns a {
+  display: block;
+  color: white;
+  line-height: 40px;
+  font-size: 17px;
+  text-align: center;
+  transition: 0.2s ease-in;
+  border-radius: 2px;
+}
+div.sharingBtns .fbShare a {
+  background-color: #314a83;
+  height: 40px;
+  width: 40px;
+}
+div.sharingBtns .twitterShare a {
+  background-color: #0092cc;
+  height: 40px;
+  width: 40px;
+}
+div.sharingBtns .mailShare a {
+  background-color: rgb(245, 23, 23);
+  height: 40px;
+  width: 40px;
+}
+
+div.sharingBtns .linkedInShare a {
+  background-color: #0f699b;
+  height: 40px;
+  width: 40px;
+}
+div.sharingBtns .redditShare a {
+  background-color: #ff471e;
+  height: 40px;
+  width: 40px;
+}
+div.sharingBtns .tgShare a {
+  background-color: #0088cc;
+  height: 40px;
+  width: 40px;
+}
+
+div.sharingBtns .fbShare:hover a {
+  /* width: 50px; */
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+div.sharingBtns .twitterShare:hover a {
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+div.sharingBtns .mailShare:hover a {
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+div.sharingBtns .linkedInShare:hover a {
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+div.sharingBtns .redditShare:hover a {
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+div.sharingBtns .tgShare:hover a {
+  margin-left: -20px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
 @media only screen and (max-width: 600px) {
   div.motto h5 {
     font-size: 14px;
@@ -404,6 +489,77 @@ div.searchResult h3 {
   }
   #gridIcon {
     display: none;
+  }
+
+  /* share btns mobile css */
+  div.sharingBtns {
+    top: 35%;
+  }
+  div.sharingBtns a {
+    line-height: 30px;
+    font-size: 12px;
+  }
+  div.sharingBtns .fbShare a {
+    background-color: #314a83;
+    height: 30px;
+    width: 30px;
+  }
+  div.sharingBtns .twitterShare a {
+    background-color: #0092cc;
+    height: 30px;
+    width: 30px;
+  }
+  div.sharingBtns .mailShare a {
+    background-color: rgb(245, 23, 23);
+    height: 30px;
+    width: 30px;
+  }
+  div.sharingBtns .linkedInShare a {
+    background-color: #0f699b;
+    height: 30px;
+    width: 30px;
+  }
+  div.sharingBtns .redditShare a {
+    background-color: #ff471e;
+    height: 30px;
+    width: 30px;
+  }
+  div.sharingBtns .tgShare a {
+    background-color: #0088cc;
+    height: 30px;
+    width: 30px;
+  }
+
+  div.sharingBtns .fbShare:hover a {
+    /* width: 50px; */
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  div.sharingBtns .twitterShare:hover a {
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  div.sharingBtns .mailShare:hover a {
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  div.sharingBtns .linkedInShare:hover a {
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  div.sharingBtns .redditShare:hover a {
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  div.sharingBtns .tgShare:hover a {
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 30px;
   }
 }
 

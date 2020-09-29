@@ -1,0 +1,106 @@
+nav {
+  padding: 20px 10px 20px;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+}
+.navbar-nav a {
+  text-decoration: none;
+  color: #818181;
+  padding: 10px;
+  margin: auto 5px;
+  font-size: 20px;
+}
+/* dark mode hover */
+.sidenav a:hover {
+  background-color: violet;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sidenavL a:hover {
+  background-color: rgb(243, 61, 61);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modeLD {
+  margin-top: 10px;
+}
+
+#navbarNav {
+  margin-left: 25%;
+}
+
+div.nametag {
+  margin-left: 20px;
+}
+div.nametag a {
+  text-decoration: none;
+  cursor: pointer;
+}
+div.nametag h4 {
+  color: gray;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+.n1:hover {
+  opacity: 0.7;
+}
+.n2:hover {
+  opacity: 0.7;
+}
+
+span.one {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+
+span.two {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+    text-shadow: 0px 0px 15px;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+    text-shadow: 0px 0px 15px rgb(243, 50, 82);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #navbarNav {
+    margin-left: 0;
+  }
+  div.nametag {
+    margin-left: 0px;
+  }
+  div.nametag h4 {
+    font-size: 17px;
+    padding-top: 5px;
+  }
+}

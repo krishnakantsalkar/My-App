@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg"
+      id="top-panel"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="nametag">
+        <a href="/Home">
+          <h4
+            class="n1"
+            id="top-panel-nametag"
+            *ngIf="!brightness"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          >
+            > krishnakantsalkar@prototype:~<span
+              class="one"
+              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            >
+              $
+            </span>
+          </h4>
+          <h4
+            class="n2"
+            id="top-panel-nametag"
+            *ngIf="brightness"
+            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          >
+            > krishnakantsalkar@prototype:~<span class="two"> $ </span>
+          </h4>
+        </a>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span
+          class="navbar-toggler-icons"
+          [ngStyle]="{
+            color: brightness ? ' rgb(41, 42, 45)' : 'rgb(223, 223, 223)'
+          }"
+          ><i class="fas fa-bars"></i
+        ></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul
+          class="navbar-nav"
+          [ngClass]="{ sidenavL: brightness, sidenav: !brightness }"
+        >
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Blog/page/1">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Movies&TV">MoviesDB</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="http://downloads.krishnakantsalkar.gq"
+              target="_blank"
+              >Downloads</a
+            >
+          </li>
+          <li class="nav-item" *ngIf="!checkStatus">
+            <a class="nav-link" routerLink="/Login">Login</a>
+          </li>
+          <li class="nav-item" *ngIf="checkStatus">
+            <a class="clickable nav-link" (click)="logout()"> Logout</a>
+          </li>
+          <li class="nav-item" *ngIf="checkStatus">
+            <a class="nav-link" routerLink="/Profile/{{ loggedInUser }}"
+              >Profile</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/About">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Privacy">Privacy</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Disclaimer">Disclaimer</a>
+          </li>
+
+          <li class="modeLD">
+            <a (click)="mode()"
+              ><i
+                class="fas"
+                [ngClass]="{ 'fa-sun': brightness, 'fa-moon': !brightness }"
+              ></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>

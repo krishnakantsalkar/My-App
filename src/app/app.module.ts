@@ -10,9 +10,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent, Page404Component],
+  declarations: [
+    AppComponent,
+    MainPageComponent,
+    Page404Component,
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

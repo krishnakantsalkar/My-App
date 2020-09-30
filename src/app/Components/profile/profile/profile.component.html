@@ -61,8 +61,12 @@
             </div>
             <div class="card-body">
               <div class="loading" *ngIf="!user">
-                <h4 *ngIf="!brightness" class="loadinganimDark">Loading...</h4>
-                <h4 *ngIf="brightness" class="loadinganimLight">Loading...</h4>
+                <h4 *ngIf="!brightness" class="loadinganimDark">
+                  Loading... <span class="spinner-border"></span>
+                </h4>
+                <h4 *ngIf="brightness" class="loadinganimLight">
+                  Loading... <span class="spinner-border"></span>
+                </h4>
               </div>
 
               <div class="data" *ngIf="user">

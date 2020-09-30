@@ -608,12 +608,13 @@
                         </h6>
                         <h5
                           *ngIf="data"
+                          class="card-subtitle text-muted"
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)',
                             'font-size': grid ? '16px' : '20px'
                           }"
                         >
-                          {{ d.postDate }}
+                          <i class="fas fa-clock"></i> {{ d.postDate }}
                         </h5>
                       </h2>
                       <markdown

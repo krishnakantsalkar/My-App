@@ -10,60 +10,8 @@
     <button (click)="topFunction()" id="myBtn" title="Go to top">
       <i class="fas fa-angle-up" aria-hidden="true"></i>
     </button>
-    <!-- <a class="togglemode" (click)="mode()"><i class="fas fa-adjust"></i></a> -->
-    <div
-      class="top-panel"
-      id="top-panel"
-      [ngStyle]="{
-        'background-color': brightness
-          ? 'rgb(223, 223, 223)'
-          : ' rgb(41, 42, 45)'
-      }"
-    >
-      <div class="container myname">
-        <div class="row">
-          <div class="col-sm-6 nametag">
-            <h3
-              class="n1"
-              id="top-panel-nametag"
-              *ngIf="!brightness"
-              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-            >
-              > krishnakantsalkar@prototype:~<span class="one">$</span>
-            </h3>
-            <h3
-              class="n2"
-              id="top-panel-nametag"
-              *ngIf="brightness"
-              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-            >
-              > krishnakantsalkar@prototype:~<span class="two">$</span>
-            </h3>
-          </div>
-          <div class="col-sm-6 links" id="links">
-            <a
-              routerLink="/Home"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-            >
-              Home</a
-            >
 
-            <a
-              routerLink="/About"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-              >About</a
-            >
-            <a
-              href="http://downloads.krishnakantsalkar.gq/"
-              target="_blank"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-              >Downloads</a
-            >
-          </div>
-        </div>
-      </div>
-      <div></div>
-    </div>
+    <!-- background color -->
     <div
       class="content"
       [ngStyle]="{

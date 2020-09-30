@@ -9,7 +9,7 @@ nav {
   color: #818181;
   padding: 10px;
   margin: auto 5px;
-  font-size: 20px;
+  font-size: 17px;
 }
 /* dark mode hover */
 .sidenav a:hover {
@@ -29,7 +29,7 @@ nav {
 }
 
 #navbarNav {
-  margin-left: 25%;
+  margin-left: 22%;
 }
 
 div.nametag {

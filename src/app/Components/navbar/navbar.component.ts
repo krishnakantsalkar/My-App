@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
         document.body.scrollTop > 50 ||
         document.documentElement.scrollTop > 50
       ) {
-        document.getElementById('top-panel').style.padding = '13px 10px 13px';
+        document.getElementById('top-panel').style.padding = '5px 10px 5px';
         document.getElementById('top-panel').style.transitionDuration = '0.2s';
         document.getElementById('top-panel').style.transitionTimingFunction =
           'ease-in';
@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit {
         (mediaQuery.matches && document.documentElement.scrollTop > 50)
       ) {
         if (document.getElementById('top-panel')) {
-          document.getElementById('top-panel').style.padding = '15px 10px 15px';
+          document.getElementById('top-panel').style.padding = '12px 10px 12px';
         }
       } else if (
         (mediaQuery.matches && document.body.scrollTop < 50) ||

@@ -10,6 +10,7 @@ nav {
   padding: 10px;
   margin: auto 5px;
   font-size: 17px;
+  font-family: "Lucida Sans Unicode";
 }
 /* dark mode hover */
 .sidenav a:hover {
@@ -29,7 +30,7 @@ nav {
 }
 
 #navbarNav {
-  margin-left: 22%;
+  margin-left: 20.5%;
 }
 
 div.nametag {
@@ -43,6 +44,11 @@ div.nametag h4 {
   color: gray;
   cursor: pointer;
   transition: 0.2s ease-in;
+  /* font-family: "Lucida Sans Unicode"; */ /*to use later*/
+  /* font-family: "Franklin Gothic Medium"; */ /*to use later*/
+  font-family: "Bahnschrift SemiBold";
+  text-shadow: 0 0.5px 1px rgb(20, 20, 20);
+  padding-top: 5px;
 }
 .n1:hover {
   opacity: 0.7;

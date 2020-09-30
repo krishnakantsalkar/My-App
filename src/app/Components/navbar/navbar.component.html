@@ -17,19 +17,17 @@
       }"
     >
       <div class="nametag">
-        <a routerLink="/Home">
+        <a routerLink="/Home" title="Home">
           <h4
             class="n1"
             id="top-panel-nametag"
             *ngIf="!brightness"
             [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
           >
-            > krishnakantsalkar@prototype:~<span
-              class="one"
+            > krishnakantsalkar<span
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-            >
-              $
-            </span>
+              >@</span
+            >prototype:~<span class="one">$ </span>
           </h4>
           <h4
             class="n2"
@@ -37,7 +35,10 @@
             *ngIf="brightness"
             [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
           >
-            > krishnakantsalkar@prototype:~<span class="two"> $ </span>
+            > krishnakantsalkar<span
+              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+              >@</span
+            >prototype:~<span class="two">$ </span>
           </h4>
         </a>
       </div>

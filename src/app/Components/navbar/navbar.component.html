@@ -92,14 +92,39 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/About">About</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/Privacy">Privacy</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" routerLink="/Disclaimer">Disclaimer</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Legal
+            </a>
+            <div
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(223, 223, 223)'
+                  : ' rgb(60, 60, 61)',
+                color: brightness ? 'black' : 'rgb(129,129,129)'
+              }"
+            >
+              <a class="dropdown-item" routerLink="/Privacy">Privacy Policy</a>
+              <a class="dropdown-item" routerLink="/Disclaimer">Disclaimer</a>
+            </div>
           </li>
-
           <li class="modeLD">
             <a (click)="mode()"
               ><i

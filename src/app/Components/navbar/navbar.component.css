@@ -30,7 +30,7 @@ nav {
 }
 
 #navbarNav {
-  margin-left: 20.5%;
+  margin-left: 27%;
 }
 
 div.nametag {
@@ -96,6 +96,9 @@ span.two {
     color: red;
     text-shadow: 0px 0px 15px rgb(243, 50, 82);
   }
+}
+.dropdown-menu {
+  padding: 12px;
 }
 
 @media only screen and (max-width: 600px) {

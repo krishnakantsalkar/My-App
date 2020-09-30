@@ -12,60 +12,6 @@
       <i class="fas fa-angle-up" aria-hidden="true"></i>
     </button>
 
-    <!-- top navbar panel -->
-    <div
-      class="top-panel"
-      id="top-panel"
-      [ngStyle]="{
-        'background-color': brightness
-          ? 'rgb(223, 223, 223)'
-          : ' rgb(41, 42, 45)'
-      }"
-    >
-      <!-- name container -->
-      <div class="container myname">
-        <div class="row">
-          <div class="col-sm-6 nametag">
-            <h3
-              class="n1"
-              id="top-panel-nametag"
-              *ngIf="!brightness"
-              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-            >
-              > krishnakantsalkar@prototype:~<span class="one">$</span>
-            </h3>
-            <h3
-              class="n2"
-              id="top-panel-nametag"
-              *ngIf="brightness"
-              [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-            >
-              > krishnakantsalkar@prototype:~<span class="two">$</span>
-            </h3>
-          </div>
-          <div class="col-sm-6 links" id="links">
-            <a
-              routerLink="/Home"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-            >
-              Home</a
-            >
-            <a
-              routerLink="/Blog/page/1"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-              >Blog</a
-            >
-            <a
-              href="http://downloads.krishnakantsalkar.gq/"
-              target="_blank"
-              [ngClass]="{ aLight: brightness, aDark: !brightness }"
-              >Downloads</a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Main page html content -->
 
     <!-- first content -->

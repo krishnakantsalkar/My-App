@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { DisqusModule, DISQUS_SHORTNAME } from 'ngx-disqus';
 
 @NgModule({
   declarations: [BlogpostsComponent],
@@ -29,6 +30,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
         },
       },
     }),
+    DisqusModule,
   ],
   providers: [CookieService],
 })

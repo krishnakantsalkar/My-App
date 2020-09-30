@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { DISQUS_SHORTNAME } from 'ngx-disqus';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,12 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     ReactiveFormsModule,
     NgxCaptchaModule,
   ],
-  providers: [userloginservices, CookieService],
+  providers: [
+    userloginservices,
+    CookieService,
+    // disqus comments
+    { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

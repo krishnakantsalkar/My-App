@@ -36,6 +36,7 @@ export class BlogpostsComponent implements OnInit {
   public nextPostData;
   public prevPostData;
   public markdown;
+  public pageId = '/Blog/:postNumber/:postTitle/:id';
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,

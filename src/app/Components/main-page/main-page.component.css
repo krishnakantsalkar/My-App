@@ -22,7 +22,7 @@ div.content {
 
 div.imagesection {
   text-align: center;
-  padding-top: 185px;
+  padding-top: 200px;
   background-color: rgb(41, 42, 45);
 }
 
@@ -33,7 +33,7 @@ div.imagesection img {
 
 @media only screen and (max-width: 600px) {
   div.imagesection {
-    padding-top: 150px;
+    padding-top: 200px;
   }
 
   div.imagesection img {

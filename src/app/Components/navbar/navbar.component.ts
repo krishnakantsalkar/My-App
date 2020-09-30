@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
       // method to show some nav tab only if user logged in
     });
     // animate navbar on scroll
+
     let mediaQ = window.matchMedia('(max-width: 600px)');
 
     window.onscroll = function () {
@@ -38,17 +39,12 @@ export class NavbarComponent implements OnInit {
         document.body.scrollTop > 50 ||
         document.documentElement.scrollTop > 50
       ) {
-        if (document.getElementById('top-panel')) {
-          document.getElementById('top-panel').style.padding = '13px 10px 13px';
-          document.getElementById('top-panel').style.transitionDuration =
-            '0.2s';
-          document.getElementById('top-panel').style.transitionTimingFunction =
-            'ease-in';
-        }
+        document.getElementById('top-panel').style.padding = '13px 10px 13px';
+        document.getElementById('top-panel').style.transitionDuration = '0.2s';
+        document.getElementById('top-panel').style.transitionTimingFunction =
+          'ease-in';
       } else {
-        if (document.getElementById('top-panel')) {
-          document.getElementById('top-panel').style.padding = '20px 10px 20px';
-        }
+        document.getElementById('top-panel').style.padding = '20px 10px 20px';
       }
     }
 
@@ -69,6 +65,15 @@ export class NavbarComponent implements OnInit {
         }
       }
     }
+
+    // go to top btn show/hide
+    $(window).on('scroll', () => {
+      if ($(window).scrollTop() > 50) {
+        $('#myBtn').css('bottom', '15px');
+      } else {
+        $('#myBtn').css('bottom', '-50px');
+      }
+    });
   }
 
   // set global Light/Dark mode

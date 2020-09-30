@@ -130,6 +130,12 @@ export class MainPageComponent implements OnInit {
     $('.modeLD a').on('click', () => {
       this.ngOnInit();
     });
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'all');
+      $('.modeLD a').css('opacity', 1);
+    });
   }
 
   // set global Light/Dark mode

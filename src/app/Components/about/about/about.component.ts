@@ -142,6 +142,10 @@ export class AboutComponent implements OnInit {
         }
       }
     }
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
   // brightness mode
   mode() {

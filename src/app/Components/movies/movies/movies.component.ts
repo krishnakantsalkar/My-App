@@ -105,6 +105,12 @@ export class MoviesComponent implements OnInit {
     $(document).ready(() => {
       $('#genreButtons').hide();
     });
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   // dark/light mode method

@@ -66,6 +66,12 @@ export class MovieDetailsComponent implements OnInit {
           this.movieCredits = credits;
         });
     });
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   // brightness mode

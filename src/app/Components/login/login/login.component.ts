@@ -121,6 +121,12 @@ export class LoginComponent implements OnInit {
         this.response = error.error.message;
       }
     );
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   logintoHome() {

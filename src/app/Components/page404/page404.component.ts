@@ -12,6 +12,12 @@ export class Page404Component implements OnInit {
   ngOnInit(): void {
     // call functions
     this.mode();
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   // dark/light mode

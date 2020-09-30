@@ -38,6 +38,12 @@ export class ProfileComponent implements OnInit {
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   selection(event) {

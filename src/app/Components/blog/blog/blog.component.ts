@@ -106,6 +106,11 @@ export class BlogComponent implements OnInit {
         autoStart: true,
       },
     });
+
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   // light & dark mode

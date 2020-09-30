@@ -96,6 +96,12 @@ export class BlogpostsComponent implements OnInit {
       postLink: [''],
       edited: ['true'], // send a default edited = true on every API call (since its edited)!
     });
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   //sanitize url method

@@ -12,6 +12,12 @@ export class DisclaimerComponent implements OnInit {
   ngOnInit(): void {
     // method calls
     this.mode();
+
+    // disable brightness toggle
+    $(document).ready(() => {
+      $('.modeLD a').css('pointer-events', 'none');
+      $('.modeLD a').css('opacity', 0.4);
+    });
   }
 
   // dark/light mode method

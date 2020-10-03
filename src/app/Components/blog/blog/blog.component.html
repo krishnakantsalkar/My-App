@@ -352,6 +352,13 @@
                 style="margin-right: 15px"
               >
                 upload
+                <span
+                  id="uploadSpinner"
+                  class="spinner-border spinner-border-sm"
+                ></span>
+                <span id="uploadCheck">
+                  <i class="fas fa-check-circle"></i
+                ></span>
               </button>
               <button
                 type="reset"
@@ -362,6 +369,12 @@
               </button>
               <br />
               <br />
+              <div class="alert alert-warning" style="display: inline-block">
+                <p>
+                  *upload image first, it won't be uploaded during post
+                  submission!
+                </p>
+              </div>
               <form
                 [formGroup]="newPost"
                 (ngSubmit)="
@@ -487,6 +500,10 @@
                 (click)="submitAll()"
               >
                 Submit
+                <span
+                  id="uploadSpinner2"
+                  class="spinner-border spinner-border-sm"
+                ></span>
               </button>
             </div>
           </div>

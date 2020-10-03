@@ -391,6 +391,15 @@ div.sharingBtns .tgShare:hover a {
   padding-left: 20px;
   padding-right: 40px;
 }
+#uploadSpinner {
+  display: none;
+}
+#uploadSpinner2 {
+  display: none;
+}
+#uploadCheck {
+  display: none;
+}
 
 @media only screen and (max-width: 600px) {
   div.motto h5 {

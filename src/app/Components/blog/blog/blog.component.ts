@@ -195,6 +195,8 @@ export class BlogComponent implements OnInit {
       elemnt.style.zIndex = '3';
       return;
     }
+    let d = document;
+    d.getElementById('uploadSpinner2').style.display = 'inline-block';
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         this.logResponse = item.result;
@@ -220,10 +222,14 @@ export class BlogComponent implements OnInit {
   // upload image method
   SubmitFile() {
     const formData = new FormData();
+    let d = document;
+    d.getElementById('uploadSpinner').style.display = 'inline-block';
     formData.append('postImage', this.currentBlogImg);
     this.blogservice.uploadImg(formData).subscribe((item) => {
       this.storeBlogImg = item;
       alert(this.storeBlogImg.message);
+      d.getElementById('uploadSpinner').style.display = 'none';
+      d.getElementById('uploadCheck').style.display = 'inline-block';
       this.newPost.patchValue({
         postImage: this.storeBlogImg.result['postImage'],
       });

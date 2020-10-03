@@ -378,6 +378,7 @@
                       placeholder="#"
                       min="2"
                       onKeyPress="if(this.value.length==10) return false;"
+                      readonly
                     />
                   </div>
                   <div class="form-row">
@@ -423,6 +424,16 @@
                       type="text"
                       formControlName="postLink4"
                       placeholder="Link"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <label>Author</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="postAuthor"
+                      placeholder=""
+                      readonly
                     />
                   </div>
                 </div>
@@ -480,6 +491,7 @@
             </div>
           </div>
         </div>
+        <br />
 
         <!-- Blog data -->
         <div class="blogdata container" *ngIf="data">

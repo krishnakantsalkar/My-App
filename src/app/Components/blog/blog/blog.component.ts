@@ -30,11 +30,12 @@ export class BlogComponent implements OnInit {
   public currentBlogImg;
   public storeBlogImg;
   public pageNo;
-  public datacount;
+  public datacount: number;
   public searchResult;
   public logResponse;
   public errResponse;
   public blogURL;
+  public postNumVal;
 
   // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
@@ -75,7 +76,7 @@ export class BlogComponent implements OnInit {
       postAuthor: [''],
     });
 
-    // patch value for postAuthor
+    // set value for postAuthor
     let adminUser: any = JSON.parse(localStorage.getItem('user'));
     if (adminUser) {
       let adminName = `${adminUser.name} ${adminUser.surname}`;
@@ -130,6 +131,8 @@ export class BlogComponent implements OnInit {
     this.blogservice.getBlogsP(pg).subscribe((item) => {
       this.data = item.dataSize;
       this.datacount = item.dataCount;
+      this.postNumVal = this.datacount;
+      this.setPostNum();
       this.router.navigateByUrl(`/Blog/page/${pg}`).then(() => {
         var elmnt = document.getElementById('scrolldata');
         if (elmnt) {
@@ -138,6 +141,11 @@ export class BlogComponent implements OnInit {
       });
     });
     this.pageNo = pg;
+  }
+
+  // set post Number dynamically
+  setPostNum() {
+    this.newPost.patchValue({ postNumber: this.datacount + 1 });
   }
 
   // check if admin present

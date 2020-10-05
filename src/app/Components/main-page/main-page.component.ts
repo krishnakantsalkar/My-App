@@ -138,13 +138,7 @@ export class MainPageComponent implements OnInit {
     });
 
     // website uses cookies check
-    checkWebsiteUsesDiag();
-    async function checkWebsiteUsesDiag() {
-      let temp = localStorage.getItem('websiteUsesDiag');
-      if (!temp) {
-        document.getElementById('websiteUsesDialog').style.display = 'block';
-      }
-    }
+    this.checkWebsiteUsesDiag();
   }
 
   // set global Light/Dark mode
@@ -232,7 +226,7 @@ export class MainPageComponent implements OnInit {
   // adblock detection
   detected(isDetected: boolean) {
     // console.log(`Adblock Detected:  ${isDetected}`);
-    let adblockPreference = localStorage.getItem('adblockPref');
+    let adblockPreference = this.cookies.get('adblockPref');
     if (!adblockPreference && isDetected === true) {
       document.getElementById('adblockOverlays').style.display = 'block';
     }
@@ -245,13 +239,21 @@ export class MainPageComponent implements OnInit {
 
   // continue without adblock btn, save pref
   continueWithoutAdblockBtn() {
-    localStorage.setItem('adblockPref', 'disabled');
+    this.cookies.set('adblockPref', 'disabled', 5);
     location.reload();
   }
 
   // website uses cookies dialog
   websiteUsesDiag() {
     document.getElementById('websiteUsesDialog').style.display = 'none';
-    localStorage.setItem('websiteUsesDiag', 'done');
+
+    this.cookies.set('websiteUsesDiag', 'done', 5);
+  }
+
+  async checkWebsiteUsesDiag() {
+    let temp = this.cookies.get('websiteUsesDiag');
+    if (!temp) {
+      document.getElementById('websiteUsesDialog').style.display = 'block';
+    }
   }
 }

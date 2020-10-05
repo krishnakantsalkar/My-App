@@ -291,7 +291,7 @@ div.adblockOverlays {
 }
 div.adblockOverlays .card {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.7s ease-in-out;
@@ -384,6 +384,7 @@ div.websiteUsesDialog .fa-cookie-bite {
   div.adblockOverlays .card {
     display: block;
     width: 90%;
+    top: 35%;
   }
   div.websiteUsesDialog h3 {
     font-size: 18px;

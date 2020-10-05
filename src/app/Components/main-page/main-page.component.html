@@ -59,6 +59,35 @@
       </div>
     </div>
 
+    <!-- website uses cookies dialog -->
+    <div class="websiteUsesDialog" id="websiteUsesDialog">
+      <div
+        class="card"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(200, 200, 200)'
+            : ' rgb(61, 62, 65)',
+          color: brightness ? 'black' : 'white'
+        }"
+      >
+        <div class="card-body">
+          <i class="fas fa-cookie-bite"></i>
+          <h3>This website uses Cookies to enhance user experience,</h3>
+          <p>
+            By Using this website you agree to your data being used for
+            delivering optimal user experience. You can read how user data is
+            handled in our
+            <a routerLink="/Privacy">privacy policy</a>
+            <span style="float: right">
+              <button class="btn btn-primary" (click)="websiteUsesDiag()">
+                Got it
+              </button></span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Preload page component -->
     <div class="preloader" id="preloader">
       <!-- preload page card fixed and covers entire page using css -->

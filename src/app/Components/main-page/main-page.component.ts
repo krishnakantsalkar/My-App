@@ -136,6 +136,15 @@ export class MainPageComponent implements OnInit {
       $('.modeLD a').css('pointer-events', 'all');
       $('.modeLD a').css('opacity', 1);
     });
+
+    // website uses cookies check
+    checkWebsiteUsesDiag();
+    async function checkWebsiteUsesDiag() {
+      let temp = localStorage.getItem('websiteUsesDiag');
+      if (!temp) {
+        document.getElementById('websiteUsesDialog').style.display = 'block';
+      }
+    }
   }
 
   // set global Light/Dark mode
@@ -238,5 +247,11 @@ export class MainPageComponent implements OnInit {
   continueWithoutAdblockBtn() {
     localStorage.setItem('adblockPref', 'disabled');
     location.reload();
+  }
+
+  // website uses cookies dialog
+  websiteUsesDiag() {
+    document.getElementById('websiteUsesDialog').style.display = 'none';
+    localStorage.setItem('websiteUsesDiag', 'done');
   }
 }

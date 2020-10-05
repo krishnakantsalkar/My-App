@@ -307,6 +307,24 @@ div.adblockOverlays .card-body button {
   margin: 10px;
 }
 
+div.websiteUsesDialog {
+  position: fixed;
+  height: 200px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: -17px;
+  z-index: 6;
+  display: none;
+}
+
+div.websiteUsesDialog .fa-cookie-bite {
+  float: left;
+  font-size: 400%;
+  margin-right: 10px;
+  line-height: 80%;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;
@@ -366,5 +384,15 @@ div.adblockOverlays .card-body button {
   div.adblockOverlays .card {
     display: block;
     width: 90%;
+  }
+  div.websiteUsesDialog h3 {
+    font-size: 18px;
+  }
+  div.websiteUsesDialog .fa-cookie-bite {
+    font-size: 30px;
+  }
+  div.websiteUsesDialog {
+    bottom: 30px;
+    text-align: center;
   }
 }

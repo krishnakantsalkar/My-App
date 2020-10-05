@@ -12,6 +12,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DISQUS_SHORTNAME } from 'ngx-disqus';
+import { NgAdblockDetectModule } from 'ng-adblock-detect';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DISQUS_SHORTNAME } from 'ngx-disqus';
     FormsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
+    NgAdblockDetectModule,
   ],
   providers: [
     userloginservices,

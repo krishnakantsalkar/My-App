@@ -23,6 +23,9 @@ export class MainPageComponent implements OnInit {
   public logResponse;
   public errResponse;
   public userName;
+  public newsLetterForm: FormGroup;
+  public newsLetterSuccess;
+  public newsLetterError;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -50,6 +53,11 @@ export class MainPageComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.min(5)]],
+    });
+
+    // newsletter form
+    this.newsLetterForm = this.fb.group({
+      userEmail: ['', [Validators.required, Validators.email]],
     });
 
     // show only preloader only first time the session loads
@@ -250,10 +258,26 @@ export class MainPageComponent implements OnInit {
     this.cookies.set('websiteUsesDiag', 'done', 5);
   }
 
+  // check website uses dialog
   async checkWebsiteUsesDiag() {
     let temp = this.cookies.get('websiteUsesDiag');
     if (!temp) {
       document.getElementById('websiteUsesDialog').style.display = 'block';
     }
+  }
+
+  //newsLetter Subscribe
+  subscribeNewsLetter(data) {
+    if (!this.newsLetterForm.valid) {
+      return;
+    }
+    this.blogservice.subscribeNewsLetter(data).subscribe(
+      (item) => {
+        this.newsLetterSuccess = item;
+      },
+      (err) => {
+        this.newsLetterError = err.error.message;
+      }
+    );
   }
 }

@@ -354,14 +354,47 @@
                   data-aos-duration="1000"
                 >
                   <h4>
-                    <span><u>The Arsonist~</u> </span>
+                    <span><u>TheArsonist~</u> </span>
                   </h4>
                   <p>It'll Blow you Away!</p>
                   <p>
                     Hey there, Welcome to my blog page, If you what you see,
-                    read... feel free to share it with your friends! Just a
-                    regular noob programmer from Mumbai learning new things
+                    read... feel free to share it with your friends! Subscribe
+                    to my Blog updates!
                   </p>
+
+                  <!-- subscribe to newsletter/updates -->
+                  <div class="alert alert-success" *ngIf="newsLetterSuccess">
+                    <h6>
+                      {{ newsLetterSuccess.message }}
+                    </h6>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="newsLetterError">
+                    <h6>
+                      {{ newsLetterError }}
+                    </h6>
+                  </div>
+
+                  <!-- newsletter form -->
+                  <form
+                    [formGroup]="newsLetterForm"
+                    (ngSubmit)="subscribeNewsLetter(newsLetterForm.value)"
+                  >
+                    <input
+                      type="email"
+                      placeholder="enter Email"
+                      class="form-control"
+                      formControlName="userEmail"
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn-success"
+                      style="margin: 10px auto"
+                      [disabled]="!newsLetterForm.valid"
+                    >
+                      subscribe
+                    </button>
+                  </form>
                 </div>
               </div>
               <div class="col-sm-3">

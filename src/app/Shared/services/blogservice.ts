@@ -34,6 +34,9 @@ export class blogpostservice {
   public postViewApi: string =
     'https://mybackend-1911.herokuapp.com/api/blog/postView/';
 
+  public newsLetterApi: string =
+    'https://mybackend-1911.herokuapp.com/api/subscribe/newsLetterSub/';
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }
@@ -97,5 +100,11 @@ export class blogpostservice {
         headers: this.header,
       }
     );
+  }
+
+  subscribeNewsLetter(data) {
+    return this.http.post(this.newsLetterApi, JSON.stringify(data), {
+      headers: this.header,
+    });
   }
 }

@@ -219,4 +219,24 @@ export class MainPageComponent implements OnInit {
     elemnt.style.zIndex = '-10';
     location.reload();
   }
+
+  // adblock detection
+  detected(isDetected: boolean) {
+    // console.log(`Adblock Detected:  ${isDetected}`);
+    let adblockPreference = localStorage.getItem('adblockPref');
+    if (!adblockPreference && isDetected === true) {
+      document.getElementById('adblockOverlays').style.display = 'block';
+    }
+  }
+
+  // yes i've disabled adblock button
+  disableAdblockBtn() {
+    location.reload();
+  }
+
+  // continue without adblock btn, save pref
+  continueWithoutAdblockBtn() {
+    localStorage.setItem('adblockPref', 'disabled');
+    location.reload();
+  }
 }

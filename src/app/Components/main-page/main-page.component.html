@@ -7,6 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <!-- adblock overlay div -->
+    <div class="adblockOverlays" id="adblockOverlays">
+      <div
+        class="card"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(223, 223, 223)'
+            : ' rgb(41, 42, 45)',
+          color: brightness ? 'black' : 'white'
+        }"
+      >
+        <button
+          class="btn crossBtn"
+          style="float: right"
+          [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="card-body" style="text-align: center">
+          <h3>
+            Uh-oh, it looks like you're using an ad-blocker!
+            <span style="font-family: 'Lucida Sans', 'monospace'">
+              ¯\_(ツ)_/¯</span
+            >
+          </h3>
+          <br />
+          <p>
+            Advertisements <strong> don't</strong> fund our website. And we dont
+            show ads, hence this was added just for fun! And if we did enable
+            ads in future, we promise clean and non-instrusive ads. Please
+            consider temporarily disabling your adblocker or continue without!.
+            Thank you.
+            <br />
+            <br />
+            <em> p.s. the cross button does nothing :P!</em>
+          </p>
+          <button
+            class="btn btn-danger adblockDisableBtn"
+            (click)="disableAdblockBtn()"
+          >
+            Yes I've disabled adblock, lemme in!
+          </button>
+          <button
+            class="btn btn-success adblockDisableBtn"
+            (click)="continueWithoutAdblockBtn()"
+          >
+            Continue without adblock?
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Preload page component -->
     <div class="preloader" id="preloader">
       <!-- preload page card fixed and covers entire page using css -->
@@ -243,6 +295,11 @@
           </div>
         </div>
       </div>
+
+      <!-- adblock detector -->
+      <ng-adblock-detect
+        (adblockDetected)="detected($event)"
+      ></ng-adblock-detect>
 
       <!-- Footer top area -->
       <div

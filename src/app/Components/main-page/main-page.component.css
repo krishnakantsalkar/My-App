@@ -7,6 +7,28 @@
   animation: cursor1 1s infinite;
 }
 
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+    text-shadow: 0px 0px 15px;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+    text-shadow: 0px 0px 15px rgb(243, 50, 82);
+  }
+}
+
 div.content {
   margin: 0;
   position: absolute;

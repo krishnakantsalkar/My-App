@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent implements OnInit {
   public checkStatus;
   constructor(
     private cookies: CookieService,
-    private logonServices: userloginservices
+    private logonServices: userloginservices,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -109,7 +111,7 @@ export class NavbarComponent implements OnInit {
     this.cookies.delete('credentials');
     localStorage.removeItem('user');
     localStorage.removeItem('id');
-    location.reload();
+    this.router.navigateByUrl('Home').then(() => location.reload());
   }
 
   // get id for profile page navigation

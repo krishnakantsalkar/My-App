@@ -155,7 +155,36 @@
                 ><i class="fas fa-pencil-alt"></i> edited.</span
               >
             </h6>
+            <div class="row">
+              <h6
+                class="col-6 col-sm-6"
+                *ngIf="data"
+                style="float: left"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+              >
+                <i class="fas fa-clock"></i> {{ data.postDate }}
+              </h6>
+              <h6
+                class="col-6 col-sm-6"
+                *ngIf="data && data.postAuthor"
+                style="text-align: right"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+              >
+                <i class="fas fa-user-alt"></i>
+                <span>
+                  <a
+                    href="https://krishnakantsalkar.gq/About#developer"
+                    target="_blank"
+                    [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                    style="text-decoration: none"
+                  >
+                    {{ data.postAuthor }}</a
+                  ></span
+                >
+              </h6>
+            </div>
           </div>
+          <!-- <br /> -->
           <hr
             [ngStyle]="{
               'background-color': brightness ? 'black' : 'rgb(160,160,160)'
@@ -231,22 +260,6 @@
                   <br />
                   <br />
                   <br />
-                  <h6
-                    [ngStyle]="{
-                      color: brightness ? 'black' : 'rgb(129,129,129)'
-                    }"
-                  >
-                    <i class="fas fa-clock"></i> {{ data.postDate }} &nbsp;
-                    <span style="float: right" *ngIf="data.postAuthor"
-                      ><i class="fas fa-user-lock"></i> By:
-                      <span
-                        [ngStyle]="{
-                          color: brightness ? 'red' : 'violet'
-                        }"
-                        >{{ data.postAuthor }}</span
-                      >
-                    </span>
-                  </h6>
                 </div>
               </div>
               <br />
@@ -300,7 +313,6 @@
                             color: brightness ? 'black' : 'rgb(129,129,129)'
                           }"
                         >
-                          <i class="fas fa-arrow-right"></i> Next,
                           <a
                             [ngStyle]="{
                               color: brightness ? 'red' : 'violet'
@@ -310,6 +322,7 @@
                             }}/{{ nextPostData._id }}"
                             >{{ nextPostData.postTitle }}</a
                           >
+                          Next <i class="fas fa-arrow-right"></i>
                         </h5>
                       </div>
                     </div>

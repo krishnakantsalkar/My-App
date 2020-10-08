@@ -20,6 +20,9 @@ export class FooterComponent implements OnInit {
   public sendFeedback: FormGroup;
   public logResponse;
   public errResponse;
+  public newsLetterForm: FormGroup;
+  public newsLetterSuccess;
+  public newsLetterError;
 
   constructor(
     private loginservice: userloginservices,
@@ -37,10 +40,16 @@ export class FooterComponent implements OnInit {
     });
     this.recentUpdates();
 
+    // feedback form
     this.sendFeedback = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.min(5)]],
+    });
+
+    // newsletter form
+    this.newsLetterForm = this.fb.group({
+      userEmail: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -81,5 +90,20 @@ export class FooterComponent implements OnInit {
 
     elemnt.style.zIndex = '-10';
     location.reload();
+  }
+
+  //newsLetter Subscribe
+  subscribeNewsLetter(data) {
+    if (!this.newsLetterForm.valid) {
+      return;
+    }
+    this.blogservice.subscribeNewsLetter(data).subscribe(
+      (item) => {
+        this.newsLetterSuccess = item;
+      },
+      (err) => {
+        this.newsLetterError = err.error.message;
+      }
+    );
   }
 }

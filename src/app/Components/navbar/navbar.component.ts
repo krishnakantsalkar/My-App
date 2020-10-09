@@ -108,10 +108,7 @@ export class NavbarComponent implements OnInit {
 
   // logout method
   logout() {
-    this.cookies.delete('credentials');
-    localStorage.removeItem('user');
-    localStorage.removeItem('id');
-    this.router.navigateByUrl('Home').then(() => location.reload());
+    this.logonServices.Logout();
   }
 
   // get id for profile page navigation

@@ -84,8 +84,8 @@ export class LoginComponent implements OnInit {
       this.useragent = { useragent: window.navigator.userAgent };
       this.newLogin.patchValue({
         userLogin: {
-          userip: JSON.stringify(this.ipdata),
-          useragent: JSON.stringify(this.useragent),
+          userip: this.ipdata,
+          useragent: this.useragent,
         },
       });
     });
@@ -107,9 +107,9 @@ export class LoginComponent implements OnInit {
     }
     this.loginservice.Login(data).subscribe(
       (item) => {
-        if (item && item.token === true) {
+        if (item && item.token) {
           // localStorage.setItem('credentials', JSON.stringify(item.token));
-          this.cookies.set('credentials', JSON.stringify(item.token), 1);
+          this.cookies.set('credentials', JSON.stringify(item.token), 5);
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
           this.loginresponse = item;
@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
   }
 
   logintoHome() {
-    this.router.navigate(['Home']).then(() => location.reload());
+    this.router.navigateByUrl('/Home');
   }
 
   Forgot(data: Iforgot) {

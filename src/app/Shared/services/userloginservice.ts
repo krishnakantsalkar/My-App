@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from '../model/forgotPass';
@@ -33,22 +34,30 @@ export class userloginservices {
   ) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
     //  behavior subject for login/logout
-    this.loggedIn = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('user'))
-    );
+    this.loggedIn = new BehaviorSubject<any>(this.cookies.get('credentials'));
     this.currentUsers = this.loggedIn.asObservable();
   }
 
   Login(data: IuserLogin): Observable<IuserLogin> {
-    return this.http.post<IuserLogin>(this.loginAPI, JSON.stringify(data), {
-      headers: this.header,
-    });
+    return this.http
+      .post<IuserLogin>(this.loginAPI, JSON.stringify(data), {
+        headers: this.header,
+      })
+      .pipe(
+        map((item) => {
+          this.loggedIn.next(item);
+          return item;
+        })
+      );
   }
   Logout() {
     // localStorage.removeItem('credentials');
     this.cookies.delete('credentials');
     localStorage.removeItem('id');
+    localStorage.removeItem('user');
     this.router.navigateByUrl('/Home');
+    this.loggedIn.next(null);
+    location.reload();
   }
 
   getUsersById(id) {

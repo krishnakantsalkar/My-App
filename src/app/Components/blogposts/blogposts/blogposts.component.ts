@@ -67,6 +67,12 @@ export class BlogpostsComponent implements OnInit {
         this.data = items;
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
+
+        //make url links null on activated route
+        this.url = null;
+        this.url2 = null;
+        this.url3 = null;
+        this.url4 = null;
         // save reference urls
         if (this.data.postLink.length > 3) {
           this.url = this.data.postLink;

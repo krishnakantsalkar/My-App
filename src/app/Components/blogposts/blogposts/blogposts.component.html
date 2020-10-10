@@ -225,7 +225,7 @@
                       Reference Links:
                     </h6>
                     <a
-                      *ngIf="url"
+                      *ngIf="url && url.length > 0"
                       class="float-left btn btn-dark"
                       [href]="getLink(url)"
                       target="_blank"
@@ -233,7 +233,7 @@
                       Link &nbsp; : {{ url }}
                     </a>
                     <a
-                      *ngIf="url2"
+                      *ngIf="url2 && url2.length > 0"
                       class="url2 float-left btn btn-dark"
                       [href]="getLink(url2)"
                       target="_blank"
@@ -241,7 +241,7 @@
                       Link &nbsp; : {{ url2 }}
                     </a>
                     <a
-                      *ngIf="url3"
+                      *ngIf="url3 && url3.length > 0"
                       class="url3 float-left btn btn-dark"
                       [href]="getLink(url3)"
                       target="_blank"
@@ -249,7 +249,7 @@
                       Link &nbsp; : {{ url3 }}
                     </a>
                     <a
-                      *ngIf="url4"
+                      *ngIf="url4 && url4.length > 0"
                       class="url4 float-left btn btn-dark"
                       [href]="getLink(url4)"
                       target="_blank"

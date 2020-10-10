@@ -330,7 +330,7 @@
               <div *ngIf="currentBlogImgP">
                 <img
                   [src]="currentBlogImgP"
-                  style="height: 200px; width: auto"
+                  style="height: 200px; width: auto; max-width: 100%"
                 />
               </div>
 
@@ -599,7 +599,11 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)',
                           'font-size': grid ? '23px' : '30px'
                         }"
-                        style="padding-top: 20px"
+                        style="
+                          padding-top: 20px;
+                          padding-bottom: 10px;
+                          border-bottom: 1px dashed;
+                        "
                       >
                         <a
                           routerLink="/Blog/{{ d.postNumber }}/{{
@@ -635,36 +639,47 @@
                             >{{ d.userViews.length }} <i class="fas fa-eye"></i
                           ></span>
                         </h6>
-                        <h5
+                        <h6
                           *ngIf="data"
                           class="card-subtitle text-muted"
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)',
-                            'font-size': grid ? '16px' : '20px'
+                            'font-size': grid ? '14px' : '16px'
                           }"
                         >
                           <i class="fas fa-clock"></i> {{ d.postDate }}
-                        </h5>
+                        </h6>
                       </h2>
-                      <markdown
+                      <div
                         *ngIf="data"
+                        class="card"
                         [ngStyle]="{
+                          'background-color': brightness
+                            ? 'rgb(245, 245, 245)'
+                            : ' rgb(32, 33, 33)',
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
-                        style="padding-bottom: 30px"
-                        class="variable-binding"
-                        emoji
-                        >{{ d.post | slice: 0:130 }}...
-                        <a
-                          routerLink="/Blog/{{ d.postNumber }}/{{
-                            d.postTitle
-                          }}/{{ d._id }}"
-                          style="text-decoration: none; cursor: pointer"
-                          [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-                        >
-                          Read more</a
-                        ></markdown
+                        style="margin-bottom: 10px"
                       >
+                        <div class="card-body">
+                          <markdown class="variable-binding" emoji>
+                            {{ d.post | slice: 0:130 }}...</markdown
+                          >
+                        </div>
+                        <div class="card-footer">
+                          <a
+                            routerLink="/Blog/{{ d.postNumber }}/{{
+                              d.postTitle
+                            }}/{{ d._id }}"
+                            style="text-decoration: none; cursor: pointer"
+                            [ngStyle]="{
+                              color: brightness ? 'red' : 'violet'
+                            }"
+                          >
+                            Read more</a
+                          >
+                        </div>
+                      </div>
                       <div class="postauthor" style="float: right">
                         <h6
                           *ngIf="d.postAuthor"

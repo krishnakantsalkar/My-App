@@ -566,4 +566,8 @@ div.extras-component a {
     margin-top: 25%;
     width: 100%;
   }
+  div.extras-component h2 {
+    font-size: 60px;
+    margin: 13px;
+  }
 }

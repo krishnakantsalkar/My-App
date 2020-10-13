@@ -93,19 +93,6 @@ export class NavbarComponent implements OnInit {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
-  getspecials() {
-    // let temp = JSON.parse(localStorage.getItem('credentials'));
-    let loggedinUser = this.cookies.get('credentials');
-    if (loggedinUser) {
-      let temp = JSON.parse(this.cookies.get('credentials'));
-      if (temp === true) {
-        this.special = true;
-      } else {
-        this.special = false;
-      }
-    }
-  }
-
   // logout method
   logout() {
     this.logonServices.Logout();

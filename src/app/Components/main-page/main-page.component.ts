@@ -166,7 +166,7 @@ export class MainPageComponent implements OnInit {
     let loggedinUser = this.cookies.get('credentials');
     if (loggedinUser) {
       let temp = JSON.parse(this.cookies.get('credentials'));
-      if (temp === true) {
+      if (temp) {
         this.special = true;
       } else {
         this.special = false;

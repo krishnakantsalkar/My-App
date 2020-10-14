@@ -146,6 +146,14 @@ div.movieDetails {
   color: black;
 }
 
+div.videoFrame iframe {
+  height: 350px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px black;
+}
+
 @media only screen and (max-width: 600px) {
   .movieDetails {
     padding-top: 100px;
@@ -175,5 +183,11 @@ div.movieDetails {
 
   .movieDetails .btn-dark {
     margin-bottom: 5px;
+  }
+
+  div.videoFrame iframe {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
   }
 }

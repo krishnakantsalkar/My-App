@@ -76,4 +76,11 @@ export class MovieServices {
       `${this.movieDbAPI}tv/${id}/season/${seasonNo}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
     );
   }
+
+  //get movie videos by id
+  public getMovieTrailersById(id, listType) {
+    return this.http.get(
+      `${this.movieDbAPI}${listType}/${id}/videos?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
+    );
+  }
 }

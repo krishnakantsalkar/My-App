@@ -213,6 +213,35 @@
                       }"
                     >
                       <div class="card-body">
+                        <!-- movie/tv trailers -->
+                        <div
+                          class="Trailers"
+                          *ngIf="
+                            contentTrailers &&
+                            contentTrailers.results.length >= 1
+                          "
+                        >
+                          <div class="videoFrame">
+                            <h4>Trailers:</h4>
+                            <iframe
+                              *ngIf="trailerUrl"
+                              id="myIframe"
+                              [src]="trailerUrl | safe"
+                            ></iframe>
+                            <iframe
+                              *ngIf="trailerUrl2"
+                              id="myIframe2"
+                              [src]="trailerUrl2 | safe"
+                            ></iframe>
+                            <iframe
+                              *ngIf="trailerUrl3"
+                              id="myIframe3"
+                              [src]="trailerUrl3 | safe"
+                            ></iframe>
+                          </div>
+                          <br />
+                        </div>
+
                         <h5>Cast:</h5>
                         <br />
                         <div class="row">
@@ -240,7 +269,6 @@
                       </div>
                     </div>
                   </div>
-                  <br />
 
                   <!-- movie season/ep list area -->
 

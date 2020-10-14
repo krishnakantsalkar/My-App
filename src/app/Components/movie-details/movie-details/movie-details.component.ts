@@ -19,6 +19,10 @@ export class MovieDetailsComponent implements OnInit {
   public epSwitch: boolean;
   public tvSeasonsTotal;
   public eps;
+  public contentTrailers;
+  public trailerUrl;
+  public trailerUrl2;
+  public trailerUrl3;
 
   constructor(
     private movieService: MovieServices,
@@ -65,6 +69,17 @@ export class MovieDetailsComponent implements OnInit {
         .subscribe((credits) => {
           this.movieCredits = credits;
         });
+
+      // get movie & Tv trailers by ID
+      this.movieService
+        .getMovieTrailersById(id, this.listType)
+        .subscribe((trailers) => {
+          this.trailerUrl = null;
+          this.trailerUrl2 = null;
+          this.trailerUrl3 = null;
+          this.contentTrailers = trailers;
+          this.saveTrailerLinks();
+        });
     });
 
     // disable brightness toggle
@@ -72,6 +87,18 @@ export class MovieDetailsComponent implements OnInit {
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
     });
+  }
+
+  //extract youtube player id from links
+  saveTrailerLinks() {
+    this.trailerUrl = `https://www.youtube-nocookie.com/embed/${this.contentTrailers.results[0].key}`;
+
+    if (this.contentTrailers.results.length > 1) {
+      this.trailerUrl2 = `https://www.youtube-nocookie.com/embed/${this.contentTrailers.results[1].key}`;
+    }
+    if (this.contentTrailers.results.length > 2) {
+      this.trailerUrl3 = `https://www.youtube-nocookie.com/embed/${this.contentTrailers.results[2].key}`;
+    }
   }
 
   // brightness mode

@@ -167,7 +167,8 @@ div.content {
   background-color: rgb(36, 214, 36);
   color: white;
   font-size: 14px;
-  padding: 10px 20px;
+  padding: 10px;
+  display: inline-block;
   margin: 50px 0 10px;
   border-radius: 8px;
   font-weight: bolder;
@@ -225,8 +226,10 @@ div.content {
 }
 
 @media only screen and (max-width: 600px) {
-  .movieData img {
-    height: 200px;
+  .movieData img,
+  .genreData img {
+    height: auto;
+    max-height: 250px;
     width: 100%;
   }
   .movieData h6 {

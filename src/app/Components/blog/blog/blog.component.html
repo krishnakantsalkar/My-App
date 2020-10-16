@@ -709,18 +709,23 @@
                 <div class="card-header">
                   <h5>Recommended posts</h5>
                 </div>
-                <div class="card-body" *ngFor="let d of allData | slice: 0:3">
-                  <h5 *ngIf="d.userViews.length >= 2">
-                    <a
-                      [ngStyle]="{
-                        color: brightness ? 'red' : 'violet'
-                      }"
-                      routerLink="/Blog/{{ d.postNumber }}/{{ d.postTitle }}/{{
-                        d._id
-                      }}"
-                      >{{ d.postTitle }}</a
-                    >
-                  </h5>
+                <div class="card-body">
+                  <div
+                    class="recommendedPosts"
+                    *ngFor="let d of allData | slice: 0:3"
+                  >
+                    <h5 *ngIf="d.userViews.length >= 2">
+                      <a
+                        [ngStyle]="{
+                          color: brightness ? 'red' : 'violet'
+                        }"
+                        routerLink="/Blog/{{ d.postNumber }}/{{
+                          d.postTitle
+                        }}/{{ d._id }}"
+                        >#{{ d.postNumber }}: {{ d.postTitle }}</a
+                      >
+                    </h5>
+                  </div>
                 </div>
               </div>
             </div>
@@ -762,6 +767,7 @@
             </div>
             <br />
             <div
+              *ngIf="data"
               class="card"
               [ngStyle]="{
                 'background-color': brightness
@@ -798,6 +804,7 @@
                 </form>
               </div>
             </div>
+            <br />
           </div>
         </div>
         <div class="pagebtn" *ngIf="data">

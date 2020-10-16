@@ -404,6 +404,10 @@ div.sharingBtns .tgShare:hover a {
   display: none;
 }
 
+.recommendedPosts a {
+  margin: 10px 0;
+}
+
 div.hashtags .card-body span {
   cursor: pointer;
 }

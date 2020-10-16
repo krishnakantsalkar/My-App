@@ -139,9 +139,9 @@ export class BlogComponent implements OnInit {
       this.postNumVal = this.datacount;
       this.setPostNum();
       this.router.navigateByUrl(`/Blog/page/${pg}`).then(() => {
-        var elmnt = document.getElementById('main');
+        var elmnt = document.getElementById('scrolldata');
         if (elmnt) {
-          elmnt.scrollIntoView({ behavior: 'smooth' });
+          elmnt.scrollIntoView();
         }
       });
     });

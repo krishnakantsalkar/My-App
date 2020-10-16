@@ -250,6 +250,12 @@
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1000"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(223, 223, 223)'
+                : ' rgb(35,36,37)',
+              color: brightness ? 'black' : 'white'
+            }"
           >
             <h3 align="center">Search Results</h3>
             <p align="center" *ngIf="searchResult.length == 0">
@@ -265,11 +271,13 @@
                     routerLink="/Blog/{{ result.postNumber }}/{{
                       result.postTitle
                     }}/{{ result._id }}"
+                    [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
                   >
                     {{ result.postNumber }}: {{ result.postTitle }}</a
                   >
                   <br />
                   {{ result.post | slice: 0:90 }}
+
                   <span
                     routerLink="/Blog/{{ result.postNumber }}/{{
                       result.postTitle

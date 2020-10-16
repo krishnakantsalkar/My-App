@@ -404,7 +404,8 @@ div.sharingBtns .tgShare:hover a {
   display: none;
 }
 
-.recommendedPosts a {
+.recommendedPosts a,
+.mostViewedPosts a {
   margin: 10px 0;
 }
 

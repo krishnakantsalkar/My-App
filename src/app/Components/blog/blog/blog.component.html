@@ -710,8 +710,40 @@
                   <h5>Recommended posts</h5>
                 </div>
                 <div class="card-body">
+                  <div class="recommendedPosts" *ngFor="let d of allData">
+                    <h5 *ngIf="d.recommended">
+                      <a
+                        [ngStyle]="{
+                          color: brightness ? 'red' : 'violet'
+                        }"
+                        routerLink="/Blog/{{ d.postNumber }}/{{
+                          d.postTitle
+                        }}/{{ d._id }}"
+                        >#{{ d.postNumber }}: {{ d.postTitle }}</a
+                      >
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div
+              *ngIf="data"
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(223, 223, 223)'
+                  : ' rgb(35, 36, 38)',
+                color: brightness ? 'black' : 'white'
+              }"
+            >
+              <div class="mostViewed">
+                <div class="card-header">
+                  <h5>Most Viewed</h5>
+                </div>
+                <div class="card-body">
                   <div
-                    class="recommendedPosts"
+                    class="mostViewedPosts"
                     *ngFor="let d of allData | slice: 0:3"
                   >
                     <h5 *ngIf="d.userViews.length >= 2">

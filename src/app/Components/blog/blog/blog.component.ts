@@ -38,6 +38,8 @@ export class BlogComponent implements OnInit {
   public blogURL;
   public postNumVal;
 
+  public showSearchBtn: boolean;
+
   // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
@@ -253,50 +255,11 @@ export class BlogComponent implements OnInit {
 
   // show & hide search method
   showsearch() {
-    if (document.getElementById('searchbar')) {
-      var element = document.getElementById('searchbar');
-      var elementico = document.getElementById('searchicon');
-      var elementcancl = document.getElementById('searchcancel');
-      var elementsubmt = document.getElementById('searchsubmit');
-      element.style.zIndex = '0';
-      element.style.width = '100%';
-      element.style.marginTop = '0px';
-
-      elementico.style.zIndex = '0';
-      elementico.style.marginTop = '0px';
-
-      elementcancl.style.zIndex = '0';
-      elementcancl.style.marginTop = '0px';
-      elementcancl.style.background = 'red';
-
-      elementsubmt.style.zIndex = '0';
-      elementsubmt.style.marginTop = '0px';
-      elementsubmt.style.background = 'green';
-    }
-  }
-
-  hidesearch() {
-    if (document.getElementById('searchbar')) {
-      var element = document.getElementById('searchbar');
-      var elementico = document.getElementById('searchicon');
-      var elementcancl = document.getElementById('searchcancel');
-      var elementsubmt = document.getElementById('searchsubmit');
-      element.style.zIndex = '-1';
-      element.style.width = '10%';
-      element.style.marginTop = '-200px';
-
-      elementico.style.zIndex = '-1';
-      elementico.style.marginTop = '-200px';
-
-      elementcancl.style.zIndex = '-1';
-      elementcancl.style.marginTop = '-200px';
-      elementcancl.style.background = 'red';
-
-      elementsubmt.style.zIndex = '-1';
-      elementsubmt.style.marginTop = '-200px';
-      elementsubmt.style.background = 'red';
-      this.searchResult = null;
-      location.reload();
+    this.showSearchBtn = !this.showSearchBtn;
+    if (this.showSearchBtn) {
+      $('#input-container').show(300);
+    } else if (!this.showSearchBtn) {
+      $('#input-container').hide(300);
     }
   }
 

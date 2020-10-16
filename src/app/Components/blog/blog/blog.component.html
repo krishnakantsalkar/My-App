@@ -223,26 +223,25 @@
             title="Search!"
           ></i>
         </h1>
+
+        <!-- search input field -->
         <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)">
-          <div class="input-container">
-            <i class="fas fa-search icon" id="searchicon"></i>
+          <div class="input-container" id="input-container">
             <input
               type="text"
               id="searchbar"
               placeholder=""
               formControlName="post"
-              class="input-field"
+              class="form-control"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(223, 223, 223)'
+                  : ' white',
+                color: brightness ? 'black' : 'white'
+              }"
             />
-            <button class="btn btn-success" id="searchsubmit" type="submit">
-              <i class="fas fa-check-square"></i>
-            </button>
-            <button
-              class="btn btn-danger"
-              id="searchcancel"
-              (click)="hidesearch()"
-            >
-              <i class="fas fa-window-close"></i>
-            </button>
+            <i class="fas fa-search icon"></i>
+            <br />
           </div>
         </form>
         <div class="searchResult" id="searchResult" *ngIf="searchResult">

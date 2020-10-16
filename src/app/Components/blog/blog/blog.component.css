@@ -153,14 +153,12 @@ div.cvrimg {
   padding-top: 120px;
 }
 
-#searchbar {
+/* #searchbar {
   position: relative;
   z-index: -1;
   margin-top: -200px;
   width: 0;
   transition: width 0.4s ease-in-out;
-  border: 1px solid;
-  border-radius: 5px;
 }
 .input-container {
   display: flex;
@@ -180,13 +178,35 @@ div.cvrimg {
   transition: width 0.4s ease-in-out;
 }
 
-.input-field {
-  /* padding: 10px; */
-  outline: none;
-}
 .input-container button {
   z-index: -1;
   margin-top: -200px;
+} */
+
+.input-container {
+  z-index: -10;
+  display: none;
+}
+
+#searchbar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.icon {
+  position: relative;
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  height: 38px;
+  text-align: center;
+  float: right;
+  margin-top: -38px;
+  /* z-index: -1;
+  margin-top: -200px;
+  transition: width 0.4s ease-in-out; */
 }
 
 div.searchResult h3 {

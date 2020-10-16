@@ -305,6 +305,9 @@ export class BlogComponent implements OnInit {
     if (data) {
       this.blogservice.searchBlog(data.post).subscribe((item) => {
         this.searchResult = item.data;
+        document
+          .getElementById('twothousandtwenty')
+          .scrollIntoView({ behavior: 'smooth' });
       });
     }
   }

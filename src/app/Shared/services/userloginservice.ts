@@ -57,7 +57,6 @@ export class userloginservices {
     localStorage.removeItem('user');
     this.router.navigateByUrl('/Home');
     this.loggedIn.next(null);
-    location.reload();
   }
 
   getUsersById(id) {

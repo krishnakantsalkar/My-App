@@ -79,7 +79,6 @@ div.pstimg img {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  object-fit: contain;
 }
 #myBtn {
   position: fixed;
@@ -424,9 +423,6 @@ div.sharingBtns .tgShare:hover a {
   }
   .widget-area {
     padding: 0px 0px 40px;
-  }
-  #gridIcon {
-    display: none;
   }
 
   /* share btns mobile css */

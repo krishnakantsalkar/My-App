@@ -41,7 +41,6 @@ export class BlogComponent implements OnInit {
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
 
-  public grid: boolean;
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -310,12 +309,6 @@ export class BlogComponent implements OnInit {
   cancel() {
     this.searchResult = null;
   }
-
-  // list / grid switch
-  switchGrid() {
-    this.grid = !this.grid;
-  }
-
   // navigate to post author
   gotoAuthor() {
     this.router.navigateByUrl('/About#developer');

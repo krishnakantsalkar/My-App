@@ -211,7 +211,7 @@
         'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
       }"
     >
-      <div class="container">
+      <div class="container" id="main">
         <br />
         <h1>
           <b id="twothousandtwenty">2020</b>
@@ -791,6 +791,12 @@
                     <span (click)="Search({ post: 'angular' })">#angular</span
                     >&nbsp;
                     <span (click)="Search({ post: 'node' })">#node</span>&nbsp;
+                    <span (click)="Search({ post: 'counter strike' })"
+                      >#csgo</span
+                    >&nbsp;
+                    <span (click)="Search({ post: 'markdown' })">#markdown</span
+                    >&nbsp;
+
                     <span routerLink="/Movies&TV">#movieDB</span>&nbsp;
                   </strong>
                 </p>

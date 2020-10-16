@@ -105,8 +105,8 @@ export class MainPageComponent implements OnInit {
             clearInterval(identity);
 
             //show Main Page and hide preloader page once width reaches 100%
-            document.getElementById('MainPage').style.display = 'block';
-            document.getElementById('preloader').style.display = 'none';
+            $('#MainPage').fadeIn(300);
+            $('#preloader').fadeOut(30);
           } else {
             width++;
 
@@ -121,12 +121,12 @@ export class MainPageComponent implements OnInit {
     function preloaderPage() {
       let session = sessionStorage.getItem('session');
       if (!session) {
-        document.getElementById('MainPage').style.display = 'none';
+        $('#MainPage').hide();
         textSequence(0);
         update();
       } else {
-        document.getElementById('MainPage').style.display = 'block';
-        document.getElementById('preloader').style.display = 'none';
+        $('#MainPage').fadeIn(300);
+        $('#preloader').fadeOut(30);
       }
       sessionStorage.setItem('session', 'onGoing');
     }

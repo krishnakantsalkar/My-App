@@ -238,7 +238,7 @@ div.recentposts .seemore {
   opacity: 0.2;
 }
 
-.preloaderLogo {
+.preloaderLogoL {
   height: auto;
   width: auto;
   margin-left: auto;
@@ -248,8 +248,39 @@ div.recentposts .seemore {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: -110px;
-  box-shadow: 0 10px 10px black, 0 8px 8px violet;
+  animation: preloaderBgAnimL 0.95s infinite;
   border-radius: 10px;
+}
+.preloaderLogoD {
+  height: auto;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -110px;
+  animation: preloaderBgAnimD 0.95s infinite;
+  border-radius: 10px;
+}
+@keyframes preloaderBgAnimD {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    box-shadow: 0 2px 4px black, 0 8px 8px violet;
+  }
+}
+@keyframes preloaderBgAnimL {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    box-shadow: 0 2px 4px black, 0 8px 8px red;
+  }
 }
 
 .progressBar {
@@ -257,7 +288,7 @@ div.recentposts .seemore {
   top: 50%;
   left: 50%;
   width: 50%;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   transform: translate(-50%, -50%);
 }
 
@@ -272,7 +303,7 @@ div.recentposts .seemore {
 }
 
 .progress {
-  border-radius: 20px;
+  /* border-radius: 20px; */
   width: 2%;
   height: 20px;
   line-height: 30px;
@@ -384,7 +415,11 @@ div.websiteUsesDialog .fa-cookie-bite {
   }
 
   /* preload page content css Mobile */
-  .preloaderLogo {
+  .preloaderLogoL {
+    height: auto;
+    width: 90%;
+  }
+  .preloaderLogoD {
     height: auto;
     width: 90%;
   }

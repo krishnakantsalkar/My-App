@@ -100,7 +100,13 @@
         <div class="preloaderBg"></div>
         <!-- Preload page Logo  -->
         <div>
-          <img class="preloaderLogo" src="assets/images/preloadLogo.png" />
+          <img
+            src="assets/images/preloadLogo.png"
+            [ngClass]="{
+              preloaderLogoL: brightness,
+              preloaderLogoD: !brightness
+            }"
+          />
           <div class="progressText">
             <h6
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
@@ -125,7 +131,7 @@
             >
               <span
                 id="percent"
-                [ngStyle]="{ color: brightness ? 'blue' : 'red' }"
+                [ngStyle]="{ color: brightness ? 'black' : 'red' }"
               >
                 1%</span
               >

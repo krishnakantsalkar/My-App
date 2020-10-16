@@ -75,10 +75,14 @@ div.card-body h2 {
 }
 
 div.pstimg img {
-  min-height: 200px;
+  padding: 10px;
+  height: auto;
+  max-height: 100%;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: auto;
+  object-fit: contain;
+  max-width: 100%;
 }
 #myBtn {
   position: fixed;
@@ -400,6 +404,9 @@ div.sharingBtns .tgShare:hover a {
   display: none;
 }
 
+div.hashtags .card-body span {
+  cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
   div.motto h5 {
     font-size: 14px;

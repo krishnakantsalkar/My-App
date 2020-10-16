@@ -19,6 +19,7 @@ export class BlogComponent implements OnInit {
   public date = new Date();
 
   public data;
+  public allData;
 
   public checkUser;
 
@@ -53,6 +54,9 @@ export class BlogComponent implements OnInit {
     this.mode();
     this.blogsP(1);
     this.checkUserPresent();
+
+    // get all blogs
+    this.blogs();
 
     // blogURL for share btns
     this.blogURL = window.location.href;
@@ -119,11 +123,11 @@ export class BlogComponent implements OnInit {
   }
 
   // get all blogs
-  // blogs() {
-  //   this.blogservice.getBlogs().subscribe((item) => {
-  //     this.data = item.dataSize;
-  //   });
-  // }
+  blogs() {
+    this.blogservice.getBlogs().subscribe((item) => {
+      this.allData = item;
+    });
+  }
 
   // get blogs by pagination
   blogsP(pg) {

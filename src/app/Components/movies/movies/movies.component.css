@@ -256,6 +256,16 @@ div.scrollright {
   color: red;
 }
 
+.creditsInfo h6 {
+  display: inline-block;
+  margin-left: 15px;
+}
+.creditsInfo img {
+  height: 50px;
+  width: auto;
+  display: inline-block;
+}
+
 @media only screen and (max-width: 600px) {
   .movieData img,
   .genreData img,

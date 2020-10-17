@@ -162,6 +162,16 @@ div.videoFrame iframe {
   border: 1px black;
 }
 
+.creditsInfo h6 {
+  display: inline-block;
+  margin-left: 15px;
+}
+.creditsInfo img {
+  height: 50px;
+  width: auto;
+  display: inline-block;
+}
+
 @media only screen and (max-width: 600px) {
   .movieDetails {
     padding-top: 100px;

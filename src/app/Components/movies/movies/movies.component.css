@@ -96,21 +96,25 @@ div.content {
 }
 
 #movieCard,
-#genreCard {
+#genreCard,
+.trendingContent .card {
   border: 10px solid grey;
 }
 #movieCard:hover,
-#genreCard:hover {
+#genreCard:hover,
+.trendingContent .card {
   border: 10px solid violet;
 }
 
 #movieCard a,
-#genreCard a {
+#genreCard a,
+.trendingContent .card a {
   cursor: pointer;
 }
 
 #movieCard h6,
-#genreCard h6 {
+#genreCard h6,
+.trendingContent .card h6 {
   padding: 5px;
   margin: 0;
   text-align: center;
@@ -124,12 +128,14 @@ div.content {
 }
 
 .movieData,
-.genreData {
+.genreData,
+.trendingContent {
   position: relative;
 }
 
 .movieData img,
-.genreData img {
+.genreData img,
+.trendingContent img {
   height: auto;
   width: 100%;
   transition: 0.5s ease;
@@ -148,19 +154,23 @@ div.content {
 }
 
 .movieData img:hover,
-.genreData img:hover {
+.genreData img:hover,
+.trendingContent img:hover {
   filter: brightness(30%);
 }
 
 #movieCard:hover .middle,
-#genreCard:hover .middle {
+#genreCard:hover .middle,
+.trendingContent .card:hover .middle {
   opacity: 1;
 }
 
 .movieData .text,
 .movieData h4,
 .genreData .text,
-.genreData h4 {
+.genreData h4,
+.trendingContent h4,
+.trendingContent .text {
   color: white;
 }
 .text1 {
@@ -225,14 +235,30 @@ div.content {
   color: black;
 }
 
+.trendingContent {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.trendingContent .card {
+  flex: 0 0 auto;
+}
+
+div.scrollright {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .movieData img,
-  .genreData img {
+  .genreData img,
+  .trendingContent img {
     height: auto;
     max-height: 250px;
     width: 100%;
   }
-  .movieData h6 {
+  .movieData h6,
+  genreData h6,
+  .trendingContent h6 {
     font-size: 13px;
   }
   .searchArea input {
@@ -252,5 +278,9 @@ div.content {
   }
   .searchResultTitle h5 {
     font-size: 13px;
+  }
+
+  div.scrollright {
+    display: block;
   }
 }

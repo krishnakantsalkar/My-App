@@ -72,6 +72,10 @@ export class MoviesComponent implements OnInit {
   public currentGenre;
   public currentGenreId;
 
+  // trending movies/tv
+  public trendingMovies
+  public trendingTv
+
   constructor(private movieService: MovieServices, private router: Router) {}
 
   ngOnInit(): void {
@@ -111,6 +115,15 @@ export class MoviesComponent implements OnInit {
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
     });
+
+    // get trending movies and tv series
+    this.movieService.getTrendingMedia('movie').subscribe(item=>{
+      this.trendingMovies = item     
+    })
+
+    this.movieService.getTrendingMedia('tv').subscribe(item=>{
+      this.trendingTv = item
+    })
   }
 
   // dark/light mode method

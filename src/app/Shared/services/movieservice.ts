@@ -83,4 +83,11 @@ export class MovieServices {
       `${this.movieDbAPI}${listType}/${id}/videos?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
     );
   }
+
+  //get trending movies&tv
+  public getTrendingMedia(listType){
+    return this.http.get(
+      `${this.movieDbAPI}trending/${listType}/week?api_key=${this.movieDbAPIKey}`
+    )
+  }
 }

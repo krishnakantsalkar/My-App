@@ -108,6 +108,11 @@ export class MoviesComponent implements OnInit {
     // remove active state from default button
     $(document).ready(() => {
       $('#genreButtons').hide();
+
+      // hide trending content on page load
+      $('#TmoviesData').hide()
+      $('#TseriesData').hide()
+      $("#TcloseBtn").hide()
     });
 
     // disable brightness toggle
@@ -123,6 +128,28 @@ export class MoviesComponent implements OnInit {
 
     this.movieService.getTrendingMedia('tv').subscribe(item=>{
       this.trendingTv = item
+    })
+
+    // show/hide Trending movies/tv 
+    $('#Tmovies').on('click',()=>{
+      $('#TmoviesData').show(300)
+      $('#TseriesData').hide()
+      $('#TcloseBtn').show(300)
+      $('#TcloseBtn').animate({rotate:180, transition:'1s ease'})
+      
+    })
+
+    $('#Tseries').on('click',()=>{
+      $('#TseriesData').show(300)
+      $('#TmoviesData').hide()
+      $('#TcloseBtn').show(300)
+
+    })
+
+    $('#TcloseBtn').on('click',()=>{
+      $('#TseriesData').hide(300)
+      $('#TmoviesData').hide(300)
+      $("#TcloseBtn").hide(300)
     })
   }
 

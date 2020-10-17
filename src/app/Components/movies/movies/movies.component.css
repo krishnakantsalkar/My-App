@@ -247,6 +247,14 @@ div.content {
 div.scrollright {
   display: none;
 }
+#TcloseBtn {
+  color: rgb(255, 119, 70);
+  font-size: 23px;
+}
+
+#TcloseBtn:hover i {
+  color: red;
+}
 
 @media only screen and (max-width: 600px) {
   .movieData img,
@@ -282,5 +290,11 @@ div.scrollright {
 
   div.scrollright {
     display: block;
+  }
+
+  div.showTrendingBtnGroup {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
   }
 }

@@ -61,6 +61,7 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService
         .getSimilarMoviesTV(id, this.listType)
         .subscribe((similar) => {
+          this.movieSimilars = null
           this.movieSimilars = similar;
         });
       // get credits of current movie by id

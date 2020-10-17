@@ -77,6 +77,12 @@ div.movieDetails {
 
 /* similar movies/tv */
 
+.horizontalScrollDiv {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
 #similarsCard img {
   height: auto;
   max-height: 320px;
@@ -86,6 +92,8 @@ div.movieDetails {
 
 #similarsCard {
   border: 10px solid grey;
+  /* horizontal scroll div */
+  flex: 0 0 auto;
 }
 
 #similarsCard:hover {

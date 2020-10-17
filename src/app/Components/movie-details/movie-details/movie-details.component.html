@@ -503,10 +503,10 @@
             >
               <h4>Similar Titles:</h4>
               <br />
-              <div class="row">
+              <div class="horizontalScrollDiv">
                 <div
                   class="col-6 col-sm-3"
-                  *ngFor="let similars of movieSimilars.results | slice: 0:4"
+                  *ngFor="let similars of movieSimilars.results | slice: 0:12"
                 >
                   <div class="card" id="similarsCard">
                     <a
@@ -574,8 +574,13 @@
                     </h6>
                   </div>
                   <br />
-                  <br />
                 </div>
+              </div>
+              <br />
+              <div class="scrollright">
+                <h6 style="float: right">
+                  scroll <i class="fas fa-arrow-circle-right"></i>
+                </h6>
               </div>
             </div>
           </div>

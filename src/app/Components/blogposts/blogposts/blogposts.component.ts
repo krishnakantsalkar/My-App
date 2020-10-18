@@ -161,7 +161,7 @@ export class BlogpostsComponent implements OnInit {
     this.blogservice.deleteBlog(id).subscribe(
       (item) => {
         alert(item.message);
-        this.router.navigateByUrl('/Blog/page/1');
+        this.router.navigateByUrl('/Blog/1');
       },
       (err) => {
         alert(err.message);

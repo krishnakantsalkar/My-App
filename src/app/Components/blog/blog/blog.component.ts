@@ -60,9 +60,6 @@ export class BlogComponent implements OnInit {
     // get all blogs
     this.blogs();
 
-    // blogURL for share btns
-    this.blogURL = window.location.href;
-
     // aos animation
     AOS.init({
       startEvent: 'DOMContentLoaded',
@@ -134,16 +131,23 @@ export class BlogComponent implements OnInit {
   // get blogs by pagination
   blogsP(pg) {
     this.blogservice.getBlogsP(pg).subscribe((item) => {
+    // blogURL for share btns
+    this.blogURL = null
+    this.blogURL = window.location.href;
+    
+
       this.data = item.dataSize;
       this.datacount = item.dataCount;
       this.postNumVal = this.datacount;
       this.setPostNum();
-      this.router.navigateByUrl(`/Blog/page/${pg}`).then(() => {
-        var elmnt = document.getElementById('scrolldata');
-        if (elmnt) {
-          elmnt.scrollIntoView();
-        }
-      });
+      this.router.navigateByUrl(`/Blog/${pg}`).then(() => {
+        // var elmnt = document.getElementById('scrolldata');
+        // if (elmnt) {
+        //   elmnt.scrollIntoView();
+        // }
+      if(pg > 1){
+        window.scrollTo({left:0, top:500, behavior:"smooth"})
+      } });
     });
     this.pageNo = pg;
   }

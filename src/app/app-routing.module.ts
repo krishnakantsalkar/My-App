@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   // blog page
   {
-    path: 'Blog/page/:page',
+    path: 'Blog/:page',
     loadChildren: () =>
       import('./Components/blog/blog.module').then((m) => m.BlogModule),
   },

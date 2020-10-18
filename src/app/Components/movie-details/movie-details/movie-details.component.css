@@ -185,6 +185,19 @@ div.videoFrame iframe {
   height: 300px;
 }
 
+/* .movieReviewsArea {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+} */
+.movieReviewsArea {
+  height: auto;
+  max-height: 420px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
+
 @media only screen and (max-width: 600px) {
   .movieDetails {
     padding-top: 100px;
@@ -224,5 +237,13 @@ div.videoFrame iframe {
   .seasonPoster img {
     width: auto;
     height: 200px;
+  }
+
+  .creditsInfo {
+    text-align: center;
+    margin-left: 0;
+  }
+  .creditsInfo h6 {
+    margin-top: 5px;
   }
 }

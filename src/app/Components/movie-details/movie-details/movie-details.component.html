@@ -199,6 +199,14 @@
                       Next Episode:
                       {{ movieDetails.next_episode_to_air.air_date }}
                     </button>
+                    <a
+                      class="btn"
+                      href="{{ movieDetails.homepage }}"
+                      *ngIf="movieDetails.homepage"
+                      style="background-color: cornsilk; color: black"
+                    >
+                      Home Page
+                    </a>
                   </div>
 
                   <br />
@@ -492,19 +500,23 @@
                   >
                     <div class="card-body">
                       <div class="movieReviewsArea">
-                        <h5>Reviews:</h5>
+                        <h5 style="float: left">Reviews:</h5>
+                        <div class="scrollleft">
+                          <h6 style="float: right">
+                            <i class="fas fa-arrow-circle-down"></i> scroll
+                          </h6>
+                        </div>
+                        <br />
                         <div
                           class="movieReview"
-                          *ngFor="
-                            let review of movieReviews.results | slice: 0:3
-                          "
+                          *ngFor="let review of movieReviews.results"
                           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
                         >
                           <br />
                           <h6>Author: {{ review.author }}</h6>
                           <p>
-                            "{{ review.content | slice: 0:300 }}..
-                            <a href="{{ review.url }}">more</a>"
+                            {{ review.content | slice: 0:300 }}..
+                            <a href="{{ review.url }}">more</a>
                           </p>
                         </div>
                       </div>

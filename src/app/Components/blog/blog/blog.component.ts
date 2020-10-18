@@ -54,7 +54,8 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     // method calls
     this.mode();
-    this.blogsP(1);
+    let pageRouting = window.location.href.split('/')  
+    this.blogsP(pageRouting[4]);
     this.checkUserPresent();
 
     // get all blogs
@@ -146,7 +147,7 @@ export class BlogComponent implements OnInit {
         //   elmnt.scrollIntoView();
         // }
       if(pg > 1){
-        window.scrollTo({left:0, top:500, behavior:"smooth"})
+        window.scrollTo({left:0, top:400, behavior:"smooth"})
       } });
     });
     this.pageNo = pg;

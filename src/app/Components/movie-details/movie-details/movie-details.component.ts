@@ -81,6 +81,7 @@ export class MovieDetailsComponent implements OnInit {
           this.contentTrailers = trailers;
           this.saveTrailerLinks();
         });
+        this.eps=null
     });
 
     // disable brightness toggle

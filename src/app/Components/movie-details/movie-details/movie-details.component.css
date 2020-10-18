@@ -83,21 +83,23 @@ div.movieDetails {
   overflow-x: auto;
 }
 
-#similarsCard img {
-  height: auto;
-  max-height: 320px;
-  width: 100%;
-  transition: 0.5s ease;
-}
-
 #similarsCard {
   border: 10px solid grey;
   /* horizontal scroll div */
   flex: 0 0 auto;
 }
 
+#generateEpBtn button {
+  color: white;
+  margin: 5px 5px;
+}
+
 #similarsCard:hover {
   border: 10px solid violet;
+}
+
+#similarsCard a {
+  cursor: pointer;
 }
 
 #similarsCard h6 {
@@ -107,13 +109,14 @@ div.movieDetails {
   cursor: pointer;
 }
 
-#generateEpBtn button {
-  color: white;
-  margin: 5px 5px;
+.similarsData {
+  position: relative;
 }
 
-#similarsCard img:hover {
-  filter: brightness(30%);
+.similarsData img {
+  height: auto;
+  width: 100%;
+  transition: 0.5s ease;
 }
 
 .middle {
@@ -127,12 +130,17 @@ div.movieDetails {
   text-align: center;
   pointer-events: none;
 }
-#similarsCard:hover .middle {
+
+.similarsData img:hover {
+  filter: brightness(30%);
+}
+
+div#similarsCard:hover .middle {
   opacity: 1;
 }
 
-#similarsCard h4,
-#similarsCard .text {
+.similarsData .text,
+.similarsData h4 {
   color: white;
 }
 .text1 {
@@ -172,6 +180,11 @@ div.videoFrame iframe {
   display: inline-block;
 }
 
+.seasonPoster img {
+  width: auto;
+  height: 300px;
+}
+
 @media only screen and (max-width: 600px) {
   .movieDetails {
     padding-top: 100px;
@@ -207,5 +220,9 @@ div.videoFrame iframe {
     height: auto;
     width: 100%;
     max-width: 100%;
+  }
+  .seasonPoster img {
+    width: auto;
+    height: 200px;
   }
 }

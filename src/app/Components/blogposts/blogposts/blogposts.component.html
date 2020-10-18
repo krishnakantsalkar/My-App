@@ -158,7 +158,7 @@
             >
               <div class="row">
                 <h6
-                  class="col-6 col-sm-6 text-muted"
+                  class="col-5 col-sm-6 text-muted"
                   *ngIf="data"
                   style="float: left"
                   [ngStyle]="{
@@ -168,7 +168,7 @@
                   <i class="fas fa-clock"></i> {{ data.postDate }}
                 </h6>
                 <!-- post edited or not -->
-                <h6 *ngIf="data" class="col-3 col-sm-3">
+                <h6 *ngIf="data" class="col-2 col-sm-2">
                   <span
                     *ngIf="data.edited == true"
                     [ngStyle]="{
@@ -177,9 +177,48 @@
                     ><i class="fas fa-pencil-alt"></i> edited.</span
                   >
                 </h6>
+                <h6 class="col-3 col-sm-2">
+                  <div class="likeDislike" *ngIf="likeSet == 0">
+                    <i
+                      class="fas fa-thumbs-up fa-fw like0"
+                      id="like"
+                      (click)="like()"
+                    ></i>
+                    <i
+                      class="fas fa-thumbs-down dislike0"
+                      id="dislike"
+                      (click)="dislike()"
+                    ></i>
+                  </div>
+
+                  <div class="likeDislike" *ngIf="likeSet == 1">
+                    <i
+                      class="fas fa-thumbs-up fa-fw like1"
+                      id="like"
+                      (click)="like()"
+                    ></i>
+                    <i
+                      class="fas fa-thumbs-down dislike1"
+                      id="dislike"
+                      (click)="dislike()"
+                    ></i>
+                  </div>
+                  <div class="likeDislike" *ngIf="likeSet == 2">
+                    <i
+                      class="fas fa-thumbs-up fa-fw like2"
+                      id="like"
+                      (click)="like()"
+                    ></i>
+                    <i
+                      class="fas fa-thumbs-down dislike2"
+                      id="dislike"
+                      (click)="dislike()"
+                    ></i>
+                  </div>
+                </h6>
 
                 <h6
-                  class="col-3 col-sm-3 postAuthorName"
+                  class="col-2 col-sm-2 postAuthorName"
                   *ngIf="data && data.postAuthor"
                   [ngStyle]="{
                     color: brightness ? 'black' : 'rgb(160,160,160)'

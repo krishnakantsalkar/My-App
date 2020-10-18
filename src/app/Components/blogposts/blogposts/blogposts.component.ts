@@ -37,6 +37,8 @@ export class BlogpostsComponent implements OnInit {
   public prevPostData;
   public markdown;
   public pageId = '/Blog/:postNumber/:postTitle/:id';
+
+  public likeSet:number = 0
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -67,6 +69,9 @@ export class BlogpostsComponent implements OnInit {
         this.data = items;
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
+
+        // like/dislike method call
+        this.defaultLikes()
 
         //make url links null on activated route
         this.url = null;
@@ -244,4 +249,38 @@ export class BlogpostsComponent implements OnInit {
       }
     }
   }
+
+  // like/dislike custom method
+like(){
+  this.likeSet= null
+  this.likeSet=1
+  let likedPostNumber = this.blogURL.split('/')
+  localStorage.setItem(likedPostNumber[4],'liked')
+}
+dislike(){
+  this.likeSet= null
+  this.likeSet=2
+  let disliekdPostNumber = this.blogURL.split('/')
+  localStorage.setItem(disliekdPostNumber[4],'disliked')
+}
+
+defaultLikes(){
+  let blogUrlData = this.blogURL
+  if(blogUrlData){
+
+   let temp = blogUrlData.split('/')
+   let checkLikesData = localStorage.getItem(`${temp[4]}`)
+   if(!checkLikesData){
+     this.likeSet=0
+   }
+    if(checkLikesData == 'liked'){
+      this.likeSet = null
+      this.likeSet = 1
+    }
+    if(checkLikesData == 'disliked'){
+      this.likeSet = null
+      this.likeSet = 2
+    }
+  }
+}
 }

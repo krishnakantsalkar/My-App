@@ -239,12 +239,39 @@ div.sharingBtns2 a {
 }
 
 .blogPostInfoBar {
-  padding: 10px;
+  padding: 12px 12px 2px;
   margin: 0 -8px 5px;
+  border-radius: 5px;
 }
 
 .blogPostInfoBar .postAuthorName {
   text-align: right;
+}
+
+/* like/dislike custom method css */
+.likeDislike i {
+  margin: 2px 10px;
+  font-size: 20px;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.like1 {
+  color: red;
+  opacity: 1;
+}
+.dislike1 {
+  color: initial;
+  opacity: 0.4;
+}
+
+.like2 {
+  color: initial;
+  opacity: 0.4;
+}
+.dislike2 {
+  color: red;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 600px) {
@@ -358,5 +385,27 @@ div.sharingBtns2 a {
 
   .blogPostInfoBar .postauthorName {
     text-align: left;
+  }
+
+  /* like dislike */
+  .like0 {
+    float: left;
+  }
+  .dislike0 {
+    float: right;
+  }
+
+  .like1 {
+    float: left;
+  }
+  .dislike1 {
+    float: right;
+  }
+
+  .like2 {
+    float: left;
+  }
+  .dislike2 {
+    float: right;
   }
 }

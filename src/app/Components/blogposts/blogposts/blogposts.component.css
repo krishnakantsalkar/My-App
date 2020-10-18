@@ -238,6 +238,15 @@ div.sharingBtns2 a {
   margin: auto 5px;
 }
 
+.blogPostInfoBar {
+  padding: 10px;
+  margin: 0 -8px 5px;
+}
+
+.blogPostInfoBar .postAuthorName {
+  text-align: right;
+}
+
 @media only screen and (max-width: 600px) {
   div.card-header h2 {
     font-size: 25px;
@@ -341,5 +350,13 @@ div.sharingBtns2 a {
   }
   div.sharingBtns {
     display: none;
+  }
+
+  .blogPostInfoBar h6 {
+    font-size: 13px;
+  }
+
+  .blogPostInfoBar .postauthorName {
+    text-align: left;
   }
 }

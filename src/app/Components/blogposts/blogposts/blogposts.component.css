@@ -383,8 +383,8 @@ div.sharingBtns2 a {
     font-size: 13px;
   }
 
-  .blogPostInfoBar .postauthorName {
-    text-align: left;
+  .blogPostInfoBar .postAuthorName {
+    text-align: center;
   }
 
   /* like dislike */

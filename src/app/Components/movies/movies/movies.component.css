@@ -102,7 +102,7 @@ div.content {
 }
 #movieCard:hover,
 #genreCard:hover,
-.trendingContent .card {
+.trendingContent .card:hover {
   border: 10px solid violet;
 }
 
@@ -244,7 +244,8 @@ div.content {
   flex: 0 0 auto;
 }
 
-div.scrollright {
+div.scrollright,
+div.scrollleft {
   display: none;
 }
 #TcloseBtn {
@@ -298,7 +299,8 @@ div.scrollright {
     font-size: 13px;
   }
 
-  div.scrollright {
+  div.scrollright,
+  div.scrollleft {
     display: block;
   }
 
@@ -306,5 +308,25 @@ div.scrollright {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+  }
+
+  .movieData .text,
+  .movieData h4,
+  .genreData .text,
+  .genreData h4,
+  .trendingContent h4,
+  .trendingContent .text {
+    font-size: 15px;
+  }
+
+  .text1 {
+    font-size: 13px;
+    padding: 5px;
+    margin: 30px 0 10px;
+  }
+
+  .creditsInfo {
+    text-align: center;
+    margin-left: 0;
   }
 }

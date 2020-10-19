@@ -217,9 +217,11 @@
       >
         <img
           data-aos="zoom-in"
+          data-aos-delay="200"
           data-aos-duration="1000"
           class="rounded-circle"
           src="assets/images/mylogo.jpg"
+          [ngClass]="{ imageShadowL: brightness, imageShadowD: !brightness }"
         />
       </div>
 

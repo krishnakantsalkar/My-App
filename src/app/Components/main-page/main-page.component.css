@@ -53,6 +53,12 @@ div.imagesection img {
   width: 270px;
 }
 
+.imageShadowD {
+  box-shadow: 0 0 4px 1px black, 0 0 12px 5px violet;
+}
+.imageShadowL {
+  box-shadow: 0 0 4px 1px black, 0 0 12px 5px red;
+}
 @media only screen and (max-width: 600px) {
   div.imagesection {
     padding-top: 200px;

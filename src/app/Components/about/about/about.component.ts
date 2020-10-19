@@ -99,7 +99,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     // aos animations
     AOS.init({
-      startEvent: 'scroll',
+      startEvent: 'DomContentLoaded',
     });
     // swiper force use following features
     Swiper.use([

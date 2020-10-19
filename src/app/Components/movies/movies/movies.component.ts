@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieServices } from 'src/app/Shared/services/movieservice';
 import { Router } from '@angular/router';
 import * as superplaceholder from 'superplaceholder';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-movies',
@@ -82,6 +83,11 @@ export class MoviesComponent implements OnInit {
     // method calls
     this.mode();
     this.getTheLists(1, 'movie', 'now_playing');
+
+    // aos animations
+    AOS.init({
+      startEvent: 'DOMContentLoaded',
+    });
 
     // animated placeholder
     superplaceholder({

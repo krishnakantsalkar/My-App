@@ -25,16 +25,44 @@
           <!-- right row -->
           <div class="col-sm-6">
             <div class="buttons">
-              <button class="btn btn1" (click)="scrollTo('frontend')">
+              <button
+                class="btn btn1"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                (click)="scrollTo('frontend')"
+              >
                 Frameworks
               </button>
-              <button class="btn btn2" (click)="scrollTo('backend')">
+              <button
+                class="btn btn2"
+                data-aos="zoom-in"
+                data-aos-delay="500"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                (click)="scrollTo('backend')"
+              >
                 Screenshots
               </button>
-              <button class="btn btn3" (click)="scrollTo('extras')">
+              <button
+                class="btn btn3"
+                data-aos="zoom-in"
+                data-aos-delay="900"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                (click)="scrollTo('extras')"
+              >
                 Extras
               </button>
-              <button class="btn btn4" (click)="scrollTo('developer')">
+              <button
+                class="btn btn4"
+                data-aos="zoom-in"
+                data-aos-delay="1300"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                (click)="scrollTo('developer')"
+              >
                 Author
               </button>
             </div>
@@ -54,7 +82,13 @@
         <!-- row -->
         <div class="row">
           <!-- angular framework -->
-          <div class="col-sm-6" id="angularDesc">
+          <div
+            class="col-sm-6"
+            id="angularDesc"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+          >
             <h1>Built using Angular 9+</h1>
             <p>One framework. Mobile & desktop.</p>
             <a href="https://angular.io/docs" target="_blank"
@@ -80,7 +114,12 @@
           </div>
           <!-- angular & node logo icon -->
           <div class="col-sm-6" style="display: flex; justify-content: center">
-            <div class="angularNodeIcons">
+            <div
+              class="angularNodeIcons"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              data-aos-duration="1000"
+            >
               <h2>
                 <i class="fab fa-angular"></i> + <i class="fab fa-node"> </i>
               </h2>
@@ -129,49 +168,86 @@
         <div class="row">
           <!-- github link -->
           <div class="col-6 col-sm-4">
-            <h2><i class="fab fa-github"></i></h2>
-            <a
-              href="https://github.com/krishnakantsalkar/My-App"
-              target="_blank"
-              ><button class="btn">Source Code</button></a
+            <div
+              class="aos"
+              data-aos="zoom-in"
+              data-aos-delay="100"
+              data-aos-duration="1000"
             >
+              <h2><i class="fab fa-github"></i></h2>
+              <a
+                href="https://github.com/krishnakantsalkar/My-App"
+                target="_blank"
+                ><button class="btn">Source Code</button></a
+              >
+            </div>
           </div>
           <!-- wallpapers link -->
           <div class="col-6 col-sm-4">
-            <h2><i class="fas fa-image" style="color: white"></i></h2>
-            <a
-              href="https://downloads.krishnakantsalkar.gq/0:/Wallpapers/"
-              target="_blank"
-              ><button class="btn">Mobile Wallpapers</button></a
+            <div
+              class="aos"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              data-aos-duration="1000"
             >
+              <h2><i class="fas fa-image" style="color: white"></i></h2>
+              <a
+                href="https://downloads.krishnakantsalkar.gq/0:/Wallpapers/"
+                target="_blank"
+                ><button class="btn">Mobile Wallpapers</button></a
+              >
+            </div>
           </div>
 
           <!-- movie db link -->
           <div class="col-6 col-sm-4">
-            <h2>
-              <i class="fas fa-video" style="color: royalblue"></i>
-            </h2>
-            <a href="https://www.krishnakantsalkar.gq/Movies&TV" target="_blank"
-              ><button class="btn">The MovieDB</button></a
+            <div
+              class="aos"
+              data-aos="zoom-in"
+              data-aos-delay="500"
+              data-aos-duration="1000"
             >
+              <h2>
+                <i class="fas fa-video" style="color: royalblue"></i>
+              </h2>
+              <a
+                href="https://www.krishnakantsalkar.gq/Movies&TV"
+                target="_blank"
+                ><button class="btn">The MovieDB</button></a
+              >
+            </div>
           </div>
 
           <!-- blog link -->
           <div class="col-6 col-sm-4">
-            <h2><i class="fas fa-blog" style="color: blueviolet"></i></h2>
-            <a href="https://www.krishnakantsalkar.gq/Blog/1" target="_blank"
-              ><button class="btn">Blog</button></a
+            <div
+              class="aos"
+              data-aos="zoom-in"
+              data-aos-delay="700"
+              data-aos-duration="1000"
             >
+              <h2><i class="fas fa-blog" style="color: blueviolet"></i></h2>
+              <a href="https://www.krishnakantsalkar.gq/Blog/1" target="_blank"
+                ><button class="btn">Blog</button></a
+              >
+            </div>
           </div>
 
           <!-- pastebin -->
           <div class="col-6 col-sm-4">
-            <h2>
-              <i class="fas fa-paste" style="color: rgb(102, 102, 102)"></i>
-            </h2>
-            <a href="http://paste.krishnakantsalkar.gq" target="_blank"
-              ><button class="btn">Memochō: A pastebin alternative</button></a
+            <div
+              class="aos"
+              data-aos="zoom-in"
+              data-aos-delay="900"
+              data-aos-duration="1000"
             >
+              <h2>
+                <i class="fas fa-paste" style="color: rgb(102, 102, 102)"></i>
+              </h2>
+              <a href="http://paste.krishnakantsalkar.gq" target="_blank"
+                ><button class="btn">Memochō: A pastebin alternative</button></a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -187,6 +263,9 @@
           <!-- lefr column -->
           <div class="col-sm-6 devinfo">
             <img
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              data-aos-duration="1000"
               class="aboutme-img rounded-circle"
               src="assets/images/about_me.jpg"
               alt=""
@@ -196,7 +275,12 @@
           <div class="col-sm-6 dev">
             <div class="developer">
               <!-- dev info card -->
-              <div class="card">
+              <div
+                class="card"
+                data-aos="zoom-in"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+              >
                 <div class="card-body frameworks">
                   <!-- dev details -->
                   <div class="devdetails">

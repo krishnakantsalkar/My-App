@@ -54,11 +54,36 @@ div.imagesection img {
 }
 
 .imageShadowD {
-  box-shadow: 0 0 4px 1px black, 0 0 12px 5px violet;
+  animation: beatD 10s ease-in-out infinite;
+  box-shadow: 0 0 1px 2px black;
 }
 .imageShadowL {
-  box-shadow: 0 0 4px 1px black, 0 0 12px 5px red;
+  animation: beatL 10s ease-in-out infinite;
+  box-shadow: 0 0 1px 2px black;
 }
+
+@keyframes beatD {
+  from,
+  to {
+    color: transparent;
+    box-shadow: 0 0 5px 2px black, 0 0 5px 4px violet;
+  }
+  50% {
+    box-shadow: 0 0 5px 2px black, 0 0 20px 20px violet;
+  }
+}
+
+@keyframes beatL {
+  from,
+  to {
+    color: transparent;
+    box-shadow: 0 0 5px 2px black, 0 0 5px 4px red;
+  }
+  50% {
+    box-shadow: 0 0 5px 2px black, 0 0 20px 20px red;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   div.imagesection {
     padding-top: 200px;
@@ -276,7 +301,7 @@ div.recentposts .seemore {
     color: transparent;
   }
   50% {
-    box-shadow: 0 2px 4px black, 0 8px 8px violet;
+    box-shadow: 0 2px 4px black, 0 8px 8px 4px violet;
   }
 }
 @keyframes preloaderBgAnimL {
@@ -285,7 +310,7 @@ div.recentposts .seemore {
     color: transparent;
   }
   50% {
-    box-shadow: 0 2px 4px black, 0 8px 8px red;
+    box-shadow: 0 2px 4px black, 0 8px 8px 4px red;
   }
 }
 

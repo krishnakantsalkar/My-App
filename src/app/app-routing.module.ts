@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   // blogpost page
   {
-    path: 'Blogposts',
+    path: 'Blog/:postNumber/:id',
     loadChildren: () =>
       import('./Components/blogposts/blogposts.module').then(
         (m) => m.BlogpostsModule

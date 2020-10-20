@@ -28,6 +28,7 @@
     "ngx-markdown": "^10.1.1",
     "ngx-useful-swiper": "^9.0.5",
     "path": "^0.12.7",
+    "reading-time": "^1.2.0",
     "rxjs": "~6.5.4",
     "superplaceholder": "^1.0.0",
     "swiper": "^6.3.1",

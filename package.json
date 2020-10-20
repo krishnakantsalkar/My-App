@@ -1,7 +1,9 @@
 {
   "name": "my-app",
   "version": "0.0.0",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "ngcc"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.6",

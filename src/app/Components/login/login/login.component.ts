@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   public ipdata;
   public useragent;
-  public userdata = [this.ipdata, this.useragent];
+  public userdata
   public showForgot: boolean;
   public response: any;
   public loginresponse;

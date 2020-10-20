@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { SwiperOptions } from 'swiper';
+import { Title } from '@angular/platform-browser';
 import Swiper, {
   Autoplay,
   Pagination,
@@ -20,6 +21,8 @@ export class AboutComponent implements OnInit {
   public copiedNumber;
   public brightness: boolean;
   public copyObjId;
+
+  public pageTitle = 'About'
 
   // setup ngx-swiper
   config: SwiperOptions = {
@@ -94,9 +97,13 @@ export class AboutComponent implements OnInit {
     'https://res.cloudinary.com/dq766ltjh/image/upload/v1601097255/about-swiper/Screenshot_20200925-205955_Brave_faafzu.png',
   ];
 
-  constructor() {}
+  constructor( private titleService: Title) {}
 
   ngOnInit() {
+
+    // page title
+    this.titleService.setTitle(this.pageTitle)
+
     // aos animations
     AOS.init({
       startEvent: 'DomContentLoaded',

@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpParams } from '@angular/common/http';
 import { IsearchResult } from 'src/app/Shared/model/searchResult';
 import * as superplaceholder from 'superplaceholder';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -40,6 +41,8 @@ export class BlogComponent implements OnInit {
 
   public showSearchBtn: boolean;
 
+  public pageTitle = 'Blog'
+
   // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
@@ -48,7 +51,8 @@ export class BlogComponent implements OnInit {
     private blogservice: blogpostservice,
     private fb: FormBuilder,
     private router: Router,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +61,9 @@ export class BlogComponent implements OnInit {
     let pageRouting = window.location.href.split('/')  
     this.blogsP(pageRouting[4]);
     this.checkUserPresent();
+
+    // set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // get all blogs
     this.blogs();

@@ -8,6 +8,8 @@ import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Jquery } from 'typings';
+import { Title } from '@angular/platform-browser';
+import { title } from 'process';
 
 @Component({
   selector: 'app-main-page',
@@ -26,13 +28,16 @@ export class MainPageComponent implements OnInit {
   public newsLetterForm: FormGroup;
   public newsLetterSuccess;
   public newsLetterError;
+
+  public pageTitle = 'TheArsonist'
   constructor(
     private loginservice: userloginservices,
     private router: Router,
     private blogservice: blogpostservice,
     private fb: FormBuilder,
     private contactServices: contactService,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +47,9 @@ export class MainPageComponent implements OnInit {
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
+
+    //title service
+    this.titleService.setTitle(this.pageTitle)
 
     // aos animation init.
     AOS.init({

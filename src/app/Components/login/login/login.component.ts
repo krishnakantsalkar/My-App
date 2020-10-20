@@ -12,6 +12,7 @@ import * as AOS from 'aos';
 import { clientIpService } from 'src/app/Shared/services/clientip-service';
 import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from 'src/app/Shared/model/forgotPass';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -44,19 +45,25 @@ export class LoginComponent implements OnInit {
   public type: 'image' | 'audio';
   public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
   public captchaTheme;
+
+  public pageTitle= 'Login'
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private loginservice: userloginservices,
     private userlogservice: clientIpService,
     private cookies: CookieService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
     this.mode();
     this.showpass = false;
     this.changeTheme(this.captchaTheme);
+
+    //set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // login formgroup
     this.newLogin = this.fb.group({

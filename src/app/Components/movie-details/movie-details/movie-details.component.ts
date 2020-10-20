@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieServices } from '../../../Shared/services/movieservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-details',
@@ -24,17 +25,22 @@ export class MovieDetailsComponent implements OnInit {
   public trailerUrl2;
   public trailerUrl3;
 
+  public pageTitle='Movies&Tv'
   constructor(
     private movieService: MovieServices,
     private router: Router,
     private AR: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
     // method calls
     this.mode();
     this.epMenu();
+
+    //set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // Activated routing
     this.AR.params.subscribe((item) => {

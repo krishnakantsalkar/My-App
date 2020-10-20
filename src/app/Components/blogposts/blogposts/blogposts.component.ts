@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl, Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { clientIpService } from '../../../Shared/services/clientip-service';
@@ -39,6 +39,9 @@ export class BlogpostsComponent implements OnInit {
   public pageId = '/Blog/:postNumber/:postTitle/:id';
 
   public likeSet:number = 0
+
+  public pageTitle= 'Blogpost'
+
   constructor(
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
@@ -46,7 +49,8 @@ export class BlogpostsComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private cookies: CookieService,
-    private clientIpObj: clientIpService
+    private clientIpObj: clientIpService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +60,9 @@ export class BlogpostsComponent implements OnInit {
     this.checkUserPresent();
 
     this.showAdmin();
+
+    //set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // AOS animation
     AOS.init({

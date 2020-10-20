@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-privacy',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyComponent implements OnInit {
   public brightness;
-  constructor() {}
+  public pageTitle= 'Privacy Policy'
+  constructor(private titleService: Title) {}
 
   ngOnInit(): void {
     this.mode();
+
+    //set page title
+this.titleService.setTitle(this.pageTitle)
 
     // disable brightness toggle
     $(document).ready(() => {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import * as AOS from 'aos';
 import { CookieService } from 'ngx-cookie-service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -18,12 +19,14 @@ export class ProfileComponent implements OnInit {
   public currentProfImg;
   public editDp: boolean;
 
+  public pageTitle = 'Profile'
   constructor(
     private upload: uploadservices,
     private AR: ActivatedRoute,
     private loginService: userloginservices,
     private router: Router,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,9 @@ export class ProfileComponent implements OnInit {
         this.user = items;
       });
     });
+
+    //set page title
+    this.titleService.setTitle(this.pageTitle)
 
     AOS.init({
       startEvent: 'DOMContentLoaded',

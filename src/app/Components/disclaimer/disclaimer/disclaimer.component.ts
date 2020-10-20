@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-disclaimer',
@@ -7,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisclaimerComponent implements OnInit {
   public brightness: boolean;
-  constructor() {}
+
+  public pageTitle='Disclaimer'
+  constructor( private titleService: Title) {}
 
   ngOnInit(): void {
     // method calls
     this.mode();
+
+    //page title
+    this.titleService.setTitle(this.pageTitle)
 
     // disable brightness toggle
     $(document).ready(() => {

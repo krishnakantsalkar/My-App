@@ -3,6 +3,7 @@ import { MovieServices } from 'src/app/Shared/services/movieservice';
 import { Router } from '@angular/router';
 import * as superplaceholder from 'superplaceholder';
 import * as AOS from 'aos';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movies',
@@ -21,6 +22,8 @@ export class MoviesComponent implements OnInit {
 
   public genreData;
   public genreSwitch: boolean;
+
+  public pageTitle='Movies&Tv'
 
   // movie genre collection
   public movieGenreCollection = {
@@ -77,12 +80,15 @@ export class MoviesComponent implements OnInit {
   public trendingMovies
   public trendingTv
 
-  constructor(private movieService: MovieServices, private router: Router) {}
+  constructor(private movieService: MovieServices, private router: Router, private titleService: Title) {}
 
   ngOnInit(): void {
     // method calls
     this.mode();
     this.getTheLists(1, 'movie', 'now_playing');
+
+    // set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // aos animations
     AOS.init({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page404',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page404Component implements OnInit {
   public brightness;
-  constructor() {}
+  public pageTitle='404'
+  constructor(private titleService: Title) {}
 
   ngOnInit(): void {
     // call functions
     this.mode();
+
+    //set page title
+    this.titleService.setTitle(this.pageTitle)
 
     // disable brightness toggle
     $(document).ready(() => {

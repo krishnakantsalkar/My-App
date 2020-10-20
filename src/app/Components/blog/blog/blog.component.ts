@@ -9,6 +9,7 @@ import { HttpParams } from '@angular/common/http';
 import { IsearchResult } from 'src/app/Shared/model/searchResult';
 import * as superplaceholder from 'superplaceholder';
 import { Title } from '@angular/platform-browser';
+import * as readingTime from 'reading-time'
 
 @Component({
   selector: 'app-blog',
@@ -43,6 +44,8 @@ export class BlogComponent implements OnInit {
 
   public pageTitle = 'Blog'
 
+  public readTimeCheck = []
+  public totalWordsCheck = []
   // markdown impl.
   public markdown = `## Enter content in Markdown format __here__!
   ---`;
@@ -148,6 +151,9 @@ export class BlogComponent implements OnInit {
       this.datacount = item.dataCount;
       this.postNumVal = this.datacount;
       this.setPostNum();
+
+      //get approx blog post read time
+      this.getreadTime()
       this.router.navigateByUrl(`/Blog/${pg}`).then(() => {
         // var elmnt = document.getElementById('scrolldata');
         // if (elmnt) {
@@ -294,5 +300,18 @@ export class BlogComponent implements OnInit {
   // navigate to post author
   gotoAuthor() {
     this.router.navigateByUrl('/About#developer');
+  }
+
+  // get blog post approx read time
+  getreadTime(){
+    this.readTimeCheck.length = 0
+    this.totalWordsCheck.length = 0
+
+    for(let d of this.data){
+      let totalReadTime = readingTime(d.post)
+      this.readTimeCheck.push(totalReadTime.text)
+      this.totalWordsCheck.push(totalReadTime.words)
+      
+    }
   }
 }

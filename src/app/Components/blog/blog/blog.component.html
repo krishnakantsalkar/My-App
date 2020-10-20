@@ -521,7 +521,7 @@
         <!-- Blog data -->
         <div class="row">
           <div class="blogdata col-sm-8" *ngIf="data">
-            <div class="loopdata" *ngFor="let d of data">
+            <div class="loopdata" *ngFor="let d of data; let i = index">
               <!-- <hr *ngIf="data" style="background-color: white;" /> -->
               <!-- <br /> -->
               <div>
@@ -536,6 +536,7 @@
                       : ' rgb(35, 36, 38)'
                   }"
                 >
+                  <!-- blogpost image -->
                   <div
                     class="card-img-top pstimg"
                     data-aos="fade-right"
@@ -585,6 +586,8 @@
                           }"
                           >#{{ d.postNumber }}: {{ d.postTitle }}</a
                         >
+
+                        <!-- new post badge -->
                         <h3>
                           <span
                             *ngIf="d.postNumber == datacount"
@@ -592,6 +595,7 @@
                             >New</span
                           >
                         </h3>
+
                         <!-- post edited or not -->
                         <h6
                           [ngStyle]="{
@@ -613,6 +617,8 @@
                             >{{ d.userViews.length }} <i class="fas fa-eye"></i
                           ></span>
                         </h6>
+
+                        <!-- post date -->
                         <h6
                           *ngIf="data"
                           class="card-subtitle text-muted"
@@ -624,6 +630,8 @@
                         </h6>
                       </h2>
                     </div>
+
+                    <!-- main post rendered in markdown -->
                     <div
                       *ngIf="data"
                       class="card"
@@ -644,6 +652,8 @@
                           {{ d.post | slice: 0:130 }}...</markdown
                         >
                       </div>
+
+                      <!-- read more -->
                       <div class="card-footer">
                         <a
                           routerLink="/Blog/{{ d.postNumber }}/{{
@@ -658,6 +668,36 @@
                         >
                       </div>
                     </div>
+
+                    <!-- display approx reading time -->
+                    <div
+                      class="readingTime"
+                      style="float: left; margin-left: 15px"
+                    >
+                      <h6
+                        [ngStyle]="{
+                          color: brightness ? 'red' : 'violet'
+                        }"
+                        *ngIf="readTimeCheck.length > 0"
+                      >
+                        {{ readTimeCheck[i] }}
+                        <span
+                          [ngStyle]="{
+                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                          }"
+                          >|</span
+                        >
+                        {{ totalWordsCheck[i] }}
+                        <span
+                          [ngStyle]="{
+                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                          }"
+                          >words</span
+                        >
+                      </h6>
+                    </div>
+
+                    <!-- post author -->
                     <div
                       class="postauthor"
                       style="float: right; margin-right: 20px"

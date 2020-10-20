@@ -299,7 +299,7 @@ div.recentposts .seemore {
     color: transparent;
   }
   50% {
-    box-shadow: 0 2px 4px black, 0 8px 8px 4px violet;
+    box-shadow: 0 2px 4px black, 0 8px 8px violet;
   }
 }
 @keyframes preloaderBgAnimL {
@@ -308,7 +308,7 @@ div.recentposts .seemore {
     color: transparent;
   }
   50% {
-    box-shadow: 0 2px 4px black, 0 8px 8px 4px red;
+    box-shadow: 0 2px 4px black, 0 8px 8px red;
   }
 }
 

@@ -494,14 +494,7 @@
               *ngFor="let genre of genreData"
             >
               <!-- genre card -->
-              <div
-                class="card"
-                id="genreCard"
-                data-aos="slide-up"
-                data-aos-delay="200"
-                data-aos-duration="1000"
-                data-aos-once="true"
-              >
+              <div class="card" id="genreCard">
                 <!-- genre data image -->
                 <a
                   *ngIf="genre.original_title"
@@ -783,15 +776,7 @@
             *ngFor="let movies of movieData"
           >
             <!-- movie card -->
-            <div
-              class="card"
-              id="movieCard"
-              *ngIf="movieData"
-              data-aos="slide-up"
-              data-aos-delay="200"
-              data-aos-duration="1000"
-              data-aos-once="true"
-            >
+            <div class="card" id="movieCard" *ngIf="movieData">
               <!-- movie image -->
               <a
                 *ngIf="movies.original_title"

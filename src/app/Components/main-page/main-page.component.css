@@ -55,18 +55,16 @@ div.imagesection img {
 
 .imageShadowD {
   animation: beatD 10s ease-in-out infinite;
-  box-shadow: 0 0 1px 2px black;
 }
 .imageShadowL {
   animation: beatL 10s ease-in-out infinite;
-  box-shadow: 0 0 1px 2px black;
 }
 
 @keyframes beatD {
   from,
   to {
     color: transparent;
-    box-shadow: 0 0 5px 2px black, 0 0 5px 4px violet;
+    box-shadow: 0 0 1px 1px black, 0 0 5px 4px violet;
   }
   50% {
     box-shadow: 0 0 5px 2px black, 0 0 20px 20px violet;
@@ -77,10 +75,10 @@ div.imagesection img {
   from,
   to {
     color: transparent;
-    box-shadow: 0 0 5px 2px black, 0 0 5px 4px red;
+    box-shadow: 0 0 0 1px black, 0 0 5px 4px red;
   }
   50% {
-    box-shadow: 0 0 5px 2px black, 0 0 20px 20px red;
+    box-shadow: 0 0 1px 1px black, 0 0 20px 20px red;
   }
 }
 

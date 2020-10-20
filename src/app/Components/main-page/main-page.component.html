@@ -443,15 +443,21 @@
                         <h3>Recent Updates</h3>
                         <div class="loading" *ngIf="!recentblogs">
                           <h4 *ngIf="!brightness" class="loadinganimDark">
-                            Loading...<span class="spinner-border"></span>
+                            Loading...<span
+                              class="spinner-border"
+                              style="color: violet"
+                            ></span>
                           </h4>
                           <h4 *ngIf="brightness" class="loadinganimLight">
-                            Loading...<span class="spinner-border"></span>
+                            Loading...<span
+                              class="spinner-border"
+                              style="color: red"
+                            ></span>
                           </h4>
                         </div>
                         <div
                           class="recentcontent"
-                          *ngFor="let recent of recentblogs | slice: 0:1"
+                          *ngFor="let recent of recentblogs | slice: 0:2"
                         >
                           <h5>
                             <a
@@ -465,20 +471,18 @@
                               {{ recent.postTitle }}</a
                             >
                           </h5>
-                          <h6>{{ recent.postDate | slice: 0:70 }}..</h6>
-                          <h6>
-                            {{ recent.post | slice: 0:90 }}...
-                            <span
-                              [ngStyle]="{
-                                color: brightness ? 'red' : 'violet'
-                              }"
-                              routerLink="/Blog/1"
-                              >more</span
-                            >
+                          <h6 class="text-muted">
+                            {{ recent.postDate | slice: 0:70 }}..
                           </h6>
-
-                          <br />
                         </div>
+                        <a
+                          style="text-decoration: none"
+                          [ngStyle]="{
+                            color: brightness ? 'red' : 'violet'
+                          }"
+                          routerLink="/Blog/1"
+                          >more</a
+                        >
                       </div>
                     </div>
                   </div>

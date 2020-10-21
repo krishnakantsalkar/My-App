@@ -391,62 +391,71 @@
               >
                 <div class="form-group">
                   <div class="form-row">
-                    <label>Post Number</label>
-                    <input
-                      class="form-control"
-                      type="number"
-                      formControlName="postNumber"
-                      placeholder="#"
-                      min="2"
-                      onKeyPress="if(this.value.length==10) return false;"
-                      readonly
-                    />
+                    <div class="postNumberInput col-sm-6">
+                      <label for="postNumberInput">Post Number</label>
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="postNumber"
+                        placeholder="#"
+                        min="2"
+                        onKeyPress="if(this.value.length==10) return false;"
+                        readonly
+                      />
+                    </div>
+                    <div class="postTitleInput col-sm-6">
+                      <label for="postTitleInput">Post Title</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="postTitle"
+                        placeholder="Enter Title"
+                      />
+                    </div>
                   </div>
+                  <br />
                   <div class="form-row">
-                    <label>Post Title</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postTitle"
-                      placeholder="Enter Title"
-                    />
+                    <div class="postLinkInput1 col-sm-6">
+                      <label>External Link</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="postLink"
+                        placeholder="Link"
+                      />
+                    </div>
+                    <div class="postLinkInput2 col-sm-6">
+                      <label>External Link 2</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="postLink2"
+                        placeholder="Link"
+                      />
+                    </div>
                   </div>
+                  <br />
                   <div class="form-row">
-                    <label>External Link</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postLink"
-                      placeholder="Link"
-                    />
+                    <div class="postLinkInput3 col-sm-6">
+                      <label>External Link 3</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="postLink3"
+                        placeholder="Link"
+                      />
+                    </div>
+                    <div class="postLinkInput4 col-sm-6">
+                      <label>External Link 4</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="postLink4"
+                        placeholder="Link"
+                      />
+                    </div>
                   </div>
-                  <div class="form-row">
-                    <label>External Link 2</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postLink2"
-                      placeholder="Link"
-                    />
-                  </div>
-                  <div class="form-row">
-                    <label>External Link 3</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postLink3"
-                      placeholder="Link"
-                    />
-                  </div>
-                  <div class="form-row">
-                    <label>External Link 4</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postLink4"
-                      placeholder="Link"
-                    />
-                  </div>
+                  <br />
                   <div class="form-row">
                     <label>Author</label>
                     <input

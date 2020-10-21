@@ -36,6 +36,7 @@ export class BlogpostsComponent implements OnInit {
   public nextPostData;
   public prevPostData;
   public markdown;
+  public previewMarkdown
   public pageId = '/Blog/:postNumber/:postTitle/:id';
 
   public likeSet:number = 0
@@ -290,4 +291,10 @@ defaultLikes(){
     }
   }
 }
+
+// preview post content in markdown
+getPostPreview(){
+this.previewMarkdown = $('#postContentMd').val()
+}
+
 }

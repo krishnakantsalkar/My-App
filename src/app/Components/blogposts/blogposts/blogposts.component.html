@@ -522,6 +522,7 @@ Post: {{ data.post }}</pre
                       class="form-control"
                       placeholder="Content"
                       formControlName="post"
+                      id="postContentMd"
                     ></textarea>
                   </div>
                   <br />
@@ -552,6 +553,22 @@ Post: {{ data.post }}</pre
                 </button>
                 <button type="submit" class="btn btn-success">Submit</button>
               </form>
+              <hr />
+              <br />
+
+              <h3>
+                Post Markdown Preview:
+                <button class="btn btn-dark" (click)="getPostPreview()">
+                  show
+                </button>
+              </h3>
+              <br />
+              <markdown
+                *ngIf="previewMarkdown"
+                class="variable-binding"
+                [data]="previewMarkdown"
+                emoji
+              ></markdown>
             </article>
           </div>
         </div>

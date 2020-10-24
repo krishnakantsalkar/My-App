@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- background color -->
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    ></div>
+
+    <!-- main component -->
+    <div
+      class="mainCovid"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <!-- container -->
+      <div class="container">
+        <h1
+          [ngStyle]="{
+            color: brightness ? 'red' : 'violet'
+          }"
+        >
+          Covid-19 India Tracker
+        </h1>
+        <br />
+
+        <!-- add a loading... animation -->
+
+        <div class="loading" *ngIf="!covidData">
+          <h4 *ngIf="!brightness" class="loadinganimDark">
+            Loading...<span class="spinner-border"></span>
+          </h4>
+          <h4 *ngIf="brightness" class="loadinganimLight">
+            Loading...<span class="spinner-border"></span>
+          </h4>
+        </div>
+        <br />
+        <h5
+          *ngIf="updateTime"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+        >
+          last updated: {{ updateTime }}
+        </h5>
+
+        <!-- total cases button group -->
+        <div
+          class="row covidDataRow"
+          *ngIf="covidData"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'white'
+          }"
+        >
+          <button class="btn btn-secondary col-3 col-sm-1">
+            Total Active {{ covidData.activeCases }}
+          </button>
+          <button class="btn btn-danger col-3 col-sm-1">
+            New Cases {{ covidData.activeCasesNew }}
+          </button>
+          <button class="btn btn-success col-3 col-sm-1">
+            Total Recovered {{ covidData.recovered }}
+          </button>
+          <button class="btn btn-primary col-3 col-sm-1">
+            New Recovered {{ covidData.recoveredNew }}
+          </button>
+          <button class="btn btn-dark col-3 col-sm-1">
+            Total Deaths {{ covidData.deaths }}
+          </button>
+          <button class="btn btn-info col-3 col-sm-1">
+            New Deaths {{ covidData.deathsNew }}
+          </button>
+          <button class="btn btn-light col-3 col-sm-1">
+            Total Cases {{ covidData.totalCases }}
+          </button>
+        </div>
+        <br />
+        <h6
+          *ngIf="covidData"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+        >
+          Source: {{ covidData.sourceUrl }}
+        </h6>
+        <br />
+
+        <!-- covid data table -->
+        <div class="covidTable">
+          <div
+            *ngIf="covidData"
+            class="covidTableContent"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(230,231,231)'
+                : 'rgb(41, 42, 45)',
+
+              color: brightness ? 'black' : 'white'
+            }"
+          >
+            <table class="sorttable">
+              <th *ngFor="let state of states" style="padding: 10px">
+                {{ state }}
+              </th>
+
+              <tr
+                *ngFor="let data of covidData.regionData"
+                style="padding-left: 2px"
+              >
+                {{
+                  data.region
+                }}
+                <td
+                  *ngFor="let column of columns"
+                  style="padding: 10px; text-align: center"
+                >
+                  {{ data[column] }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- credits -->
+        <div class="alert alert-success apiCredits" *ngIf="covidData">
+          <h6>
+            <i class="fas fa-check-circle"></i> API credits:
+            <a href=" https://apify.com/zuzka/covid-in">
+              https://apify.com/zuzka/covid-in</a
+            >
+          </h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <app-footer></app-footer>
+  </body>
+</html>

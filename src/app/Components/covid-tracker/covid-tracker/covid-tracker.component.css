@@ -1,0 +1,83 @@
+div.content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+div.mainCovid {
+  padding-top: 150px;
+  z-index: 1;
+  padding-bottom: 80px;
+}
+
+h1 {
+  color: black;
+}
+
+.covidDataRow button {
+  margin: 5px;
+}
+
+.covidTable {
+  padding-bottom: 70px;
+}
+
+.apiCredits {
+  display: flex;
+  justify-content: center;
+}
+
+.loadinganimDark {
+  color: violet;
+  animation: cursor 1s infinite;
+}
+.loadinganimLight {
+  color: red;
+  animation: cursor1 1s infinite;
+}
+
+@keyframes cursor {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: violet;
+    text-shadow: 0px 0px 15px;
+  }
+}
+
+@keyframes cursor1 {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: red;
+    text-shadow: 0px 0px 15px rgb(243, 50, 82);
+  }
+}
+
+.covidTableContent {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  div.covidTable {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+  div.covidDataRow {
+    display: flex;
+    justify-content: center;
+  }
+
+  tr {
+    font-size: 14px;
+  }
+}

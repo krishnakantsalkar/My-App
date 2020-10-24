@@ -76,10 +76,6 @@ div.card-body {
   color: black;
 }
 
-div.header a {
-  margin-right: 5px;
-}
-
 .blogimg {
   display: flex;
   justify-content: center;

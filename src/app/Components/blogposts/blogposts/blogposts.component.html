@@ -132,20 +132,29 @@
             <div class="blogimg" *ngIf="data">
               <img *ngIf="data.postImage" [src]="data.postImage" />
             </div>
-            <a
-              class="float-right btn btn-warning"
+            <hr
               *ngIf="data"
-              routerLink="/Blog/1"
-            >
-              <i class="fas fa-arrow-circle-left"></i> Blog
-            </a>
-
-            <h2
-              *ngIf="data"
-              [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
-            >
-              {{ data.postTitle }}
-            </h2>
+              [ngStyle]="{
+                'border-bottom': brightness
+                  ? '1px groove red'
+                  : '1px groove violet'
+              }"
+              style="margin: 10px auto; width: 70%"
+            />
+            <div class="row">
+              <h2
+                class="col-8 col-sm-8"
+                *ngIf="data"
+                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
+              >
+                #{{ data.postNumber }}: {{ data.postTitle }}
+              </h2>
+              <div class="col-4 col-sm-4 returnBtn" style="text-align: right">
+                <a class="btn btn-warning" *ngIf="data" routerLink="/Blog/1">
+                  <i class="fas fa-arrow-circle-left"></i> Blog
+                </a>
+              </div>
+            </div>
             <div
               *ngIf="data"
               class="blogPostInfoBar"
@@ -157,15 +166,36 @@
               }"
             >
               <div class="row">
+                <div
+                  class="col-1 col-sm-1 blogpostIcon"
+                  style="
+                    text-align: center;
+                    display: inline-block;
+                    height: 100%;
+                    width: 100%;
+                  "
+                  [ngStyle]="{
+                    color: brightness ? 'red' : 'violet'
+                  }"
+                >
+                  <i class="far fa-file-alt" style="font-size: 20px"></i>
+                </div>
+
                 <h6
-                  class="col-5 col-sm-6 text-muted"
+                  class="col-4 col-sm-5 text-muted"
                   *ngIf="data"
                   style="float: left"
                   [ngStyle]="{
                     color: brightness ? 'black' : 'rgb(160,160,160)'
                   }"
                 >
-                  <i class="fas fa-clock"></i> {{ data.postDate }}
+                  <i
+                    class="fas fa-clock"
+                    [ngStyle]="{
+                      color: brightness ? 'red' : 'violet'
+                    }"
+                  ></i>
+                  {{ data.postDate }}
                 </h6>
                 <!-- post edited or not -->
                 <h6 *ngIf="data" class="col-2 col-sm-2">
@@ -174,7 +204,13 @@
                     [ngStyle]="{
                       color: brightness ? 'black' : 'rgb(129,129,129)'
                     }"
-                    ><i class="fas fa-pencil-alt"></i> edited.</span
+                    ><i
+                      class="fas fa-pencil-alt"
+                      [ngStyle]="{
+                        color: brightness ? 'red' : 'violet'
+                      }"
+                    ></i>
+                    edited.</span
                   >
                 </h6>
                 <h6 class="col-3 col-sm-2">

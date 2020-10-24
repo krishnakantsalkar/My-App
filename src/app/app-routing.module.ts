@@ -117,6 +117,11 @@ const routes: Routes = [
       ),
   },
 
+  {
+    path: "Covid-Tracker",
+    loadChildren: () => import('./Components/covid-tracker/covid-tracker.module').then((m) => m.CovidTrackerModule)
+  },
+
   //wildcard route
   {
     path: '**',

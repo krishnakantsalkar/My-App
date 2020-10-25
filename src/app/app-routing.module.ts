@@ -117,9 +117,16 @@ const routes: Routes = [
       ),
   },
 
+  // covid tracker route
   {
     path: "Covid-Tracker",
     loadChildren: () => import('./Components/covid-tracker/covid-tracker.module').then((m) => m.CovidTrackerModule)
+  },
+
+  // covid tracker activated route
+  {
+    path: "Covid-Tracker/State/:name",
+    loadChildren: () => import('./Components/covid-tracker-districts/covid-tracker-districts.module').then((m) => m.CovidTrackerDistrictsModule)
   },
 
   //wildcard route

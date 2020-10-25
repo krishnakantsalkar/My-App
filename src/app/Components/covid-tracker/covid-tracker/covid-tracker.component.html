@@ -42,45 +42,42 @@
           <h4 *ngIf="brightness" class="loadinganimLight">
             Loading...<span class="spinner-border"></span>
           </h4>
+          <br />
         </div>
-        <br />
-        <h5
-          *ngIf="updateTime"
-          [ngStyle]="{
-            color: brightness ? 'black' : 'rgb(129,129,129)'
-          }"
-        >
-          last updated: {{ updateTime }}
-        </h5>
 
-        <!-- total cases button group -->
+        <!-- covid total stats -->
         <div
           class="row covidDataRow"
-          *ngIf="covidData"
+          *ngIf="totalCovidData"
           [ngStyle]="{
             color: brightness ? 'black' : 'white'
           }"
         >
-          <button class="btn btn-secondary col-3 col-sm-1">
-            Total Active {{ covidData.activeCases }}
+          <button class="btn btn-info col-3 col-sm-1">
+            New Active {{ totalCovidData.aChanges }}
           </button>
-          <button class="btn btn-danger col-3 col-sm-1">
-            New Cases {{ covidData.activeCasesNew }}
-          </button>
-          <button class="btn btn-success col-3 col-sm-1">
-            Total Recovered {{ covidData.recovered }}
+          <button class="btn btn-warning col-3 col-sm-1">
+            New Confirmed {{ totalCovidData.cChanges }}
           </button>
           <button class="btn btn-primary col-3 col-sm-1">
-            New Recovered {{ covidData.recoveredNew }}
+            New Recovered {{ totalCovidData.rChanges }}
           </button>
           <button class="btn btn-dark col-3 col-sm-1">
-            Total Deaths {{ covidData.deaths }}
+            New Deaths {{ totalCovidData.dChanges }}
           </button>
-          <button class="btn btn-info col-3 col-sm-1">
-            New Deaths {{ covidData.deathsNew }}
+
+          <button class="btn btn-secondary col-3 col-sm-1">
+            Total Confirmed {{ totalCovidData.confirmed }}
           </button>
-          <button class="btn btn-light col-3 col-sm-1">
-            Total Cases {{ covidData.totalCases }}
+          <button class="btn btn-danger col-3 col-sm-1">
+            Total Active {{ totalCovidData.active }}
+          </button>
+          <button class="btn btn-success col-3 col-sm-1">
+            Total Recovered {{ totalCovidData.recovered }}
+          </button>
+
+          <button class="btn btn-dark col-3 col-sm-1">
+            Total Deaths {{ totalCovidData.deaths }}
           </button>
         </div>
         <br />
@@ -90,11 +87,11 @@
             color: brightness ? 'black' : 'rgb(129,129,129)'
           }"
         >
-          Source: {{ covidData.sourceUrl }}
+          Data sourced from COVID19India MOHFW Gov. Org. and Media
         </h6>
         <br />
 
-        <!-- covid data table -->
+        <!-- covid table -->
         <div class="covidTable">
           <div
             *ngIf="covidData"
@@ -108,22 +105,21 @@
             }"
           >
             <table class="sorttable">
-              <th *ngFor="let state of states" style="padding: 10px">
+              <th
+                *ngFor="let state of states"
+                style="padding: 10px; text-align: center"
+              >
                 {{ state }}
               </th>
 
-              <tr
-                *ngFor="let data of covidData.regionData"
-                style="padding-left: 2px"
-              >
-                {{
-                  data.region
-                }}
+              <tr *ngFor="let data of covidData">
                 <td
-                  *ngFor="let column of columns"
+                  *ngFor="let stateD of stateData"
                   style="padding: 10px; text-align: center"
                 >
-                  {{ data[column] }}
+                  <span routerLink="/Covid-Tracker/State/{{ data.state }}">
+                    {{ data[stateD] }}</span
+                  >
                 </td>
               </tr>
             </table>
@@ -134,8 +130,8 @@
         <div class="alert alert-success apiCredits" *ngIf="covidData">
           <h6>
             <i class="fas fa-check-circle"></i> API credits:
-            <a href=" https://apify.com/zuzka/covid-in">
-              https://apify.com/zuzka/covid-in</a
+            <a href="http://covidindiatracker.com/" target="_blank">
+              http://covidindiatracker.com/</a
             >
           </h6>
         </div>

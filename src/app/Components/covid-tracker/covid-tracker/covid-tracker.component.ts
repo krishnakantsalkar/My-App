@@ -11,25 +11,41 @@ export class CovidTrackerComponent implements OnInit {
 public brightness
 public covidData
 public updateTime
-// columns list
-public columns = 
-    ["totalInfected",
-      "newInfected",
+public totalCovidData
+public states =[
+    "States",
+    "Active",
+    "Confirmed",
+    "Recovered",
+    "Deaths",
+    "New Active",
+    "New Confirmed",
+    "New Recovered",
+    "New Deaths",   
+  ]
+
+public stateData = [
+  "state",
+      "active",
+      "confirmed",
       "recovered",
-      "newRecovered",
-      "deceased",
-      "newDeceased"
-    ]
-// states
-public states =
-    ["States",
-     "Total Infected",
-     "New Infected",
-      "Recovered",
-      "New Recovered",
-      "Deceased",
-      "New Deceased"
-    ]
+      "deaths",
+      "aChanges",
+      "cChanges",
+      "rChanges",
+      "dChanges",
+]
+
+public districtHeader= [
+     "name",
+     "confirmed",
+     "recovered",
+     "deaths",
+     "oldConfirmed",
+     "oldRecovered",
+     "oldDeaths",
+     "zone"
+]
   constructor(private covidApi: covidApiService) { }
 
   ngOnInit(): void {
@@ -37,13 +53,13 @@ public states =
     // method calls
     this.mode()
  
-    // covid data api call
-    this.covidApi.getcovidData().subscribe(item=>{
-
+    this.covidApi.getCovidData2().subscribe(item=>{
       this.covidData = item
-      this.showUpdatedTime()
+      // console.log(this.covidData)
     })
-
+    this.covidApi.getCovidDataTotal().subscribe(item=>{
+      this.totalCovidData= item
+    })
 
      // disable brightness toggle
      $(document).ready(() => {
@@ -56,14 +72,4 @@ public states =
  mode() {
   this.brightness = JSON.parse(localStorage.getItem('mode'));
 }
-
-// transform ISO time to local time
-showUpdatedTime(){
-  let time = new Date( this.covidData.lastUpdatedAtApify)
-
-  this.updateTime = time.toLocaleString()
-
-}
- 
-
 }

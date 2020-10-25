@@ -18,7 +18,7 @@ h1 {
 }
 
 .covidDataRow button {
-  margin: 5px;
+  margin: 8px;
 }
 
 .covidTable {
@@ -39,6 +39,10 @@ h1 {
   animation: cursor1 1s infinite;
 }
 
+tr:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
 @keyframes cursor {
   from,
   to {

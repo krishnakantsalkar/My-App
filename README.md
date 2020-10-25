@@ -8,28 +8,31 @@ To start Development Server install Angular CLI from npm and run `ng serve`
 
 ### Features :fire::
 
+- Single Page Web Application
 - Component based structure
 - Node + Express APIs backed with MongoDB
-- Cloudinary Image storage API
+- Cloudinary Image storage
 - Global Dark/Light mode implementation
 - Reactive forms for data submissions
 - Bootstrap, fontawesome, ngx-cookies, Superplaceholder, ngx-cookies, ng-adblockDetect etc.
-- login page with captcha protection
-- jwt & bcypt & crypto protection for Backend data handling
+- Jquery@3.5.1 support
+- Login with captcha protection
+- jwt, bcypt & crypto protection for Backend data handling
 - Create/Edit/Delete New Blog from UI (Admin only)
-- Lazy Loading
+- Lazy Loading~
 - Smooth AOS animations throughout
 - Pagination
 - widgets
 - Search & Display data from Database
-- TheMovieDB API by [TheMovieDb.org](https://themoviedb.org)
+- TheMovieDB API powered by [TheMovieDb.org](https://themoviedb.org)
 - Fully Optimized for mobile devices
 - Send email on Login with host IP and host Machine
-- email notifications for updates
-- APIs to track blogpost views
+- track blogpost views!
+- email notifications for updates & feedbacks
 - HTTPS via Cloudflare
-- Downloads subdomain by GoIndex
-- Memocho (pastebin) hosting
+- Downloads subdomain powered by [GoIndex](https://github.com/alx-xlx/goindex)
+- [Memocho](https://github.com/mojurasu/memocho) (pastebin) hosting for snippets sharing 
+- Covid-19 India tracker powered by [covidindiatracker.com](https://covidindiatracker.com)
 - much more... check commit history.
 
 #### Contact me on `dev@krishnakantsalkar.gq`

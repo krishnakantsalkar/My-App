@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- background color -->
+    <div
+      class="content"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    ></div>
+
+    <!-- main component -->
+    <div
+      class="mainCovid"
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
+      <div class="container">
+        <!-- add a loading... animation -->
+
+        <div class="loading" *ngIf="!covidDistrictData">
+          <h4 *ngIf="!brightness" class="loadinganimDark">
+            Loading...<span class="spinner-border"></span>
+          </h4>
+          <h4 *ngIf="brightness" class="loadinganimLight">
+            Loading...<span class="spinner-border"></span>
+          </h4>
+        </div>
+        <br />
+
+        <!-- navigation -->
+        <div class="row">
+          <h1
+            class="col-8 col-sm-8"
+            [ngStyle]="{
+              color: brightness ? 'red' : 'violet'
+            }"
+          >
+            State: {{ covidDistrict }}
+          </h1>
+
+          <div class="col-4 col-sm-4" style="text-align: right">
+            <button class="btn btn-info" routerLink="/Covid-Tracker">
+              <i class="fas fa-step-backward"></i> Back
+            </button>
+          </div>
+        </div>
+        <br />
+        <br />
+
+        <!-- main table -->
+        <div class="covidTable">
+          <div
+            class="districtDataTable"
+            *ngIf="covidDistrictData"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(230,231,231)'
+                : 'rgb(41, 42, 45)',
+
+              color: brightness ? 'black' : 'white'
+            }"
+          >
+            <table>
+              <th
+                *ngFor="let district of districtHeader"
+                style="padding: 20px; text-align: center"
+              >
+                {{ district }}
+              </th>
+              <tr *ngFor="let data of covidDistrictData">
+                <td
+                  *ngFor="let district of districtHeader"
+                  style="padding: 10px; text-align: center"
+                >
+                  {{ data[district] }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br />
+        <!-- credits -->
+        <div class="alert alert-success apiCredits" *ngIf="covidData">
+          <h6>
+            <i class="fas fa-check-circle"></i> API credits:
+            <a href="http://covidindiatracker.com/" target="_blank">
+              http://covidindiatracker.com/</a
+            >
+          </h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <app-footer></app-footer>
+  </body>
+</html>

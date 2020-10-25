@@ -51,7 +51,9 @@ div.footer {
 }
 
 div.footer-text {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
   padding-top: 20px;
 }
 div.footer h6,
@@ -155,6 +157,13 @@ div.footer i {
   }
 }
 
+.footerAngularLogo .fa-angular {
+  color: #c82333;
+  font-size: 22px;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;
@@ -183,5 +192,13 @@ div.footer i {
   .content-new {
     padding-bottom: 40px;
     text-align: center;
+  }
+  div.footer-text .footerAngularLogo {
+    margin-top: -7px;
+  }
+
+  .footerAngularLogo .fa-angular {
+    font-size: 13px;
+    color: #c82333;
   }
 }

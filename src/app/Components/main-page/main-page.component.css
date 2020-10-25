@@ -156,7 +156,8 @@ div.footer {
 }
 
 div.footer-text {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   padding-top: 20px;
 }
 div.footer h6,
@@ -407,6 +408,13 @@ div.websiteUsesDialog .fa-cookie-bite {
   line-height: 80%;
 }
 
+.footerAngularLogo .fa-angular {
+  color: #c82333;
+  font-size: 22px;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;
@@ -481,5 +489,14 @@ div.websiteUsesDialog .fa-cookie-bite {
   div.websiteUsesDialog {
     bottom: 30px;
     text-align: center;
+  }
+
+  div.footer-text .footerAngularLogo {
+    margin-top: -7px;
+  }
+
+  .footerAngularLogo .fa-angular {
+    font-size: 13px;
+    color: #c82333;
   }
 }

@@ -31,6 +31,18 @@
         >
           Covid-19 India Tracker
         </h1>
+
+        <!-- source of data -->
+        <h6
+          *ngIf="covidData"
+          class="text-muted"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+        >
+          Data sourced from COVID19India, MOHFW.gov.in and Media
+        </h6>
+
         <br />
 
         <!-- add a loading... animation -->
@@ -80,16 +92,13 @@
             Total Deaths {{ totalCovidData.deaths }}
           </button>
         </div>
-        <br />
-        <h6
+        <hr
           *ngIf="covidData"
+          style="margin: 15px auto; width: 80%"
           [ngStyle]="{
-            color: brightness ? 'black' : 'rgb(129,129,129)'
+            'border-bottom': brightness ? '1px dashed red' : '1px dashed violet'
           }"
-        >
-          Data sourced from COVID19India MOHFW Gov. Org. and Media
-        </h6>
-        <br />
+        />
 
         <!-- covid table -->
         <div class="covidTable">
@@ -98,8 +107,8 @@
             class="covidTableContent"
             [ngStyle]="{
               'background-color': brightness
-                ? 'rgb(230,231,231)'
-                : 'rgb(41, 42, 45)',
+                ? 'rgb(240,241,241)'
+                : 'rgb(33,34,35)',
 
               color: brightness ? 'black' : 'white'
             }"
@@ -112,10 +121,19 @@
                 {{ state }}
               </th>
 
+              <!-- give color coding to table values -->
               <tr *ngFor="let data of covidData">
                 <td
-                  *ngFor="let stateD of stateData"
+                  *ngFor="let stateD of stateData; let i = index"
                   style="padding: 10px; text-align: center"
+                  [ngClass]="{
+                    red: data.cChanges >= 10 && i == 6,
+                    green: data.rChanges >= 10 && i == 7,
+                    yellow: data.dChanges >= 10 && i == 8,
+                    violet: data.aChanges < 0 && i == 5,
+                    orange: data.aChanges > 0 && i == 5,
+                    'text-muted': i > 0 && i < 5
+                  }"
                 >
                   <span routerLink="/Covid-Tracker/State/{{ data.state }}">
                     {{ data[stateD] }}</span

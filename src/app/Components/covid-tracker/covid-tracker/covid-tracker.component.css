@@ -17,6 +17,35 @@ h1 {
   color: black;
 }
 
+.covidDataRow {
+  display: flex;
+  justify-content: center;
+}
+
+.red {
+  color: orangered;
+  font-weight: bolder;
+}
+
+.green {
+  color: green;
+  font-weight: bolder;
+}
+
+.yellow {
+  color: rgb(201, 201, 0);
+  font-weight: bolder;
+}
+.violet {
+  color: violet;
+  font-weight: bolder;
+}
+
+.orange {
+  color: orange;
+  font-weight: bolder;
+}
+
 .covidDataRow button {
   margin: 8px;
 }

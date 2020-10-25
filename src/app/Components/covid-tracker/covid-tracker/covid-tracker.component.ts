@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import * as sort from 'sorttable'
 import { Title } from '@angular/platform-browser';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-covid-tracker',
@@ -56,6 +57,11 @@ public pageTitle = 'Covid-19 Tracker'
 
     // method calls
     this.mode()
+
+   // aos animations
+   AOS.init({
+    startEvent: 'DomContentLoaded',
+  });
 
      //set page title  
      this.titleService.setTitle(this.pageTitle)

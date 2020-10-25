@@ -65,30 +65,78 @@
             color: brightness ? 'black' : 'white'
           }"
         >
-          <button class="btn btn-info col-3 col-sm-1">
+          <button
+            class="btn btn-info col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             New Active {{ totalCovidData.aChanges }}
           </button>
-          <button class="btn btn-warning col-3 col-sm-1">
+          <button
+            class="btn btn-warning col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             New Confirmed {{ totalCovidData.cChanges }}
           </button>
-          <button class="btn btn-primary col-3 col-sm-1">
+          <button
+            class="btn btn-primary col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             New Recovered {{ totalCovidData.rChanges }}
           </button>
-          <button class="btn btn-dark col-3 col-sm-1">
+          <button
+            class="btn btn-dark col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="700"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             New Deaths {{ totalCovidData.dChanges }}
           </button>
 
-          <button class="btn btn-secondary col-3 col-sm-1">
+          <button
+            class="btn btn-secondary col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="900"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             Total Confirmed {{ totalCovidData.confirmed }}
           </button>
-          <button class="btn btn-danger col-3 col-sm-1">
+          <button
+            class="btn btn-danger col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="1100"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             Total Active {{ totalCovidData.active }}
           </button>
-          <button class="btn btn-success col-3 col-sm-1">
+          <button
+            class="btn btn-success col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="1300"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             Total Recovered {{ totalCovidData.recovered }}
           </button>
 
-          <button class="btn btn-dark col-3 col-sm-1">
+          <button
+            class="btn btn-dark col-3 col-sm-1"
+            data-aos="zoom-in"
+            data-aos-delay="1500"
+            data-aos-duration="1000"
+            data-aos-once="true"
+          >
             Total Deaths {{ totalCovidData.deaths }}
           </button>
         </div>
@@ -101,7 +149,13 @@
         />
 
         <!-- covid table -->
-        <div class="covidTable">
+        <div
+          class="covidTable"
+          data-aos="slide-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
           <div
             *ngIf="covidData"
             class="covidTableContent"
@@ -145,7 +199,14 @@
         </div>
 
         <!-- credits -->
-        <div class="alert alert-success apiCredits" *ngIf="covidData">
+        <div
+          class="alert alert-success apiCredits"
+          *ngIf="covidData"
+          data-aos="slide-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
           <h6>
             <i class="fas fa-check-circle"></i> API credits:
             <a href="https://covidindiatracker.com/" target="_blank">
@@ -155,7 +216,14 @@
         </div>
 
         <!-- useful links -->
-        <div class="usefulLinks" *ngIf="covidData">
+        <div
+          class="usefulLinks"
+          *ngIf="covidData"
+          data-aos="slide-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
           <div class="alert alert-danger">
             <h5><i class="fas fa-exclamation-circle"></i> Useful Links:</h5>
             <br />

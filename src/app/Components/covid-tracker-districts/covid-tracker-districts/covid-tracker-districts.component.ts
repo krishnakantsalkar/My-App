@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-covid-tracker-districts',
@@ -23,11 +24,17 @@ export class CovidTrackerDistrictsComponent implements OnInit {
     "oldDeaths",
     "zone" 
   ]
-  constructor(private covidApi:covidApiService) { }
+
+  public pageTitle= 'Covid-19 Tracker'
+
+  constructor(private covidApi:covidApiService, private titleService:Title) { }
 
   ngOnInit(): void {
 
     this.mode()
+
+     //set page title
+     this.titleService.setTitle(this.pageTitle)
 
     this.covidApi.getCovidData2().subscribe(item=>{
       this.covidData = item

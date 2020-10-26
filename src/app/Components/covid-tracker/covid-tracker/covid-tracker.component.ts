@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
-import * as sort from 'sorttable'
 import { Title } from '@angular/platform-browser';
 import * as AOS from 'aos';
 
@@ -51,6 +50,7 @@ public districtHeader= [
 
 public pageTitle = 'Covid-19 Tracker'
 
+public pageUrl
   constructor(private covidApi: covidApiService, private titleService:Title) { }
 
   ngOnInit(): void {
@@ -79,6 +79,9 @@ public pageTitle = 'Covid-19 Tracker'
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
     });
+
+    //get page url
+    this.pageUrl = window.location.href
    
 
 //current time 

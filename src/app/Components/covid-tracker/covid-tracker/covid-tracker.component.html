@@ -34,15 +34,18 @@
 
         <!-- source of data -->
         <h6
-          *ngIf="covidData"
           class="text-muted"
           [ngStyle]="{
             color: brightness ? 'black' : 'rgb(129,129,129)'
           }"
         >
-          Data sourced from COVID19India, MOHFW.gov.in and Media
+          <i class="fas fa-info-circle"></i> Data sourced from COVID19India,
+          MOHFW.gov.in and Media
         </h6>
 
+        <h6 *ngIf="updateTime" class="text-muted">
+          <i class="fas fa-clock"></i> last refreshed: {{ updateTime }}
+        </h6>
         <br />
 
         <!-- add a loading... animation -->
@@ -72,7 +75,10 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            New Active {{ totalCovidData.aChanges }}
+            New Active &nbsp; <i class="fas fa-chart-line"></i>
+            <strong>
+              {{ totalCovidData.aChanges | number: "1.0":"en-US" }}</strong
+            >
           </button>
           <button
             class="btn btn-warning col-3 col-sm-1"
@@ -81,7 +87,12 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            New Confirmed {{ totalCovidData.cChanges }}
+            New Confirmed &nbsp;
+            <i class="fas fa-exclamation-triangle" style="color: red"></i>
+            &nbsp;
+            <strong>
+              {{ totalCovidData.cChanges | number: "1.0":"en-US" }}
+            </strong>
           </button>
           <button
             class="btn btn-primary col-3 col-sm-1"
@@ -90,7 +101,11 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            New Recovered {{ totalCovidData.rChanges }}
+            New Recovered &nbsp;
+            <i class="fas fa-plus-square" style="color: greenyellow"></i> &nbsp;
+            <strong>
+              {{ totalCovidData.rChanges | number: "1.0":"en-US" }}
+            </strong>
           </button>
           <button
             class="btn btn-dark col-3 col-sm-1"
@@ -99,7 +114,10 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            New Deaths {{ totalCovidData.dChanges }}
+            New Deaths &nbsp; <i class="fas fa-skull-crossbones"></i>
+            <strong>
+              {{ totalCovidData.dChanges | number: "1.0":"en-US" }}
+            </strong>
           </button>
 
           <button
@@ -109,7 +127,9 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            Total Confirmed {{ totalCovidData.confirmed }}
+            Total Confirmed &nbsp;
+            <i class="fas fa-list-ul" style="color: #c82333"></i> &nbsp;
+            {{ totalCovidData.confirmed | number: "1.0":"en-US" }}
           </button>
           <button
             class="btn btn-danger col-3 col-sm-1"
@@ -118,7 +138,8 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            Total Active {{ totalCovidData.active }}
+            Total Active &nbsp; <i class="fas fa-chart-line"></i>
+            {{ totalCovidData.active | number: "1.0":"en-US" }}
           </button>
           <button
             class="btn btn-success col-3 col-sm-1"
@@ -127,7 +148,13 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            Total Recovered {{ totalCovidData.recovered }}
+            Total Recovered &nbsp;
+            <i
+              class="fa fa-plus-square"
+              aria-hidden="true"
+              style="color: greenyellow"
+            ></i>
+            {{ totalCovidData.recovered | number: "1.0":"en-US" }}
           </button>
 
           <button
@@ -137,11 +164,16 @@
             data-aos-duration="1000"
             data-aos-once="true"
           >
-            Total Deaths {{ totalCovidData.deaths }}
+            Total Deaths &nbsp; <i class="fas fa-skull"></i>
+            {{ totalCovidData.deaths | number: "1.0":"en-US" }}
           </button>
         </div>
         <hr
           *ngIf="covidData"
+          data-aos="slide-up"
+          data-aos-delay="300"
+          data-aos-duration="1000"
+          data-aos-once="true"
           style="margin: 15px auto; width: 80%"
           [ngStyle]="{
             'border-bottom': brightness ? '1px dashed red' : '1px dashed violet'
@@ -180,6 +212,7 @@
                 <td
                   *ngFor="let stateD of stateData; let i = index"
                   style="padding: 10px; text-align: center"
+                  class="covidDataLoop"
                   [ngClass]="{
                     red: data.cChanges >= 10 && i == 6,
                     green: data.rChanges >= 10 && i == 7,
@@ -190,8 +223,8 @@
                   }"
                 >
                   <span routerLink="/Covid-Tracker/State/{{ data.state }}">
-                    {{ data[stateD] }}</span
-                  >
+                    {{ data[stateD] }}
+                  </span>
                 </td>
               </tr>
             </table>

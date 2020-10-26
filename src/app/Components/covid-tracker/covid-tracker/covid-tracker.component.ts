@@ -79,10 +79,68 @@ public pageTitle = 'Covid-19 Tracker'
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
     });
+   
+
+//current time 
+    this.currentTime()
+    
+// add icons to data
+    this.checkRedFn()
   }
 
- //dark-light mode
+ //dark-light mode 
  mode() {
   this.brightness = JSON.parse(localStorage.getItem('mode'));
 }
+
+// current time
+ currentTime(){
+let checkUpdatedTime = sessionStorage.getItem('covidData')
+
+if(!checkUpdatedTime){
+
+let d = new Date()
+this.updateTime = d.toLocaleString()
+sessionStorage.setItem('covidData', this.updateTime)
+}else {
+  this.updateTime = sessionStorage.getItem('covidData')
+}
+
+}
+
+// add icons to new data
+checkRedFn(){
+
+  setTimeout(()=> {
+     
+    
+  let checkRed = $('.covidDataLoop').hasClass('red')
+  let checkYellow = $('.covidDataLoop').hasClass('yellow')
+  let checkGreen= $('.covidDataLoop').hasClass('green')
+  let checkViolet= $('.covidDataLoop').hasClass('violet')
+  let checkOrange= $('.covidDataLoop').hasClass('orange')
+
+  if (checkRed === true){
+  $('.red').append(`<i class="fas fa-arrow-up" style="color:red"></i>`)
+  
+  }
+  if (checkYellow === true){
+    $('.yellow').append(`<i class="fas fa-skull" style="color:red"></i>`)
+    
+  }
+  if (checkGreen === true){
+    $('.green').append(`<i class="fas fa-check-circle" style="color:white"></i>`)
+    
+  }
+  if (checkViolet === true){
+    $('.violet').append(`<i class="fas fa-arrow-down" style="color:violet"></i>`)
+    
+  }
+  if (checkOrange === true){
+    $('.orange').append(`<i class="fas fa-arrow-up" style="color:red"></i>`)
+    
+  }
+ },2000)
+
+ }
 }

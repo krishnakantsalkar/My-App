@@ -559,7 +559,16 @@
                       blgdata: d.postImage
                     }"
                   >
-                    <img src="{{ d.postImage }}" />
+                    <a
+                      routerLink="/Blog/{{ d.postNumber }}/{{ d.postTitle }}/{{
+                        d._id
+                      }}"
+                    >
+                      <img src="{{ d.postImage }}"
+                    /></a>
+                    <div class="floatingNewsPaperIcon">
+                      <i class="fas fa-newspaper"></i>
+                    </div>
                   </div>
                   <div
                     id="scrolldata"

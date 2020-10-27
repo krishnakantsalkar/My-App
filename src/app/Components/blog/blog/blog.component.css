@@ -84,7 +84,35 @@ div.pstimg img {
   width: auto;
   object-fit: contain;
   max-width: 100%;
+  position: relative;
+  cursor: pointer;
 }
+
+div.floatingNewsPaperIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  z-index: -10;
+  padding: 5px 10px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  color: black;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+div.pstimg img:hover {
+  filter: brightness(140%) blur(2px);
+}
+
+div.pstimg:hover div.floatingNewsPaperIcon {
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(360deg);
+}
+
 #myBtn {
   position: fixed;
   bottom: -50px;

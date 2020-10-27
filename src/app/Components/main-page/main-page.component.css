@@ -268,6 +268,22 @@ div.recentposts .seemore {
   opacity: 0.2;
 }
 
+.preloaderBgCredits {
+  position: absolute;
+  left: 20px;
+  bottom: 50px;
+}
+
+.preloaderBgCredits a {
+  color: yellow;
+  opacity: 0.4;
+  font-size: 14px;
+}
+
+.preloaderBgCredits a:hover {
+  opacity: 0.9;
+}
+
 .preloaderLogoL {
   height: auto;
   width: auto;

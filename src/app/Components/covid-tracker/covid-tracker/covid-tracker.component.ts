@@ -72,7 +72,11 @@ public pageUrl
     })
     this.covidApi.getCovidDataTotal().subscribe(item=>{
       this.totalCovidData= item
+          // console.log(this.totalCovidData)
+    
     })
+
+
 
      // disable brightness toggle
      $(document).ready(() => {
@@ -84,10 +88,10 @@ public pageUrl
     this.pageUrl = window.location.href
    
 
-//current time 
+    //current time 
     this.currentTime()
     
-// add icons to data
+    // add icons to data
     this.checkRedFn()
   }
 
@@ -132,7 +136,7 @@ checkRedFn(){
     
   }
   if (checkGreen === true){
-    $('.green').append(`<i class="fas fa-check-circle" style="color:white"></i>`)
+    $('.green').append(`<i class="fas fa-check-circle" style="color:green"></i>`)
     
   }
   if (checkViolet === true){

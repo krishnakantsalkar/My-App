@@ -239,57 +239,174 @@
             'border-bottom': brightness ? '1px dashed red' : '1px dashed violet'
           }"
         />
+        <br />
+
+        <!-- new covid data table -->
+
+        <!-- scroll right -->
+        <div class="scrollright" *ngIf="covidData">
+          <h6
+            style="float: right"
+            [ngStyle]="{ color: brightness ? 'black' : 'white' }"
+          >
+            scroll <i class="fas fa-arrow-circle-right"></i>
+          </h6>
+          <br />
+          <br />
+        </div>
 
         <!-- covid table -->
-        <div
-          class="covidTable"
-          data-aos="slide-up"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          data-aos-once="true"
-        >
+        <div class="covidTable1">
           <div
-            *ngIf="covidData"
-            class="covidTableContent"
+            class="card"
+            data-aos="slide-up"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+            data-aos-once="true"
             [ngStyle]="{
               'background-color': brightness
-                ? 'rgb(240,241,241)'
-                : 'rgb(33,34,35)',
-
+                ? 'rgb(221,222,223)'
+                : ' rgb(35, 35, 36)',
               color: brightness ? 'black' : 'white'
             }"
           >
-            <table class="sorttable">
-              <th
-                *ngFor="let state of states"
-                style="padding: 10px; text-align: center"
-              >
-                {{ state }}
-              </th>
+            <div class="card-body">
+              <!-- custom method to sort data as per individual columns -->
+              <table *ngIf="covidData">
+                <thead>
+                  <tr>
+                    <th
+                      [class.active]="order === 'state'"
+                      (click)="setOrder('state')"
+                      class="mdl-data-table__cell--non-numeric"
+                    >
+                      States <span [hidden]="reverse">▼</span
+                      ><span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'active'"
+                      (click)="setOrder('active')"
+                    >
+                      Active <span [hidden]="reverse">▼</span
+                      ><span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'confirmed'"
+                      (click)="setOrder('confirmed')"
+                    >
+                      Confirmed <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'recovered'"
+                      (click)="setOrder('recovered')"
+                    >
+                      Recovered <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'deaths'"
+                      (click)="setOrder('deaths')"
+                    >
+                      Deaths <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'aChanges'"
+                      (click)="setOrder('aChanges')"
+                    >
+                      New Active <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'cChanges'"
+                      (click)="setOrder('cChanges')"
+                    >
+                      New Confirmed <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'rChanges'"
+                      (click)="setOrder('rChanges')"
+                    >
+                      New Recovered <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                    <th
+                      [class.active]="order === 'dChanges'"
+                      (click)="setOrder('dChanges')"
+                    >
+                      New Deaths <span [hidden]="reverse">▼</span>
+                      <span [hidden]="!reverse">▲</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let data of covidData | orderBy: order:!reverse"
+                    routerLink="/Covid-Tracker/State/{{ data.state }}"
+                  >
+                    <td style="font-weight: bolder">{{ data.state }}</td>
+                    <td class="text-muted">{{ data.active | number }}</td>
+                    <td class="text-muted">{{ data.confirmed | number }}</td>
+                    <td class="text-muted">{{ data.recovered | number }}</td>
+                    <td class="text-muted">{{ data.deaths | number }}</td>
+                    <td
+                      [ngStyle]="{
+                        color: data.aChanges > 0 ? '#0092cc' : 'violet',
+                        'font-weight': data.aChanges > 0 ? 'bolder' : 'normal'
+                      }"
+                    >
+                      {{ data.aChanges | number }}
+                      <span *ngIf="data.aChanges > 0"
+                        ><i class="fas fa-arrow-up"></i
+                      ></span>
+                      <span *ngIf="data.aChanges < 0"
+                        ><i class="fas fa-arrow-down"></i
+                      ></span>
+                    </td>
 
-              <!-- give color coding to table values -->
-              <tr *ngFor="let data of covidData">
-                <td
-                  *ngFor="let stateD of stateData; let i = index"
-                  style="padding: 10px; text-align: center"
-                  class="covidDataLoop"
-                  [ngClass]="{
-                    red: data.cChanges >= 10 && i == 6,
-                    green: data.rChanges >= 10 && i == 7,
-                    yellow: data.dChanges >= 10 && i == 8,
-                    violet: data.aChanges < 0 && i == 5,
-                    orange: data.aChanges > 0 && i == 5,
-                    'text-muted': i > 0 && i < 5
-                  }"
-                >
-                  <span routerLink="/Covid-Tracker/State/{{ data.state }}">
-                    {{ data[stateD] }}
-                  </span>
-                </td>
-              </tr>
-            </table>
+                    <td
+                      [ngStyle]="{
+                        color: data.cChanges > 10 ? 'orangered' : 'default',
+                        'font-weight': data.cChanges > 10 ? 'bolder' : 'normal'
+                      }"
+                    >
+                      {{ data.cChanges | number }}
+                      <span *ngIf="data.cChanges > 10"
+                        ><i class="fas fa-arrow-up" style="color: red"></i
+                      ></span>
+                    </td>
+                    <td
+                      [ngStyle]="{
+                        color: data.rChanges > 10 ? 'green' : 'default',
+                        'font-weight': data.rChanges > 10 ? 'bolder' : 'normal'
+                      }"
+                    >
+                      {{ data.rChanges | number }}
+                      <span *ngIf="data.rChanges > 10"
+                        ><i class="fas fa-check-circle"></i
+                      ></span>
+                    </td>
+                    <td
+                      [ngStyle]="{
+                        color:
+                          data.dChanges > 10 ? 'rgb(201, 201, 0)' : 'default',
+                        'font-weight': data.dChanges > 10 ? 'bolder' : 'normal'
+                      }"
+                    >
+                      {{ data.dChanges | number }}
+                      <span *ngIf="data.dChanges > 10"
+                        ><i class="fas fa-skull" style="color: red"></i
+                      ></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <br />
 
         <!-- social sharing buttons (new) -->
 
@@ -361,9 +478,6 @@
         </div>
         <br />
 
-        <!-- covid widget app -->
-        <div class="removedForGithubUpload"></div>
-
         <br />
         <!-- credits -->
         <div
@@ -411,6 +525,14 @@
               target="_blank"
             >
               <i class="fas fa-globe"></i> covid19india.org</a
+            >
+            |
+            <a
+              href="https://www.covidindiatracker.com/"
+              style="color: black"
+              target="_blank"
+            >
+              <i class="fas fa-globe"></i> covidindiatracker.com</a
             >
             |
             <a

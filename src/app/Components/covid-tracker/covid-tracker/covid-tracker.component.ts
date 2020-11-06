@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import { Title } from '@angular/platform-browser';
 import * as AOS from 'aos';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-covid-tracker',
@@ -13,45 +14,21 @@ public brightness
 public covidData
 public updateTime
 public totalCovidData
-public states =[
-    "States",
-    "Active",
-    "Confirmed",
-    "Recovered",
-    "Deaths",
-    "New Active",
-    "New Confirmed",
-    "New Recovered",
-    "New Deaths",   
-  ]
-
-public stateData = [ 
-  "state",
-      "active",
-      "confirmed",
-      "recovered",
-      "deaths",
-      "aChanges",
-      "cChanges",
-      "rChanges",
-      "dChanges",
-]
-
-public districtHeader= [
-     "name",
-     "confirmed",
-     "recovered",
-     "deaths",
-     "oldConfirmed",
-     "oldRecovered",
-     "oldDeaths",
-     "zone"
-]
 
 public pageTitle = 'Covid-19 Tracker'
 
 public pageUrl
-  constructor(private covidApi: covidApiService, private titleService:Title) { }
+ 
+// ngx-order-pipe custom properties
+public order: string = 'active'
+public reverse: boolean = false;
+
+public sortedCollection: any[] =[]
+
+  constructor(private covidApi: covidApiService, private titleService:Title, private orderPipe: OrderPipe) { 
+    // ngx-order-pipe custom method
+    this.sortedCollection = this.orderPipe.transform(this.covidData, this.order); 
+  }
 
   ngOnInit(): void {
 
@@ -70,11 +47,11 @@ public pageUrl
       this.covidData = item
       // console.log(this.covidData)
     })
-    this.covidApi.getCovidDataTotal().subscribe(item=>{
-      this.totalCovidData= item
-          // console.log(this.totalCovidData)
-    
-    })
+
+    this.covidApi.getCovidDataTotal().subscribe(item=>{ 
+      this.totalCovidData = item
+          // console.log(this.totalCovidData)    
+    }) 
 
 
 
@@ -91,8 +68,7 @@ public pageUrl
     //current time 
     this.currentTime()
     
-    // add icons to data
-    this.checkRedFn()
+   
   }
 
  //dark-light mode 
@@ -102,52 +78,26 @@ public pageUrl
 
 // current time
  currentTime(){
-let checkUpdatedTime = sessionStorage.getItem('covidData')
 
-if(!checkUpdatedTime){
+  let checkUpdatedTime = sessionStorage.getItem('covidData')
+  if(!checkUpdatedTime){
 
-let d = new Date()
-this.updateTime = d.toLocaleString()
-sessionStorage.setItem('covidData', this.updateTime)
-}else {
+  let d = new Date()
+  this.updateTime = d.toLocaleString()
+  sessionStorage.setItem('covidData', this.updateTime)
+
+ }else {
   this.updateTime = sessionStorage.getItem('covidData')
-}
-
-}
-
-// add icons to new data
-checkRedFn(){
-
-  setTimeout(()=> {
-     
-    
-  let checkRed = $('.covidDataLoop').hasClass('red')
-  let checkYellow = $('.covidDataLoop').hasClass('yellow')
-  let checkGreen= $('.covidDataLoop').hasClass('green')
-  let checkViolet= $('.covidDataLoop').hasClass('violet')
-  let checkOrange= $('.covidDataLoop').hasClass('orange')
-
-  if (checkRed === true){
-  $('.red').append(`<i class="fas fa-arrow-up" style="color:red"></i>`)
-  
-  }
-  if (checkYellow === true){
-    $('.yellow').append(`<i class="fas fa-skull" style="color:red"></i>`)
-    
-  }
-  if (checkGreen === true){
-    $('.green').append(`<i class="fas fa-check-circle" style="color:green"></i>`)
-    
-  }
-  if (checkViolet === true){
-    $('.violet').append(`<i class="fas fa-arrow-down" style="color:violet"></i>`)
-    
-  }
-  if (checkOrange === true){
-    $('.orange').append(`<i class="fas fa-arrow-up" style="color:red"></i>`)
-    
-  }
- },2000)
-
  }
+
+}
+
+
+// ngx-order-pipe custom method
+ setOrder(value: string) {
+  if (this.order === value) {
+    this.reverse = !this.reverse;
+  }
+  this.order = value;
+}
 }

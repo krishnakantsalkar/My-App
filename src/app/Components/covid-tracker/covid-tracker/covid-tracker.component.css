@@ -72,6 +72,7 @@ tr:hover {
   cursor: pointer;
   opacity: 0.6;
 }
+
 @keyframes cursor {
   from,
   to {
@@ -201,8 +202,33 @@ div.sharingBtns2 a {
   margin: auto 5px;
 }
 
+thead th {
+  cursor: pointer;
+  padding: 10px 25px 30px;
+  text-align: center;
+}
+thead th span {
+  visibility: hidden;
+}
+thead th.active {
+  color: rgb(160, 160, 160);
+}
+thead th.active span {
+  visibility: visible;
+}
+
+div.covidTable1 td {
+  text-align: center;
+  padding: 10px 2px;
+}
+
+div.scrollright {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
-  div.covidTable {
+  div.covidTable1,
+  div.covidTable1 .card {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
@@ -293,5 +319,9 @@ div.sharingBtns2 a {
   }
   div.sharingBtns {
     display: none;
+  }
+
+  div.scrollright {
+    display: block;
   }
 }

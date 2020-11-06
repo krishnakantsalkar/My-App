@@ -4,6 +4,13 @@ nav {
   z-index: 3;
   width: 100%;
 }
+
+.navbar .nav-item.active .nav-link,
+.navbar .nav-item .nav-link:active,
+.navbar .nav-item .nav-link:focus {
+  color: rgb(49, 223, 107);
+}
+
 .navbar-nav a {
   text-decoration: none;
   color: #818181;

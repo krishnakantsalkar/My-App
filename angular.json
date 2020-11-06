@@ -46,7 +46,8 @@
               "./node_modules/emoji-toolkit/lib/js/joypixels.min.js"
             ],
             "allowedCommonJsDependencies": [
-              "reading-time"
+              "reading-time",
+              "ngx-order-pipe"
            ]
           },
           "configurations": {

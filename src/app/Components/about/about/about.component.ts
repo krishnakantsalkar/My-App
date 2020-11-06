@@ -194,8 +194,4 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  // scroll to topg
-  topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 }

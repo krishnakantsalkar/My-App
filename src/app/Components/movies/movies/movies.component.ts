@@ -170,11 +170,6 @@ export class MoviesComponent implements OnInit {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
-  //scroll to top method
-  topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
   // movie api usage
 
   getTheLists(pageNo, listType, listName) {

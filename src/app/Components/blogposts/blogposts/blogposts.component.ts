@@ -191,10 +191,6 @@ export class BlogpostsComponent implements OnInit {
     this.adminName = currentUser.name;
   }
 
-  // scroll to top method
-  topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   // method to navigate between posts
 

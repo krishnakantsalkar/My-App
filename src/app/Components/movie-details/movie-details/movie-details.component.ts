@@ -114,10 +114,6 @@ export class MovieDetailsComponent implements OnInit {
     this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
-  // scroll to top
-  topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   // back to page
   backToPage() {

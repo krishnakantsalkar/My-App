@@ -266,10 +266,6 @@ export class BlogComponent implements OnInit {
     this.blogservice.tgpost(title, post).subscribe((item) => {});
   }
 
-  // scroll to top method
-  topFunction() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   // show & hide search method
   showsearch() {

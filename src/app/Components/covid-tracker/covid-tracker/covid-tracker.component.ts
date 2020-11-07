@@ -68,6 +68,8 @@ public sortedCollection: any[] =[]
     //current time 
     this.currentTime()
     
+    // delay to icons
+    this.delayIconsSpan()
    
   }
 
@@ -99,5 +101,13 @@ public sortedCollection: any[] =[]
     this.reverse = !this.reverse;
   }
   this.order = value;
+}
+
+// show icons after 1s delay
+
+delayIconsSpan(){
+  setTimeout(()=>{
+$('.tableBody span').css({visibility: 'visible'})
+  },1200)
 }
 }

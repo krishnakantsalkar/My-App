@@ -68,7 +68,7 @@ h1 {
   animation: cursor1 1s infinite;
 }
 
-tr:hover {
+td:hover {
   cursor: pointer;
   opacity: 0.6;
 }
@@ -224,6 +224,10 @@ div.covidTable1 td {
 
 div.scrollright {
   display: none;
+}
+
+.tableBody span {
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 600px) {

@@ -341,7 +341,7 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="tableBody">
                   <tr
                     *ngFor="let data of covidData | orderBy: order:!reverse"
                     routerLink="/Covid-Tracker/State/{{ data.state }}"

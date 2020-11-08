@@ -303,6 +303,9 @@ export class MainPageComponent implements OnInit {
   }
 
   async showNotif(){
+    
+    setTimeout(()=>{
+    if(!sessionStorage.getItem('mainPageToast')){
     this.snotifyService.info('Welcome User, Checkout the Covid-19 India Tracker!', 'TheArsonist',  {
       timeout: 12000,
       showProgressBar: true,    
@@ -314,7 +317,10 @@ export class MainPageComponent implements OnInit {
         {text: 'Close', action: (toast) => {this.snotifyService.remove(toast.id); }, bold: true},
       ],
       position: SnotifyPosition.rightBottom
-    }) 
+      }) 
+     }
+     sessionStorage.setItem('mainPageToast', 'notified')  
+    },8000)
   }
 
 

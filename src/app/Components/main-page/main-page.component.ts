@@ -45,7 +45,14 @@ export class MainPageComponent implements OnInit {
     private cookies: CookieService,
     private titleService: Title,
     private snotifyService: SnotifyService
-  ) {}
+  ) {
+
+    // switch wallpaper method call
+    $(document).ready(()=>{
+      this.switchWalls()
+    })  
+
+  }
 
   ngOnInit(): void {
     // call methods
@@ -163,11 +170,7 @@ export class MainPageComponent implements OnInit {
 
     // website uses cookies check
     this.checkWebsiteUsesDiag();
-  
-  
-    // wallpaper switcher
-    this.switchWalls()
-  
+   
   }
 
   // set global Light/Dark mode
@@ -322,7 +325,6 @@ export class MainPageComponent implements OnInit {
      sessionStorage.setItem('mainPageToast', 'notified')  
     },8000)
   }
-
 
     //wallpaper switcher
     switchWalls(){

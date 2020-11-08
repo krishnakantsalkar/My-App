@@ -30,16 +30,19 @@
 }
 
 div.content {
-  margin: 0;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: -1;
+  opacity: 0.3;
   height: 100%;
   width: 100%;
   background-color: rgb(41, 42, 45);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 div.imagesection {
@@ -82,6 +85,11 @@ div.imagesection img {
   }
 }
 
+.content-new {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
 @media only screen and (max-width: 600px) {
   div.imagesection {
     padding-top: 200px;
@@ -91,11 +99,6 @@ div.imagesection img {
     height: 230px;
     width: 230px;
   }
-}
-
-.content-new {
-  padding-top: 60px;
-  padding-bottom: 60px;
 }
 
 .footer-social a {
@@ -169,9 +172,11 @@ div.footer i {
 div.motto {
   padding-top: 40px;
   text-align: center;
-  background-color: rgb(41, 42, 45);
-  padding-bottom: 150px;
+  padding-bottom: 160px;
+  opacity: 1;
+  z-index: 1;
 }
+
 div.motto h5 {
   color: #818181;
   padding-bottom: 20px;
@@ -447,8 +452,9 @@ div.websiteUsesDialog .fa-cookie-bite {
   div.motto h5 {
     font-size: 14px;
   }
-  .motto {
-    padding-bottom: 80px;
+
+  div.motto {
+    padding-bottom: 130px;
   }
   div.recentposts h3 {
     font-size: 22px;
@@ -462,7 +468,9 @@ div.websiteUsesDialog .fa-cookie-bite {
   div.bottom-content {
     padding-top: 20px;
   }
+
   .content-new {
+    padding-top: 170px;
     padding-bottom: 40px;
     text-align: center;
   }
@@ -514,5 +522,9 @@ div.websiteUsesDialog .fa-cookie-bite {
   .footerAngularLogo .fa-angular {
     font-size: 13px;
     color: #c82333;
+  }
+
+  div.content {
+    background-position: -400px 0;
   }
 }

@@ -13,6 +13,7 @@ import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DISQUS_SHORTNAME } from 'ngx-disqus';
 import { NgAdblockDetectModule } from 'ng-adblock-detect';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,15 @@ import { NgAdblockDetectModule } from 'ng-adblock-detect';
     ReactiveFormsModule,
     NgxCaptchaModule,
     NgAdblockDetectModule,
+    SnotifyModule,
   ],
   providers: [
     userloginservices,
     CookieService,
     // disqus comments
     { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService
   ],
   bootstrap: [AppComponent],
 })

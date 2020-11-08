@@ -205,12 +205,7 @@
       <!-- <app-navbar></app-navbar> -->
 
       <!-- background color under all other components (Old logic) -->
-      <div
-        class="content"
-        [ngStyle]="{
-          'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-        }"
-      ></div>
+      <div class="content"></div>
 
       <!-- Add personal image -->
 
@@ -283,76 +278,6 @@
           >
           <br />
           <br />
-        </div>
-
-        <div class="container" style="display: flex; justify-content: center">
-          <div
-            class="toast"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-            data-autohide="true"
-            data-delay="15000"
-            [ngStyle]="{
-              'background-color': brightness
-                ? 'rgb(242, 240, 240)'
-                : ' rgb(41, 42, 45)'
-            }"
-          >
-            <div
-              class="toast-header"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(38, 38, 38)',
-                color: brightness ? 'black' : 'rgb(129,129,129)'
-              }"
-            >
-              <!-- toast image -->
-              <!-- <img
-                src="assets/images/mylogo.jpg"
-                style="height: 23px"
-                class="rounded mr-2"
-                alt="..."
-              /> -->
-
-              <strong class="mr-auto"
-                ><i class="fas fa-robot"></i> The-Arsonist~</strong
-              >
-              <small>Recently updated</small>
-              <button
-                type="button"
-                class="ml-2 mb-1 close"
-                data-dismiss="toast"
-                aria-label="Close"
-              >
-                <span
-                  [ngStyle]="{
-                    color: brightness ? 'red' : 'violet'
-                  }"
-                  aria-hidden="true"
-                  >&times;</span
-                >
-              </button>
-            </div>
-            <div
-              class="toast-body"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(242, 240, 240)'
-                  : ' rgb(41, 42, 45)',
-                color: brightness ? 'black' : 'rgb(129,129,129)'
-              }"
-            >
-              Welcome User, Be sure to Checkout my
-              <a
-                style="cursor: pointer"
-                routerLink="/Blog/1"
-                [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-                >Blog</a
-              >!
-            </div>
-          </div>
         </div>
       </div>
 

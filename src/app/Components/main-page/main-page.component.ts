@@ -9,7 +9,7 @@ import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Jquery } from 'typings';
 import { Title } from '@angular/platform-browser';
-import { title } from 'process';
+import {SnotifyService, SnotifyPosition} from 'ng-snotify';
 
 @Component({
   selector: 'app-main-page',
@@ -29,7 +29,7 @@ export class MainPageComponent implements OnInit {
   public newsLetterSuccess;
   public newsLetterError;
 
-  public pageTitle = 'TheArsonist'
+  public pageTitle = 'TheArsonist'  
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -37,7 +37,8 @@ export class MainPageComponent implements OnInit {
     private fb: FormBuilder,
     private contactServices: contactService,
     private cookies: CookieService,
-    private titleService: Title
+    private titleService: Title,
+    private snotifyService: SnotifyService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class MainPageComponent implements OnInit {
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
+    this.showNotif()
 
     //title service
     this.titleService.setTitle(this.pageTitle)
@@ -140,7 +142,7 @@ export class MainPageComponent implements OnInit {
     }
 
     // Toast initialize
-    (<Jquery>$('.toast')).toast('show');
+    // (<Jquery>$('.toast')).toast('show');
 
     // dark and light mode listener
     $('.modeLD a').on('click', () => {
@@ -288,4 +290,21 @@ export class MainPageComponent implements OnInit {
       }
     );
   }
+
+  async showNotif(){
+    this.snotifyService.info('Welcome User, Checkout the Covid-19 India Tracker!', 'TheArsonist',  {
+      timeout: 12000,
+      showProgressBar: true,    
+      closeOnClick: false, 
+      pauseOnHover: true,
+      icon: 'assets/images/mylogo.jpg',
+      buttons: [
+        {text: 'Covid19', action: () => this.router.navigateByUrl('/Covid-Tracker'), bold: false},
+        {text: 'Close', action: (toast) => {this.snotifyService.remove(toast.id); }, bold: true},
+      ],
+      position: SnotifyPosition.rightBottom
+    }) 
+  }
+
+
 }

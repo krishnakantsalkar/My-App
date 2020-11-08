@@ -29,7 +29,13 @@ export class MainPageComponent implements OnInit {
   public newsLetterSuccess;
   public newsLetterError;
 
-  public pageTitle = 'TheArsonist'  
+  public pageTitle = 'TheArsonist'
+  
+  public wallpapersArr: string[] = ['wallpaperflare.com_wallpaper.jpg', 'pexels-felix-mittermeier-956981.jpg', 'pexels-markus-spiske-1936299.jpg','pexels-luis-gomes-546819.jpg']
+  public wallpaperNum: number = 0
+  public picSourceArr: string[] = ['Wallpaperflare.com', 'Felix mittermeier, Pexels', 'Markus Spiske, Pexels', 'Luis Gomes, Pexels']
+  public picSource
+  
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -157,6 +163,11 @@ export class MainPageComponent implements OnInit {
 
     // website uses cookies check
     this.checkWebsiteUsesDiag();
+  
+  
+    // wallpaper switcher
+    this.switchWalls()
+  
   }
 
   // set global Light/Dark mode
@@ -306,5 +317,24 @@ export class MainPageComponent implements OnInit {
     }) 
   }
 
+
+    //wallpaper switcher
+    switchWalls(){
+
+     $('.content').css({
+        "background-image": `url('../../../assets/images/${this.wallpapersArr[this.wallpaperNum]}')`
+      })
+    
+    this.picSource = this.picSourceArr[this.wallpaperNum]
+
+    if(this.wallpaperNum <= 3){
+      this.wallpaperNum = this.wallpaperNum + 1
+    }
+    
+    if(this.wallpaperNum == 4){
+      this.wallpaperNum = 0
+    }
+
+  }
 
 }

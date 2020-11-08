@@ -207,6 +207,28 @@
       <!-- background color under all other components (Old logic) -->
       <div class="content"></div>
 
+      <!-- wallpaper switch -->
+      <div class="bgCredits">
+        <button class="btn" (click)="switchWalls()">
+          <h5
+            [ngStyle]="{
+              color: brightness ? 'black' : 'violet'
+            }"
+          >
+            <i class="fas fa-sync-alt"></i>
+          </h5>
+        </button>
+
+        <h6
+          class="bgCreditsInfo"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'violet'
+          }"
+        >
+          Photo by, {{ picSource }}
+        </h6>
+      </div>
+
       <!-- Add personal image -->
 
       <div class="nametag"></div>

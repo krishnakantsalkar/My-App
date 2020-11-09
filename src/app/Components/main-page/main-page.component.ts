@@ -32,7 +32,7 @@ export class MainPageComponent implements OnInit {
   public pageTitle = 'TheArsonist'
   
   public wallpapersArr: string[] = ['wallpaperflare.com_wallpaper.jpg', 'pexels-felix-mittermeier-956981.jpg', 'pexels-markus-spiske-1936299.jpg','pexels-luis-gomes-546819.jpg']
-  public wallpaperNum: number = 0
+  public wallpaperNum: number = parseInt(localStorage.getItem('wallpaperNum'))
   public picSourceArr: string[] = ['Wallpaperflare.com', 'Felix mittermeier, Pexels', 'Markus Spiske, Pexels', 'Luis Gomes, Pexels']
   public picSource
   
@@ -49,7 +49,7 @@ export class MainPageComponent implements OnInit {
 
     // switch wallpaper method call
     $(document).ready(()=>{
-      this.switchWalls()
+      this.showWalls()
     })  
 
   }
@@ -154,8 +154,11 @@ export class MainPageComponent implements OnInit {
       sessionStorage.setItem('session', 'onGoing');
     }
 
-    // Toast initialize
-    // (<Jquery>$('.toast')).toast('show');
+    // set wallpaper preference default
+   let wallpaperPref = localStorage.getItem('wallpaperNum')
+   if(!wallpaperPref){
+     localStorage.setItem('wallpaperNum', '0')
+   }
 
     // dark and light mode listener
     $('.modeLD a').on('click', () => {
@@ -305,6 +308,7 @@ export class MainPageComponent implements OnInit {
     );
   }
 
+  // show notification to user
   async showNotif(){
     
     setTimeout(()=>{
@@ -326,23 +330,29 @@ export class MainPageComponent implements OnInit {
     },8000)
   }
 
+  // show wallpaper from wallpaperPref
+  showWalls(){
+    $('.content').css({
+      "background-image": `url('../../../assets/images/${this.wallpapersArr[localStorage.getItem('wallpaperNum')]}')`
+    })
+
+    this.picSource = this.picSourceArr[localStorage.getItem('wallpaperNum')]
+  }
+
     //wallpaper switcher
     switchWalls(){
-
-     $('.content').css({
-        "background-image": `url('../../../assets/images/${this.wallpapersArr[this.wallpaperNum]}')`
-      })
     
-    this.picSource = this.picSourceArr[this.wallpaperNum]
-
     if(this.wallpaperNum <= 3){
       this.wallpaperNum = this.wallpaperNum + 1
+      localStorage.setItem('wallpaperNum',`${this.wallpaperNum}`)
+      this.showWalls()
     }
     
     if(this.wallpaperNum == 4){
       this.wallpaperNum = 0
+      localStorage.setItem('wallpaperNum',`${this.wallpaperNum}`)
+      this.showWalls()
     }
-
   }
 
 }

@@ -303,9 +303,11 @@ div.recentposts .seemore {
 }
 
 .preloaderBgCredits a {
-  color: yellow;
   opacity: 0.4;
   font-size: 14px;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  font-weight: bold;
 }
 
 .preloaderBgCredits a:hover {

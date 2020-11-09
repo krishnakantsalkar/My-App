@@ -99,7 +99,12 @@
       >
         <div class="preloaderBg"></div>
         <div class="preloaderBgCredits">
-          <a href="https://www.pexels.com/@markusspiske">
+          <a
+            href="https://www.pexels.com/@markusspiske"
+            [ngStyle]="{
+              color: brightness ? 'black' : 'yellow'
+            }"
+          >
             Photo by Markus Spiske, Pexels</a
           >
         </div>
@@ -294,13 +299,6 @@
             [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
           ></i>
         </h5>
-        <div class="special" *ngIf="special" align="center">
-          <a routerLink="/Bday">
-            <button class="btn btn-info btn-md">Specials</button></a
-          >
-          <br />
-          <br />
-        </div>
       </div>
 
       <!-- adblock detector -->
@@ -360,7 +358,7 @@
                   >
                     <input
                       type="email"
-                      placeholder="enter Email"
+                      placeholder="enter email"
                       class="form-control"
                       formControlName="userEmail"
                     />
@@ -515,6 +513,17 @@
                         >Github</a
                       >
                     </li>
+                    <li class="special" *ngIf="special">
+                      <a
+                        routerLink="/Bday"
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                      >
+                        Birthday</a
+                      >
+                    </li>
+
                     <li>
                       <a
                         routerLink="/About"

@@ -112,6 +112,9 @@ export class LoginComponent implements OnInit {
     if (!this.newLogin.valid) {
       return;
     }
+    let d = document
+    d.getElementById('uploadSpinner').style.display='inline-block'
+    d.getElementById('uploadCheckErr').style.display='none'
     this.loginservice.Login(data).subscribe(
       (item) => {
         if (item && item.token) {
@@ -121,10 +124,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('id', JSON.stringify(item.id));
           this.loginresponse = item;
           let elemnt = document.getElementById('overlay');
+          d.getElementById('uploadSpinner').style.display='none'
+          d.getElementById('uploadCheckErr').style.display='none'
+          d.getElementById('uploadCheck').style.display='inline-block'
           elemnt.style.zIndex = '3';
         }
       },
       (error) => {
+        d.getElementById('uploadSpinner').style.display='none'
+        d.getElementById('uploadCheckErr').style.display='inline-block'
         this.response = error.error.message;
       }
     );

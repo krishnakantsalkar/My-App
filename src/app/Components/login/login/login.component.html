@@ -240,6 +240,17 @@
                             [disabled]="!newLogin.valid"
                           >
                             Log In
+                            <!-- some visual feedback while login -->
+                            <span
+                              id="uploadSpinner"
+                              class="spinner-border spinner-border-sm"
+                            ></span>
+                            <span id="uploadCheck">
+                              <i class="fas fa-check-circle"></i
+                            ></span>
+                            <span id="uploadCheckErr">
+                              <i class="fas fa-times-circle"></i
+                            ></span>
                           </button>
                           <button
                             class="btn btn-danger float-right forgot"

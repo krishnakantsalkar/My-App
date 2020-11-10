@@ -461,6 +461,15 @@ div.websiteUsesDialog .fa-cookie-bite {
   margin-top: 1px;
 }
 
+#uploadSpinner1,
+#uploadCheck1,
+#uploadCheckErr1,
+#uploadSpinner2,
+#uploadCheck2,
+#uploadCheckErr2 {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;

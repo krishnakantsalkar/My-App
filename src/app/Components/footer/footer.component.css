@@ -189,6 +189,15 @@ div.shortbio h4 span {
   border-bottom: 1px solid white;
 }
 
+#uploadSpinner1,
+#uploadCheck1,
+#uploadCheckErr1,
+#uploadSpinner2,
+#uploadCheck2,
+#uploadCheckErr2 {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;

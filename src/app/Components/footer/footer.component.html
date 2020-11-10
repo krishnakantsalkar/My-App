@@ -121,6 +121,16 @@
                       [disabled]="!newsLetterForm.valid"
                     >
                       subscribe
+                      <span
+                        id="uploadSpinner1"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      <span id="uploadCheck1">
+                        <i class="fas fa-check-circle"></i
+                      ></span>
+                      <span id="uploadCheckErr1">
+                        <i class="fas fa-times-circle"></i
+                      ></span>
                     </button>
                   </form>
                 </div>
@@ -313,6 +323,16 @@
                         [disabled]="!sendFeedback.valid"
                       >
                         Send
+                        <span
+                          id="uploadSpinner2"
+                          class="spinner-border spinner-border-sm"
+                        ></span>
+                        <span id="uploadCheck2">
+                          <i class="fas fa-check-circle"></i
+                        ></span>
+                        <span id="uploadCheckErr2">
+                          <i class="fas fa-times-circle"></i
+                        ></span>
                       </button>
                     </form>
                   </div>

@@ -236,16 +236,26 @@ export class MainPageComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
+    let d = document
+    d.getElementById('uploadSpinner2').style.display='inline-block'
+    d.getElementById('uploadCheckErr2').style.display='none'
+    
     this.contactServices.contact(data).subscribe(
       (item) => {
         this.logResponse = item;
         let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
+        d.getElementById('uploadSpinner2').style.display='none'
+        d.getElementById('uploadCheckErr2').style.display='none'
+        d.getElementById('uploadCheck2').style.display='inline-block'
       },
       (error) => {
         this.errResponse = error.error;
         let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
+        d.getElementById('uploadSpinner2').style.display='none'
+        d.getElementById('uploadCheckErr2').style.display='inline-block'
+       
       }
     );
   }
@@ -298,12 +308,22 @@ export class MainPageComponent implements OnInit {
     if (!this.newsLetterForm.valid) {
       return;
     }
+    let d = document
+    d.getElementById('uploadSpinner1').style.display='inline-block'
+    d.getElementById('uploadCheckErr1').style.display='none'
     this.blogservice.subscribeNewsLetter(data).subscribe(
       (item) => {
         this.newsLetterSuccess = item;
+        d.getElementById('uploadSpinner1').style.display='none'
+        d.getElementById('uploadCheckErr1').style.display='none'
+        d.getElementById('uploadCheck1').style.display='inline-block'
+
       },
       (err) => {
         this.newsLetterError = err.error.message;
+        d.getElementById('uploadSpinner1').style.display='none'
+        d.getElementById('uploadCheckErr1').style.display='inline-block'
+     
       }
     );
   }

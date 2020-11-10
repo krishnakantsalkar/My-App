@@ -381,9 +381,7 @@
               </div>
               <form
                 [formGroup]="newPost"
-                (ngSubmit)="
-                  SubmitPost(newPost.value); channelPost(newPost.value)
-                "
+                (ngSubmit)="SubmitPost(newPost.value)"
               >
                 <div class="form-group">
                   <div class="form-row">
@@ -755,6 +753,8 @@
               <br />
             </div>
           </div>
+
+          <!-- other column for info -->
           <div class="col-sm-4">
             <div
               *ngIf="data"
@@ -769,6 +769,7 @@
                 color: brightness ? 'black' : 'white'
               }"
             >
+              <!-- recommended posts -->
               <div class="recommended">
                 <div class="card-header">
                   <h5>Recommended posts</h5>
@@ -791,6 +792,7 @@
               </div>
             </div>
             <br />
+
             <div
               *ngIf="data"
               class="card"
@@ -804,6 +806,7 @@
                 color: brightness ? 'black' : 'white'
               }"
             >
+              <!-- most viewed posts -->
               <div class="mostViewed">
                 <div class="card-header">
                   <h5>Most Viewed</h5>
@@ -842,6 +845,7 @@
                 color: brightness ? 'red' : 'violet'
               }"
             >
+              <!-- some hashtags to search blogposts -->
               <div class="card-body">
                 <p>
                   <strong>
@@ -887,6 +891,7 @@
                 color: brightness ? 'red' : 'violet'
               }"
             >
+              <!-- one more search field -->
               <div class="card-body">
                 <form
                   [formGroup]="newSearch"
@@ -918,6 +923,8 @@
             <br />
           </div>
         </div>
+
+        <!-- pagination logics -->
         <div class="pagebtn" *ngIf="data">
           <button
             class="btn"
@@ -993,15 +1000,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Widget area -->
-    <div
-      class="widget-area container-fluid"
-      [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
-        color: brightness ? 'black' : 'white'
-      }"
-    ></div>
 
     <!-- Footer area -->
     <app-footer></app-footer>

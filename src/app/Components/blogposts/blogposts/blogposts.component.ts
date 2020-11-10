@@ -26,7 +26,7 @@ export class BlogpostsComponent implements OnInit {
 
   public newEdit: FormGroup; // update by Id method
 
-  post;
+  public post;
   public adminName;
   public blogURL;
   public userIpObj;
@@ -58,9 +58,8 @@ export class BlogpostsComponent implements OnInit {
     // method calls
     this.mode(); // dark-light mode toggle
 
+    // check admin presence
     this.checkUserPresent();
-
-    this.showAdmin();
 
     //set page title
     this.titleService.setTitle(this.pageTitle)
@@ -182,24 +181,15 @@ export class BlogpostsComponent implements OnInit {
     );
   }
 
-  // show admin method
-  showAdmin() {
-    let currentUser = JSON.parse(localStorage.getItem('user'));
-    if (!currentUser) {
-      return;
-    }
-    this.adminName = currentUser.name;
-  }
-
-
   // method to navigate between posts
 
   // get all blogs
   getAllBlogsId() {
     this.blogservice.getBlogs().subscribe((item) => {
+
       this.postStuff = item;
-      // console.log(this.postStuff);
       if (this.postStuff && this.postStuff.length > 0) {
+
         var n = this.postStuff.length;
         for (let i of this.postStuff) {
           this.postCollection.push({ [n--]: i._id });
@@ -255,27 +245,27 @@ export class BlogpostsComponent implements OnInit {
   }
 
   // like/dislike custom method
-like(){
-  this.likeSet= null
-  this.likeSet=1
+  like(){
+  this.likeSet = null
+  this.likeSet = 1
   let likedPostNumber = this.blogURL.split('/')
   localStorage.setItem(likedPostNumber[4],'liked')
 }
-dislike(){
-  this.likeSet= null
-  this.likeSet=2
+  dislike(){
+  this.likeSet = null
+  this.likeSet = 2
   let disliekdPostNumber = this.blogURL.split('/')
   localStorage.setItem(disliekdPostNumber[4],'disliked')
 }
 
-defaultLikes(){
+  defaultLikes(){
   let blogUrlData = this.blogURL
   if(blogUrlData){
 
    let temp = blogUrlData.split('/')
    let checkLikesData = localStorage.getItem(`${temp[4]}`)
    if(!checkLikesData){
-     this.likeSet=0
+     this.likeSet = 0
    }
     if(checkLikesData == 'liked'){
       this.likeSet = null
@@ -288,9 +278,10 @@ defaultLikes(){
   }
 }
 
-// preview post content in markdown
-getPostPreview(){
-this.previewMarkdown = $('#postContentMd').val()
-}
+  // preview post content in markdown
+  getPostPreview(){
 
+    this.previewMarkdown = $('#postContentMd').val()
+
+  }
 }

@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpParams } from '@angular/common/http';
 import { IsearchResult } from 'src/app/Shared/model/searchResult';
 import * as superplaceholder from 'superplaceholder';
 import { Title } from '@angular/platform-browser';
@@ -59,10 +58,14 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // method calls
+  // method calls
     this.mode();
+
+    // activated routing hax
     let pageRouting = window.location.href.split('/')  
     this.blogsP(pageRouting[4]);
+
+    // check admin
     this.checkUserPresent();
 
     // set page title
@@ -71,17 +74,17 @@ export class BlogComponent implements OnInit {
     // get all blogs
     this.blogs();
 
-    // aos animation
+  // aos animation
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
 
-    // blog post reactive form
+  // blog post reactive form
     this.newPost = this.fb.group({
       postImage: [''],
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
-      post: [''],
+      post: ['', Validators.required],
       postLink: [''],
       postLink2: [''],
       postLink3: [''],
@@ -89,7 +92,7 @@ export class BlogComponent implements OnInit {
       postAuthor: [''],
     });
 
-    // set value for postAuthor
+  // set value for postAuthor
     let adminUser: any = JSON.parse(localStorage.getItem('user'));
     if (adminUser) {
       let adminName = `${adminUser.name} ${adminUser.surname}`;
@@ -98,12 +101,12 @@ export class BlogComponent implements OnInit {
       });
     }
 
-    // blog searach
+  // blog searach
     this.newSearch = this.fb.group({
       post: [''],
     });
 
-    // animated placeholder text
+  // animated placeholder text
     superplaceholder({
       el: document.getElementById('searchbar'),
       sentences: [
@@ -121,6 +124,7 @@ export class BlogComponent implements OnInit {
       },
     });
 
+  // block dark/light mode toggle
     $(document).ready(() => {
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
@@ -150,19 +154,21 @@ export class BlogComponent implements OnInit {
       this.data = item.dataSize;
       this.datacount = item.dataCount;
       this.postNumVal = this.datacount;
+    
+      // set postNumber based on incoming blog postNumber
       this.setPostNum();
 
       //get approx blog post read time
       this.getreadTime()
       this.router.navigateByUrl(`/Blog/${pg}`).then(() => {
-        // var elmnt = document.getElementById('scrolldata');
-        // if (elmnt) {
-        //   elmnt.scrollIntoView();
-        // }
-      if(pg > 1){
+  
+        if(pg > 1){
         window.scrollTo({left:0, top:400, behavior:"smooth"})
-      } });
+     
+      }
+     });
     });
+
     this.pageNo = pg;
   }
 
@@ -173,7 +179,7 @@ export class BlogComponent implements OnInit {
 
   // check if admin present
   checkUserPresent() {
-    // this.checkUser = localStorage.getItem('credentials');
+
     this.checkUser = this.cookies.get('credentials');
     if (!this.checkUser) {
     }
@@ -193,10 +199,10 @@ export class BlogComponent implements OnInit {
 
       reader.onload = (event) => {
         // called once readAsDataURL is completed
-        this.currentBlogImgP = event.target.result;
+        this.currentBlogImgP = event.target.result; // current blog img Preview
       };
       const file = event.target.files[0];
-      this.currentBlogImg = file;
+      this.currentBlogImg = file; // main blog image file
     }
   }
 
@@ -207,6 +213,8 @@ export class BlogComponent implements OnInit {
     this.newPost.patchValue({ post: postBindedData });
 
     this.SubmitPost(this.newPost.value);
+
+    // post to telegram method, broken as of now
     // this.channelPost(this.newPost.value);
   }
 
@@ -218,8 +226,11 @@ export class BlogComponent implements OnInit {
       elemnt.style.zIndex = '3';
       return;
     }
+    // visual feedback
     let d = document;
     d.getElementById('uploadSpinner2').style.display = 'inline-block';
+    
+    // blog post API call
     this.blogservice.publishBlog(data).subscribe(
       (item) => {
         this.logResponse = item.result;
@@ -234,7 +245,7 @@ export class BlogComponent implements OnInit {
     );
   }
 
-  // remove notification overlay method
+  // remove notification overlay method by clicking anywhere
   off() {
     var elemnt = document.getElementById('overlay');
 
@@ -245,26 +256,34 @@ export class BlogComponent implements OnInit {
   // upload image method
   SubmitFile() {
     const formData = new FormData();
+    
+    // visual feedback
     let d = document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
+    
+    // form data element for blog image since files can't be sent via json
     formData.append('postImage', this.currentBlogImg);
     this.blogservice.uploadImg(formData).subscribe((item) => {
       this.storeBlogImg = item;
       alert(this.storeBlogImg.message);
+     
+      // more visual feedback
       d.getElementById('uploadSpinner').style.display = 'none';
       d.getElementById('uploadCheck').style.display = 'inline-block';
+     
+      // upload image first and get the uploaded file link back from API
       this.newPost.patchValue({
         postImage: this.storeBlogImg.result['postImage'],
       });
     });
   }
 
-  // post to telegram channel
-  channelPost(data) {
-    let title = data.postTitle;
-    let post = data.post;
-    this.blogservice.tgpost(title, post).subscribe((item) => {});
-  }
+  // post to telegram channel, Method broken as of now!
+  // channelPost(data) {
+  //   let title = data.postTitle;
+  //   let post = data.post;
+  //   this.blogservice.tgpost(title, post).subscribe((item) => {});
+  // }
 
 
   // show & hide search method
@@ -293,6 +312,7 @@ export class BlogComponent implements OnInit {
   cancel() {
     this.searchResult = null;
   }
+
   // navigate to post author
   gotoAuthor() {
     this.router.navigateByUrl('/About#developer');
@@ -300,9 +320,12 @@ export class BlogComponent implements OnInit {
 
   // get blog post approx read time
   getreadTime(){
+  
+    // make old value null first
     this.readTimeCheck.length = 0
     this.totalWordsCheck.length = 0
 
+    // loop through data
     for(let d of this.data){
       let totalReadTime = readingTime(d.post)
       this.readTimeCheck.push(totalReadTime.text)

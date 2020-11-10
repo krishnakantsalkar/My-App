@@ -1,3 +1,5 @@
+/* loading spinner for footer */
+
 .loadinganimDark {
   color: violet;
   animation: cursor 1s infinite;
@@ -39,6 +41,7 @@
   top: 4px;
 }
 
+/* background for entire page */
 div.content {
   margin: 0;
   position: absolute;
@@ -162,36 +165,6 @@ div.cvrimg {
   padding-top: 120px;
 }
 
-/* #searchbar {
-  position: relative;
-  z-index: -1;
-  margin-top: -200px;
-  width: 0;
-  transition: width 0.4s ease-in-out;
-}
-.input-container {
-  display: flex;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.icon {
-  position: relative;
-  padding: 10px;
-  background: dodgerblue;
-  color: white;
-  min-width: 50px;
-  text-align: center;
-  z-index: -1;
-  margin-top: -200px;
-  transition: width 0.4s ease-in-out;
-}
-
-.input-container button {
-  z-index: -1;
-  margin-top: -200px;
-} */
-
 .input-container {
   z-index: -10;
   display: none;
@@ -213,9 +186,6 @@ div.cvrimg {
   text-align: center;
   float: right;
   margin-top: -38px;
-  /* z-index: -1;
-  margin-top: -200px;
-  transition: width 0.4s ease-in-out; */
 }
 
 div.searchResult h3 {
@@ -446,6 +416,17 @@ div.hashtags .card-body span {
   float: right;
   margin-top: -38px;
 }
+
+div.nextprev button {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.cancel {
+  margin-right: 20px;
+}
+
+/* media query for mobile */
 @media only screen and (max-width: 600px) {
   div.motto h5 {
     font-size: 14px;
@@ -461,9 +442,7 @@ div.hashtags .card-body span {
     height: 200px;
     width: 100%;
   }
-  .covidApp {
-    width: 100%;
-  }
+
   .widget-area .col-sm-6 {
     margin-bottom: 20px;
   }
@@ -541,13 +520,4 @@ div.hashtags .card-body span {
     padding-left: 20px;
     padding-right: 30px;
   }
-}
-
-div.nextprev button {
-  margin-top: 20px;
-  margin-right: 10px;
-}
-
-.cancel {
-  margin-right: 20px;
 }

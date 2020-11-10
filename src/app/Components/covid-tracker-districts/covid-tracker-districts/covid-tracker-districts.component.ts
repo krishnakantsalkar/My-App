@@ -14,7 +14,7 @@ export class CovidTrackerDistrictsComponent implements OnInit {
   public covidDistrict
   public covidDistrictData
 
-  public districtHeader= [
+  public districtHeader = [
     "name",
     "confirmed",
     "recovered",
@@ -57,14 +57,14 @@ export class CovidTrackerDistrictsComponent implements OnInit {
   //dark-light mode
  mode() {
   this.brightness = JSON.parse(localStorage.getItem('mode'));
-}
+ }
 
-// get district data
+  // get district data
   getdistrictData(){
   for(let d of this.covidData){
     if (d.state == this.covidDistrict){
       this.covidDistrictData = d.districtData
     }
   }
-}
+ }
 }

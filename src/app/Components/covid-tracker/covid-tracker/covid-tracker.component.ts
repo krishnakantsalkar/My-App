@@ -106,8 +106,11 @@ public sortedCollection: any[] =[]
 // show icons after 1s delay
 
 delayIconsSpan(){
+
   setTimeout(()=>{
-$('.tableBody span').css({visibility: 'visible'})
+
+    $('.tableBody span').css({visibility: 'visible'})
+ 
   },1200)
-}
+ }
 }

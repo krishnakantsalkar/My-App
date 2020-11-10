@@ -55,7 +55,7 @@ export class userloginservices {
     this.cookies.delete('credentials');
     localStorage.removeItem('id');
     localStorage.removeItem('user');
-    this.router.navigateByUrl('/Home');
+    this.router.navigateByUrl('/Home').then(()=>location.reload());
     this.loggedIn.next(null);
   }
 

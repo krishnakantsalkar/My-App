@@ -60,9 +60,6 @@ public dtOptions: DataTables.Settings = {}
     //current time 
     this.currentTime()
     
-    // delay to icons
-    this.delayIconsSpan()
-
     // options for dataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -98,14 +95,4 @@ public dtOptions: DataTables.Settings = {}
 
 }
 
-// show icons after 1s delay
-
-delayIconsSpan(){
-
-  setTimeout(()=>{
-
-    $('.tableBody span').css({visibility: 'visible'})
- 
-  },1200)
- }
 }

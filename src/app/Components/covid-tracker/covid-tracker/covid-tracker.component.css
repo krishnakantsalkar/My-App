@@ -216,10 +216,6 @@ div.scrollright {
   display: none;
 }
 
-.tableBody span {
-  visibility: hidden;
-}
-
 @media only screen and (max-width: 600px) {
   div.covidTable1,
   div.covidTable1 .card {

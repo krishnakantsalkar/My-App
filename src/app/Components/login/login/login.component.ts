@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit {
           this.cookies.set('credentials', JSON.stringify(item.token), 5);
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
+          localStorage.setItem('userToken', JSON.stringify(item.token))
           this.loginresponse = item;
           let elemnt = document.getElementById('overlay');
           d.getElementById('uploadSpinner').style.display='none'

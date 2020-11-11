@@ -84,7 +84,7 @@ export class BlogComponent implements OnInit {
       postImage: [''],
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
-      post: ['', Validators.required],
+      post: [''],
       postLink: [''],
       postLink2: [''],
       postLink3: [''],

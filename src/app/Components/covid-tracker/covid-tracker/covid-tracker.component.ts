@@ -63,9 +63,10 @@ public dtOptions: DataTables.Settings = {}
     // delay to icons
     this.delayIconsSpan()
 
+    // options for dataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 15,
+      pageLength: 19,
       ordering: true,
       order: [1,'desc'],
       searching: true,

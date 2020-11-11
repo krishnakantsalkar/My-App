@@ -95,11 +95,6 @@ td:hover {
   }
 }
 
-.covidTableContent {
-  padding: 5px;
-  border-radius: 5px;
-}
-
 /* sharing buttons  */
 div.sharingBtns {
   position: fixed;
@@ -207,14 +202,9 @@ thead th {
   padding: 10px 25px 30px;
   text-align: center;
 }
-thead th span {
-  visibility: hidden;
-}
-thead th.active {
-  color: rgb(160, 160, 160);
-}
-thead th.active span {
-  visibility: visible;
+
+thead th:hover {
+  opacity: 0.7;
 }
 
 div.covidTable1 td {

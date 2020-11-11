@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import { Title } from '@angular/platform-browser';
 import * as AOS from 'aos';
-import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-covid-tracker',
@@ -19,16 +18,9 @@ public pageTitle = 'Covid-19 Tracker'
 
 public pageUrl
  
-// ngx-order-pipe custom properties
-public order: string = 'active'
-public reverse: boolean = false;
+public dtOptions: DataTables.Settings = {}
 
-public sortedCollection: any[] =[]
-
-  constructor(private covidApi: covidApiService, private titleService:Title, private orderPipe: OrderPipe) { 
-    // ngx-order-pipe custom method
-    this.sortedCollection = this.orderPipe.transform(this.covidData, this.order); 
-  }
+  constructor(private covidApi: covidApiService, private titleService:Title) {}
 
   ngOnInit(): void {
 
@@ -70,7 +62,18 @@ public sortedCollection: any[] =[]
     
     // delay to icons
     this.delayIconsSpan()
-   
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 15,
+      ordering: true,
+      order: [1,'desc'],
+      searching: true,
+      search: {
+        caseInsensitive: true
+      },
+      responsive: true
+    };
   }
 
  //dark-light mode 
@@ -92,15 +95,6 @@ public sortedCollection: any[] =[]
   this.updateTime = sessionStorage.getItem('covidData')
  }
 
-}
-
-
-// ngx-order-pipe custom method
- setOrder(value: string) {
-  if (this.order === value) {
-    this.reverse = !this.reverse;
-  }
-  this.order = value;
 }
 
 // show icons after 1s delay

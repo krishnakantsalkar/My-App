@@ -271,80 +271,43 @@
             }"
           >
             <div class="card-body">
-              <!-- custom method to sort data as per individual columns -->
-              <table *ngIf="covidData">
+              <!-- Angular-dataTables / Jquery dataTables -->
+              <table
+                *ngIf="covidData"
+                class="covidTableMain display"
+                datatable
+                [dtOptions]="dtOptions"
+              >
                 <thead>
-                  <tr>
-                    <th
-                      [class.active]="order === 'state'"
-                      (click)="setOrder('state')"
-                      class="mdl-data-table__cell--non-numeric"
-                    >
-                      States <span [hidden]="reverse">▼</span
-                      ><span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'active'"
-                      (click)="setOrder('active')"
-                    >
-                      Active <span [hidden]="reverse">▼</span
-                      ><span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'confirmed'"
-                      (click)="setOrder('confirmed')"
-                    >
-                      Confirmed <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'recovered'"
-                      (click)="setOrder('recovered')"
-                    >
-                      Recovered <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'deaths'"
-                      (click)="setOrder('deaths')"
-                    >
-                      Deaths <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'aChanges'"
-                      (click)="setOrder('aChanges')"
-                    >
-                      New Active <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'cChanges'"
-                      (click)="setOrder('cChanges')"
-                    >
-                      New Confirmed <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'rChanges'"
-                      (click)="setOrder('rChanges')"
-                    >
-                      New Recovered <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
-                    <th
-                      [class.active]="order === 'dChanges'"
-                      (click)="setOrder('dChanges')"
-                    >
-                      New Deaths <span [hidden]="reverse">▼</span>
-                      <span [hidden]="!reverse">▲</span>
-                    </th>
+                  <tr
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(221,222,223)'
+                        : ' rgb(35, 35, 36)',
+                      color: brightness ? 'black' : 'white'
+                    }"
+                  >
+                    <th>States</th>
+                    <th>Active</th>
+                    <th>Confirmed</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                    <th>New Active</th>
+                    <th>New Confirmed</th>
+                    <th>New Recovered</th>
+                    <th>New Deaths</th>
                   </tr>
                 </thead>
                 <tbody class="tableBody">
                   <tr
-                    *ngFor="let data of covidData | orderBy: order:!reverse"
+                    *ngFor="let data of covidData"
                     routerLink="/Covid-Tracker/State/{{ data.state }}"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(221,222,223)'
+                        : ' rgb(35, 35, 36)',
+                      color: brightness ? 'black' : 'white'
+                    }"
                   >
                     <td style="font-weight: bolder">{{ data.state }}</td>
                     <td class="text-muted">{{ data.active | number }}</td>
@@ -480,14 +443,7 @@
 
         <br />
         <!-- credits -->
-        <div
-          class="alert alert-success apiCredits"
-          *ngIf="covidData"
-          data-aos="slide-up"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          data-aos-once="true"
-        >
+        <div class="alert alert-success apiCredits" *ngIf="covidData">
           <h6>
             <i class="fas fa-check-circle"></i> API credits:
             <a href="https://covidindiatracker.com/" target="_blank">
@@ -497,14 +453,7 @@
         </div>
 
         <!-- useful links -->
-        <div
-          class="usefulLinks"
-          *ngIf="covidData"
-          data-aos="slide-up"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          data-aos-once="true"
-        >
+        <div class="usefulLinks" *ngIf="covidData">
           <div class="alert alert-danger">
             <h5><i class="fas fa-exclamation-circle"></i> Useful Links:</h5>
             <br />

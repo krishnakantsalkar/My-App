@@ -31,6 +31,7 @@
               "./node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
               "./node_modules/swiper/swiper-bundle.css",
               "node_modules/ng-snotify/styles/material.scss",
+              "./node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
               "src/styles.css",
               "src/styles.scss"
             ],
@@ -45,7 +46,9 @@
               "./node_modules/prismjs/components/prism-css.min.js",
               "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
               "./node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
-              "./node_modules/emoji-toolkit/lib/js/joypixels.min.js"
+              "./node_modules/emoji-toolkit/lib/js/joypixels.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"
             ],
             "allowedCommonJsDependencies": [
               "reading-time",

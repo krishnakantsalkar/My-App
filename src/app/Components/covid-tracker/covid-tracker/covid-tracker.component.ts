@@ -70,7 +70,8 @@ public dtOptions: DataTables.Settings = {}
       search: {
         caseInsensitive: true
       },
-      responsive: true
+      responsive: true,
+      stateSave: true
     };
   }
 

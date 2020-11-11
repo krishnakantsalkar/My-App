@@ -65,7 +65,8 @@ export class CovidTrackerDistrictsComponent implements OnInit {
       search: {
         caseInsensitive: true
       },
-      responsive: true
+      responsive: true,
+      stateSave:true
     };
   }
 

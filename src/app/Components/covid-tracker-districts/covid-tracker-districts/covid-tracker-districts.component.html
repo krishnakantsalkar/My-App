@@ -58,32 +58,61 @@
         <!-- main table -->
         <div class="covidTable">
           <div
-            class="districtDataTable"
-            *ngIf="covidDistrictData"
+            class="card"
             [ngStyle]="{
               'background-color': brightness
-                ? 'rgb(230,231,231)'
-                : 'rgb(33, 34, 35)',
-
+                ? 'rgb(221,222,223)'
+                : ' rgb(35, 35, 36)',
               color: brightness ? 'black' : 'white'
             }"
           >
-            <table>
-              <th
-                *ngFor="let district of districtHeader"
-                style="padding: 20px; text-align: center"
+            <div class="card-body">
+              <table
+                class="display"
+                datatable
+                [dtOptions]="dtOptions"
+                *ngIf="covidDistrictData"
               >
-                {{ district }}
-              </th>
-              <tr *ngFor="let data of covidDistrictData">
-                <td
-                  *ngFor="let district of districtHeader"
-                  style="padding: 10px; text-align: center"
-                >
-                  {{ data[district] }}
-                </td>
-              </tr>
-            </table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Confirmed</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                    <th>Old Confirmed</th>
+                    <th>Old Recovered</th>
+                    <th>Old Deaths</th>
+                    <th>Zone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of covidDistrictData">
+                    <td>
+                      {{ data.name }}
+                    </td>
+                    <td>
+                      {{ data.confirmed | number }}
+                    </td>
+                    <td>
+                      {{ data.recovered | number }}
+                    </td>
+                    <td>
+                      {{ data.deaths | number }}
+                    </td>
+                    <td>
+                      {{ data.oldConfirmed | number }}
+                    </td>
+                    <td>
+                      {{ data.oldRecovered | number }}
+                    </td>
+                    <td>
+                      {{ data.oldDeaths | number }}
+                    </td>
+                    <td>{{ data.zone }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <br />

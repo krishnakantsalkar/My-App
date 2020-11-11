@@ -4,7 +4,7 @@ import { CovidTrackerDistrictsComponent } from './covid-tracker-districts/covid-
 import { RouterModule } from '@angular/router';
 import { covidDistrictsRoutes } from './covid-tracker-districts-routes';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
-
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { SharedModuleModule } from '../shared-module/shared-module.module';
   imports: [
     CommonModule,
     RouterModule.forChild(covidDistrictsRoutes),
-    SharedModuleModule
+    SharedModuleModule,
+    DataTablesModule
   ]
 })
 export class CovidTrackerDistrictsModule { }

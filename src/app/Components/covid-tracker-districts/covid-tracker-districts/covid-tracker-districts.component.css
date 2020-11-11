@@ -22,7 +22,7 @@ h1 {
 }
 
 .covidTable {
-  padding-bottom: 70px;
+  padding-bottom: 20px;
 }
 
 .apiCredits {
@@ -39,7 +39,7 @@ h1 {
   animation: cursor1 1s infinite;
 }
 
-tr:hover {
+thead th:hover {
   opacity: 0.6;
 }
 
@@ -65,8 +65,20 @@ tr:hover {
   }
 }
 
+thead th {
+  cursor: pointer;
+  padding: 10px 25px 30px;
+  text-align: center;
+}
+
+tbody td {
+  padding: 10px;
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
-  div.covidTable {
+  div.covidTable,
+  div.covidTable .card {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;

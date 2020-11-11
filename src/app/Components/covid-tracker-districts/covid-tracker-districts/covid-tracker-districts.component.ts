@@ -27,6 +27,8 @@ export class CovidTrackerDistrictsComponent implements OnInit {
 
   public pageTitle= 'Covid-19 Tracker'
 
+  public dtOptions: DataTables.Settings = {}
+
   constructor(private covidApi:covidApiService, private titleService:Title) { }
 
   ngOnInit(): void {
@@ -52,6 +54,19 @@ export class CovidTrackerDistrictsComponent implements OnInit {
       $('.modeLD a').css('pointer-events', 'none');
       $('.modeLD a').css('opacity', 0.4);
     });
+
+    // options for angular datatables
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 15,
+      ordering: true,
+      order: [1,'desc'],
+      searching: true,
+      search: {
+        caseInsensitive: true
+      },
+      responsive: true
+    };
   }
 
   //dark-light mode

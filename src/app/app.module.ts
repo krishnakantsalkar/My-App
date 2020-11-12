@@ -14,6 +14,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DISQUS_SHORTNAME } from 'ngx-disqus';
 import { NgAdblockDetectModule } from 'ng-adblock-detect';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     NgxCaptchaModule,
     NgAdblockDetectModule,
     SnotifyModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     userloginservices,

@@ -56,7 +56,7 @@ export class userloginservices {
     localStorage.removeItem('id');
     localStorage.removeItem('user');
     localStorage.removeItem('userToken')
-    this.router.navigateByUrl('/Home').then(()=>location.reload());
+    this.router.navigateByUrl('/Home');
     this.loggedIn.next(null);
   }
 

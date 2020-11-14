@@ -216,6 +216,22 @@ div.scrollright {
   display: none;
 }
 
+div.covidBtnGroup {
+  margin: 10px auto;
+}
+
+div.covidBtnGroup .btn {
+  margin: 5px;
+  background-color: grey;
+  color: white;
+}
+
+div.covidBtnGroup .btn:active,
+div.covidBtnGroup .btn:focus {
+  background-color: yellowgreen;
+  color: black;
+}
+
 @media only screen and (max-width: 600px) {
   div.covidTable1,
   div.covidTable1 .card {
@@ -313,5 +329,9 @@ div.scrollright {
 
   div.scrollright {
     display: block;
+  }
+
+  div.covidBtnGroup {
+    text-align: center;
   }
 }

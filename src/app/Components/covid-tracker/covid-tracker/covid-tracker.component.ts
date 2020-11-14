@@ -3,6 +3,7 @@ import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import { Title } from '@angular/platform-browser';
 import * as AOS from 'aos';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { userloginservices } from '../../../Shared/services/userloginservice';
 
 @Component({
   selector: 'app-covid-tracker',
@@ -21,7 +22,17 @@ public pageUrl
  
 public dtOptions: DataTables.Settings = {}
 
-  constructor(private covidApi: covidApiService, private titleService:Title, private defaultModeService: modeService) {}
+public adminCheck
+
+public today
+public yesterday
+public dayBefore
+public month
+public monthNames:string[] = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+  constructor(private covidApi: covidApiService, private titleService:Title, private defaultModeService: modeService, private loginService: userloginservices) {}
 
   ngOnInit(): void {
 
@@ -39,16 +50,20 @@ public dtOptions: DataTables.Settings = {}
 
      //set page title  
      this.titleService.setTitle(this.pageTitle)
-    
-    this.covidApi.getCovidData2().subscribe(item=>{
-      this.covidData = item
-      // console.log(this.covidData)
-    })
 
+    //  load today's covid data
+     this.getTodayCovidData()
+
+    //  covid total stats
     this.covidApi.getCovidDataTotal().subscribe(item=>{ 
       this.totalCovidData = item
           // console.log(this.totalCovidData)    
     }) 
+
+    // check admin presence
+    this.loginService.currentUsers.subscribe(item => {
+      this.adminCheck = item
+    })
 
     //get page url
     this.pageUrl = window.location.href
@@ -70,10 +85,33 @@ public dtOptions: DataTables.Settings = {}
       responsive: true,
       stateSave: true
     };
+
+
+    // initialize dates
+    this.today = new Date().getDate()
+    this.yesterday = this.today - 1
+    this.dayBefore = this.today - 2
+    // initialize month
+    let currentDate = new Date()
+    this.month = this.monthNames[currentDate.getMonth()]
+ 
+
+    // show/hide history options
+    $(document).ready(() => {
+      $('.historyOptions').hide()
+
+    })
+    $('.showHistory').on('click', () => {
+      $('.historyOptions').show(300)
+    })
+
+    $('.hideHistory').on('click', () => {
+      $('.historyOptions').hide(300)
+    })
   }
 
 // current time
- currentTime(){
+  currentTime(){
 
   let checkUpdatedTime = sessionStorage.getItem('covidData')
   if(!checkUpdatedTime){
@@ -82,10 +120,41 @@ public dtOptions: DataTables.Settings = {}
   this.updateTime = d.toLocaleString()
   sessionStorage.setItem('covidData', this.updateTime)
 
- }else {
+  } else {
   this.updateTime = sessionStorage.getItem('covidData')
- }
-
+  }
 }
 
+  // get latest covid Data 
+  getTodayCovidData(){
+  this.covidApi.getCovidData2().subscribe(item=>{
+    this.covidData = null
+    this.covidData = item
+    // console.log(this.covidData)
+  })
+}
+
+
+  // store data to db
+  sendData(){
+
+  if(confirm('Send data to database?')){
+    this.covidApi.storeCovidData(this.covidData).subscribe(item=>{
+    console.log(item)
+    alert('Data stored to DB')
+    }, err => {
+    alert('Something went wrong! check console')
+    })
+   } else {
+     return
+   }
+ }
+  
+  // get data by date
+  getData(date){
+    this.covidApi.getStoredCovidData(date).subscribe(item=>{
+      this.covidData = null 
+      this.covidData = item[0].data
+    })
+  } 
 }

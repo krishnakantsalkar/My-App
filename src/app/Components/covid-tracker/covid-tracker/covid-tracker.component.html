@@ -239,7 +239,28 @@
             'border-bottom': brightness ? '1px dashed red' : '1px dashed violet'
           }"
         />
-        <br />
+
+        <div class="covidBtnGroup">
+          <button class="btn showHistory">
+            <i class="fas fa-history"></i>
+          </button>
+
+          <button class="btn" (click)="sendData()" *ngIf="adminCheck">
+            Send to DB
+          </button>
+          <div class="historyOptions">
+            <button class="btn" (click)="getTodayCovidData()">Today</button>
+            <button class="btn" (click)="getData(yesterday)">
+              {{ yesterday }} - {{ month }}
+            </button>
+            <button class="btn" (click)="getData(dayBefore)">
+              {{ dayBefore }} - {{ month }}
+            </button>
+            <button class="btn hideHistory">
+              <i class="fas fa-times-circle"></i>
+            </button>
+          </div>
+        </div>
 
         <!-- new covid data table -->
 

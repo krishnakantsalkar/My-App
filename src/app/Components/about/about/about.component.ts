@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { SwiperOptions } from 'swiper';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import Swiper, {
   Autoplay,
   Pagination,
@@ -97,7 +98,7 @@ export class AboutComponent implements OnInit {
     'https://res.cloudinary.com/dq766ltjh/image/upload/v1601097255/about-swiper/Screenshot_20200925-205955_Brave_faafzu.png',
   ];
 
-  constructor( private titleService: Title) {}
+  constructor( private titleService: Title, private defaultModeService: modeService) {}
 
   ngOnInit() {
 
@@ -119,7 +120,9 @@ export class AboutComponent implements OnInit {
     ]);
 
     // brightness mode
-    this.mode();
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+      this.brightness = item
+    })
 
     // text loop
     textSequence(0);
@@ -149,16 +152,8 @@ export class AboutComponent implements OnInit {
         }
       }
     }
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
-  // brightness mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
-  }
-
+  
   // scroll to page section
   scrollTo(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });

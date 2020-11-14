@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
+import { modeService } from '../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-navbar',
@@ -16,17 +17,22 @@ export class NavbarComponent implements OnInit {
   constructor(
     private cookies: CookieService,
     private logonServices: userloginservices,
-    private router: Router
+    private router: Router,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-    this.defaultmode();
     this.getUserId();
 
+    // method to show some nav tab only if user logged in
     this.logonServices.currentUsers.subscribe((data) => {
       this.checkStatus = data;
-      // method to show some nav tab only if user logged in
     });
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+      this.brightness = item
+    })
     // animate navbar on scroll
 
     let mediaQ = window.matchMedia('(max-width: 600px)');
@@ -80,17 +86,7 @@ export class NavbarComponent implements OnInit {
 
   // set global Light/Dark mode
   mode() {
-    this.brightness = !this.brightness;
-    localStorage.setItem('mode', JSON.stringify(this.brightness));
-    this.update();
-  }
-
-  update() {
-    this.ngOnInit();
-  }
-  // global Light/Dark mode
-  defaultmode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
+    this.defaultModeService.switchMode()
   }
 
   // logout method

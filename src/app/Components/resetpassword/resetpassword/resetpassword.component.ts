@@ -4,6 +4,7 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Iforgot } from '../../../Shared/model/forgotPass';
 import { Router } from '@angular/router';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-resetpassword',
@@ -20,11 +21,17 @@ export class ResetpasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginServices: userloginservices,
-    private router: Router
+    private router: Router,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-    this.mode();
+   
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
+
     this.showpass = false;
 
     this.resetForm = this.fb.group({
@@ -38,11 +45,6 @@ export class ResetpasswordComponent implements OnInit {
       startEvent: 'DOMContentLoaded',
     });
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
   Reset(data: Iforgot) {
@@ -76,10 +78,6 @@ export class ResetpasswordComponent implements OnInit {
 
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/Login');
-  }
-
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   showPass() {

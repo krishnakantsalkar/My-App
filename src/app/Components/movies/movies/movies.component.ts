@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as superplaceholder from 'superplaceholder';
 import * as AOS from 'aos';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-movies',
@@ -80,11 +81,17 @@ export class MoviesComponent implements OnInit {
   public trendingMovies
   public trendingTv
 
-  constructor(private movieService: MovieServices, private router: Router, private titleService: Title) {}
+  constructor(private movieService: MovieServices, private router: Router, private titleService: Title
+    , private defaultModeService: modeService
+    ) {}
 
   ngOnInit(): void {
     // method calls
-    this.mode();
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
     this.getTheLists(1, 'movie', 'now_playing');
 
     // set page title
@@ -127,12 +134,6 @@ export class MoviesComponent implements OnInit {
       $("#TcloseBtn").hide()
     });
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
-
     // get trending movies and tv series
     this.movieService.getTrendingMedia('movie').subscribe(item=>{
       this.trendingMovies = item     
@@ -163,11 +164,6 @@ export class MoviesComponent implements OnInit {
       $('#TmoviesData').hide(300)
       $("#TcloseBtn").hide(300)
     })
-  }
-
-  // dark/light mode method
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   // movie api usage

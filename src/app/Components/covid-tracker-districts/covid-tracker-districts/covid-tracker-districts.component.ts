@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-covid-tracker-districts',
@@ -29,11 +30,14 @@ export class CovidTrackerDistrictsComponent implements OnInit {
 
   public dtOptions: DataTables.Settings = {}
 
-  constructor(private covidApi:covidApiService, private titleService:Title) { }
+  constructor(private covidApi:covidApiService, private titleService:Title, private defaultModeService: modeService) { }
 
   ngOnInit(): void {
 
-    this.mode()
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
 
      //set page title
      this.titleService.setTitle(this.pageTitle)
@@ -48,12 +52,6 @@ export class CovidTrackerDistrictsComponent implements OnInit {
 
     
     })
-
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
 
     // options for angular datatables
     this.dtOptions = {
@@ -70,10 +68,6 @@ export class CovidTrackerDistrictsComponent implements OnInit {
     };
   }
 
-  //dark-light mode
- mode() {
-  this.brightness = JSON.parse(localStorage.getItem('mode'));
- }
 
   // get district data
   getdistrictData(){

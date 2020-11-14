@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-page404',
@@ -9,24 +10,17 @@ import { Title } from '@angular/platform-browser';
 export class Page404Component implements OnInit {
   public brightness;
   public pageTitle='404'
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title, private defaultModeService: modeService) {}
 
   ngOnInit(): void {
     // call functions
-    this.mode();
 
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
     //set page title
     this.titleService.setTitle(this.pageTitle)
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
-  }
-
-  // dark/light mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 }

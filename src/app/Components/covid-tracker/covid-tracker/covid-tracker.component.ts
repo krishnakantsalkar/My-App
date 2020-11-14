@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { covidApiService } from '../../../Shared/services/covidTrackerApi';
 import { Title } from '@angular/platform-browser';
 import * as AOS from 'aos';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-covid-tracker',
@@ -20,12 +21,16 @@ public pageUrl
  
 public dtOptions: DataTables.Settings = {}
 
-  constructor(private covidApi: covidApiService, private titleService:Title) {}
+  constructor(private covidApi: covidApiService, private titleService:Title, private defaultModeService: modeService) {}
 
   ngOnInit(): void {
 
     // method calls
-    this.mode()
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+      this.brightness = item
+    })
 
    // aos animations
    AOS.init({
@@ -44,14 +49,6 @@ public dtOptions: DataTables.Settings = {}
       this.totalCovidData = item
           // console.log(this.totalCovidData)    
     }) 
-
-
-
-     // disable brightness toggle
-     $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
 
     //get page url
     this.pageUrl = window.location.href
@@ -74,11 +71,6 @@ public dtOptions: DataTables.Settings = {}
       stateSave: true
     };
   }
-
- //dark-light mode 
- mode() {
-  this.brightness = JSON.parse(localStorage.getItem('mode'));
-}
 
 // current time
  currentTime(){

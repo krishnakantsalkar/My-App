@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-privacy',
@@ -9,23 +10,18 @@ import { Title } from '@angular/platform-browser';
 export class PrivacyComponent implements OnInit {
   public brightness;
   public pageTitle= 'Privacy Policy'
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title, private defaultModeService: modeService ) {}
 
   ngOnInit(): void {
-    this.mode();
-
+    
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
+    
     //set page title
-this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle)
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
-  // dark/light mode method
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
-  }
 }

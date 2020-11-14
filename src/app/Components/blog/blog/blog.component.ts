@@ -9,6 +9,7 @@ import { IsearchResult } from 'src/app/Shared/model/searchResult';
 import * as superplaceholder from 'superplaceholder';
 import { Title } from '@angular/platform-browser';
 import * as readingTime from 'reading-time'
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-blog',
@@ -54,12 +55,18 @@ export class BlogComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private cookies: CookieService,
-    private titleService: Title
+    private titleService: Title,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-  // method calls
-    this.mode();
+  
+    // method calls
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+    this.brightness = item
+  })
 
     // activated routing hax
     let pageRouting = window.location.href.split('/')  
@@ -123,17 +130,6 @@ export class BlogComponent implements OnInit {
         autoStart: true,
       },
     });
-
-  // block dark/light mode toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
-  }
-
-  // light & dark mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   // get all blogs

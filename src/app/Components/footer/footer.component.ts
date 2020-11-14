@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
+import { modeService } from '../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-footer',
@@ -30,11 +31,19 @@ export class FooterComponent implements OnInit {
     private blogservice: blogpostservice,
     private fb: FormBuilder,
     private contactServices: contactService,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-    this.defaultmode();
+
+    // method calls
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
+
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
@@ -51,10 +60,6 @@ export class FooterComponent implements OnInit {
     this.newsLetterForm = this.fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
     });
-  }
-
-  defaultmode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   getUserId() {

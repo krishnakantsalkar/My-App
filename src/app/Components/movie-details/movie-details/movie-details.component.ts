@@ -3,6 +3,7 @@ import { MovieServices } from '../../../Shared/services/movieservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-movie-details',
@@ -31,12 +32,18 @@ export class MovieDetailsComponent implements OnInit {
     private router: Router,
     private AR: ActivatedRoute,
     private location: Location,
-    private titleService: Title
+    private titleService: Title,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
     // method calls
-    this.mode();
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
+
     this.epMenu();
 
     //set page title
@@ -89,12 +96,6 @@ export class MovieDetailsComponent implements OnInit {
         });
         this.eps=null
     });
-
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
   //extract youtube player id from links
@@ -107,11 +108,6 @@ export class MovieDetailsComponent implements OnInit {
     if (this.contentTrailers.results.length > 2) {
       this.trailerUrl3 = `https://www.youtube-nocookie.com/embed/${this.contentTrailers.results[2].key}`;
     }
-  }
-
-  // brightness mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
 

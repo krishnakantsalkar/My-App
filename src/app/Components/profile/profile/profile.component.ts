@@ -5,6 +5,7 @@ import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import * as AOS from 'aos';
 import { CookieService } from 'ngx-cookie-service';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-profile',
@@ -26,11 +27,17 @@ export class ProfileComponent implements OnInit {
     private loginService: userloginservices,
     private router: Router,
     private cookies: CookieService,
-    private titleService: Title
+    private titleService: Title,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-    this.mode();
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {
+      this.brightness = item
+    })
+
     this.AR.params.subscribe((item) => {
       let id = item['id'];
       this.loginService.getUsersById(id).subscribe((items) => {
@@ -45,11 +52,6 @@ export class ProfileComponent implements OnInit {
       startEvent: 'DOMContentLoaded',
     });
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
   selection(event) {
@@ -74,10 +76,7 @@ export class ProfileComponent implements OnInit {
       alert('image uploaded');
     });
   }
-  //dark-light mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
-  }
+ 
   pic() {
     this.editDp = !this.editDp;
   }

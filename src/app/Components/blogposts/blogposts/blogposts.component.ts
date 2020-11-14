@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { clientIpService } from '../../../Shared/services/clientip-service';
 import { userIp } from '../../../Shared/model/userViewModel';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-blogposts',
@@ -51,12 +52,17 @@ export class BlogpostsComponent implements OnInit {
     private router: Router,
     private cookies: CookieService,
     private clientIpObj: clientIpService,
-    private titleService: Title
+    private titleService: Title,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
     // method calls
-    this.mode(); // dark-light mode toggle
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+      this.brightness = item
+    })
 
     // check admin presence
     this.checkUserPresent();
@@ -116,21 +122,11 @@ export class BlogpostsComponent implements OnInit {
       edited: ['true'], // send a default edited = true on every API call (since its edited)!
     });
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
   //sanitize url method
   getLink(urlParam): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(urlParam);
-  }
-
-  //dark-light mode
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   //enable edit mode

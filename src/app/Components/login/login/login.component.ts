@@ -13,6 +13,7 @@ import { clientIpService } from 'src/app/Shared/services/clientip-service';
 import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from 'src/app/Shared/model/forgotPass';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
   public captchaIsExpired = false;
   public captchaResponse?: string;
 
-  public theme: 'light' | 'dark' = 'light';
+  public theme: 'light' | 'dark'
   public size: 'compact' | 'normal' = 'normal';
   public lang = 'en';
   public type: 'image' | 'audio';
@@ -54,13 +55,24 @@ export class LoginComponent implements OnInit {
     private userlogservice: clientIpService,
     private cookies: CookieService,
     private cdr: ChangeDetectorRef,
-    private titleService: Title
+    private titleService: Title,
+    private defaultModeService: modeService
   ) {}
 
   ngOnInit(): void {
-    this.mode();
+
+    this.defaultModeService.modeSwitch.subscribe(item => {
+
+      this.brightness = item
+      if (this.brightness === true) {
+        this.changeTheme('light');
+      } else {
+        this.changeTheme('dark');
+      }
+     
+    })
+
     this.showpass = false;
-    this.changeTheme(this.captchaTheme);
 
     //set page title
     this.titleService.setTitle(this.pageTitle)
@@ -137,12 +149,6 @@ export class LoginComponent implements OnInit {
         this.response = error.error.message;
       }
     );
-
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
   logintoHome() {
@@ -168,15 +174,6 @@ export class LoginComponent implements OnInit {
   switchToForgot() {
     this.showForgot = !this.showForgot;
     this.response = undefined;
-  }
-
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
-    if (this.brightness === true) {
-      this.captchaTheme = 'light';
-    } else {
-      this.captchaTheme = 'dark';
-    }
   }
 
   showPass() {

@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Jquery } from 'typings';
 import { Title } from '@angular/platform-browser';
 import {SnotifyService, SnotifyPosition} from 'ng-snotify';
+import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-main-page',
@@ -44,7 +45,8 @@ export class MainPageComponent implements OnInit {
     private contactServices: contactService,
     private cookies: CookieService,
     private titleService: Title,
-    private snotifyService: SnotifyService
+    private snotifyService: SnotifyService,
+    private defaultModeService: modeService
   ) {
 
     // switch wallpaper method call
@@ -56,12 +58,18 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     // call methods
-    this.defaultmode();
+
     this.getspecials();
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
     this.showNotif()
+
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item=>{
+      this.brightness = item
+    })
+
 
     //title service
     this.titleService.setTitle(this.pageTitle)
@@ -160,10 +168,6 @@ export class MainPageComponent implements OnInit {
      localStorage.setItem('wallpaperNum', '0')
    }
 
-    // dark and light mode listener
-    $('.modeLD a').on('click', () => {
-      this.ngOnInit();
-    });
 
     // disable brightness toggle
     $(document).ready(() => {
@@ -180,11 +184,6 @@ export class MainPageComponent implements OnInit {
   mode() {
     this.brightness = !this.brightness;
     localStorage.setItem('mode', JSON.stringify(this.brightness));
-  }
-
-  // global Light/Dark mode
-  defaultmode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
   }
 
   // show special

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 @Component({
   selector: 'app-disclaimer',
@@ -10,24 +11,18 @@ export class DisclaimerComponent implements OnInit {
   public brightness: boolean;
 
   public pageTitle='Disclaimer'
-  constructor( private titleService: Title) {}
+  constructor( private titleService: Title, private defaultModeService: modeService) {}
 
   ngOnInit(): void {
     // method calls
-    this.mode();
 
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe(item => {  
+    this.brightness = item
+})
     //page title
     this.titleService.setTitle(this.pageTitle)
 
-    // disable brightness toggle
-    $(document).ready(() => {
-      $('.modeLD a').css('pointer-events', 'none');
-      $('.modeLD a').css('opacity', 0.4);
-    });
   }
 
-  // dark/light mode method
-  mode() {
-    this.brightness = JSON.parse(localStorage.getItem('mode'));
-  }
 }

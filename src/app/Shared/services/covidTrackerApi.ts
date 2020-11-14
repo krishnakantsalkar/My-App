@@ -12,7 +12,9 @@ export class covidApiService {
   public getCovidDataStore: string = 'https://mybackend-1911.herokuapp.com/api/covid/getOldCovidData/';
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.header = new HttpHeaders({ 'Content-Type': 'application/json',
+    'x-auth-token': JSON.parse(localStorage.getItem('userToken')) 
+    });
   }
 
 // district wise data

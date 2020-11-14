@@ -29,6 +29,7 @@ export class MainPageComponent implements OnInit {
   public newsLetterForm: FormGroup;
   public newsLetterSuccess;
   public newsLetterError;
+  public checkStatus
 
   public pageTitle = 'TheArsonist'
   
@@ -70,6 +71,9 @@ export class MainPageComponent implements OnInit {
       this.brightness = item
     })
 
+    this.loginservice.currentUsers.subscribe(item => {
+      this.checkStatus = item
+    })
 
     //title service
     this.titleService.setTitle(this.pageTitle)

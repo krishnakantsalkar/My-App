@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
   public brightness: boolean;
   public copyObjId;
 
-  public pageTitle = 'About'
+  public pageTitle = 'About';
 
   // setup ngx-swiper
   config: SwiperOptions = {
@@ -98,12 +98,14 @@ export class AboutComponent implements OnInit {
     'https://res.cloudinary.com/dq766ltjh/image/upload/v1601097255/about-swiper/Screenshot_20200925-205955_Brave_faafzu.png',
   ];
 
-  constructor( private titleService: Title, private defaultModeService: modeService) {}
+  constructor(
+    private titleService: Title,
+    private defaultModeService: modeService
+  ) {}
 
   ngOnInit() {
-
     // page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // aos animations
     AOS.init({
@@ -120,15 +122,15 @@ export class AboutComponent implements OnInit {
     ]);
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item=>{
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     // text loop
     textSequence(0);
     async function textSequence(i) {
       var textLoop = [
-        '"Built using Angular 10+ & NodeJS.."',
+        '"Built using Angular & NodeJS.."',
         `"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
          - Martin Golding"`,
         '"Computers make very fast, very accurate mistakes."',
@@ -153,7 +155,7 @@ export class AboutComponent implements OnInit {
       }
     }
   }
-  
+
   // scroll to page section
   scrollTo(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -188,5 +190,4 @@ export class AboutComponent implements OnInit {
       }, 3000);
     }
   }
-
 }

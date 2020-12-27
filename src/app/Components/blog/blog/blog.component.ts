@@ -61,6 +61,21 @@ export class BlogComponent implements OnInit {
   public movieQ;
   public movieQArr;
 
+  public months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -102,6 +117,8 @@ export class BlogComponent implements OnInit {
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
       post: [''],
+      postMonth: [''],
+      postYear: [''],
       postLink: [''],
       postLink2: [''],
       postLink3: [''],
@@ -115,6 +132,12 @@ export class BlogComponent implements OnInit {
       let adminName = `${adminUser.name} ${adminUser.surname}`;
       this.newPost.patchValue({
         postAuthor: `${adminName}`,
+      });
+      let mon = new Date().getMonth();
+      let yr = new Date().getFullYear();
+      this.newPost.patchValue({
+        postMonth: this.months[mon],
+        postYear: yr,
       });
     }
 

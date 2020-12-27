@@ -241,7 +241,7 @@
         />
 
         <div class="covidBtnGroup">
-          <button class="btn showHistory">
+          <!-- <button class="btn showHistory">
             <i class="fas fa-history"></i>
           </button>
 
@@ -259,7 +259,15 @@
             <button class="btn hideHistory">
               <i class="fas fa-times-circle"></i>
             </button>
+          </div> -->
+          <div class="covidViews" style="float: right" *ngIf="totalViews">
+            <h4 [ngStyle]="{ color: brightness ? 'coral' : 'violet' }">
+              <i class="fas fa-eye fa-fw"></i>
+              {{ totalViews.uniqueViews.length }}
+            </h4>
           </div>
+          <br />
+          <br />
         </div>
 
         <!-- new covid data table -->
@@ -275,6 +283,8 @@
           <br />
           <br />
         </div>
+
+        <!-- track views -->
 
         <!-- covid table -->
         <div class="covidTable1">

@@ -426,6 +426,61 @@ div.nextprev button {
   margin-right: 20px;
 }
 
+.alert-custom {
+  color: white;
+  font-size: 22px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: inline-block;
+}
+
+#twothousandtwenty {
+  transition: 0.3s ease-in-out;
+}
+
+#twothousandtwenty:hover {
+  cursor: pointer;
+  color: rgb(49, 223, 107) !important;
+}
+
+.showYearOpt {
+  transition: 0.3s ease-in-out;
+}
+
+.showYearOpt:hover {
+  color: rgb(49, 223, 107) !important;
+}
+
+.showYears span {
+  display: inline-block;
+  margin: 0 10px;
+  transition: 0.3s ease-in-out;
+  padding: 5px 10px;
+}
+
+.showYears span h1 {
+  transition: 0.3s ease-in-out;
+}
+
+.showYears span:hover h1 {
+  color: rgb(49, 223, 107) !important;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fadeYear {
+  color: rgb(49, 223, 107) !important;
+}
+
+.showYearsDefault {
+  font-size: 30px;
+}
+
+.showYearsDefault:hover {
+  color: rgb(49, 223, 107) !important;
+}
+
 /* media query for mobile */
 @media only screen and (max-width: 600px) {
   div.motto h5 {
@@ -519,5 +574,12 @@ div.nextprev button {
     margin-left: -20px;
     padding-left: 20px;
     padding-right: 30px;
+  }
+
+  .showYears span h1 {
+    font-size: 25px;
+  }
+  .showYearsDefault {
+    font-size: 22px;
   }
 }

@@ -209,16 +209,68 @@
     >
       <div class="container" id="main">
         <br />
-        <h1>
-          <b id="twothousandtwenty">2020</b>
-          <i
-            class="fab fa-searchengin"
-            style="margin-left: 20px"
-            (click)="showsearch()"
-            [ngClass]="{ searchenginL: brightness, searchenginD: !brightness }"
-            title="Search!"
-          ></i>
-        </h1>
+        <div class="row">
+          <div class="col-2 col-lg-1">
+            <h1>
+              <b id="twothousandtwenty" (click)="showAllList()">{{ year }}</b>
+            </h1>
+          </div>
+          <div class="col-2 col-lg-1">
+            <h1>
+              <i
+                class="fab fa-searchengin"
+                style="margin-left: 20px"
+                (click)="showsearch()"
+                [ngClass]="{
+                  searchenginL: brightness,
+                  searchenginD: !brightness
+                }"
+                title="Search!"
+              ></i>
+            </h1>
+          </div>
+          <div
+            class="col-md-8 col-lg-10"
+            style="height: auto; width: 100%; text-align: center"
+          >
+            <span
+              class="alert alert-custom"
+              [ngStyle]="{
+                'background-color': brightness ? 'coral' : ' violet'
+              }"
+              *ngIf="movieQArr"
+              >"{{ movieQ }}" ~ {{ movieName }}</span
+            >
+          </div>
+        </div>
+        <div style="display: inline-block">
+          <h1
+            (click)="showYearList()"
+            style="cursor: pointer; display: inline-block"
+            class="showYearOpt"
+          >
+            <b>Year</b>
+          </h1>
+          <span
+            class="showArrow"
+            style="display: inline-block; margin-left: 8px"
+            ><h1><b>></b></h1></span
+          >
+
+          <div class="alert showYears">
+            <span (click)="blogsP(1, 2020)"
+              ><h1 [ngClass]="{ fadeYear: pageYear == 2020 }">2020</h1></span
+            >
+            <span (click)="blogsP(1, 2021)"
+              ><h1 [ngClass]="{ fadeYear: pageYear == 2021 }">2021</h1></span
+            >
+            <span onclick="location.reload()">
+              <h1 class="showYearsDefault">
+                <i class="fas fa-times-circle"></i>
+              </h1>
+            </span>
+          </div>
+        </div>
 
         <!-- search input field -->
         <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)">
@@ -933,7 +985,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(1)"
+            (click)="blogsP(1, pageYear)"
           >
             1
           </button>
@@ -944,7 +996,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(2)"
+            (click)="blogsP(2, pageYear)"
           >
             2
           </button>
@@ -956,7 +1008,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(3)"
+            (click)="blogsP(3, pageYear)"
           >
             3
           </button>
@@ -968,7 +1020,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(4)"
+            (click)="blogsP(4, pageYear)"
           >
             4
           </button>
@@ -980,7 +1032,7 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(5)"
+            (click)="blogsP(5, pageYear)"
           >
             5
           </button>
@@ -993,7 +1045,20 @@
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
               color: brightness ? 'white' : 'black'
             }"
-            (click)="blogsP(6)"
+            (click)="blogsP(6, pageYear)"
+          >
+            5
+          </button>
+
+          <button
+            *ngIf="datacount > 36"
+            class="btn"
+            [disabled]="pageNo == 7"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="blogsP(7, pageYear)"
           >
             5
           </button>

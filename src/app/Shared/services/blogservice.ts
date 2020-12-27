@@ -8,7 +8,7 @@ import { IsearchResult } from '../model/searchResult';
 @Injectable({ providedIn: 'root' })
 export class blogpostservice {
   public header: HttpHeaders;
-  public blogImgHeader: HttpHeaders
+  public blogImgHeader: HttpHeaders;
   public blogAPI: string =
     'https://mybackend-1911.herokuapp.com/api/blog/Blog/';
 
@@ -39,22 +39,26 @@ export class blogpostservice {
     'https://mybackend-1911.herokuapp.com/api/subscribe/newsLetterSub/';
 
   constructor(private http: HttpClient, private router: Router) {
-    this.header = new HttpHeaders({ 
+    this.header = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-auth-token' : JSON.parse(localStorage.getItem('userToken'))
-  });
+      'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+    });
 
-    this.blogImgHeader= new HttpHeaders({
-      'x-auth-token' : JSON.parse(localStorage.getItem('userToken'))
-  })
+    this.blogImgHeader = new HttpHeaders({
+      'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+    });
   }
 
   getBlogs(): Observable<Iblog> {
     return this.http.get<Iblog>(this.blogAPI);
   }
 
-  getBlogsP(pg): Observable<Iblog> {
-    return this.http.get<Iblog>(this.testPage + pg);
+  getBlogsP(pg, year?): Observable<Iblog> {
+    if (year) {
+      return this.http.get<Iblog>(this.testPage + pg + `?y=${year}`);
+    } else if (!year) {
+      return this.http.get<Iblog>(this.testPage + pg);
+    }
   }
 
   getBlogsbyId(id): Observable<Iblog> {
@@ -68,7 +72,9 @@ export class blogpostservice {
   }
 
   uploadImg(data) {
-    return this.http.post(this.uploadApi, data, { headers:this.blogImgHeader });
+    return this.http.post(this.uploadApi, data, {
+      headers: this.blogImgHeader,
+    });
   }
 
   updateBlog(data, id): Observable<Iblog> {
@@ -78,7 +84,9 @@ export class blogpostservice {
   }
 
   deleteBlog(id): Observable<Iblog> {
-    return this.http.delete<Iblog>(this.deleteBlogApi + id, {headers:this.header});
+    return this.http.delete<Iblog>(this.deleteBlogApi + id, {
+      headers: this.header,
+    });
   }
 
   tgpost(title, post) {

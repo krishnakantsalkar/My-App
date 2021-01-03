@@ -58,6 +58,15 @@ export class CovidTrackerComponent implements OnInit {
   ngOnInit(): void {
     // method calls
 
+    // track userviews
+    this.clientservice.getClientIp().subscribe((item: userIp) => {
+      let data = { views: item.ip };
+
+      this.covidApi.trackViews(data).subscribe((item2) => {
+        this.totalViews = item2.result;
+      });
+    });
+
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
@@ -123,14 +132,6 @@ export class CovidTrackerComponent implements OnInit {
 
     $('.hideHistory').on('click', () => {
       $('.historyOptions').hide(300);
-    });
-
-    this.clientservice.getClientIp().subscribe((item: userIp) => {
-      let data = item.ip;
-
-      this.covidApi.trackViews(data).subscribe((item2) => {
-        this.totalViews = item2.result;
-      });
     });
   }
 

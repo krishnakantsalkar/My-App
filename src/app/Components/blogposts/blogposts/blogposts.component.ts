@@ -37,12 +37,12 @@ export class BlogpostsComponent implements OnInit {
   public nextPostData;
   public prevPostData;
   public markdown;
-  public previewMarkdown
+  public previewMarkdown;
   public pageId = '/Blog/:postNumber/:postTitle/:id';
 
-  public likeSet:number = 0
+  public likeSet: number = 0;
 
-  public pageTitle= 'Blogpost'
+  public pageTitle = 'Blogpost';
 
   constructor(
     private blogservice: blogpostservice,
@@ -59,16 +59,25 @@ export class BlogpostsComponent implements OnInit {
   ngOnInit(): void {
     // method calls
 
+    // get client IP to track views
+    this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
+      let ip = ipObj.ip;
+      this.postId = window.location.href.split('/');
+      this.blogservice
+        .trackPostViews(this.postId[6], ip)
+        .subscribe((response) => {});
+    });
+
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item=>{
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     // check admin presence
     this.checkUserPresent();
 
     //set page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // AOS animation
     AOS.init({
@@ -84,7 +93,7 @@ export class BlogpostsComponent implements OnInit {
         this.blogURL = window.location.href;
 
         // like/dislike method call
-        this.defaultLikes()
+        this.defaultLikes();
 
         //make url links null on activated route
         this.url = null;
@@ -102,15 +111,6 @@ export class BlogpostsComponent implements OnInit {
         this.nextPostData = undefined;
         this.prevPostData = undefined;
         this.getAllBlogsId();
-
-        // get client IP to track views
-        this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
-          let ip = ipObj.ip;
-          this.postId = window.location.href.split('/');
-          this.blogservice
-            .trackPostViews(this.postId[6], ip)
-            .subscribe((response) => {});
-        });
       });
     });
 
@@ -121,7 +121,6 @@ export class BlogpostsComponent implements OnInit {
       postLink: [''],
       edited: ['true'], // send a default edited = true on every API call (since its edited)!
     });
-
   }
 
   //sanitize url method
@@ -182,10 +181,8 @@ export class BlogpostsComponent implements OnInit {
   // get all blogs
   getAllBlogsId() {
     this.blogservice.getBlogs().subscribe((item) => {
-
       this.postStuff = item;
       if (this.postStuff && this.postStuff.length > 0) {
-
         var n = this.postStuff.length;
         for (let i of this.postStuff) {
           this.postCollection.push({ [n--]: i._id });
@@ -241,43 +238,40 @@ export class BlogpostsComponent implements OnInit {
   }
 
   // like/dislike custom method
-  like(){
-  this.likeSet = null
-  this.likeSet = 1
-  let likedPostNumber = this.blogURL.split('/')
-  localStorage.setItem(likedPostNumber[4],'liked')
-}
-  dislike(){
-  this.likeSet = null
-  this.likeSet = 2
-  let disliekdPostNumber = this.blogURL.split('/')
-  localStorage.setItem(disliekdPostNumber[4],'disliked')
-}
+  like() {
+    this.likeSet = null;
+    this.likeSet = 1;
+    let likedPostNumber = this.blogURL.split('/');
+    localStorage.setItem(likedPostNumber[4], 'liked');
+  }
+  dislike() {
+    this.likeSet = null;
+    this.likeSet = 2;
+    let disliekdPostNumber = this.blogURL.split('/');
+    localStorage.setItem(disliekdPostNumber[4], 'disliked');
+  }
 
-  defaultLikes(){
-  let blogUrlData = this.blogURL
-  if(blogUrlData){
-
-   let temp = blogUrlData.split('/')
-   let checkLikesData = localStorage.getItem(`${temp[4]}`)
-   if(!checkLikesData){
-     this.likeSet = 0
-   }
-    if(checkLikesData == 'liked'){
-      this.likeSet = null
-      this.likeSet = 1
-    }
-    if(checkLikesData == 'disliked'){
-      this.likeSet = null
-      this.likeSet = 2
+  defaultLikes() {
+    let blogUrlData = this.blogURL;
+    if (blogUrlData) {
+      let temp = blogUrlData.split('/');
+      let checkLikesData = localStorage.getItem(`${temp[4]}`);
+      if (!checkLikesData) {
+        this.likeSet = 0;
+      }
+      if (checkLikesData == 'liked') {
+        this.likeSet = null;
+        this.likeSet = 1;
+      }
+      if (checkLikesData == 'disliked') {
+        this.likeSet = null;
+        this.likeSet = 2;
+      }
     }
   }
-}
 
   // preview post content in markdown
-  getPostPreview(){
-
-    this.previewMarkdown = $('#postContentMd').val()
-
+  getPostPreview() {
+    this.previewMarkdown = $('#postContentMd').val();
   }
 }

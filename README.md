@@ -31,8 +31,7 @@ To start Development Server install Angular CLI from npm and run `ng serve`
 - email notifications for updates & feedbacks
 - HTTPS via Cloudflare
 - Downloads subdomain powered by [GoIndex](https://github.com/alx-xlx/goindex)
-- [Memocho](https://github.com/mojurasu/memocho) (pastebin) hosting for snippets sharing 
-- Covid-19 India tracker powered by [covidindiatracker.com](https://covidindiatracker.com)
+- [Memocho](https://github.com/mojurasu/memocho) (pastebin) hosting for snippets sharing
 - much more... check commit history.
 
 #### Contact me on `dev@krishnakantsalkar.gq`

@@ -110,6 +110,7 @@
               class="nav-link"
               routerLink="/Profile/{{ loggedInUser }}"
               routerLinkActive="activeCss"
+              [routerLinkActiveOptions]="{ exact: true }"
               >Profile</a
             >
           </li>

@@ -9,7 +9,7 @@ import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Jquery } from 'typings';
 import { Title } from '@angular/platform-browser';
-import {SnotifyService, SnotifyPosition} from 'ng-snotify';
+import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 
 @Component({
@@ -29,15 +29,25 @@ export class MainPageComponent implements OnInit {
   public newsLetterForm: FormGroup;
   public newsLetterSuccess;
   public newsLetterError;
-  public checkStatus
+  public checkStatus;
 
-  public pageTitle = 'TheArsonist'
-  
-  public wallpapersArr: string[] = ['wallpaperflare.com_wallpaper.jpg', 'pexels-felix-mittermeier-956981.jpg', 'pexels-markus-spiske-1936299.jpg','pexels-luis-gomes-546819.jpg']
-  public wallpaperNum: number = parseInt(localStorage.getItem('wallpaperNum'))
-  public picSourceArr: string[] = ['Wallpaperflare.com', 'Felix mittermeier, Pexels', 'Markus Spiske, Pexels', 'Luis Gomes, Pexels']
-  public picSource
-  
+  public pageTitle = 'TheArsonist';
+
+  public wallpapersArr: string[] = [
+    'wallpaperflare.com_wallpaper.jpg',
+    'pexels-felix-mittermeier-956981.jpg',
+    'pexels-markus-spiske-1936299.jpg',
+    'pexels-luis-gomes-546819.jpg',
+  ];
+  public wallpaperNum: number = parseInt(localStorage.getItem('wallpaperNum'));
+  public picSourceArr: string[] = [
+    'Wallpaperflare.com',
+    'Felix mittermeier, Pexels',
+    'Markus Spiske, Pexels',
+    'Luis Gomes, Pexels',
+  ];
+  public picSource;
+
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -49,12 +59,10 @@ export class MainPageComponent implements OnInit {
     private snotifyService: SnotifyService,
     private defaultModeService: modeService
   ) {
-
     // switch wallpaper method call
-    $(document).ready(()=>{
-      this.showWalls()
-    })  
-
+    $(document).ready(() => {
+      this.showWalls();
+    });
   }
 
   ngOnInit(): void {
@@ -64,19 +72,19 @@ export class MainPageComponent implements OnInit {
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
-    this.showNotif()
+    this.showNotif();
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item=>{
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
-    this.loginservice.currentUsers.subscribe(item => {
-      this.checkStatus = item
-    })
+    this.loginservice.currentUsers.subscribe((item) => {
+      this.checkStatus = item;
+    });
 
     //title service
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // aos animation init.
     AOS.init({
@@ -167,11 +175,10 @@ export class MainPageComponent implements OnInit {
     }
 
     // set wallpaper preference default
-   let wallpaperPref = localStorage.getItem('wallpaperNum')
-   if(!wallpaperPref){
-     localStorage.setItem('wallpaperNum', '0')
-   }
-
+    let wallpaperPref = localStorage.getItem('wallpaperNum');
+    if (!wallpaperPref) {
+      localStorage.setItem('wallpaperNum', '0');
+    }
 
     // disable brightness toggle
     $(document).ready(() => {
@@ -181,7 +188,6 @@ export class MainPageComponent implements OnInit {
 
     // website uses cookies check
     this.checkWebsiteUsesDiag();
-   
   }
 
   // set global Light/Dark mode
@@ -239,26 +245,25 @@ export class MainPageComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    let d = document
-    d.getElementById('uploadSpinner2').style.display='inline-block'
-    d.getElementById('uploadCheckErr2').style.display='none'
-    
+    let d = document;
+    d.getElementById('uploadSpinner2').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr2').style.display = 'none';
+
     this.contactServices.contact(data).subscribe(
       (item) => {
         this.logResponse = item;
         let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
-        d.getElementById('uploadSpinner2').style.display='none'
-        d.getElementById('uploadCheckErr2').style.display='none'
-        d.getElementById('uploadCheck2').style.display='inline-block'
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'none';
+        d.getElementById('uploadCheck2').style.display = 'inline-block';
       },
       (error) => {
         this.errResponse = error.error;
         let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
-        d.getElementById('uploadSpinner2').style.display='none'
-        d.getElementById('uploadCheckErr2').style.display='inline-block'
-       
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'inline-block';
       }
     );
   }
@@ -311,71 +316,83 @@ export class MainPageComponent implements OnInit {
     if (!this.newsLetterForm.valid) {
       return;
     }
-    let d = document
-    d.getElementById('uploadSpinner1').style.display='inline-block'
-    d.getElementById('uploadCheckErr1').style.display='none'
+    let d = document;
+    d.getElementById('uploadSpinner1').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr1').style.display = 'none';
     this.blogservice.subscribeNewsLetter(data).subscribe(
       (item) => {
         this.newsLetterSuccess = item;
-        d.getElementById('uploadSpinner1').style.display='none'
-        d.getElementById('uploadCheckErr1').style.display='none'
-        d.getElementById('uploadCheck1').style.display='inline-block'
-
+        d.getElementById('uploadSpinner1').style.display = 'none';
+        d.getElementById('uploadCheckErr1').style.display = 'none';
+        d.getElementById('uploadCheck1').style.display = 'inline-block';
       },
       (err) => {
         this.newsLetterError = err.error.message;
-        d.getElementById('uploadSpinner1').style.display='none'
-        d.getElementById('uploadCheckErr1').style.display='inline-block'
-     
+        d.getElementById('uploadSpinner1').style.display = 'none';
+        d.getElementById('uploadCheckErr1').style.display = 'inline-block';
       }
     );
   }
 
   // show notification to user
-  async showNotif(){
-    
-    setTimeout(()=>{
-    if(!sessionStorage.getItem('mainPageToast')){
-    this.snotifyService.info('Welcome User, Checkout the Covid-19 India Tracker!', 'TheArsonist',  {
-      timeout: 12000,
-      showProgressBar: true,    
-      closeOnClick: false, 
-      pauseOnHover: true,
-      icon: 'assets/images/mylogo.jpg',
-      buttons: [
-        {text: 'Covid19', action: () => this.router.navigateByUrl('/Covid-Tracker'), bold: false},
-        {text: 'Close', action: (toast) => {this.snotifyService.remove(toast.id); }, bold: true},
-      ],
-      position: SnotifyPosition.rightBottom
-      }) 
-     }
-     sessionStorage.setItem('mainPageToast', 'notified')  
-    },8000)
+  async showNotif() {
+    setTimeout(() => {
+      if (!sessionStorage.getItem('mainPageToast')) {
+        this.snotifyService.info(
+          'Welcome User, Search for your fav Movies & TV shows!',
+          'TheArsonist',
+          {
+            timeout: 12000,
+            showProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            icon: 'assets/images/mylogo.jpg',
+            buttons: [
+              {
+                text: 'Movies & TV',
+                action: () => this.router.navigateByUrl('/Movies&TV'),
+                bold: false,
+              },
+              {
+                text: 'Close',
+                action: (toast) => {
+                  this.snotifyService.remove(toast.id);
+                },
+                bold: true,
+              },
+            ],
+            position: SnotifyPosition.rightBottom,
+          }
+        );
+      }
+      sessionStorage.setItem('mainPageToast', 'notified');
+    }, 8000);
   }
 
   // show wallpaper from wallpaperPref
-  showWalls(){
-    $('.content').css({
-      "background-image": `url('../../../assets/images/${this.wallpapersArr[localStorage.getItem('wallpaperNum')]}')`
-    })
+  showWalls() {
+    $('#bgImg').css({
+      'background-image': `url('../../../assets/images/${
+        this.wallpapersArr[localStorage.getItem('wallpaperNum')]
+      }')`,
+    });
+    $('.nametag').addClass('pseudo');
 
-    this.picSource = this.picSourceArr[localStorage.getItem('wallpaperNum')]
+    this.picSource = this.picSourceArr[localStorage.getItem('wallpaperNum')];
   }
 
-    //wallpaper switcher
-    switchWalls(){
-    
-    if(this.wallpaperNum <= 3){
-      this.wallpaperNum = this.wallpaperNum + 1
-      localStorage.setItem('wallpaperNum',`${this.wallpaperNum}`)
-      this.showWalls()
+  //wallpaper switcher
+  switchWalls() {
+    if (this.wallpaperNum <= 3) {
+      this.wallpaperNum = this.wallpaperNum + 1;
+      localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
+      this.showWalls();
     }
-    
-    if(this.wallpaperNum == 4){
-      this.wallpaperNum = 0
-      localStorage.setItem('wallpaperNum',`${this.wallpaperNum}`)
-      this.showWalls()
+
+    if (this.wallpaperNum == 4) {
+      this.wallpaperNum = 0;
+      localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
+      this.showWalls();
     }
   }
-
 }

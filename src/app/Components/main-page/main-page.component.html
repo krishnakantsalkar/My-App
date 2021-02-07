@@ -163,7 +163,7 @@
     </div>
 
     <!--  Add a div with id to Wrap entire Main Page -->
-    <div id="MainPage">
+    <div id="MainPage content">
       <!-- Notification Overlay -->
       <div id="overlay" (click)="off()">
         <div class="overlay-content">
@@ -209,96 +209,89 @@
 
       <!-- <app-navbar></app-navbar> -->
 
-      <!-- background color under all other components (Old logic) -->
-      <div class="content"></div>
-
-      <!-- wallpaper switch -->
-      <div class="bgCredits">
-        <button class="btn" (click)="switchWalls()">
-          <h5
-            [ngStyle]="{
-              color: brightness ? 'black' : 'violet'
-            }"
-          >
-            <i class="fas fa-sync-alt"></i>
-          </h5>
-        </button>
-
-        <h6
-          class="bgCreditsInfo"
-          [ngStyle]="{
-            color: brightness ? 'black' : 'violet'
-          }"
-        >
-          Photo by, {{ picSource }}
-        </h6>
-      </div>
-
       <!-- Add personal image -->
 
-      <div class="nametag"></div>
-      <div
-        class="imagesection"
-        [ngStyle]="{
-          'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
-        }"
-      >
-        <img
-          data-aos="zoom-in"
-          data-aos-delay="200"
-          data-aos-duration="1000"
-          class="rounded-circle"
-          src="assets/images/mylogo.jpg"
-          [ngClass]="{ imageShadowL: brightness, imageShadowD: !brightness }"
-        />
-      </div>
+      <div class="nametag">
+        <div class="imagesection">
+          <img
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+            class="rounded-circle"
+            src="assets/images/mylogo.jpg"
+            [ngClass]="{ imageShadowL: brightness, imageShadowD: !brightness }"
+          />
+        </div>
 
-      <!-- Add motto -->
-      <div
-        class="motto"
-        [ngStyle]="{
-          background: brightness ? 'white' : ' rgb(41, 42, 45)'
-        }"
-      >
-        <h5
-          [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          data-aos="fade-in"
-          data-aos-delay="100"
-          data-aos-duration="1000"
-        >
-          Learn
-          <i
-            class="fab fa-leanpub"
+        <!-- Add motto -->
+        <div class="motto">
+          <h5
+            [ngStyle]="{
+              color: brightness ? 'white' : 'rgb(129,129,129)',
+              'background-color': brightness
+                ? 'rgba(255, 69, 0, 0.2)'
+                : ' rgba(35, 36, 38)'
+            }"
             data-aos="fade-in"
             data-aos-delay="100"
             data-aos-duration="1000"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-          &#8226; Build
-          <i
-            class="fas fa-sync-alt"
-            data-aos="fade-in"
-            data-aos-delay="500"
-            data-aos-duration="1000"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-          &#8226; Fix
-          <i
-            class="fas fa-tools"
-            data-aos="fade-in"
-            data-aos-delay="1000"
-            data-aos-duration="1000"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-          &#8226; Repeat
-          <i
-            class="fas fa-redo"
-            data-aos="fade-in"
-            data-aos-delay="1500"
-            data-aos-duration="1000"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
-          ></i>
-        </h5>
+          >
+            Learn
+            <i
+              class="fab fa-leanpub"
+              data-aos="fade-in"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+              [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            ></i>
+            &#8226; Build
+            <i
+              class="fas fa-sync-alt"
+              data-aos="fade-in"
+              data-aos-delay="500"
+              data-aos-duration="1000"
+              [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            ></i>
+            &#8226; Fix
+            <i
+              class="fas fa-tools"
+              data-aos="fade-in"
+              data-aos-delay="1000"
+              data-aos-duration="1000"
+              [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            ></i>
+            &#8226; Repeat
+            <i
+              class="fas fa-redo"
+              data-aos="fade-in"
+              data-aos-delay="1500"
+              data-aos-duration="1000"
+              [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            ></i>
+          </h5>
+        </div>
+        <div id="bgImg"></div>
+        <!-- wallpaper switch -->
+        <div class="bgCredits">
+          <button class="btn" (click)="switchWalls()">
+            <h5
+              [ngStyle]="{
+                color: brightness ? 'orangered' : 'violet'
+              }"
+            >
+              <i class="fas fa-sync-alt"></i>
+            </h5>
+          </button>
+
+          <h6
+            class="bgCreditsInfo"
+            [ngStyle]="{
+              color: brightness ? 'white' : 'violet'
+            }"
+          >
+            Photo by, {{ picSource }}
+          </h6>
+        </div>
       </div>
 
       <!-- adblock detector -->

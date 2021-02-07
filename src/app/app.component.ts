@@ -7,10 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public title = 'TheArsonist';
-  constructor(private titleService: Title) {
-    this.titleService.setTitle(this.title);
-  }
+  constructor(private titleService: Title) {}
 
   // onActivate(event) {
   //   let scrollToTop = window.setInterval(() => {

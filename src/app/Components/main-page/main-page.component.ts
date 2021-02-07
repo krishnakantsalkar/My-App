@@ -149,7 +149,7 @@ export class MainPageComponent implements OnInit {
 
             //show Main Page and hide preloader page once width reaches 100%
             $('#MainPage').fadeIn(300);
-            $('#preloader').hide();
+            $('#preloader').hide(400);
           } else {
             width++;
 
@@ -169,7 +169,7 @@ export class MainPageComponent implements OnInit {
         update();
       } else {
         $('#MainPage').fadeIn(300);
-        $('#preloader').hide();
+        $('#preloader').hide(400);
       }
       sessionStorage.setItem('session', 'onGoing');
     }

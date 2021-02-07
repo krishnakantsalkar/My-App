@@ -29,23 +29,6 @@
   }
 }
 
-div.content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0.3;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(41, 42, 45);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  transition: 0.4s ease-in-out;
-}
-
 div.nametag {
   position: relative;
   display: block;

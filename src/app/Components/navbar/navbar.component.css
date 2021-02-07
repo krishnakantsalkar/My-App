@@ -5,11 +5,11 @@ nav {
   width: 100%;
 }
 
-.navbar .nav-item.active .nav-link,
+/* .navbar .nav-item.active .nav-link,
 .navbar .nav-item .nav-link:active,
 .navbar .nav-item .nav-link:focus {
   color: rgb(49, 223, 107);
-}
+} */
 
 .navbar-nav a {
   text-decoration: none;
@@ -37,7 +37,8 @@ nav {
 }
 
 #navbarNav {
-  margin-left: 13%;
+  position: absolute;
+  right: 30px;
 }
 
 div.nametag {
@@ -108,9 +109,15 @@ span.two {
   padding: 12px;
 }
 
+.activeCss {
+  color: rgb(49, 223, 107) !important;
+  border-bottom: 2px solid rgb(49, 223, 107);
+}
+
 @media only screen and (max-width: 600px) {
   #navbarNav {
     margin-left: 0;
+    position: initial;
   }
   div.nametag {
     margin-left: 0px;

@@ -65,10 +65,20 @@
           [ngClass]="{ sidenavL: brightness, sidenav: !brightness }"
         >
           <li class="nav-item">
-            <a class="nav-link" routerLink="/Blog/1">Blog</a>
+            <a
+              class="nav-link"
+              routerLink="/Blog/1"
+              routerLinkActive="activeCss"
+              >Blog</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/Movies&TV">MoviesDB</a>
+            <a
+              class="nav-link"
+              routerLink="/Movies&TV"
+              routerLinkActive="activeCss"
+              >MoviesDB</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -88,18 +98,25 @@
           </li>
 
           <li class="nav-item" *ngIf="!checkStatus">
-            <a class="nav-link" routerLink="/Login">Login</a>
+            <a class="nav-link" routerLink="/Login" routerLinkActive="activeCss"
+              >Login</a
+            >
           </li>
           <li class="nav-item" *ngIf="checkStatus">
             <a class="clickable nav-link" (click)="logout()"> Logout</a>
           </li>
           <li class="nav-item" *ngIf="checkStatus">
-            <a class="nav-link" routerLink="/Profile/{{ loggedInUser }}"
+            <a
+              class="nav-link"
+              routerLink="/Profile/{{ loggedInUser }}"
+              routerLinkActive="activeCss"
               >Profile</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/About">About</a>
+            <a class="nav-link" routerLink="/About" routerLinkActive="activeCss"
+              >About</a
+            >
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/Privacy">Privacy</a>
@@ -130,8 +147,18 @@
                 color: brightness ? 'black' : 'rgb(129,129,129)'
               }"
             >
-              <a class="dropdown-item" routerLink="/Privacy">Privacy Policy</a>
-              <a class="dropdown-item" routerLink="/Disclaimer">Disclaimer</a>
+              <a
+                class="dropdown-item"
+                routerLink="/Privacy"
+                routerLinkActive="activeCss"
+                >Privacy Policy</a
+              >
+              <a
+                class="dropdown-item"
+                routerLink="/Disclaimer"
+                routerLinkActive="activeCss"
+                >Disclaimer</a
+              >
             </div>
           </li>
           <li class="modeLD">

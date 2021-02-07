@@ -306,6 +306,9 @@ swiper {
   margin-top: 8%;
 }
 
+.social-icons ul {
+  padding-inline-start: 0px !important;
+}
 .social-icons li {
   display: inline-block;
 }
@@ -354,6 +357,10 @@ swiper {
 }
 .social-icons .steam-icon:hover {
   background-color: darkblue;
+  color: white;
+}
+.social-icons .linkedIn-icon:hover {
+  background-color: #1da1f2;
   color: white;
 }
 .social-icons ul {

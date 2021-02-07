@@ -128,9 +128,18 @@
     <!-- third content -->
     <div class="third-content" id="backend">
       <!-- container -->
-      <div class="backend-component container">
+      <div class="backend-component container-fluid">
         <!-- swiper component -->
-        <swiper [config]="config" #usefulSwiper>
+        <swiper
+          [config]="config"
+          #usefulSwiper
+          style="
+            width: 80%;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 60px;
+          "
+        >
           <div class="swiper-wrapper">
             <!-- image slides -->
             <img
@@ -285,7 +294,7 @@
                   <hr />
 
                   <h4 class="langAndfr">
-                    <i class="fas fa-code"></i> Languages & Frameworks:
+                    <i class="fas fa-code"></i> Languages | Frameworks | Skills:
                   </h4>
 
                   <!-- languages row -->
@@ -295,6 +304,7 @@
                     <div class="col-xs-4">
                       <ul>
                         <li>Angular</li>
+                        <li>Angular Material</li>
                         <li>Typescript</li>
                         <li>Javascript</li>
                         <li>HTML</li>
@@ -308,6 +318,9 @@
                         <li>NodeJS</li>
                         <li>ExpressJS</li>
                         <li>MongoDB</li>
+                        <li>NGINX</li>
+                        <li>Webhosting</li>
+                        <li>Server Management</li>
                       </ul>
                     </div>
                     <!-- column 3 -->
@@ -323,7 +336,7 @@
                   <!-- currently learning -->
                   <h5 class="currentlyLearning">
                     <i class="fas fa-laptop-code"></i> Currently Learning:
-                    Flutter
+                    Advance Python
                   </h5>
                   <hr />
 
@@ -345,6 +358,14 @@
                     style="padding-left: 0; margin-bottom: 0; list-style: none"
                   >
                     <ul>
+                      <li>
+                        <a
+                          class="linkedIn-icon"
+                          href="https://www.linkedin.com/in/krishnakant-salkar-6320861bb/"
+                          target="_blank"
+                          ><i class="fab fa-linkedin-in"></i
+                        ></a>
+                      </li>
                       <li>
                         <a
                           class="telegram-icon"

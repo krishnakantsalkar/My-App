@@ -15,6 +15,7 @@
           ? 'rgb(223, 223, 223)'
           : ' rgb(41, 42, 45)'
       }"
+      style="transition: 0.4s ease-in-out"
     >
       <div class="nametag">
         <a routerLink="/Home" title="Home">
@@ -23,6 +24,7 @@
             id="top-panel-nametag"
             *ngIf="!brightness"
             [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+            style="transition: 0.4s ease-in-out"
           >
             > krishnakantsalkar<span
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
@@ -56,6 +58,7 @@
           [ngStyle]="{
             color: brightness ? ' rgb(41, 42, 45)' : 'rgb(223, 223, 223)'
           }"
+          style="transition: 0.4s ease-in-out"
           ><i class="fas fa-bars"></i
         ></span>
       </button>
@@ -147,6 +150,7 @@
                   : ' rgb(60, 60, 61)',
                 color: brightness ? 'black' : 'rgb(129,129,129)'
               }"
+              style="transition: 0.4s ease-in-out"
             >
               <a
                 class="dropdown-item"
@@ -167,6 +171,7 @@
               ><i
                 class="fas"
                 [ngClass]="{ 'fa-sun': brightness, 'fa-moon': !brightness }"
+                style="transition: 0.4s ease-in-out"
               ></i
             ></a>
           </li>

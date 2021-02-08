@@ -44,6 +44,7 @@ div.nametag {
   height: 100%;
   width: 100%;
   opacity: 1;
+  transition: 0.4s ease-in-out;
 }
 
 #bgImg {
@@ -52,7 +53,7 @@ div.nametag {
   position: absolute;
   top: 0;
   z-index: 0;
-  opacity: 0.3;
+  opacity: 0.5;
   background-color: rgb(41, 42, 45);
   background-size: cover;
   background-repeat: no-repeat;
@@ -77,6 +78,7 @@ div.bgCredits {
   left: 20px;
   bottom: 10%;
   z-index: 1;
+  transition: 0.4s ease-in-out;
 }
 
 div.bgCredits h6 {

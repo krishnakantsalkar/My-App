@@ -64,11 +64,13 @@
             ? 'rgb(223, 223, 223)'
             : ' rgb(35, 36, 38)'
         }"
+        style="transition: 0.4s ease-in-out"
       >
         <div
           class="container-fluid"
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
           style="height: auto; width: auto"
+          style="transition: 0.4s ease-in-out"
         >
           <div class="bottom-content">
             <div
@@ -79,6 +81,7 @@
                   : ' rgb(35, 36, 38)',
                 color: brightness ? 'black' : 'white'
               }"
+              style="transition: 0.4s ease-in-out"
             >
               <div class="col-sm-3">
                 <div class="shortbio">
@@ -371,7 +374,7 @@
               class="fas fa-copyright"
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
             ></i>
-            2020-2021 Krishnakant Salkar, Made with
+            2020-2021 | Krishnakant Salkar, Made with
             <i
               class="fas fa-code"
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"

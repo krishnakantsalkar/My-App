@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,10 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private titleService: Title) {}
+  constructor(
+    private titleService: Title,
+    private primengConfig: PrimeNGConfig
+  ) {}
 
   // onActivate(event) {
   //   let scrollToTop = window.setInterval(() => {
@@ -19,5 +23,7 @@ export class AppComponent {
   //     }
   //   }, 16);
   // }
-  ngOnInit() {}
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
 }

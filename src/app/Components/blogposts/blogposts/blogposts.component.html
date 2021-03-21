@@ -25,17 +25,6 @@
       }"
     >
       <div class="container">
-        <!-- add a loading... animation -->
-
-        <div class="loading" *ngIf="!data">
-          <h4 *ngIf="!brightness" class="loadinganimDark">
-            Loading...<span class="spinner-border"></span>
-          </h4>
-          <h4 *ngIf="brightness" class="loadinganimLight">
-            Loading...<span class="spinner-border"></span>
-          </h4>
-        </div>
-
         <!-- switch to edit post -->
         <button
           *ngIf="checkUser"
@@ -120,15 +109,53 @@
         </div>
 
         <!-- blog post -->
+
+        <!-- Skeleton Loading animation -->
+
+        <div
+          class="customSkeleton"
+          *ngIf="!data"
+          [ngStyle]="{
+            'background-color': brightness ? '#dc3545' : ' rgb(32, 33, 33)',
+            color: brightness ? 'black' : 'rgb(160,160,160)'
+          }"
+        >
+          <p-skeleton width="100%" height="400px"></p-skeleton>
+          <br />
+          <div class="floatItems">
+            <div class="float-left">
+              <p-skeleton width="18rem" height="3rem"></p-skeleton>
+            </div>
+            <div class="float-right">
+              <p-skeleton width="4rem" height="3rem"></p-skeleton>
+            </div>
+          </div>
+          <br />
+
+          <p-skeleton width="100%" height="2rem"></p-skeleton>
+          <br />
+          <p-skeleton width="100%" height="700px"></p-skeleton>
+
+          <br />
+          <div class="row">
+            <div class="col-sm-6">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+            </div>
+            <div class="col-sm-6">
+              <p-skeleton width="100%" height="150px"></p-skeleton>
+            </div>
+          </div>
+        </div>
+
         <div
           class="blgpst"
           data-aos="fade-up"
           data-aos-delay="300"
           data-aos-duration="1000"
-          *ngIf="!switchtoedit"
+          *ngIf="!switchtoedit && data"
         >
           <div class="header">
-            <div class="blogimg" *ngIf="data">
+            <div class="blogimg">
               <img *ngIf="data.postImage" [src]="data.postImage" />
             </div>
             <hr

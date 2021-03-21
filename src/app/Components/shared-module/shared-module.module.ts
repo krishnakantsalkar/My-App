@@ -8,6 +8,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SkeletonModule } from 'primeng/skeleton';
 
 // Shared module
 
@@ -22,6 +23,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DialogModule,
     ButtonModule,
     ConfirmDialogModule,
+    SkeletonModule,
   ],
   exports: [
     FooterComponent,
@@ -30,6 +32,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DialogModule,
     ButtonModule,
     ConfirmDialogModule,
+    SkeletonModule,
   ],
 })
 export class SharedModuleModule {}

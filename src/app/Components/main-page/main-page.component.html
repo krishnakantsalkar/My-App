@@ -395,20 +395,14 @@
                     >
                       <div class="card-body">
                         <h3>Recent Updates</h3>
-                        <div class="loading" *ngIf="!recentblogs">
-                          <h4 *ngIf="!brightness" class="loadinganimDark">
-                            Loading...<span
-                              class="spinner-border"
-                              style="color: violet"
-                            ></span>
-                          </h4>
-                          <h4 *ngIf="brightness" class="loadinganimLight">
-                            Loading...<span
-                              class="spinner-border"
-                              style="color: red"
-                            ></span>
-                          </h4>
-                        </div>
+                        <!-- Skeleton Loading animation -->
+
+                        <p-skeleton
+                          *ngIf="!recentblogs"
+                          width="100%"
+                          height="200px"
+                        ></p-skeleton>
+
                         <div
                           class="recentcontent"
                           *ngFor="let recent of recentblogs | slice: 0:2"

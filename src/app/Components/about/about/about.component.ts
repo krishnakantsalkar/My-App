@@ -12,10 +12,13 @@ import Swiper, {
   EffectCoverflow,
 } from 'swiper';
 
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
+  providers: [MessageService],
 })
 export class AboutComponent implements OnInit {
   public copiedMail;
@@ -100,7 +103,8 @@ export class AboutComponent implements OnInit {
 
   constructor(
     private titleService: Title,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    private messagingService: MessageService
   ) {}
 
   ngOnInit() {
@@ -162,32 +166,34 @@ export class AboutComponent implements OnInit {
   }
 
   // copy to clipboard
-  copyToClip(param) {
-    var data = document.createElement('input');
-    if (param == 'mail') {
-      this.copyObjId = 'copyMail';
-    } else if (param == 'number') {
-      this.copyObjId = 'copyNumber';
-    }
-
-    data.setAttribute(
-      'value',
-      document.getElementById(this.copyObjId).innerHTML
-    );
-    var elemnt = document.getElementById(this.copyObjId).innerHTML;
-    document.body.appendChild(data);
-    data.select();
+  copyShareLink(param, type) {
+    let val = param;
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
     document.execCommand('copy');
-    if (param == 'mail') {
-      this.copiedMail = elemnt;
-      setTimeout(() => {
-        document.getElementById('copyAlert1').classList.add('hidden');
-      }, 3000);
-    } else {
-      this.copiedNumber = elemnt;
-      setTimeout(() => {
-        document.getElementById('copyAlert2').classList.add('hidden');
-      }, 3000);
+    document.body.removeChild(selBox);
+    // this.snackbar.open("Link copied to clipboard !", "x", {
+    //   duration: 2000,
+    // });
+    if (type == 'number') {
+      this.messagingService.add({
+        key: 'clipboard',
+        severity: 'success',
+        summary: 'number copied to clipboard',
+      });
+    } else if (type == 'mail') {
+      this.messagingService.add({
+        key: 'clipboard',
+        severity: 'success',
+        summary: 'mail id copied to clipboard',
+      });
     }
   }
 }

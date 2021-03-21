@@ -481,6 +481,21 @@ div.nextprev button {
   color: rgb(49, 223, 107) !important;
 }
 
+::ng-deep .p-button,
+.p-button-dialog-accept {
+  color: rgb(49, 223, 107);
+  background: #292929 !important;
+}
+
+::ng-deep .p-button .p-button-text {
+  color: rgb(49, 223, 107);
+}
+
+::ng-deep .p-button:enabled:hover {
+  color: white;
+  background-color: rgb(49, 223, 107) !important;
+}
+
 /* media query for mobile */
 @media only screen and (max-width: 600px) {
   div.motto h5 {

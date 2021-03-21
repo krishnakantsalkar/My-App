@@ -92,7 +92,7 @@ div.footer i {
   position: fixed;
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
-  transition: 0.7s ease-in-out;
+  transition: 0.3s ease-in-out;
   top: 0;
   right: 0;
   left: 0;
@@ -108,7 +108,7 @@ div.footer i {
   left: 50%;
   color: white;
   transform: translate(-50%, -50%);
-  transition: 0.7s ease-in-out;
+  transition: 0.3s ease-in-out;
   width: 250px;
 }
 
@@ -178,7 +178,7 @@ div.footer i {
   cursor: pointer;
   padding: 2px 10px;
   border-radius: 4px;
-  transition: 0.6s ease-in;
+  transition: 0.3s ease-in;
 }
 
 #myBtn:hover {

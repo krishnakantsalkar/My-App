@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './Components/main-page/main-page.component';
@@ -24,6 +24,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -37,8 +38,8 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     CookieService,
     // disqus comments
     { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
-    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
-    SnotifyService
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService,
   ],
   bootstrap: [AppComponent],
 })

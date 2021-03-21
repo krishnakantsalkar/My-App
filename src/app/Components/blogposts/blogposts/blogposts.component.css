@@ -199,8 +199,14 @@ div.sharingBtns .tgShare:hover a {
   padding-right: 40px;
 }
 /* shadow-piercer css method */
-markdown ::ng-deep img {
-  width: auto;
+
+/* markdown ::ng-deep p {
+  text-align: center !important;
+} */
+markdown ::ng-deep p img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 100%;
   object-fit: contain;
 }

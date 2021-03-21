@@ -7,7 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <div id="overlay" (click)="off()">
+    <p-dialog
+      header="TheArsonist"
+      position="center"
+      [(visible)]="display && loginresponse"
+      *ngIf="loginresponse"
+      [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+      [style]="{ width: '30vw' }"
+    >
+      <h3 style="text-align: center">
+        Welcome,
+        <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+          {{ loginresponse.name }}</span
+        >
+      </h3>
+      <ng-template pTemplate="footer">
+        <p-button
+          [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
+          icon="pi pi-check"
+          (click)="display = false; logintoHome()"
+          label="Ok"
+          styleClass="p-button-text"
+        ></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <!-- <div id="overlay" (click)="off()">
       <div class="overlay-content">
         <div
           data-aos="zoom-in"
@@ -44,7 +69,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="logindata">
       <div class="bgImage"></div>

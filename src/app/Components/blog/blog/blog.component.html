@@ -11,48 +11,64 @@
       'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
     }"
   >
-    <div id="overlay" (click)="off()">
-      <div class="overlay-content">
-        <div
-          data-aos="zoom-in"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          class="card"
-          [ngStyle]="{
-            'background-color': brightness
-              ? 'rgb(223, 223, 223)'
-              : ' rgb(41, 42, 45)'
-          }"
-        >
-          <div
-            class="card-header"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            <h3>TheArsonist~</h3>
-          </div>
-          <article
-            *ngIf="logResponse"
-            class="card-body"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            <h4>New post Added!</h4>
-            <br />
-            <h5>#{{ logResponse.postNumber }}</h5>
-            <h5>Post Title: {{ logResponse.postTitle }}</h5>
-          </article>
-          <article
-            *ngIf="errResponse"
-            class="card-body"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            <h4>{{ errResponse }}</h4>
-          </article>
-          <div class="card-footer">
-            <button class="btn btn-success" (click)="off()">OK</button>
-          </div>
-        </div>
+    <!-- overlays -->
+
+    <p-dialog
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+      header="New post Added!"
+      position="center"
+      [(visible)]="logResponse"
+      *ngIf="(display && logResponse) || errResponse"
+      [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+      [style]="{ width: '30vw' }"
+    >
+      <div
+        [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+        *ngIf="logResponse"
+      >
+        <h3 style="text-align: center">
+          <br />
+          <h5>#{{ logResponse.postNumber }}</h5>
+          <h5>Post Title: {{ logResponse.postTitle }}</h5>
+        </h3>
       </div>
-    </div>
+      <div
+        [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+        *ngIf="errResponse"
+      >
+        <h3 style="text-align: center">
+          <br />
+          <h5>#{{ errResponse }}</h5>
+        </h3>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <p-button
+          icon="pi pi-check"
+          (click)="display = false; off()"
+          label="Ok"
+          styleClass="p-button-text"
+        ></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <p-confirmDialog
+      [ngStyle]="{
+        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+      header="Confirm ?"
+      icon="pi pi-pencil"
+      [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+      [style]="{ width: '27vw' }"
+    >
+      <div [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+        <h2 style="text-align: center">
+          Would you like to publish this post ?
+        </h2>
+      </div>
+    </p-confirmDialog>
 
     <!-- background -->
     <div
@@ -401,7 +417,7 @@
               />
               <br />
               <br />
-              <button
+              <!-- <button
                 type="submit"
                 class="btn btn-info"
                 (click)="SubmitFile()"
@@ -422,15 +438,10 @@
                 (click)="currentBlogImgP = null"
               >
                 reset
-              </button>
+              </button> -->
               <br />
               <br />
-              <div class="alert alert-warning" style="display: inline-block">
-                <p>
-                  *upload image first, it won't be uploaded during post
-                  submission!
-                </p>
-              </div>
+
               <form
                 [formGroup]="newPost"
                 (ngSubmit)="SubmitPost(newPost.value)"
@@ -582,12 +593,15 @@
                 type="submit"
                 class="btn btn-success"
                 [disabled]="!newPost.valid"
-                (click)="submitAll()"
+                (click)="confirm()"
               >
                 Submit
                 <span
-                  id="uploadSpinner2"
+                  id="uploadSpinner"
                   class="spinner-border spinner-border-sm"
+                ></span>
+                <span id="uploadCheck">
+                  <i class="fas fa-check-circle"></i
                 ></span>
               </button>
             </div>

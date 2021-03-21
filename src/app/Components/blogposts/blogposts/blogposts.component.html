@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <!-- toasts -->
+    <p-toast key="clipboard" position="top-right"></p-toast>
+
     <!-- background color -->
     <div
       class="content"
@@ -174,7 +177,13 @@
                     color: brightness ? 'red' : 'violet'
                   }"
                 >
-                  <i class="far fa-file-alt" style="font-size: 20px"></i>
+                  <i
+                    class="far fa-file-alt"
+                    style="font-size: 20px; cursor: pointer"
+                    (click)="copyShareLink()"
+                    pTooltip="copy post link"
+                    tooltipPosition="top"
+                  ></i>
                 </div>
 
                 <h6

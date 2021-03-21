@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   public ipdata;
   public useragent;
-  public userdata
+  public userdata;
   public showForgot: boolean;
   public response: any;
   public loginresponse;
@@ -40,14 +40,17 @@ export class LoginComponent implements OnInit {
   public captchaIsExpired = false;
   public captchaResponse?: string;
 
-  public theme: 'light' | 'dark'
+  public theme: 'light' | 'dark';
   public size: 'compact' | 'normal' = 'normal';
   public lang = 'en';
   public type: 'image' | 'audio';
   public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
   public captchaTheme;
 
-  public pageTitle= 'Login'
+  public pageTitle = 'Login';
+
+  display: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -60,22 +63,19 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.defaultModeService.modeSwitch.subscribe(item => {
-
-      this.brightness = item
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
       if (this.brightness === true) {
         this.changeTheme('light');
       } else {
         this.changeTheme('dark');
       }
-     
-    })
+    });
 
     this.showpass = false;
 
     //set page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // login formgroup
     this.newLogin = this.fb.group({
@@ -124,9 +124,9 @@ export class LoginComponent implements OnInit {
     if (!this.newLogin.valid) {
       return;
     }
-    let d = document
-    d.getElementById('uploadSpinner').style.display='inline-block'
-    d.getElementById('uploadCheckErr').style.display='none'
+    let d = document;
+    d.getElementById('uploadSpinner').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr').style.display = 'none';
     this.loginservice.Login(data).subscribe(
       (item) => {
         if (item && item.token) {
@@ -134,18 +134,19 @@ export class LoginComponent implements OnInit {
           this.cookies.set('credentials', JSON.stringify(item.token), 5);
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
-          localStorage.setItem('userToken', JSON.stringify(item.token))
+          localStorage.setItem('userToken', JSON.stringify(item.token));
           this.loginresponse = item;
-          let elemnt = document.getElementById('overlay');
-          d.getElementById('uploadSpinner').style.display='none'
-          d.getElementById('uploadCheckErr').style.display='none'
-          d.getElementById('uploadCheck').style.display='inline-block'
-          elemnt.style.zIndex = '3';
+          // let elemnt = document.getElementById('overlay');
+          // d.getElementById('uploadSpinner').style.display='none'
+          // d.getElementById('uploadCheckErr').style.display='none'
+          // d.getElementById('uploadCheck').style.display='inline-block'
+          // elemnt.style.zIndex = '3';
+          this.openDialog();
         }
       },
       (error) => {
-        d.getElementById('uploadSpinner').style.display='none'
-        d.getElementById('uploadCheckErr').style.display='inline-block'
+        d.getElementById('uploadSpinner').style.display = 'none';
+        d.getElementById('uploadCheckErr').style.display = 'inline-block';
         this.response = error.error.message;
       }
     );
@@ -234,4 +235,8 @@ export class LoginComponent implements OnInit {
   // setLanguage(): void {
   //   this.lang = this.langInput.nativeElement.value;
   // }
+
+  openDialog() {
+    this.display = true;
+  }
 }

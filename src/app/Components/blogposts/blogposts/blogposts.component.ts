@@ -8,11 +8,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { clientIpService } from '../../../Shared/services/clientip-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-blogposts',
   templateUrl: './blogposts.component.html',
   styleUrls: ['./blogposts.component.css'],
+  providers: [MessageService],
 })
 export class BlogpostsComponent implements OnInit {
   public brightness: boolean;
@@ -53,7 +55,8 @@ export class BlogpostsComponent implements OnInit {
     private cookies: CookieService,
     private clientIpObj: clientIpService,
     private titleService: Title,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -273,5 +276,30 @@ export class BlogpostsComponent implements OnInit {
   // preview post content in markdown
   getPostPreview() {
     this.previewMarkdown = $('#postContentMd').val();
+  }
+
+  // copy sharing link
+  copyShareLink() {
+    let val = window.location.href;
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    // this.snackbar.open("Link copied to clipboard !", "x", {
+    //   duration: 2000,
+    // });
+
+    this.messageService.add({
+      key: 'clipboard',
+      severity: 'success',
+      summary: 'Link copied to clipboard',
+    });
   }
 }

@@ -72,7 +72,7 @@ export class blogpostservice {
   }
 
   uploadImg(data) {
-    return this.http.post(this.uploadApi, data, {
+    return this.http.post<any>(this.uploadApi, data, {
       headers: this.blogImgHeader,
     });
   }

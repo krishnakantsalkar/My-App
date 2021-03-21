@@ -13,10 +13,13 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
 var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 
+import { ConfirmationService } from 'primeng/api';
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
+  providers: [ConfirmationService],
 })
 export class BlogComponent implements OnInit {
   public brightness: boolean;
@@ -76,13 +79,17 @@ export class BlogComponent implements OnInit {
     'December',
   ];
 
+  display: boolean = false;
+  display2: boolean = false;
+
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
     private router: Router,
     private cookies: CookieService,
     private titleService: Title,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -260,39 +267,9 @@ export class BlogComponent implements OnInit {
   SubmitPost(data: Iblog) {
     if (!this.newPost.valid) {
       this.errResponse = 'Required fields cannot be empty*';
-      let elemnt = document.getElementById('overlay');
-      elemnt.style.zIndex = '3';
       return;
     }
-    // visual feedback
-    let d = document;
-    d.getElementById('uploadSpinner2').style.display = 'inline-block';
 
-    // blog post API call
-    this.blogservice.publishBlog(data).subscribe(
-      (item) => {
-        this.logResponse = item.result;
-        let elemnt = document.getElementById('overlay');
-        elemnt.style.zIndex = '3';
-      },
-      (err) => {
-        this.errResponse = err.error;
-        let elemnt = document.getElementById('overlay');
-        elemnt.style.zIndex = '3';
-      }
-    );
-  }
-
-  // remove notification overlay method by clicking anywhere
-  off() {
-    var elemnt = document.getElementById('overlay');
-
-    elemnt.style.zIndex = '-10';
-    location.reload();
-  }
-
-  // upload image method
-  SubmitFile() {
     const formData = new FormData();
 
     // visual feedback
@@ -301,20 +278,65 @@ export class BlogComponent implements OnInit {
 
     // form data element for blog image since files can't be sent via json
     formData.append('postImage', this.currentBlogImg);
-    this.blogservice.uploadImg(formData).subscribe((item) => {
-      this.storeBlogImg = item;
-      alert(this.storeBlogImg.message);
-
-      // more visual feedback
-      d.getElementById('uploadSpinner').style.display = 'none';
-      d.getElementById('uploadCheck').style.display = 'inline-block';
+    this.blogservice.uploadImg(formData).subscribe(async (item) => {
+      this.storeBlogImg = await item.result;
 
       // upload image first and get the uploaded file link back from API
-      this.newPost.patchValue({
-        postImage: this.storeBlogImg.result['postImage'],
-      });
+      if (this.storeBlogImg) {
+        this.newPost.patchValue({
+          postImage: this.storeBlogImg['postImage'],
+        });
+
+        // blog post API call
+        this.blogservice.publishBlog(this.newPost.value).subscribe(
+          (item2) => {
+            this.display = true;
+            this.logResponse = item2.result;
+            this.createPost = !this.createPost;
+            d.getElementById('uploadCheck').style.display = 'inline-block';
+          },
+          (err) => {
+            this.errResponse = err.error;
+            this.display = true;
+          }
+        );
+      }
     });
   }
+
+  // remove notification overlay method by clicking anywhere
+  off() {
+    this.ngOnInit();
+  }
+
+  confirm() {
+    this.confirmationService.confirm({
+      message: 'Would you like to publish this?',
+      accept: () => {
+        this.confirmPost();
+      },
+      reject: () => {
+        this.cancelPost();
+      },
+    });
+  }
+
+  // confirm post
+  confirmPost() {
+    this.submitAll();
+  }
+
+  // cancel post
+  cancelPost() {
+    let d = document;
+    d.getElementById('uploadSpinner2').style.display = 'none';
+    d.getElementById('uploadCheck').style.display = 'none';
+
+    return;
+  }
+
+  // upload image method
+  SubmitFile() {}
 
   // post to telegram channel, Method broken as of now!
   // channelPost(data) {

@@ -44,17 +44,36 @@ body {
 .fifth-content {
   height: 120vh;
   width: 100%;
-  background-color: #17b86a;
+  /* background-color: #17b86a; */
+  background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   margin-bottom: 60px;
   float: left;
+  position: relative;
+}
+
+.fifth-content-credits {
+  position: absolute;
+  left: 10%;
+  bottom: 10%;
+  cursor: pointer;
+  color: yellow;
+  opacity: 0.6;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+.fifth-content-credits:hover {
+  opacity: 1;
 }
 
 .first-content .container {
   padding-top: 100px;
 }
 
-.fifth-content .container {
+.fifth-content .container-fluid {
   padding-top: 70px;
+  width: 80%;
 }
 
 /* page navigation buttons  */
@@ -432,7 +451,16 @@ div.extras-component a {
   }
 
   .fifth-content {
-    height: 170vh;
+    height: 190vh;
+  }
+
+  .fifth-content .container-fluid {
+    width: 95%;
+  }
+
+  .fifth-content-credits {
+    left: 5%;
+    bottom: 5%;
   }
   div.angular,
   div.backend,
@@ -559,5 +587,9 @@ div.extras-component a {
   div.extras-component h2 {
     font-size: 60px;
     margin: 13px;
+  }
+
+  .langAndFrData ul {
+    padding-left: 24px;
   }
 }

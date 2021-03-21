@@ -140,6 +140,11 @@ export class AboutComponent implements OnInit {
         '"Computers make very fast, very accurate mistakes."',
         '"Only half of programming is coding. The other 90% is debugging."',
         '"There is no place like 127.0.0.1"',
+        '“Experience is the name everyone gives to their mistakes.” – Oscar Wilde',
+        '“Java is to JavaScript what car is to Carpet.” – Chris Heilmann',
+        '"The best method for accelerating a computer is the one that boosts it by 9.8 m/s2."',
+        '"There are two ways to write error-free programs; only the third one works" - Alan J. Perlis',
+        '"It’s not a bug – it’s an undocumented feature!"',
       ];
 
       if (document.getElementById('loopQuotes')) {

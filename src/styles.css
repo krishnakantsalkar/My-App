@@ -11,6 +11,12 @@
 @import "prismjs/plugins/line-highlight/prism-line-highlight.css";
 @import "../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css";
 
+/* quill js */
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+@import "~quill-emoji/dist/quill-emoji.css";
+
 /* snotify icon global css */
 .snotify-icon {
   object-fit: cover;

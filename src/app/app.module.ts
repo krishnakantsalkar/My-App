@@ -15,6 +15,7 @@ import { DISQUS_SHORTNAME } from 'ngx-disqus';
 import { NgAdblockDetectModule } from 'ng-adblock-detect';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharedModuleModule } from './Components/shared-module/shared-module.mod
     NgAdblockDetectModule,
     SnotifyModule,
     SharedModuleModule,
+    QuillModule.forRoot(),
   ],
   providers: [
     userloginservices,

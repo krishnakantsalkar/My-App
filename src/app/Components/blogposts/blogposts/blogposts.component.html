@@ -328,6 +328,7 @@
                   <!-- blogpost -->
 
                   <markdown
+                    *ngIf="data.postNumber <= 22"
                     [ngStyle]="{
                       color: brightness ? 'black' : 'white'
                     }"
@@ -335,6 +336,15 @@
                     [data]="markdown"
                     emoji
                   ></markdown>
+                  <div
+                    class="quillContent"
+                    *ngIf="data.postNumber > 22"
+                    [innerHtml]="markdown"
+                    [ngStyle]="{
+                      color: brightness ? 'black' : 'white'
+                    }"
+                  ></div>
+
                   <br />
 
                   <!-- post link buttons -->

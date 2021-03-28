@@ -519,34 +519,14 @@
                 <label>Post Content</label>
                 <br />
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <textarea
-                      id="dataBindings"
-                      class="variable-textarea"
-                      [(ngModel)]="markdown"
-                      name="textareas"
-                    ></textarea>
-                  </div>
-
-                  <div
-                    class="col-sm-12"
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'rgb(223, 223, 223)'
-                        : ' #F5F5F5',
-                      color: brightness ? 'black' : 'black'
-                    }"
-                    style="border-radius: 8px; margin-top: 8px"
-                  >
-                    <h5>Preview:</h5>
-                    <markdown
-                      class="variable-binding"
-                      [data]="markdown"
-                      emoji
-                    ></markdown>
-                  </div>
-                </div>
+                <quill-editor
+                  theme="snow"
+                  [(ngModel)]="markdown"
+                  [modules]="config"
+                >
+                </quill-editor>
+                <br />
+                <br />
               </div>
               <br />
               <button
@@ -559,7 +539,7 @@
               <button
                 type="submit"
                 class="btn btn-success"
-                [disabled]="!newPost.valid"
+                [ngClass]="{ disabled: !newPost.valid }"
                 (click)="confirm()"
               >
                 Submit
@@ -571,6 +551,15 @@
                   <i class="fas fa-check-circle"></i
                 ></span>
               </button>
+              <br />
+              <br />
+              <div
+                class="alert alert-danger"
+                style="width: 30%"
+                *ngIf="blogErrMsg"
+              >
+                {{ blogErrMsg }}
+              </div>
             </div>
           </div>
         </div>

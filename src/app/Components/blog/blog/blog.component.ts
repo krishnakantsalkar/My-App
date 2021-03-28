@@ -14,6 +14,7 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 
 import { ConfirmationService } from 'primeng/api';
+import 'quill-emoji/dist/quill-emoji.js';
 
 @Component({
   selector: 'app-blog',
@@ -52,8 +53,7 @@ export class BlogComponent implements OnInit {
   public readTimeCheck = [];
   public totalWordsCheck = [];
   // markdown impl.
-  public markdown = `## Enter content in Markdown format __here__!
-  ---`;
+  public markdown;
 
   public year = 'All';
   public showYear: boolean = true;
@@ -81,6 +81,14 @@ export class BlogComponent implements OnInit {
 
   display: boolean = false;
   display2: boolean = false;
+
+  config = {
+    'emoji-toolbar': true,
+    'emoji-textarea': true,
+    'emoji-shortname': true,
+  };
+
+  public blogErrMsg;
 
   constructor(
     private blogservice: blogpostservice,
@@ -253,7 +261,12 @@ export class BlogComponent implements OnInit {
 
   // submit post method
   submitAll() {
-    let postBindedData = $('#dataBindings').val();
+    this.blogErrMsg = undefined;
+    if (!this.currentBlogImg) {
+      this.blogErrMsg = '*error: Post Image is required !';
+      return;
+    }
+    let postBindedData = this.markdown;
 
     this.newPost.patchValue({ post: postBindedData });
 

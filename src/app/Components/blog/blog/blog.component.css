@@ -496,10 +496,13 @@ div.nextprev button {
   background-color: rgb(49, 223, 107) !important;
 }
 
-::ng-deep .ql-toolbar,
-::ng-deep .ql-container {
+.quillText ::ng-deep .ql-toolbar,
+.quillText ::ng-deep .ql-container {
   background-color: white;
   color: rgb(41, 42, 45);
+}
+.quillText ::ng-deep .ql-container {
+  min-height: 300px;
 }
 
 .disabled {

@@ -336,14 +336,24 @@
                     [data]="markdown"
                     emoji
                   ></markdown>
-                  <div
-                    class="quillContent"
-                    *ngIf="data.postNumber > 22"
+                  <!-- <div
                     [innerHtml]="markdown"
                     [ngStyle]="{
                       color: brightness ? 'black' : 'white'
                     }"
-                  ></div>
+                  ></div> -->
+                  <quill-view
+                    class="quillContent"
+                    *ngIf="data.postNumber > 22"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(32, 33, 33)',
+                      color: brightness ? 'black' : 'white'
+                    }"
+                    [content]="markdown"
+                    theme="snow"
+                  ></quill-view>
 
                   <br />
 

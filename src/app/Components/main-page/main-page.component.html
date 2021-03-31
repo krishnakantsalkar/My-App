@@ -139,14 +139,15 @@
               [ngStyle]="{
                 'background-color': brightness ? 'red' : 'violet'
               }"
+            ></div>
+          </div>
+          <div class="preloaderImgArea">
+            <span
+              id="percent"
+              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
             >
-              <span
-                id="percent"
-                [ngStyle]="{ color: brightness ? 'black' : 'red' }"
-              >
-                1%</span
-              >
-            </div>
+              1%</span
+            >
           </div>
         </div>
         <!-- Preloader page footer -->
@@ -609,7 +610,7 @@
             </div>
             <div class="privacyPolicy" style="text-align: center; margin: 15px">
               <h6>
-                *By using this website you agree to the
+                *By visiting here you agree to the
                 <span
                   routerLink="/Privacy"
                   style="cursor: pointer"
@@ -643,7 +644,12 @@
             ></i>
             using
           </h6>
-          <span class="footerAngularLogo"><i class="fab fa-angular"></i></span>
+          <span class="footerAngularLogo"
+            ><i
+              class="fab fa-angular"
+              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            ></i
+          ></span>
         </div>
       </div>
     </div>

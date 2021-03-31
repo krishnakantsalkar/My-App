@@ -352,7 +352,7 @@
               style="text-align: center; margin-top: 10px"
             >
               <h6>
-                *By using this website you agree to the
+                *By visiting here you agree to the
                 <span
                   routerLink="/Privacy"
                   style="cursor: pointer"
@@ -386,7 +386,12 @@
             ></i>
             using
           </h6>
-          <span class="footerAngularLogo"><i class="fab fa-angular"></i></span>
+          <span class="footerAngularLogo"
+            ><i
+              class="fab fa-angular"
+              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            ></i
+          ></span>
         </div>
       </div>
     </div>

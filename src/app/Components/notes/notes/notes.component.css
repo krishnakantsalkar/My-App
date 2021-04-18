@@ -1,0 +1,56 @@
+.notes {
+  padding-top: 100px;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.cardPlaceholder {
+  position: relative;
+}
+.cardPlaceholder .fa-pencil-alt {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-size: 50px;
+}
+
+.fa-edit:hover {
+  cursor: pointer;
+}
+
+.fa-trash-alt:hover {
+  cursor: pointer;
+}
+
+.fa-times-circle :hover {
+  cursor: pointer;
+}
+
+.pinnedNotes .fa-thumbtack {
+  cursor: pointer;
+}
+.allNotes .fa-thumbtack {
+  visibility: hidden;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.allNotes .card-header:hover .fa-thumbtack {
+  visibility: visible;
+}
+
+.notes .card-footer h5 {
+  font-size: 13px;
+}
+
+#uploadSpinner,
+#uploadCheck,
+#uploadCheckErr {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  .notes .card-footer h5 {
+    font-size: 9px;
+  }
+}

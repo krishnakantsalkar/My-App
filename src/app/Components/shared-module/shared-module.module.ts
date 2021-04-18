@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SkeletonModule } from 'primeng/skeleton';
 import { QuillModule } from 'ngx-quill';
+import { CardModule } from 'primeng/card';
 
 // Shared module
 
@@ -26,6 +27,7 @@ import { QuillModule } from 'ngx-quill';
     ConfirmDialogModule,
     SkeletonModule,
     QuillModule,
+    CardModule,
   ],
   exports: [
     FooterComponent,
@@ -36,6 +38,7 @@ import { QuillModule } from 'ngx-quill';
     ConfirmDialogModule,
     SkeletonModule,
     QuillModule,
+    CardModule,
   ],
 })
 export class SharedModuleModule {}

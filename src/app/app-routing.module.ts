@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { MainPageComponent } from './Components/main-page/main-page.component';
 import { authGuard } from './Shared/services/authguard';
 import { Page404Component } from './Components/page404/page404.component';
@@ -117,6 +117,14 @@ const routes: Routes = [
       ),
   },
 
+  //notes route
+  {
+    path: 'Notes',
+    loadChildren: () =>
+      import('./Components/notes/notes.module').then((m) => m.NotesModule),
+    canActivate: [authGuard],
+  },
+
   //wildcard route
   {
     path: '**',
@@ -127,11 +135,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload',
-    scrollPositionRestoration: 'enabled',
-    anchorScrolling: 'enabled',
-    relativeLinkResolution: 'legacy'
-}),
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      relativeLinkResolution: 'legacy',
+    }),
   ],
   exports: [RouterModule],
 })

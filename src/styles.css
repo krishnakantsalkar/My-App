@@ -25,3 +25,11 @@
   height: 100%;
   object-position: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .p-toast-top-right {
+    right: unset !important;
+    width: 92% !important;
+    top: 20px !important;
+  }
+}

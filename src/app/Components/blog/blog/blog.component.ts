@@ -89,6 +89,7 @@ export class BlogComponent implements OnInit {
   };
 
   public blogErrMsg;
+  public scrollbarOptions = { axis: 'yx', theme: 'minimal-dark' };
 
   constructor(
     private blogservice: blogpostservice,

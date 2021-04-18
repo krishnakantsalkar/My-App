@@ -481,17 +481,17 @@ div.nextprev button {
   color: rgb(49, 223, 107) !important;
 }
 
-::ng-deep .p-button,
+::ng-deep .blogBody .p-button,
 .p-button-dialog-accept {
   color: rgb(49, 223, 107);
   background: #292929 !important;
 }
 
-::ng-deep .p-button .p-button-text {
+::ng-deep .blogBody .p-button .p-button-text {
   color: rgb(49, 223, 107);
 }
 
-::ng-deep .p-button:enabled:hover {
+::ng-deep .blogBody .p-button:enabled:hover {
   color: white;
   background-color: rgb(49, 223, 107) !important;
 }

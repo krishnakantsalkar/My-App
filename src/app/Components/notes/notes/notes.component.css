@@ -23,10 +23,16 @@
   cursor: pointer;
 }
 
-.fa-times-circle :hover {
+.fa-times-circle {
+  font-size: 15px;
+}
+.fa-times-circle:hover {
   cursor: pointer;
 }
 
+.fa-archive:hover {
+  cursor: pointer;
+}
 .pinnedNotes .fa-thumbtack {
   cursor: pointer;
 }
@@ -48,6 +54,10 @@
 #uploadCheck,
 #uploadCheckErr {
   display: none;
+}
+
+.controlIcons h4 {
+  margin: 20px auto;
 }
 @media only screen and (max-width: 600px) {
   .notes .card-footer h5 {

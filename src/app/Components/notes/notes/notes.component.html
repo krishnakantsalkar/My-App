@@ -41,16 +41,17 @@
         [(ngModel)]="noteTitle"
         placeholder="title"
       />
+      <br />
       <!-- [readonly]="note.readonly" -->
       <textarea
         cols="30"
         rows="7"
         class="form-control"
         [(ngModel)]="noteContent"
-        style="width: 100%; margin: 10px auto"
+        style="width: 100%"
         placeholder="content"
       ></textarea>
-      <div class="btn-group" style="float: right">
+      <div class="btn-group" style="float: right; margin-top: 10px">
         <button
           type="button"
           class="btn"
@@ -66,6 +67,7 @@
             'background-color': brightness ? 'orangered' : ' violet'
           }"
           style="color: white"
+          [disabled]="!noteTitle || !noteContent"
           (click)="saveNote()"
         >
           Save Note
@@ -197,7 +199,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-2" style="padding-top: 15px">
+              <div class="col-2 controlIcons" style="padding-top: 5px">
                 <h4 style="font-size: 13px">
                   <i
                     class="fas fa-edit"
@@ -240,8 +242,10 @@
                     type="text"
                     class="form-control"
                     style="width: 100%"
+                    placeholder="title"
                     [(ngModel)]="note.notes_title"
                   />
+                  <br />
                   <!-- [readonly]="note.readonly" -->
 
                   <textarea
@@ -249,6 +253,7 @@
                     class="form-control"
                     cols="30"
                     rows="5"
+                    placeholder="content"
                     [(ngModel)]="note.notes_message"
                   ></textarea>
                   <!-- [readonly]="note.readonly" -->
@@ -295,6 +300,7 @@
                     <i
                       class="fas fa-times-circle"
                       (click)="cancelEditNote(i)"
+                      pTooltip="cancel edit"
                     ></i>
                   </h4>
                 </div>
@@ -356,7 +362,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-2" style="padding-top: 15px">
+              <div class="col-2 controlIcons" style="padding-top: 5px">
                 <h4 style="font-size: 13px">
                   <i
                     class="fas fa-edit"
@@ -397,15 +403,17 @@
                     type="text"
                     class="form-control"
                     style="width: 100%"
+                    placeholder="title"
                     [(ngModel)]="note.notes_title"
                   />
                   <!-- [readonly]="note.readonly" -->
-
+                  <br />
                   <textarea
                     style="width: 100%"
                     class="form-control"
                     cols="30"
                     rows="5"
+                    placeholder="content"
                     [(ngModel)]="note.notes_message"
                   ></textarea>
                   <!-- [readonly]="note.readonly" -->

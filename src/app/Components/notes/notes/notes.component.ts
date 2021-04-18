@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { noteService } from '../../../Shared/services/notesService';
 import { MessageService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notes',
@@ -16,16 +17,19 @@ export class NotesComponent implements OnInit {
   noteTitle;
   noteContent;
 
+  pageTitle: string = 'Notes';
   profId = JSON.parse(localStorage.getItem('profileId'));
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
-    private messagingService: MessageService
+    private messagingService: MessageService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
     // brightness mode
 
+    this.titleService.setTitle(this.pageTitle);
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
     });
@@ -42,7 +46,6 @@ export class NotesComponent implements OnInit {
     this.noteTitle = undefined;
     this.noteService.getNotes(this.profId).subscribe((item) => {
       this.notesData = item.result;
-      console.log(this.notesData);
     });
   }
 
@@ -112,10 +115,10 @@ export class NotesComponent implements OnInit {
 
   clickEditNote(i) {
     this.notesData[i].readonly = false;
-    console.log(this.notesData[i]);
   }
   cancelEditNote(i) {
     this.notesData[i].readonly = true;
+    this.getNotes();
   }
 
   updateNote(i) {
@@ -130,8 +133,6 @@ export class NotesComponent implements OnInit {
           severity: 'info',
           summary: `${item.message}`,
         });
-
-        console.log(item);
       },
       (err) => {
         this.messagingService.add({
@@ -178,7 +179,6 @@ export class NotesComponent implements OnInit {
       noteObj.pinned = false;
       msg = 'unpinned';
     }
-    console.log(noteObj);
 
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {

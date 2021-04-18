@@ -138,8 +138,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('profileId', JSON.stringify(item.profileId));
           this.loginresponse = item;
           // let elemnt = document.getElementById('overlay');
-          // d.getElementById('uploadSpinner').style.display='none'
-          // d.getElementById('uploadCheckErr').style.display='none'
+          d.getElementById('uploadSpinner').style.display = 'none';
+          d.getElementById('uploadCheckErr').style.display = 'none';
           d.getElementById('uploadCheck').style.display = 'inline-block';
           // elemnt.style.zIndex = '3';
           this.openDialog();

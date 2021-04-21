@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
   public size: 'compact' | 'normal' = 'normal';
   public lang = 'en';
   public type: 'image' | 'audio';
-  public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
+  // public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
+  public readonly siteKey = '6LcxNLMaAAAAAEe5bQaXcJqFY0uVAPdRxCYR2JQV';
   public captchaTheme;
 
   public pageTitle = 'Login';

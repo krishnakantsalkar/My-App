@@ -454,12 +454,13 @@
                 </div>
                 <div
                   class="col-1"
-                  style="padding-top: 35px; text-align: center"
+                  style="padding-top: 15px; text-align: center"
                 >
                   <h4 *ngIf="note.readonly == false" style="font-size: 13px">
                     <i
                       class="fas fa-times-circle"
                       (click)="cancelEditNote(i)"
+                      pTooltip="cancel edit"
                     ></i>
                   </h4>
                 </div>

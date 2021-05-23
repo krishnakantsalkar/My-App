@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from 'src/app/Shared/model/forgotPass';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { ReCaptchaV3Service } from 'ngx-captcha';
 
 @Component({
   selector: 'app-login',
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
   public type: 'image' | 'audio';
   // public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
   public readonly siteKey = '6LcxNLMaAAAAAEe5bQaXcJqFY0uVAPdRxCYR2JQV';
+  public readonly secretKey = '6LcxNLMaAAAAAM7wvjAbaAg2N6pOmTVk11vwPey1';
   public captchaTheme;
 
   public pageTitle = 'Login';
@@ -112,9 +114,9 @@ export class LoginComponent implements OnInit {
 
     footerBackground();
     function footerBackground() {
-      var footerArea = (document.getElementsByClassName(
+      var footerArea = document.getElementsByClassName(
         'content-new'
-      ) as unknown) as HTMLCollectionOf<HTMLElement>;
+      ) as unknown as HTMLCollectionOf<HTMLElement>;
       if (footerArea) {
         footerArea[0].style.position = 'absolute';
       }
@@ -208,6 +210,12 @@ export class LoginComponent implements OnInit {
     this.captchaResponse = captchaResponse;
     this.captchaIsExpired = false;
     this.cdr.detectChanges();
+
+    this.loginservice
+      .verifyRecaptcha(this.siteKey, captchaResponse)
+      .subscribe((item) => {
+        console.log(item);
+      });
   }
 
   handleLoad(): void {

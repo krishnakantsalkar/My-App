@@ -623,7 +623,7 @@
             <div
               class="col-sm-6 col-lg-6"
               *ngFor="let note of notesData; let i = index"
-              [hidden]="!note.pinned"
+              [hidden]="note.archived == false"
             >
               <div class="row archivedNotes" *ngIf="note.archived">
                 <div class="col-12">

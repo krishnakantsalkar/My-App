@@ -211,11 +211,13 @@ export class LoginComponent implements OnInit {
     this.captchaIsExpired = false;
     this.cdr.detectChanges();
 
-    this.loginservice
-      .verifyRecaptcha(this.siteKey, captchaResponse)
-      .subscribe((item) => {
-        console.log(item);
-      });
+    let data = {
+      secret: this.siteKey,
+      response: captchaResponse,
+    };
+    this.loginservice.verifyRecaptcha(data).subscribe((item) => {
+      console.log(item);
+    });
   }
 
   handleLoad(): void {

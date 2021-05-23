@@ -25,7 +25,7 @@ export class userloginservices {
     'https://mybackend-1911.herokuapp.com/api/reset/forgotPassword/';
 
   public verifyCaptcha: string =
-    'https://www.google.com/recaptcha/api/siteverify/';
+    'https://mybackend-1911.herokuapp.com/api/users/verifyCaptcha';
 
   public header: HttpHeaders;
   public loggedIn: BehaviorSubject<any>;
@@ -85,10 +85,7 @@ export class userloginservices {
     );
   }
 
-  verifyRecaptcha(siteKey, captchaRes) {
-    return this.http.post(
-      `${this.verifyCaptcha}?secret=${siteKey}&response=${captchaRes}`,
-      { data: null }
-    );
+  verifyRecaptcha(data) {
+    return this.http.post(this.verifyCaptcha, data);
   }
 }

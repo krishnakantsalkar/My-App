@@ -59,6 +59,44 @@
 .controlIcons h4 {
   margin: 20px auto;
 }
+
+.todoList .card-header:hover .fa-trash-alt {
+  visibility: visible;
+}
+.todoList .fa-trash-alt {
+  visibility: hidden;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+  border-color: rgb(49, 223, 107) !important;
+  background: rgb(49, 223, 107) !important;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  color: rgb(136, 136, 136) !important;
+}
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: rgba(49, 223, 107, 0.04);
+  border-color: transparent;
+  color: rgb(49, 223, 107) !important;
+}
+
+::ng-deep .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  background-color: rgb(49, 223, 107) !important;
+}
+
+::ng-deep
+  .p-tabview
+  .p-tabview-nav
+  li:not(.p-highlight):not(.p-disabled):hover
+  .p-tabview-nav-link {
+  background: rgba(49, 223, 107, 0.04);
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 @media only screen and (max-width: 600px) {
   .notes .card-footer h5 {
     font-size: 9px;

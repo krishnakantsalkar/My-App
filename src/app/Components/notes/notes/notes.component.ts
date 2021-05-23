@@ -19,6 +19,12 @@ export class NotesComponent implements OnInit {
 
   pageTitle: string = 'Notes';
   profId = JSON.parse(localStorage.getItem('profileId'));
+
+  todoSwitch: boolean = false;
+  todoArr = [];
+  todo_title;
+  todo_opt;
+  allTodos;
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
@@ -35,10 +41,20 @@ export class NotesComponent implements OnInit {
     });
 
     this.getNotes();
+    this.getTodo();
   }
 
   showAddNote() {
     this.noteSwitch = !this.noteSwitch;
+    this.noteTitle = undefined;
+    this.noteContent = undefined;
+  }
+
+  showAddTodo() {
+    this.todoSwitch = !this.todoSwitch;
+    this.todoArr = [];
+    this.todo_title = undefined;
+    this.todo_opt = undefined;
   }
 
   getNotes() {
@@ -213,7 +229,34 @@ export class NotesComponent implements OnInit {
         this.messagingService.add({
           key: 'clipboard',
           severity: 'success',
-          summary: 'Note pinned',
+          summary: 'Note archived',
+        });
+        this.noteContent = undefined;
+        this.getNotes();
+      },
+      (err) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'success',
+          summary: `${err.error.message}`,
+        });
+      }
+    );
+  }
+
+  unArchive(i) {
+    let noteObj = this.notesData[i];
+
+    noteObj.updatedAt = new Date();
+
+    noteObj.archived = false;
+
+    this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
+      (item) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'success',
+          summary: 'Note unarchived',
         });
         this.noteContent = undefined;
         this.getNotes();
@@ -228,4 +271,125 @@ export class NotesComponent implements OnInit {
     );
   }
   // ------------------ notes end ---------------------------
+
+  // ------------------ Todo start -------------------------
+  addOption() {
+    let todoStruct = {
+      name: this.todo_opt,
+      value: false,
+    };
+    this.todoArr.push(todoStruct);
+    this.todo_opt = undefined;
+  }
+
+  check(event, i) {
+    this.todoArr[i].value = event.checked;
+  }
+
+  updateCheck(event, i, j) {
+    this.allTodos[i].todo_list[j].value = event.checked;
+
+    let data = {
+      updatedAt: new Date(),
+      todo_list: this.allTodos[i].todo_list,
+    };
+
+    this.noteService.editTodo(this.allTodos[i]._id, data).subscribe((item) => {
+      this.getTodo();
+    });
+  }
+
+  getTodo() {
+    this.todo_title = undefined;
+    this.todo_opt = undefined;
+    this.noteService.getTodo(this.profId).subscribe((item) => {
+      this.allTodos = item.result;
+    });
+  }
+
+  deleteOpt(i) {
+    this.todoArr.splice(i, 1);
+  }
+
+  saveTodo() {
+    $('#uploadSpinner').css({
+      display: 'inline-block',
+    });
+    $('#uploadCheckErr').css({
+      display: 'none',
+    });
+
+    let todoObj = {
+      todo_id: `TD${Date.now().toString()}`,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      todo_title: this.todo_title,
+      todo_list: this.todoArr,
+      profileId: this.profId,
+    };
+
+    this.noteService.postTodo(todoObj).subscribe(
+      (item) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'success',
+          summary: `${item.message}`,
+        });
+        $('#uploadSpinner').css({
+          display: 'none',
+        });
+        $('#uploadCheckErr').css({
+          display: 'none',
+        });
+        $('#uploadCheck').css({
+          display: 'inline-block',
+        });
+
+        setTimeout(() => {
+          $('#uploadCheck').css({
+            display: 'none',
+          });
+          this.getTodo();
+          this.showAddTodo();
+        }, 900);
+      },
+      (err) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'success',
+          summary: `${err.error.message}`,
+        });
+        $('#uploadSpinner').css({
+          display: 'none',
+        });
+        $('#uploadCheck').css({
+          display: 'none',
+        });
+        $('#uploadCheckErr').css({
+          display: 'inline-block',
+        });
+      }
+    );
+  }
+
+  deleteTodo(i) {
+    this.noteService.deleteTodo(this.allTodos[i]._id).subscribe(
+      (item) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'warn',
+          summary: `${item.message}`,
+          life: 300000,
+        });
+        this.getTodo();
+      },
+      (err) => {
+        this.messagingService.add({
+          key: 'clipboard',
+          severity: 'success',
+          summary: `${err.error.message}`,
+        });
+      }
+    );
+  }
 }

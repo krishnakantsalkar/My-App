@@ -35,4 +35,29 @@ export class noteService {
       { headers: this.header }
     );
   }
+
+  getTodo(profileId) {
+    return this.http.get<any>(
+      `https://mybackend-1911.herokuapp.com/api/notes/getTodo/${profileId}`
+    );
+  }
+  postTodo(data) {
+    return this.http.post<any>(
+      `https://mybackend-1911.herokuapp.com/api/notes/postTodo`,
+      data
+    );
+  }
+  editTodo(id, data) {
+    return this.http.put<any>(
+      `https://mybackend-1911.herokuapp.com/api/notes/editTodo/${id}`,
+      data,
+      { headers: this.header }
+    );
+  }
+  deleteTodo(id) {
+    return this.http.delete<any>(
+      `https://mybackend-1911.herokuapp.com/api/notes/deleteTodo/${id}`,
+      { headers: this.header }
+    );
+  }
 }

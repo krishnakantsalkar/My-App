@@ -24,16 +24,30 @@
       *ngIf="!noteSwitch"
       pButton
       type="button"
-      class="p-button-raised float-right"
+      class="p-button-raised float-right mx-2"
       label="Add Note"
       [ngStyle]="{
         'background-color': brightness ? 'orangered' : ' violet'
       }"
       (click)="showAddNote()"
     ></button>
+
+    <button
+      *ngIf="!todoSwitch"
+      pButton
+      type="button"
+      class="p-button-raised float-right mx-2"
+      label="Add Todo List"
+      [ngStyle]="{
+        'background-color': brightness ? 'orangered' : ' violet'
+      }"
+      (click)="showAddTodo()"
+    ></button>
     <br />
     <br />
     <div *ngIf="noteSwitch" style="margin-bottom: 70px">
+      <br />
+      <br />
       <input
         type="text"
         class="form-control"
@@ -81,7 +95,117 @@
       </div>
     </div>
 
-    <hr *ngIf="noteSwitch" />
+    <div *ngIf="todoSwitch" style="margin-bottom: 70px">
+      <br />
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        style="width: 100%"
+        [(ngModel)]="todo_title"
+        placeholder="title"
+      />
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        style="width: 100%"
+        [(ngModel)]="todo_opt"
+        placeholder="options"
+      />
+      <br />
+      <button
+        type="button"
+        class="btn btn-primary mx-2"
+        (click)="addOption()"
+        [disabled]="!todo_opt"
+      >
+        Add
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-warning mx-2"
+        (click)="showAddTodo()"
+      >
+        Cancel
+      </button>
+
+      <br />
+      <br />
+      <div
+        *ngIf="todoArr.length > 0"
+        class="card"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(245, 245, 245)'
+            : ' rgb(31, 32, 35)',
+          color: brightness ? 'black' : 'rgb(129,129,129)'
+        }"
+      >
+        <div class="card-body">
+          <div
+            *ngFor="let list of todoArr; let i = index"
+            class="p-field-checkbox"
+          >
+            <p-checkbox
+              name="group2"
+              value="list"
+              [value]="list"
+              [label]="list.name"
+              (onChange)="check($event, i)"
+            ></p-checkbox>
+            <span
+              ><i
+                class="fas fa-times-circle"
+                [ngStyle]="{
+                  color: brightness ? 'orangered' : 'violet'
+                }"
+                style="margin-left: 10px"
+                (click)="deleteOpt(i)"
+              ></i
+            ></span>
+          </div>
+
+          <div class="saveTodo">
+            <div class="btn-group" style="float: right; margin-top: 10px">
+              <button
+                type="button"
+                class="btn"
+                (click)="showAddTodo()"
+                style="background-color: rgb(233, 233, 233); color: black"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn ml-3"
+                [ngStyle]="{
+                  'background-color': brightness ? 'orangered' : ' violet'
+                }"
+                style="color: white"
+                [disabled]="!todo_title || todoArr.length == 0"
+                (click)="saveTodo()"
+              >
+                Save List
+                <span
+                  id="uploadSpinner"
+                  class="spinner-border spinner-border-sm"
+                ></span>
+                <span id="uploadCheck">
+                  <i class="fas fa-check-circle"></i
+                ></span>
+                <span id="uploadCheckErr">
+                  <i class="fas fa-times-circle"></i
+                ></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr *ngIf="noteSwitch || todoSwitch" />
 
     <!-- Skeleton Loading animation -->
 
@@ -94,11 +218,558 @@
         color: brightness ? 'black' : 'rgb(129,129,129)'
       }"
       style="margin-top: 20px; height: 250px; width: 100%"
-      *ngIf="!noteSwitch"
+      *ngIf="!noteSwitch && !todoSwitch"
     >
-      <i class="fas fa-pencil-alt text-muted"></i>
+      <i
+        class="fas fa-pencil-alt"
+        [ngStyle]="{
+          color: brightness ? 'orangered' : 'violet'
+        }"
+      ></i>
     </div>
 
+    <br />
+    <p-tabView>
+      <p-tabPanel header="All Notes">
+        <div
+          *ngIf="notesData && notesData.length > 0"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+          style="margin-top: 20px"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div
+                class="col-sm-6 col-lg-6"
+                *ngFor="let note of notesData; let i = index"
+                [hidden]="note.archived == true || note.pinned == false"
+              >
+                <div
+                  class="row pinnedNotes"
+                  *ngIf="
+                    note.readonly == true &&
+                    note.pinned == true &&
+                    note.archived == false
+                  "
+                >
+                  <div class="col-10">
+                    <div
+                      class="card mb-5"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <div class="card-header">
+                        <h5>
+                          {{ note.notes_title }}
+                          <span style="float: right"
+                            ><i
+                              class="fas fa-thumbtack"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              (click)="pinNote(i, 'unpin')"
+                              pTooltip="unpin"
+                            ></i
+                          ></span>
+                        </h5>
+                      </div>
+                      <div class="card-body">
+                        <pre
+                          [ngStyle]="{
+                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                          }"
+                          >{{ note.notes_message }}</pre
+                        >
+                      </div>
+                      <div class="card-footer">
+                        <h5 class="text-muted">
+                          <span>
+                            {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                          <span
+                            *ngIf="note.createdAt != note.updatedAt"
+                            style="float: right"
+                          >
+                            last edited <i class="fas fa-pencil-alt"></i>
+                            {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2 controlIcons" style="padding-top: 5px">
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-edit"
+                        (click)="clickEditNote(i)"
+                        pTooltip="edit note"
+                      ></i>
+                    </h4>
+                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
+                      <i
+                        class="fas fa-times-circle"
+                        (click)="cancelEditNote(i)"
+                      ></i>
+                    </h4>
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-trash-alt"
+                        (click)="deleteNote(i)"
+                        pTooltip="delete note"
+                      ></i>
+                    </h4>
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-archive"
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="archive(i, 'archive')"
+                        pTooltip="archive note"
+                      ></i>
+                    </h4>
+                  </div>
+                </div>
+                <div
+                  class="row editNotes"
+                  style="margin-bottom: 20px"
+                  *ngIf="
+                    note.readonly == false &&
+                    note.pinned == true &&
+                    note.archived == false
+                  "
+                >
+                  <div class="col-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      style="width: 100%"
+                      placeholder="title"
+                      [(ngModel)]="note.notes_title"
+                    />
+                    <br />
+                    <!-- [readonly]="note.readonly" -->
+
+                    <textarea
+                      style="width: 100%"
+                      class="form-control"
+                      cols="30"
+                      rows="5"
+                      placeholder="content"
+                      [(ngModel)]="note.notes_message"
+                    ></textarea>
+                    <!-- [readonly]="note.readonly" -->
+
+                    <h4
+                      style="margin-top: 14px; font-size: 13px"
+                      class="text-muted"
+                    >
+                      <span>
+                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                      >
+                      <span
+                        *ngIf="note.createdAt != note.updatedAt"
+                        style="float: right"
+                      >
+                        last edited <i class="fas fa-pencil-alt"></i>
+                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                      >
+                    </h4>
+                    <div
+                      class="btn-group"
+                      style="float: right; padding-top: 15px"
+                      *ngIf="note.readonly == false"
+                    >
+                      <button
+                        (click)="cancelEditNote(i)"
+                        class="my-2 btn btn-danger"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        (click)="updateNote(i)"
+                        class="my-2 ml-3 btn btn-success"
+                        style="color: white"
+                        [ngClass]="{ disabled: !note.notes_message }"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-2" style="padding-top: 15px">
+                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
+                      <i
+                        class="fas fa-times-circle"
+                        (click)="cancelEditNote(i)"
+                        pTooltip="cancel edit"
+                      ></i>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <hr *ngIf="note.readonly && note.pinned" /> -->
+            <div class="row">
+              <div
+                class="col-sm-6 col-lg-6"
+                *ngFor="let note of notesData; let i = index"
+                [hidden]="note.archived == true || note.pinned == true"
+              >
+                <!-- [hidden]="note.pinned" -->
+
+                <div
+                  class="row allNotes"
+                  *ngIf="
+                    note.readonly == true &&
+                    note.pinned == false &&
+                    note.archived == false
+                  "
+                >
+                  <div class="col-10">
+                    <div
+                      class="card mb-5"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <div class="card-header">
+                        <h5>
+                          {{ note.notes_title }}
+                          <span style="float: right"
+                            ><i
+                              class="fas fa-thumbtack"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              (click)="pinNote(i, 'pin')"
+                              pTooltip="pin"
+                            ></i
+                          ></span>
+                        </h5>
+                      </div>
+                      <div class="card-body">
+                        <pre
+                          [ngStyle]="{
+                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                          }"
+                          >{{ note.notes_message }}</pre
+                        >
+                      </div>
+                      <div class="card-footer">
+                        <h5 class="text-muted">
+                          <span>
+                            {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                          <span
+                            *ngIf="note.createdAt != note.updatedAt"
+                            style="float: right"
+                          >
+                            last edited <i class="fas fa-pencil-alt"></i>
+                            {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2 controlIcons" style="padding-top: 5px">
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-edit"
+                        (click)="clickEditNote(i)"
+                        pTooltip="edit note"
+                      ></i>
+                    </h4>
+                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
+                      <i
+                        class="fas fa-times-circle"
+                        (click)="cancelEditNote(i)"
+                      ></i>
+                    </h4>
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-trash-alt"
+                        (click)="deleteNote(i)"
+                        pTooltip="delete note"
+                      ></i>
+                    </h4>
+                    <h4 style="font-size: 13px">
+                      <i
+                        class="fas fa-archive"
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="archive(i, 'archive')"
+                        pTooltip="archive note"
+                      ></i>
+                    </h4>
+                  </div>
+                </div>
+                <div
+                  class="row editNotes"
+                  style="margin-bottom: 20px"
+                  *ngIf="
+                    note.readonly == false &&
+                    note.pinned == false &&
+                    note.archived == false
+                  "
+                >
+                  <div class="col-10">
+                    <input
+                      type="text"
+                      class="form-control"
+                      style="width: 100%"
+                      placeholder="title"
+                      [(ngModel)]="note.notes_title"
+                    />
+                    <!-- [readonly]="note.readonly" -->
+                    <br />
+                    <textarea
+                      style="width: 100%"
+                      class="form-control"
+                      cols="30"
+                      rows="5"
+                      placeholder="content"
+                      [(ngModel)]="note.notes_message"
+                    ></textarea>
+                    <!-- [readonly]="note.readonly" -->
+
+                    <h4
+                      style="margin-top: 14px; font-size: 13px"
+                      class="text-muted"
+                    >
+                      <span>
+                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                      >
+                      <span
+                        *ngIf="note.createdAt != note.updatedAt"
+                        style="float: right"
+                      >
+                        last edited <i class="fas fa-pencil-alt"></i>
+                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                      >
+                    </h4>
+                    <div
+                      class="btn-group"
+                      style="float: right; padding-top: 15px"
+                      *ngIf="note.readonly == false"
+                    >
+                      <button
+                        (click)="cancelEditNote(i)"
+                        class="my-2 btn btn-danger"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        (click)="updateNote(i)"
+                        class="my-2 ml-3 btn btn-success"
+                        style="color: white"
+                        [ngClass]="{ disabled: !note.notes_message }"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="col-1"
+                    style="padding-top: 15px; text-align: center"
+                  >
+                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
+                      <i
+                        class="fas fa-times-circle"
+                        (click)="cancelEditNote(i)"
+                        pTooltip="cancel edit"
+                      ></i>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel
+        header="Archived"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(245, 245, 245)'
+            : ' rgb(31, 32, 35)',
+          color: brightness ? 'orangered' : 'violet'
+        }"
+      >
+        <div
+          *ngIf="notesData && notesData.length > 0"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+          style="margin-top: 20px"
+        >
+          <div class="card-body">
+            <div
+              class="col-sm-6 col-lg-6"
+              *ngFor="let note of notesData; let i = index"
+              [hidden]="!note.pinned"
+            >
+              <div class="row archivedNotes" *ngIf="note.archived">
+                <div class="col-12">
+                  <div
+                    class="card mb-5"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(41, 42, 45)',
+                      color: brightness ? 'black' : 'rgb(129,129,129)'
+                    }"
+                  >
+                    <div class="card-header">
+                      <h5>
+                        {{ note.notes_title }}
+                        <span style="float: right"
+                          ><i
+                            class="fas fa-archive"
+                            [ngStyle]="{
+                              color: brightness ? 'orangered' : 'violet'
+                            }"
+                            (click)="unArchive(i)"
+                            pTooltip="unarchive"
+                          ></i
+                        ></span>
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <pre
+                        [ngStyle]="{
+                          color: brightness ? 'black' : 'rgb(129,129,129)'
+                        }"
+                        >{{ note.notes_message }}</pre
+                      >
+                    </div>
+                    <div class="card-footer">
+                      <h5 class="text-muted">
+                        <span>
+                          {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                        >
+                        <span
+                          *ngIf="note.createdAt != note.updatedAt"
+                          style="float: right"
+                        >
+                          last edited <i class="fas fa-pencil-alt"></i>
+                          {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel
+        header="To-do lists"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(245, 245, 245)'
+            : ' rgb(31, 32, 35)',
+          color: brightness ? 'orangered' : 'violet'
+        }"
+      >
+        <div
+          *ngIf="allTodos && allTodos.length > 0"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+          style="margin-top: 20px"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div
+                class="col-sm-6 col-lg-6"
+                *ngFor="let todo of allTodos; let i = index"
+              >
+                <div class="row">
+                  <div class="col-12">
+                    <div
+                      class="card mb-5 todoList"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <div class="card-header">
+                        <h5>
+                          {{ todo.todo_title }}
+                          <span style="float: right"
+                            ><i
+                              class="fas fa-trash-alt"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              (click)="deleteTodo(i)"
+                              pTooltip="delete"
+                            ></i
+                          ></span>
+                        </h5>
+                      </div>
+                      <div class="card-body">
+                        <div
+                          *ngFor="let list of todo.todo_list; let j = index"
+                          class="p-field-checkbox"
+                        >
+                          <p-checkbox
+                            name="group2"
+                            [value]="list.value"
+                            [label]="list.name"
+                            (onChange)="updateCheck($event, i, j)"
+                            [(ngModel)]="list.value"
+                            binary="true"
+                          ></p-checkbox>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <h5 class="text-muted">
+                          <span>
+                            {{ todo.createdAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                          <span
+                            *ngIf="todo.createdAt != todo.updatedAt"
+                            style="float: right"
+                          >
+                            last edited <i class="fas fa-pencil-alt"></i>
+                            {{ todo.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          >
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
     <div
       class="skeletonData"
       style="margin-top: 20px"
@@ -108,367 +779,6 @@
       }"
     >
       <p-skeleton *ngIf="!notesData" width="100%" height="400px"></p-skeleton>
-    </div>
-    <div
-      *ngIf="notesData && notesData.length > 0"
-      class="card"
-      [ngStyle]="{
-        'background-color': brightness
-          ? 'rgb(245, 245, 245)'
-          : ' rgb(31, 32, 35)',
-        color: brightness ? 'black' : 'rgb(129,129,129)'
-      }"
-      style="margin-top: 20px"
-    >
-      <div class="card-body">
-        <!-- <div class="row w-100" *ngFor="let note of notesData">
-              <div class="col-4">
-                <p-card
-                  [ngStyle]="{
-                    'background-color': brightness
-                      ? 'rgb(245, 245, 245)'
-                      : ' rgb(31, 32, 35)',
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                >
-                  <ng-template pTemplate="header">
-                    {{ note.notes_title }}
-                  </ng-template>
-                  {{ note.notes_message }}
-                  <ng-template pTemplate="footer">
-                    <span class="float-left"> {{ note.createdAt }}</span>
-                  </ng-template>
-                </p-card>
-              </div>
-            </div> -->
-        <div class="row">
-          <div
-            class="col-sm-6 col-lg-6"
-            *ngFor="let note of notesData; let i = index"
-            [hidden]="!note.pinned"
-          >
-            <div
-              class="row pinnedNotes"
-              *ngIf="note.readonly && note.pinned && !note.archived"
-            >
-              <div class="col-10">
-                <div
-                  class="card mb-5"
-                  [ngStyle]="{
-                    'background-color': brightness
-                      ? 'rgb(245, 245, 245)'
-                      : ' rgb(41, 42, 45)',
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                >
-                  <div class="card-header">
-                    <h5>
-                      {{ note.notes_title }}
-                      <span style="float: right"
-                        ><i
-                          class="fas fa-thumbtack"
-                          [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
-                          }"
-                          (click)="pinNote(i, 'unpin')"
-                        ></i
-                      ></span>
-                    </h5>
-                  </div>
-                  <div class="card-body">
-                    <pre
-                      [ngStyle]="{
-                        color: brightness ? 'black' : 'rgb(129,129,129)'
-                      }"
-                      >{{ note.notes_message }}</pre
-                    >
-                  </div>
-                  <div class="card-footer">
-                    <h5 class="text-muted">
-                      <span>
-                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                      <span
-                        *ngIf="note.createdAt != note.updatedAt"
-                        style="float: right"
-                      >
-                        last edited <i class="fas fa-pencil-alt"></i>
-                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-2 controlIcons" style="padding-top: 5px">
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-edit"
-                    (click)="clickEditNote(i)"
-                    pTooltip="edit note"
-                  ></i>
-                </h4>
-                <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                  <i
-                    class="fas fa-times-circle"
-                    (click)="cancelEditNote(i)"
-                  ></i>
-                </h4>
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-trash-alt"
-                    (click)="deleteNote(i)"
-                    pTooltip="delete note"
-                  ></i>
-                </h4>
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-archive"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                    (click)="archive(i, 'archive')"
-                    pTooltip="archive note"
-                  ></i>
-                </h4>
-              </div>
-            </div>
-            <div
-              class="editNotes"
-              *ngIf="!note.readonly && note.pinned && !note.archived"
-            >
-              <div class="row" style="margin-bottom: 20px">
-                <div class="col-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    style="width: 100%"
-                    placeholder="title"
-                    [(ngModel)]="note.notes_title"
-                  />
-                  <br />
-                  <!-- [readonly]="note.readonly" -->
-
-                  <textarea
-                    style="width: 100%"
-                    class="form-control"
-                    cols="30"
-                    rows="5"
-                    placeholder="content"
-                    [(ngModel)]="note.notes_message"
-                  ></textarea>
-                  <!-- [readonly]="note.readonly" -->
-
-                  <h4
-                    style="margin-top: 14px; font-size: 13px"
-                    class="text-muted"
-                  >
-                    <span> {{ note.createdAt | date: "dd MMM | hh:mm" }}</span>
-                    <span
-                      *ngIf="note.createdAt != note.updatedAt"
-                      style="float: right"
-                    >
-                      last edited <i class="fas fa-pencil-alt"></i>
-                      {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                    >
-                  </h4>
-                  <div
-                    class="btn-group"
-                    style="float: right; padding-top: 15px"
-                    *ngIf="note.readonly == false"
-                  >
-                    <button
-                      (click)="cancelEditNote(i)"
-                      class="my-2 btn btn-danger"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      (click)="updateNote(i)"
-                      class="my-2 ml-3 btn btn-success"
-                      style="color: white"
-                      [ngClass]="{ disabled: !note.notes_message }"
-                    >
-                      Update
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="col-2"
-                  style="padding-top: 15px; text-align: center"
-                >
-                  <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                    <i
-                      class="fas fa-times-circle"
-                      (click)="cancelEditNote(i)"
-                      pTooltip="cancel edit"
-                    ></i>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <hr *ngIf="note.readonly && note.pinned" /> -->
-          <div
-            class="col-sm-6 col-lg-6"
-            *ngFor="let note of notesData; let i = index"
-            [hidden]="note.pinned"
-          >
-            <div class="row allNotes" *ngIf="note.readonly && !note.pinned">
-              <div class="col-10">
-                <div
-                  class="card mb-5"
-                  [ngStyle]="{
-                    'background-color': brightness
-                      ? 'rgb(245, 245, 245)'
-                      : ' rgb(41, 42, 45)',
-                    color: brightness ? 'black' : 'rgb(129,129,129)'
-                  }"
-                >
-                  <div class="card-header">
-                    <h5>
-                      {{ note.notes_title }}
-                      <span style="float: right"
-                        ><i
-                          class="fas fa-thumbtack"
-                          [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
-                          }"
-                          (click)="pinNote(i, 'pin')"
-                        ></i
-                      ></span>
-                    </h5>
-                  </div>
-                  <div class="card-body">
-                    <pre
-                      [ngStyle]="{
-                        color: brightness ? 'black' : 'rgb(129,129,129)'
-                      }"
-                      >{{ note.notes_message }}</pre
-                    >
-                  </div>
-                  <div class="card-footer">
-                    <h5 class="text-muted">
-                      <span>
-                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                      <span
-                        *ngIf="note.createdAt != note.updatedAt"
-                        style="float: right"
-                      >
-                        last edited <i class="fas fa-pencil-alt"></i>
-                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-2 controlIcons" style="padding-top: 5px">
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-edit"
-                    (click)="clickEditNote(i)"
-                    pTooltip="edit note"
-                  ></i>
-                </h4>
-                <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                  <i
-                    class="fas fa-times-circle"
-                    (click)="cancelEditNote(i)"
-                  ></i>
-                </h4>
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-trash-alt"
-                    (click)="deleteNote(i)"
-                    pTooltip="delete note"
-                  ></i>
-                </h4>
-                <h4 style="font-size: 13px">
-                  <i
-                    class="fas fa-archive"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                    (click)="archive(i, 'archive')"
-                    pTooltip="archive note"
-                  ></i>
-                </h4>
-              </div>
-            </div>
-
-            <div class="editNotes" *ngIf="!note.readonly && !note.pinned">
-              <div class="row w-100" style="margin-bottom: 20px">
-                <div class="col-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    style="width: 100%"
-                    placeholder="title"
-                    [(ngModel)]="note.notes_title"
-                  />
-                  <!-- [readonly]="note.readonly" -->
-                  <br />
-                  <textarea
-                    style="width: 100%"
-                    class="form-control"
-                    cols="30"
-                    rows="5"
-                    placeholder="content"
-                    [(ngModel)]="note.notes_message"
-                  ></textarea>
-                  <!-- [readonly]="note.readonly" -->
-
-                  <h4
-                    style="margin-top: 14px; font-size: 13px"
-                    class="text-muted"
-                  >
-                    <span> {{ note.createdAt | date: "dd MMM | hh:mm" }}</span>
-                    <span
-                      *ngIf="note.createdAt != note.updatedAt"
-                      style="float: right"
-                    >
-                      last edited <i class="fas fa-pencil-alt"></i>
-                      {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                    >
-                  </h4>
-                  <div
-                    class="btn-group"
-                    style="float: right; padding-top: 15px"
-                    *ngIf="note.readonly == false"
-                  >
-                    <button
-                      (click)="cancelEditNote(i)"
-                      class="my-2 btn btn-danger"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      (click)="updateNote(i)"
-                      class="my-2 ml-3 btn btn-success"
-                      style="color: white"
-                      [ngClass]="{ disabled: !note.notes_message }"
-                    >
-                      Update
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="col-1"
-                  style="padding-top: 15px; text-align: center"
-                >
-                  <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                    <i
-                      class="fas fa-times-circle"
-                      (click)="cancelEditNote(i)"
-                      pTooltip="cancel edit"
-                    ></i>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

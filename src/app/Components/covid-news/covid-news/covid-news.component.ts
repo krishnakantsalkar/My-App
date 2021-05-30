@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { covidNewsService } from 'src/app/Shared/services/covidNews';
 import { ActivatedRoute, Router } from '@angular/router';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { Location } from '@angular/common';
+import { TabView } from 'primeng/tabview';
 
 @Component({
   selector: 'app-covid-news',
@@ -21,9 +22,11 @@ export class CovidNewsComponent implements OnInit {
   healthPageNo: number = 0;
   vaccinePageNo: number = 0;
 
-  activeIndex: number;
+  activeIndex;
 
-  currentPgNo: string;
+  currentPgNo: number;
+
+  @ViewChild(TabView) tabView: TabView;
 
   constructor(
     private covidStatService: covidNewsService,
@@ -43,17 +46,17 @@ export class CovidNewsComponent implements OnInit {
     this.AR.params.subscribe((item) => {
       let pg = item['page'];
       let section = item['section'];
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       if (section == 'covid') {
         this.activeIndex = 0;
-        this.covidPageNo = parseInt(this.currentPgNo);
+        this.covidPageNo = this.currentPgNo;
       } else if (section == 'health') {
         this.activeIndex = 1;
-        this.healthPageNo = parseInt(this.currentPgNo);
+        this.healthPageNo = this.currentPgNo;
       } else if (section == 'vaccine') {
         this.activeIndex = 2;
-        this.vaccinePageNo = parseInt(this.currentPgNo);
+        this.vaccinePageNo = this.currentPgNo;
       }
 
       // main api calls - credits to vaccovid.live
@@ -65,15 +68,16 @@ export class CovidNewsComponent implements OnInit {
 
   // change tab and nav url
   navToTab(event) {
+    this.activeIndex = event.index;
     if (event.index == 0) {
       this.location.replaceState(`/covid-news/covid/${this.covidPageNo}`);
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
     } else if (event.index == 1) {
       this.location.replaceState(`/covid-news/health/${this.healthPageNo}`);
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
     } else if (event.index == 2) {
       this.location.replaceState(`/covid-news/vaccine/${this.vaccinePageNo}`);
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
     }
   }
 
@@ -84,7 +88,7 @@ export class CovidNewsComponent implements OnInit {
       this.getCovidNews(page);
       this.covidPageNo = page;
       this.location.replaceState(`/covid-news/covid/${page}`);
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       if (page > 1) {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
@@ -92,7 +96,7 @@ export class CovidNewsComponent implements OnInit {
     } else if (section == 'health') {
       this.getHealthNews(page);
       this.healthPageNo = page;
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       this.location.replaceState(`/covid-news/health/${page}`);
       if (page > 1) {
@@ -101,7 +105,7 @@ export class CovidNewsComponent implements OnInit {
     } else if (section == 'vaccine') {
       this.getVaccineNews(page);
       this.vaccinePageNo = page;
-      this.currentPgNo = window.location.href.split('/')[5];
+      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       this.location.replaceState(`/covid-news/vaccine/${page}`);
       if (page > 1) {

@@ -10,10 +10,10 @@
     <div class="totalStatsArea"></div>
 
     <div class="news">
-      <p-tabView [(activeIndex)]="activeIndex" (onChange)="navToTab($event)">
+      <p-tabView [activeIndex]="activeIndex" (onChange)="navToTab($event)">
         <!-- covid news -->
 
-        <p-tabPanel [index]="1" header="Covid News">
+        <p-tabPanel header="Covid News">
           <div
             class="skeleton"
             [ngStyle]="{
@@ -54,8 +54,8 @@
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
+              <hr *ngIf="i > 0" />
             </div>
-            <hr *ngIf="i > 0" />
 
             <div class="pagination">
               <button
@@ -122,7 +122,7 @@
         </p-tabPanel>
 
         <!-- health news -->
-        <p-tabPanel [index]="2" header="Health News">
+        <p-tabPanel header="Health News">
           <div
             class="skeleton"
             [ngStyle]="{
@@ -163,8 +163,8 @@
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
+              <hr *ngIf="i > 0" />
             </div>
-            <hr *ngIf="i > 0" />
 
             <div class="pagination">
               <button
@@ -231,7 +231,7 @@
         </p-tabPanel>
 
         <!-- vaccine news -->
-        <p-tabPanel [index]="3" header="Vaccine News">
+        <p-tabPanel header="Vaccine News">
           <div
             class="skeleton"
             [ngStyle]="{
@@ -272,8 +272,8 @@
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
+              <hr *ngIf="i > 0" />
             </div>
-            <hr *ngIf="i > 0" />
 
             <!-- pagination -->
             <div class="pagination">

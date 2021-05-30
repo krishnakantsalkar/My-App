@@ -1,0 +1,363 @@
+<div
+  class="main"
+  [ngStyle]="{
+    'background-color': brightness ? ' white' : 'rgb(41, 42, 45)',
+    color: brightness ? 'black' : 'white'
+  }"
+>
+  <div class="container" style="padding-bottom: 50px">
+    <!--  to be done later -->
+    <div class="totalStatsArea"></div>
+
+    <div class="news">
+      <p-tabView [(activeIndex)]="activeIndex" (onChange)="navToTab($event)">
+        <!-- covid news -->
+
+        <p-tabPanel [index]="1" header="Covid News">
+          <div
+            class="skeleton"
+            [ngStyle]="{
+              'background-color': brightness ? '#dc3545' : ' rgb(41,42,45)',
+              color: brightness ? 'black' : 'rgb(160,160,160)'
+            }"
+            *ngIf="!covidNews"
+          >
+            <p-skeleton height="300px" width="100%"></p-skeleton>
+            <br />
+            <p-skeleton height="30px" width="100%"></p-skeleton>
+          </div>
+          <div class="covidNews" *ngIf="covidNews">
+            <div
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                color: brightness ? 'black' : 'white'
+              }"
+              *ngFor="let data of covidNews; let i = index"
+            >
+              <div class="card-header">
+                <a href="{{ data.link }}">
+                  <h4>{{ data.title }}</h4></a
+                >
+              </div>
+              <div class="card-body">
+                <div class="newsImg">
+                  <img src="{{ data.urlToImage }}" alt="" />
+                </div>
+                <div class="newsContent">
+                  <p>
+                    {{ data.content | slice: 0:200 }}...
+                    <span> <a href="{{ data.link }}"> read more </a></span>
+                  </p>
+                </div>
+              </div>
+              <div class="card-footer">
+                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+              </div>
+            </div>
+            <hr *ngIf="i > 0" />
+
+            <div class="pagination">
+              <button
+                *ngIf="covidPageNo > 1"
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', 0)"
+              >
+                0
+              </button>
+              <span
+                (click)="pageNoChange('covid', covidPageNo - 1)"
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                [ngClass]="{ disabled: covidPageNo == 0 }"
+                ><i class="fas fa-chevron-left"></i
+              ></span>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', covidPageNo)"
+                [ngClass]="{ disabled: currentPgNo == covidPageNo }"
+              >
+                {{ covidPageNo }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', covidPageNo + 1)"
+              >
+                {{ covidPageNo + 1 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', covidPageNo + 2)"
+              >
+                {{ covidPageNo + 2 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', covidPageNo + 3)"
+              >
+                {{ covidPageNo + 3 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                >...</span
+              >
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('covid', covidPageNo + 20)"
+              >
+                {{ covidPageNo + 20 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                (click)="pageNoChange('covid', covidPageNo + 1)"
+                ><i class="fas fa-chevron-right"></i
+              ></span>
+            </div>
+          </div>
+        </p-tabPanel>
+
+        <!-- health news -->
+        <p-tabPanel [index]="2" header="Health News">
+          <div
+            class="skeleton"
+            [ngStyle]="{
+              'background-color': brightness ? '#dc3545' : ' rgb(41,42,45)',
+              color: brightness ? 'black' : 'rgb(160,160,160)'
+            }"
+            *ngIf="!healthNews"
+          >
+            <p-skeleton height="300px" width="100%"></p-skeleton>
+            <br />
+            <p-skeleton height="30px" width="100%"></p-skeleton>
+          </div>
+          <div class="healthNews" *ngIf="healthNews">
+            <div
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                color: brightness ? 'black' : 'white'
+              }"
+              *ngFor="let data of healthNews; let i = index"
+            >
+              <div class="card-header">
+                <a href="{{ data.link }}">
+                  <h4>{{ data.title }}</h4></a
+                >
+              </div>
+              <div class="card-body">
+                <div class="newsImg">
+                  <img src="{{ data.urlToImage }}" alt="" />
+                </div>
+                <div class="newsContent">
+                  <p>
+                    {{ data.content | slice: 0:200 }}...
+                    <span> <a href="{{ data.link }}"> read more </a></span>
+                  </p>
+                </div>
+              </div>
+              <div class="card-footer">
+                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+              </div>
+            </div>
+            <hr *ngIf="i > 0" />
+
+            <div class="pagination">
+              <button
+                *ngIf="healthPageNo > 1"
+                class="btn btn-primary"
+                (click)="pageNoChange('health', 0)"
+              >
+                0
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                (click)="pageNoChange('health', healthPageNo - 1)"
+                [ngClass]="{ disabled: healthPageNo == 0 }"
+                ><i class="fas fa-chevron-left"></i
+              ></span>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('health', healthPageNo)"
+                [ngClass]="{ disabled: currentPgNo == healthPageNo }"
+              >
+                {{ healthPageNo }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('health', healthPageNo + 1)"
+              >
+                {{ healthPageNo + 1 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('health', healthPageNo + 2)"
+              >
+                {{ healthPageNo + 2 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('health', healthPageNo + 3)"
+              >
+                {{ healthPageNo + 3 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                >...</span
+              >
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('health', healthPageNo + 20)"
+              >
+                {{ healthPageNo + 20 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                (click)="pageNoChange('health', healthPageNo + 1)"
+                ><i class="fas fa-chevron-right"></i
+              ></span>
+            </div>
+          </div>
+        </p-tabPanel>
+
+        <!-- vaccine news -->
+        <p-tabPanel [index]="3" header="Vaccine News">
+          <div
+            class="skeleton"
+            [ngStyle]="{
+              'background-color': brightness ? '#dc3545' : ' rgb(41,42,45)',
+              color: brightness ? 'black' : 'rgb(160,160,160)'
+            }"
+            *ngIf="!vaccineNews"
+          >
+            <p-skeleton height="300px" width="100%"></p-skeleton>
+            <br />
+            <p-skeleton height="30px" width="100%"></p-skeleton>
+          </div>
+          <div class="vaccineNews" *ngIf="vaccineNews">
+            <div
+              class="card"
+              [ngStyle]="{
+                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                color: brightness ? 'black' : 'white'
+              }"
+              *ngFor="let data of vaccineNews; let i = index"
+            >
+              <div class="card-header">
+                <a href="{{ data.link }}">
+                  <h4>{{ data.title }}</h4></a
+                >
+              </div>
+              <div class="card-body">
+                <div class="newsImg">
+                  <img src="{{ data.urlToImage }}" alt="" />
+                </div>
+                <div class="newsContent">
+                  <p>
+                    {{ data.content | slice: 0:200 }}...
+                    <span> <a href="{{ data.link }}"> read more </a></span>
+                  </p>
+                </div>
+              </div>
+              <div class="card-footer">
+                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+              </div>
+            </div>
+            <hr *ngIf="i > 0" />
+
+            <!-- pagination -->
+            <div class="pagination">
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                (click)="pageNoChange('vaccine', vaccinePageNo - 1)"
+                [ngClass]="{ disabled: vaccinePageNo == 0 }"
+                ><i class="fas fa-chevron-left"></i
+              ></span>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', vaccinePageNo)"
+                [ngClass]="{ disabled: currentPgNo == vaccinePageNo }"
+              >
+                {{ vaccinePageNo }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', vaccinePageNo + 1)"
+              >
+                {{ vaccinePageNo + 1 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', vaccinePageNo + 2)"
+              >
+                {{ vaccinePageNo + 2 }}
+              </button>
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', vaccinePageNo + 3)"
+              >
+                {{ vaccinePageNo + 3 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                >...</span
+              >
+              <button
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', vaccinePageNo + 20)"
+              >
+                {{ vaccinePageNo + 20 }}
+              </button>
+              <span
+                [ngStyle]="{
+                  color: brightness ? 'black' : 'white'
+                }"
+                (click)="pageNoChange('vaccine', vaccinePageNo + 1)"
+                ><i class="fas fa-chevron-right"></i
+              ></span>
+            </div></div
+        ></p-tabPanel>
+      </p-tabView>
+
+      <!-- credits -->
+      <div class="credits">
+        <div class="alert alert-info">
+          <h4>
+            <i class="fas fa-check-circle"></i> API credits,
+            <a href="https://vaccovid.live">Vaccovid.live</a>
+            <br />
+            <br />
+            <p>
+              <a href="https://vaccovid.live/about"> PURPOSE</a>: VACCOVID.LIVE
+              is a comprehensive up-to-date Vaccine tracker, COVID-19 tracker
+              and Treatment tracker website which has been landed to inform
+              people throughout the planet about the present novel coronavirus
+              (COVID-19) pandemic. We accomplished this duty by providing the
+              latest reliable data from several APIs. In VACCOVID you can also
+              find the most relevant and up-to-date news about covid-19. We have
+              tried to gather and illustrate the latest statistical data known
+              about covid-19 in tangible tables using evidence based and
+              professional conceptual framework.
+            </p>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

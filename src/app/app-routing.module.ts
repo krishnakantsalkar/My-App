@@ -125,6 +125,15 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
 
+  // covid news route
+  {
+    path: 'covid-news/:section/:page',
+    loadChildren: () =>
+      import('./Components/covid-news/covid-news.module').then(
+        (m) => m.CovidNewsModule
+      ),
+    pathMatch: 'full',
+  },
   //wildcard route
   {
     path: '**',

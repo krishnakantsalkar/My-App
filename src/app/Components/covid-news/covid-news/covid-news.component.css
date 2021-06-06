@@ -72,11 +72,104 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+.confirmed,
+.deaths,
+.recovered,
+.totalConfirmed,
+.totalRecovered,
+.totalDeaths {
+  text-align: center;
+}
+
+.confirmed .card {
+  background-color: rgba(255, 68, 0, 0.527);
+  color: orangered;
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.recovered .card {
+  background-color: rgba(94, 219, 136, 0.326);
+  color: rgb(94, 219, 136);
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.deaths .card {
+  background-color: rgba(50, 52, 51, 0.326);
+  color: rgb(255, 255, 255);
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.totalConfirmed .card {
+  background-color: rgba(73, 136, 252, 0.326);
+  color: rgb(73, 136, 252);
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.totalRecovered .card {
+  background-color: rgba(94, 219, 136, 0.326);
+  color: rgb(94, 219, 136);
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.totalDeaths .card {
+  background-color: rgba(50, 52, 51, 0.326);
+  color: rgb(255, 255, 255);
+  height: 120px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.moreStats {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.moreStats .card {
+  margin: 10px 10px;
+  height: 120px;
+  width: 158px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.totalActive {
+  background-color: rgba(66, 130, 204, 0.322);
+  color: rgb(66, 130, 204);
+}
+
+.totalTests {
+  background-color: rgba(204, 195, 66, 0.363);
+  color: rgb(204, 195, 66);
+}
+
+.critical {
+  background-color: rgba(160, 48, 28, 0.308);
+  color: rgb(206, 63, 38);
+}
+
 @media only screen and (max-width: 600px) {
   .pagination {
     flex-wrap: wrap;
   }
   .pagination button {
     margin: 10px 10px;
+  }
+
+  .totalStatsSkeleton .col-6 {
+    margin: 20px auto;
+  }
+
+  .moreStats .card {
+    height: 130px;
+    width: 158px;
+    margin-bottom: 30px;
+    text-align: center;
   }
 }

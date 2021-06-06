@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { Location } from '@angular/common';
 import { TabView } from 'primeng/tabview';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-covid-news',
@@ -14,17 +15,21 @@ export class CovidNewsComponent implements OnInit {
   covidNews;
   healthNews;
   vaccineNews;
-  worldStats;
+  covidIndiaStats;
 
   brightness: boolean;
 
-  covidPageNo: number = 0;
-  healthPageNo: number = 0;
-  vaccinePageNo: number = 0;
+  covidPageNo: number = 1;
+  healthPageNo: number = 1;
+  vaccinePageNo: number = 1;
 
   activeIndex;
 
   currentPgNo: number;
+
+  title: string = 'Covid-19';
+
+  todayDate: Date;
 
   @ViewChild(TabView) tabView: TabView;
 
@@ -33,7 +38,8 @@ export class CovidNewsComponent implements OnInit {
     private AR: ActivatedRoute,
     private defaultModeService: modeService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +47,9 @@ export class CovidNewsComponent implements OnInit {
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
     });
+
+    //title
+    this.titleService.setTitle(this.title);
 
     // activated route
     this.AR.params.subscribe((item) => {
@@ -63,6 +72,12 @@ export class CovidNewsComponent implements OnInit {
       this.getCovidNews(pg);
       this.getHealthNews(pg);
       this.getVaccineNews(pg);
+
+      this.getIndiaStats();
+
+      setInterval(() => {
+        this.todayDate = new Date();
+      }, 1000);
     });
   }
 
@@ -119,8 +134,6 @@ export class CovidNewsComponent implements OnInit {
     this.covidNews = undefined;
     this.covidStatService.getCovidNews(pg).subscribe((item) => {
       this.covidNews = item.news;
-
-      console.log(this.covidNews);
     });
   }
 
@@ -141,10 +154,11 @@ export class CovidNewsComponent implements OnInit {
     });
   }
 
-  // to do later
-  getWorldStats() {
+  // get covid india stats
+
+  getIndiaStats() {
     this.covidStatService.getCovidTotalStats().subscribe((item) => {
-      this.worldStats = item;
+      this.covidIndiaStats = item[0];
     });
   }
 }

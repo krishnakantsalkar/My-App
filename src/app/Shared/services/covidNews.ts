@@ -45,7 +45,10 @@ export class covidNewsService {
 
   getCovidTotalStats() {
     return this.http.get<any>(
-      'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/world'
+      'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/India/ind',
+      {
+        headers: this.header,
+      }
     );
   }
 }

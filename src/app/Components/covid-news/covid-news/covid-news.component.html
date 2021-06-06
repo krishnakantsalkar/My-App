@@ -6,9 +6,121 @@
   }"
 >
   <div class="container" style="padding-bottom: 50px">
-    <!--  to be done later -->
-    <div class="totalStatsArea"></div>
+    <!-- current time -->
+    <h5
+      [ngStyle]="{
+        color: brightness ? 'black' : 'rgb(160,160,160)'
+      }"
+    >
+      <i class="fas fa-clock"></i> {{ todayDate | date: "dd MMM | hh:mm a" }}
+    </h5>
+    <hr />
 
+    <!-- total india stats -->
+    <div
+      class="row totalStatsSkeleton"
+      *ngIf="!covidIndiaStats"
+      style="margin-bottom: 30px"
+      [ngStyle]="{
+        'background-color': brightness ? '#dc3545' : ' rgb(41,42,45)',
+        color: brightness ? 'black' : 'rgb(160,160,160)'
+      }"
+    >
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <p-skeleton height="120px" width="100%"></p-skeleton>
+      </div>
+    </div>
+
+    <div class="totalStatsArea" *ngIf="covidIndiaStats">
+      <div class="row">
+        <div class="col-6 col-sm-3 col-lg-2 confirmed">
+          <div class="card">
+            <div class="card-body">
+              <h5>New Cases</h5>
+              {{ covidIndiaStats.NewCases | number }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2 recovered">
+          <div class="card">
+            <div class="card-body">
+              <h5>New Recovered</h5>
+              {{ covidIndiaStats.NewRecovered | number }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2 deaths">
+          <div class="card">
+            <div class="card-body">
+              <h5>New Deaths</h5>
+              {{ covidIndiaStats.NewDeaths | number }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2 totalConfirmed">
+          <div class="card">
+            <div class="card-body">
+              <h5>Total Cases</h5>
+              {{ covidIndiaStats.TotalCases | number }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2 totalRecovered">
+          <div class="card">
+            <div class="card-body">
+              <h5>Total Recovered</h5>
+              {{ covidIndiaStats.TotalRecovered | number }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3 col-lg-2 totalDeaths">
+          <div class="card">
+            <div class="card-body">
+              <h5>Total Deaths</h5>
+              {{ covidIndiaStats.TotalDeaths | number }}
+            </div>
+          </div>
+        </div>
+
+        <div class="moreStats">
+          <div class="card totalActive">
+            <div class="card-body">
+              <h5>Total Active</h5>
+              {{ covidIndiaStats.ActiveCases | number }}
+            </div>
+          </div>
+          <div class="card totalTests">
+            <div class="card-body">
+              <h5>Total Tests</h5>
+              {{ covidIndiaStats.TotalTests | number }}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body critical">
+              <h5>Critical Cases</h5>
+              {{ covidIndiaStats.Serious_Critical | number }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- news  -->
     <div class="news">
       <p-tabView [activeIndex]="activeIndex" (onChange)="navToTab($event)">
         <!-- covid news -->
@@ -36,7 +148,7 @@
               *ngFor="let data of covidNews; let i = index"
             >
               <div class="card-header">
-                <a href="{{ data.link }}">
+                <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
               </div>
@@ -47,30 +159,33 @@
                 <div class="newsContent">
                   <p>
                     {{ data.content | slice: 0:200 }}...
-                    <span> <a href="{{ data.link }}"> read more </a></span>
+                    <span>
+                      <a target="_blank" href="{{ data.link }}">
+                        read more
+                      </a></span
+                    >
                   </p>
                 </div>
               </div>
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
-              <hr *ngIf="i > 0" />
             </div>
 
             <div class="pagination">
               <button
                 *ngIf="covidPageNo > 1"
                 class="btn btn-primary"
-                (click)="pageNoChange('covid', 0)"
+                (click)="pageNoChange('covid', 1)"
               >
-                0
+                1
               </button>
               <span
                 (click)="pageNoChange('covid', covidPageNo - 1)"
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
                 }"
-                [ngClass]="{ disabled: covidPageNo == 0 }"
+                [ngClass]="{ disabled: covidPageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
               <button
@@ -145,7 +260,7 @@
               *ngFor="let data of healthNews; let i = index"
             >
               <div class="card-header">
-                <a href="{{ data.link }}">
+                <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
               </div>
@@ -156,30 +271,33 @@
                 <div class="newsContent">
                   <p>
                     {{ data.content | slice: 0:200 }}...
-                    <span> <a href="{{ data.link }}"> read more </a></span>
+                    <span>
+                      <a target="_blank" href="{{ data.link }}">
+                        read more
+                      </a></span
+                    >
                   </p>
                 </div>
               </div>
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
-              <hr *ngIf="i > 0" />
             </div>
 
             <div class="pagination">
               <button
                 *ngIf="healthPageNo > 1"
                 class="btn btn-primary"
-                (click)="pageNoChange('health', 0)"
+                (click)="pageNoChange('health', 1)"
               >
-                0
+                1
               </button>
               <span
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
                 }"
                 (click)="pageNoChange('health', healthPageNo - 1)"
-                [ngClass]="{ disabled: healthPageNo == 0 }"
+                [ngClass]="{ disabled: healthPageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
               <button
@@ -254,7 +372,7 @@
               *ngFor="let data of vaccineNews; let i = index"
             >
               <div class="card-header">
-                <a href="{{ data.link }}">
+                <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
               </div>
@@ -265,24 +383,34 @@
                 <div class="newsContent">
                   <p>
                     {{ data.content | slice: 0:200 }}...
-                    <span> <a href="{{ data.link }}"> read more </a></span>
+                    <span>
+                      <a target="_blank" href="{{ data.link }}">
+                        read more
+                      </a></span
+                    >
                   </p>
                 </div>
               </div>
               <div class="card-footer">
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
-              <hr *ngIf="i > 0" />
             </div>
 
             <!-- pagination -->
             <div class="pagination">
+              <button
+                *ngIf="vaccinePageNo > 1"
+                class="btn btn-primary"
+                (click)="pageNoChange('vaccine', 1)"
+              >
+                1
+              </button>
               <span
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
                 }"
                 (click)="pageNoChange('vaccine', vaccinePageNo - 1)"
-                [ngClass]="{ disabled: vaccinePageNo == 0 }"
+                [ngClass]="{ disabled: vaccinePageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
               <button
@@ -338,21 +466,9 @@
         <div class="alert alert-info">
           <h4>
             <i class="fas fa-check-circle"></i> API credits,
-            <a href="https://vaccovid.live">Vaccovid.live</a>
+            <a target="_blank" href="https://vaccovid.live">Vaccovid.live</a>
             <br />
             <br />
-            <p>
-              <a href="https://vaccovid.live/about"> PURPOSE</a>: VACCOVID.LIVE
-              is a comprehensive up-to-date Vaccine tracker, COVID-19 tracker
-              and Treatment tracker website which has been landed to inform
-              people throughout the planet about the present novel coronavirus
-              (COVID-19) pandemic. We accomplished this duty by providing the
-              latest reliable data from several APIs. In VACCOVID you can also
-              find the most relevant and up-to-date news about covid-19. We have
-              tried to gather and illustrate the latest statistical data known
-              about covid-19 in tangible tables using evidence based and
-              professional conceptual framework.
-            </p>
           </h4>
         </div>
       </div>

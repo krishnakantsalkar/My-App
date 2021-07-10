@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IsearchResult } from 'src/app/Shared/model/searchResult';
 import * as superplaceholder from 'superplaceholder';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import * as readingTime from 'reading-time';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 
@@ -98,12 +98,33 @@ export class BlogComponent implements OnInit {
     private cookies: CookieService,
     private titleService: Title,
     private defaultModeService: modeService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private meta: Meta
   ) {}
 
   ngOnInit(): void {
     // method calls
 
+    
+    this.meta.updateTag(
+      {property:"og:type", content:"blog"}
+    )
+    this.meta.updateTag(
+      {property:"og:title", content:"Blog"},
+    )
+    this.meta.updateTag(
+      {property:"og:url", content:window.location.href},
+    )        
+    this.meta.updateTag(
+      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
+    )
+    this.meta.updateTag(
+    {property:"og:image", content:'https://res.cloudinary.com/dq766ltjh/image/upload/v1603720093/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg'},
+    )
+    this.meta.updateTag(
+    {property:"og:height", content:"400"},                                 
+    )
+          
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;

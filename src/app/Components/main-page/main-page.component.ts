@@ -8,7 +8,7 @@ import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Jquery } from 'typings';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 
@@ -57,8 +57,9 @@ export class MainPageComponent implements OnInit {
     private cookies: CookieService,
     private titleService: Title,
     private snotifyService: SnotifyService,
-    private defaultModeService: modeService
-  ) {
+    private defaultModeService: modeService,
+    private meta: Meta
+    ) {
     // switch wallpaper method call
     $(document).ready(() => {
       this.showWalls();
@@ -67,6 +68,26 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     // call methods
+  
+    this.meta.updateTag(
+      {property:"og:type", content:"website"}
+    )
+    this.meta.updateTag(
+      {property:"og:title", content:"TheArsonist"},
+    )
+    this.meta.updateTag(
+      {property:"og:url", content:"https://krishnakantsalkar.me/home"},
+    )        
+    this.meta.updateTag(
+      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
+    )
+    this.meta.updateTag(
+    {property:"og:image", content:"https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg"},
+    )
+    this.meta.updateTag(
+    {property:"og:height", content:"400"},                                 
+    )
+            
 
     this.getspecials();
     this.recentUpdates();

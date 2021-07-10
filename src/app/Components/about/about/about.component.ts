@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { SwiperOptions } from 'swiper';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import Swiper, {
   Autoplay,
@@ -104,13 +104,32 @@ export class AboutComponent implements OnInit {
   constructor(
     private titleService: Title,
     private defaultModeService: modeService,
-    private messagingService: MessageService
+    private messagingService: MessageService,private meta:Meta
   ) {}
 
   ngOnInit() {
     // page title
     this.titleService.setTitle(this.pageTitle);
 
+    this.meta.updateTag(
+      {property:"og:type", content:"website"}
+    )
+    this.meta.updateTag(
+      {property:"og:title", content:"About"},
+    )
+    this.meta.updateTag(
+      {property:"og:url", content:"https://krishnakantsalkar.me/About"},
+    )        
+    this.meta.updateTag(
+      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
+    )
+    this.meta.updateTag(
+    {property:"og:image", content:"assets/images/about_me.jpg"},
+    )
+    this.meta.updateTag(
+    {property:"og:height", content:"400"},                                 
+    )
+          
     // aos animations
     AOS.init({
       startEvent: 'DomContentLoaded',

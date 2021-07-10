@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeUrl, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { clientIpService } from '../../../Shared/services/clientip-service';
@@ -56,8 +56,12 @@ export class BlogpostsComponent implements OnInit {
     private clientIpObj: clientIpService,
     private titleService: Title,
     private defaultModeService: modeService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private meta: Meta
+  ) {
+
+    
+  }
 
   ngOnInit(): void {
     // method calls
@@ -95,6 +99,25 @@ export class BlogpostsComponent implements OnInit {
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
 
+        this.meta.updateTag(
+          {property:"og:type", content:"blog"}
+        )
+        this.meta.updateTag(
+          {property:"og:title", content:"Blog"},
+        )
+        this.meta.updateTag(
+          {property:"og:url", content:this.blogURL},
+        )        
+        this.meta.updateTag(
+          {property:"og:site_name", content:"https://krishnakantsalkar.me"},
+        )
+        this.meta.updateTag(
+        {property:"og:image", content:`${this.data.postImage}`},
+        )
+        this.meta.updateTag(
+        {property:"og:height", content:"400"},                                 
+        )
+                
         // like/dislike method call
         this.defaultLikes();
 

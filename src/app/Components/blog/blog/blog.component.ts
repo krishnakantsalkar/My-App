@@ -122,8 +122,13 @@ export class BlogComponent implements OnInit {
     {property:"og:image", content:'https://res.cloudinary.com/dq766ltjh/image/upload/v1603720093/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg'},
     )
     this.meta.updateTag(
-    {property:"og:height", content:"400"},                                 
-    )
+      {property:"og:width", content:"1200"},
+       )
+   
+    this.meta.updateTag(
+      {property:"og:height", content:"630"},
+       )
+   
           
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {

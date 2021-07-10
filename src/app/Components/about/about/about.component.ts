@@ -127,8 +127,12 @@ export class AboutComponent implements OnInit {
     {property:"og:image", content:"assets/images/about_me.jpg"},
     )
     this.meta.updateTag(
-    {property:"og:height", content:"400"},                                 
-    )
+      {property:"og:width", content:"1200"},
+       )
+   
+    this.meta.updateTag(
+      {property:"og:height", content:"630"},
+       )
           
     // aos animations
     AOS.init({

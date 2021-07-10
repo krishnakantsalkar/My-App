@@ -85,8 +85,13 @@ export class MainPageComponent implements OnInit {
     {property:"og:image", content:"https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg"},
     )
     this.meta.updateTag(
-    {property:"og:height", content:"400"},                                 
-    )
+      {property:"og:width", content:"1200"},
+       )
+   
+    this.meta.updateTag(
+      {property:"og:height", content:"630"},
+       )
+   
             
 
     this.getspecials();

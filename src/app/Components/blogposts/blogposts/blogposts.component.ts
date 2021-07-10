@@ -115,8 +115,13 @@ export class BlogpostsComponent implements OnInit {
         {property:"og:image", content:`${this.data.postImage}`},
         )
         this.meta.updateTag(
-        {property:"og:height", content:"400"},                                 
-        )
+          {property:"og:width", content:"1200"},
+           )
+       
+        this.meta.updateTag(
+          {property:"og:height", content:"630"},
+           )
+       
                 
         // like/dislike method call
         this.defaultLikes();

@@ -59,7 +59,7 @@ export class MainPageComponent implements OnInit {
     private snotifyService: SnotifyService,
     private defaultModeService: modeService,
     private meta: Meta
-    ) {
+  ) {
     // switch wallpaper method call
     $(document).ready(() => {
       this.showWalls();
@@ -68,31 +68,25 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     // call methods
-  
-    this.meta.updateTag(
-      {property:"og:type", content:"website"}
-    )
-    this.meta.updateTag(
-      {property:"og:title", content:"TheArsonist"},
-    )
-    this.meta.updateTag(
-      {property:"og:url", content:"https://krishnakantsalkar.me/home"},
-    )        
-    this.meta.updateTag(
-      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
-    )
-    this.meta.updateTag(
-    {property:"og:image", content:"https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg"},
-    )
-    this.meta.updateTag(
-      {property:"og:width", content:"1200"},
-       )
-   
-    this.meta.updateTag(
-      {property:"og:height", content:"630"},
-       )
-   
-            
+
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: 'https://krishnakantsalkar.in/home',
+    });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'https://krishnakantsalkar.in',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content:
+        'https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg',
+    });
+    this.meta.updateTag({ property: 'og:width', content: '1200' });
+
+    this.meta.updateTag({ property: 'og:height', content: '630' });
 
     this.getspecials();
     this.recentUpdates();

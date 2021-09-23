@@ -104,36 +104,32 @@ export class AboutComponent implements OnInit {
   constructor(
     private titleService: Title,
     private defaultModeService: modeService,
-    private messagingService: MessageService,private meta:Meta
+    private messagingService: MessageService,
+    private meta: Meta
   ) {}
 
   ngOnInit() {
     // page title
     this.titleService.setTitle(this.pageTitle);
 
-    this.meta.updateTag(
-      {property:"og:type", content:"website"}
-    )
-    this.meta.updateTag(
-      {property:"og:title", content:"About"},
-    )
-    this.meta.updateTag(
-      {property:"og:url", content:"https://krishnakantsalkar.me/About"},
-    )        
-    this.meta.updateTag(
-      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
-    )
-    this.meta.updateTag(
-    {property:"og:image", content:"assets/images/about_me.jpg"},
-    )
-    this.meta.updateTag(
-      {property:"og:width", content:"1200"},
-       )
-   
-    this.meta.updateTag(
-      {property:"og:height", content:"630"},
-       )
-          
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: 'About' });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: 'https://krishnakantsalkar.in/About',
+    });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'https://krishnakantsalkar.in',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content: 'assets/images/about_me.jpg',
+    });
+    this.meta.updateTag({ property: 'og:width', content: '1200' });
+
+    this.meta.updateTag({ property: 'og:height', content: '630' });
+
     // aos animations
     AOS.init({
       startEvent: 'DomContentLoaded',

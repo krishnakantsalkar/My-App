@@ -28,14 +28,18 @@ export class AppComponent {
     this.primengConfig.ripple = true;
 
     this.meta.addTags([
-      {property:"og:locale", content:"en_US"},
-      {property:"og:type", content:"website"},
-      {property:"og:title", content:"Blog"},
-      {property:"og:url", content:"https://krishnakantsalkar.me/home"},
-      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
-      {property:"og:image", content:"https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg"},
-      {property:"og:width", content:"1200"},
-      {property:"og:height", content:"630"},
-    ])
+      { property: 'og:locale', content: 'en_US' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:title', content: 'Blog' },
+      { property: 'og:url', content: 'https://krishnakantsalkar.in/home' },
+      { property: 'og:site_name', content: 'https://krishnakantsalkar.in' },
+      {
+        property: 'og:image',
+        content:
+          'https://user-images.githubusercontent.com/53054807/117562032-7f882800-b0b9-11eb-8917-3cb1fb970148.jpg',
+      },
+      { property: 'og:width', content: '1200' },
+      { property: 'og:height', content: '630' },
+    ]);
   }
 }

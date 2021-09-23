@@ -58,10 +58,7 @@ export class BlogpostsComponent implements OnInit {
     private defaultModeService: modeService,
     private messageService: MessageService,
     private meta: Meta
-  ) {
-
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     // method calls
@@ -99,30 +96,21 @@ export class BlogpostsComponent implements OnInit {
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
 
-        this.meta.updateTag(
-          {property:"og:type", content:"blog"}
-        )
-        this.meta.updateTag(
-          {property:"og:title", content:"Blog"},
-        )
-        this.meta.updateTag(
-          {property:"og:url", content:this.blogURL},
-        )        
-        this.meta.updateTag(
-          {property:"og:site_name", content:"https://krishnakantsalkar.me"},
-        )
-        this.meta.updateTag(
-        {property:"og:image", content:`${this.data.postImage}`},
-        )
-        this.meta.updateTag(
-          {property:"og:width", content:"1200"},
-           )
-       
-        this.meta.updateTag(
-          {property:"og:height", content:"630"},
-           )
-       
-                
+        this.meta.updateTag({ property: 'og:type', content: 'blog' });
+        this.meta.updateTag({ property: 'og:title', content: 'Blog' });
+        this.meta.updateTag({ property: 'og:url', content: this.blogURL });
+        this.meta.updateTag({
+          property: 'og:site_name',
+          content: 'https://krishnakantsalkar.in',
+        });
+        this.meta.updateTag({
+          property: 'og:image',
+          content: `${this.data.postImage}`,
+        });
+        this.meta.updateTag({ property: 'og:width', content: '1200' });
+
+        this.meta.updateTag({ property: 'og:height', content: '630' });
+
         // like/dislike method call
         this.defaultLikes();
 

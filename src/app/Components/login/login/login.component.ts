@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
   public lang = 'en';
   public type: 'image' | 'audio';
   // public readonly siteKey = '6LcEs8IZAAAAAMu2aUYpW3SCLEsV9hmbiS_BD_A0';
-  public readonly siteKey = '6LcxNLMaAAAAAEe5bQaXcJqFY0uVAPdRxCYR2JQV';
-  public readonly secretKey = '6LcxNLMaAAAAAM7wvjAbaAg2N6pOmTVk11vwPey1';
+  public readonly siteKey = '6LcxNLMaAAAAAEe5bQaXcJqFY0uVAPdRxCYR2JQV'; //oldkeys
+  public readonly secretKey = '6LcxNLMaAAAAAM7wvjAbaAg2N6pOmTVk11vwPey1'; //oldkeys
   public captchaTheme;
 
   public pageTitle = 'Login';

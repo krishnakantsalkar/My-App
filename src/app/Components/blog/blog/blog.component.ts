@@ -105,31 +105,22 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     // method calls
 
-    
-    this.meta.updateTag(
-      {property:"og:type", content:"blog"}
-    )
-    this.meta.updateTag(
-      {property:"og:title", content:"Blog"},
-    )
-    this.meta.updateTag(
-      {property:"og:url", content:window.location.href},
-    )        
-    this.meta.updateTag(
-      {property:"og:site_name", content:"https://krishnakantsalkar.me"},
-    )
-    this.meta.updateTag(
-    {property:"og:image", content:'https://res.cloudinary.com/dq766ltjh/image/upload/v1603720093/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg'},
-    )
-    this.meta.updateTag(
-      {property:"og:width", content:"1200"},
-       )
-   
-    this.meta.updateTag(
-      {property:"og:height", content:"630"},
-       )
-   
-          
+    this.meta.updateTag({ property: 'og:type', content: 'blog' });
+    this.meta.updateTag({ property: 'og:title', content: 'Blog' });
+    this.meta.updateTag({ property: 'og:url', content: window.location.href });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'https://krishnakantsalkar.in',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content:
+        'https://res.cloudinary.com/dq766ltjh/image/upload/v1603720093/blog%20cover/Adobe_Post_20200807_1743590.23573714086058384_h83kqo.jpg',
+    });
+    this.meta.updateTag({ property: 'og:width', content: '1200' });
+
+    this.meta.updateTag({ property: 'og:height', content: '630' });
+
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;

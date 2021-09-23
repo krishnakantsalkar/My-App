@@ -34,4 +34,4 @@ To start Development Server install Angular CLI from npm and run `ng serve`
 - [Memocho](https://github.com/mojurasu/memocho) (pastebin) hosting for snippets sharing
 - much more... check commit history.
 
-#### Contact me on `dev@krishnakantsalkar.me`
+#### Contact me on `dev@krishnakantsalkar.in`

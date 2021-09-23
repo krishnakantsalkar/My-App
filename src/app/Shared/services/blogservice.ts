@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Iblog } from '../model/blogmodel';
 import { IsearchResult } from '../model/searchResult';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class blogpostservice {
@@ -73,7 +74,9 @@ export class blogpostservice {
 
   uploadImg(data) {
     return this.http.post<any>(this.uploadApi, data, {
-      headers: this.blogImgHeader,
+      headers: {
+        'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+      },
     });
   }
 

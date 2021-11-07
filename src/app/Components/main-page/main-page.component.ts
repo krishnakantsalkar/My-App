@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +17,7 @@ import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, AfterViewInit {
   public brightness: boolean;
   public special: boolean;
   public recentblogs;
@@ -61,13 +61,25 @@ export class MainPageComponent implements OnInit {
     private meta: Meta
   ) {
     // switch wallpaper method call
-    $(document).ready(() => {
-      this.showWalls();
-    });
+    // $(document).ready(() => {
+    // });
   }
 
   ngOnInit(): void {
     // call methods
+    let session = sessionStorage.getItem('session');
+    if (!session) {
+      $('#MainPage').css({ 'max-height': '100vh', overflow: 'hidden' });
+    } else {
+      $('#preloader').css({
+        top: '-100vh',
+      });
+      $('.preloaderBg').css({
+        display: 'none',
+      });
+      $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
+    }
+    sessionStorage.setItem('session', 'onGoing');
 
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });
@@ -92,7 +104,6 @@ export class MainPageComponent implements OnInit {
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
-    this.showNotif();
 
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
@@ -124,75 +135,77 @@ export class MainPageComponent implements OnInit {
     });
 
     // show only preloader only first time the session loads
-    preloaderPage();
+    // preloaderPage();
 
     // Preloading Page logic
-
+    // $('#MainPage').hide();
     // loop text function
 
-    async function textSequence(i) {
-      var textLoop = [
-        'Preparing...',
-        'adding Bugs..',
-        'Catching Exceptions',
-        'Initializing the Prototype..',
-        'Systems Ready..',
-      ];
+    // async function textSequence(i) {
+    //   var textLoop = [
+    //     'Preparing...',
+    //     'adding Bugs..',
+    //     'Catching Exceptions',
+    //     'Initializing the Prototype..',
+    //     'Systems Ready..',
+    //   ];
 
-      if (document.getElementById('loopText')) {
-        if (textLoop.length > i) {
-          setTimeout(function () {
-            if (document.getElementById('loopText')) {
-              document.getElementById('loopText').innerHTML = textLoop[i];
-              document.getElementById('loopText').style.fontFamily =
-                "'Lucida Console', 'LucidaConsole', 'monospace'";
-              textSequence(++i);
-            }
-          }, 900); // enter seconds (in milliseconds)
-        } else if (textLoop.length == i) {
-          // Loop
-          textSequence(0);
-        }
-      }
-    }
+    //   if (document.getElementById('loopText')) {
+    //     if (textLoop.length > i) {
+    //       setTimeout(function () {
+    //         if (document.getElementById('loopText')) {
+    //           document.getElementById('loopText').innerHTML = textLoop[i];
+    //           document.getElementById('loopText').style.fontFamily =
+    //             "'Lucida Console', 'LucidaConsole', 'monospace'";
+    //           textSequence(++i);
+    //         }
+    //       }, 900); // enter seconds (in milliseconds)
+    //     } else if (textLoop.length == i) {
+    //       // Loop
+    //       textSequence(0);
+    //     }
+    //   }
+    // }
 
     // progress bar logic
 
-    async function update() {
-      if (document.getElementById('progress')) {
-        var element = document.getElementById('progress');
-        var width = 1;
-        var identity = setInterval(scene, 50);
-        function scene() {
-          if (width >= 100) {
-            clearInterval(identity);
+    // async function update() {
+    //   if (document.getElementById('progress')) {
+    //     var element = document.getElementById('progress');
+    //     var width = 1;
+    //     var identity = setInterval(scene, 50);
+    //     function scene() {
+    //       if (width >= 100) {
+    //         clearInterval(identity);
 
-            //show Main Page and hide preloader page once width reaches 100%
-            $('#MainPage').fadeIn(300);
-            $('#preloader').hide(400);
-          } else {
-            width++;
+    //         //show Main Page and hide preloader page once width reaches 100%
+    //         $('#MainPage').fadeIn(300);
+    //         // $('#preloader').hide(400);
+    //         $('#preloader').css({ top: '0vh' });
+    //       } else {
+    //         width++;
 
-            // increase progessbar and % width
-            element.style.width = width + '%';
-            document.getElementById('percent').innerHTML = width * 1 + '%';
-          }
-        }
-      }
-    }
+    //         // increase progessbar and % width
+    //         element.style.width = width + '%';
+    //         document.getElementById('percent').innerHTML = width * 1 + '%';
+    //       }
+    //     }
+    //   }
+    // }
 
-    function preloaderPage() {
-      let session = sessionStorage.getItem('session');
-      if (!session) {
-        $('#MainPage').hide();
-        textSequence(0);
-        update();
-      } else {
-        $('#MainPage').fadeIn(300);
-        $('#preloader').hide(400);
-      }
-      sessionStorage.setItem('session', 'onGoing');
-    }
+    // function preloaderPage() {
+    //   let session = sessionStorage.getItem('session');
+    //   if (!session) {
+    //     $('#MainPage').hide();
+    //     textSequence(0);
+    //     update();
+    //   } else {
+    //     $('#MainPage').fadeIn(300);
+    //     // $('#preloader').hide(400);
+    //     $('#preloader').css({ top: '0vh' });
+    //   }
+    //   sessionStorage.setItem('session', 'onGoing');
+    // }
 
     // set wallpaper preference default
     let wallpaperPref = localStorage.getItem('wallpaperNum');
@@ -208,6 +221,22 @@ export class MainPageComponent implements OnInit {
 
     // website uses cookies check
     this.checkWebsiteUsesDiag();
+  }
+
+  ngAfterViewInit() {
+    this.showWalls();
+  }
+
+  enter() {
+    $('#preloader').css({
+      top: '-100vh',
+    });
+    $('.preloaderBg').css({
+      display: 'none',
+    });
+    $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
+
+    this.showNotif();
   }
 
   // set global Light/Dark mode

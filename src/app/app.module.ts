@@ -12,7 +12,6 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DISQUS_SHORTNAME } from 'ngx-disqus';
-import { NgAdblockDetectModule } from 'ng-adblock-detect';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
 import { QuillModule } from 'ngx-quill';
@@ -32,7 +31,6 @@ import { QuillModule } from 'ngx-quill';
     FormsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
-    NgAdblockDetectModule,
     SnotifyModule,
     SharedModuleModule,
     QuillModule.forRoot(),

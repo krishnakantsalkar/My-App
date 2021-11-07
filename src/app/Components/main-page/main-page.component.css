@@ -317,6 +317,20 @@ div.recentposts .seemore {
   z-index: 5;
   overflow: hidden;
 }
+.enterBtn {
+  background-color: #1f7ce0;
+  border-color: #1f7ce0;
+  color: white;
+  box-shadow: 0 2px 4px 0px black;
+}
+.preloader {
+  margin: 0;
+  position: absolute;
+  top: 0;
+
+  z-index: 10;
+  transition: 0.3s ease-in-out;
+}
 
 .preloaderBg {
   margin: 0;
@@ -564,6 +578,10 @@ div.websiteUsesDialog .fa-cookie-bite {
   .progressBar {
     width: 70%;
     margin-top: 20px;
+  }
+  .preloaderFooter {
+    width: 100%;
+    text-align: center;
   }
   .preloaderFooter h6 {
     font-size: 13px;

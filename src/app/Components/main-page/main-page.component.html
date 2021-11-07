@@ -123,17 +123,19 @@
               [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
               id="loopText"
             ></h6>
+
+            <button class="btn enterBtn" (click)="enter()">Enter</button>
           </div>
 
           <!-- Progress bar container -->
-          <div
+          <!-- <div
             class="progressBar"
             [ngStyle]="{
               'background-color': brightness ? 'rgb(223, 223, 223)' : ' black'
-            }"
+            }" -->
           >
-            <!-- Progress bar animation by Javascript -->
-            <div
+          <!-- Progress bar animation by Javascript -->
+          <!-- <div
               class="progress"
               id="progress"
               [ngStyle]="{
@@ -148,7 +150,7 @@
             >
               1%</span
             >
-          </div>
+          </div> -->
         </div>
         <!-- Preloader page footer -->
         <div class="preloaderFooter">
@@ -294,11 +296,6 @@
           </h6>
         </div>
       </div>
-
-      <!-- adblock detector -->
-      <ng-adblock-detect
-        (adblockDetected)="detected($event)"
-      ></ng-adblock-detect>
 
       <!-- Footer top area -->
       <div

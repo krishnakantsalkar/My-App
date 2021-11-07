@@ -120,12 +120,12 @@ export class BlogpostsComponent implements OnInit {
         this.url3 = null;
         this.url4 = null;
         // save reference urls
-        if (this.data.postLink.length > 3) {
-          this.url = this.data.postLink;
-          this.url2 = this.data.postLink2;
-          this.url3 = this.data.postLink3;
-          this.url4 = this.data.postLink4;
-        }
+        // if (this.data.postLink.length > 3) {
+        //   this.url = this.data.postLink;
+        //   this.url2 = this.data.postLink2;
+        //   this.url3 = this.data.postLink3;
+        //   this.url4 = this.data.postLink4;
+        // }
         // next and prev post impl
         this.nextPostData = undefined;
         this.prevPostData = undefined;

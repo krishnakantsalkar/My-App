@@ -9,4 +9,5 @@ export interface Iblog {
   message?: any;
   dataSize?: any;
   dataCount?: any;
+  pageSize?: any;
 }

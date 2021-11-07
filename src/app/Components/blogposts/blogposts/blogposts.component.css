@@ -93,7 +93,7 @@ div.blogimg img {
   height: 400px;
 }
 
-.linkbtns a {
+/* .linkbtns a {
   max-width: 53px;
   transition: max-width 1s;
   display: inline-block;
@@ -101,10 +101,10 @@ div.blogimg img {
   white-space: nowrap;
   overflow: hidden;
   margin: 8px;
-}
-.linkbtns a:hover {
+} */
+/* .linkbtns a:hover {
   max-width: 100%;
-}
+} */
 
 /* sharing buttons  */
 div.sharingBtns {

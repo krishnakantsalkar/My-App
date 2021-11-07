@@ -362,17 +362,17 @@
           <br />
         </div>
 
-        <button
-          class="btn btn-warning"
-          style="float: right"
-          *ngIf="checkUser"
-          (click)="createPostmethod()"
-        >
-          Create post
-        </button>
-        <br *ngIf="checkUser" />
+        <div class="row justify-content-end mx-0">
+          <button
+            class="btn btn-warning"
+            style="float: right"
+            (click)="createPostmethod()"
+            *ngIf="checkUser"
+          >
+            Create post
+          </button>
+        </div>
         <br />
-
         <!-- Create post area -->
 
         <div class="createpost" *ngIf="createPost">
@@ -439,67 +439,46 @@
                     </div>
                   </div>
                   <br />
-                  <div class="form-row">
-                    <div class="postMonth col-sm-6">
-                      <label for="">Month</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="postMonth"
-                        readonly
-                      />
-                    </div>
+                  <div class="link">
+                    <label for="">Link</label>
+                    <i
+                      class="fas fa-plus-circle mx-2"
+                      (click)="addLink()"
+                      style="color: #1f7ce0; cursor: pointer"
+                      [ngStyle]="{
+                        'pointer-events':
+                          postLinks.length >= 10 ? 'none' : 'all',
 
-                    <div class="postMonth col-sm-6">
-                      <label for="">Year</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="postYear"
-                        readonly
-                      />
-                    </div>
+                        opacity: postLinks.length >= 10 ? '0.7' : '1'
+                      }"
+                    >
+                    </i>
                   </div>
-                  <br />
-                  <div class="form-row">
-                    <div class="postLinkInput1 col-sm-6">
-                      <label>External Link</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="postLink"
-                        placeholder="Link"
-                      />
-                    </div>
-                    <div class="postLinkInput2 col-sm-6">
-                      <label>External Link 2</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="postLink2"
-                        placeholder="Link"
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="form-row">
-                    <div class="postLinkInput3 col-sm-6">
-                      <label>External Link 3</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="postLink3"
-                        placeholder="Link"
-                      />
-                    </div>
-                    <div class="postLinkInput4 col-sm-6">
-                      <label>External Link 4</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="postLink4"
-                        placeholder="Link"
-                      />
+                  <div class="row">
+                    <div
+                      class="col-sm-6 my-1"
+                      *ngFor="let link of postLinks; let i = index"
+                    >
+                      <div class="row">
+                        <div class="col-11">
+                          <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="link.link"
+                            [ngModelOptions]="{ standalone: true }"
+                          />
+                        </div>
+                        <div class="col-1 p-0">
+                          <i
+                            class="fas fa-times-circle"
+                            style="color: orangered; cursor: pointer"
+                            (click)="removeLink(i)"
+                            [ngStyle]="{
+                              display: i == 0 ? 'none' : 'inline-block'
+                            }"
+                          ></i>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <br />
@@ -701,7 +680,9 @@
                         <!-- new post badge -->
                         <h3>
                           <span
-                            *ngIf="d.postNumber == datacount"
+                            *ngIf="
+                              moment(d.postDate) <= moment(today).add(3, 'days')
+                            "
                             class="badge badge-secondary"
                             >New</span
                           >
@@ -1024,91 +1005,24 @@
         </div>
 
         <!-- pagination logics -->
+
         <div class="pagebtn" *ngIf="data">
-          <button
-            class="btn"
-            [disabled]="pageNo == 1"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(1, pageYear)"
+          <div
+            class="pages"
+            *ngFor="let pg of [].constructor(pgSize); let i = index"
           >
-            1
-          </button>
-          <button
-            class="btn"
-            [disabled]="pageNo == 2"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(2, pageYear)"
-          >
-            2
-          </button>
-
-          <button
-            class="btn"
-            [disabled]="pageNo == 3"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(3, pageYear)"
-          >
-            3
-          </button>
-          <button
-            *ngIf="datacount > 18"
-            class="btn"
-            [disabled]="pageNo == 4"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(4, pageYear)"
-          >
-            4
-          </button>
-          <button
-            *ngIf="datacount > 24"
-            class="btn"
-            [disabled]="pageNo == 5"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(5, pageYear)"
-          >
-            5
-          </button>
-
-          <button
-            *ngIf="datacount > 30"
-            class="btn"
-            [disabled]="pageNo == 6"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(6, pageYear)"
-          >
-            5
-          </button>
-
-          <button
-            *ngIf="datacount > 36"
-            class="btn"
-            [disabled]="pageNo == 7"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="blogsP(7, pageYear)"
-          >
-            5
-          </button>
+            <button
+              class="btn"
+              [disabled]="pageNo == i + 1"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                color: brightness ? 'white' : 'black'
+              }"
+              (click)="blogsP(i + 1, pageYear)"
+            >
+              {{ i + 1 }}
+            </button>
+          </div>
         </div>
       </div>
     </div>

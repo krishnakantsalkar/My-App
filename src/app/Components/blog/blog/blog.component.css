@@ -129,7 +129,8 @@ div.links .aDark:hover {
 }
 
 .pagebtn {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .pagebtn button {
   margin: 10px;

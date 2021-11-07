@@ -104,11 +104,7 @@ export class blogpostservice {
     );
   }
   searchBlog(data): Observable<IsearchResult> {
-    return this.http.get<IsearchResult>(this.searchApi, {
-      params: {
-        post: data,
-      },
-    });
+    return this.http.get<IsearchResult>(this.searchApi + `/query=${data}`);
   }
 
   trackPostViews(id, data) {

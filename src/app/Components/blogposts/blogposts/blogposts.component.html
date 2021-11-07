@@ -358,7 +358,7 @@
                   <br />
 
                   <!-- post link buttons -->
-                  <div class="linkbtns" *ngIf="url || url2 || url3 || url4">
+                  <div class="linkbtns" *ngIf="data.postLinks">
                     <br />
                     <h6
                       [ngStyle]="{
@@ -367,15 +367,17 @@
                     >
                       Reference Links:
                     </h6>
-                    <a
-                      *ngIf="url && url.length > 0"
-                      class="float-left btn btn-dark"
-                      [href]="getLink(url)"
-                      target="_blank"
-                    >
-                      Link &nbsp; : {{ url }}
-                    </a>
-                    <a
+                    <div class="links" *ngFor="let link of data.postLinks">
+                      <a
+                        class="float-left my-2 w-100"
+                        href="{{ link }}"
+                        target="_blank"
+                      >
+                        {{ link }}
+                      </a>
+                    </div>
+
+                    <!-- <a
                       *ngIf="url2 && url2.length > 0"
                       class="url2 float-left btn btn-dark"
                       [href]="getLink(url2)"
@@ -398,7 +400,7 @@
                       target="_blank"
                     >
                       Link &nbsp; : {{ url4 }}
-                    </a>
+                    </a> -->
                   </div>
                   <br />
                   <br />

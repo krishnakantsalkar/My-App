@@ -15,6 +15,7 @@ var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 
 import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-blog',
@@ -78,7 +79,6 @@ export class BlogComponent implements OnInit {
     'November',
     'December',
   ];
-
   display: boolean = false;
   display2: boolean = false;
 
@@ -91,6 +91,10 @@ export class BlogComponent implements OnInit {
   public blogErrMsg;
   public scrollbarOptions = { axis: 'yx', theme: 'minimal-dark' };
 
+  postLinks: any[] = [];
+  pgSize: number;
+  public today = new Date();
+  moment = moment;
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -150,14 +154,10 @@ export class BlogComponent implements OnInit {
       postNumber: ['', [Validators.required]],
       postTitle: ['', Validators.required],
       post: [''],
-      postMonth: [''],
-      postYear: [''],
-      postLink: [''],
-      postLink2: [''],
-      postLink3: [''],
-      postLink4: [''],
       postAuthor: [''],
     });
+
+    this.addLink();
 
     // set value for postAuthor
     let adminUser: any = JSON.parse(localStorage.getItem('user'));
@@ -167,11 +167,6 @@ export class BlogComponent implements OnInit {
         postAuthor: `${adminName}`,
       });
       let mon = new Date().getMonth();
-      let yr = new Date().getFullYear();
-      this.newPost.patchValue({
-        postMonth: this.months[mon],
-        postYear: yr,
-      });
     }
 
     // blog searach
@@ -211,6 +206,8 @@ export class BlogComponent implements OnInit {
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.allData = item;
+      console.log(item);
+      this.pgSize = item.pageSize;
     });
   }
 
@@ -220,7 +217,8 @@ export class BlogComponent implements OnInit {
       // blogURL for share btns
       this.blogURL = null;
       this.blogURL = window.location.href;
-
+      console.log(item);
+      this.pgSize = item.pageSize;
       this.data = item.dataSize;
       this.datacount = item.dataCount;
       this.postNumVal = this.datacount;
@@ -319,7 +317,13 @@ export class BlogComponent implements OnInit {
         });
 
         // blog post API call
-        this.blogservice.publishBlog(this.newPost.value).subscribe(
+        let data = this.newPost.value;
+        let linksArr = [];
+        this.postLinks.forEach((x) => {
+          linksArr.push(x.link);
+        });
+        data.postLinks = linksArr;
+        this.blogservice.publishBlog(data).subscribe(
           (item2) => {
             this.display = true;
             this.logResponse = item2.result;
@@ -452,5 +456,12 @@ export class BlogComponent implements OnInit {
 
     this.movieQ = this.movieQArr[random].quote;
     this.movieName = this.movieQArr[random].movie;
+  }
+
+  addLink() {
+    this.postLinks.push({ link: '' });
+  }
+  removeLink(i) {
+    this.postLinks.splice(i, 1);
   }
 }

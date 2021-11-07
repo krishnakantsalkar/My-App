@@ -1,19 +1,21 @@
 {
   "name": "my-app",
   "version": "0.0.0",
-  "scripts": {},
+  "scripts": {
+    "build": "ng build --aot --configuration production"
+  },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.9",
-    "@angular/cli": "~11.0.5",
-    "@angular/common": "~11.0.5",
-    "@angular/compiler": "~11.0.5",
-    "@angular/compiler-cli": "~11.0.5",
-    "@angular/core": "~11.0.5",
-    "@angular/forms": "~11.0.5",
-    "@angular/platform-browser": "~11.0.5",
-    "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
+    "@angular/animations": "^12.2.13",
+    "@angular/cli": "~12.2.13",
+    "@angular/common": "~12.2.13",
+    "@angular/compiler": "~12.2.13",
+    "@angular/compiler-cli": "~12.2.13",
+    "@angular/core": "~12.2.13",
+    "@angular/forms": "~12.2.13",
+    "@angular/platform-browser": "~12.2.13",
+    "@angular/platform-browser-dynamic": "~12.2.13",
+    "@angular/router": "~12.2.13",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "angular-cli-ghpages": "^0.6.2",
     "angular-datatables": "^10.0.0",
@@ -45,11 +47,11 @@
     "swiper": "^6.3.1",
     "tslib": "^2.0.0",
     "wowjs": "^1.1.3",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.5",
-    "@angular/language-service": "~11.0.5",
+    "@angular-devkit/build-angular": "~12.2.13",
+    "@angular/language-service": "~12.2.13",
     "@types/datatables.net": "^1.10.19",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
@@ -60,7 +62,7 @@
     "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.1.1",
+    "karma": "~6.3.8",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~4.0.0",
@@ -68,7 +70,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.3.5"
   },
   "engines": {
     "node": "12.16.1",

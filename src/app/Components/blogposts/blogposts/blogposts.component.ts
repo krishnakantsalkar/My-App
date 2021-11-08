@@ -318,4 +318,9 @@ export class BlogpostsComponent implements OnInit {
       summary: 'Link copied to clipboard',
     });
   }
+
+  navigate(number, title, id) {
+    this.data = undefined;
+    this.router.navigate([`/Blog/${number}/${title}/${id}`]);
+  }
 }

@@ -56,7 +56,7 @@ export class BlogComponent implements OnInit {
   // markdown impl.
   public markdown;
 
-  public year = 'All';
+  public year;
   public showYear: boolean = true;
   public showAll: boolean = true;
   public pageYear;
@@ -140,7 +140,7 @@ export class BlogComponent implements OnInit {
     // set page title
     this.titleService.setTitle(this.pageTitle);
 
-    // get all blogs
+    // // get all blogs
     this.blogs();
 
     // aos animation
@@ -206,18 +206,19 @@ export class BlogComponent implements OnInit {
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.allData = item;
-      console.log(item);
-      this.pgSize = item.pageSize;
     });
   }
 
   // get blogs by pagination
   blogsP(pg, year?) {
-    this.blogservice.getBlogsP(pg, year).subscribe((item) => {
+    if (year) {
+      this.year = year;
+    }
+    this.blogservice.getBlogsP(pg, this.year).subscribe((item) => {
       // blogURL for share btns
       this.blogURL = null;
       this.blogURL = window.location.href;
-      console.log(item);
+
       this.pgSize = item.pageSize;
       this.data = item.dataSize;
       this.datacount = item.dataCount;
@@ -237,9 +238,13 @@ export class BlogComponent implements OnInit {
 
     this.pageYear = year;
     this.pageNo = pg;
-    if (year) {
-      this.year = year;
-    }
+  }
+
+  clearYear() {
+    this.year = undefined;
+    this.showYearList();
+    this.showAllList();
+    this.blogsP(1);
   }
 
   // set post Number dynamically
@@ -391,9 +396,9 @@ export class BlogComponent implements OnInit {
   }
 
   //search method api
-  Search(data: IsearchResult) {
+  Search(data: string) {
     if (data) {
-      this.blogservice.searchBlog(data.post).subscribe((item) => {
+      this.blogservice.searchBlog(data).subscribe((item) => {
         this.searchResult = item.data;
         document
           .getElementById('twothousandtwenty')

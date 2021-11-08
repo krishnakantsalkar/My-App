@@ -103,8 +103,8 @@ export class blogpostservice {
       }
     );
   }
-  searchBlog(data): Observable<IsearchResult> {
-    return this.http.get<IsearchResult>(this.searchApi + `/query=${data}`);
+  searchBlog(data: string): Observable<any> {
+    return this.http.get<any>(this.searchApi + `?query=${data}`);
   }
 
   trackPostViews(id, data) {

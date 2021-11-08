@@ -187,6 +187,7 @@ div.cvrimg {
   text-align: center;
   float: right;
   margin-top: -38px;
+  cursor: pointer;
 }
 
 div.searchResult h3 {

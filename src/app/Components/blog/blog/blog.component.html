@@ -229,7 +229,7 @@
         <div class="row">
           <div class="col-2 col-lg-1">
             <h1>
-              <b id="twothousandtwenty" (click)="showAllList()">{{ year }}</b>
+              <b id="twothousandtwenty" (click)="showAllList()">All</b>
             </h1>
           </div>
           <div class="col-2 col-lg-1">
@@ -282,7 +282,7 @@
             <span (click)="blogsP(1, 2021)"
               ><h1 [ngClass]="{ fadeYear: pageYear == 2021 }">2021</h1></span
             >
-            <span onclick="location.reload()">
+            <span (click)="clearYear()">
               <h1 class="showYearsDefault">
                 <i class="fas fa-times-circle"></i>
               </h1>
@@ -291,22 +291,19 @@
         </div>
 
         <!-- search input field -->
-        <form [formGroup]="newSearch" (ngSubmit)="Search(newSearch.value)">
+        <form>
           <div class="input-container" id="input-container">
             <input
               type="text"
               id="searchbar"
               placeholder=""
-              formControlName="post"
+              #search
               class="form-control"
               [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' white',
-                color: brightness ? 'black' : 'white'
+                'background-color': brightness ? 'rgb(223, 223, 223)' : ' white'
               }"
             />
-            <i class="fas fa-search icon"></i>
+            <i class="fas fa-search icon" (click)="Search(search.value)"></i>
             <br />
           </div>
         </form>
@@ -341,17 +338,6 @@
                   >
                     {{ result.postNumber }}: {{ result.postTitle }}</a
                   >
-                  <br />
-                  {{ result.post | slice: 0:90 }}
-
-                  <span
-                    routerLink="/Blog/{{ result.postNumber }}/{{
-                      result.postTitle
-                    }}/{{ result._id }}"
-                    >....</span
-                  >
-
-                  <br *ngIf="searchResult" />
                 </div>
               </div>
               <div class="clearbtn">
@@ -681,7 +667,12 @@
                         <h3>
                           <span
                             *ngIf="
-                              moment(d.postDate) <= moment(today).add(3, 'days')
+                              moment(today).format('YYYY-MM-DD') <=
+                                moment(d.postDate).format('YYYY-MM-DD') &&
+                              moment(d.postDate).format('YYYY-MM-DD') <=
+                                moment(today)
+                                  .add(3, 'days')
+                                  .format('YYYY-MM-DD')
                             "
                             class="badge badge-secondary"
                             >New</span
@@ -718,7 +709,8 @@
                             color: brightness ? 'black' : 'rgb(129,129,129)'
                           }"
                         >
-                          <i class="fas fa-clock"></i> {{ d.postDate }}
+                          <i class="fas fa-clock"></i>
+                          {{ d.postDate | date: "full" }}
                         </h6>
                       </h2>
                     </div>
@@ -929,28 +921,19 @@
               <div class="card-body">
                 <p>
                   <strong>
-                    <span (click)="Search({ post: 'pixel experience' })">
+                    <span (click)="Search('pixel experience')">
                       #pixelexperience</span
                     >
                     &nbsp;
-                    <span (click)="Search({ post: 'android' })">#android</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'corvus' })">#corvus</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'heroku' })">#heroku</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'python' })">#python</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'pixys' })">#pixys</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'angular' })">#angular</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'node' })">#node</span>&nbsp;
-                    <span (click)="Search({ post: 'counter strike' })"
-                      >#csgo</span
-                    >&nbsp;
-                    <span (click)="Search({ post: 'markdown' })">#markdown</span
-                    >&nbsp;
+                    <span (click)="Search('android')">#android</span>&nbsp;
+                    <span (click)="Search('corvus')">#corvus</span>&nbsp;
+                    <span (click)="Search('heroku')">#heroku</span>&nbsp;
+                    <span (click)="Search('python')">#python</span>&nbsp;
+                    <span (click)="Search('pixys')">#pixys</span>&nbsp;
+                    <span (click)="Search('angular')">#angular</span>&nbsp;
+                    <span (click)="Search('node')">#node</span>&nbsp;
+                    <span (click)="Search('counter strike')">#csgo</span>&nbsp;
+                    <span (click)="Search('markdown')">#markdown</span>&nbsp;
 
                     <span routerLink="/Movies&TV">#movieDB</span>&nbsp;
                   </strong>
@@ -973,10 +956,7 @@
             >
               <!-- one more search field -->
               <div class="card-body">
-                <form
-                  [formGroup]="newSearch"
-                  (ngSubmit)="Search(newSearch.value)"
-                >
+                <form>
                   <div class="extraSearch">
                     <label for="extraSearchBar">
                       <strong> Search:</strong>
@@ -986,15 +966,18 @@
                       type="text"
                       id="extraSearchBar"
                       placeholder=""
-                      formControlName="post"
                       class="form-control"
+                      #extraInput
                     />
                     <button
                       class="btn btn-success"
                       id="searchsubmit1"
                       type="submit"
                     >
-                      <i class="fas fa-check-square"></i>
+                      <i
+                        class="fas fa-check-square"
+                        (click)="Search(extraInput.value)"
+                      ></i>
                     </button>
                   </div>
                 </form>

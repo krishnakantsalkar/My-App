@@ -183,7 +183,9 @@
                               {{ recent.postTitle }}</a
                             >
                           </h5>
-                          <h6>{{ recent.postDate | slice: 0:70 }}..</h6>
+                          <h6>
+                            {{ recent.postDate | date: "full" | slice: 0:70 }}..
+                          </h6>
                         </div>
                         <a
                           style="text-decoration: none"

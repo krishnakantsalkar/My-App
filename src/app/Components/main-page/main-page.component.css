@@ -322,6 +322,8 @@ div.recentposts .seemore {
   border-color: #1f7ce0;
   color: white;
   box-shadow: 0 2px 4px 0px black;
+  opacity: 0;
+  transition: 1s ease-in-out;
 }
 .preloader {
   margin: 0;

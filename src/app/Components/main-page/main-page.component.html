@@ -420,7 +420,7 @@
                             >
                           </h5>
                           <h6 class="text-muted">
-                            {{ recent.postDate | slice: 0:70 }}..
+                            {{ recent.postDate | date: "full" | slice: 0:70 }}..
                           </h6>
                         </div>
                         <a

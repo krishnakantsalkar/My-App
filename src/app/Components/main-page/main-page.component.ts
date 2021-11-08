@@ -225,6 +225,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.showWalls();
+    setTimeout(() => {
+      $('.enterBtn').css({ opacity: '1' });
+    }, 1000);
   }
 
   enter() {
@@ -327,7 +330,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // adblock detection
   detected(isDetected: boolean) {
-    // console.log(`Adblock Detected:  ${isDetected}`);
+    //
     let adblockPreference = this.cookies.get('adblockPref');
     if (!adblockPreference && isDetected === true) {
       document.getElementById('adblockOverlays').style.display = 'block';

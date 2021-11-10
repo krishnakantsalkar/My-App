@@ -11,24 +11,24 @@ const routes: Routes = [
     component: MainPageComponent,
   },
   {
-    path: 'Home',
+    path: 'home',
     component: MainPageComponent,
   },
   // about page
   {
-    path: 'About',
+    path: 'about',
     loadChildren: () =>
       import('./Components/about/about.module').then((m) => m.AboutModule),
   },
   // blog page
   {
-    path: 'Blog/:page',
+    path: 'blog/:page',
     loadChildren: () =>
       import('./Components/blog/blog.module').then((m) => m.BlogModule),
   },
   // blogpost page
   {
-    path: 'Blog/:postNumber/:id',
+    path: 'blog/:postNumber/:id',
     loadChildren: () =>
       import('./Components/blogposts/blogposts.module').then(
         (m) => m.BlogpostsModule
@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   // blogpost by id
   {
-    path: 'Blog/:postNumber/:postTitle/:id',
+    path: 'blog/:postNumber/:postTitle/:id',
     loadChildren: () =>
       import('./Components/blogposts/blogposts.module').then(
         (m) => m.BlogpostsModule
@@ -45,17 +45,11 @@ const routes: Routes = [
   },
   // login page
   {
-    path: 'Login',
+    path: 'login',
     loadChildren: () =>
       import('./Components/login/login.module').then((m) => m.LoginModule),
   },
-  // bday page
-  {
-    path: 'Bday',
-    loadChildren: () =>
-      import('./Components/bday/bday.module').then((m) => m.BdayModule),
-    canActivate: [authGuard],
-  },
+
   // profile page
   {
     path: 'Profile/:id',
@@ -77,13 +71,13 @@ const routes: Routes = [
   // movie component route
 
   {
-    path: 'Movies&TV',
+    path: 'movies&tv',
     loadChildren: () =>
       import('./Components/movies/movies.module').then((m) => m.MoviesModule),
   },
   // Activated routing for movie/tv
   {
-    path: 'Movies&TV/Movie/:name/:id',
+    path: 'movies&tv/Movie/:name/:id',
     loadChildren: () =>
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
@@ -91,7 +85,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'Movies&TV/TV/:name/:id',
+    path: 'movies&tv/TV/:name/:id',
     loadChildren: () =>
       import('./Components/movie-details/movie-details.module').then(
         (m) => m.MovieDetailsModule
@@ -101,7 +95,7 @@ const routes: Routes = [
 
   // privacy page route
   {
-    path: 'Privacy',
+    path: 'privacy',
     loadChildren: () =>
       import('./Components/privacy/privacy.module').then(
         (m) => m.PrivacyModule
@@ -110,7 +104,7 @@ const routes: Routes = [
 
   // disclaimer page route
   {
-    path: 'Disclaimer',
+    path: 'disclaimer',
     loadChildren: () =>
       import('./Components/disclaimer/disclaimer.module').then(
         (m) => m.DisclaimerModule
@@ -119,7 +113,7 @@ const routes: Routes = [
 
   //notes route
   {
-    path: 'Notes',
+    path: 'notes',
     loadChildren: () =>
       import('./Components/notes/notes.module').then((m) => m.NotesModule),
     canActivate: [authGuard],

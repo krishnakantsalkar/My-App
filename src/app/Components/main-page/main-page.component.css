@@ -344,6 +344,7 @@ div.recentposts .seemore {
   background-image: url("../../../assets/images/pexels-markus-spiske-1936299.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   opacity: 0.2;
 }
 

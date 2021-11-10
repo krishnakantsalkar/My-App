@@ -59,7 +59,7 @@ export class userloginservices {
     localStorage.removeItem('id');
     localStorage.removeItem('user');
     localStorage.removeItem('userToken');
-    this.router.navigateByUrl('/Home');
+    this.router.navigateByUrl('/home');
     this.loggedIn.next(null);
   }
 

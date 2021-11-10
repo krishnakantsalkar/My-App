@@ -11,7 +11,7 @@ export class authGuard implements CanActivate {
     let token = this.cookies.get('credentials');
     if (!token) {
       alert('You need to login first!');
-      this.router.navigateByUrl('/Home');
+      this.router.navigateByUrl('/home');
       return false;
     } else {
       return true;

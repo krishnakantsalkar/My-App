@@ -183,7 +183,7 @@
                           style="display: flex; justify-content: center"
                         >
                           <a
-                            routerLink="/Movies&TV/Movie/{{ results.title }}/{{
+                            routerLink="/movies&tv/Movie/{{ results.title }}/{{
                               results.id
                             }}"
                           >
@@ -200,7 +200,7 @@
                           <a
                             class="searchResultTitle"
                             *ngIf="results.media_type == 'movie'"
-                            routerLink="/Movies&TV/Movie/{{ results.title }}/{{
+                            routerLink="/movies&tv/Movie/{{ results.title }}/{{
                               results.id
                             }}"
                             (click)="setSearchListType('movie')"
@@ -230,7 +230,7 @@
                         style="display: flex; justify-content: center"
                       >
                         <a
-                          routerLink="/Movies&TV/TV/{{ results.name }}/{{
+                          routerLink="/movies&tv/TV/{{ results.name }}/{{
                             results.id
                           }}"
                         >
@@ -247,7 +247,7 @@
                         <a
                           class="searchResultTitle"
                           *ngIf="results.media_type == 'tv'"
-                          routerLink="/Movies&TV/TV/{{ results.name }}/{{
+                          routerLink="/movies&tv/TV/{{ results.name }}/{{
                             results.id
                           }}"
                           (click)="setSearchListType('tv')"
@@ -493,7 +493,7 @@
                 <!-- genre data image -->
                 <a
                   *ngIf="genre.original_title"
-                  routerLink="/Movies&TV/Movie/{{ genre.title }}/{{ genre.id }}"
+                  routerLink="/movies&tv/Movie/{{ genre.title }}/{{ genre.id }}"
                 >
                   <img
                     src="https://image.tmdb.org/t/p/w300{{ genre.poster_path }}"
@@ -502,7 +502,7 @@
 
                 <a
                   *ngIf="genre.name"
-                  routerLink="/Movies&TV/TV/{{ genre.name }}/{{ genre.id }}"
+                  routerLink="/movies&tv/TV/{{ genre.name }}/{{ genre.id }}"
                 >
                   <img
                     src="https://image.tmdb.org/t/p/w300{{ genre.poster_path }}"
@@ -530,7 +530,7 @@
                     color: brightness ? 'black' : 'white'
                   }"
                   *ngIf="genre.original_title"
-                  routerLink="/Movies&TV/Movie/{{ genre.title }}/{{ genre.id }}"
+                  routerLink="/movies&tv/Movie/{{ genre.title }}/{{ genre.id }}"
                 >
                   {{ genre.title }}
                 </h6>
@@ -543,7 +543,7 @@
                       : ' rgb(41, 42, 45)',
                     color: brightness ? 'black' : 'white'
                   }"
-                  routerLink="/Movies&TV/TV/{{ genre.name }}/{{ genre.id }}"
+                  routerLink="/movies&tv/TV/{{ genre.name }}/{{ genre.id }}"
                   *ngIf="genre.name"
                 >
                   {{ genre.name }}
@@ -652,7 +652,7 @@
                 <div class="card">
                   <a
                     *ngIf="mov.original_title"
-                    routerLink="/Movies&TV/Movie/{{ mov.title }}/{{ mov.id }}"
+                    routerLink="/movies&tv/Movie/{{ mov.title }}/{{ mov.id }}"
                   >
                     <img
                       src="https://image.tmdb.org/t/p/w300{{ mov.poster_path }}"
@@ -677,7 +677,7 @@
                       color: brightness ? 'black' : 'white'
                     }"
                     *ngIf="mov.original_title"
-                    routerLink="/Movies&TV/Movie/{{ mov.title }}/{{ mov.id }}"
+                    routerLink="/movies&tv/Movie/{{ mov.title }}/{{ mov.id }}"
                   >
                     {{ mov.title }}
                   </h6>
@@ -709,7 +709,7 @@
                 <div class="card">
                   <a
                     *ngIf="tv.name"
-                    routerLink="/Movies&TV/TV/{{ tv.name }}/{{ tv.id }}"
+                    routerLink="/movies&tv/TV/{{ tv.name }}/{{ tv.id }}"
                   >
                     <img
                       src="https://image.tmdb.org/t/p/w300{{ tv.poster_path }}"
@@ -724,7 +724,7 @@
                     <h4>{{ tv.vote_average }} / 10</h4>
                     <div
                       class="text1"
-                      routerLink="/Movies&TV/TV/{{ tv.name }}/{{ tv.id }}"
+                      routerLink="/movies&tv/TV/{{ tv.name }}/{{ tv.id }}"
                     >
                       view details
                     </div>
@@ -737,7 +737,7 @@
                       color: brightness ? 'black' : 'white'
                     }"
                     *ngIf="tv.name"
-                    routerLink="/Movies&TV/TV/{{ tv.name }}/{{ tv.id }}"
+                    routerLink="/movies&tv/TV/{{ tv.name }}/{{ tv.id }}"
                   >
                     {{ tv.name }}
                   </h6>
@@ -775,7 +775,7 @@
               <!-- movie image -->
               <a
                 *ngIf="movies.original_title"
-                routerLink="/Movies&TV/Movie/{{ movies.title }}/{{ movies.id }}"
+                routerLink="/movies&tv/Movie/{{ movies.title }}/{{ movies.id }}"
               >
                 <img
                   src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
@@ -783,7 +783,7 @@
               /></a>
               <a
                 *ngIf="movies.name"
-                routerLink="/Movies&TV/TV/{{ movies.name }}/{{ movies.id }}"
+                routerLink="/movies&tv/TV/{{ movies.name }}/{{ movies.id }}"
               >
                 <img
                   src="https://image.tmdb.org/t/p/w300{{ movies.poster_path }}"
@@ -809,7 +809,7 @@
                   color: brightness ? 'black' : 'white'
                 }"
                 *ngIf="movies.original_title"
-                routerLink="/Movies&TV/Movie/{{ movies.title }}/{{ movies.id }}"
+                routerLink="/movies&tv/Movie/{{ movies.title }}/{{ movies.id }}"
               >
                 {{ movies.title }}
               </h6>
@@ -820,7 +820,7 @@
                   'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
-                routerLink="/Movies&TV/TV/{{ movies.name }}/{{ movies.id }}"
+                routerLink="/movies&tv/TV/{{ movies.name }}/{{ movies.id }}"
                 *ngIf="movies.name"
               >
                 {{ movies.name }}

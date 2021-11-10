@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   public currentProfImg;
   public editDp: boolean;
 
-  public pageTitle = 'Profile'
+  public pageTitle = 'Profile';
   constructor(
     private upload: uploadservices,
     private AR: ActivatedRoute,
@@ -32,11 +32,10 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item => {
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     this.AR.params.subscribe((item) => {
       let id = item['id'];
@@ -46,12 +45,11 @@ export class ProfileComponent implements OnInit {
     });
 
     //set page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
-
   }
 
   selection(event) {
@@ -76,7 +74,7 @@ export class ProfileComponent implements OnInit {
       alert('image uploaded');
     });
   }
- 
+
   pic() {
     this.editDp = !this.editDp;
   }
@@ -97,6 +95,6 @@ export class ProfileComponent implements OnInit {
     // localStorage.removeItem('credentials');
     this.cookies.delete('credentials');
     localStorage.removeItem('id');
-    this.router.navigateByUrl('/Home');
+    this.router.navigateByUrl('/home');
   }
 }

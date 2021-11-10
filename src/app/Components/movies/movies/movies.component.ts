@@ -24,7 +24,7 @@ export class MoviesComponent implements OnInit {
   public genreData;
   public genreSwitch: boolean;
 
-  public pageTitle='Movies&Tv'
+  public pageTitle = 'Movies&Tv';
 
   // movie genre collection
   public movieGenreCollection = {
@@ -78,24 +78,27 @@ export class MoviesComponent implements OnInit {
   public currentGenreId;
 
   // trending movies/tv
-  public trendingMovies
-  public trendingTv
+  public trendingMovies;
+  public trendingTv;
 
-  constructor(private movieService: MovieServices, private router: Router, private titleService: Title
-    , private defaultModeService: modeService
-    ) {}
+  constructor(
+    private movieService: MovieServices,
+    private router: Router,
+    private titleService: Title,
+    private defaultModeService: modeService
+  ) {}
 
   ngOnInit(): void {
     // method calls
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item => {
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
     this.getTheLists(1, 'movie', 'now_playing');
 
     // set page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // aos animations
     AOS.init({
@@ -129,41 +132,39 @@ export class MoviesComponent implements OnInit {
       $('#genreButtons').hide();
 
       // hide trending content on page load
-      $('#TmoviesData').hide()
-      $('#TseriesData').hide()
-      $("#TcloseBtn").hide()
+      $('#TmoviesData').hide();
+      $('#TseriesData').hide();
+      $('#TcloseBtn').hide();
     });
 
     // get trending movies and tv series
-    this.movieService.getTrendingMedia('movie').subscribe(item=>{
-      this.trendingMovies = item     
-    })
+    this.movieService.getTrendingMedia('movie').subscribe((item) => {
+      this.trendingMovies = item;
+    });
 
-    this.movieService.getTrendingMedia('tv').subscribe(item=>{
-      this.trendingTv = item
-    })
+    this.movieService.getTrendingMedia('tv').subscribe((item) => {
+      this.trendingTv = item;
+    });
 
-    // show/hide Trending movies/tv 
-    $('#Tmovies').on('click',()=>{
-      $('#TmoviesData').show(300)
-      $('#TseriesData').hide()
-      $('#TcloseBtn').show(300)
-      $('#TcloseBtn').animate({rotate:180, transition:'1s ease'})
-      
-    })
+    // show/hide Trending movies/tv
+    $('#Tmovies').on('click', () => {
+      $('#TmoviesData').show(300);
+      $('#TseriesData').hide();
+      $('#TcloseBtn').show(300);
+      $('#TcloseBtn').animate({ rotate: 180, transition: '1s ease' });
+    });
 
-    $('#Tseries').on('click',()=>{
-      $('#TseriesData').show(300)
-      $('#TmoviesData').hide()
-      $('#TcloseBtn').show(300)
+    $('#Tseries').on('click', () => {
+      $('#TseriesData').show(300);
+      $('#TmoviesData').hide();
+      $('#TcloseBtn').show(300);
+    });
 
-    })
-
-    $('#TcloseBtn').on('click',()=>{
-      $('#TseriesData').hide(300)
-      $('#TmoviesData').hide(300)
-      $("#TcloseBtn").hide(300)
-    })
+    $('#TcloseBtn').on('click', () => {
+      $('#TseriesData').hide(300);
+      $('#TmoviesData').hide(300);
+      $('#TcloseBtn').hide(300);
+    });
   }
 
   // movie api usage
@@ -177,7 +178,7 @@ export class MoviesComponent implements OnInit {
       .getTheList(pageNo, listType, listName)
       .subscribe((item) => {
         this.movieData = item.results;
-        this.router.navigateByUrl('/Movies&TV').then(() => {
+        this.router.navigateByUrl('/movies&tv').then(() => {
           let elemnt = document.getElementById('movieList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });
@@ -237,9 +238,8 @@ export class MoviesComponent implements OnInit {
     sessionStorage.setItem('listType', listType);
 
     if (listType == 'movie') {
-      this.currentGenre = this.movieGenreCollectString[
-        `${this.currentGenreId}`
-      ];
+      this.currentGenre =
+        this.movieGenreCollectString[`${this.currentGenreId}`];
     } else if (listType == 'tv') {
       this.currentGenre = this.tvGenreCollectString[`${this.currentGenreId}`];
     }
@@ -248,7 +248,7 @@ export class MoviesComponent implements OnInit {
       .discoverByListId(pageNo, listType, genreId)
       .subscribe((item) => {
         this.genreData = item.results;
-        this.router.navigateByUrl('/Movies&TV').then(() => {
+        this.router.navigateByUrl('/movies&tv').then(() => {
           let elemnt = document.getElementById('genreList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });

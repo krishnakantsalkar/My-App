@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit {
   }
 
   logintoHome() {
-    this.router.navigateByUrl('/Home');
+    this.router.navigateByUrl('/home');
   }
 
   Forgot(data: Iforgot) {
@@ -193,7 +193,7 @@ export class LoginComponent implements OnInit {
     var elemnt = document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
-    this.router.navigateByUrl('/Home');
+    this.router.navigateByUrl('/home');
   }
 
   //captcha logics

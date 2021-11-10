@@ -229,7 +229,7 @@ export class BlogComponent implements OnInit {
 
       //get approx blog post read time
       this.getreadTime();
-      this.router.navigateByUrl(`/Blog/${pg}`).then(() => {
+      this.router.navigateByUrl(`/blog/${pg}`).then(() => {
         if (pg > 1) {
           window.scrollTo({ left: 0, top: 400, behavior: 'smooth' });
         }
@@ -414,7 +414,7 @@ export class BlogComponent implements OnInit {
 
   // navigate to post author
   gotoAuthor() {
-    this.router.navigateByUrl('/About#developer');
+    this.router.navigateByUrl('/about#developer');
   }
 
   // get blog post approx read time

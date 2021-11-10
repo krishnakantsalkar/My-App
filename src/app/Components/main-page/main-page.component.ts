@@ -402,7 +402,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
             buttons: [
               {
                 text: 'Movies & TV',
-                action: () => this.router.navigateByUrl('/Movies&TV'),
+                action: () => this.router.navigateByUrl('/movies&tv'),
                 bold: false,
               },
               {

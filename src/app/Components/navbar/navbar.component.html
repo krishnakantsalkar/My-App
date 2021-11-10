@@ -18,7 +18,7 @@
       style="transition: 0.4s ease-in-out"
     >
       <div class="nametag">
-        <a routerLink="/Home" title="Home">
+        <a routerLink="/home" title="home">
           <h4
             class="n1"
             id="top-panel-nametag"
@@ -76,7 +76,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              routerLink="/Blog/1"
+              routerLink="/blog/1"
               routerLinkActive="activeCss"
               >Blog</a
             >
@@ -84,7 +84,7 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              routerLink="/Movies&TV"
+              routerLink="/movies&tv"
               routerLinkActive="activeCss"
               >MoviesDB</a
             >
@@ -106,7 +106,7 @@
             >
           </li>
           <li class="nav-item" *ngIf="checkStatus">
-            <a class="nav-link" routerLink="/Notes" routerLinkActive="activeCss"
+            <a class="nav-link" routerLink="/notes" routerLinkActive="activeCss"
               >Notes</a
             >
           </li>
@@ -120,7 +120,7 @@
           </li>
 
           <li class="nav-item" *ngIf="!checkStatus">
-            <a class="nav-link" routerLink="/Login" routerLinkActive="activeCss"
+            <a class="nav-link" routerLink="/login" routerLinkActive="activeCss"
               >Login</a
             >
           </li>
@@ -137,16 +137,16 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/About" routerLinkActive="activeCss"
+            <a class="nav-link" routerLink="/about" routerLinkActive="activeCss"
               >About</a
             >
           </li>
           <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/Privacy">Privacy</a>
+            <a class="nav-link" routerLink="/privacy">privacy</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/Disclaimer">Disclaimer</a>
+            <a class="nav-link" routerLink="/disclaimer">disclaimer</a>
           </li> -->
           <li class="nav-item dropdown">
             <a
@@ -173,13 +173,13 @@
             >
               <a
                 class="dropdown-item"
-                routerLink="/Privacy"
+                routerLink="/privacy"
                 routerLinkActive="activeCss"
                 >Privacy Policy</a
               >
               <a
                 class="dropdown-item"
-                routerLink="/Disclaimer"
+                routerLink="/disclaimer"
                 routerLinkActive="activeCss"
                 >Disclaimer</a
               >

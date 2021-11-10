@@ -331,7 +331,7 @@
                   *ngFor="let result of searchResult"
                 >
                   <a
-                    routerLink="/Blog/{{ result.postNumber }}/{{
+                    routerLink="/blog/{{ result.postNumber }}/{{
                       result.postTitle
                     }}/{{ result._id }}"
                     [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
@@ -532,7 +532,7 @@
         </div>
         <br />
 
-        <!-- Blog data -->
+        <!-- blog data -->
 
         <!-- Skeleton Loading animation -->
         <div class="row" *ngIf="!data">
@@ -618,7 +618,7 @@
                     }"
                   >
                     <a
-                      routerLink="/Blog/{{ d.postNumber }}/{{ d.postTitle }}/{{
+                      routerLink="/blog/{{ d.postNumber }}/{{ d.postTitle }}/{{
                         d._id
                       }}"
                     >
@@ -653,7 +653,7 @@
                         "
                       >
                         <a
-                          routerLink="/Blog/{{ d.postNumber }}/{{
+                          routerLink="/blog/{{ d.postNumber }}/{{
                             d.postTitle
                           }}/{{ d._id }}"
                           *ngIf="data"
@@ -740,7 +740,7 @@
                       <!-- read more -->
                       <div class="card-footer">
                         <a
-                          routerLink="/Blog/{{ d.postNumber }}/{{
+                          routerLink="/blog/{{ d.postNumber }}/{{
                             d.postTitle
                           }}/{{ d._id }}"
                           style="text-decoration: none; cursor: pointer"
@@ -853,7 +853,7 @@
                         [ngStyle]="{
                           color: brightness ? 'red' : 'violet'
                         }"
-                        routerLink="/Blog/{{ d.postNumber }}/{{
+                        routerLink="/blog/{{ d.postNumber }}/{{
                           d.postTitle
                         }}/{{ d._id }}"
                         >#{{ d.postNumber }}: {{ d.postTitle }}</a
@@ -893,7 +893,7 @@
                         [ngStyle]="{
                           color: brightness ? 'red' : 'violet'
                         }"
-                        routerLink="/Blog/{{ d.postNumber }}/{{
+                        routerLink="/blog/{{ d.postNumber }}/{{
                           d.postTitle
                         }}/{{ d._id }}"
                         >#{{ d.postNumber }}: {{ d.postTitle }}</a
@@ -935,7 +935,7 @@
                     <span (click)="Search('counter strike')">#csgo</span>&nbsp;
                     <span (click)="Search('markdown')">#markdown</span>&nbsp;
 
-                    <span routerLink="/Movies&TV">#movieDB</span>&nbsp;
+                    <span routerLink="/movies&tv">#movieDB</span>&nbsp;
                   </strong>
                 </p>
               </div>

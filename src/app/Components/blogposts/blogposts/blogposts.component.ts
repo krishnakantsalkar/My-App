@@ -40,7 +40,7 @@ export class BlogpostsComponent implements OnInit {
   public prevPostData;
   public markdown;
   public previewMarkdown;
-  public pageId = '/Blog/:postNumber/:postTitle/:id';
+  public pageId = '/blog/:postNumber/:postTitle/:id';
 
   public likeSet: number = 0;
 
@@ -187,7 +187,7 @@ export class BlogpostsComponent implements OnInit {
     this.blogservice.deleteBlog(id).subscribe(
       (item) => {
         alert(item.message);
-        this.router.navigateByUrl('/Blog/1');
+        this.router.navigateByUrl('/blog/1');
       },
       (err) => {
         alert(err.message);
@@ -321,6 +321,6 @@ export class BlogpostsComponent implements OnInit {
 
   navigate(number, title, id) {
     this.data = undefined;
-    this.router.navigate([`/Blog/${number}/${title}/${id}`]);
+    this.router.navigate([`/blog/${number}/${title}/${id}`]);
   }
 }

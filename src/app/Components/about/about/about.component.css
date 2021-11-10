@@ -48,6 +48,7 @@ body {
   background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   margin-bottom: 60px;
   float: left;
   position: relative;

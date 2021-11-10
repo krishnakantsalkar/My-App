@@ -116,7 +116,7 @@ export class AboutComponent implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: 'About' });
     this.meta.updateTag({
       property: 'og:url',
-      content: 'https://krishnakantsalkar.in/About',
+      content: 'https://krishnakantsalkar.in/about',
     });
     this.meta.updateTag({
       property: 'og:site_name',

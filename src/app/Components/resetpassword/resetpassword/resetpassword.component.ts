@@ -26,11 +26,10 @@ export class ResetpasswordComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item => {
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     this.showpass = false;
 
@@ -44,7 +43,6 @@ export class ResetpasswordComponent implements OnInit {
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
-
   }
 
   Reset(data: Iforgot) {
@@ -70,14 +68,14 @@ export class ResetpasswordComponent implements OnInit {
     );
   }
   logintoHome() {
-    this.router.navigateByUrl('/Login');
+    this.router.navigateByUrl('/login');
   }
 
   off() {
     var elemnt = document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
-    this.router.navigateByUrl('/Login');
+    this.router.navigateByUrl('/login');
   }
 
   showPass() {

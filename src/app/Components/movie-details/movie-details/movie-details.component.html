@@ -41,7 +41,7 @@
             <button
               class="btn btn-info"
               style="float: right"
-              routerLink="/Movies&TV"
+              routerLink="/movies&tv"
             >
               <i class="fas fa-arrow-up"></i> List
             </button>
@@ -200,7 +200,7 @@
                       *ngIf="movieDetails.homepage"
                       style="background-color: cornsilk; color: black"
                     >
-                      Home Page
+                      home Page
                     </a>
                   </div>
 
@@ -536,7 +536,7 @@
                   <div class="card" id="similarsCard">
                     <a
                       *ngIf="similars.original_title"
-                      routerLink="/Movies&TV/Movie/{{ similars.title }}/{{
+                      routerLink="/movies&tv/Movie/{{ similars.title }}/{{
                         similars.id
                       }}"
                     >
@@ -549,7 +549,7 @@
                     </a>
                     <a
                       *ngIf="similars.name"
-                      routerLink="/Movies&TV/TV/{{ similars.name }}/{{
+                      routerLink="/movies&tv/TV/{{ similars.name }}/{{
                         similars.id
                       }}"
                     >
@@ -578,7 +578,7 @@
                         color: brightness ? 'black' : 'white'
                       }"
                       *ngIf="similars.original_title"
-                      routerLink="/Movies&TV/Movie/{{ similars.title }}/{{
+                      routerLink="/movies&tv/Movie/{{ similars.title }}/{{
                         similars.id
                       }}"
                     >
@@ -591,7 +591,7 @@
                           : ' rgb(41, 42, 45)',
                         color: brightness ? 'black' : 'white'
                       }"
-                      routerLink="/Movies&TV/TV/{{ similars.name }}/{{
+                      routerLink="/movies&tv/TV/{{ similars.name }}/{{
                         similars.id
                       }}"
                       *ngIf="similars.name"

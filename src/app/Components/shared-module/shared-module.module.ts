@@ -13,7 +13,7 @@ import { QuillModule } from 'ngx-quill';
 import { CardModule } from 'primeng/card';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
-
+import { RadioButtonModule } from 'primeng/radiobutton';
 // Shared module
 
 @NgModule({
@@ -32,6 +32,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     CardModule,
     TabViewModule,
     CheckboxModule,
+    RadioButtonModule,
   ],
   exports: [
     FooterComponent,
@@ -45,6 +46,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     CardModule,
     TabViewModule,
     CheckboxModule,
+    RadioButtonModule,
   ],
 })
 export class SharedModuleModule {}

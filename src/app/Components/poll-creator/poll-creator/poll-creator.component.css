@@ -1,0 +1,26 @@
+.main {
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 40px;
+}
+
+.title {
+  text-align: center;
+}
+
+.new_poll_form {
+  margin-top: 25px;
+}
+
+.add_btn {
+  display: flex;
+}
+
+.options_row {
+  margin: 8px 0;
+}
+
+.options_row .col-1 {
+  text-align: center;
+  align-items: center;
+}

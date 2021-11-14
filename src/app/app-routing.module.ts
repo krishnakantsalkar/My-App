@@ -128,6 +128,14 @@ const routes: Routes = [
       ),
     pathMatch: 'full',
   },
+  // poll generator route
+  {
+    path: 'polls',
+    loadChildren: () =>
+      import('./Components/poll-creator/poll-creator.module').then(
+        (m) => m.PollCreatorModule
+      ),
+  },
   //wildcard route
   {
     path: '**',

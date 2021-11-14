@@ -1,0 +1,92 @@
+<div
+  class="main"
+  [ngStyle]="{
+    'background-color': brightness ? 'rgb(223, 223, 223)' : ' rgb(60, 60, 61)',
+    color: brightness ? 'black' : 'rgb(129,129,129)'
+  }"
+>
+  <div class="container">
+    <div class="title">
+      <h3>Polls Generator</h3>
+
+      <p>* you will see your generated polls here</p>
+    </div>
+
+    <div class="create_poll_btn">
+      <button class="btn btn-primary" (click)="newPoll()">New Poll</button>
+    </div>
+
+    <div class="poll_list" *ngIf="!newPollSwitch">
+      <div class="polls" *ngFor="let polls of pollList">
+        <div class="card">
+          <div class="card-title">{{ polls.pollName }}</div>
+          <div class="card-body">
+            {{ polls.pollDescription }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new_poll_form" *ngIf="newPollSwitch">
+      <div class="form-row">
+        <label for="">Poll Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="poll name"
+          [(ngModel)]="pollName"
+        />
+      </div>
+      <br />
+      <div class="form-row">
+        <label for="">Poll Description</label>
+        <textarea
+          type="text"
+          class="form-control"
+          rows="7"
+          placeholder="poll description"
+          [(ngModel)]="pollDescription"
+        ></textarea>
+      </div>
+      <br />
+      <label for="">Poll Options</label>
+
+      <div class="form-row">
+        <button
+          class="btn btn-primary"
+          (click)="addOption()"
+          [disabled]="pollOptions.length >= 10"
+        >
+          New Option
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <br />
+      <div
+        class="form-row options_row"
+        *ngFor="let options of pollOptions; let i = index"
+      >
+        <div class="col-11">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="poll option"
+            [(ngModel)]="options.option"
+          />
+        </div>
+        <div class="col-1">
+          <i
+            class="fas fa-times-circle"
+            style="cursor: pointer"
+            *ngIf="i > 0"
+            (click)="deleteOption(i)"
+          ></i>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row justify-content-end">
+        <button class="btn btn-info" (click)="savePoll()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

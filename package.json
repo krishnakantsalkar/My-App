@@ -6,7 +6,8 @@
     "dev:ssr": "ng run My-App:serve-ssr",
     "serve:ssr": "node dist/My-App/server/main.js",
     "build:ssr": "ng build && ng run My-App:server",
-    "prerender": "ng run My-App:prerender"
+    "prerender": "ng run My-App:prerender",
+    "b-d": "ng build --aot --configuration production && firebase deploy"
   },
   "private": true,
   "dependencies": {

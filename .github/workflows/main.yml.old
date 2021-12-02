@@ -1,0 +1,37 @@
+# name: 🛠 Build TheArsonist & Deploy to Hosting
+
+# on: [push]
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: ➡ Checkout
+#         uses: actions/checkout@v2.3.2
+
+#       - name: ➡ Use Node.js 14.x
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: "14"
+
+#       - name: 🔄 Preparing & Building TheArsonist..
+#         run: |
+#           npm install
+#           npm run build
+
+#       - name: 📂 FTP:- Syncing files
+#         uses: SamKirkland/FTP-Deploy-Action@4.0.0
+#         with:
+#           server: ftpupload.net
+#           username: epiz_29833212
+#           password: ${{ secrets.ftp_password }}
+#           exclude: .git*
+#             - .git*/
+#             -  /.git*/
+#             - node_modules/
+#             - node_modules/**/*
+#             - dist/My-App/*.map
+#           server-dir: htdocs/
+#           local-dir: ./dist/My-App/
+#           dangerous-clean-slate: true

@@ -10,22 +10,22 @@ import { Iforgot } from '../model/forgotPass';
 @Injectable({ providedIn: 'root' })
 export class userloginservices {
   public loginAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/users/login';
+    'https://my-app-backend-node.vercel.app/api/users/login';
 
   public profileAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/users/getUsers/';
+    'https://my-app-backend-node.vercel.app/api/users/getUsers/';
 
   public profilePicAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/users/editProfImg/';
+    'https://my-app-backend-node.vercel.app/api/users/editProfImg/';
 
   public forgotPassAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/reset/resetMailer';
+    'https://my-app-backend-node.vercel.app/api/reset/resetMailer';
 
   public resetPassAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/reset/forgotPassword/';
+    'https://my-app-backend-node.vercel.app/api/reset/forgotPassword/';
 
   public verifyCaptcha: string =
-    'https://mybackend-1911.herokuapp.com/api/users/verifyCaptcha';
+    'https://my-app-backend-node.vercel.app/api/users/verifyCaptcha';
 
   public header: HttpHeaders;
   public loggedIn: BehaviorSubject<any>;

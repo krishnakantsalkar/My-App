@@ -11,33 +11,33 @@ export class blogpostservice {
   public header: HttpHeaders;
   public blogImgHeader: HttpHeaders;
   public blogAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/Blog/';
+    'https://my-app-backend-node.vercel.app/api/blog/Blog/';
 
   public testPage: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/Blog/page/';
+    'https://my-app-backend-node.vercel.app/api/blog/Blog/page/';
 
   public addBlogApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/AddBlog';
+    'https://my-app-backend-node.vercel.app/api/blog/AddBlog';
 
   public uploadApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/blogImage';
+    'https://my-app-backend-node.vercel.app/api/blog/blogImage';
 
   public updateBlogApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/updateBlog/';
+    'https://my-app-backend-node.vercel.app/api/blog/updateBlog/';
 
   public deleteBlogApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/deleteBlog/';
+    'https://my-app-backend-node.vercel.app/api/blog/deleteBlog/';
 
   public telegrampostApi: string = ''; // removed bot token for github upload
 
   public searchApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/search';
+    'https://my-app-backend-node.vercel.app/api/blog/search';
 
   public postViewApi: string =
-    'https://mybackend-1911.herokuapp.com/api/blog/postView/';
+    'https://my-app-backend-node.vercel.app/api/blog/postView/';
 
   public newsLetterApi: string =
-    'https://mybackend-1911.herokuapp.com/api/subscribe/newsLetterSub/';
+    'https://my-app-backend-node.vercel.app/api/subscribe/newsLetterSub/';
 
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({

@@ -13,50 +13,50 @@ export class noteService {
 
   getNotes(profileId) {
     return this.http.get<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/getNotes/${profileId}`
+      `https://my-app-backend-node.vercel.app/api/notes/getNotes/${profileId}`
     );
   }
   postNote(data) {
     return this.http.post<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/postNote`,
+      `https://my-app-backend-node.vercel.app/api/notes/postNote`,
       data
     );
   }
   editNote(id, data) {
     return this.http.put<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/editNote/${id}`,
+      `https://my-app-backend-node.vercel.app/api/notes/editNote/${id}`,
       data,
       { headers: this.header }
     );
   }
   deleteNote(id) {
     return this.http.delete<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/deleteNote/${id}`,
+      `https://my-app-backend-node.vercel.app/api/notes/deleteNote/${id}`,
       { headers: this.header }
     );
   }
 
   getTodo(profileId) {
     return this.http.get<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/getTodo/${profileId}`
+      `https://my-app-backend-node.vercel.app/api/notes/getTodo/${profileId}`
     );
   }
   postTodo(data) {
     return this.http.post<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/postTodo`,
+      `https://my-app-backend-node.vercel.app/api/notes/postTodo`,
       data
     );
   }
   editTodo(id, data) {
     return this.http.put<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/editTodo/${id}`,
+      `https://my-app-backend-node.vercel.app/api/notes/editTodo/${id}`,
       data,
       { headers: this.header }
     );
   }
   deleteTodo(id) {
     return this.http.delete<any>(
-      `https://mybackend-1911.herokuapp.com/api/notes/deleteTodo/${id}`,
+      `https://my-app-backend-node.vercel.app/api/notes/deleteTodo/${id}`,
       { headers: this.header }
     );
   }

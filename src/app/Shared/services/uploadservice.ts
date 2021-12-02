@@ -6,7 +6,7 @@ export class uploadservices {
   public header: HttpHeaders;
 
   public uploadApi: string =
-    'https://mybackend-1911.herokuapp.com/api/file/fileUpload';
+    'https://my-app-backend-node.vercel.app/api/file/fileUpload';
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }

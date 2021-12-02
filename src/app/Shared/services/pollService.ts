@@ -7,30 +7,30 @@ export class pollService {
 
   getPolls(obj) {
     return this.http.post<any>(
-      `https://mybackend-1911.herokuapp.com/api/polls/getPolls`,
+      `https://my-app-backend-node.vercel.app/api/polls/getPolls`,
       obj
     );
   }
   getPollById(id) {
     return this.http.get<any>(
-      `https://mybackend-1911.herokuapp.com/api/polls/getPoll/${id}`
+      `https://my-app-backend-node.vercel.app/api/polls/getPoll/${id}`
     );
   }
   newPoll(obj) {
     return this.http.post<any>(
-      `https://mybackend-1911.herokuapp.com/api/polls/createPoll`,
+      `https://my-app-backend-node.vercel.app/api/polls/createPoll`,
       obj
     );
   }
   updatePoll(obj, id) {
     return this.http.put<any>(
-      `https://mybackend-1911.herokuapp.com/api/polls/updatePoll/${id}`,
+      `https://my-app-backend-node.vercel.app/api/polls/updatePoll/${id}`,
       obj
     );
   }
   deletePoll(id) {
     return this.http.post<any>(
-      `https://mybackend-1911.herokuapp.com/api/polls/deletePoll/${id}`,
+      `https://my-app-backend-node.vercel.app/api/polls/deletePoll/${id}`,
       {}
     );
   }

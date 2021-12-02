@@ -7,7 +7,7 @@ import { IcontactUs } from '../model/contactUsmodel';
 export class contactService {
   public header: HttpHeaders;
   public contactAPI: string =
-    'https://mybackend-1911.herokuapp.com/api/contact/contactUs';
+    'https://my-app-backend-node.vercel.app/api/contact/contactUs';
   constructor(private http: HttpClient) {
     {
       this.header = new HttpHeaders({ 'Content-Type': 'application/json' });

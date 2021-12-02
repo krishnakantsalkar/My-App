@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
     private cookies: CookieService,
     private logonServices: userloginservices,
     private router: Router,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnInit(): void {
@@ -30,18 +32,20 @@ export class NavbarComponent implements OnInit {
     });
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item=>{
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
     // animate navbar on scroll
 
-    let mediaQ = window.matchMedia('(max-width: 600px)');
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      let mediaQ = window.matchMedia('(max-width: 600px)');
 
-    window.onscroll = function () {
-      scrollFunction();
-      scrollFunctionMedia(mediaQ);
-    };
-
+      window.onscroll = function () {
+        scrollFunction();
+        scrollFunctionMedia(mediaQ);
+      };
+    }
     function scrollFunction() {
       if (
         document.body.scrollTop > 50 ||
@@ -75,18 +79,20 @@ export class NavbarComponent implements OnInit {
     }
 
     // go to top btn show/hide
-    $(window).on('scroll', () => {
-      if ($(window).scrollTop() > 50) {
-        $('#myBtn').css('bottom', '15px');
-      } else {
-        $('#myBtn').css('bottom', '-50px');
-      }
-    });
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      $(window).on('scroll', () => {
+        if ($(window).scrollTop() > 50) {
+          $('#myBtn').css('bottom', '15px');
+        } else {
+          $('#myBtn').css('bottom', '-50px');
+        }
+      });
+    }
   }
-
   // set global Light/Dark mode
   mode() {
-    this.defaultModeService.switchMode()
+    this.defaultModeService.switchMode();
   }
 
   // logout method

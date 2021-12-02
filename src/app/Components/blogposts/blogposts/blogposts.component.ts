@@ -81,7 +81,7 @@ export class BlogpostsComponent implements OnInit {
     this.checkUserPresent();
 
     //set page title
-    this.titleService.setTitle(this.pageTitle);
+    // this.titleService.setTitle(this.pageTitle);
 
     // AOS animation
     AOS.init({
@@ -111,6 +111,7 @@ export class BlogpostsComponent implements OnInit {
 
         this.meta.updateTag({ property: 'og:height', content: '630' });
 
+        this.titleService.setTitle(this.data.postTitle);
         // like/dislike method call
         this.defaultLikes();
 

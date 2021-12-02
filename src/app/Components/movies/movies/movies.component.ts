@@ -128,7 +128,7 @@ export class MoviesComponent implements OnInit {
     });
 
     // remove active state from default button
-    $(document).ready(() => {
+    $(() => {
       $('#genreButtons').hide();
 
       // hide trending content on page load

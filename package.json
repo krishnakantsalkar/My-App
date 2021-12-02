@@ -2,7 +2,11 @@
   "name": "my-app",
   "version": "0.0.0",
   "scripts": {
-    "build": "ng build --aot --configuration production"
+    "build": "ng build --aot --configuration production",
+    "dev:ssr": "ng run My-App:serve-ssr",
+    "serve:ssr": "node dist/My-App/server/main.js",
+    "build:ssr": "ng build && ng run My-App:server",
+    "prerender": "ng run My-App:prerender"
   },
   "private": true,
   "dependencies": {
@@ -15,8 +19,10 @@
     "@angular/forms": "~13.0.0",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
+    "@angular/platform-server": "~13.0.0",
     "@angular/router": "~13.0.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@nguniversal/express-engine": "^13.0.0",
     "angular-cli-ghpages": "^0.6.2",
     "angular-datatables": "^10.0.0",
     "aos": "^2.3.4",
@@ -26,6 +32,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
+    "localstorage-polyfill": "^1.0.1",
     "moment": "^2.29.1",
     "ng-snotify": "^9.0.1",
     "ngx-captcha": "^8.0.1",
@@ -52,7 +59,9 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.0.1",
     "@angular/language-service": "~13.0.0",
+    "@nguniversal/builders": "^13.0.0",
     "@types/datatables.net": "^1.10.19",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/jquery": "^3.5.1",

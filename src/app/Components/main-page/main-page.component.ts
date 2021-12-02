@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +17,7 @@ import { Jquery } from 'typings';
 import { Title, Meta } from '@angular/platform-browser';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
@@ -58,29 +65,33 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private titleService: Title,
     private snotifyService: SnotifyService,
     private defaultModeService: modeService,
-    private meta: Meta
+    private meta: Meta,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
     // switch wallpaper method call
-    // $(document).ready(() => {
+    // $(() => {
     // });
   }
 
   ngOnInit(): void {
     // call methods
-    let session = sessionStorage.getItem('session');
-    if (!session) {
-      $('#MainPage').css({ 'max-height': '100vh', overflow: 'hidden' });
-    } else {
-      $('#preloader').css({
-        top: '-100vh',
-      });
-      $('.preloaderBg').css({
-        display: 'none',
-      });
-      $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
-    }
-    sessionStorage.setItem('session', 'onGoing');
 
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      let session = sessionStorage.getItem('session');
+      if (!session) {
+        $('#MainPage').css({ 'max-height': '100vh', overflow: 'hidden' });
+      } else {
+        $('#preloader').css({
+          top: '-100vh',
+        });
+        $('.preloaderBg').css({
+          display: 'none',
+        });
+        $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
+      }
+      sessionStorage.setItem('session', 'onGoing');
+    }
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });
     this.meta.updateTag({
@@ -214,7 +225,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     }
 
     // disable brightness toggle
-    $(document).ready(() => {
+    $(() => {
       $('.modeLD a').css('pointer-events', 'all');
       $('.modeLD a').css('opacity', 1);
     });
@@ -388,37 +399,41 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show notification to user
   async showNotif() {
-    setTimeout(() => {
-      if (!sessionStorage.getItem('mainPageToast')) {
-        this.snotifyService.info(
-          'Welcome User, Search for your fav Movies & TV shows!',
-          'TheArsonist',
-          {
-            timeout: 12000,
-            showProgressBar: true,
-            closeOnClick: false,
-            pauseOnHover: true,
-            icon: 'assets/images/mylogo.jpg',
-            buttons: [
-              {
-                text: 'Movies & TV',
-                action: () => this.router.navigateByUrl('/movies&tv'),
-                bold: false,
-              },
-              {
-                text: 'Close',
-                action: (toast) => {
-                  this.snotifyService.remove(toast.id);
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    } else {
+      setTimeout(() => {
+        if (!sessionStorage.getItem('mainPageToast')) {
+          this.snotifyService.info(
+            'Welcome User, Search for your fav Movies & TV shows!',
+            'TheArsonist',
+            {
+              timeout: 12000,
+              showProgressBar: true,
+              closeOnClick: false,
+              pauseOnHover: true,
+              icon: 'assets/images/mylogo.jpg',
+              buttons: [
+                {
+                  text: 'Movies & TV',
+                  action: () => this.router.navigateByUrl('/movies&tv'),
+                  bold: false,
                 },
-                bold: true,
-              },
-            ],
-            position: SnotifyPosition.rightBottom,
-          }
-        );
-      }
-      sessionStorage.setItem('mainPageToast', 'notified');
-    }, 8000);
+                {
+                  text: 'Close',
+                  action: (toast) => {
+                    this.snotifyService.remove(toast.id);
+                  },
+                  bold: true,
+                },
+              ],
+              position: SnotifyPosition.rightBottom,
+            }
+          );
+        }
+        sessionStorage.setItem('mainPageToast', 'notified');
+      }, 8000);
+    }
   }
 
   // show wallpaper from wallpaperPref

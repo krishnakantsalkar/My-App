@@ -21,6 +21,16 @@
     >
       <!-- movie details container -->
       <div class="container">
+        <!-- disclaimer -->
+        <div class="disclaimerInfo">
+          <div class="alert alert-warning">
+            <h6>
+              <i class="fas fa-info-circle"></i> Content displayed for
+              information purposes. No downloads etc. will ever be available 😛
+            </h6>
+          </div>
+        </div>
+
         <div
           class="card"
           [ngStyle]="{
@@ -200,11 +210,44 @@
                       *ngIf="movieDetails.homepage"
                       style="background-color: cornsilk; color: black"
                     >
-                      home Page
+                      Home Page
                     </a>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.budget"
+                      style="background-color: darksalmon; color: black"
+                    >
+                      Budget: {{ movieDetails.budget | currency: "USD" }}
+                    </button>
+                    <button
+                      class="btn"
+                      *ngIf="movieDetails.revenue"
+                      style="background-color: darksalmon; color: black"
+                    >
+                      Revenue: {{ movieDetails.revenue | currency: "USD" }}
+                    </button>
                   </div>
 
+                  <div
+                    class="production_companies"
+                    *ngIf="movieDetails.production_companies"
+                  >
+                    <div
+                      class="companies_details"
+                      *ngFor="
+                        let companies of movieDetails.production_companies
+                      "
+                    >
+                      <img
+                        style="height: 40px; width: auto; margin: 12px"
+                        src="https://image.tmdb.org/t/p/w300/{{
+                          companies.logo_path
+                        }}"
+                      />
+                    </div>
+                  </div>
                   <br />
+
                   <!-- movie credits area -->
                   <div class="movieCreditsArea" *ngIf="movieCredits">
                     <div
@@ -226,7 +269,7 @@
                         >
                           <div class="videoFrame">
                             <h4>Trailers:</h4>
-                            <iframe
+                            <!-- <iframe
                               *ngIf="trailerUrl"
                               id="myIframe"
                               [src]="trailerUrl | safe"
@@ -240,7 +283,22 @@
                               *ngIf="trailerUrl3"
                               id="myIframe3"
                               [src]="trailerUrl3 | safe"
-                            ></iframe>
+                            ></iframe> -->
+                            <div
+                              class="trailers"
+                              *ngFor="
+                                let trailer of this.contentTrailers.results
+                                  | slice: 0:4
+                              "
+                            >
+                              <iframe
+                                id="myIframe"
+                                [src]="
+                                  'https://www.youtube-nocookie.com/embed/' +
+                                    trailer.key | safe
+                                "
+                              ></iframe>
+                            </div>
                           </div>
                           <br />
                         </div>
@@ -617,18 +675,6 @@
           </div>
         </div>
 
-        <!-- disclaimer & credits  -->
-        <div class="disclaimerInfo" style="margin-top: 80px">
-          <div class="alert alert-danger">
-            <h6>
-              <i class="fas fa-info-circle"></i> Disclaimer: Displayed data on
-              this website is for Information purpose only. We
-              <strong>don't</strong>
-              redirect/provide links to any illegal download of movies/tv shows
-              etc.
-            </h6>
-          </div>
-        </div>
         <div class="creditsInfo" style="margin-top: 20px">
           <div class="alert alert-success">
             <img

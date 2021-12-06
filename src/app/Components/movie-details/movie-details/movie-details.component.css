@@ -231,6 +231,16 @@ div.videoFrame iframe {
   background-color: rgb(41, 42, 45);
 }
 
+.production_companies {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.companies_details {
+  display: inline-block;
+}
+
 @media only screen and (max-width: 600px) {
   .movieDetails {
     padding-top: 100px;

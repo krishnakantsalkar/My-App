@@ -26,7 +26,7 @@ export class MovieDetailsComponent implements OnInit {
   public trailerUrl2;
   public trailerUrl3;
 
-  public pageTitle='Movies&Tv'
+  public pageTitle = 'Movies&Tv';
   constructor(
     private movieService: MovieServices,
     private router: Router,
@@ -40,14 +40,14 @@ export class MovieDetailsComponent implements OnInit {
     // method calls
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item => {
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     this.epMenu();
 
     //set page title
-    this.titleService.setTitle(this.pageTitle)
+    this.titleService.setTitle(this.pageTitle);
 
     // Activated routing
     this.AR.params.subscribe((item) => {
@@ -62,6 +62,7 @@ export class MovieDetailsComponent implements OnInit {
       // get movie data by id
       this.movieService.getMoviesById(id, this.listType).subscribe((item) => {
         this.movieDetails = item;
+        console.log(this.movieDetails);
         this.tvSeasonsTotal = this.movieDetails.number_of_seasons;
       });
       // get movie review by id
@@ -74,7 +75,7 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService
         .getSimilarMoviesTV(id, this.listType)
         .subscribe((similar) => {
-          this.movieSimilars = null
+          this.movieSimilars = null;
           this.movieSimilars = similar;
         });
       // get credits of current movie by id
@@ -94,7 +95,7 @@ export class MovieDetailsComponent implements OnInit {
           this.contentTrailers = trailers;
           this.saveTrailerLinks();
         });
-        this.eps=null
+      this.eps = null;
     });
   }
 
@@ -109,7 +110,6 @@ export class MovieDetailsComponent implements OnInit {
       this.trailerUrl3 = `https://www.youtube-nocookie.com/embed/${this.contentTrailers.results[2].key}`;
     }
   }
-
 
   // back to page
   backToPage() {

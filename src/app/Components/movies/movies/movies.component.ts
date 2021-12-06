@@ -14,7 +14,7 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 export class MoviesComponent implements OnInit {
   public brightness: boolean; // light/dark mode
   public movieData;
-  public pageNo;
+  public pageNo: number = 1;
   public currentList; // save current list in variable
   public currentListType;
   public searchResults;
@@ -80,6 +80,8 @@ export class MoviesComponent implements OnInit {
   // trending movies/tv
   public trendingMovies;
   public trendingTv;
+  pageSize: number;
+  genrePageSize: number;
 
   constructor(
     private movieService: MovieServices,
@@ -137,38 +139,44 @@ export class MoviesComponent implements OnInit {
       $('#TcloseBtn').hide();
     });
 
+    // show/hide Trending movies/tv
+    $('#Tmovies').on('click', () => {});
+
+    $('#TcloseBtn').on('click', () => {});
+  }
+
+  // movie api usage
+
+  openTrendingMovies() {
     // get trending movies and tv series
     this.movieService.getTrendingMedia('movie').subscribe((item) => {
       this.trendingMovies = item;
-    });
-
-    this.movieService.getTrendingMedia('tv').subscribe((item) => {
-      this.trendingTv = item;
-    });
-
-    // show/hide Trending movies/tv
-    $('#Tmovies').on('click', () => {
       $('#TmoviesData').show(300);
       $('#TseriesData').hide();
       $('#TcloseBtn').show(300);
       $('#TcloseBtn').animate({ rotate: 180, transition: '1s ease' });
     });
+  }
 
-    $('#Tseries').on('click', () => {
-      $('#TseriesData').show(300);
-      $('#TmoviesData').hide();
-      $('#TcloseBtn').show(300);
-    });
+  openTrendingSeries() {
+    this.movieService.getTrendingMedia('tv').subscribe((item) => {
+      this.trendingTv = item;
 
-    $('#TcloseBtn').on('click', () => {
-      $('#TseriesData').hide(300);
-      $('#TmoviesData').hide(300);
-      $('#TcloseBtn').hide(300);
+      $('#Tseries').on('click', () => {
+        $('#TseriesData').show(300);
+        $('#TmoviesData').hide();
+        $('#TcloseBtn').show(300);
+      });
     });
   }
 
-  // movie api usage
-
+  closeTrending() {
+    this.trendingMovies = undefined;
+    this.trendingTv = undefined;
+    $('#TseriesData').hide(300);
+    $('#TmoviesData').hide(300);
+    $('#TcloseBtn').hide(300);
+  }
   getTheLists(pageNo, listType, listName) {
     this.currentList = listName;
     this.currentListType = listType;
@@ -178,6 +186,8 @@ export class MoviesComponent implements OnInit {
       .getTheList(pageNo, listType, listName)
       .subscribe((item) => {
         this.movieData = item.results;
+
+        console.log(item.results);
         this.router.navigateByUrl('/movies&tv').then(() => {
           let elemnt = document.getElementById('movieList');
           if (elemnt) {
@@ -186,6 +196,12 @@ export class MoviesComponent implements OnInit {
         });
         this.pageNo = pageNo;
         $('#MovieBox').prop('checked', true);
+      });
+
+    this.movieService
+      .getTheListAll(pageNo, listType, listName)
+      .subscribe((item1) => {
+        this.pageSize = item1.total_pages;
       });
   }
 
@@ -227,7 +243,12 @@ export class MoviesComponent implements OnInit {
     }
     if (!this.genreSwitch) {
       $('#genreButtons').hide(300);
+      this.currentGenre = undefined;
+      this.genreData = undefined;
     }
+    $('#TmoviesData').hide();
+    $('#TseriesData').hide();
+    $('#TcloseBtn').hide();
   }
 
   // discover by genre API method
@@ -255,6 +276,12 @@ export class MoviesComponent implements OnInit {
           }
         });
         this.pageNo = pageNo;
+      });
+
+    this.movieService
+      .discoverByListIdAll(pageNo, listType, genreId)
+      .subscribe((item) => {
+        this.genrePageSize = item.total_pages;
       });
   }
 }

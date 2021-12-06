@@ -27,7 +27,22 @@
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
         >
           <!-- top title -->
-          <h1>Here's a List of 100 Latest & Popular Movies & TV shows!</h1>
+          <h1>
+            Welcome to the Media Directory!
+            <br />
+            Discover your favourite or upcoming movies & tv shows!
+          </h1>
+
+          <!-- disclaimer -->
+          <div class="disclaimerInfo">
+            <div class="alert alert-warning">
+              <h6>
+                <i class="fas fa-info-circle"></i> Content displayed for
+                information purposes. No downloads etc. will ever be available
+                😛
+              </h6>
+            </div>
+          </div>
 
           <!-- navigation buttons to call diff APIs -->
           <div class="listButtons">
@@ -469,7 +484,7 @@
           <!-- reload page btn to hide genre-->
           <button
             class="btn btn-warning"
-            onclick="location.reload()"
+            (click)="genreMenu(); getTheLists(1, 'movie', 'now_playing')"
             style="float: right"
           >
             Clear Genre
@@ -515,7 +530,7 @@
                     <h4><i class="fas fa-star"></i></h4>
                   </div>
                   <h4>{{ genre.vote_average }} / 10</h4>
-                  <h4>[{{ genre.original_language }}]</h4>
+                  <h4>[{{ genre.original_language | uppercase }}]</h4>
                   <div class="text1" routerLink="/Movies/{{ genre.id }}">
                     view details
                   </div>
@@ -557,7 +572,7 @@
           <!-- genre pagination implementation -->
           <!-- adapt code for genre -->
           <div class="pagebtn" *ngIf="genreData">
-            <button
+            <!-- <button
               class="btn"
               [disabled]="pageNo == 1"
               [ngStyle]="{
@@ -612,6 +627,95 @@
               (click)="discoverByGenre(5, currentListType, currentGenreId)"
             >
               5
+            </button> -->
+            <button
+              class="btn navBtn"
+              [disabled]="pageNo == 1"
+              (click)="
+                discoverByGenre(pageNo - 1, currentListType, currentGenreId)
+              "
+            >
+              <span class="material-icons-outlined"> keyboard_arrow_left </span>
+            </button>
+            <div
+              class="pages"
+              *ngFor="
+                let pg of [].constructor(genrePageSize) | slice: 0:5;
+                let i = index
+              "
+            >
+              <button
+                class="btn"
+                *ngIf="pageNo > 1 && i == 0"
+                [disabled]="pageNo == 1"
+                [ngStyle]="{
+                  'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                  color: brightness ? 'white' : 'black'
+                }"
+                (click)="discoverByGenre(1, currentListType, currentGenreId)"
+              >
+                1
+              </button>
+              <span *ngIf="pageNo > 2 && i == 0">...</span>
+              <button
+                class="btn"
+                [disabled]="pageNo == pageNo + i"
+                [ngStyle]="{
+                  'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                  color: brightness ? 'white' : 'black'
+                }"
+                (click)="
+                  discoverByGenre(pageNo + i, currentListType, currentGenreId)
+                "
+              >
+                {{ pageNo + i }}
+              </button>
+            </div>
+            ....
+            <button
+              class="btn"
+              *ngIf="pageNo + 20 <= genrePageSize; else remaining"
+              [disabled]="pageNo == pageNo + 20"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                color: brightness ? 'white' : 'black'
+              }"
+              (click)="
+                discoverByGenre(pageNo + 20, currentListType, currentGenreId)
+              "
+            >
+              {{ pageNo + 20 }}
+            </button>
+
+            <ng-template #remaining>
+              <button
+                class="btn"
+                [disabled]="pageNo == genrePageSize"
+                [ngStyle]="{
+                  'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                  color: brightness ? 'white' : 'black'
+                }"
+                (click)="
+                  discoverByGenre(
+                    genrePageSize,
+                    currentListType,
+                    currentGenreId
+                  )
+                "
+              >
+                {{ genrePageSize }}
+              </button></ng-template
+            >
+            <button
+              class="btn navBtn"
+              [disabled]="pageNo == genrePageSize"
+              (click)="
+                discoverByGenre(pageNo + 1, currentListType, currentGenreId)
+              "
+            >
+              <span class="material-icons-outlined">
+                keyboard_arrow_right
+              </span>
             </button>
           </div>
         </div>
@@ -628,12 +732,28 @@
         <!-- trending section -->
 
         <!-- trending show/hide buttons -->
-        <div class="showTrendingBtnGroup">
-          <button class="btn btn-dark" id="Tmovies">Trending Movies</button>
-          <button class="btn btn-dark" style="margin-left: 10px" id="Tseries">
+        <div class="showTrendingBtnGroup" *ngIf="movieData && !genreData">
+          <button
+            class="btn btn-dark"
+            id="Tmovies"
+            (click)="openTrendingMovies()"
+          >
+            Trending Movies
+          </button>
+          <button
+            class="btn btn-dark"
+            style="margin-left: 10px"
+            id="Tseries"
+            (click)="openTrendingSeries()"
+          >
             Trending Tv Series
           </button>
-          <button class="btn" style="margin-left: 10px" id="TcloseBtn">
+          <button
+            class="btn"
+            style="margin-left: 10px"
+            id="TcloseBtn"
+            (click)="closeTrending()"
+          >
             <i class="fas fa-times-circle"></i>
           </button>
           <br />
@@ -642,7 +762,7 @@
 
         <!-- trending movies section -->
         <div class="trendingMedia">
-          <div id="TmoviesData">
+          <div id="TmoviesData" *ngIf="trendingMovies">
             <h3>This week's Trending Movies</h3>
             <div class="trendingContent" *ngIf="trendingMovies">
               <div
@@ -699,7 +819,7 @@
           </div>
 
           <!-- trending tv series section -->
-          <div id="TseriesData">
+          <div id="TseriesData" *ngIf="trendingTv">
             <h3>This week's Trending TV series</h3>
             <div class="trendingContent" *ngIf="trendingTv">
               <div
@@ -760,7 +880,11 @@
           <br />
         </div>
 
-        <div class="mainRow" style="text-align: center">
+        <div
+          class="mainRow"
+          style="text-align: center"
+          *ngIf="movieData && !genreData"
+        >
           <!-- main collection begins -->
           <h5>Colección:-</h5>
         </div>
@@ -793,10 +917,17 @@
               <!-- on hover text -->
               <div class="middle">
                 <div class="text">
-                  <h4><i class="fas fa-star"></i></h4>
+                  <h4>
+                    <i
+                      class="fas fa-star"
+                      [ngStyle]="{
+                        color: brightness ? 'red' : 'violet'
+                      }"
+                    ></i>
+                  </h4>
                 </div>
                 <h4>{{ movies.vote_average }} / 10</h4>
-                <h4>[{{ movies.original_language }}]</h4>
+                <h4>[{{ movies.original_language | uppercase }}]</h4>
                 <div class="text1" routerLink="/Movies/{{ movies.id }}">
                   view details
                 </div>
@@ -835,7 +966,7 @@
 
         <!-- hide main pagination if genre section present -->
         <div class="pagebtn" *ngIf="movieData && !genreData">
-          <button
+          <!-- <button
             class="btn"
             [disabled]="pageNo == 1"
             [ngStyle]="{
@@ -890,21 +1021,83 @@
             (click)="getTheLists(5, currentListType, currentList)"
           >
             5
+          </button> -->
+          <button
+            class="btn navBtn"
+            [disabled]="pageNo == 1"
+            (click)="getTheLists(pageNo - 1, currentListType, currentList)"
+          >
+            <span class="material-icons-outlined"> keyboard_arrow_left </span>
+          </button>
+          <div
+            class="pages"
+            *ngFor="
+              let pg of [].constructor(pageSize) | slice: 0:5;
+              let i = index
+            "
+          >
+            <button
+              class="btn"
+              *ngIf="pageNo > 1 && i == 0"
+              [disabled]="pageNo == 1"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                color: brightness ? 'white' : 'black'
+              }"
+              (click)="getTheLists(1, currentListType, currentList)"
+            >
+              1
+            </button>
+            <span *ngIf="pageNo > 2 && i == 0">...</span>
+            <button
+              class="btn"
+              [disabled]="pageNo == pageNo + i"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                color: brightness ? 'white' : 'black'
+              }"
+              (click)="getTheLists(pageNo + i, currentListType, currentList)"
+            >
+              {{ pageNo + i }}
+            </button>
+          </div>
+          ....
+          <button
+            class="btn"
+            *ngIf="pageNo + 20 <= pageSize; else remaining"
+            [disabled]="pageNo == pageNo + 20"
+            [ngStyle]="{
+              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+              color: brightness ? 'white' : 'black'
+            }"
+            (click)="getTheLists(pageNo + 20, currentListType, currentList)"
+          >
+            {{ pageNo + 20 }}
+          </button>
+
+          <ng-template #remaining>
+            <button
+              class="btn"
+              [disabled]="pageNo == pageSize"
+              [ngStyle]="{
+                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
+                color: brightness ? 'white' : 'black'
+              }"
+              (click)="getTheLists(pageSize, currentListType, currentList)"
+            >
+              {{ pageSize }}
+            </button></ng-template
+          >
+          <button
+            class="btn navBtn"
+            [disabled]="pageNo == pageSize"
+            (click)="getTheLists(pageNo + 1, currentListType, currentList)"
+          >
+            <span class="material-icons-outlined"> keyboard_arrow_right </span>
           </button>
         </div>
+        <!-- credits -->
 
-        <!-- disclaimer & credits -->
-        <div class="disclaimerInfo">
-          <div class="alert alert-danger">
-            <h6>
-              <i class="fas fa-info-circle"></i> Disclaimer: Displayed data on
-              this website is for Information purpose only. We
-              <strong>don't</strong>
-              redirect/provide links to any illegal download of movies/tv shows
-              etc.
-            </h6>
-          </div>
-        </div>
         <div class="creditsInfo">
           <div class="alert alert-success">
             <img

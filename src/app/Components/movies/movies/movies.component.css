@@ -274,6 +274,14 @@ div.scrollleft {
   display: inline-block;
 }
 
+.pages {
+  display: inline-block;
+}
+
+.navBtn {
+  color: white;
+}
+
 @media only screen and (max-width: 600px) {
   .movieData img,
   .genreData img,

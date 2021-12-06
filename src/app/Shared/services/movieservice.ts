@@ -27,6 +27,13 @@ export class MovieServices {
     );
   }
 
+  // non paginated - get all data from API
+  public getTheListAll(pageNo, listType, listName): Observable<Imovies> {
+    return this.http.get<Imovies>(
+      `${this.movieDbAPI}${listType}/${listName}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}`
+    );
+  }
+
   // get single data by id
   public getMoviesById(id, listType): Observable<ImovieDetails> {
     return this.http.get<ImovieDetails>(
@@ -63,6 +70,13 @@ export class MovieServices {
     );
   }
 
+  //non paginated - discover movies/tv by genres
+  public discoverByListIdAll(pageNo, listType, genreId): Observable<Imovies> {
+    return this.http.get<Imovies>(
+      `${this.movieDbAPI}discover/${listType}?api_key=${this.movieDbAPIKey}&language=${this.movieLang}&sort_by=popularity.desc&include_adult=true&include_video=false&with_genres=${genreId}`
+    );
+  }
+
   //get movie credits by id
   public getMovieTvCredits(id, listType) {
     return this.http.get(
@@ -85,9 +99,9 @@ export class MovieServices {
   }
 
   //get trending movies&tv
-  public getTrendingMedia(listType){
+  public getTrendingMedia(listType) {
     return this.http.get(
       `${this.movieDbAPI}trending/${listType}/week?api_key=${this.movieDbAPIKey}`
-    )
+    );
   }
 }

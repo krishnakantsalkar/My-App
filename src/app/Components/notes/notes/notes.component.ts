@@ -25,6 +25,7 @@ export class NotesComponent implements OnInit {
   todo_title;
   todo_opt;
   allTodos;
+  areAllArchived: boolean;
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
@@ -62,6 +63,16 @@ export class NotesComponent implements OnInit {
     this.noteTitle = undefined;
     this.noteService.getNotes(this.profId).subscribe((item) => {
       this.notesData = item.result;
+
+      let checkArchived = this.notesData.some((item) => {
+        return item.archived == false;
+      });
+
+      if (checkArchived) {
+        this.areAllArchived = false;
+      } else {
+        this.areAllArchived = true;
+      }
     });
   }
 

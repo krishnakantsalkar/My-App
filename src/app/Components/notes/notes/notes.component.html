@@ -232,7 +232,27 @@
     <p-tabView>
       <p-tabPanel header="All Notes">
         <div
-          *ngIf="notesData && notesData.length > 0"
+          class="noNotes"
+          *ngIf="areAllArchived"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+          style="
+            margin-top: 20px;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h3><i class="fas fa-info-circle"></i> Nothing here 🙄</h3>
+        </div>
+        <div
+          *ngIf="notesData && notesData.length > 0 && !areAllArchived"
           class="card"
           [ngStyle]="{
             'background-color': brightness
@@ -284,6 +304,7 @@
                       </div>
                       <div class="card-body">
                         <pre
+                          class="notes_message"
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)'
                           }"
@@ -461,6 +482,7 @@
                       </div>
                       <div class="card-body">
                         <pre
+                          class="notes_message"
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)'
                           }"
@@ -653,6 +675,7 @@
                     </div>
                     <div class="card-body">
                       <pre
+                        class="notes_message"
                         [ngStyle]="{
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
@@ -689,6 +712,26 @@
           color: brightness ? 'orangered' : 'violet'
         }"
       >
+        <div
+          class="noTodos"
+          *ngIf="allTodos && allTodos.length == 0"
+          class="card"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+          style="
+            margin-top: 20px;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h3><i class="fas fa-info-circle"></i> Nothing here 🙄</h3>
+        </div>
         <div
           *ngIf="allTodos && allTodos.length > 0"
           class="card"

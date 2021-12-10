@@ -53,14 +53,16 @@ export class userloginservices {
         })
       );
   }
+
   Logout() {
     // localStorage.removeItem('credentials');
     this.cookies.delete('credentials');
-    localStorage.removeItem('id');
     localStorage.removeItem('user');
+    localStorage.removeItem('id');
+    localStorage.removeItem('profileId');
     localStorage.removeItem('userToken');
-    this.router.navigateByUrl('/home');
     this.loggedIn.next(null);
+    this.router.navigate(['/login']);
   }
 
   getUsersById(id) {

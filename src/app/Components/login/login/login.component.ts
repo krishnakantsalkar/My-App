@@ -124,9 +124,10 @@ export class LoginComponent implements OnInit {
   }
 
   Save(data: IuserLogin) {
-    if (!this.newLogin.valid) {
-      return;
-    }
+    // if (!this.newLogin.valid) {
+    //   alert('login details not valid!');
+    //   return;
+    // }
     let d = document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
     d.getElementById('uploadCheckErr').style.display = 'none';
@@ -215,7 +216,9 @@ export class LoginComponent implements OnInit {
       secret: this.siteKey,
       response: captchaResponse,
     };
-    this.loginservice.verifyRecaptcha(data).subscribe((item) => {});
+    this.loginservice.verifyRecaptcha(data).subscribe((item) => {
+      console.log(item);
+    });
   }
 
   handleLoad(): void {

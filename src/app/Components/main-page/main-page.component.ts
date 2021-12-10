@@ -283,14 +283,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // logout method
-  logout() {
-    this.cookies.delete('credentials');
-    localStorage.removeItem('user');
-    localStorage.removeItem('id');
-    location.reload();
-  }
-
   // show latest blog post
   recentUpdates() {
     this.blogservice.getBlogs().subscribe((item) => {

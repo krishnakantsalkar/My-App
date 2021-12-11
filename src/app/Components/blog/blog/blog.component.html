@@ -421,6 +421,7 @@
                         type="text"
                         formControlName="postTitle"
                         placeholder="Enter Title"
+                        (change)="cachePost()"
                       />
                     </div>
                   </div>
@@ -452,6 +453,7 @@
                             class="form-control"
                             [(ngModel)]="link.link"
                             [ngModelOptions]="{ standalone: true }"
+                            (change)="cachePost()"
                           />
                         </div>
                         <div class="col-1 p-0">
@@ -490,6 +492,7 @@
                   [(ngModel)]="markdown"
                   [modules]="config"
                   class="quillText"
+                  (ngModelChange)="cachePost()"
                 >
                 </quill-editor>
                 <br />
@@ -710,7 +713,7 @@
                           }"
                         >
                           <i class="fas fa-clock"></i>
-                          {{ d.postDate | date: "full" }}
+                          {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
                         </h6>
                       </h2>
                     </div>

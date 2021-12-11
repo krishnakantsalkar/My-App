@@ -200,6 +200,14 @@ export class BlogComponent implements OnInit {
 
     //get movie quotes
     this.getMovieQuotes();
+
+    //take from post cache
+    if (localStorage.getItem('postCache')) {
+      let cache = JSON.parse(localStorage.getItem('postCache'));
+      this.newPost.patchValue({ postTitle: cache.postTitle });
+      this.markdown = cache.post;
+      this.postLinks = cache.postLinks;
+    }
   }
 
   // get all blogs
@@ -334,6 +342,9 @@ export class BlogComponent implements OnInit {
             this.logResponse = item2.result;
             this.createPost = !this.createPost;
             d.getElementById('uploadCheck').style.display = 'inline-block';
+
+            localStorage.removeItem('postCache');
+            this.blogsP(1);
           },
           (err) => {
             this.errResponse = err.error;
@@ -468,5 +479,27 @@ export class BlogComponent implements OnInit {
   }
   removeLink(i) {
     this.postLinks.splice(i, 1);
+  }
+
+  //cache post data
+
+  cachePost() {
+    if (localStorage.getItem('postCache')) {
+      let cache = JSON.parse(localStorage.getItem('postCache'));
+
+      cache.postTitle = this.newPost.value.postTitle;
+      cache.post = this.markdown;
+      cache.postLinks = this.postLinks;
+
+      localStorage.setItem('postCache', JSON.stringify(cache));
+    } else {
+      let cache = {
+        postTitle: this.newPost.value.postTitle,
+        post: this.markdown,
+        postLinks: this.postLinks,
+      };
+
+      localStorage.setItem('postCache', JSON.stringify(cache));
+    }
   }
 }

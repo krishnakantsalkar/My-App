@@ -227,7 +227,7 @@
                       color: brightness ? 'red' : 'violet'
                     }"
                   ></i>
-                  {{ data.postDate | date: "full" }}
+                  {{ data.postDate | date: "EEEE MMM dd, YYYY" }}
                 </h6>
                 <!-- post edited or not -->
                 <h6 *ngIf="data" class="col-2 col-sm-2">

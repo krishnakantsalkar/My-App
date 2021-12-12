@@ -26,24 +26,35 @@
     >
       <div class="container">
         <!-- switch to edit post -->
-        <button
-          *ngIf="checkUser"
-          class="btn btn-info"
-          style="margin-bottom: 10px"
-          (click)="switchToEdit()"
-        >
-          Edit
-        </button>
+        <div class="edit_del" *ngIf="data">
+          <button
+            *ngIf="checkUser && !switchtoedit"
+            class="btn btn-info"
+            style="margin-bottom: 10px"
+            (click)="switchToEdit()"
+          >
+            Edit
+          </button>
 
-        <!-- delete post button -->
-        <button
-          *ngIf="checkUser"
-          class="btn btn-danger"
-          style="margin-bottom: 10px; margin-left: 10px"
-          (click)="deletePostById()"
-        >
-          Delete
-        </button>
+          <!-- delete post button -->
+          <button
+            *ngIf="checkUser && !switchtoedit"
+            class="btn btn-danger"
+            style="margin-bottom: 10px"
+            (click)="deletePostById()"
+          >
+            Delete
+          </button>
+
+          <button
+            *ngIf="checkUser && switchtoedit"
+            class="btn btn-danger"
+            style="margin-bottom: 10px"
+            (click)="switchToEdit()"
+          >
+            Cancel
+          </button>
+        </div>
 
         <br />
         <br />
@@ -177,7 +188,7 @@
               </h2>
               <div class="col-4 col-sm-4 returnBtn" style="text-align: right">
                 <a class="btn btn-warning" *ngIf="data" routerLink="/blog/1">
-                  <i class="fas fa-arrow-circle-left"></i> Blog
+                  <i class="fas fa-arrow-circle-left"></i>
                 </a>
               </div>
             </div>
@@ -191,15 +202,10 @@
                 color: brightness ? 'black' : 'rgb(160,160,160)'
               }"
             >
-              <div class="row">
+              <div class="blog_dashboard">
                 <div
-                  class="col-1 col-sm-1 blogpostIcon"
-                  style="
-                    text-align: center;
-                    display: inline-block;
-                    height: 100%;
-                    width: 100%;
-                  "
+                  class="blogpostIcon"
+                  style="text-align: center; display: inline-block"
                   [ngStyle]="{
                     color: brightness ? 'red' : 'violet'
                   }"
@@ -213,10 +219,10 @@
                   ></i>
                 </div>
 
-                <h6
-                  class="col-4 col-sm-5 text-muted"
+                <div
+                  class="text-muted"
                   *ngIf="data"
-                  style="float: left"
+                  style="display: inline-block"
                   [ngStyle]="{
                     color: brightness ? 'black' : 'rgb(160,160,160)'
                   }"
@@ -227,10 +233,10 @@
                       color: brightness ? 'red' : 'violet'
                     }"
                   ></i>
-                  {{ data.postDate | date: "EEEE MMM dd, YYYY" }}
-                </h6>
+                  {{ data.postDate | date: "EEE MMM dd, YYYY" }}
+                </div>
                 <!-- post edited or not -->
-                <h6 *ngIf="data" class="col-2 col-sm-2">
+                <div *ngIf="data" style="display: inline-block">
                   <span
                     *ngIf="data.edited == true"
                     [ngStyle]="{
@@ -242,10 +248,10 @@
                         color: brightness ? 'red' : 'violet'
                       }"
                     ></i>
-                    edited.</span
-                  >
-                </h6>
-                <h6 class="col-3 col-sm-2">
+                    {{ data.editedDate | date: "EEE MMM dd, YYYY" }}
+                  </span>
+                </div>
+                <div style="display: inline-block">
                   <div class="likeDislike" *ngIf="likeSet == 0">
                     <i
                       class="fas fa-thumbs-up fa-fw like0"
@@ -283,10 +289,11 @@
                       (click)="dislike()"
                     ></i>
                   </div>
-                </h6>
+                </div>
 
-                <h6
-                  class="col-2 col-sm-2 postAuthorName"
+                <div
+                  class="postAuthorName"
+                  style="display: inline-block"
                   *ngIf="data && data.postAuthor"
                   [ngStyle]="{
                     color: brightness ? 'black' : 'rgb(160,160,160)'
@@ -303,7 +310,7 @@
                       {{ data.postAuthor }}</a
                     ></span
                   >
-                </h6>
+                </div>
               </div>
             </div>
           </div>
@@ -567,7 +574,7 @@
       </div>
 
       <!-- edit post menu -->
-      <div class="container">
+      <div [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }">
         <div class="editpostmenu" *ngIf="switchtoedit">
           <div class="container">
             <div class="header">
@@ -577,19 +584,29 @@
                 <i class="fas fa-edit"></i> Edit post
               </h3>
             </div>
-            <article class="card-body">
-              <form
-                [formGroup]="newEdit"
-                (ngSubmit)="editPostById(newEdit.value)"
-              >
+            <article>
+              <div class="blogimg">
+                <img *ngIf="data.postImage" [src]="data.postImage" />
+              </div>
+              <br />
+              <button class="btn btn-info" (click)="changeFile.click()">
+                change
+              </button>
+              <input
+                type="file"
+                #changeFile
+                style="display: none"
+                (change)="selection($event)"
+              />
+
+              <br />
+              <div class="blogimg_new">
+                <img *ngIf="currentBlogImgP" [src]="currentBlogImgP" />
+              </div>
+              <br />
+
+              <form [formGroup]="newEdit">
                 <div class="form-group">
-                  <h6
-                    [ngStyle]="{
-                      color: brightness ? 'black' : 'rgb(160,160,160)'
-                    }"
-                  >
-                    Title: {{ data.postTitle }}
-                  </h6>
                   <div class="form-row">
                     <label>Post Title</label>
 
@@ -599,60 +616,58 @@
                       placeholder="Title"
                       formControlName="postTitle"
                     />
-                    <p
-                      [ngStyle]="{
-                        color: brightness ? 'black' : 'rgb(160,160,160)'
-                      }"
-                    >
-                      {{ data.postTitle.value }}
-                    </p>
                   </div>
                   <br />
-                  <pre
-                    [ngStyle]="{
-                      color: brightness ? 'black' : 'rgb(160,160,160)'
-                    }"
+                  <quill-editor
+                    theme="snow"
+                    formControlName="post"
+                    [modules]="config"
+                    class="quillText"
                   >
-Post: {{ data.post }}</pre
-                  >
-                  <div class="form-row">
-                    <label>Post Content</label>
-                    <textarea
-                      type="text"
-                      class="form-control"
-                      placeholder="Content"
-                      formControlName="post"
-                      id="postContentMd"
-                    ></textarea>
-                  </div>
+                  </quill-editor>
+
                   <br />
-                  <h6
-                    [ngStyle]="{
-                      color: brightness ? 'black' : 'rgb(160,160,160)'
-                    }"
-                  >
-                    current: {{ data.postLink }}
-                  </h6>
-                  <div class="form-row">
-                    <label>Post Link</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Link"
-                      formControlName="postLink"
-                    />
-                  </div>
                 </div>
-                <button
-                  type="reset"
-                  class="btn btn-primary cancel"
-                  style="margin-right: 10px"
-                  (click)="switchToEdit()"
-                >
-                  Cancel
-                </button>
-                <button type="submit" class="btn btn-success">Submit</button>
               </form>
+
+              <label>Post Links</label>
+
+              <div
+                class="form-row"
+                *ngFor="let links of postLinks; let i = index"
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Link"
+                  [(ngModel)]="links.link"
+                />
+                <br />
+                <br />
+              </div>
+
+              <div class="edit_author">
+                <label for="">Post Author</label> <br />
+
+                <h5>{{ adminName }}</h5>
+              </div>
+              <br />
+
+              <button
+                type="reset"
+                class="btn btn-primary cancel"
+                style="margin-right: 10px"
+                (click)="switchToEdit()"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn btn-success"
+                (click)="editPostById(newEdit.value)"
+              >
+                Submit
+              </button>
               <hr />
               <br />
 

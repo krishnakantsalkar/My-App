@@ -9,6 +9,7 @@ import { clientIpService } from '../../../Shared/services/clientip-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { MessageService } from 'primeng/api';
+import { link } from 'fs';
 
 @Component({
   selector: 'app-blogposts',
@@ -45,6 +46,16 @@ export class BlogpostsComponent implements OnInit {
   public likeSet: number = 0;
 
   public pageTitle = 'Blogpost';
+
+  config = {
+    'emoji-toolbar': true,
+    'emoji-textarea': true,
+    'emoji-shortname': true,
+  };
+  postLinks = [];
+  currentBlogImgP: string | ArrayBuffer;
+  currentBlogImg: any;
+  storeBlogImg: any;
 
   constructor(
     private blogservice: blogpostservice,
@@ -96,6 +107,21 @@ export class BlogpostsComponent implements OnInit {
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
 
+        this.data.postLinks.forEach((link) => {
+          this.postLinks.push({ link });
+        });
+        // this.postLinks = this.data.postLinks;
+        this.newEdit.patchValue({
+          postTitle: this.data.postTitle,
+          post: this.data.post,
+        });
+
+        if (localStorage.getItem('user')) {
+          this.adminName = `${JSON.parse(localStorage.getItem('user')).name} ${
+            JSON.parse(localStorage.getItem('user')).surname
+          }`;
+        }
+
         this.meta.updateTag({ property: 'og:type', content: 'blog' });
         this.meta.updateTag({ property: 'og:title', content: 'Blog' });
         this.meta.updateTag({ property: 'og:url', content: this.blogURL });
@@ -138,8 +164,7 @@ export class BlogpostsComponent implements OnInit {
     this.newEdit = this.fb.group({
       postTitle: [''],
       post: [''],
-      postLink: [''],
-      edited: ['true'], // send a default edited = true on every API call (since its edited)!
+      postAuthor: [''],
     });
   }
 
@@ -167,10 +192,19 @@ export class BlogpostsComponent implements OnInit {
   }
 
   //edit post by id [4], here id = [5] because the array elements are higher in the deployed page
-  editPostById(data) {
+  async editPostById(data) {
     let getBlogId = window.location.href.split('/');
     let id = getBlogId[6];
-    this.blogservice.updateBlog(data, id).subscribe(
+    let postData = { ...data };
+
+    if (this.currentBlogImgP) {
+      postData.postImageNew = await this.uploadImg();
+    }
+
+    postData.postLinks = this.postLinks.map((x) => x.link);
+    postData.postAuthor = this.adminName;
+
+    this.blogservice.updateBlog(postData, id).subscribe(
       (item) => {
         alert(item.message);
         location.reload();
@@ -179,6 +213,18 @@ export class BlogpostsComponent implements OnInit {
         alert(err.message);
       }
     );
+  }
+
+  async uploadImg() {
+    const formData = new FormData();
+
+    // form data element for blog image since files can't be sent via json
+    formData.append('postImage', this.currentBlogImg);
+    return await new Promise((resolve, reject) => {
+      this.blogservice.uploadImg(formData).subscribe((item) => {
+        resolve(item.result.postImage);
+      });
+    });
   }
 
   //delete post by id
@@ -323,5 +369,21 @@ export class BlogpostsComponent implements OnInit {
   navigate(number, title, id) {
     this.data = undefined;
     this.router.navigate([`/blog/${number}/${title}/${id}`]);
+  }
+
+  // upload img live preview
+  selection(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.currentBlogImgP = event.target.result; // current blog img Preview
+      };
+      const file = event.target.files[0];
+      this.currentBlogImg = file; // main blog image file
+    }
   }
 }

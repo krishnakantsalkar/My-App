@@ -15,7 +15,9 @@
       class="movieDetails"
       id="movieDetails"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)',
         color: brightness ? 'black' : 'white'
       }"
     >
@@ -693,6 +695,5 @@
     </div>
 
     <!-- footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

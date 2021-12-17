@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from '../footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
@@ -17,7 +16,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 // Shared module
 
 @NgModule({
-  declarations: [FooterComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -35,7 +34,6 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     RadioButtonModule,
   ],
   exports: [
-    FooterComponent,
     ToastModule,
     TooltipModule,
     DialogModule,

@@ -15,6 +15,9 @@ import { DISQUS_SHORTNAME } from 'ngx-disqus';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
 import { QuillModule } from 'ngx-quill';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TooltipModule } from 'primeng/tooltip';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { QuillModule } from 'ngx-quill';
     MainPageComponent,
     Page404Component,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -32,7 +36,9 @@ import { QuillModule } from 'ngx-quill';
     ReactiveFormsModule,
     NgxCaptchaModule,
     SnotifyModule,
-    SharedModuleModule,
+    SkeletonModule,
+    TooltipModule,
+    // SharedModuleModule,
     QuillModule.forRoot(),
   ],
   providers: [

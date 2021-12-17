@@ -1,4 +1,10 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
@@ -15,12 +21,14 @@ export class NavbarComponent implements OnInit {
   public special: boolean;
   public loggedInUser;
   public checkStatus;
+  public dynamicCss: string;
   constructor(
     private cookies: CookieService,
     private logonServices: userloginservices,
     private router: Router,
     private defaultModeService: modeService,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {

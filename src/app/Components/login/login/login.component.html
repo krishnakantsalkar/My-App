@@ -32,45 +32,6 @@
       </ng-template>
     </p-dialog>
 
-    <!-- <div id="overlay" (click)="off()">
-      <div class="overlay-content">
-        <div
-          data-aos="zoom-in"
-          data-aos-delay="300"
-          data-aos-duration="1000"
-          class="card"
-          [ngStyle]="{
-            'background-color': brightness
-              ? 'rgb(223, 223, 223)'
-              : ' rgb(41, 42, 45)'
-          }"
-        >
-          <div
-            class="card-header"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            <h3>TheArsonist~</h3>
-          </div>
-          <article
-            *ngIf="loginresponse"
-            class="card-body"
-            [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          >
-            <h4>{{ loginresponse.message }}</h4>
-            <h5 *ngIf="loginresponse.name">
-              Welcome:
-              <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
-                {{ loginresponse.name }}</span
-              >
-            </h5>
-          </article>
-          <div class="card-footer">
-            <button class="btn btn-success" (click)="logintoHome()">OK</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div class="logindata">
       <div class="bgImage"></div>
       <div class="container loginContainer">
@@ -98,15 +59,23 @@
               build fast & mobile Web Apps for the greatest platform available!
               <br />
               i.e.
-              <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+              <span
+                [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+                style="font-weight: 500"
+              >
                 Angular
               </span>
               <i
                 class="fas fa-fire-alt"
-                [ngStyle]="{ color: brightness ? 'red' : 'rgb(255, 144, 8)' }"
+                [ngStyle]="{
+                  color: brightness ? 'red' : 'rgb(255, 144, 8)'
+                }"
               ></i>
               <br />
-              contact<span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+              contact<span
+                [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+                style="font-weight: 500"
+              >
                 dev@krishnakantsalkar.in</span
               >
               to sign up!
@@ -357,6 +326,5 @@
     </div>
 
     <!-- Footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

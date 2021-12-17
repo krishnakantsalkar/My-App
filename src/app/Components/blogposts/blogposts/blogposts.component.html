@@ -14,14 +14,18 @@
     <div
       class="content"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
     ></div>
 
     <div
       class="main"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
     >
       <div class="container">
@@ -693,6 +697,5 @@
     </div>
 
     <!-- Footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

@@ -15,7 +15,8 @@
       class="movieList"
       id="movieList"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+        'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
+,
         color: brightness ? 'black' : 'white'
       }"
     >
@@ -936,7 +937,8 @@
               <!-- movie title -->
               <h6
                 [ngStyle]="{
-                  'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+                  'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
+,
                   color: brightness ? 'black' : 'white'
                 }"
                 *ngIf="movies.original_title"
@@ -948,7 +950,8 @@
               <!-- tv title -->
               <h6
                 [ngStyle]="{
-                  'background-color': brightness ? 'white' : ' rgb(41, 42, 45)',
+                  'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
+,
                   color: brightness ? 'black' : 'white'
                 }"
                 routerLink="/movies&tv/TV/{{ movies.name }}/{{ movies.id }}"
@@ -1116,6 +1119,5 @@
     </div>
 
     <!-- footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

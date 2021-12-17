@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  min-height: 500vh;
 }
 body {
   margin: 0;
@@ -104,10 +105,7 @@ div.buttons .btn {
   justify-content: center;
   padding-top: 15%;
 }
-.message h1 {
-  font-family: "Andale Mono", AndaleMono, monospace;
-  color: white;
-}
+
 .message span {
   animation: blink 1s infinite;
 }

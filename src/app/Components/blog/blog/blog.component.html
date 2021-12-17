@@ -9,14 +9,16 @@
   <body
     class="blogBody"
     [ngStyle]="{
-      'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+      'background-color': brightness ? 'rgb(200, 200, 200)' : 'rgb(41, 42, 45)'
     }"
   >
     <!-- overlays -->
 
     <p-dialog
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
       header="New post Added!"
       position="center"
@@ -57,7 +59,9 @@
 
     <p-confirmDialog
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
       header="Confirm ?"
       icon="pi pi-pencil"
@@ -75,7 +79,9 @@
     <div
       class="content"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
     ></div>
 
@@ -143,7 +149,9 @@
     <div
       class="cvrimg container"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
     >
       <!-- Bootstrap Carousel -->
@@ -221,7 +229,9 @@
     <div
       class="bloglinks"
       [ngStyle]="{
-        'background-color': brightness ? 'white' : ' rgb(41, 42, 45)'
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)'
       }"
     >
       <div class="container" id="main">
@@ -1013,6 +1023,5 @@
     </div>
 
     <!-- Footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

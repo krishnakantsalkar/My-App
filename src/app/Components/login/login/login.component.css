@@ -39,30 +39,6 @@ div.links a:hover {
   z-index: -10;
 }
 
-.overlay-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%, -50%);
-  transition: 0.7s ease-in-out;
-  width: 250px;
-}
-
-.overlay-content .card-header {
-  text-align: center;
-  padding: 10px 20px;
-}
-
-.overlay-content .card-body {
-  padding: 10px 20px;
-}
-
-.overlay-content .card-footer {
-  text-align: center;
-  padding: 10px 20px;
-}
-
 div.buttons {
   display: flex;
   justify-content: center;
@@ -165,8 +141,12 @@ div.content {
 div.logindata {
   padding-top: 120px;
   background-color: rgb(41, 42, 45);
+  min-height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.bgImage {
+/* .bgImage {
   margin: 0;
   position: fixed;
   top: 0;
@@ -177,6 +157,22 @@ div.logindata {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 0.2;
+} */
+
+.bgImage {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background-color: rgb(41, 42, 45);
+  background-image: url("../../../../assets/images/pexels-markus-spiske-1936299.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.4s ease-in-out;
   opacity: 0.2;
 }
 

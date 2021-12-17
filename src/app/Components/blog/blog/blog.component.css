@@ -241,30 +241,6 @@ div.searchResult h3 {
   z-index: -10;
 }
 
-.overlay-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%, -50%);
-  transition: 0.7s ease-in-out;
-  width: 250px;
-}
-
-.overlay-content .card-header {
-  text-align: center;
-  padding: 10px 20px;
-}
-
-.overlay-content .card-body {
-  padding: 10px 20px;
-}
-
-.overlay-content .card-footer {
-  text-align: center;
-  padding: 10px 20px;
-}
-
 .widget-area {
   padding: 0px 0px 80px;
 }

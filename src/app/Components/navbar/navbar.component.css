@@ -110,8 +110,9 @@ span.two {
 }
 
 .activeCss {
-  color: rgb(49, 223, 107) !important;
-  border-bottom: 2px solid rgb(49, 223, 107);
+  color: #1f7ce0 !important;
+  border-bottom: 4px solid #1f7ce0;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 600px) {

@@ -41,6 +41,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   public pageTitle = 'TheArsonist';
 
   public wallpapersArr: string[] = [
+    '',
     'wallpaperflare.com_wallpaper.jpg',
     'pexels-felix-mittermeier-956981.jpg',
     'pexels-markus-spiske-1936299.jpg',
@@ -48,6 +49,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   ];
   public wallpaperNum: number = parseInt(localStorage.getItem('wallpaperNum'));
   public picSourceArr: string[] = [
+    '',
     'Wallpaperflare.com',
     'Felix mittermeier, Pexels',
     'Markus Spiske, Pexels',
@@ -430,25 +432,35 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show wallpaper from wallpaperPref
   showWalls() {
-    $('#bgImg').css({
-      'background-image': `url('../../../assets/images/${
-        this.wallpapersArr[localStorage.getItem('wallpaperNum')]
-      }')`,
-    });
-    $('.nametag').addClass('pseudo');
+    if (this.wallpaperNum > 0) {
+      $('#bgImg').css({
+        'background-image': `url('../../../assets/images/${
+          this.wallpapersArr[localStorage.getItem('wallpaperNum')]
+        }')`,
+      });
 
-    this.picSource = this.picSourceArr[localStorage.getItem('wallpaperNum')];
+      this.picSource = this.picSourceArr[localStorage.getItem('wallpaperNum')];
+    } else {
+      $('#bgImg').css({
+        'background-image': 'none',
+      });
+      this.picSource = undefined;
+    }
+
+    $('.nametag').addClass('pseudo');
   }
 
   //wallpaper switcher
   switchWalls() {
-    if (this.wallpaperNum <= 3) {
+    if (this.wallpaperNum == 0) {
+      this.wallpaperNum += 1;
+      localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
+      this.showWalls();
+    } else if (this.wallpaperNum < 4) {
       this.wallpaperNum = this.wallpaperNum + 1;
       localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
       this.showWalls();
-    }
-
-    if (this.wallpaperNum == 4) {
+    } else {
       this.wallpaperNum = 0;
       localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
       this.showWalls();

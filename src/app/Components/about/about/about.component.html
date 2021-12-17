@@ -13,7 +13,15 @@
     <p-toast key="clipboard" position="top-right"></p-toast>
 
     <!-- first content -->
-    <div class="first-content">
+    <div
+      class="first-content"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(61, 62, 65)',
+        color: brightness ? 'black' : 'white'
+      }"
+    >
       <!-- container -->
       <div class="container">
         <!-- row -->
@@ -68,7 +76,12 @@
         </div>
         <!-- loop text using javascript -->
         <div class="message">
-          <h1 id="loopQuotes"><span>.....Loading</span></h1>
+          <h1
+            id="loopQuotes"
+            [ngStyle]="{
+              color: brightness ? 'black' : 'white'
+            }"
+          ></h1>
         </div>
       </div>
     </div>
@@ -502,8 +515,5 @@
         </div>
       </div>
     </div>
-
-    <!-- footer area -->
-    <app-footer></app-footer>
   </body>
 </html>

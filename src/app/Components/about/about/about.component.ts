@@ -153,6 +153,7 @@ export class AboutComponent implements OnInit {
     textSequence(0);
     async function textSequence(i) {
       var textLoop = [
+        '.....Loading',
         '"Built using Angular & NodeJS.."',
         `"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
          - Martin Golding"`,

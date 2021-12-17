@@ -1,6 +1,7 @@
 .content-new {
-  padding-top: 60px;
+  padding-top: 40px;
   padding-bottom: 60px;
+  z-index: 1;
 }
 
 .menu ul {
@@ -76,9 +77,12 @@ div.footer h6 {
   margin-right: auto;
 }
 
+.recentposts .card {
+  border-radius: 12px;
+}
+
 .recentposts .card-body {
   padding-top: 10px;
-  border-radius: 10px;
 }
 
 .shortbio {
@@ -105,30 +109,6 @@ div.footer h6 {
   width: 100%;
   height: 100%;
   z-index: -10;
-}
-
-.overlay-content-Footer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%, -50%);
-  transition: 0.3s ease-in-out;
-  width: 250px;
-}
-
-.overlay-content-Footer .card-header {
-  text-align: center;
-  padding: 10px 20px;
-}
-
-.overlay-content-Footer .card-body {
-  padding: 10px 20px;
-}
-
-.overlay-content-Footer .card-footer {
-  text-align: center;
-  padding: 10px 20px;
 }
 
 .loadinganimDark {
@@ -239,5 +219,13 @@ div.shortbio h4 span {
     font-size: 11px;
     color: #c82333;
     margin-top: 2px;
+  }
+
+  #myBtn {
+    right: 15px;
+  }
+
+  .bottom-content .col-sm-3 {
+    margin: 15px auto;
   }
 }

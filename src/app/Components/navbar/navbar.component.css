@@ -11,19 +11,21 @@ nav {
   color: rgb(49, 223, 107);
 } */
 
-.navbar-nav a {
+.sidenav a,
+.sidenavL a {
   text-decoration: none;
   color: #818181;
   padding: 10px;
   margin: auto 5px;
   font-size: 17px;
   font-family: "Lucida Sans Unicode";
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
 }
 /* dark mode hover */
 .sidenav a:hover {
   background-color: violet;
   color: white;
-  border-radius: 5px;
   cursor: pointer;
 }
 .sidenavL a:hover {

@@ -13,11 +13,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
-import { Jquery } from 'typings';
 import { Title, Meta } from '@angular/platform-browser';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 import { isPlatformBrowser } from '@angular/common';
+import { UiService } from '../../Shared/services/ui.service';
 
 @Component({
   selector: 'app-main-page',
@@ -68,7 +68,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private snotifyService: SnotifyService,
     private defaultModeService: modeService,
     private meta: Meta,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private uiService: UiService
   ) {
     // switch wallpaper method call
     // $(() => {
@@ -92,7 +93,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         });
         $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
       }
-      sessionStorage.setItem('session', 'onGoing');
     }
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });
@@ -252,6 +252,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     });
     $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
 
+    sessionStorage.setItem('session', 'onGoing');
+
+    this.uiService.checkSession$.next(true);
     this.showNotif();
   }
 

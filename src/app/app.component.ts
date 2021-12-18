@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { PrimeNGConfig } from 'primeng/api';
+import { UiService } from './Shared/services/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,12 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  public checkSession: boolean;
   constructor(
     private titleService: Title,
     private primengConfig: PrimeNGConfig,
-    private meta: Meta
+    private meta: Meta,
+    private uiService: UiService
   ) {}
 
   // onActivate(event) {
@@ -41,5 +44,9 @@ export class AppComponent {
       { property: 'og:width', content: '1200' },
       { property: 'og:height', content: '630' },
     ]);
+
+    this.uiService.checkSession$.subscribe((item) => {
+      this.checkSession = item;
+    });
   }
 }

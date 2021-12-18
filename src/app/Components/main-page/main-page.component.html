@@ -193,7 +193,12 @@
           <div class="motto">
             <h5
               [ngStyle]="{
-                color: brightness ? 'white' : 'rgb(129,129,129)',
+                color:
+                  brightness && wallpaperNum == 0
+                    ? 'black'
+                    : brightness && wallpaperNum > 0
+                    ? 'white'
+                    : 'rgb(129,129,129)',
                 'background-color': brightness
                   ? 'rgba(255, 69, 0, 0.2)'
                   : ' rgba(35, 36, 38)'

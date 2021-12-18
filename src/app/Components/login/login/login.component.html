@@ -231,8 +231,8 @@
                           <button
                             type="submit"
                             class="btn btn-success float-right submit"
+                            [disabled]="!newLogin.valid"
                           >
-                            <!-- [disabled]="!newLogin.valid" -->
                             Log In
                             <!-- some visual feedback while login -->
                             <span

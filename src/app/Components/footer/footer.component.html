@@ -12,7 +12,7 @@
       <i class="fas fa-angle-up" aria-hidden="true"></i>
     </button>
 
-    <!-- shared footer template -->
+    <!-- shaorangered footer template -->
 
     <!-- Footer top area -->
     <div
@@ -138,7 +138,7 @@
                               recent.postTitle
                             }}/{{ recent._id }}"
                             [ngStyle]="{
-                              color: brightness ? 'red' : 'violet'
+                              color: brightness ? 'orangered' : 'violet'
                             }"
                             >#{{ recent.postNumber }}. {{ recent.postTitle }}</a
                           >
@@ -155,7 +155,7 @@
                       <a
                         style="text-decoration: none"
                         [ngStyle]="{
-                          color: brightness ? 'red' : 'violet'
+                          color: brightness ? 'orangered' : 'violet'
                         }"
                         routerLink="/blog/1"
                         >..more</a
@@ -323,7 +323,7 @@
               <span
                 routerLink="/privacy"
                 style="cursor: pointer"
-                [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
                 >privacy policy</span
               >
             </h6>
@@ -344,19 +344,21 @@
         <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
           <i
             class="fas fa-copyright"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
           ></i>
-          2020-2021 | Krishnakant Salkar, Made with
+          2020-2021 |
+          <span [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }">
+            Krishnakant Salkar</span
+          >, Made with
           <i
             class="fas fa-code"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
           ></i>
-          using
         </h6>
         <span class="footerAngularLogo"
           ><i
             class="fab fa-angular"
-            [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
           ></i
         ></span>
       </div>

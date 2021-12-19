@@ -10,6 +10,33 @@
   margin: 15px auto;
 }
 
+.covid_news_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+}
+
+.covid_news_title .card {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.covidNews .card-header,
+.vaccineNews .card-header,
+.healthNews .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.covidNews .card-header .material-icons,
+.vaccineNews .card-header .material-icons,
+.healthNews .card-header .material-icons {
+  cursor: pointer;
+  padding: 0 10px;
+}
+
 .newsImg {
   text-align: center;
 }
@@ -152,6 +179,13 @@
 .critical {
   background-color: rgba(160, 48, 28, 0.308);
   color: rgb(206, 63, 38);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: auto;
 }
 
 @media only screen and (max-width: 600px) {

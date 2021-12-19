@@ -5,11 +5,13 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { Location } from '@angular/common';
 import { TabView } from 'primeng/tabview';
 import { Title } from '@angular/platform-browser';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-covid-news',
   templateUrl: './covid-news.component.html',
   styleUrls: ['./covid-news.component.css'],
+  providers: [MessageService],
 })
 export class CovidNewsComponent implements OnInit {
   covidNews;
@@ -39,7 +41,8 @@ export class CovidNewsComponent implements OnInit {
     private defaultModeService: modeService,
     private router: Router,
     private location: Location,
-    private titleService: Title
+    private titleService: Title,
+    private messagingService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -100,32 +103,34 @@ export class CovidNewsComponent implements OnInit {
 
   pageNoChange(section, page) {
     if (section == 'covid') {
+      if (page > 1) {
+        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+      }
+
       this.getCovidNews(page);
       this.covidPageNo = page;
       this.location.replaceState(`/covid-news/covid/${page}`);
       this.currentPgNo = parseInt(window.location.href.split('/')[5]);
-
+    } else if (section == 'health') {
       if (page > 1) {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
       }
-    } else if (section == 'health') {
+
       this.getHealthNews(page);
       this.healthPageNo = page;
       this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       this.location.replaceState(`/covid-news/health/${page}`);
+    } else if (section == 'vaccine') {
       if (page > 1) {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
       }
-    } else if (section == 'vaccine') {
+
       this.getVaccineNews(page);
       this.vaccinePageNo = page;
       this.currentPgNo = parseInt(window.location.href.split('/')[5]);
 
       this.location.replaceState(`/covid-news/vaccine/${page}`);
-      if (page > 1) {
-        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-      }
     }
   }
 
@@ -134,6 +139,7 @@ export class CovidNewsComponent implements OnInit {
     this.covidNews = undefined;
     this.covidStatService.getCovidNews(pg).subscribe((item) => {
       this.covidNews = item.news;
+      console.log(item);
     });
   }
 
@@ -159,6 +165,28 @@ export class CovidNewsComponent implements OnInit {
   getIndiaStats() {
     this.covidStatService.getCovidTotalStats().subscribe((item) => {
       this.covidIndiaStats = item[0];
+    });
+  }
+
+  //copy link
+  copyShareLink(link: string) {
+    let val = link;
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+    this.messagingService.add({
+      key: 'clipboard',
+      severity: 'success',
+      summary: 'link copied to clipboard',
     });
   }
 }

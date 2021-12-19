@@ -5,8 +5,34 @@
     color: brightness ? 'black' : 'white'
   }"
 >
+  <!-- toasts -->
+  <p-toast key="clipboard" position="top-right"></p-toast>
+
   <div class="container" style="padding-bottom: 50px">
     <!-- current time -->
+
+    <div class="covid_news_title">
+      <div
+        class="card"
+        [ngStyle]="{
+          'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+          color: brightness ? 'black' : 'white'
+        }"
+      >
+        <h2>
+          <span
+            class="material-icons"
+            style="font-size: 30px; position: relative; top: 4px"
+          >
+            article
+          </span>
+          Covid-19 Latest News & Statistics |
+          <span class="material-icons"> api </span> API by
+          <a target="_blank" href="https://vaccovid.live">Vaccovid.live</a>
+        </h2>
+      </div>
+    </div>
+
     <h5
       [ngStyle]="{
         color: brightness ? 'black' : 'rgb(160,160,160)'
@@ -151,6 +177,9 @@
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
+                <span class="material-icons" (click)="copyShareLink(data.link)">
+                  content_copy
+                </span>
               </div>
               <div class="card-body">
                 <div class="newsImg">
@@ -188,43 +217,21 @@
                 [ngClass]="{ disabled: covidPageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('covid', covidPageNo)"
-                [ngClass]="{ disabled: currentPgNo == covidPageNo }"
+              <div
+                class="pages"
+                *ngFor="
+                  let pg of [].constructor(10) | slice: 0:5;
+                  let i = index
+                "
               >
-                {{ covidPageNo }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('covid', covidPageNo + 1)"
-              >
-                {{ covidPageNo + 1 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('covid', covidPageNo + 2)"
-              >
-                {{ covidPageNo + 2 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('covid', covidPageNo + 3)"
-              >
-                {{ covidPageNo + 3 }}
-              </button>
-              <span
-                [ngStyle]="{
-                  color: brightness ? 'black' : 'white'
-                }"
-                >...</span
-              >
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('covid', covidPageNo + 20)"
-              >
-                {{ covidPageNo + 20 }}
-              </button>
+                <button
+                  class="btn btn-warning"
+                  [disabled]="covidPageNo == covidPageNo + i"
+                  (click)="pageNoChange('covid', covidPageNo + i)"
+                >
+                  {{ covidPageNo + i }}
+                </button>
+              </div>
               <span
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
@@ -263,6 +270,9 @@
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
+                <span class="material-icons" (click)="copyShareLink(data.link)">
+                  content_copy
+                </span>
               </div>
               <div class="card-body">
                 <div class="newsImg">
@@ -293,50 +303,28 @@
                 1
               </button>
               <span
+                (click)="pageNoChange('health', healthPageNo - 1)"
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
                 }"
-                (click)="pageNoChange('health', healthPageNo - 1)"
                 [ngClass]="{ disabled: healthPageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('health', healthPageNo)"
-                [ngClass]="{ disabled: currentPgNo == healthPageNo }"
+              <div
+                class="pages"
+                *ngFor="
+                  let pg of [].constructor(10) | slice: 0:5;
+                  let i = index
+                "
               >
-                {{ healthPageNo }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('health', healthPageNo + 1)"
-              >
-                {{ healthPageNo + 1 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('health', healthPageNo + 2)"
-              >
-                {{ healthPageNo + 2 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('health', healthPageNo + 3)"
-              >
-                {{ healthPageNo + 3 }}
-              </button>
-              <span
-                [ngStyle]="{
-                  color: brightness ? 'black' : 'white'
-                }"
-                >...</span
-              >
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('health', healthPageNo + 20)"
-              >
-                {{ healthPageNo + 20 }}
-              </button>
+                <button
+                  class="btn btn-warning"
+                  [disabled]="healthPageNo == healthPageNo + i"
+                  (click)="pageNoChange('health', healthPageNo + i)"
+                >
+                  {{ healthPageNo + i }}
+                </button>
+              </div>
               <span
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
@@ -375,6 +363,9 @@
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
+                <span class="material-icons" (click)="copyShareLink(data.link)">
+                  content_copy
+                </span>
               </div>
               <div class="card-body">
                 <div class="newsImg">
@@ -406,50 +397,28 @@
                 1
               </button>
               <span
+                (click)="pageNoChange('vaccine', vaccinePageNo - 1)"
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'
                 }"
-                (click)="pageNoChange('vaccine', vaccinePageNo - 1)"
                 [ngClass]="{ disabled: vaccinePageNo == 1 }"
                 ><i class="fas fa-chevron-left"></i
               ></span>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('vaccine', vaccinePageNo)"
-                [ngClass]="{ disabled: currentPgNo == vaccinePageNo }"
+              <div
+                class="pages"
+                *ngFor="
+                  let pg of [].constructor(10) | slice: 0:5;
+                  let i = index
+                "
               >
-                {{ vaccinePageNo }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('vaccine', vaccinePageNo + 1)"
-              >
-                {{ vaccinePageNo + 1 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('vaccine', vaccinePageNo + 2)"
-              >
-                {{ vaccinePageNo + 2 }}
-              </button>
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('vaccine', vaccinePageNo + 3)"
-              >
-                {{ vaccinePageNo + 3 }}
-              </button>
-              <span
-                [ngStyle]="{
-                  color: brightness ? 'black' : 'white'
-                }"
-                >...</span
-              >
-              <button
-                class="btn btn-primary"
-                (click)="pageNoChange('vaccine', vaccinePageNo + 20)"
-              >
-                {{ vaccinePageNo + 20 }}
-              </button>
+                <button
+                  class="btn btn-warning"
+                  [disabled]="vaccinePageNo == vaccinePageNo + i"
+                  (click)="pageNoChange('vaccine', vaccinePageNo + i)"
+                >
+                  {{ vaccinePageNo + i }}
+                </button>
+              </div>
               <span
                 [ngStyle]="{
                   color: brightness ? 'black' : 'white'

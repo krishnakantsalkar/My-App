@@ -113,3 +113,8 @@
 ::-webkit-scrollbar-thumb:hover {
   opacity: 1;
 }
+
+.icon_align {
+  position: relative;
+  top: 6px;
+}

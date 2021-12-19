@@ -365,7 +365,7 @@
             (click)="createPostmethod()"
             *ngIf="checkUser"
           >
-            Create post
+            <span class="material-icons icon_align"> feed </span> Create post
           </button>
         </div>
         <br />
@@ -672,7 +672,8 @@
                           [ngStyle]="{
                             color: brightness ? 'red' : 'violet'
                           }"
-                          >#{{ d.postNumber }}: {{ d.postTitle }}</a
+                          ><span class="material-icons"> feed </span>
+                          {{ d.postNumber }}: {{ d.postTitle }}</a
                         >
 
                         <!-- new post badge -->
@@ -704,13 +705,6 @@
                             }"
                             ><i class="fas fa-pencil-alt"></i> edited.</span
                           >
-                          <span
-                            style="float: right"
-                            [ngStyle]="{
-                              color: brightness ? 'red' : 'violet'
-                            }"
-                            >{{ d.userViews.length }} <i class="fas fa-eye"></i
-                          ></span>
                         </h6>
 
                         <!-- post date -->
@@ -721,8 +715,20 @@
                             color: brightness ? 'black' : 'rgb(129,129,129)'
                           }"
                         >
-                          <i class="fas fa-clock"></i>
-                          {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
+                          <span>
+                            <i class="fas fa-clock"></i>
+                            {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
+                          </span>
+                          <span
+                            style="float: right"
+                            [ngStyle]="{
+                              color: brightness ? 'red' : 'violet'
+                            }"
+                            >{{ d.userViews.length }}
+                            <span class="material-icons icon_align">
+                              visibility
+                            </span></span
+                          >
                         </h6>
                       </h2>
                     </div>

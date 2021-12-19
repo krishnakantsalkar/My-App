@@ -144,6 +144,9 @@
                           >
                         </h5>
                         <h6 class="text-muted">
+                          <span class="material-icons icon_align">
+                            watch_later
+                          </span>
                           {{
                             recent.postDate
                               | date: "EEEE MMM dd, YYYY"
@@ -174,7 +177,8 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Blog</a
+                      ><span class="material-icons icon_align"> article </span>
+                      Blog</a
                     >
                   </li>
                   <li>
@@ -183,7 +187,8 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Movies & TV</a
+                      ><span class="material-icons icon_align"> movie </span>
+                      Movies & TV</a
                     >
                   </li>
                   <li>
@@ -193,7 +198,10 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Downloads</a
+                      ><span class="material-icons icon_align">
+                        cloud_download
+                      </span>
+                      Downloads</a
                     >
                   </li>
                   <li>
@@ -203,8 +211,12 @@
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
                       target="_blank"
-                      >Pastebin</a
                     >
+                      <span class="material-icons icon_align">
+                        content_paste</span
+                      >
+                      Pastebin
+                    </a>
                   </li>
                   <li>
                     <a
@@ -212,7 +224,10 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Privacy Policy</a
+                      ><span class="material-icons icon_align">
+                        verified_user
+                      </span>
+                      Privacy Policy</a
                     >
                   </li>
                   <li>
@@ -221,7 +236,8 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Disclaimer</a
+                      ><span class="material-icons icon_align"> error </span>
+                      Disclaimer</a
                     >
                   </li>
                   <li>
@@ -230,7 +246,8 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >Github</a
+                      ><span class="material-icons icon_align"> code </span>
+                      Github</a
                     >
                   </li>
                   <li>
@@ -239,7 +256,10 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      >About</a
+                      ><span class="material-icons icon_align">
+                        account_circle
+                      </span>
+                      About</a
                     >
                   </li>
                 </ul>

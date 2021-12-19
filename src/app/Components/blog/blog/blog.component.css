@@ -488,6 +488,11 @@ div.nextprev button {
   pointer-events: none;
 }
 
+.card-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* media query for mobile */
 @media only screen and (max-width: 600px) {
   div.motto h5 {

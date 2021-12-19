@@ -69,11 +69,25 @@ div.nametag h4 {
 
 span.one {
   color: violet;
+  display: inline-block;
+  width: 5px;
+  border: 5px solid;
+  height: 30px;
+  position: relative;
+  top: 5px;
+  margin-left: 5px;
   animation: cursor 1s infinite;
 }
 
 span.two {
   color: red;
+  display: inline-block;
+  width: 5px;
+  border: 5px solid;
+  height: 30px;
+  position: relative;
+  top: 5px;
+  margin-left: 5px;
   animation: cursor1 1s infinite;
 }
 

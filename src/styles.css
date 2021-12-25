@@ -118,3 +118,57 @@
   position: relative;
   top: 6px;
 }
+
+/* Material css */
+
+/* custom disabled button css */
+.mat-flat-button.mat-primary.mat-button-disabled,
+.mat-flat-button.mat-accent.mat-button-disabled,
+.mat-flat-button.mat-warn.mat-button-disabled,
+.mat-flat-button.mat-button-disabled.mat-button-disabled,
+.mat-stroked-button.mat-primary.mat-button-disabled,
+.mat-stroked-button.mat-accent.mat-button-disabled,
+.mat-stroked-button.mat-warn.mat-button-disabled,
+.mat-stroked-button.mat-button-disabled.mat-button-disabled,
+.mat-raised-button.mat-primary.mat-button-disabled,
+.mat-raised-button.mat-accent.mat-button-disabled,
+.mat-raised-button.mat-warn.mat-button-disabled,
+.mat-raised-button.mat-button-disabled.mat-button-disabled,
+.mat-fab.mat-primary.mat-button-disabled,
+.mat-fab.mat-accent.mat-button-disabled,
+.mat-fab.mat-warn.mat-button-disabled,
+.mat-fab.mat-button-disabled.mat-button-disabled,
+.mat-mini-fab.mat-primary.mat-button-disabled,
+.mat-mini-fab.mat-accent.mat-button-disabled,
+.mat-mini-fab.mat-warn.mat-button-disabled,
+.mat-mini-fab.mat-button-disabled.mat-button-disabled {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  /* color: rgba(0, 0, 0, 0.5) !important; */
+  box-shadow: none;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: #1f7ce0;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: gray;
+}
+
+.mat-focused .mat-form-field-label {
+  color: gray !important;
+}
+
+.mat-form-field-label,
+.mat-input-element {
+  color: gray !important;
+}

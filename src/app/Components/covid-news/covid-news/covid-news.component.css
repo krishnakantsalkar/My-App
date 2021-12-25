@@ -76,7 +76,7 @@
   opacity: 0.7;
 }
 
-::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+/* ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   color: rgb(136, 136, 136) !important;
 }
 ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
@@ -97,7 +97,7 @@
   background: rgba(49, 223, 107, 0.04);
   border-color: transparent;
   color: rgba(255, 255, 255, 0.6);
-}
+} */
 
 .confirmed,
 .deaths,

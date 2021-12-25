@@ -70,7 +70,7 @@ div.content {
   color: black;
 }
 
-.listButtons button.active {
+.active {
   background-color: greenyellow;
   color: black;
 }
@@ -185,7 +185,8 @@ div.content {
 }
 
 /* genre section css */
-.genreList .card {
+.genreList mat-card {
+  padding-top: 26px;
   height: 30px;
   width: 70%;
   margin-left: auto;
@@ -194,7 +195,6 @@ div.content {
 }
 
 .genreButtons button {
-  background-color: white;
   margin: 10px;
 }
 
@@ -231,7 +231,6 @@ div.scrollleft {
 }
 #TcloseBtn {
   color: rgb(255, 119, 70);
-  font-size: 23px;
 }
 
 #TcloseBtn:hover i {
@@ -254,6 +253,10 @@ div.scrollleft {
 
 .navBtn {
   color: white;
+}
+
+.movieData mat-card {
+  padding: 0 !important;
 }
 
 @media only screen and (max-width: 600px) {

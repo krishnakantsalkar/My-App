@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { TabView } from 'primeng/tabview';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
+import { UiService } from 'src/app/Shared/services/ui.service';
 
 @Component({
   selector: 'app-covid-news',
@@ -42,7 +43,7 @@ export class CovidNewsComponent implements OnInit {
     private router: Router,
     private location: Location,
     private titleService: Title,
-    private messagingService: MessageService
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -183,10 +184,6 @@ export class CovidNewsComponent implements OnInit {
     document.execCommand('copy');
     document.body.removeChild(selBox);
 
-    this.messagingService.add({
-      key: 'clipboard',
-      severity: 'success',
-      summary: 'link copied to clipboard',
-    });
+    this.uiService.showSnackbar('link copied to clipboard', null, 3500);
   }
 }

@@ -13,6 +13,7 @@ import Swiper, {
 } from 'swiper';
 
 import { MessageService } from 'primeng/api';
+import { UiService } from 'src/app/Shared/services/ui.service';
 
 @Component({
   selector: 'app-about',
@@ -104,8 +105,8 @@ export class AboutComponent implements OnInit {
   constructor(
     private titleService: Title,
     private defaultModeService: modeService,
-    private messagingService: MessageService,
-    private meta: Meta
+    private meta: Meta,
+    private uiService: UiService
   ) {}
 
   ngOnInit() {
@@ -208,17 +209,9 @@ export class AboutComponent implements OnInit {
     //   duration: 2000,
     // });
     if (type == 'number') {
-      this.messagingService.add({
-        key: 'clipboard',
-        severity: 'success',
-        summary: 'number copied to clipboard',
-      });
+      this.uiService.showSnackbar('Number copied to clipboard', null, 3500);
     } else if (type == 'mail') {
-      this.messagingService.add({
-        key: 'clipboard',
-        severity: 'success',
-        summary: 'mail id copied to clipboard',
-      });
+      this.uiService.showSnackbar('Email copied to clipboard', null, 3500);
     }
   }
 }

@@ -77,7 +77,7 @@ div.footer h6 {
   margin-right: auto;
 }
 
-.recentposts .card {
+.recentposts mat-card {
   border-radius: 12px;
 }
 

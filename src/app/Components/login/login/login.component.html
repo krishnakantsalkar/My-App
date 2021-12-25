@@ -7,30 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <p-dialog
-      header="TheArsonist"
-      position="center"
-      [(visible)]="display && loginresponse"
-      *ngIf="loginresponse"
-      [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
-      [style]="{ width: '30vw' }"
-    >
-      <h3 style="text-align: center">
-        Welcome,
-        <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
-          {{ loginresponse.name }}</span
+    <ng-container>
+      <ng-template #loginDialog>
+        <div
+          class="login_dialog"
+          mat-dialog-content
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
         >
-      </h3>
-      <ng-template pTemplate="footer">
-        <p-button
-          [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }"
-          icon="pi pi-check"
-          (click)="display = false; logintoHome()"
-          label="Ok"
-          styleClass="p-button-text"
-        ></p-button>
+          <h3 style="text-align: center">
+            Welcome,
+            <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+              {{ loginresponse.name }}</span
+            >
+          </h3>
+
+          <div
+            class="d-flex justify-content-center align-items-center"
+            style="margin-top: 20px"
+          >
+            <button
+              mat-raised-button
+              mat-dialog-close
+              tabindex="-1"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(235, 235, 235)'
+                  : ' rgb(31, 32, 35)',
+                color: brightness ? 'red' : 'violet'
+              }"
+            >
+              OK
+            </button>
+          </div>
+        </div>
       </ng-template>
-    </p-dialog>
+    </ng-container>
 
     <div class="logindata">
       <div class="bgImage"></div>
@@ -83,30 +99,28 @@
           </div>
 
           <div class="col-sm-6 container login-card">
-            <div class="signInLogo">
-              <img
-                class="logoImage rounded-circle"
-                src="assets/images/mylogo.jpg"
-                alt=""
-              />
-            </div>
-            <div
-              class="card"
+            <mat-card
               data-aos="zoom-in"
               data-aos-delay="300"
               data-aos-duration="1000"
               [ngStyle]="{
                 'background-color': brightness
-                  ? 'white'
-                  : ' rgb(
-                  48, 49, 51
-                  )'
+                  ? 'rgb(245, 245, 245)'
+                  : ' rgb(31, 32, 35)',
+                color: brightness
+                  ? 'black !important'
+                  : 'rgb(129,129,129) !important'
               }"
             >
-              <article
-                class="card-body"
-                [ngStyle]="{ color: brightness ? 'black' : 'white' }"
-              >
+              <mat-card-content>
+                <div class="signInLogo">
+                  <img
+                    class="logoImage rounded-circle"
+                    src="assets/images/mylogo.jpg"
+                    alt=""
+                  />
+                </div>
+                <!-- [ngStyle]="{ color: brightness ? 'black' : 'white' }" -->
                 <form
                   [formGroup]="newLogin"
                   (ngSubmit)="Save(newLogin.value)"
@@ -114,23 +128,23 @@
                 >
                   <div class="form-row">
                     <div class="col form-group" formGroupName="userLogin">
-                      <label>Email Id</label>
-                      <input
-                        class="form-control email-tag"
-                        type="email"
-                        placeholder="Enter Email ID"
-                        formControlName="email"
-                        [class.is-valid]="newLogin.get('userLogin.email').valid"
-                        [class.is-invalid]="
-                          !newLogin.get('userLogin.email').valid && submitted
-                        "
-                        [ngStyle]="{
-                          'background-color': brightness
-                            ? 'white'
-                            : ' rgb(68, 70, 74)',
-                          color: brightness ? 'black' : 'white'
-                        }"
-                      />
+                      <mat-form-field appearance="outline">
+                        <mat-label>Email Id</mat-label>
+                        <input
+                          class="email-tag"
+                          type="email"
+                          matInput
+                          placeholder="Enter Email ID"
+                          formControlName="email"
+                          [class.is-valid]="
+                            newLogin.get('userLogin.email').valid
+                          "
+                          [class.is-invalid]="
+                            !newLogin.get('userLogin.email').valid && submitted
+                          "
+                        />
+                      </mat-form-field>
+
                       <div class="valid-feedback">looking good!</div>
                       <div class="invalid-feedback">Check entered email!</div>
                       <div
@@ -144,71 +158,65 @@
                       </div>
                       <br />
                       <div class="form-group">
-                        <label>Password</label>
-                        <div class="row">
-                          <div class="passinput">
-                            <input
-                              class="form-control password-tag col-11"
-                              type="password"
-                              placeholder="Enter Password"
-                              formControlName="password"
-                              [class.is-valid]="
-                                newLogin.get('userLogin.password').valid
-                              "
-                              [class.is-invalid]="
-                                !newLogin.get('userLogin.password').valid &&
-                                submitted
-                              "
-                              [type]="showpass ? 'text' : 'password'"
-                              [ngStyle]="{
-                                'background-color': brightness
-                                  ? 'white'
-                                  : ' rgb(68, 70, 74)',
-                                color: brightness ? 'black' : 'white'
-                              }"
-                            />
-                          </div>
-                          <span class="col-1 eye">
-                            <button
-                              class="showpassbtn btn btn-primary"
+                        <mat-form-field appearance="outline">
+                          <mat-label>Password</mat-label>
+                          <input
+                            class="password-tag col-11"
+                            matInput
+                            type="password"
+                            placeholder="Enter Password"
+                            formControlName="password"
+                            [ngStyle]="{
+                              color: brightness ? 'black !important' : 'white'
+                            }"
+                            [class.is-valid]="
+                              newLogin.get('userLogin.password').valid
+                            "
+                            [class.is-invalid]="
+                              !newLogin.get('userLogin.password').valid &&
+                              submitted
+                            "
+                            [type]="showpass ? 'text' : 'password'"
+                          />
+
+                          <span matSuffix>
+                            <mat-icon
+                              class="showpassbtn"
                               type="button"
                               (click)="showPass()"
-                              [ngClass]="{ 'btn-danger': showpass }"
+                              [ngStyle]="{
+                                color: brightness ? 'red' : 'violet'
+                              }"
+                              >{{
+                                showpass ? "visibility_on" : "visibility_off"
+                              }}</mat-icon
                             >
-                              <i
-                                class="fa fa-eye"
-                                aria-hidden="true"
-                                [ngClass]="{ 'fa-eye-slash': showpass }"
-                              ></i>
-                            </button>
                           </span>
-                          <span
+                          <mat-hint
                             class="passwordMsg"
                             [ngStyle]="{
-                              color: brightness ? 'rgb(90, 94, 90);' : 'white'
+                              color: brightness ? 'black' : 'white'
                             }"
-                            >make sure its atleast 5 characters!</span
+                            >make sure its atleast 5 characters!</mat-hint
                           >
-                          <div class="valid-feedback">looking good!</div>
-                          <div class="invalid-feedback">
-                            Check your password!
-                          </div>
-                          <div
-                            class="alert alert-danger pass col-11"
-                            *ngIf="
-                              newLogin.get('userLogin.password').errors
-                                ?.required &&
-                              newLogin.get('userLogin.password').touched
-                            "
-                          >
-                            Password is required!
-                          </div>
-                          <div
-                            class="alert alert-danger pass col-11"
-                            *ngIf="response && !showForgot"
-                          >
-                            {{ response }}
-                          </div>
+                        </mat-form-field>
+                        <div class="valid-feedback">looking good!</div>
+                        <div class="invalid-feedback">Check your password!</div>
+                        <div
+                          class="alert alert-danger pass"
+                          *ngIf="
+                            newLogin.get('userLogin.password').errors
+                              ?.required &&
+                            newLogin.get('userLogin.password').touched
+                          "
+                        >
+                          Password is required!
+                        </div>
+                        <div
+                          class="alert alert-danger pass col-11"
+                          *ngIf="response && !showForgot"
+                        >
+                          {{ response }}
                         </div>
                       </div>
                       <ngx-recaptcha2
@@ -230,9 +238,11 @@
                         <div class="buttons">
                           <button
                             type="submit"
-                            class="btn btn-success float-right submit"
-                            [disabled]="!newLogin.valid"
+                            mat-raised-button
+                            class="btn-primary float-right submit"
+                            style="color: white"
                           >
+                            <!-- [disabled]="!newLogin.valid" -->
                             Log In
                             <!-- some visual feedback while login -->
                             <span
@@ -247,7 +257,8 @@
                             ></span>
                           </button>
                           <button
-                            class="btn btn-danger float-right forgot"
+                            mat-raised-button
+                            class="btn-danger float-right forgot"
                             (click)="switchToForgot()"
                           >
                             Forgot Password?
@@ -264,25 +275,29 @@
                 >
                   <div class="form-row">
                     <div class="col form-group" formGroupName="userLogin">
-                      <label>Email Id</label>
-                      <input
-                        class="form-control email-tag"
-                        type="email"
-                        placeholder="Enter Email ID"
-                        formControlName="email"
-                        [class.is-valid]="
-                          forgotPass.get('userLogin.email').valid
-                        "
-                        [class.is-invalid]="
-                          !forgotPass.get('userLogin.email').valid && submitted
-                        "
-                        [ngStyle]="{
-                          'background-color': brightness
-                            ? 'white'
-                            : ' rgb(41, 42, 45)',
-                          color: brightness ? 'black' : 'white'
-                        }"
-                      />
+                      <mat-form-field appearance="outline">
+                        <mat-label>Email Id</mat-label>
+                        <input
+                          class="email-tag"
+                          type="email"
+                          matInput
+                          placeholder="Enter Email ID"
+                          formControlName="email"
+                          [class.is-valid]="
+                            forgotPass.get('userLogin.email').valid
+                          "
+                          [class.is-invalid]="
+                            !forgotPass.get('userLogin.email').valid &&
+                            submitted
+                          "
+                          [ngStyle]="{
+                            'background-color': brightness
+                              ? 'white'
+                              : ' rgb(41, 42, 45)',
+                            color: brightness ? 'black' : 'white'
+                          }"
+                        />
+                      </mat-form-field>
                       <div class="valid-feedback">looking good!</div>
                       <div class="invalid-feedback">Check entered email!</div>
                       <div
@@ -301,14 +316,16 @@
                       <div class="form-group">
                         <div class="buttons">
                           <button
-                            class="btn btn-danger float-right forgot"
+                            mat-raised-button
+                            class="btn-danger float-right forgot mx-2"
                             (click)="switchToForgot()"
                           >
                             Cancel
                           </button>
                           <button
+                            mat-raised-button
                             type="submit"
-                            class="btn btn-success float-right submit"
+                            class="btn-success float-right submit mx-2"
                             [disabled]="!forgotPass.valid"
                           >
                             Submit
@@ -318,8 +335,8 @@
                     </div>
                   </div>
                 </form>
-              </article>
-            </div>
+              </mat-card-content>
+            </mat-card>
           </div>
         </div>
       </div>

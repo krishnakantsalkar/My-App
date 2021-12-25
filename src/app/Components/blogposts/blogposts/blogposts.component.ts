@@ -8,14 +8,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { clientIpService } from '../../../Shared/services/clientip-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
-import { MessageService } from 'primeng/api';
 import { link } from 'fs';
+import { UiService } from 'src/app/Shared/services/ui.service';
 
 @Component({
   selector: 'app-blogposts',
   templateUrl: './blogposts.component.html',
   styleUrls: ['./blogposts.component.css'],
-  providers: [MessageService],
 })
 export class BlogpostsComponent implements OnInit {
   public brightness: boolean;
@@ -67,7 +66,7 @@ export class BlogpostsComponent implements OnInit {
     private clientIpObj: clientIpService,
     private titleService: Title,
     private defaultModeService: modeService,
-    private messageService: MessageService,
+    private uiService: UiService,
     private meta: Meta
   ) {}
 
@@ -359,11 +358,7 @@ export class BlogpostsComponent implements OnInit {
     //   duration: 2000,
     // });
 
-    this.messageService.add({
-      key: 'clipboard',
-      severity: 'success',
-      summary: 'Link copied to clipboard',
-    });
+    this.uiService.showSnackbar('link copied to clipboard', null, 3500);
   }
 
   navigate(number, title, id) {

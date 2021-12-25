@@ -5,9 +5,6 @@
     color: brightness ? 'black' : 'white'
   }"
 >
-  <!-- toasts -->
-  <p-toast key="clipboard" position="top-right"></p-toast>
-
   <div class="container" style="padding-bottom: 50px">
     <!-- current time -->
 
@@ -148,10 +145,17 @@
 
     <!-- news  -->
     <div class="news">
-      <p-tabView [activeIndex]="activeIndex" (onChange)="navToTab($event)">
-        <!-- covid news -->
-
-        <p-tabPanel header="Covid News">
+      <mat-tab-group
+        [selectedIndex]="activeIndex"
+        (selectedTabChange)="navToTab($event)"
+      >
+        <mat-tab>
+          <ng-template mat-tab-label
+            ><p [ngStyle]="{ color: brightness ? 'black' : 'white' }">
+              Covid News
+            </p></ng-template
+          >
+          <!-- covid news -->
           <div
             class="skeleton"
             [ngStyle]="{
@@ -203,8 +207,9 @@
 
             <div class="pagination">
               <button
+                mat-raised-button
                 *ngIf="covidPageNo > 1"
-                class="btn btn-primary"
+                class="btn-primary"
                 (click)="pageNoChange('covid', 1)"
               >
                 1
@@ -225,7 +230,8 @@
                 "
               >
                 <button
-                  class="btn btn-warning"
+                  mat-raised-button
+                  class="btn-warning"
                   [disabled]="covidPageNo == covidPageNo + i"
                   (click)="pageNoChange('covid', covidPageNo + i)"
                 >
@@ -241,10 +247,15 @@
               ></span>
             </div>
           </div>
-        </p-tabPanel>
+        </mat-tab>
 
         <!-- health news -->
-        <p-tabPanel header="Health News">
+        <mat-tab>
+          <ng-template mat-tab-label
+            ><p [ngStyle]="{ color: brightness ? 'black' : 'white' }">
+              Health News
+            </p></ng-template
+          >
           <div
             class="skeleton"
             [ngStyle]="{
@@ -296,8 +307,9 @@
 
             <div class="pagination">
               <button
+                mat-raised-button
                 *ngIf="healthPageNo > 1"
-                class="btn btn-primary"
+                class="btn-primary"
                 (click)="pageNoChange('health', 1)"
               >
                 1
@@ -318,7 +330,8 @@
                 "
               >
                 <button
-                  class="btn btn-warning"
+                  mat-raised-button
+                  class="btn-warning"
                   [disabled]="healthPageNo == healthPageNo + i"
                   (click)="pageNoChange('health', healthPageNo + i)"
                 >
@@ -334,10 +347,15 @@
               ></span>
             </div>
           </div>
-        </p-tabPanel>
+        </mat-tab>
 
         <!-- vaccine news -->
-        <p-tabPanel header="Vaccine News">
+        <mat-tab>
+          <ng-template mat-tab-label
+            ><p [ngStyle]="{ color: brightness ? 'black' : 'white' }">
+              Vaccine News
+            </p></ng-template
+          >
           <div
             class="skeleton"
             [ngStyle]="{
@@ -390,8 +408,9 @@
             <!-- pagination -->
             <div class="pagination">
               <button
+                mat-raised-button
                 *ngIf="vaccinePageNo > 1"
-                class="btn btn-primary"
+                class="btn-primary"
                 (click)="pageNoChange('vaccine', 1)"
               >
                 1
@@ -412,7 +431,8 @@
                 "
               >
                 <button
-                  class="btn btn-warning"
+                  mat-raised-button
+                  class="btn-warning"
                   [disabled]="vaccinePageNo == vaccinePageNo + i"
                   (click)="pageNoChange('vaccine', vaccinePageNo + i)"
                 >
@@ -427,8 +447,8 @@
                 ><i class="fas fa-chevron-right"></i
               ></span>
             </div></div
-        ></p-tabPanel>
-      </p-tabView>
+        ></mat-tab>
+      </mat-tab-group>
 
       <!-- credits -->
       <div class="credits">

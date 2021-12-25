@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { noteService } from '../../../Shared/services/notesService';
-import { MessageService } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
+import { UiService } from 'src/app/Shared/services/ui.service';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css'],
-  providers: [MessageService],
 })
 export class NotesComponent implements OnInit {
   brightness: boolean;
@@ -29,8 +28,8 @@ export class NotesComponent implements OnInit {
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
-    private messagingService: MessageService,
-    private titleService: Title
+    private titleService: Title,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -98,11 +97,8 @@ export class NotesComponent implements OnInit {
 
     this.noteService.postNote(noteObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${item.message}`,
-        });
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
+
         $('#uploadSpinner').css({
           display: 'none',
         });
@@ -122,11 +118,8 @@ export class NotesComponent implements OnInit {
         }, 900);
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
+
         $('#uploadSpinner').css({
           display: 'none',
         });
@@ -155,18 +148,10 @@ export class NotesComponent implements OnInit {
     noteObj.readonly = true;
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'info',
-          summary: `${item.message}`,
-        });
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'info',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }
@@ -176,20 +161,12 @@ export class NotesComponent implements OnInit {
 
     this.noteService.deleteNote(this.notesData[i]._id).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'warn',
-          summary: `${item.message}`,
-          life: 300000,
-        });
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
+
         this.getNotes();
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }
@@ -209,19 +186,12 @@ export class NotesComponent implements OnInit {
 
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `Note ${msg}`,
-        });
+        this.uiService.showSnackbar(`Note ${msg}`, null, 3500);
+
         this.getNotes();
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }
@@ -237,20 +207,13 @@ export class NotesComponent implements OnInit {
     }
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: 'Note archived',
-        });
+        this.uiService.showSnackbar('Note archived', null, 3500);
+
         this.noteContent = undefined;
         this.getNotes();
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }
@@ -264,20 +227,13 @@ export class NotesComponent implements OnInit {
 
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: 'Note unarchived',
-        });
+        this.uiService.showSnackbar('Note unarchived', null, 3500);
+
         this.noteContent = undefined;
         this.getNotes();
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }
@@ -341,11 +297,8 @@ export class NotesComponent implements OnInit {
 
     this.noteService.postTodo(todoObj).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${item.message}`,
-        });
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
+
         $('#uploadSpinner').css({
           display: 'none',
         });
@@ -365,11 +318,8 @@ export class NotesComponent implements OnInit {
         }, 900);
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
+
         $('#uploadSpinner').css({
           display: 'none',
         });
@@ -386,20 +336,12 @@ export class NotesComponent implements OnInit {
   deleteTodo(i) {
     this.noteService.deleteTodo(this.allTodos[i]._id).subscribe(
       (item) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'warn',
-          summary: `${item.message}`,
-          life: 300000,
-        });
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
+
         this.getTodo();
       },
       (err) => {
-        this.messagingService.add({
-          key: 'clipboard',
-          severity: 'success',
-          summary: `${err.error.message}`,
-        });
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
   }

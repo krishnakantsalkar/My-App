@@ -1,4 +1,4 @@
-div.login-card .card {
+div.login-card mat-card {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
@@ -12,9 +12,6 @@ div.login-card .card {
 
 .passinput {
   width: 100%;
-  margin-left: 14px;
-}
-.pass {
   margin-left: 14px;
 }
 
@@ -65,9 +62,6 @@ div.buttons .btn {
 
 .passwordMsg {
   font-size: 12px;
-  color: rgb(90, 94, 90);
-  opacity: 0.7;
-  margin-left: 14px;
 }
 
 .signInLogo {
@@ -185,4 +179,26 @@ div.login-card .card-header {
 }
 .content-new {
   position: absolute;
+}
+
+.login_dialog {
+  min-height: 20vh;
+  padding: 24px;
+}
+
+.form-dark {
+  border-color: rgb(31, 32, 35);
+  color: black;
+}
+
+.form-light {
+  border-color: rgb(245, 245, 245);
+  color: white;
+}
+
+.danger {
+  color: orangered;
+}
+.showpassbtn {
+  cursor: pointer;
 }

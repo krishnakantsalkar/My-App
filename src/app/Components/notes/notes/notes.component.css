@@ -69,7 +69,7 @@
   transition: 0.3s ease-in-out;
 }
 
-::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+/* ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
   border-color: rgb(49, 223, 107) !important;
   background: rgb(49, 223, 107) !important;
 }
@@ -95,7 +95,7 @@
   background: rgba(49, 223, 107, 0.04);
   border-color: transparent;
   color: rgba(255, 255, 255, 0.6);
-}
+} */
 
 .notes_message {
   white-space: break-spaces;

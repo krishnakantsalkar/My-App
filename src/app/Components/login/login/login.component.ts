@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -15,6 +15,7 @@ import { Iforgot } from 'src/app/Shared/model/forgotPass';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { ReCaptchaV3Service } from 'ngx-captcha';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,8 @@ export class LoginComponent implements OnInit {
 
   public pageTitle = 'Login';
 
-  display: boolean = false;
+  @ViewChild('loginDialog', { static: false })
+  public loginDialog;
 
   constructor(
     private fb: FormBuilder,
@@ -62,7 +64,8 @@ export class LoginComponent implements OnInit {
     private cookies: CookieService,
     private cdr: ChangeDetectorRef,
     private titleService: Title,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -146,7 +149,14 @@ export class LoginComponent implements OnInit {
           d.getElementById('uploadCheckErr').style.display = 'none';
           d.getElementById('uploadCheck').style.display = 'inline-block';
           // elemnt.style.zIndex = '3';
-          this.openDialog();
+          let dialogRes = this.dialog.open(this.loginDialog, {
+            minWidth: '30vw',
+            minHeight: '20vh',
+          });
+
+          dialogRes.afterClosed().subscribe((item) => {
+            this.router.navigateByUrl('/home');
+          });
         }
       },
       (error) => {
@@ -248,8 +258,4 @@ export class LoginComponent implements OnInit {
   // setLanguage(): void {
   //   this.lang = this.langInput.nativeElement.value;
   // }
-
-  openDialog() {
-    this.display = true;
-  }
 }

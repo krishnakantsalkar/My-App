@@ -38,7 +38,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     SnotifyModule,
     SkeletonModule,
     TooltipModule,
-    // SharedModuleModule,
+    SharedModuleModule,
     QuillModule.forRoot(),
   ],
   providers: [

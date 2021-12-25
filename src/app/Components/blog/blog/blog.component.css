@@ -70,7 +70,7 @@ div.bloglinks h1 {
 }
 
 .blogdataCard {
-  border-radius: 10px;
+  border-radius: 12px;
   padding-bottom: 6px;
 }
 
@@ -79,23 +79,20 @@ div.card-body h2 {
 }
 
 div.pstimg img {
-  padding: 10px;
   height: auto;
   max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
   object-fit: contain;
-  max-width: 100%;
   position: relative;
   cursor: pointer;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 div.floatingNewsPaperIcon {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(180deg);
+  top: 20%;
+  left: 48%;
+  transform: rotate(180deg);
   z-index: -10;
   padding: 5px 10px;
   border-radius: 50px;
@@ -105,6 +102,7 @@ div.floatingNewsPaperIcon {
   color: black;
   transition: 0.3s ease-in-out;
   pointer-events: none;
+  opacity: 0;
 }
 
 div.pstimg img:hover {
@@ -113,7 +111,8 @@ div.pstimg img:hover {
 
 div.pstimg:hover div.floatingNewsPaperIcon {
   z-index: 2;
-  transform: translate(-50%, -50%) rotate(360deg);
+  transform: rotate(360deg);
+  opacity: 1;
 }
 
 .blgdata {
@@ -287,6 +286,10 @@ div.searchResult h3 {
   text-shadow: 0 0 1px white;
 }
 
+#scrolldata .card_footer {
+  display: flex;
+  justify-content: space-between;
+}
 /* sharing buttons  */
 div.sharingBtns {
   position: fixed;
@@ -491,8 +494,13 @@ div.nextprev button {
 .card-subtitle {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-
+.post_title_area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /* media query for mobile */
 @media only screen and (max-width: 600px) {
   div.motto h5 {

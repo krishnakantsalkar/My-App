@@ -15,8 +15,9 @@
       class="movieList"
       id="movieList"
       [ngStyle]="{
-        'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
-,
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)',
         color: brightness ? 'black' : 'white'
       }"
     >
@@ -49,28 +50,45 @@
           <div class="listButtons">
             <h5>Movies:</h5>
             <button
-              class="btn btn1 active"
+              mat-raised-button
+              [ngClass]="{
+                active:
+                  currentList == 'now_playing' && currentListType == 'movie'
+              }"
+              class="btn1"
               id="now_playing"
               (click)="getTheLists(1, 'movie', 'now_playing')"
             >
               Now Playing
             </button>
             <button
-              class="btn btn2"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'popular' && currentListType == 'movie'
+              }"
+              class="btn2"
               id="popular"
               (click)="getTheLists(1, 'movie', 'popular'); removeActiveBtn()"
             >
               Popular
             </button>
             <button
-              class="btn btn3"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'top_rated' && currentListType == 'movie'
+              }"
+              class="btn3"
               id="top_rated"
               (click)="getTheLists(1, 'movie', 'top_rated'); removeActiveBtn()"
             >
               Top Rated
             </button>
             <button
-              class="btn btn4"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'upcoming' && currentListType == 'movie'
+              }"
+              class="btn4"
               id="upcoming"
               (click)="getTheLists(1, 'movie', 'upcoming'); removeActiveBtn()"
             >
@@ -79,21 +97,33 @@
             <br />
             <h5>Tv:</h5>
             <button
-              class="btn btn5"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'on_the_air' && currentListType == 'tv'
+              }"
+              class="btn5"
               id="now_playing1"
               (click)="getTheLists(1, 'tv', 'on_the_air'); removeActiveBtn()"
             >
               Now Playing
             </button>
             <button
-              class="btn btn6"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'popular' && currentListType == 'tv'
+              }"
+              class="btn6"
               id="popular1"
               (click)="getTheLists(1, 'tv', 'popular'); removeActiveBtn()"
             >
               Popular
             </button>
             <button
-              class="btn btn7"
+              mat-raised-button
+              [ngClass]="{
+                active: currentList == 'top_rated' && currentListType == 'tv'
+              }"
+              class="btn7"
               id="top_rated1"
               (click)="getTheLists(1, 'tv', 'top_rated'); removeActiveBtn()"
             >
@@ -127,7 +157,8 @@
               }"
             />
             <button
-              class="btn"
+              mat-raised-button
+              class=""
               style="
                 background-color: turquoise;
                 position: relative;
@@ -169,8 +200,7 @@
           </div>
 
           <!-- display search results -->
-          <div
-            class="card"
+          <mat-card
             *ngIf="searchResults && searchResults.results.length > 0"
             [ngStyle]="{
               'background-color': brightness
@@ -180,7 +210,7 @@
             }"
           >
             <!-- main body of search  -->
-            <div class="card-body">
+            <mat-card-content>
               <h5>Search Results:</h5>
 
               <!-- row separation for movies/tv -->
@@ -278,8 +308,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <br />
 
@@ -287,8 +317,8 @@
         <!-- hidden by default -->
         <div class="genreList" id="genreList">
           <!-- genre drop down menu -->
-          <div
-            class="card genreListCard"
+          <mat-card
+            class="genreListCard"
             id="genreListCard"
             [ngStyle]="{
               height: genreSwitch ? '100%' : '30px',
@@ -298,7 +328,7 @@
               color: brightness ? 'black' : 'white'
             }"
           >
-            <div class="card-body">
+            <mat-card-content>
               <h6 style="float: left; margin-top: -15px">Genres</h6>
               <!-- genre dropdown -->
               <!-- dropdown icon -->
@@ -319,10 +349,17 @@
                 id="genreButtons"
                 style="text-align: center"
               >
+                {{ currentGenre }} {{ currentListType }}
+
                 <!-- movie genre buttons -->
                 <h5>Movies:</h5>
                 <button
-                  class="btn genre1 active"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'action'
+                  }"
+                  class="genre1"
                   id="genre1"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.action)
@@ -331,7 +368,12 @@
                   Action
                 </button>
                 <button
-                  class="btn genre2"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'adventure'
+                  }"
+                  class="genre2"
                   id="genre2"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.adventure)
@@ -340,7 +382,12 @@
                   Adventure
                 </button>
                 <button
-                  class="btn genre3"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'animation'
+                  }"
+                  class="genre3"
                   id="genre3"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.animation)
@@ -349,7 +396,12 @@
                   Animation
                 </button>
                 <button
-                  class="btn genre4"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'comedy'
+                  }"
+                  class="genre4"
                   id="genre4"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.comedy)
@@ -358,7 +410,12 @@
                   Comedy
                 </button>
                 <button
-                  class="btn genre5"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'family'
+                  }"
+                  class="genre5"
                   id="genre5"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.family)
@@ -367,7 +424,12 @@
                   Family
                 </button>
                 <button
-                  class="btn genre6"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'fantasy'
+                  }"
+                  class="genre6"
                   id="genre6"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.fantasy)
@@ -376,7 +438,12 @@
                   Fantasy
                 </button>
                 <button
-                  class="btn genre7"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'horror'
+                  }"
+                  class="genre7"
                   id="genre7"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.horror)
@@ -385,7 +452,12 @@
                   Horror
                 </button>
                 <button
-                  class="btn genre8"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'scifi'
+                  }"
+                  class="genre8"
                   id="genre8"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.scifi)
@@ -394,7 +466,12 @@
                   Sci-fi
                 </button>
                 <button
-                  class="btn genre9"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'movie' && currentGenre == 'romance'
+                  }"
+                  class="genre9"
                   id="genre9"
                   (click)="
                     discoverByGenre(1, 'movie', movieGenreCollection.romance)
@@ -406,15 +483,24 @@
                 <!-- tv genre buttons -->
                 <h5>Tv:</h5>
                 <button
-                  class="btn genre10 active"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'action'
+                  }"
+                  class="genre10 active"
                   id="genre10"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.action)"
                 >
                   Action
                 </button>
                 <button
-                  class="btn genre11"
-                  id="genre11"
+                  mat-raised-button
+                  [ngClass]="{
+                    active:
+                      currentListType == 'tv' && currentGenre == 'animation'
+                  }"
+                  class="genre11"
+                  id="gen1re11"
                   (click)="
                     discoverByGenre(1, 'tv', tvGenreCollection.animation)
                   "
@@ -422,57 +508,85 @@
                   Animation
                 </button>
                 <button
-                  class="btn genre12"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'comedy'
+                  }"
+                  class="genre12"
                   id="genre12"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.comedy)"
                 >
                   Comedy
                 </button>
                 <button
-                  class="btn genre13"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'crime'
+                  }"
+                  class="genre13"
                   id="genre13"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.crime)"
                 >
                   Crime
                 </button>
                 <button
-                  class="btn genre14"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'drama'
+                  }"
+                  class="genre14"
                   id="genre14"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.drama)"
                 >
                   Drama
                 </button>
                 <button
-                  class="btn genre15"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'family'
+                  }"
+                  class="genre15"
                   id="genre15"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.family)"
                 >
                   Family
                 </button>
                 <button
-                  class="btn genre16"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'mystery'
+                  }"
+                  class="genre16"
                   id="genre16"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.mystery)"
                 >
                   Mystery
                 </button>
                 <button
-                  class="btn genre17"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'reality'
+                  }"
+                  class="genre17"
                   id="genre17"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.reality)"
                 >
                   Reality
                 </button>
                 <button
-                  class="btn genre18"
+                  mat-raised-button
+                  [ngClass]="{
+                    active: currentListType == 'tv' && currentGenre == 'scifi'
+                  }"
+                  class="genre18"
                   id="genre18"
                   (click)="discoverByGenre(1, 'tv', tvGenreCollection.scifi)"
                 >
                   Sci-fi
                 </button>
               </div>
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <br *ngIf="genreData" />
         <!-- genre options display to user -->
@@ -484,7 +598,8 @@
           </div>
           <!-- reload page btn to hide genre-->
           <button
-            class="btn btn-warning"
+            mat-raised-button
+            class="btn-warning"
             (click)="genreMenu(); getTheLists(1, 'movie', 'now_playing')"
             style="float: right"
           >
@@ -505,7 +620,7 @@
               *ngFor="let genre of genreData"
             >
               <!-- genre card -->
-              <div class="card" id="genreCard">
+              <mat-card id="genreCard">
                 <!-- genre data image -->
                 <a
                   *ngIf="genre.original_title"
@@ -564,7 +679,7 @@
                 >
                   {{ genre.name }}
                 </h6>
-              </div>
+              </mat-card>
               <br />
               <br />
             </div>
@@ -573,8 +688,8 @@
           <!-- genre pagination implementation -->
           <!-- adapt code for genre -->
           <div class="pagebtn" *ngIf="genreData">
-            <!-- <button
-              class="btn"
+            <!-- <button mat-raised-button 
+               class=" "
               [disabled]="pageNo == 1"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -584,8 +699,8 @@
             >
               1
             </button>
-            <button
-              class="btn"
+            <button mat-raised-button 
+               class=" "
               [disabled]="pageNo == 2"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -596,8 +711,8 @@
               2
             </button>
 
-            <button
-              class="btn"
+            <button mat-raised-button 
+               class=" "
               [disabled]="pageNo == 3"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -607,8 +722,8 @@
             >
               3
             </button>
-            <button
-              class="btn"
+            <button mat-raised-button 
+               class=" "
               [disabled]="pageNo == 4"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -618,8 +733,8 @@
             >
               4
             </button>
-            <button
-              class="btn"
+            <button mat-raised-button 
+               class=" "
               [disabled]="pageNo == 5"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -630,7 +745,8 @@
               5
             </button> -->
             <button
-              class="btn navBtn"
+              mat-raised-button
+              class="navBtn"
               [disabled]="pageNo == 1"
               (click)="
                 discoverByGenre(pageNo - 1, currentListType, currentGenreId)
@@ -646,7 +762,8 @@
               "
             >
               <button
-                class="btn"
+                mat-raised-button
+                class=""
                 *ngIf="pageNo > 1 && i == 0"
                 [disabled]="pageNo == 1"
                 [ngStyle]="{
@@ -659,7 +776,8 @@
               </button>
               <span *ngIf="pageNo > 2 && i == 0">...</span>
               <button
-                class="btn"
+                mat-raised-button
+                class=""
                 [disabled]="pageNo == pageNo + i"
                 [ngStyle]="{
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -674,7 +792,8 @@
             </div>
             ....
             <button
-              class="btn"
+              mat-raised-button
+              class=""
               *ngIf="pageNo + 20 <= genrePageSize; else remaining"
               [disabled]="pageNo == pageNo + 20"
               [ngStyle]="{
@@ -690,7 +809,8 @@
 
             <ng-template #remaining>
               <button
-                class="btn"
+                mat-raised-button
+                class=""
                 [disabled]="pageNo == genrePageSize"
                 [ngStyle]="{
                   'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -708,7 +828,8 @@
               </button></ng-template
             >
             <button
-              class="btn navBtn"
+              mat-raised-button
+              class="navBtn"
               [disabled]="pageNo == genrePageSize"
               (click)="
                 discoverByGenre(pageNo + 1, currentListType, currentGenreId)
@@ -735,14 +856,16 @@
         <!-- trending show/hide buttons -->
         <div class="showTrendingBtnGroup" *ngIf="movieData && !genreData">
           <button
-            class="btn btn-dark"
+            mat-raised-button
+            class="btn-dark"
             id="Tmovies"
             (click)="openTrendingMovies()"
           >
             Trending Movies
           </button>
           <button
-            class="btn btn-dark"
+            mat-raised-button
+            class="btn-dark"
             style="margin-left: 10px"
             id="Tseries"
             (click)="openTrendingSeries()"
@@ -750,12 +873,13 @@
             Trending Tv Series
           </button>
           <button
-            class="btn"
+            mat-raised-button
+            class=""
             style="margin-left: 10px"
             id="TcloseBtn"
             (click)="closeTrending()"
           >
-            <i class="fas fa-times-circle"></i>
+            <mat-icon>close</mat-icon>
           </button>
           <br />
           <br />
@@ -770,7 +894,7 @@
                 class="col-6 col-sm-3 trendingMovieData"
                 *ngFor="let mov of trendingMovies.results"
               >
-                <div class="card">
+                <mat-card>
                   <a
                     *ngIf="mov.original_title"
                     routerLink="/movies&tv/Movie/{{ mov.title }}/{{ mov.id }}"
@@ -802,7 +926,7 @@
                   >
                     {{ mov.title }}
                   </h6>
-                </div>
+                </mat-card>
                 <br />
               </div>
             </div>
@@ -827,7 +951,7 @@
                 class="col-6 col-sm-3 trendingMovieData"
                 *ngFor="let tv of trendingTv.results"
               >
-                <div class="card">
+                <mat-card>
                   <a
                     *ngIf="tv.name"
                     routerLink="/movies&tv/TV/{{ tv.name }}/{{ tv.id }}"
@@ -862,7 +986,7 @@
                   >
                     {{ tv.name }}
                   </h6>
-                </div>
+                </mat-card>
                 <br />
               </div>
             </div>
@@ -896,7 +1020,7 @@
             *ngFor="let movies of movieData"
           >
             <!-- movie card -->
-            <div class="card" id="movieCard" *ngIf="movieData">
+            <mat-card id="movieCard" *ngIf="movieData">
               <!-- movie image -->
               <a
                 *ngIf="movies.original_title"
@@ -937,8 +1061,9 @@
               <!-- movie title -->
               <h6
                 [ngStyle]="{
-                  'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
-,
+                  'background-color': brightness
+                    ? 'rgb(200, 200, 200)'
+                    : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
                 *ngIf="movies.original_title"
@@ -950,8 +1075,9 @@
               <!-- tv title -->
               <h6
                 [ngStyle]="{
-                  'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)'
-,
+                  'background-color': brightness
+                    ? 'rgb(200, 200, 200)'
+                    : ' rgb(41, 42, 45)',
                   color: brightness ? 'black' : 'white'
                 }"
                 routerLink="/movies&tv/TV/{{ movies.name }}/{{ movies.id }}"
@@ -959,7 +1085,7 @@
               >
                 {{ movies.name }}
               </h6>
-            </div>
+            </mat-card>
             <br />
             <br />
           </div>
@@ -969,8 +1095,8 @@
 
         <!-- hide main pagination if genre section present -->
         <div class="pagebtn" *ngIf="movieData && !genreData">
-          <!-- <button
-            class="btn"
+          <!-- <button mat-raised-button 
+             class=" "
             [disabled]="pageNo == 1"
             [ngStyle]="{
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -980,8 +1106,8 @@
           >
             1
           </button>
-          <button
-            class="btn"
+          <button mat-raised-button 
+             class=" "
             [disabled]="pageNo == 2"
             [ngStyle]="{
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -992,8 +1118,8 @@
             2
           </button>
 
-          <button
-            class="btn"
+          <button mat-raised-button 
+             class=" "
             [disabled]="pageNo == 3"
             [ngStyle]="{
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -1003,8 +1129,8 @@
           >
             3
           </button>
-          <button
-            class="btn"
+          <button mat-raised-button 
+             class=" "
             [disabled]="pageNo == 4"
             [ngStyle]="{
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -1014,8 +1140,8 @@
           >
             4
           </button>
-          <button
-            class="btn"
+          <button mat-raised-button 
+             class=" "
             [disabled]="pageNo == 5"
             [ngStyle]="{
               'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -1026,7 +1152,8 @@
             5
           </button> -->
           <button
-            class="btn navBtn"
+            mat-raised-button
+            class="navBtn"
             [disabled]="pageNo == 1"
             (click)="getTheLists(pageNo - 1, currentListType, currentList)"
           >
@@ -1040,7 +1167,8 @@
             "
           >
             <button
-              class="btn"
+              mat-raised-button
+              class=""
               *ngIf="pageNo > 1 && i == 0"
               [disabled]="pageNo == 1"
               [ngStyle]="{
@@ -1053,7 +1181,8 @@
             </button>
             <span *ngIf="pageNo > 2 && i == 0">...</span>
             <button
-              class="btn"
+              mat-raised-button
+              class=""
               [disabled]="pageNo == pageNo + i"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -1066,7 +1195,8 @@
           </div>
           ....
           <button
-            class="btn"
+            mat-raised-button
+            class=""
             *ngIf="pageNo + 20 <= pageSize; else remaining"
             [disabled]="pageNo == pageNo + 20"
             [ngStyle]="{
@@ -1080,7 +1210,8 @@
 
           <ng-template #remaining>
             <button
-              class="btn"
+              mat-raised-button
+              class=""
               [disabled]="pageNo == pageSize"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
@@ -1092,7 +1223,8 @@
             </button></ng-template
           >
           <button
-            class="btn navBtn"
+            mat-raised-button
+            class="navBtn"
             [disabled]="pageNo == pageSize"
             (click)="getTheLists(pageNo + 1, currentListType, currentList)"
           >

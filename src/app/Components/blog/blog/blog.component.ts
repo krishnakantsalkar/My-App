@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blog',
@@ -95,6 +96,10 @@ export class BlogComponent implements OnInit {
   pgSize: number;
   public today = new Date();
   moment = moment;
+
+  @ViewChild('blogPostDialog', { static: false })
+  blogPostDialog: TemplateRef<any>;
+
   constructor(
     private blogservice: blogpostservice,
     private fb: FormBuilder,
@@ -103,7 +108,8 @@ export class BlogComponent implements OnInit {
     private titleService: Title,
     private defaultModeService: modeService,
     private confirmationService: ConfirmationService,
-    private meta: Meta
+    private meta: Meta,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -338,13 +344,21 @@ export class BlogComponent implements OnInit {
         data.postLinks = linksArr;
         this.blogservice.publishBlog(data).subscribe(
           (item2) => {
-            this.display = true;
             this.logResponse = item2.result;
-            this.createPost = !this.createPost;
             d.getElementById('uploadCheck').style.display = 'inline-block';
 
             localStorage.removeItem('postCache');
-            this.blogsP(1);
+
+            let dialogRes = this.dialog.open(this.blogPostDialog, {
+              minHeight: '20vh',
+              minWidth: '30vw',
+            });
+
+            dialogRes.afterClosed().subscribe((item) => {
+              this.createPost = !this.createPost;
+
+              this.blogsP(1);
+            });
           },
           (err) => {
             this.errResponse = err.error;
@@ -360,17 +374,17 @@ export class BlogComponent implements OnInit {
     this.ngOnInit();
   }
 
-  confirm() {
-    this.confirmationService.confirm({
-      message: 'Would you like to publish this?',
-      accept: () => {
-        this.confirmPost();
-      },
-      reject: () => {
-        this.cancelPost();
-      },
-    });
-  }
+  // confirm() {
+  //   this.confirmationService.confirm({
+  //     message: 'Would you like to publish this?',
+  //     accept: () => {
+  //       this.confirmPost();
+  //     },
+  //     reject: () => {
+  //       this.cancelPost();
+  //     },
+  //   });
+  // }
 
   // confirm post
   confirmPost() {

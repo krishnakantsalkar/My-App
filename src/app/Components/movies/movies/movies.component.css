@@ -57,7 +57,6 @@ div.content {
 .listButtons button {
   margin: 10px;
   padding: 10px;
-  background-color: rgb(56, 55, 55);
   color: white;
 }
 
@@ -71,8 +70,8 @@ div.content {
 }
 
 .active {
-  background-color: greenyellow;
-  color: black;
+  background-color: greenyellow !important;
+  color: black !important;
 }
 
 #movieCard,

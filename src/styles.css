@@ -172,3 +172,7 @@ mat-form-field {
 .mat-input-element {
   color: gray !important;
 }
+
+mat-bottom-sheet-container {
+  padding: 0 !important;
+}

@@ -8,8 +8,8 @@
       }"
   >
     <mat-card-content class="cookie_content">
-      <div class="w-100">
-        <i class="fas fa-cookie-bite"></i>
+      <mat-icon class="material-icons"> verified_user </mat-icon>
+      <div>
         <h3>This website uses Cookies to enhance user experience,</h3>
         <p>
           By Using this website you agree to your data being used for delivering
@@ -17,11 +17,12 @@
           <a routerLink="/privacy">privacy policy</a>
         </p>
       </div>
+
       <button
         mat-raised-button
-        class="btn-primary"
-        mat-dialog-close=""
-        style="height: 50px"
+        class="mx-2 btn-primary"
+        mat-dialog-close
+        style="height: 40px"
         (click)="gotIt()"
       >
         Got it

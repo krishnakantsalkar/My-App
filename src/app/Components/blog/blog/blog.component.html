@@ -243,14 +243,14 @@
             class="col-md-8 col-lg-10"
             style="height: auto; width: 100%; text-align: center"
           >
-            <span
+            <mat-card
               class="alert alert-custom"
               [ngStyle]="{
                 'background-color': brightness ? '#dc3545' : ' rgb(32, 33, 33)',
                 color: brightness ? 'white' : 'rgb(160,160,160)'
               }"
               *ngIf="movieQArr"
-              >"{{ movieQ }}" ~ {{ movieName }}</span
+              >"{{ movieQ }}" ~ {{ movieName }}</mat-card
             >
           </div>
         </div>
@@ -642,11 +642,7 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
-                      style="
-                        padding-top: 10px;
-                        padding-bottom: 10px;
-                        border-bottom: 1px dashed;
-                      "
+                      style="padding-top: 10px; padding-bottom: 10px"
                     >
                       <div class="post_title_area">
                         <div class="post_name">
@@ -719,7 +715,7 @@
                         >
                       </h6>
                     </h3>
-
+                    <hr />
                     <!-- main post rendered in markdown -->
                     <div *ngIf="data" style="margin: 10px auto">
                       <markdown
@@ -972,7 +968,8 @@
                       #extraInput
                     />
                     <button
-                      class="btn btn-success"
+                      mat-raised-button
+                      class="btn-success"
                       id="searchsubmit1"
                       type="submit"
                     >
@@ -997,7 +994,7 @@
             *ngFor="let pg of [].constructor(pgSize); let i = index"
           >
             <button
-              class="btn"
+              mat-raised-button
               [disabled]="pageNo == i + 1"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',

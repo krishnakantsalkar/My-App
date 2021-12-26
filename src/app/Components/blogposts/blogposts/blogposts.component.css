@@ -56,8 +56,12 @@ div.content {
   color: white;
 }
 
+div.links {
+  word-break: break-word;
+}
+
 div.links a:hover {
-  background-color: tomato;
+  text-decoration: dotted;
 }
 
 @media only screen and (max-width: 600px) {

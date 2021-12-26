@@ -366,11 +366,10 @@ div.adblockOverlays .card-body button {
   margin: 10px;
 }
 
-div.websiteUsesDialog .fa-cookie-bite {
-  float: left;
+div.websiteUsesDialog mat-icon {
   font-size: 400%;
-  margin-right: 10px;
-  line-height: 80%;
+  margin-right: 35px;
+  height: 100%;
 }
 
 .footerAngularLogo .fa-angular {
@@ -467,7 +466,7 @@ div.websiteUsesDialog .fa-cookie-bite {
   div.websiteUsesDialog h3 {
     font-size: 18px;
   }
-  div.websiteUsesDialog .fa-cookie-bite {
+  div.websiteUsesDialog mat-icon {
     font-size: 30px;
   }
   div.websiteUsesDialog {

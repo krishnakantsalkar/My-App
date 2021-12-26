@@ -140,6 +140,9 @@ export class BlogpostsComponent implements OnInit {
         // like/dislike method call
         this.defaultLikes();
 
+        //set page Id
+        this.pageId = `/blog/${this.data.postNumber}/${this.data.postTitle}/${this.data.id}`;
+
         //make url links null on activated route
         this.url = null;
         this.url2 = null;

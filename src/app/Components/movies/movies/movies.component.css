@@ -77,24 +77,24 @@ div.content {
 
 #movieCard,
 #genreCard,
-.trendingContent .card {
+.trendingContent mat-card {
   border: 10px solid grey;
 }
 #movieCard:hover,
 #genreCard:hover,
-.trendingContent .card:hover {
-  border: 10px solid violet;
+.trendingContent mat-card:hover {
+  border: 10px solid #1f7ce0;
 }
 
 #movieCard a,
 #genreCard a,
-.trendingContent .card a {
+.trendingContent mat-card a {
   cursor: pointer;
 }
 
 #movieCard h6,
 #genreCard h6,
-.trendingContent .card h6 {
+.trendingContent mat-card h6 {
   padding: 5px;
   margin: 0;
   text-align: center;
@@ -141,7 +141,7 @@ div.content {
 
 #movieCard:hover .middle,
 #genreCard:hover .middle,
-.trendingContent .card:hover .middle {
+.trendingContent mat-card:hover .middle {
   opacity: 1;
 }
 
@@ -179,9 +179,9 @@ div.content {
   margin-top: 20px;
 }
 
-.searchArea input {
+.searchArea form {
   width: 70%;
-  margin-left: 42px;
+  margin: auto;
 }
 
 /* genre section css */
@@ -221,7 +221,7 @@ div.content {
   overflow-x: auto;
 }
 
-.trendingContent .card {
+.trendingContent mat-card {
   flex: 0 0 auto;
 }
 
@@ -255,7 +255,9 @@ div.scrollleft {
   color: white;
 }
 
-.movieData mat-card {
+.movieData mat-card,
+.genreData mat-card,
+.trendingContent mat-card {
   padding: 0 !important;
 }
 
@@ -284,7 +286,7 @@ div.scrollleft {
     font-size: 17px;
   }
 
-  .genreList .card {
+  .genreList mat-card {
     width: 100%;
   }
   .searchResultTitle h5 {

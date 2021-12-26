@@ -33,32 +33,36 @@
           </div>
         </div>
 
-        <div
-          class="card"
+        <mat-card
           [ngStyle]="{
             'background-color': brightness ? 'white' : ' rgb(35, 37, 37)',
             color: brightness ? 'black' : 'white'
           }"
         >
-          <div class="card-header">
+          <mat-card-title class="d-flex justify-content-between">
             <!-- back to movie list button -->
-            <h2 style="float: left">Media Details</h2>
-            <button
-              class="btn btn-dark"
-              style="float: right; margin-left: 5px"
-              (click)="backToPage()"
-            >
-              <i class="fas fa-arrow-left"></i> Back
-            </button>
-            <button
-              class="btn btn-info"
-              style="float: right"
-              routerLink="/movies&tv"
-            >
-              <i class="fas fa-arrow-up"></i> List
-            </button>
-          </div>
-          <div class="card-body" *ngIf="movieDetails">
+            <h2>Media Details</h2>
+            <span class="go_back">
+              <button
+                mat-raised-button
+                class="btn-dark"
+                style="float: right; margin-left: 5px"
+                (click)="backToPage()"
+              >
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button
+                mat-raised-button
+                class="btn-info"
+                style="float: right"
+                routerLink="/movies&tv"
+              >
+                <i class="fas fa-arrow-up"></i> List
+              </button>
+            </span>
+          </mat-card-title>
+          <br />
+          <mat-card-content *ngIf="movieDetails">
             <div class="row">
               <div class="col-lg-4 col-sm-4">
                 <!-- movie poster -->
@@ -108,9 +112,11 @@
                       }}/?ref_=ttls_li_tt"
                       target="_blank"
                     >
-                      <button class="btn btn-warning">IMDB</button></a
+                      <button mat-raised-button class="btn-warning">
+                        IMDB
+                      </button></a
                     >
-                    <button class="btn btn-primary">
+                    <button mat-raised-button class="btn-primary">
                       Genre:
                       <span
                         *ngFor="let genre of movieDetails.genres | slice: 0:2"
@@ -119,20 +125,23 @@
                       >
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       style="background-color: darkorchid; color: white"
                       *ngIf="movieDetails.status"
                     >
                       Status: {{ movieDetails.status }}!
                     </button>
                     <button
-                      class="btn btn-success"
+                      mat-raised-button
+                      class="btn-success"
                       *ngIf="movieDetails.release_date"
                     >
                       Release Date: {{ movieDetails.release_date }}
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       style="background-color: orangered; color: white"
                     >
                       Rating:
@@ -140,14 +149,16 @@
                       {{ movieDetails.vote_average }}/10
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       style="background-color: tomato"
                       *ngIf="movieDetails.original_language != 'en'"
                     >
                       lang: "{{ movieDetails.original_language }}"
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.runtime"
                       style="background-color: yellowgreen; color: black"
                     >
@@ -156,42 +167,48 @@
                       {{ movieDetails.runtime }} mins
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="listType == 'tv'"
                       style="background-color: teal; color: white"
                     >
                       Type: TV Show
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="listType == 'movie'"
                       style="background-color: teal; color: white"
                     >
                       Type: Movie
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.tagline"
                       style="background-color: papayawhip; color: black"
                     >
                       Tagline: "{{ movieDetails.tagline }}"
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.number_of_seasons"
                       style="background-color: burlywood; color: black"
                     >
                       Seasons: {{ movieDetails.number_of_seasons }}
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.number_of_episodes"
                       style="background-color: tomato; color: white"
                     >
                       Total Episodes: {{ movieDetails.number_of_episodes }}
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.last_episode_to_air"
                       style="background-color: darkseagreen; color: black"
                     >
@@ -199,7 +216,8 @@
                       {{ movieDetails.last_episode_to_air.air_date }}
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.next_episode_to_air"
                       style="background-color: rebeccapurple; color: white"
                     >
@@ -207,22 +225,29 @@
                       {{ movieDetails.next_episode_to_air.air_date }}
                     </button>
                     <a
-                      class="btn"
+                      class=""
                       href="{{ movieDetails.homepage }}"
                       *ngIf="movieDetails.homepage"
-                      style="background-color: cornsilk; color: black"
+                      target="_blank"
                     >
-                      Home Page
+                      <button
+                        mat-raised-button
+                        style="background-color: cornsilk; color: black"
+                      >
+                        Home Page
+                      </button>
                     </a>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.budget"
                       style="background-color: darksalmon; color: black"
                     >
                       Budget: {{ movieDetails.budget | currency: "USD" }}
                     </button>
                     <button
-                      class="btn"
+                      mat-raised-button
+                      class=""
                       *ngIf="movieDetails.revenue"
                       style="background-color: darksalmon; color: black"
                     >
@@ -252,15 +277,14 @@
 
                   <!-- movie credits area -->
                   <div class="movieCreditsArea" *ngIf="movieCredits">
-                    <div
-                      class="card"
+                    <mat-card
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(223, 223, 223)'
                           : ' rgb(41, 42, 45)'
                       }"
                     >
-                      <div class="card-body">
+                      <mat-card-content>
                         <!-- movie/tv trailers -->
                         <div
                           class="Trailers"
@@ -329,15 +353,15 @@
                             <br />
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      </mat-card-content>
+                    </mat-card>
                     <br />
                   </div>
 
                   <!-- movie season/ep list area -->
 
-                  <div
-                    class="card epListCard"
+                  <mat-card
+                    class="epListCard"
                     id="epListCard"
                     *ngIf="listType == 'tv'"
                     [ngStyle]="{
@@ -348,7 +372,7 @@
                       color: brightness ? 'black' : 'white'
                     }"
                   >
-                    <div class="card-body testEp">
+                    <mat-card-content class="testEp">
                       <h5 style="float: left">Episodes</h5>
                       <!-- list of episode dropdown -->
 
@@ -359,140 +383,160 @@
                         <div class="seasonsButtonList" id="generateEpBtn">
                           <!-- seasons switcher -->
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 1"
                             (click)="seasonsEpList(movieDetails.id, 1)"
                           >
                             Season 1
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 2"
                             (click)="seasonsEpList(movieDetails.id, 2)"
                           >
                             Season 2
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 3"
                             (click)="seasonsEpList(movieDetails.id, 3)"
                           >
                             Season 3
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 4"
                             (click)="seasonsEpList(movieDetails.id, 4)"
                           >
                             Season 4
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 5"
                             (click)="seasonsEpList(movieDetails.id, 5)"
                           >
                             Season 5
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 6"
                             (click)="seasonsEpList(movieDetails.id, 6)"
                           >
                             Season 6
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 7"
                             (click)="seasonsEpList(movieDetails.id, 7)"
                           >
                             Season 7
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 8"
                             (click)="seasonsEpList(movieDetails.id, 8)"
                           >
                             Season 8
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 9"
                             (click)="seasonsEpList(movieDetails.id, 9)"
                           >
                             Season 9
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 10"
                             (click)="seasonsEpList(movieDetails.id, 10)"
                           >
                             Season 10
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 11"
                             (click)="seasonsEpList(movieDetails.id, 11)"
                           >
                             Season 11
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 12"
                             (click)="seasonsEpList(movieDetails.id, 12)"
                           >
                             Season 12
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 13"
                             (click)="seasonsEpList(movieDetails.id, 13)"
                           >
                             Season 13
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 14"
                             (click)="seasonsEpList(movieDetails.id, 14)"
                           >
                             Season 14
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 15"
                             (click)="seasonsEpList(movieDetails.id, 15)"
                           >
                             Season 15
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 16"
                             (click)="seasonsEpList(movieDetails.id, 16)"
                           >
                             Season 16
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 17"
                             (click)="seasonsEpList(movieDetails.id, 17)"
                           >
                             Season 17
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 18"
                             (click)="seasonsEpList(movieDetails.id, 18)"
                           >
                             Season 18
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 19"
                             (click)="seasonsEpList(movieDetails.id, 19)"
                           >
                             Season 19
                           </button>
                           <button
-                            class="btn btn-dark"
+                            mat-raised-button
+                            class="btn-dark"
                             *ngIf="tvSeasonsTotal >= 20"
                             (click)="seasonsEpList(movieDetails.id, 20)"
                           >
@@ -539,13 +583,12 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </mat-card-content>
+                  </mat-card>
 
                   <br />
                   <!-- movie reviews card -->
-                  <div
-                    class="card"
+                  <mat-card
                     *ngIf="movieReviews && movieReviews.results.length > 0"
                     [ngStyle]="{
                       'background-color': brightness
@@ -553,7 +596,7 @@
                         : ' rgb(41, 42, 45)'
                     }"
                   >
-                    <div class="card-body">
+                    <mat-card-content>
                       <h5 style="float: left">Reviews:</h5>
                       <div class="scrollleft">
                         <h6 style="float: right">
@@ -576,8 +619,8 @@
                           </p>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </mat-card-content>
+                  </mat-card>
                 </div>
               </div>
             </div>
@@ -593,7 +636,7 @@
                   class="col-6 col-sm-3 similarsData"
                   *ngFor="let similars of movieSimilars.results"
                 >
-                  <div class="card" id="similarsCard">
+                  <mat-card id="similarsCard">
                     <a
                       *ngIf="similars.original_title"
                       routerLink="/movies&tv/Movie/{{ similars.title }}/{{
@@ -658,7 +701,7 @@
                     >
                       {{ similars.name }}
                     </h6>
-                  </div>
+                  </mat-card>
                   <br />
                 </div>
               </div>
@@ -674,8 +717,8 @@
                 </h6>
               </div>
             </div>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
 
         <div class="creditsInfo" style="margin-top: 20px">
           <div class="alert alert-success">

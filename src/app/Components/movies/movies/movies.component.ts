@@ -214,7 +214,8 @@ export class MoviesComponent implements OnInit {
 
   //Search movie/tv API multi search
 
-  SearchMedia() {
+  SearchMedia(event) {
+    event.preventDefault();
     let query = $('#movieTvSearch').val();
     if (!query) {
       return (this.searchErr = "Can't send empty query mate... :/");

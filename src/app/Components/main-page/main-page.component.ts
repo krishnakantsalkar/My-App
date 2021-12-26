@@ -4,6 +4,8 @@ import {
   Inject,
   OnInit,
   PLATFORM_ID,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
@@ -18,6 +20,10 @@ import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 import { isPlatformBrowser } from '@angular/common';
 import { UiService } from '../../Shared/services/ui.service';
+import {
+  MatBottomSheet,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-main-page',
@@ -57,6 +63,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   ];
   public picSource;
 
+  @ViewChild('bottomSheet', { static: false })
+  public bottomSheetDialog: TemplateRef<any>;
+
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -69,7 +78,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private defaultModeService: modeService,
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: any,
-    private uiService: UiService
+    private uiService: UiService,
+    private bottomSheetDiag: MatBottomSheet
   ) {
     // switch wallpaper method call
     // $(() => {
@@ -364,10 +374,16 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
   // check website uses dialog
-  async checkWebsiteUsesDiag() {
+  checkWebsiteUsesDiag() {
     let temp = this.cookies.get('websiteUsesDiag');
     if (!temp) {
-      document.getElementById('websiteUsesDialog').style.display = 'block';
+      let sheetRef = this.bottomSheetDiag.open(BottomSheetOverviewExampleSheet);
+
+      sheetRef.afterDismissed().subscribe((item) => {
+        if (item.save) {
+          this.cookies.set('websiteUsesDiag', 'done', 5);
+        }
+      });
     }
   }
 
@@ -468,5 +484,29 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
       this.showWalls();
     }
+  }
+}
+
+@Component({
+  selector: 'bottom-sheet-dialog',
+  templateUrl: './bottom-sheet-dialog.html',
+  styleUrls: ['./main-page.component.css'],
+})
+export class BottomSheetOverviewExampleSheet {
+  brightness: boolean;
+  constructor(
+    private defaultModeService: modeService,
+    private bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>
+  ) {}
+
+  ngOnInit() {
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
+  }
+
+  gotIt() {
+    this.bottomSheetRef.dismiss({ save: true });
   }
 }

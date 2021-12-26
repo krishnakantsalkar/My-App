@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './Components/main-page/main-page.component';
+import {
+  BottomSheetOverviewExampleSheet,
+  MainPageComponent,
+} from './Components/main-page/main-page.component';
 import { userloginservices } from './Shared/services/userloginservice';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -16,7 +19,6 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
 import { QuillModule } from 'ngx-quill';
 import { SkeletonModule } from 'primeng/skeleton';
-import { TooltipModule } from 'primeng/tooltip';
 import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
@@ -26,6 +28,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     Page404Component,
     NavbarComponent,
     FooterComponent,
+    BottomSheetOverviewExampleSheet,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -37,7 +40,6 @@ import { FooterComponent } from './Components/footer/footer.component';
     NgxCaptchaModule,
     SnotifyModule,
     SkeletonModule,
-    TooltipModule,
     SharedModuleModule,
     QuillModule.forRoot(),
   ],

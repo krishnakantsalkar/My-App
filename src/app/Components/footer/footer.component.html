@@ -8,7 +8,12 @@
   </head>
   <body>
     <!-- scroll to top button -->
-    <button (click)="topFunction()" id="myBtn" title="Go to top">
+    <button
+      mat-raised-button
+      (click)="topFunction()"
+      id="myBtn"
+      title="Go to top"
+    >
       <i class="fas fa-angle-up" aria-hidden="true"></i>
     </button>
 
@@ -73,8 +78,9 @@
                     formControlName="userEmail"
                   />
                   <button
+                    mat-raised-button
                     type="submit"
-                    class="btn btn-success"
+                    class="btn-success"
                     style="margin: 10px auto"
                     [disabled]="!newsLetterForm.valid"
                   >
@@ -288,6 +294,7 @@
                           : 'rgb(239, 133, 133)'
                       }"
                     />
+                    <br />
                     <input
                       type="email"
                       class="form-control"
@@ -299,6 +306,8 @@
                           : 'rgb(239, 133, 133)'
                       }"
                     />
+                    <br />
+
                     <input
                       type="text"
                       class="form-control"
@@ -311,8 +320,11 @@
                           : 'rgb(239, 133, 133)'
                       }"
                     />
+                    <br />
+
                     <button
-                      class="btn btn-success"
+                      mat-raised-button
+                      class="btn-success"
                       type="submit"
                       [disabled]="!sendFeedback.valid"
                     >

@@ -67,6 +67,7 @@ div.movieDetails {
   border: 10px solid grey;
   /* horizontal scroll div */
   flex: 0 0 auto;
+  padding: 0;
 }
 
 #generateEpBtn button {

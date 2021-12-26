@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- adblock overlay div -->
-    <div class="adblockOverlays" id="adblockOverlays">
+    <!-- <div class="adblockOverlays" id="adblockOverlays">
       <div
         class="card"
         [ngStyle]="{
@@ -18,8 +18,8 @@
           color: brightness ? 'black' : 'white'
         }"
       >
-        <button
-          class="btn crossBtn"
+        <button mat-raised-button
+          class="  crossBtn"
           style="float: right"
           [ngStyle]="{ color: brightness ? 'black' : 'white' }"
         >
@@ -43,50 +43,23 @@
             <br />
             <em> p.s. the cross button does nothing :P!</em>
           </p>
-          <button
-            class="btn btn-danger adblockDisableBtn"
+          <button mat-raised-button
+            class="  btn-danger adblockDisableBtn"
             (click)="disableAdblockBtn()"
           >
             Yes I've disabled adblock, lemme in!
           </button>
-          <button
-            class="btn btn-success adblockDisableBtn"
+          <button mat-raised-button
+            class="  btn-success adblockDisableBtn"
             (click)="continueWithoutAdblockBtn()"
           >
             Continue without adblock?
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- website uses cookies dialog -->
-    <div class="websiteUsesDialog" id="websiteUsesDialog">
-      <div
-        class="card"
-        [ngStyle]="{
-          'background-color': brightness
-            ? 'rgb(200, 200, 200)'
-            : ' rgb(61, 62, 65)',
-          color: brightness ? 'black' : 'white'
-        }"
-      >
-        <div class="card-body">
-          <i class="fas fa-cookie-bite"></i>
-          <h3>This website uses Cookies to enhance user experience,</h3>
-          <p>
-            By Using this website you agree to your data being used for
-            delivering optimal user experience. You can read how user data is
-            handled in our
-            <a routerLink="/privacy">privacy policy</a>
-            <span style="float: right">
-              <button class="btn btn-primary" (click)="websiteUsesDiag()">
-                Got it
-              </button></span
-            >
-          </p>
-        </div>
-      </div>
-    </div>
 
     <!-- Preload page component -->
     <div class="preloader" id="preloader">
@@ -124,7 +97,13 @@
               id="loopText"
             ></h6>
 
-            <button class="btn enterBtn" (click)="enter()">Enter</button>
+            <button
+              mat-raised-button
+              class="enterBtn btn-primary"
+              (click)="enter()"
+            >
+              Enter
+            </button>
           </div>
 
           <!-- Progress bar container -->
@@ -190,7 +169,14 @@
           />
 
           <!-- Add motto -->
-          <div class="motto">
+          <mat-card
+            class="motto"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgba(255, 69, 0,0.2)'
+                : ' rgba(35, 36, 38, 0.8)'
+            }"
+          >
             <h5
               [ngStyle]="{
                 color:
@@ -198,10 +184,7 @@
                     ? 'black'
                     : brightness && wallpaperNum > 0
                     ? 'white'
-                    : 'rgb(129,129,129)',
-                'background-color': brightness
-                  ? 'rgba(255, 69, 0, 0.2)'
-                  : ' rgba(35, 36, 38)'
+                    : 'rgb(129,129,129)'
               }"
               data-aos="fade-in"
               data-aos-delay="100"
@@ -240,25 +223,37 @@
                 [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
               ></i>
             </h5>
-          </div>
+          </mat-card>
         </div>
 
         <!-- wallpaper switch -->
         <div class="bgCredits">
           <button
-            class="btn"
+            mat-raised-button
+            class=""
             (click)="switchWalls()"
             matTooltip="switch background"
             matTooltipPosition="right"
+            [ngStyle]="{
+              'background-color': brightness
+                ? 'rgb(223, 223, 223)'
+                : ' rgb(41, 42, 45)'
+            }"
           >
-            <h5
+            <!-- <h5
+             
+            >
+              <i class="fas fa-sync-alt"></i>
+            </h5> -->
+            <mat-icon
               [ngStyle]="{
                 color: brightness ? 'orangered' : 'violet'
               }"
+              >sync</mat-icon
             >
-              <i class="fas fa-sync-alt"></i>
-            </h5>
           </button>
+          <br />
+          <br />
 
           <h6
             class="bgCreditsInfo"

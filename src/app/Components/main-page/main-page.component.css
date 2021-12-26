@@ -169,16 +169,16 @@ div.imagesection img {
   cursor: pointer;
 }
 
-div.motto {
+.motto {
   margin-top: 50px;
+  border-radius: 20px;
 }
 
-div.motto h5 {
+.motto h5 {
   color: #818181;
   padding-bottom: 20px;
   display: inline-block;
   padding: 10px 15px;
-  border-radius: 20px;
   transition: 0.3s ease-in-out;
 }
 
@@ -192,10 +192,6 @@ div.motto h5 {
   overflow: hidden;
 }
 .enterBtn {
-  background-color: #1f7ce0;
-  border-color: #1f7ce0;
-  color: white;
-  box-shadow: 0 2px 4px 0px black;
   opacity: 0;
   transition: 1s ease-in-out;
 }
@@ -370,17 +366,6 @@ div.adblockOverlays .card-body button {
   margin: 10px;
 }
 
-div.websiteUsesDialog {
-  position: fixed;
-  height: 200px;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: -17px;
-  z-index: 6;
-  display: none;
-}
-
 div.websiteUsesDialog .fa-cookie-bite {
   float: left;
   font-size: 400%;
@@ -403,6 +388,12 @@ div.websiteUsesDialog .fa-cookie-bite {
   display: none;
 }
 
+.cookie_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;
@@ -416,7 +407,8 @@ div.websiteUsesDialog .fa-cookie-bite {
     font-size: 9px;
   }
 
-  div.motto h5 {
+  .motto h5 {
+    padding: 10px 15px;
     font-size: 14px;
   }
 
@@ -479,7 +471,7 @@ div.websiteUsesDialog .fa-cookie-bite {
     font-size: 30px;
   }
   div.websiteUsesDialog {
-    bottom: 30px;
+    /* bottom: 30px; */
     text-align: center;
   }
 

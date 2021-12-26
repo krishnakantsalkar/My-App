@@ -29,8 +29,9 @@
         <!-- switch to edit post -->
         <div class="edit_del" *ngIf="data">
           <button
+            mat-raised-button
             *ngIf="checkUser && !switchtoedit"
-            class="btn btn-info"
+            class="btn-info"
             style="margin-bottom: 10px"
             (click)="switchToEdit()"
           >
@@ -39,8 +40,9 @@
 
           <!-- delete post button -->
           <button
+            mat-raised-button
             *ngIf="checkUser && !switchtoedit"
-            class="btn btn-danger"
+            class="btn-danger"
             style="margin-bottom: 10px"
             (click)="deletePostById()"
           >
@@ -48,8 +50,9 @@
           </button>
 
           <button
+            mat-raised-button
             *ngIf="checkUser && switchtoedit"
-            class="btn btn-danger"
+            class="btn-danger"
             style="margin-bottom: 10px"
             (click)="switchToEdit()"
           >
@@ -188,9 +191,14 @@
                 #{{ data.postNumber }}: {{ data.postTitle }}
               </h2>
               <div class="col-4 col-sm-4 returnBtn" style="text-align: right">
-                <a class="btn btn-warning" *ngIf="data" routerLink="/blog/1">
+                <button
+                  mat-raised-button
+                  class="btn-warning"
+                  *ngIf="data"
+                  routerLink="/blog/1"
+                >
                   <i class="fas fa-arrow-circle-left"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div
@@ -324,15 +332,14 @@
           /> -->
           <div class="body">
             <div *ngIf="data">
-              <div
-                class="card"
+              <mat-card
                 [ngStyle]="{
                   'background-color': brightness
                     ? 'rgb(245, 245, 245)'
                     : ' rgb(32, 33, 33)'
                 }"
               >
-                <div class="card-body">
+                <mat-card-content>
                   <!-- blogpost -->
 
                   <markdown
@@ -414,8 +421,8 @@
                   <br />
 
                   <br />
-                </div>
-              </div>
+                </mat-card-content>
+              </mat-card>
               <br />
               <!-- social sharing buttons (new) -->
 
@@ -482,8 +489,7 @@
               <div class="nextPrevNav">
                 <div class="row">
                   <div class="col-6 col-sm-6">
-                    <div
-                      class="card"
+                    <mat-card
                       *ngIf="prevPostData"
                       [ngStyle]="{
                         'background-color': brightness
@@ -499,7 +505,7 @@
                         )
                       "
                     >
-                      <div class="card-body">
+                      <mat-card-content>
                         <h5
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)'
@@ -513,12 +519,11 @@
                             >{{ prevPostData.postTitle }}
                           </span>
                         </h5>
-                      </div>
-                    </div>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                   <div class="col-6 col-sm-6">
-                    <div
-                      class="card"
+                    <mat-card
                       *ngIf="nextPostData"
                       [ngStyle]="{
                         'background-color': brightness
@@ -534,7 +539,7 @@
                         )
                       "
                     >
-                      <div class="card-body">
+                      <mat-card-content>
                         <h5
                           [ngStyle]="{
                             color: brightness ? 'black' : 'rgb(129,129,129)'
@@ -548,8 +553,8 @@
                           >
                           Next <i class="fas fa-arrow-right"></i>
                         </h5>
-                      </div>
-                    </div>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                 </div>
               </div>
@@ -584,7 +589,11 @@
                 <img *ngIf="data.postImage" [src]="data.postImage" />
               </div>
               <br />
-              <button class="btn btn-info" (click)="changeFile.click()">
+              <button
+                mat-raised-button
+                class="btn-info"
+                (click)="changeFile.click()"
+              >
                 change
               </button>
               <input
@@ -649,16 +658,18 @@
               <br />
 
               <button
+                mat-raised-button
                 type="reset"
-                class="btn btn-primary cancel"
+                class="btn-primary cancel"
                 style="margin-right: 10px"
                 (click)="switchToEdit()"
               >
                 Cancel
               </button>
               <button
+                mat-raised-button
                 type="submit"
-                class="btn btn-success"
+                class="btn-success"
                 (click)="editPostById(newEdit.value)"
               >
                 Submit
@@ -668,7 +679,11 @@
 
               <h3>
                 Post Markdown Preview:
-                <button class="btn btn-dark" (click)="getPostPreview()">
+                <button
+                  mat-raised-button
+                  class="btn-dark"
+                  (click)="getPostPreview()"
+                >
                   show
                 </button>
               </h3>

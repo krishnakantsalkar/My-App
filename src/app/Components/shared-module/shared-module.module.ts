@@ -44,6 +44,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 // Shared module
 
 const MaterialComponents = [
@@ -74,6 +75,7 @@ const MaterialComponents = [
   MatDividerModule,
   MatNativeDateModule,
   MatRadioModule,
+  MatBottomSheetModule,
 ];
 
 @NgModule({

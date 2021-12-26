@@ -1,0 +1,31 @@
+<div class="websiteUsesDialog" id="websiteUsesDialog">
+  <mat-card
+    [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(61, 62, 65)',
+        color: brightness ? 'black' : 'white'
+      }"
+  >
+    <mat-card-content class="cookie_content">
+      <div class="w-100">
+        <i class="fas fa-cookie-bite"></i>
+        <h3>This website uses Cookies to enhance user experience,</h3>
+        <p>
+          By Using this website you agree to your data being used for delivering
+          optimal user experience. You can read how user data is handled in our
+          <a routerLink="/privacy">privacy policy</a>
+        </p>
+      </div>
+      <button
+        mat-raised-button
+        class="btn-primary"
+        mat-dialog-close=""
+        style="height: 50px"
+        (click)="gotIt()"
+      >
+        Got it
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

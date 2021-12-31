@@ -1,6 +1,9 @@
 import { NgModule, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlogpostsComponent } from './blogposts/blogposts.component';
+import {
+  BlogpostsComponent,
+  ConfirmDeleteDialogComponent,
+} from './blogposts/blogposts.component';
 import { RouterModule } from '@angular/router';
 import { blogpostsroute } from './blogposts-routes';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -10,7 +13,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { DisqusModule, DISQUS_SHORTNAME } from 'ngx-disqus';
 
 @NgModule({
-  declarations: [BlogpostsComponent],
+  declarations: [BlogpostsComponent, ConfirmDeleteDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(blogpostsroute),

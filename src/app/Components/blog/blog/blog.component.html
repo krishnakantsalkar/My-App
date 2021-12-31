@@ -657,22 +657,29 @@
                             ><span class="material-icons"> feed </span>
                             {{ d.postNumber }}: {{ d.postTitle }}</a
                           >
+                          <span
+                            *ngIf="
+                              moment(today).format('YYYY-MM-DD') <=
+                                moment(d.postDate).format('YYYY-MM-DD') &&
+                              moment(d.postDate).format('YYYY-MM-DD') <=
+                                moment(today)
+                                  .add(3, 'days')
+                                  .format('YYYY-MM-DD')
+                            "
+                            [ngStyle]="{
+                              'background-color': brightness
+                                ? 'violet'
+                                : 'orangered'
+                            }"
+                            class="badge badge-secondary ml-3"
+                            >New
+                            <mat-icon class="icon_align"
+                              >new_releases</mat-icon
+                            ></span
+                          >
 
                           <!-- new post badge -->
-                          <h3>
-                            <span
-                              *ngIf="
-                                moment(today).format('YYYY-MM-DD') <=
-                                  moment(d.postDate).format('YYYY-MM-DD') &&
-                                moment(d.postDate).format('YYYY-MM-DD') <=
-                                  moment(today)
-                                    .add(3, 'days')
-                                    .format('YYYY-MM-DD')
-                              "
-                              class="badge badge-secondary"
-                              >New</span
-                            >
-                          </h3>
+                          <h3></h3>
                         </div>
                         <span
                           *ngIf="d.edited == true"

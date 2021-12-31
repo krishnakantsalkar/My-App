@@ -16,7 +16,7 @@ var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blog',
@@ -346,6 +346,7 @@ export class BlogComponent implements OnInit {
           (item2) => {
             this.logResponse = item2.result;
             d.getElementById('uploadCheck').style.display = 'inline-block';
+            d.getElementById('uploadSpinner').style.display = 'none';
 
             localStorage.removeItem('postCache');
 
@@ -357,10 +358,12 @@ export class BlogComponent implements OnInit {
             dialogRes.afterClosed().subscribe((item) => {
               this.createPost = !this.createPost;
 
-              this.blogsP(1);
+              this.router.navigateByUrl('/blog/1');
             });
           },
           (err) => {
+            d.getElementById('uploadCheck').style.display = 'none';
+            d.getElementById('uploadSpinner').style.display = 'none';
             this.errResponse = err.error;
             this.display = true;
           }

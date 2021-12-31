@@ -10,6 +10,7 @@ import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { link } from 'fs';
 import { UiService } from 'src/app/Shared/services/ui.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-blogposts',
@@ -67,10 +68,13 @@ export class BlogpostsComponent implements OnInit {
     private titleService: Title,
     private defaultModeService: modeService,
     private uiService: UiService,
-    private meta: Meta
+    private meta: Meta,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    // $(() => {});
+
     // method calls
 
     // get client IP to track views
@@ -231,17 +235,27 @@ export class BlogpostsComponent implements OnInit {
 
   //delete post by id
   deletePostById() {
-    let getBlogId = window.location.href.split('/');
-    let id = getBlogId[6];
-    this.blogservice.deleteBlog(id).subscribe(
-      (item) => {
-        alert(item.message);
-        this.router.navigateByUrl('/blog/1');
-      },
-      (err) => {
-        alert(err.message);
+    let dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      minWidth: '30vw',
+    });
+
+    dialogRef.afterClosed().subscribe((item) => {
+      if (item && item.delete == true) {
+        let getBlogId = window.location.href.split('/');
+        let id = getBlogId[6];
+        this.blogservice.deleteBlog(id).subscribe(
+          (item) => {
+            this.uiService.showSnackbar(`${item.message}`, null, 3500);
+            this.router.navigateByUrl('/blog/1');
+          },
+          (err) => {
+            this.uiService.showSnackbar(`${err.message}`, null, 3500);
+          }
+        );
+      } else {
+        return;
       }
-    );
+    });
   }
 
   // method to navigate between posts
@@ -383,5 +397,30 @@ export class BlogpostsComponent implements OnInit {
       const file = event.target.files[0];
       this.currentBlogImg = file; // main blog image file
     }
+  }
+}
+
+@Component({
+  selector: 'app-confirm-delete-dialog',
+  templateUrl: './confirmDeleteDialog.html',
+})
+export class ConfirmDeleteDialogComponent implements OnInit {
+  brightness: boolean;
+  constructor(
+    private dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>,
+    private defaultModeService: modeService
+  ) {}
+
+  ngOnInit() {
+    // brightness mode
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
+  }
+
+  confirmTrue() {
+    this.dialogRef.close({
+      delete: true,
+    });
   }
 }

@@ -241,9 +241,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       $('.modeLD a').css('pointer-events', 'all');
       $('.modeLD a').css('opacity', 1);
     });
-
-    // website uses cookies check
-    this.checkWebsiteUsesDiag();
   }
 
   ngAfterViewInit() {
@@ -263,6 +260,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
 
     sessionStorage.setItem('session', 'onGoing');
+
+    // website uses cookies check
+    this.checkWebsiteUsesDiag();
 
     this.uiService.checkSession$.next(true);
     this.showNotif();

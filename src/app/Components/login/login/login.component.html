@@ -241,8 +241,8 @@
                             mat-raised-button
                             class="btn-primary float-right submit"
                             style="color: white"
+                            [disabled]="!newLogin.valid"
                           >
-                            <!-- [disabled]="!newLogin.valid" -->
                             Log In
                             <!-- some visual feedback while login -->
                             <span

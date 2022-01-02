@@ -33,6 +33,7 @@ import {
 export class MainPageComponent implements OnInit, AfterViewInit {
   public brightness: boolean;
   public special: boolean;
+  public session: boolean;
   public recentblogs;
   public loggedInUser;
   public sendFeedback: FormGroup;
@@ -131,6 +132,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
+    });
+
+    this.uiService.checkSession$.subscribe((item) => {
+      this.session = item;
     });
 
     this.loginservice.currentUsers.subscribe((item) => {
@@ -270,8 +275,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // set global Light/Dark mode
   mode() {
-    this.brightness = !this.brightness;
-    localStorage.setItem('mode', JSON.stringify(this.brightness));
+    this.defaultModeService.switchMode();
   }
 
   // show special

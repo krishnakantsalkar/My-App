@@ -64,6 +64,21 @@
     <!-- Preload page component -->
     <div class="preloader" id="preloader">
       <!-- preload page card fixed and covers entire page using css -->
+      <a
+        *ngIf="!session"
+        class="preloadModeChange"
+        (click)="mode()"
+        [ngStyle]="{
+          color: brightness ? 'red' : 'violet'
+        }"
+        ><mat-icon class="icon_align" *ngIf="brightness; else notBrightness"
+          >dark_mode</mat-icon
+        >
+        <ng-template #notBrightness
+          ><mat-icon class="icon_align">brightness_7</mat-icon></ng-template
+        ></a
+      >
+
       <div
         class="preloadContent card"
         [ngStyle]="{

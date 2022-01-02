@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { clientIpService } from '../../../Shared/services/clientip-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { link } from 'fs';
@@ -64,7 +63,6 @@ export class BlogpostsComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private cookies: CookieService,
-    private clientIpObj: clientIpService,
     private titleService: Title,
     private defaultModeService: modeService,
     private uiService: UiService,
@@ -76,11 +74,6 @@ export class BlogpostsComponent implements OnInit {
     // $(() => {});
 
     // method calls
-
-    // get client IP to track views
-    // this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
-    //   let ip = ipObj.ip;
-    // });
 
     this.postId = window.location.href.split('/');
 

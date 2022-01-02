@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { IuserLogin } from 'src/app/Shared/model/loginmodel';
 import * as AOS from 'aos';
-import { clientIpService } from 'src/app/Shared/services/clientip-service';
 import { CookieService } from 'ngx-cookie-service';
 import { Iforgot } from 'src/app/Shared/model/forgotPass';
 import { Title } from '@angular/platform-browser';
@@ -60,7 +59,6 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private loginservice: userloginservices,
-    private userlogservice: clientIpService,
     private cookies: CookieService,
     private cdr: ChangeDetectorRef,
     private titleService: Title,
@@ -102,17 +100,6 @@ export class LoginComponent implements OnInit {
     AOS.init({
       startEvent: 'DOMContentLoaded',
     });
-
-    // this.userlogservice.getClientIp().subscribe((item) => {
-    //   this.ipdata = item;
-    //   this.useragent = { useragent: window.navigator.userAgent };
-    //   this.newLogin.patchValue({
-    //     userLogin: {
-    //       userip: this.ipdata,
-    //       useragent: this.useragent,
-    //     },
-    //   });
-    // });
 
     footerBackground();
     function footerBackground() {

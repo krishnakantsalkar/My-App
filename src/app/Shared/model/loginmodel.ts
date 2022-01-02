@@ -6,4 +6,5 @@ export interface IuserLogin {
   token?: boolean;
   id?: string;
   profileId: string;
+  keepSignedIn?: boolean;
 }

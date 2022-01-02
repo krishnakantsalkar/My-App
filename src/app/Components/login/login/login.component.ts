@@ -88,10 +88,9 @@ export class LoginComponent implements OnInit {
       userLogin: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
-        userip: [''],
-        useragent: [''],
         recaptcha: ['', Validators.required],
       }),
+      keepSignedIn: [false],
     });
 
     // forgot pass formgroup
@@ -104,16 +103,16 @@ export class LoginComponent implements OnInit {
       startEvent: 'DOMContentLoaded',
     });
 
-    this.userlogservice.getClientIp().subscribe((item) => {
-      this.ipdata = item;
-      this.useragent = { useragent: window.navigator.userAgent };
-      this.newLogin.patchValue({
-        userLogin: {
-          userip: this.ipdata,
-          useragent: this.useragent,
-        },
-      });
-    });
+    // this.userlogservice.getClientIp().subscribe((item) => {
+    //   this.ipdata = item;
+    //   this.useragent = { useragent: window.navigator.userAgent };
+    //   this.newLogin.patchValue({
+    //     userLogin: {
+    //       userip: this.ipdata,
+    //       useragent: this.useragent,
+    //     },
+    //   });
+    // });
 
     footerBackground();
     function footerBackground() {
@@ -124,6 +123,10 @@ export class LoginComponent implements OnInit {
         footerArea[0].style.position = 'absolute';
       }
     }
+  }
+
+  keepSignedInToggle(checked) {
+    this.newLogin.patchValue({ keepSignedIn: checked });
   }
 
   Save(data: IuserLogin) {
@@ -138,7 +141,12 @@ export class LoginComponent implements OnInit {
       (item) => {
         if (item && item.token) {
           // localStorage.setItem('credentials', JSON.stringify(item.token));
-          this.cookies.set('credentials', JSON.stringify(item.token), 5);
+
+          if (data.keepSignedIn) {
+            this.cookies.set('credentials', JSON.stringify(item.token));
+          } else {
+            this.cookies.set('credentials', JSON.stringify(item.token), 2);
+          }
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
           localStorage.setItem('userToken', JSON.stringify(item.token));

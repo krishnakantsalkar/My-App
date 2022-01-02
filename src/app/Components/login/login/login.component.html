@@ -234,6 +234,10 @@
                         formControlName="recaptcha"
                       >
                       </ngx-recaptcha2>
+                      <mat-checkbox
+                        (change)="keepSignedInToggle($event.checked)"
+                        >Keep Signed In</mat-checkbox
+                      >
                       <div class="form-group">
                         <div class="buttons">
                           <button

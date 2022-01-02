@@ -110,7 +110,7 @@ export class blogpostservice {
   trackPostViews(id, data) {
     return this.http.put(
       this.postViewApi + id,
-      JSON.stringify({ userViews: data }),
+      {},
       {
         headers: this.header,
       }

@@ -8,7 +8,7 @@ import {
   MainPageComponent,
 } from './Components/main-page/main-page.component';
 import { userloginservices } from './Shared/services/userloginservice';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxCaptchaModule } from 'ngx-captcha';
@@ -20,6 +20,7 @@ import { SharedModuleModule } from './Components/shared-module/shared-module.mod
 import { QuillModule } from 'ngx-quill';
 import { SkeletonModule } from 'primeng/skeleton';
 import { FooterComponent } from './Components/footer/footer.component';
+import { TokenInterceptorInterceptor } from './Shared/services/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,11 @@ import { FooterComponent } from './Components/footer/footer.component';
     { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

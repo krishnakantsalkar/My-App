@@ -78,13 +78,17 @@ export class BlogpostsComponent implements OnInit {
     // method calls
 
     // get client IP to track views
-    this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
-      let ip = ipObj.ip;
-      this.postId = window.location.href.split('/');
-      this.blogservice
-        .trackPostViews(this.postId[6], ip)
-        .subscribe((response) => {});
-    });
+    // this.clientIpObj.getClientIp().subscribe((ipObj: userIp) => {
+    //   let ip = ipObj.ip;
+    // });
+
+    this.postId = window.location.href.split('/');
+
+    this.blogservice
+      .trackPostViews(this.postId[6], {})
+      .subscribe((response) => {
+        console.log(response);
+      });
 
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {

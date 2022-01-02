@@ -10,6 +10,7 @@ export class covidNewsService {
     this.header = new HttpHeaders({
       'x-rapidapi-key': '', //removed for github
       'x-rapidapi-host': '', //removed for github
+      skip: 'true',
     });
   }
 

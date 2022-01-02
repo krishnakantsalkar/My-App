@@ -24,33 +24,37 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let token = undefined;
-
-    if (localStorage.getItem('token')) {
-      token = JSON.parse(localStorage.getItem('userToken'));
+    if (request.headers.get('skip')) {
+      return next.handle(request);
     } else {
-      token = '';
+      let token = undefined;
+
+      if (localStorage.getItem('token')) {
+        token = JSON.parse(localStorage.getItem('userToken'));
+      } else {
+        token = '';
+      }
+
+      let tokenizedReq = request.clone({
+        setHeaders: {
+          'x-auth-token': token,
+        },
+      });
+
+      return next.handle(tokenizedReq).pipe(
+        catchError((err) => {
+          if (err instanceof HttpErrorResponse) {
+            this.uiService.showSnackbar(
+              'Auth Invalid, please login again',
+              null,
+              3500
+            );
+
+            this.logonServices.Logout();
+          }
+          return throwError(err);
+        })
+      );
     }
-
-    let tokenizedReq = request.clone({
-      setHeaders: {
-        'x-auth-token': token,
-      },
-    });
-
-    return next.handle(tokenizedReq).pipe(
-      catchError((err) => {
-        if (err instanceof HttpErrorResponse) {
-          this.uiService.showSnackbar(
-            'Auth Invalid, please login again',
-            null,
-            3500
-          );
-
-          this.logonServices.Logout();
-        }
-        return throwError(err);
-      })
-    );
   }
 }

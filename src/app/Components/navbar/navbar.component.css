@@ -125,10 +125,21 @@ span.two {
   padding: 12px;
 }
 
-.activeCss {
-  color: #1f7ce0 !important;
-  border-bottom: 4px solid #1f7ce0;
+.activeCssD {
+  color: violet !important;
+  border-bottom: 2px solid violet;
   font-weight: 500;
+}
+.activeCssL {
+  color: orangered !important;
+  border-bottom: 2px solid orangered;
+  font-weight: 500;
+}
+
+.nav_date {
+  position: relative;
+  top: 2px;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   Inject,
@@ -16,12 +17,14 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
   public brightness: boolean;
   public special: boolean;
   public loggedInUser;
   public checkStatus;
   public dynamicCss: string;
+  public liveDate = new Date();
+  public activeCss: string;
   constructor(
     private cookies: CookieService,
     private logonServices: userloginservices,
@@ -42,6 +45,25 @@ export class NavbarComponent implements OnInit {
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
+
+      if (this.brightness) {
+        this.activeCss = 'activeCssL';
+        Array.from(document.querySelectorAll('.nav-link')).forEach((el) => {
+          if (el.classList.contains('activeCssD')) {
+            el.classList.remove('activeCssD');
+            el.classList.add('activeCssL');
+          }
+        });
+      } else {
+        this.activeCss = 'activeCssD';
+        Array.from(document.querySelectorAll('.nav-link')).forEach((el) => {
+          console.log(el.classList);
+          if (el.classList.contains('activeCssL')) {
+            el.classList.remove('activeCssL');
+            el.classList.add('activeCssD');
+          }
+        });
+      }
     });
     // animate navbar on scroll
 
@@ -91,12 +113,18 @@ export class NavbarComponent implements OnInit {
     } else {
       $(window).on('scroll', () => {
         if ($(window).scrollTop() > 50) {
-          $('#myBtn').css('bottom', '15px');
+          $('#myBtn').css('bottom', '25px');
         } else {
           $('#myBtn').css('bottom', '-50px');
         }
       });
     }
+  }
+
+  ngAfterViewInit() {
+    setInterval(() => {
+      this.liveDate = new Date();
+    }, 60000);
   }
   // set global Light/Dark mode
   mode() {

@@ -10,6 +10,7 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { link } from 'fs';
 import { UiService } from 'src/app/Shared/services/ui.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-blogposts',
@@ -67,7 +68,8 @@ export class BlogpostsComponent implements OnInit {
     private defaultModeService: modeService,
     private uiService: UiService,
     private meta: Meta,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -79,9 +81,7 @@ export class BlogpostsComponent implements OnInit {
 
     this.blogservice
       .trackPostViews(this.postId[6], {})
-      .subscribe((response) => {
-        console.log(response);
-      });
+      .subscribe((response) => {});
 
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
@@ -106,6 +106,17 @@ export class BlogpostsComponent implements OnInit {
         this.data = items;
         this.markdown = this.data.post;
         this.blogURL = window.location.href;
+
+        let urlReplace = this.blogURL
+          .replace(/%20/g, '-')
+          .split('/')
+          .slice(3)
+          .join()
+          .replace(/,/g, '/');
+
+        //
+        //
+        this.location.replaceState(urlReplace);
 
         this.data.postLinks.forEach((link) => {
           this.postLinks.push({ link });

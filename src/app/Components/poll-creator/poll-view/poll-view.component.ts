@@ -30,8 +30,6 @@ export class PollViewComponent implements OnInit {
 
       this.pollservice.getPollById(pollId).subscribe((item) => {
         this.pollObj = item.result;
-
-        console.log(item);
       });
     });
   }

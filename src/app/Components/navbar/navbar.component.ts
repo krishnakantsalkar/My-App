@@ -57,7 +57,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       } else {
         this.activeCss = 'activeCssD';
         Array.from(document.querySelectorAll('.nav-link')).forEach((el) => {
-          console.log(el.classList);
           if (el.classList.contains('activeCssL')) {
             el.classList.remove('activeCssL');
             el.classList.add('activeCssD');

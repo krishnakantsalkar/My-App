@@ -221,9 +221,7 @@ export class LoginComponent implements OnInit {
       secret: this.siteKey,
       response: captchaResponse,
     };
-    this.loginservice.verifyRecaptcha(data).subscribe((item) => {
-      console.log(item);
-    });
+    this.loginservice.verifyRecaptcha(data).subscribe((item) => {});
   }
 
   handleLoad(): void {

@@ -66,9 +66,7 @@ export class PollCreatorComponent implements OnInit {
       (item) => {
         this.pollList = item.result;
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   }
 
@@ -86,8 +84,6 @@ export class PollCreatorComponent implements OnInit {
       optArr.push({ [opt.option]: 0 });
     }
     pollObj.pollOptions = optArr;
-
-    console.log(pollObj);
 
     this.pollservice.newPoll(pollObj).subscribe((item) => {
       this.messagingService.add({

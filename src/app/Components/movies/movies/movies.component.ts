@@ -187,7 +187,6 @@ export class MoviesComponent implements OnInit {
       .subscribe((item) => {
         this.movieData = item.results;
 
-        console.log(item.results);
         this.router.navigateByUrl('/movies&tv').then(() => {
           let elemnt = document.getElementById('movieList');
           if (elemnt) {

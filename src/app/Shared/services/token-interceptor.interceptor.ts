@@ -24,7 +24,8 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.headers.get('skip')) {
+    //something
+    if (request.headers.has('skip')) {
       request = request.clone({
         headers: request.headers.delete('skip', 'true'),
       });
@@ -32,7 +33,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     } else {
       let token = undefined;
 
-      if (localStorage.getItem('token')) {
+      if (localStorage.getItem('userToken')) {
         token = JSON.parse(localStorage.getItem('userToken'));
       } else {
         token = '';

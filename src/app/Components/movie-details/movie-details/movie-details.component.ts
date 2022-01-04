@@ -62,7 +62,7 @@ export class MovieDetailsComponent implements OnInit {
       // get movie data by id
       this.movieService.getMoviesById(id, this.listType).subscribe((item) => {
         this.movieDetails = item;
-        console.log(this.movieDetails);
+
         this.tvSeasonsTotal = this.movieDetails.number_of_seasons;
       });
       // get movie review by id

@@ -140,7 +140,6 @@ export class CovidNewsComponent implements OnInit {
     this.covidNews = undefined;
     this.covidStatService.getCovidNews(pg).subscribe((item) => {
       this.covidNews = item.news;
-      console.log(item);
     });
   }
 

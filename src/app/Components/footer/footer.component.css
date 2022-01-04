@@ -161,9 +161,15 @@ div.footer h6 {
   color: white;
   cursor: pointer;
   padding: 2px 10px;
-  border-radius: 4px;
+  border-radius: 50%;
   transition: 0.3s ease-in;
+  height: 45px;
   min-width: 40px !important;
+  width: 45px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #myBtn:hover {

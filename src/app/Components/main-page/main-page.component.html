@@ -64,6 +64,15 @@
     <!-- Preload page component -->
     <div class="preloader" id="preloader">
       <!-- preload page card fixed and covers entire page using css -->
+      <span
+        class="preloadDate"
+        *ngIf="!session"
+        [ngStyle]="{
+          color: brightness ? 'red' : 'violet'
+        }"
+      >
+        {{ currentDate | date: "dd MMM | hh:mm a" }}
+      </span>
       <a
         *ngIf="!session"
         class="preloadModeChange"
@@ -71,6 +80,8 @@
         [ngStyle]="{
           color: brightness ? 'red' : 'violet'
         }"
+        matTooltip="switch brightness"
+        matTooltipPosition="left"
         ><mat-icon class="icon_align" *ngIf="brightness; else notBrightness"
           >dark_mode</mat-icon
         >
@@ -116,6 +127,9 @@
               mat-raised-button
               class="enterBtn btn-primary"
               (click)="enter()"
+              [ngStyle]="{
+                'background-color': brightness ? 'orangered' : 'violet'
+              }"
             >
               Enter
             </button>

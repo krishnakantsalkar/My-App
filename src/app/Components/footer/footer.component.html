@@ -12,9 +12,15 @@
       mat-raised-button
       (click)="topFunction()"
       id="myBtn"
-      title="Go to top"
+      matTooltip="go to Top"
+      matTooltipPosition="left"
+      [ngStyle]="{
+        'background-color': brightness ? 'orangered' : ' violet',
+        color: brightness ? 'white' : 'black'
+      }"
     >
-      <i class="fas fa-angle-up" aria-hidden="true"></i>
+      <!-- <i class="fas fa-angle-up" aria-hidden="true"></i> -->
+      <mat-icon>call_merge</mat-icon>
     </button>
 
     <!-- shaorangered footer template -->

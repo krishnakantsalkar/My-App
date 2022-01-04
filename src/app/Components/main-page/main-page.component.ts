@@ -67,6 +67,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   @ViewChild('bottomSheet', { static: false })
   public bottomSheetDialog: TemplateRef<any>;
 
+  public currentDate = new Date();
+
   constructor(
     private loginservice: userloginservices,
     private router: Router,

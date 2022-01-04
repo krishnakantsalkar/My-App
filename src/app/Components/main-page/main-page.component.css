@@ -194,6 +194,7 @@ div.imagesection img {
 .enterBtn {
   opacity: 0;
   transition: 1s ease-in-out;
+  color: white;
 }
 .preloader {
   margin: 0;
@@ -497,6 +498,10 @@ div.websiteUsesDialog mat-icon {
   .nametag {
     height: 100vh !important;
   }
+
+  div.bgCredits {
+    bottom: 6%;
+  }
 }
 
 .preloadModeChange {
@@ -505,4 +510,18 @@ div.websiteUsesDialog mat-icon {
   top: 20px;
   z-index: 10;
   cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s ease-in-out;
+}
+
+.preloadModeChange:hover {
+  opacity: 1;
+}
+
+.preloadDate {
+  position: fixed;
+  left: 25px;
+  top: 20px;
+  z-index: 10;
+  font-weight: 600;
 }

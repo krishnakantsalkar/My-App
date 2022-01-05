@@ -176,3 +176,19 @@ mat-form-field {
 mat-bottom-sheet-container {
   padding: 0 !important;
 }
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary
+  .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary
+  .mat-ripple-element {
+  background: #1f7ce0 !important;
+}
+
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #1f7ce0 !important;
+}
+
+.mat-checkbox-frame {
+  border-color: #1f7ce0;
+}

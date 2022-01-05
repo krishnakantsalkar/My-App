@@ -7,46 +7,41 @@
 .cardPlaceholder {
   position: relative;
 }
-.cardPlaceholder .fa-pencil-alt {
+.cardPlaceholder mat-icon {
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
   font-size: 50px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
 }
 
-.fa-edit:hover {
-  cursor: pointer;
+mat-card-title h5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.fa-trash-alt:hover {
-  cursor: pointer;
-}
-
-.fa-times-circle {
-  font-size: 15px;
-}
-.fa-times-circle:hover {
+mat-icon:hover {
   cursor: pointer;
 }
 
-.fa-archive:hover {
+.pinnedNotes mat-icon {
   cursor: pointer;
 }
-.pinnedNotes .fa-thumbtack {
-  cursor: pointer;
-}
-.allNotes .fa-thumbtack {
+.allNotes mat-card-title mat-icon {
   visibility: hidden;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
-.allNotes .card-header:hover .fa-thumbtack {
+.allNotes mat-card-title:hover mat-icon {
   visibility: visible;
 }
 
-.notes .card-footer h5 {
+.notes mat-card-footer h5 {
   font-size: 13px;
 }
 
@@ -60,13 +55,14 @@
   margin: 20px auto;
 }
 
-.todoList .card-header:hover .fa-trash-alt {
-  visibility: visible;
-}
-.todoList .fa-trash-alt {
+.todoList .mat-icon {
   visibility: hidden;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+
+.todoList mat-card-title:hover mat-icon {
+  visibility: visible;
 }
 
 /* ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
@@ -101,8 +97,25 @@
   white-space: break-spaces;
 }
 
+mat-card-content {
+  font-size: 16px;
+  padding: 12px 5px;
+}
+
+mat-card-footer h5 {
+  font-size: 12px;
+}
+
 @media only screen and (max-width: 600px) {
-  .notes .card-footer h5 {
+  .notes mat-card-footer h5 {
     font-size: 9px;
+  }
+
+  .todoList .mat-icon {
+    visibility: visible;
+  }
+
+  .allNotes mat-card-title mat-icon {
+    visibility: visible;
   }
 }

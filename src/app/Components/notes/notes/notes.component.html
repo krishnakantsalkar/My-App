@@ -23,11 +23,14 @@
       type="button"
       class="float-right mx-2"
       [ngStyle]="{
-        'background-color': brightness ? 'orangered' : ' violet'
+        'background-color': brightness ? 'orangered' : ' violet',
+        color: brightness ? 'white' : 'black'
       }"
       (click)="showAddNote()"
+      matTooltip="Add Note"
+      matTooltipPosition="right"
     >
-      Add Note
+      <mat-icon>note_add</mat-icon>
     </button>
 
     <button
@@ -35,16 +38,33 @@
       *ngIf="!todoSwitch"
       class="float-right mx-2"
       [ngStyle]="{
-        'background-color': brightness ? 'orangered' : ' violet'
+        'background-color': brightness ? 'orangered' : ' violet',
+        color: brightness ? 'white' : 'black'
       }"
       (click)="showAddTodo()"
+      matTooltip="Add Task"
+      matTooltipPosition="left"
     >
-      Add Todo List
+      <mat-icon>task</mat-icon>
     </button>
     <br />
     <br />
-    <div *ngIf="noteSwitch" style="margin-bottom: 70px">
-      <br />
+    <div
+      *ngIf="noteSwitch"
+      style="margin-bottom: 70px; padding: 20px; border-radius: 8px"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(245, 245, 245)'
+          : ' rgb(31, 32, 35)'
+      }"
+    >
+      <h3
+        [ngStyle]="{
+          color: brightness ? 'orangered' : 'violet'
+        }"
+      >
+        Add New Note
+      </h3>
       <br />
       <input
         type="text"
@@ -63,36 +83,53 @@
         style="width: 100%"
         placeholder="content"
       ></textarea>
-      <div class="btn-group" style="float: right; margin-top: 10px">
-        <button
-          mat-raised-button
-          type="button"
-          class="btn-danger"
-          (click)="showAddNote()"
-        >
-          Cancel
-        </button>
-        <button
-          mat-raised-button
-          type="button"
-          class="btn-primary ml-3"
-          style="color: white"
-          [disabled]="!noteTitle || !noteContent"
-          (click)="saveNote()"
-        >
-          Save Note
-          <span
-            id="uploadSpinner"
-            class="spinner-border spinner-border-sm"
-          ></span>
-          <span id="uploadCheck"> <i class="fas fa-check-circle"></i></span>
-          <span id="uploadCheckErr"> <i class="fas fa-times-circle"></i></span>
-        </button>
-      </div>
+      <br />
+      <!-- <div class="btn-group" style="float: right; margin-top: 10px"> -->
+
+      <button
+        mat-raised-button
+        type="button"
+        class="btn-primary mr-3"
+        [disabled]="!noteTitle || !noteContent"
+        (click)="saveNote()"
+      >
+        Save Note
+        <span
+          id="uploadSpinner"
+          class="spinner-border spinner-border-sm"
+        ></span>
+        <span id="uploadCheck"> <i class="fas fa-check-circle"></i></span>
+        <span id="uploadCheckErr"> <i class="fas fa-times-circle"></i></span>
+      </button>
+
+      <button
+        mat-raised-button
+        type="button"
+        class="btn-danger"
+        (click)="showAddNote()"
+      >
+        Cancel
+      </button>
+      <!-- </div> -->
     </div>
 
-    <div *ngIf="todoSwitch" style="margin-bottom: 70px">
-      <br />
+    <div
+      *ngIf="todoSwitch"
+      style="margin-bottom: 70px; padding: 20px; border-radius: 8px"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(245, 245, 245)'
+          : ' rgb(31, 32, 35)'
+      }"
+    >
+      <h3
+        [ngStyle]="{
+          color: brightness ? 'orangered' : 'violet'
+        }"
+      >
+        Add New Task
+      </h3>
+
       <br />
       <input
         type="text"
@@ -113,7 +150,7 @@
       <button
         mat-raised-button
         type="button"
-        class="btn-primary mx-2"
+        class="btn-primary mr-3"
         (click)="addOption()"
         [disabled]="!todo_opt"
       >
@@ -123,7 +160,7 @@
       <button
         mat-raised-button
         type="button"
-        class="btn-warning mx-2"
+        class="btn-danger mx-2"
         (click)="showAddTodo()"
       >
         Cancel
@@ -131,9 +168,8 @@
 
       <br />
       <br />
-      <div
+      <mat-card
         *ngIf="todoArr.length > 0"
-        class="card"
         [ngStyle]="{
           'background-color': brightness
             ? 'rgb(245, 245, 245)'
@@ -141,7 +177,7 @@
           color: brightness ? 'black' : 'rgb(129,129,129)'
         }"
       >
-        <div class="card-body">
+        <mat-card-content>
           <div
             *ngFor="let list of todoArr; let i = index"
             class="p-field-checkbox"
@@ -154,15 +190,15 @@
               >{{ list.name }}</mat-checkbox
             >
             <span
-              ><i
-                class="fas fa-times-circle"
+              ><mat-icon
                 [ngStyle]="{
                   color: brightness ? 'orangered' : 'violet'
                 }"
                 style="margin-left: 10px"
                 (click)="deleteOpt(i)"
-              ></i
-            ></span>
+                >cancel</mat-icon
+              ></span
+            >
           </div>
 
           <div class="saveTodo">
@@ -199,8 +235,8 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <hr *ngIf="noteSwitch || todoSwitch" />
@@ -218,21 +254,20 @@
       style="margin-top: 20px; height: 250px; width: 100%"
       *ngIf="!noteSwitch && !todoSwitch"
     >
-      <i
-        class="fas fa-pencil-alt"
+      <mat-icon
         [ngStyle]="{
           color: brightness ? 'orangered' : 'violet'
         }"
-      ></i>
+        >note_add</mat-icon
+      >
     </div>
 
     <br />
     <mat-tab-group>
       <mat-tab label="All Notes">
-        <div
+        <mat-card
           class="noNotes"
           *ngIf="areAllArchived"
-          class="card"
           [ngStyle]="{
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
@@ -248,10 +283,9 @@
           "
         >
           <h3><i class="fas fa-info-circle"></i> Nothing here 🙄</h3>
-        </div>
-        <div
+        </mat-card>
+        <mat-card
           *ngIf="notesData && notesData.length > 0 && !areAllArchived"
-          class="card"
           [ngStyle]="{
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
@@ -260,7 +294,7 @@
           }"
           style="margin-top: 20px"
         >
-          <div class="card-body">
+          <mat-card-content>
             <div class="row">
               <div
                 class="col-sm-6 col-lg-6"
@@ -276,8 +310,8 @@
                   "
                 >
                   <div class="col-10">
-                    <div
-                      class="card mb-5"
+                    <mat-card
+                      class="mb-5"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(245, 245, 245)'
@@ -285,23 +319,33 @@
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
                     >
-                      <div class="card-header">
+                      <mat-card-title>
                         <h5>
-                          {{ note.notes_title }}
-                          <span style="float: right"
-                            ><i
-                              class="fas fa-thumbtack"
+                          <span>
+                            <mat-icon
+                              class="icon_align"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              >description</mat-icon
+                            >
+                            {{ note.notes_title }}
+                          </span>
+                          <span
+                            ><mat-icon
                               [ngStyle]="{
                                 color: brightness ? 'orangered' : 'violet'
                               }"
                               (click)="pinNote(i, 'unpin')"
                               matTooltipPosition="above"
                               matTooltip="unpin"
-                            ></i
-                          ></span>
+                              >push_pin</mat-icon
+                            ></span
+                          >
                         </h5>
-                      </div>
-                      <div class="card-body">
+                      </mat-card-title>
+                      <hr />
+                      <mat-card-content>
                         <pre
                           class="notes_message"
                           [ngStyle]="{
@@ -309,56 +353,63 @@
                           }"
                           >{{ note.notes_message }}</pre
                         >
-                      </div>
-                      <div class="card-footer">
-                        <h5 class="text-muted">
+                      </mat-card-content>
+                      <mat-card-footer>
+                        <h5
+                          class="text-muted d-flex justify-content-between px-2"
+                        >
                           <span>
-                            {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                            {{
+                              note.createdAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
-                          <span
-                            *ngIf="note.createdAt != note.updatedAt"
-                            style="float: right"
-                          >
-                            last edited <i class="fas fa-pencil-alt"></i>
-                            {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          <span *ngIf="note.createdAt != note.updatedAt">
+                            <i class="fas fa-pencil-alt fa-fw"></i>
+                            {{
+                              note.updatedAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
                         </h5>
-                      </div>
-                    </div>
+                      </mat-card-footer>
+                    </mat-card>
                   </div>
                   <div class="col-2 controlIcons" style="padding-top: 5px">
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-edit"
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
                         (click)="clickEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="edit note"
-                      ></i>
+                        >rate_review</mat-icon
+                      >
                     </h4>
-                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                      <i
-                        class="fas fa-times-circle"
-                        (click)="cancelEditNote(i)"
-                      ></i>
+                    <h4 *ngIf="note.readonly == false">
+                      <mat-icon (click)="cancelEditNote(i)">cancel</mat-icon>
                     </h4>
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-trash-alt"
+                    <h4>
+                      <mat-icon
+                        style="cursor: pointer"
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
                         (click)="deleteNote(i)"
                         matTooltipPosition="above"
                         matTooltip="delete note"
-                      ></i>
+                        >delete_forever</mat-icon
+                      >
                     </h4>
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-archive"
+                    <h4>
+                      <mat-icon
                         [ngStyle]="{
                           color: brightness ? 'orangered' : 'violet'
                         }"
                         (click)="archive(i, 'archive')"
                         matTooltipPosition="above"
                         matTooltip="archive note"
-                      ></i>
+                        >archive</mat-icon
+                      >
                     </h4>
                   </div>
                 </div>
@@ -392,21 +443,18 @@
                     ></textarea>
                     <!-- [readonly]="note.readonly" -->
 
-                    <h4
+                    <h5
                       style="margin-top: 14px; font-size: 13px"
-                      class="text-muted"
+                      class="text-muted d-flex justify-content-between px-2"
                     >
                       <span>
-                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                        {{ note.createdAt | date: "dd MMM | hh:mm a" }}</span
                       >
-                      <span
-                        *ngIf="note.createdAt != note.updatedAt"
-                        style="float: right"
+                      <span *ngIf="note.createdAt != note.updatedAt">
+                        <i class="fas fa-pencil-alt fa-fw"></i>
+                        {{ note.updatedAt | date: "dd MMM | hh:mm a" }}</span
                       >
-                        last edited <i class="fas fa-pencil-alt"></i>
-                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                    </h4>
+                    </h5>
                     <div
                       class="btn-group"
                       style="float: right; padding-top: 15px"
@@ -431,13 +479,13 @@
                     </div>
                   </div>
                   <div class="col-2" style="padding-top: 15px">
-                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                      <i
-                        class="fas fa-times-circle"
+                    <h4 *ngIf="note.readonly == false">
+                      <mat-icon
                         (click)="cancelEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="cancel edit"
-                      ></i>
+                        >cancel</mat-icon
+                      >
                     </h4>
                   </div>
                 </div>
@@ -461,8 +509,8 @@
                   "
                 >
                   <div class="col-10">
-                    <div
-                      class="card mb-5"
+                    <mat-card
+                      class="mb-5"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(245, 245, 245)'
@@ -470,23 +518,33 @@
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
                     >
-                      <div class="card-header">
+                      <mat-card-title>
                         <h5>
-                          {{ note.notes_title }}
-                          <span style="float: right"
-                            ><i
-                              class="fas fa-thumbtack"
+                          <span>
+                            <mat-icon
+                              class="icon_align"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              >description</mat-icon
+                            >
+                            {{ note.notes_title }}
+                          </span>
+                          <span
+                            ><mat-icon
                               [ngStyle]="{
                                 color: brightness ? 'orangered' : 'violet'
                               }"
                               (click)="pinNote(i, 'pin')"
                               matTooltipPosition="above"
                               matTooltip="pin"
-                            ></i
-                          ></span>
+                              >push_pin</mat-icon
+                            ></span
+                          >
                         </h5>
-                      </div>
-                      <div class="card-body">
+                      </mat-card-title>
+                      <hr />
+                      <mat-card-content>
                         <pre
                           class="notes_message"
                           [ngStyle]="{
@@ -494,56 +552,62 @@
                           }"
                           >{{ note.notes_message }}</pre
                         >
-                      </div>
-                      <div class="card-footer">
-                        <h5 class="text-muted">
+                      </mat-card-content>
+                      <mat-card-footer>
+                        <h5
+                          class="text-muted d-flex justify-content-between px-2"
+                        >
                           <span>
-                            {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                            {{
+                              note.createdAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
-                          <span
-                            *ngIf="note.createdAt != note.updatedAt"
-                            style="float: right"
-                          >
-                            last edited <i class="fas fa-pencil-alt"></i>
-                            {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          <span *ngIf="note.createdAt != note.updatedAt">
+                            <i class="fas fa-pencil-alt fa-fw"></i>
+                            {{
+                              note.updatedAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
                         </h5>
-                      </div>
-                    </div>
+                      </mat-card-footer>
+                    </mat-card>
                   </div>
                   <div class="col-2 controlIcons" style="padding-top: 5px">
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-edit"
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
                         (click)="clickEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="edit note"
-                      ></i>
+                        >rate_review</mat-icon
+                      >
                     </h4>
-                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                      <i
-                        class="fas fa-times-circle"
-                        (click)="cancelEditNote(i)"
-                      ></i>
+                    <h4 *ngIf="note.readonly == false">
+                      <mat-icon (click)="cancelEditNote(i)">cancel</mat-icon>
                     </h4>
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-trash-alt"
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
                         (click)="deleteNote(i)"
                         matTooltipPosition="above"
                         matTooltip="delete note"
-                      ></i>
+                        >delete_forever</mat-icon
+                      >
                     </h4>
-                    <h4 style="font-size: 13px">
-                      <i
-                        class="fas fa-archive"
+                    <h4>
+                      <mat-icon
                         [ngStyle]="{
                           color: brightness ? 'orangered' : 'violet'
                         }"
                         (click)="archive(i, 'archive')"
                         matTooltipPosition="above"
                         matTooltip="archive note"
-                      ></i>
+                        >archive</mat-icon
+                      >
                     </h4>
                   </div>
                 </div>
@@ -576,21 +640,18 @@
                     ></textarea>
                     <!-- [readonly]="note.readonly" -->
 
-                    <h4
+                    <h5
                       style="margin-top: 14px; font-size: 13px"
-                      class="text-muted"
+                      class="text-muted d-flex justify-content-between px-2"
                     >
                       <span>
-                        {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                        {{ note.createdAt | date: "dd MMM | hh:mm a" }}</span
                       >
-                      <span
-                        *ngIf="note.createdAt != note.updatedAt"
-                        style="float: right"
+                      <span *ngIf="note.createdAt != note.updatedAt">
+                        <i class="fas fa-pencil-alt fa-fw"></i>
+                        {{ note.updatedAt | date: "dd MMM | hh:mm a" }}</span
                       >
-                        last edited <i class="fas fa-pencil-alt"></i>
-                        {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
-                      >
-                    </h4>
+                    </h5>
                     <div
                       class="btn-group"
                       style="float: right; padding-top: 15px"
@@ -618,20 +679,20 @@
                     class="col-1"
                     style="padding-top: 15px; text-align: center"
                   >
-                    <h4 *ngIf="note.readonly == false" style="font-size: 13px">
-                      <i
-                        class="fas fa-times-circle"
+                    <h4 *ngIf="note.readonly == false">
+                      <mat-icon
                         (click)="cancelEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="cancel edit"
-                      ></i>
+                        >cancel</mat-icon
+                      >
                     </h4>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </mat-tab>
       <mat-tab
         label="Archived"
@@ -642,9 +703,8 @@
           color: brightness ? 'orangered' : 'violet'
         }"
       >
-        <div
+        <mat-card
           *ngIf="notesData && notesData.length > 0"
-          class="card"
           [ngStyle]="{
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
@@ -653,7 +713,7 @@
           }"
           style="margin-top: 20px"
         >
-          <div class="card-body">
+          <mat-card-content>
             <div class="row">
               <div
                 class="col-sm-6 col-lg-6"
@@ -661,8 +721,8 @@
                 [hidden]="note.archived == false"
               >
                 <div class="archivedNotes" *ngIf="note.archived">
-                  <div
-                    class="card mb-5"
+                  <mat-card
+                    class="mb-5"
                     [ngStyle]="{
                       'background-color': brightness
                         ? 'rgb(245, 245, 245)'
@@ -670,23 +730,46 @@
                       color: brightness ? 'black' : 'rgb(129,129,129)'
                     }"
                   >
-                    <div class="card-header">
+                    <mat-card-title>
                       <h5>
-                        {{ note.notes_title }}
-                        <span style="float: right"
-                          ><i
-                            class="fas fa-archive"
+                        <span>
+                          <mat-icon
+                            class="icon_align"
+                            [ngStyle]="{
+                              color: brightness ? 'orangered' : 'violet'
+                            }"
+                            >description</mat-icon
+                          >
+                          {{ note.notes_title }}
+                        </span>
+                        <span>
+                          <mat-icon
+                            class="mx-2"
+                            style="cursor: pointer"
+                            [ngStyle]="{
+                              color: brightness ? 'orangered' : 'violet'
+                            }"
+                            (click)="deleteNote(i)"
+                            matTooltipPosition="above"
+                            matTooltip="delete"
+                            >delete_forever</mat-icon
+                          >
+
+                          <mat-icon
+                            class="mx-2"
                             [ngStyle]="{
                               color: brightness ? 'orangered' : 'violet'
                             }"
                             (click)="unArchive(i)"
                             matTooltipPosition="above"
                             matTooltip="unarchive"
-                          ></i
-                        ></span>
+                            >unarchive</mat-icon
+                          ></span
+                        >
                       </h5>
-                    </div>
-                    <div class="card-body">
+                    </mat-card-title>
+                    <hr />
+                    <mat-card-content>
                       <pre
                         class="notes_message"
                         [ngStyle]="{
@@ -694,27 +777,26 @@
                         }"
                         >{{ note.notes_message }}</pre
                       >
-                    </div>
-                    <div class="card-footer">
-                      <h5 class="text-muted">
+                    </mat-card-content>
+                    <mat-card-footer>
+                      <h5
+                        class="text-muted d-flex justify-content-between px-2"
+                      >
                         <span>
-                          {{ note.createdAt | date: "dd MMM | hh:mm" }}</span
+                          {{ note.createdAt | date: "dd MMM | hh:mm a" }}</span
                         >
-                        <span
-                          *ngIf="note.createdAt != note.updatedAt"
-                          style="float: right"
-                        >
-                          last edited <i class="fas fa-pencil-alt"></i>
-                          {{ note.updatedAt | date: "dd MMM | hh:mm" }}</span
+                        <span *ngIf="note.createdAt != note.updatedAt">
+                          <i class="fas fa-pencil-alt fa-fw"></i>
+                          {{ note.updatedAt | date: "dd MMM | hh:mm a" }}</span
                         >
                       </h5>
-                    </div>
-                  </div>
+                    </mat-card-footer>
+                  </mat-card>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </mat-tab>
       <mat-tab
         label="To-do lists"
@@ -725,10 +807,9 @@
           color: brightness ? 'orangered' : 'violet'
         }"
       >
-        <div
+        <mat-card
           class="noTodos"
           *ngIf="allTodos && allTodos.length == 0"
-          class="card"
           [ngStyle]="{
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
@@ -744,10 +825,9 @@
           "
         >
           <h3><i class="fas fa-info-circle"></i> Nothing here 🙄</h3>
-        </div>
-        <div
+        </mat-card>
+        <mat-card
           *ngIf="allTodos && allTodos.length > 0"
-          class="card"
           [ngStyle]="{
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
@@ -756,7 +836,7 @@
           }"
           style="margin-top: 20px"
         >
-          <div class="card-body">
+          <mat-card-content>
             <div class="row">
               <div
                 class="col-sm-6 col-lg-6"
@@ -764,8 +844,8 @@
               >
                 <div class="row">
                   <div class="col-12">
-                    <div
-                      class="card mb-5 todoList"
+                    <mat-card
+                      class="mb-5 todoList"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(245, 245, 245)'
@@ -773,23 +853,25 @@
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
                     >
-                      <div class="card-header">
+                      <mat-card-title>
                         <h5>
-                          {{ todo.todo_title }}
-                          <span style="float: right"
-                            ><i
-                              class="fas fa-trash-alt"
+                          <span> {{ todo.todo_title }} </span>
+                          <span>
+                            <mat-icon
+                              style="cursor: pointer"
                               [ngStyle]="{
                                 color: brightness ? 'orangered' : 'violet'
                               }"
                               (click)="deleteTodo(i)"
                               matTooltipPosition="above"
                               matTooltip="delete"
-                            ></i
-                          ></span>
+                              >delete_forever</mat-icon
+                            >
+                          </span>
                         </h5>
-                      </div>
-                      <div class="card-body">
+                      </mat-card-title>
+                      <hr />
+                      <mat-card-content>
                         <div
                           *ngFor="let list of todo.todo_list; let j = index"
                           class="p-field-checkbox"
@@ -802,28 +884,31 @@
                             >{{ list.name }}</mat-checkbox
                           >
                         </div>
-                      </div>
-                      <div class="card-footer">
-                        <h5 class="text-muted">
+                      </mat-card-content>
+                      <mat-card-footer>
+                        <h5
+                          class="text-muted d-flex justify-content-between px-2"
+                        >
                           <span>
-                            {{ todo.createdAt | date: "dd MMM | hh:mm" }}</span
+                            {{
+                              todo.createdAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
-                          <span
-                            *ngIf="todo.createdAt != todo.updatedAt"
-                            style="float: right"
-                          >
-                            last edited <i class="fas fa-pencil-alt"></i>
-                            {{ todo.updatedAt | date: "dd MMM | hh:mm" }}</span
+                          <span *ngIf="todo.createdAt != todo.updatedAt">
+                            <i class="fas fa-pencil-alt fa-fw"></i>
+                            {{
+                              todo.updatedAt | date: "dd MMM | hh:mm a"
+                            }}</span
                           >
                         </h5>
-                      </div>
-                    </div>
+                      </mat-card-footer>
+                    </mat-card>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </mat-card-content>
+        </mat-card>
       </mat-tab>
     </mat-tab-group>
     <div

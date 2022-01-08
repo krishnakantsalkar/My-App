@@ -263,7 +263,7 @@
     </div>
 
     <br />
-    <mat-tab-group>
+    <mat-tab-group (selectedTabChange)="tabChange($event)">
       <mat-tab label="All Notes">
         <mat-card
           class="noNotes"
@@ -909,6 +909,90 @@
             </div>
           </mat-card-content>
         </mat-card>
+      </mat-tab>
+      <mat-tab label="Snippets">
+        <mat-card
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'orangered' : 'violet'
+          }"
+          style="margin-top: 20px; min-height: 200px"
+        >
+          <mat-card-content *ngIf="snippets">
+            <div class="row">
+              <div
+                class="col-sm-6"
+                *ngFor="let snip of snippets; let i = index"
+                [ngStyle]="{
+                  'margin-top': i > 1 ? '20px' : '0',
+                  'margin-bottom': i > 1 ? '20px' : '0'
+                }"
+              >
+                <div class="row">
+                  <div class="col-10">
+                    <div class="snippets">
+                      <a
+                        href="http://snippets.krishnakantsalkar.in/{{
+                          snip._id
+                        }}"
+                        target="_blank"
+                      >
+                        <mat-card
+                          [ngStyle]="{
+                            'background-color': brightness
+                              ? 'rgb(245, 245, 245)'
+                              : ' rgb(41, 42, 45)',
+                            color: brightness ? 'black' : 'rgb(129,129,129)'
+                          }"
+                          matTooltip="view full snippets"
+                          matTooltipPosition="above"
+                        >
+                          <pre
+                            [ngStyle]="{
+                              color: brightness ? 'black' : 'white'
+                            }"
+                            >{{ snip.content }}</pre
+                          >
+                          <mat-card-footer
+                            style="margin: 10px; font-size: 16px"
+                          >
+                            created on:
+                            {{ snip.expireAt | date: "dd MMM | hh:mm a" }}
+                          </mat-card-footer>
+                        </mat-card></a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <mat-icon
+                      style="cursor: pointer"
+                      matTooltip="delete snippet"
+                      matTooltipPosition="above"
+                      (click)="deleteSnippet(snip._id)"
+                      >delete</mat-icon
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <div
+          class="snippets"
+          *ngIf="snippets"
+          [ngStyle]="{
+            'background-color': brightness
+              ? 'rgb(245, 245, 245)'
+              : ' rgb(31, 32, 35)',
+            color: brightness ? 'black' : 'rgb(129,129,129)'
+          }"
+        >
+          <div *ngFor="let snip of snippets">
+            <a href="http://snippets.krishnakantsalkar.in/{{ snip._id }}"></a>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
     <div

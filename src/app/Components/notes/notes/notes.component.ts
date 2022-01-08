@@ -3,6 +3,7 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { noteService } from '../../../Shared/services/notesService';
 import { Title } from '@angular/platform-browser';
 import { UiService } from 'src/app/Shared/services/ui.service';
+import { SnippetsService } from '../../../Shared/services/snippets.service';
 
 @Component({
   selector: 'app-notes',
@@ -25,11 +26,13 @@ export class NotesComponent implements OnInit {
   todo_opt;
   allTodos;
   areAllArchived: boolean;
+  snippets: any[];
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
     private titleService: Title,
-    private uiService: UiService
+    private uiService: UiService,
+    private snippetService: SnippetsService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +45,7 @@ export class NotesComponent implements OnInit {
 
     this.getNotes();
     this.getTodo();
+    this.getSnippets();
   }
 
   showAddNote() {
@@ -344,5 +348,23 @@ export class NotesComponent implements OnInit {
         this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
       }
     );
+  }
+
+  getSnippets() {
+    this.snippetService.getSnippets().subscribe((item) => {
+      this.snippets = item.result;
+    });
+  }
+  deleteSnippet(id) {
+    this.snippetService.deleteSnippet(id).subscribe((item) => {
+      this.uiService.showSnackbar('Snippet deleted', null, 3500);
+      this.getSnippets();
+    });
+  }
+
+  tabChange(event) {
+    if (event.index == 3) {
+      this.getSnippets();
+    }
   }
 }

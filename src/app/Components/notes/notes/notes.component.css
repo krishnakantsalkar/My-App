@@ -106,6 +106,13 @@ mat-card-footer h5 {
   font-size: 12px;
 }
 
+.snippets pre {
+  max-height: 500px;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 @media only screen and (max-width: 600px) {
   .notes mat-card-footer h5 {
     font-size: 9px;

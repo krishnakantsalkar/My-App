@@ -20,13 +20,13 @@ nav {
   font-size: 17px;
   font-family: "Lucida Sans Unicode";
   transition: 0.3s ease-in-out;
-  border-radius: 5px;
 }
 /* dark mode hover */
 .sidenav a:hover {
   background-color: violet;
-  color: white;
+  color: white !important;
   cursor: pointer;
+  border-radius: 5px;
 }
 .sidenavL a:hover {
   background-color: rgb(243, 61, 61);
@@ -70,9 +70,9 @@ div.nametag h4 {
 span.one {
   color: violet;
   display: inline-block;
-  width: 5px;
+  width: 10px;
   border: 5px solid;
-  height: 30px;
+  height: 25px;
   position: relative;
   top: 5px;
   margin-left: 5px;
@@ -82,9 +82,9 @@ span.one {
 span.two {
   color: red;
   display: inline-block;
-  width: 5px;
+  width: 10px;
   border: 5px solid;
-  height: 30px;
+  height: 25px;
   position: relative;
   top: 5px;
   margin-left: 5px;

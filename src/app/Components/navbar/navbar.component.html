@@ -102,7 +102,8 @@
               class="nav-link"
               href="https://downloads.krishnakantsalkar.in"
               target="_blank"
-              >Downloads</a
+              >Downloads
+              <mat-icon style="font-size: 18px">open_in_new</mat-icon></a
             >
           </li>
           <li class="nav-item" *ngIf="checkStatus">
@@ -118,7 +119,8 @@
               class="nav-link"
               href="http://snippets.krishnakantsalkar.in"
               target="_blank"
-              >PasteBin</a
+              >PasteBin
+              <mat-icon style="font-size: 18px">open_in_new</mat-icon></a
             >
           </li>
           <!-- <li class="nav-item">
@@ -214,6 +216,7 @@
             >
           </li>
           <li
+            *ngIf="window.innerWidth > 1600"
             class="nav_date nav-link"
             [ngStyle]="{
               color: brightness ? 'black' : 'rgb(129,129,129)'

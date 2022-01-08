@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   public dynamicCss: string;
   public liveDate = new Date();
   public activeCss: string;
+  public window = window;
   constructor(
     private cookies: CookieService,
     private logonServices: userloginservices,

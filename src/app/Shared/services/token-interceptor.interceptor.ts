@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { userloginservices } from './userloginservice';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UiService } from './ui.service';
 
@@ -45,20 +45,31 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         },
       });
 
-      return next.handle(tokenizedReq).pipe(
-        catchError((err) => {
-          if (err instanceof HttpErrorResponse) {
-            this.uiService.showSnackbar(
-              'Auth Invalid, please login again',
-              null,
-              3500
-            );
+      return next.handle(tokenizedReq);
+      // .pipe(
+      //   map((event: HttpEvent<any>) => {
+      //     console.log(event);
 
-            this.logonServices.Logout();
-          }
-          return throwError(err);
-        })
-      );
+      //     if (event instanceof HttpErrorResponse) {
+      //       if (
+      //         event.status == 403 &&
+      //         (event.message == 'token expired/invalid!' ||
+      //           event.message == 'user not found!')
+      //       ) {
+      //         console.log(event);
+
+      //         this.uiService.showSnackbar(
+      //           'Auth Invalid, please login again',
+      //           null,
+      //           3500
+      //         );
+
+      //         this.logonServices.Logout();
+      //       }
+      //     }
+      //     return event;
+      //   })
+      // );
     }
   }
 }

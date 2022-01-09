@@ -27,6 +27,9 @@ export class userloginservices {
   public verifyCaptcha: string =
     'https://my-app-backend-node.vercel.app/api/users/verifyCaptcha';
 
+  public verifyAuthApi: string =
+    'https://my-app-backend-node.vercel.app/api/users/verifyAuth';
+
   public header: HttpHeaders;
   public loggedIn: BehaviorSubject<any>;
   public currentUsers: Observable<any>;
@@ -89,5 +92,9 @@ export class userloginservices {
 
   verifyRecaptcha(data) {
     return this.http.post(this.verifyCaptcha, data);
+  }
+
+  verifyAuth(token) {
+    return this.http.post(this.verifyAuthApi, { token });
   }
 }

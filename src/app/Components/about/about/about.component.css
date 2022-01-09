@@ -79,7 +79,7 @@ body {
 }
 
 /* page navigation buttons  */
-div.buttons .btn {
+div.buttons button {
   margin: 10px;
 }
 .btn1 {

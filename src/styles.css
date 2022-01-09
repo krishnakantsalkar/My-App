@@ -192,3 +192,7 @@ mat-bottom-sheet-container {
 .mat-checkbox-frame {
   border-color: #1f7ce0;
 }
+
+.mat-tooltip {
+  font-size: 14px;
+}

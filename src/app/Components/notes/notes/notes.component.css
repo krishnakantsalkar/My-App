@@ -31,13 +31,13 @@ mat-icon:hover {
 .pinnedNotes mat-icon {
   cursor: pointer;
 }
-.allNotes mat-card-title mat-icon {
+.allNotes mat-card-title .pin_icon {
   visibility: hidden;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
-.allNotes mat-card-title:hover mat-icon {
+.allNotes mat-card-title:hover .pin_icon {
   visibility: visible;
 }
 
@@ -53,6 +53,10 @@ mat-icon:hover {
 
 .controlIcons h4 {
   margin: 20px auto;
+}
+
+.controlIcons mat-icon {
+  font-size: 20px;
 }
 
 .todoList .mat-icon {
@@ -122,7 +126,7 @@ mat-card-footer h5 {
     visibility: visible;
   }
 
-  .allNotes mat-card-title mat-icon {
+  .allNotes mat-card-title .pin_icon {
     visibility: visible;
   }
 }

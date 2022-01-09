@@ -382,7 +382,7 @@
                         (click)="clickEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="edit note"
-                        >rate_review</mat-icon
+                        >edit</mat-icon
                       >
                     </h4>
                     <h4 *ngIf="note.readonly == false">
@@ -532,6 +532,7 @@
                           </span>
                           <span
                             ><mat-icon
+                              class="pin_icon"
                               [ngStyle]="{
                                 color: brightness ? 'orangered' : 'violet'
                               }"
@@ -581,7 +582,7 @@
                         (click)="clickEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="edit note"
-                        >rate_review</mat-icon
+                        >edit</mat-icon
                       >
                     </h4>
                     <h4 *ngIf="note.readonly == false">
@@ -717,7 +718,7 @@
             <div class="row">
               <div
                 class="col-sm-6 col-lg-6"
-                *ngFor="let note of notesData; let i = index"
+                *ngFor="let note of notesData.reverse(); let i = index"
                 [hidden]="note.archived == false"
               >
                 <div class="archivedNotes" *ngIf="note.archived">
@@ -840,7 +841,7 @@
             <div class="row">
               <div
                 class="col-sm-6 col-lg-6"
-                *ngFor="let todo of allTodos; let i = index"
+                *ngFor="let todo of allTodos.reverse(); let i = index"
               >
                 <div class="row">
                   <div class="col-12">
@@ -934,7 +935,7 @@
                   <div class="col-10">
                     <div class="snippets">
                       <a
-                        href="http://snippets.krishnakantsalkar.in/{{
+                        href="https://snippets.krishnakantsalkar.in/{{
                           snip._id
                         }}"
                         target="_blank"
@@ -973,6 +974,20 @@
                       (click)="deleteSnippet(snip._id)"
                       >delete</mat-icon
                     >
+                    <br />
+                    <br />
+                    <mat-icon
+                      style="cursor: pointer"
+                      matTooltip="copy snippet link"
+                      matTooltipPosition="above"
+                      (click)="
+                        copyShareLink(
+                          'https://snippets.krishnakantsalkar.in/' + snip._id
+                        )
+                      "
+                      >content_copy</mat-icon
+                    >
+                    <br />
                   </div>
                 </div>
               </div>

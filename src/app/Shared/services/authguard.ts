@@ -13,13 +13,14 @@ export class authGuard implements CanActivate {
     private logonServices: userloginservices
   ) {}
 
-  canActivate() {
-    // let token = localStorage.getItem('credentials');
+  canActivate(): Promise<boolean> {
     let token = JSON.parse(localStorage.getItem('userToken'));
     if (!token) {
-      this.uiService.showSnackbar('You need to login first!', null, 3500);
-      this.router.navigateByUrl('/home');
-      return false;
+      return new Promise<boolean>((resolve, reject) => {
+        this.uiService.showSnackbar('You need to login first!', null, 3500);
+        this.router.navigateByUrl('/login');
+        resolve(false);
+      });
     } else {
       return new Promise<boolean>((resolve, reject) => {
         this.logonServices.verifyAuth(token).subscribe(

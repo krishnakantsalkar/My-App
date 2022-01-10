@@ -67,6 +67,10 @@ export class NotesComponent implements OnInit {
     this.noteService.getNotes(this.profId).subscribe((item) => {
       this.notesData = item.result;
 
+      if (this.notesData.length > 0) {
+        this.notesData = this.notesData.reverse();
+      }
+
       let checkArchived = this.notesData.some((item) => {
         return item.archived == false;
       });
@@ -275,6 +279,10 @@ export class NotesComponent implements OnInit {
     this.todo_opt = undefined;
     this.noteService.getTodo(this.profId).subscribe((item) => {
       this.allTodos = item.result;
+
+      if (this.allTodos.length > 0) {
+        this.allTodos = this.allTodos.reverse();
+      }
     });
   }
 

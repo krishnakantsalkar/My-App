@@ -347,10 +347,11 @@
 
         <div class="row justify-content-end mx-0">
           <button
+            id="createPost_btn"
             mat-raised-button
             class="btn-warning"
             style="float: right"
-            (click)="createPostmethod()"
+            (click)="createPostmethod($event)"
             *ngIf="checkUser"
           >
             <span class="material-icons"> feed </span> Create post
@@ -382,102 +383,162 @@
 
               <br />
 
+              <button
+                mat-raised-button
+                class="btn-primary"
+                (click)="fileUpload.click()"
+              >
+                Upload
+              </button>
+              <span class="mx-2" *ngIf="currentBlogImgP"
+                >File: {{ currentBlogImg.name }} | Size:
+                {{ (currentBlogImg.size / 1000000).toFixed(2) }} MB
+              </span>
+
               <input
                 type="file"
-                class="blogpimg"
+                class="blogpimg d-none"
                 fomrControlName="postImage"
                 (change)="selection($event)"
+                #fileUpload
               />
               <br />
-              <br />
-              <br />
-
+              <hr />
               <form
                 [formGroup]="newPost"
                 (ngSubmit)="SubmitPost(newPost.value)"
               >
                 <div class="form-group">
-                  <div class="form-row">
+                  <div class="row">
                     <div class="postNumberInput col-sm-6">
-                      <label for="postNumberInput">Post Number</label>
-                      <input
-                        class="form-control"
-                        type="number"
-                        formControlName="postNumber"
-                        placeholder="#"
-                        min="2"
-                        onKeyPress="if(this.value.length==10) return false;"
-                        readonly
-                      />
+                      <mat-form-field appearance="outline">
+                        <mat-label for="postNumberInput">Post Number</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          formControlName="postNumber"
+                          placeholder="#"
+                          min="2"
+                          onKeyPress="if(this.value.length==10) return false;"
+                          readonly
+                        />
+                      </mat-form-field>
                     </div>
                     <div class="postTitleInput col-sm-6">
-                      <label for="postTitleInput">Post Title</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="postTitle"
-                        placeholder="Enter Title"
-                        (change)="cachePost()"
-                      />
+                      <mat-form-field appearance="outline">
+                        <mat-label for="postTitleInput">Post Title</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          formControlName="postTitle"
+                          placeholder="Enter Title"
+                          (change)="cachePost()"
+                        />
+                      </mat-form-field>
                     </div>
                   </div>
-                  <br />
-                  <div class="link">
-                    <label for="">Link</label>
-                    <i
-                      class="fas fa-plus-circle mx-2"
-                      (click)="addLink()"
-                      style="color: #1f7ce0; cursor: pointer"
-                      [ngStyle]="{
-                        'pointer-events':
-                          postLinks.length >= 10 ? 'none' : 'all',
+                  <div class="link row">
+                    <div class="col-12">
+                      <label for="">Link</label>
+                      <mat-icon
+                        class="mx-2"
+                        (click)="addLink()"
+                        style="
+                          color: #1f7ce0;
+                          cursor: pointer;
+                          position: relative;
+                          top: 3px;
+                        "
+                        [ngStyle]="{
+                          'pointer-events':
+                            postLinks.length >= 10 ? 'none' : 'all',
 
-                        opacity: postLinks.length >= 10 ? '0.7' : '1'
-                      }"
-                    >
-                    </i>
+                          opacity: postLinks.length >= 10 ? '0.7' : '1'
+                        }"
+                      >
+                        add_circle
+                      </mat-icon>
+                    </div>
                   </div>
-                  <div class="row">
+                  <div class="form-row">
                     <div
-                      class="col-sm-6 my-1"
+                      class="col-sm-6"
                       *ngFor="let link of postLinks; let i = index"
                     >
                       <div class="row">
                         <div class="col-11">
-                          <input
-                            type="text"
-                            class="form-control"
-                            [(ngModel)]="link.link"
-                            [ngModelOptions]="{ standalone: true }"
-                            (change)="cachePost()"
-                          />
+                          <mat-form-field appearance="outline">
+                            <input
+                              type="text"
+                              matInput
+                              [(ngModel)]="link.link"
+                              [ngModelOptions]="{ standalone: true }"
+                              (change)="cachePost()"
+                            />
+                          </mat-form-field>
                         </div>
                         <div class="col-1 p-0">
-                          <i
-                            class="fas fa-times-circle"
-                            style="color: orangered; cursor: pointer"
+                          <mat-icon
+                            style="
+                              color: orangered;
+                              cursor: pointer;
+                              margin-top: 50%;
+                            "
                             (click)="removeLink(i)"
                             [ngStyle]="{
                               display: i == 0 ? 'none' : 'inline-block'
                             }"
-                          ></i>
+                            >cancel</mat-icon
+                          >
                         </div>
                       </div>
                     </div>
                   </div>
-                  <br />
-                  <div class="form-row">
-                    <label>Author</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="postAuthor"
-                      placeholder=""
-                      readonly
-                    />
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Author</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          formControlName="postAuthor"
+                          placeholder=""
+                          readonly
+                        />
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
               </form>
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field
+                    class="example-chip-list"
+                    appearance="outline"
+                  >
+                    <mat-label>Tags</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip
+                        *ngFor="let tag of tags"
+                        (removed)="removeTag(tag)"
+                      >
+                        {{ tag.name }}
+                        <button matChipRemove>
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip>
+                      <input
+                        placeholder="New tag..."
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="addTag($event)"
+                      />
+                    </mat-chip-list>
+                  </mat-form-field>
+                </div>
+              </div>
+
               <br />
               <div>
                 <label>Post Content</label>
@@ -499,7 +560,7 @@
                 mat-raised-button
                 type="reset"
                 class="btn-danger cancel"
-                (click)="createPostmethod()"
+                (click)="createPostmethod($event)"
               >
                 Cancel
               </button>

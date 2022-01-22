@@ -17,6 +17,8 @@ import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-blog',
@@ -99,6 +101,10 @@ export class BlogComponent implements OnInit {
 
   @ViewChild('blogPostDialog', { static: false })
   blogPostDialog: TemplateRef<any>;
+
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  tags: any[] = [];
 
   constructor(
     private blogservice: blogpostservice,
@@ -274,8 +280,14 @@ export class BlogComponent implements OnInit {
   }
 
   // hide & show create post window
-  createPostmethod() {
+  createPostmethod(event) {
     this.createPost = !this.createPost;
+
+    if (event.target.id) {
+      document
+        .getElementById(event.target.id)
+        .scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   // upload img live preview
@@ -342,6 +354,9 @@ export class BlogComponent implements OnInit {
           linksArr.push(x.link);
         });
         data.postLinks = linksArr;
+        if (this.tags.length > 0) {
+          data.tags = this.tags;
+        }
         this.blogservice.publishBlog(data).subscribe(
           (item2) => {
             this.logResponse = item2.result;
@@ -517,6 +532,27 @@ export class BlogComponent implements OnInit {
       };
 
       localStorage.setItem('postCache', JSON.stringify(cache));
+    }
+  }
+
+  //tags
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our tag
+    if (value) {
+      this.tags.push({ name: value });
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(tag): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
     }
   }
 }

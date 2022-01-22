@@ -679,62 +679,6 @@
           <!-- genre pagination implementation -->
           <!-- adapt code for genre -->
           <div class="pagebtn" *ngIf="genreData">
-            <!-- <button mat-raised-button 
-               class=" "
-              [disabled]="pageNo == 1"
-              [ngStyle]="{
-                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-                color: brightness ? 'white' : 'black'
-              }"
-              (click)="discoverByGenre(1, currentListType, currentGenreId)"
-            >
-              1
-            </button>
-            <button mat-raised-button 
-               class=" "
-              [disabled]="pageNo == 2"
-              [ngStyle]="{
-                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-                color: brightness ? 'white' : 'black'
-              }"
-              (click)="discoverByGenre(2, currentListType, currentGenreId)"
-            >
-              2
-            </button>
-
-            <button mat-raised-button 
-               class=" "
-              [disabled]="pageNo == 3"
-              [ngStyle]="{
-                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-                color: brightness ? 'white' : 'black'
-              }"
-              (click)="discoverByGenre(3, currentListType, currentGenreId)"
-            >
-              3
-            </button>
-            <button mat-raised-button 
-               class=" "
-              [disabled]="pageNo == 4"
-              [ngStyle]="{
-                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-                color: brightness ? 'white' : 'black'
-              }"
-              (click)="discoverByGenre(4, currentListType, currentGenreId)"
-            >
-              4
-            </button>
-            <button mat-raised-button 
-               class=" "
-              [disabled]="pageNo == 5"
-              [ngStyle]="{
-                'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-                color: brightness ? 'white' : 'black'
-              }"
-              (click)="discoverByGenre(5, currentListType, currentGenreId)"
-            >
-              5
-            </button> -->
             <button
               mat-raised-button
               class="navBtn"
@@ -767,6 +711,7 @@
               </button>
               <span *ngIf="pageNo > 2 && i == 0">...</span>
               <button
+                *ngIf="pageNo + i < genrePageSize"
                 mat-raised-button
                 class=""
                 [disabled]="pageNo == pageNo + i"
@@ -781,7 +726,7 @@
                 {{ pageNo + i }}
               </button>
             </div>
-            ....
+            ...
             <button
               mat-raised-button
               class=""
@@ -1086,62 +1031,6 @@
 
         <!-- hide main pagination if genre section present -->
         <div class="pagebtn" *ngIf="movieData && !genreData">
-          <!-- <button mat-raised-button 
-             class=" "
-            [disabled]="pageNo == 1"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="getTheLists(1, currentListType, currentList)"
-          >
-            1
-          </button>
-          <button mat-raised-button 
-             class=" "
-            [disabled]="pageNo == 2"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="getTheLists(2, currentListType, currentList)"
-          >
-            2
-          </button>
-
-          <button mat-raised-button 
-             class=" "
-            [disabled]="pageNo == 3"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="getTheLists(3, currentListType, currentList)"
-          >
-            3
-          </button>
-          <button mat-raised-button 
-             class=" "
-            [disabled]="pageNo == 4"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="getTheLists(4, currentListType, currentList)"
-          >
-            4
-          </button>
-          <button mat-raised-button 
-             class=" "
-            [disabled]="pageNo == 5"
-            [ngStyle]="{
-              'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',
-              color: brightness ? 'white' : 'black'
-            }"
-            (click)="getTheLists(5, currentListType, currentList)"
-          >
-            5
-          </button> -->
           <button
             mat-raised-button
             class="navBtn"
@@ -1172,6 +1061,7 @@
             </button>
             <span *ngIf="pageNo > 2 && i == 0">...</span>
             <button
+              *ngIf="pageNo + i < pageSize"
               mat-raised-button
               class=""
               [disabled]="pageNo == pageNo + i"

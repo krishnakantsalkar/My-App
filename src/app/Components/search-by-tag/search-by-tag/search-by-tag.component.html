@@ -1,0 +1,85 @@
+<div
+  class="main"
+  [ngStyle]="{
+    'background-color': brightness ? 'rgb(200, 200, 200)' : ' rgb(41, 42, 45)',
+    color: brightness ? 'black' : 'rgb(129,129,129)'
+  }"
+>
+  <div class="container">
+    <h3
+      [ngStyle]="{
+        color: brightness ? 'orangered' : 'violet'
+      }"
+    >
+      < Search Results />
+    </h3>
+    <hr />
+    <div class="skeleton" *ngIf="!isLoaded">
+      <div class="row">
+        <div class="col-sm-4">
+          <p-skeleton width="100%" height="200px"> </p-skeleton>
+        </div>
+
+        <div class="col-sm-8">
+          <p-skeleton width="100%" height="200px"> </p-skeleton>
+        </div>
+      </div>
+    </div>
+
+    <div class="search_results" *ngIf="blogposts.length > 0">
+      <mat-card
+        *ngFor="let blog of blogposts; let i = index"
+        routerLink="/blog/{{ blog.postNumber }}/{{ blog.postTitle }}/{{
+          blog._id
+        }}"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(245, 245, 245)'
+            : ' rgb(31, 32, 35)',
+          color: brightness ? 'black' : 'rgb(129,129,129)'
+        }"
+      >
+        <div class="row">
+          <div class="col-sm-4">
+            <img
+              *ngIf="blog.postImage"
+              [src]="blog.postImage"
+              class="blogImg"
+            />
+          </div>
+          <div class="col-sm-8">
+            <h4>
+              <a
+                [ngStyle]="{
+                  color: brightness ? 'orangered' : 'violet'
+                }"
+                >#{{ blog.postNumber }}. {{ blog.postTitle }}</a
+              >
+            </h4>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="noData" *ngIf="isLoaded && blogposts.length == 0">
+      <mat-card
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgb(245, 245, 245)'
+            : ' rgb(31, 32, 35)',
+          color: brightness ? 'black' : 'rgb(129,129,129)'
+        }"
+      >
+        <mat-card-content>
+          <h3
+            [ngStyle]="{
+              color: brightness ? 'orangered' : 'violet'
+            }"
+          >
+            No posts found with that tag...
+          </h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

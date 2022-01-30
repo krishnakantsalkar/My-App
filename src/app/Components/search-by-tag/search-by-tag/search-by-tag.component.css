@@ -1,0 +1,33 @@
+.main {
+  padding-top: 120px;
+  min-height: calc(100vh - 65px);
+}
+
+.main .container h3 {
+  text-align: center;
+}
+
+.search_results {
+  padding: 10px 0 20px;
+}
+
+.search_results mat-card {
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+.search_results mat-card .col-sm-8 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blogImg {
+  max-height: 200px;
+  max-width: 100%;
+  width: 100%;
+}
+.skeleton,
+.noData {
+  margin-top: 40px;
+}

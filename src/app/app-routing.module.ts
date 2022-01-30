@@ -136,7 +136,18 @@ const routes: Routes = [
         (m) => m.PollCreatorModule
       ),
   },
+
+  //  search by tag
+  {
+    path: 'searchTag',
+    loadChildren: () =>
+      import('./Components/search-by-tag/search-by-tag.module').then(
+        (m) => m.SearchByTagModule
+      ),
+  },
+
   //wildcard route
+
   {
     path: '**',
     component: Page404Component,
@@ -146,12 +157,12 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload',
-    scrollPositionRestoration: 'enabled',
-    anchorScrolling: 'enabled',
-    relativeLinkResolution: 'legacy',
-    initialNavigation: 'enabled'
-}),
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      relativeLinkResolution: 'legacy',
+      initialNavigation: 'enabled',
+    }),
   ],
   exports: [RouterModule],
 })

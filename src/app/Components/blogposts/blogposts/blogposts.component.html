@@ -362,6 +362,26 @@
                   ></quill-view>
 
                   <br />
+                  <div class="tagsList">
+                    <hr />
+                    <!-- tags -->
+
+                    <div class="tags">
+                      <div
+                        *ngFor="let tag of data.tags"
+                        class="m-2 tagItems"
+                        [routerLink]="['/searchTag']"
+                        [queryParams]="{ search: tag }"
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        matTooltip="search by tag ?"
+                        matTooltipPosition="above"
+                      >
+                        #{{ tag }}
+                      </div>
+                    </div>
+                  </div>
 
                   <!-- post link buttons -->
                   <div class="linkbtns" *ngIf="data.postLinks">

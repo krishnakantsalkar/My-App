@@ -39,6 +39,9 @@ export class blogpostservice {
   public newsLetterApi: string =
     'https://my-app-backend-node.vercel.app/api/subscribe/newsLetterSub/';
 
+  public searchByTagApi: string =
+    'https://my-app-backend-node.vercel.app/api/blog/searchByTag';
+
   constructor(private http: HttpClient, private router: Router) {
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -119,6 +122,12 @@ export class blogpostservice {
 
   subscribeNewsLetter(data) {
     return this.http.post(this.newsLetterApi, JSON.stringify(data), {
+      headers: this.header,
+    });
+  }
+
+  searchByTag(data) {
+    return this.http.get<any>(`${this.searchByTagApi}?search=${data}`, {
       headers: this.header,
     });
   }

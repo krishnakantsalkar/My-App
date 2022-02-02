@@ -291,7 +291,7 @@ div.searchResult h3 {
   justify-content: space-between;
 }
 /* sharing buttons  */
-div.sharingBtns {
+/* div.sharingBtns {
   position: fixed;
   right: 0;
   top: 30%;
@@ -344,7 +344,7 @@ div.sharingBtns .tgShare a {
 }
 
 div.sharingBtns .fbShare:hover a {
-  /* width: 50px; */
+  width: 50px;
   margin-left: -20px;
   padding-left: 20px;
   padding-right: 40px;
@@ -373,7 +373,7 @@ div.sharingBtns .tgShare:hover a {
   margin-left: -20px;
   padding-left: 20px;
   padding-right: 40px;
-}
+} */
 #uploadSpinner {
   display: none;
 }
@@ -496,7 +496,7 @@ div.nextprev button {
   justify-content: space-between;
   align-items: center;
 }
-.post_title_area{
+.post_title_area {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -526,7 +526,7 @@ div.nextprev button {
   }
 
   /* share btns mobile css */
-  div.sharingBtns {
+  /* div.sharingBtns {
     top: 35%;
   }
   div.sharingBtns a {
@@ -565,7 +565,7 @@ div.nextprev button {
   }
 
   div.sharingBtns .fbShare:hover a {
-    /* width: 50px; */
+    width: 50px;
     margin-left: -20px;
     padding-left: 20px;
     padding-right: 30px;
@@ -594,7 +594,7 @@ div.nextprev button {
     margin-left: -20px;
     padding-left: 20px;
     padding-right: 30px;
-  }
+  } */
 
   .showYears span h1 {
     font-size: 25px;

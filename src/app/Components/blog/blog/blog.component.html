@@ -69,7 +69,7 @@
     ></div>
 
     <!-- social sharing buttons (new) -->
-
+    <!-- 
     <div class="sharingBtns" *ngIf="blogURL">
       <div class="fbShare">
         <a
@@ -126,7 +126,7 @@
           <i class="fab fa-telegram-plane"></i
         ></a>
       </div>
-    </div>
+    </div> -->
 
     <!-- cover img container -->
     <div
@@ -349,12 +349,20 @@
           <button
             id="createPost_btn"
             mat-raised-button
-            class="btn-warning"
+            class="btn-warning mx-1"
             style="float: right"
             (click)="createPostmethod($event)"
             *ngIf="checkUser"
           >
             <span class="material-icons"> feed </span> Create post
+          </button>
+
+          <button
+            mat-raised-button
+            class="btn-primary mx-1"
+            (click)="openShareSheet()"
+          >
+            <mat-icon>share</mat-icon>
           </button>
         </div>
         <br />

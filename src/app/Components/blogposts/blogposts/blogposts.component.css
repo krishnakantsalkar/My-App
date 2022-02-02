@@ -114,7 +114,7 @@ div.blogimg img,
 } */
 
 /* sharing buttons  */
-div.sharingBtns {
+/* div.sharingBtns {
   position: fixed;
   right: 0;
   top: 30%;
@@ -175,7 +175,7 @@ div.sharingBtns2 .tgShare a {
 }
 
 div.sharingBtns .fbShare:hover a {
-  /* width: 50px; */
+  width: 50px;
   margin-left: -20px;
   padding-left: 20px;
   padding-right: 40px;
@@ -204,7 +204,7 @@ div.sharingBtns .tgShare:hover a {
   margin-left: -20px;
   padding-left: 20px;
   padding-right: 40px;
-}
+} */
 /* shadow-piercer css method */
 
 /* markdown ::ng-deep p {
@@ -218,14 +218,14 @@ markdown ::ng-deep p img {
   object-fit: contain;
 }
 
-div.sharingBtns2 {
+/* div.sharingBtns2 {
   display: none;
   opacity: 0.7;
   transition: 0.2s ease-in;
 }
 div.sharingBtns2 a {
   margin: auto 5px;
-}
+} */
 
 .blogPostInfoBar {
   margin: 8px auto;
@@ -302,6 +302,12 @@ div.sharingBtns2 a {
   opacity: 1;
 }
 
+.actionBtns {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
 @media only screen and (max-width: 600px) {
   div.card-header h2 {
     font-size: 25px;
@@ -331,7 +337,7 @@ div.sharingBtns2 a {
   }
 
   /* share btns mobile css */
-  div.sharingBtns {
+  /* div.sharingBtns {
     top: 35%;
   }
   div.sharingBtns a {
@@ -370,7 +376,7 @@ div.sharingBtns2 a {
   }
 
   div.sharingBtns .fbShare:hover a {
-    /* width: 50px; */
+    width: 50px;
     margin-left: -20px;
     padding-left: 20px;
     padding-right: 30px;
@@ -406,7 +412,7 @@ div.sharingBtns2 a {
   }
   div.sharingBtns {
     display: none;
-  }
+  } */
 
   .blogPostInfoBar h6 {
     font-size: 13px;
@@ -437,5 +443,10 @@ div.sharingBtns2 a {
   }
   .dislike2 {
     float: right;
+  }
+
+  .actionBtns button {
+    max-height: 45px;
+    margin: 5px auto;
   }
 }

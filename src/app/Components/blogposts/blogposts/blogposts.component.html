@@ -65,7 +65,7 @@
 
         <!-- social sharing buttons (new) -->
 
-        <div class="sharingBtns" *ngIf="data">
+        <!-- <div class="sharingBtns" *ngIf="data">
           <div class="fbShare">
             <a
               class="fbLink"
@@ -121,7 +121,7 @@
               <i class="fab fa-telegram-plane"></i
             ></a>
           </div>
-        </div>
+        </div> -->
 
         <!-- blog post -->
 
@@ -137,12 +137,16 @@
         >
           <p-skeleton width="100%" height="400px"></p-skeleton>
           <br />
-          <div class="floatItems">
-            <div class="float-left">
+          <div class="floatItems d-flex justify-content-between">
+            <div>
               <p-skeleton width="18rem" height="3rem"></p-skeleton>
             </div>
-            <div class="float-right">
-              <p-skeleton width="4rem" height="3rem"></p-skeleton>
+            <div class="d-flex justify-content-between">
+              <p-skeleton class="mx-1" width="4rem" height="3rem"></p-skeleton>
+
+              <p-skeleton class="mx-1" width="4rem" height="3rem"></p-skeleton>
+
+              <p-skeleton class="mx-1" width="4rem" height="3rem"></p-skeleton>
             </div>
           </div>
           <br />
@@ -175,21 +179,45 @@
             </div>
             <hr *ngIf="data" style="margin: 10px auto; width: 70%" />
             <div class="row">
-              <h2
-                class="col-8 col-sm-8"
-                *ngIf="data"
-                [ngStyle]="{ color: brightness ? 'black' : 'rgb(160,160,160)' }"
-              >
-                #{{ data.postNumber }}: {{ data.postTitle }}
-              </h2>
-              <div class="col-4 col-sm-4 returnBtn" style="text-align: right">
+              <div class="col-8 col-sm-8">
+                <h2
+                  *ngIf="data"
+                  [ngStyle]="{
+                    color: brightness ? 'black' : 'rgb(160,160,160)'
+                  }"
+                >
+                  #{{ data.postNumber }}: {{ data.postTitle }}
+                </h2>
+              </div>
+              <div class="col-4 col-sm-4 actionBtns">
                 <button
                   mat-raised-button
-                  class="btn-warning"
+                  class="btn-warning mx-1"
                   *ngIf="data"
-                  routerLink="/blog/1"
+                  (click)="back()"
                 >
-                  <i class="fas fa-arrow-circle-left"></i>
+                  <mat-icon>arrow_back_ios_new</mat-icon>
+                </button>
+                <button
+                  mat-raised-button
+                  class="btn-info mx-1"
+                  *ngIf="data"
+                  (click)="copyShareLink()"
+                  matTooltip="copy post link?"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+
+                <button
+                  mat-raised-button
+                  class="btn-primary mx-1"
+                  *ngIf="data"
+                  (click)="openShareSheet()"
+                  matTooltip="share this post?"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon>share</mat-icon>
                 </button>
               </div>
             </div>
@@ -204,7 +232,7 @@
               }"
             >
               <div class="blog_dashboard">
-                <div
+                <!-- <div
                   class="blogpostIcon"
                   style="text-align: center; display: inline-block"
                   [ngStyle]="{
@@ -214,11 +242,10 @@
                   <i
                     class="far fa-file-alt"
                     style="font-size: 20px; cursor: pointer"
-                    (click)="copyShareLink()"
                     matTooltip="copy post link"
                     matTooltipPosition="above"
                   ></i>
-                </div>
+                </div> -->
 
                 <div
                   *ngIf="data"
@@ -435,7 +462,7 @@
               <br />
               <!-- social sharing buttons (new) -->
 
-              <div class="sharingBtns2" *ngIf="data">
+              <!-- <div class="sharingBtns2" *ngIf="data">
                 <div class="fbShare">
                   <a
                     class="fbLink"
@@ -491,7 +518,7 @@
                     <i class="fab fa-telegram-plane"></i
                   ></a>
                 </div>
-              </div>
+              </div> -->
 
               <br />
               <!-- next and previous post navigation -->

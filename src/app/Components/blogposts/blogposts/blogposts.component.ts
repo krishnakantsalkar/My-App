@@ -11,6 +11,8 @@ import { link } from 'fs';
 import { UiService } from 'src/app/Shared/services/ui.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Location } from '@angular/common';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 
 @Component({
   selector: 'app-blogposts',
@@ -69,7 +71,9 @@ export class BlogpostsComponent implements OnInit {
     private uiService: UiService,
     private meta: Meta,
     private dialog: MatDialog,
-    private location: Location
+    private location: Location,
+    private matBottomSheet: MatBottomSheet,
+    private locationService: Location
   ) {}
 
   ngOnInit(): void {
@@ -405,6 +409,19 @@ export class BlogpostsComponent implements OnInit {
       const file = event.target.files[0];
       this.currentBlogImg = file; // main blog image file
     }
+  }
+
+  openShareSheet() {
+    this.matBottomSheet.open(BottomShareSheetComponent, {
+      data: {
+        blogURL: this.blogURL,
+        calledFrom: 'blogposts',
+      },
+    });
+  }
+
+  back() {
+    this.locationService.back();
   }
 }
 

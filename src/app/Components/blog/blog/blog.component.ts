@@ -19,6 +19,8 @@ import * as moment from 'moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 
 @Component({
   selector: 'app-blog',
@@ -115,7 +117,8 @@ export class BlogComponent implements OnInit {
     private defaultModeService: modeService,
     private confirmationService: ConfirmationService,
     private meta: Meta,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private matBottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
@@ -554,5 +557,14 @@ export class BlogComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+  openShareSheet() {
+    this.matBottomSheet.open(BottomShareSheetComponent, {
+      data: {
+        blogURL: this.blogURL,
+        calledFrom: 'blog',
+      },
+    });
   }
 }

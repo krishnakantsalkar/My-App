@@ -1,0 +1,67 @@
+<div
+  class="container-fluid share_sheet"
+  [ngStyle]="{
+    'background-color': brightness ? 'rgb(235, 235, 235)' : ' rgb(41, 42, 45)',
+    color: brightness ? 'red' : 'violet'
+  }"
+>
+  <h4>
+    Share this <span *ngIf="data.calledFrom == 'blog'; else other">page</span>
+    <ng-template #other>post</ng-template> ?
+  </h4>
+  <div class="sharingBtns" *ngIf="blogURL">
+    <div class="fbShare">
+      <a
+        class="fbLink"
+        href="https://www.facebook.com/sharer.php?u={{ blogURL }}"
+        target="_blank"
+      >
+        <button mat-raised-button>
+          <i class="fab fa-facebook-f"></i></button
+      ></a>
+    </div>
+    <div class="twitterShare">
+      <a
+        href="https://www.twitter.com/share?text=The-Arsonist's Blog page&url={{
+          blogURL
+        }}"
+        target="_blank"
+      >
+        <button mat-raised-button>
+          <i class="fab fa-twitter"></i></button
+      ></a>
+    </div>
+    <div class="mailShare">
+      <a
+        href="mailto:someone@example.com?subject=Heyy!%20Check%20this%20out%20%20!!&amp;body=%20{{
+          blogURL
+        }}"
+        target="_blank"
+      >
+        <button mat-raised-button>
+          <i class="fas fa-at"></i></button
+      ></a>
+    </div>
+
+    <div class="linkedInShare">
+      <a
+        href="https://www.linkedin.com/shareArticle?mini=true&url={{ blogURL }}"
+        target="_blank"
+      >
+        <button mat-raised-button>
+          <i class="fab fa-linkedin-in"></i></button
+      ></a>
+    </div>
+    <div class="redditShare">
+      <a href="https://www.reddit.com/submit?url={{ blogURL }}" target="_blank"
+        ><button mat-raised-button><i class="fab fa-reddit-alien"></i></button
+      ></a>
+    </div>
+    <div class="tgShare">
+      <a href="https://telegram.me/share/url?url={{ blogURL }}" target="_blank">
+        <button mat-raised-button>
+          <i class="fab fa-telegram-plane"></i></button
+      ></a>
+    </div>
+  </div>
+</div>

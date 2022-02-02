@@ -45,6 +45,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BottomShareSheetComponent } from './bottom-share-sheet/bottom-share-sheet.component';
 // Shared module
 
 const MaterialComponents = [
@@ -79,7 +80,7 @@ const MaterialComponents = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [BottomShareSheetComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -88,7 +89,12 @@ const MaterialComponents = [
     QuillModule,
     MaterialComponents,
   ],
-  exports: [SkeletonModule, QuillModule, MaterialComponents],
+  exports: [
+    SkeletonModule,
+    QuillModule,
+    MaterialComponents,
+    BottomShareSheetComponent,
+  ],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

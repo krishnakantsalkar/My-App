@@ -11,6 +11,8 @@ import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { isPlatformBrowser } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../shared-module/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +34,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private router: Router,
     private defaultModeService: modeService,
     @Inject(PLATFORM_ID) private platformId: any,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -133,7 +136,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // logout method
   logout() {
-    this.logonServices.Logout();
+    let userData: any = `${JSON.parse(localStorage.getItem('user')).name} ${
+      JSON.parse(localStorage.getItem('user')).surname
+    }`;
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      minWidth: '30vw',
+      data: {
+        msg: `Would you like to Logout, ${userData}?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((item) => {
+      if (item && item.confirm == true) {
+        this.logonServices.Logout();
+      }
+    });
   }
 
   // get id for profile page navigation

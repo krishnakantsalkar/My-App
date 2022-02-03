@@ -138,9 +138,6 @@
             >
           </li>
           <li class="nav-item" *ngIf="checkStatus">
-            <a class="clickable nav-link" (click)="logout()"> Logout</a>
-          </li>
-          <li class="nav-item" *ngIf="checkStatus">
             <a
               class="nav-link"
               routerLink="/Profile/{{ loggedInUser }}"
@@ -219,10 +216,25 @@
             *ngIf="window.innerWidth > 1600"
             class="nav_date nav-link"
             [ngStyle]="{
-              color: brightness ? 'black' : 'rgb(129,129,129)'
+              color: brightness ? '#818181' : 'rgb(129,129,129)'
             }"
           >
             {{ liveDate | date: "dd MMM | hh:mm a" }}
+          </li>
+
+          <li
+            class="nav-item logout_icon"
+            *ngIf="checkStatus"
+            [ngStyle]="{
+              color: brightness ? '#818181' : 'rgb(129,129,129)'
+            }"
+          >
+            <mat-icon
+              class="clickable nav-link"
+              style="cursor: pointer"
+              (click)="logout()"
+              >logout</mat-icon
+            >
           </li>
         </ul>
       </div>

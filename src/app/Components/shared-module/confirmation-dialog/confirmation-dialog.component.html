@@ -1,0 +1,49 @@
+<div
+  class="confirm_delete"
+  style="padding: 10px"
+  [ngStyle]="{
+    'background-color': brightness ? 'rgb(233, 233, 233)' : ' rgb(32, 33, 33)',
+    color: brightness ? 'black' : 'white'
+  }"
+>
+  <div class="header" style="display: flex; justify-content: space-between">
+    <h4 class="d-inline-block mb-0">Confirm?</h4>
+    <span
+      ><mat-icon mat-dialog-close style="cursor: pointer">close</mat-icon></span
+    >
+  </div>
+  <hr />
+  <div
+    class="message"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 15vh;
+    "
+  >
+    <h4>{{ confirmData.msg }}</h4>
+  </div>
+
+  <div
+    class="btns_row"
+    style="display: flex; justify-content: center; margin-bottom: 20px"
+  >
+    <button
+      mat-raised-button
+      tabindex="-1"
+      class="btn-danger mx-2"
+      mat-dialog-close
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      tabindex="-1"
+      class="btn-primary mx-2"
+      (click)="confirmTrue()"
+    >
+      Confirm
+    </button>
+  </div>
+</div>

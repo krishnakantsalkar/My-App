@@ -46,6 +46,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from './bottom-share-sheet/bottom-share-sheet.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 // Shared module
 
 const MaterialComponents = [
@@ -80,7 +81,7 @@ const MaterialComponents = [
 ];
 
 @NgModule({
-  declarations: [BottomShareSheetComponent],
+  declarations: [BottomShareSheetComponent, ConfirmationDialogComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

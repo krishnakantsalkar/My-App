@@ -13,6 +13,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
+import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-blogposts',
@@ -247,12 +248,15 @@ export class BlogpostsComponent implements OnInit {
 
   //delete post by id
   deletePostById() {
-    let dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       minWidth: '30vw',
+      data: {
+        msg: 'Would you like to delete this post?',
+      },
     });
 
     dialogRef.afterClosed().subscribe((item) => {
-      if (item && item.delete == true) {
+      if (item && item.confirm == true) {
         let getBlogId = window.location.href.split('/');
         let id = getBlogId[6];
         this.blogservice.deleteBlog(id).subscribe(
@@ -425,27 +429,27 @@ export class BlogpostsComponent implements OnInit {
   }
 }
 
-@Component({
-  selector: 'app-confirm-delete-dialog',
-  templateUrl: './confirmDeleteDialog.html',
-})
-export class ConfirmDeleteDialogComponent implements OnInit {
-  brightness: boolean;
-  constructor(
-    private dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>,
-    private defaultModeService: modeService
-  ) {}
+// @Component({
+//   selector: 'app-confirm-delete-dialog',
+//   templateUrl: './confirmDeleteDialog.html',
+// })
+// export class ConfirmDeleteDialogComponent implements OnInit {
+//   brightness: boolean;
+//   constructor(
+//     private dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>,
+//     private defaultModeService: modeService
+//   ) {}
 
-  ngOnInit() {
-    // brightness mode
-    this.defaultModeService.modeSwitch.subscribe((item) => {
-      this.brightness = item;
-    });
-  }
+//   ngOnInit() {
+//     // brightness mode
+//     this.defaultModeService.modeSwitch.subscribe((item) => {
+//       this.brightness = item;
+//     });
+//   }
 
-  confirmTrue() {
-    this.dialogRef.close({
-      delete: true,
-    });
-  }
-}
+//   confirmTrue() {
+//     this.dialogRef.close({
+//       delete: true,
+//     });
+//   }
+// }

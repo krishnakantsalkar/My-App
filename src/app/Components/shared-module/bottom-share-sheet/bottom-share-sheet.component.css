@@ -28,6 +28,10 @@ div.sharingBtns button {
   margin: 10px auto;
 }
 
+div.sharingBtns button i {
+  font-size: 20px;
+}
+
 div.sharingBtns button:hover {
   transform: scale(1.2);
 }

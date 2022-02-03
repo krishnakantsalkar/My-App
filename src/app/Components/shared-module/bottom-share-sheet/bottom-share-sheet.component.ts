@@ -20,7 +20,6 @@ export class BottomShareSheetComponent implements OnInit {
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
     });
-    console.log(this.data);
 
     this.blogURL = this.data.blogURL;
   }

@@ -25,8 +25,11 @@ export class NotesComponent implements OnInit {
   todo_title;
   todo_opt;
   allTodos;
-  areAllArchived: boolean;
+  areAllArchived: boolean = true;
   snippets: any[];
+  anyNotePinned: boolean = false;
+  anyTaskPinned: boolean = false;
+  selectedTab = 0;
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
@@ -80,6 +83,12 @@ export class NotesComponent implements OnInit {
       } else {
         this.areAllArchived = true;
       }
+
+      this.anyNotePinned = this.notesData.some((item) => {
+        return item.pinned == true;
+      });
+
+      console.log(this.notesData, this.anyNotePinned);
     });
   }
 
@@ -93,8 +102,6 @@ export class NotesComponent implements OnInit {
 
     let noteObj = {
       notes_id: `NT${Date.now().toString()}`,
-      createdAt: new Date(),
-      updatedAt: new Date(),
       notes_title: this.noteTitle,
       notes_message: this.noteContent,
       profileId: this.profId,
@@ -106,6 +113,8 @@ export class NotesComponent implements OnInit {
     this.noteService.postNote(noteObj).subscribe(
       (item) => {
         this.uiService.showSnackbar(`${item.message}`, null, 3500);
+
+        this.selectedTab = 0;
 
         $('#uploadSpinner').css({
           display: 'none',
@@ -152,7 +161,6 @@ export class NotesComponent implements OnInit {
   updateNote(i) {
     let noteObj = this.notesData[i];
 
-    noteObj.updatedAt = new Date();
     noteObj.readonly = true;
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
@@ -182,7 +190,6 @@ export class NotesComponent implements OnInit {
   pinNote(i, param) {
     let noteObj = this.notesData[i];
 
-    noteObj.updatedAt = new Date();
     var msg = '';
     if (param == 'pin') {
       noteObj.pinned = true;
@@ -207,15 +214,17 @@ export class NotesComponent implements OnInit {
   archive(i, param) {
     let noteObj = this.notesData[i];
 
-    noteObj.updatedAt = new Date();
     if (param == 'archive') {
       noteObj.archived = true;
+      noteObj.pinned = false;
     } else {
       noteObj.archived = false;
     }
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
         this.uiService.showSnackbar('Note archived', null, 3500);
+
+        this.selectedTab = 1;
 
         this.noteContent = undefined;
         this.getNotes();
@@ -229,9 +238,8 @@ export class NotesComponent implements OnInit {
   unArchive(i) {
     let noteObj = this.notesData[i];
 
-    noteObj.updatedAt = new Date();
-
     noteObj.archived = false;
+    this.selectedTab = 0;
 
     this.noteService.editNote(this.notesData[i]._id, noteObj).subscribe(
       (item) => {
@@ -265,7 +273,6 @@ export class NotesComponent implements OnInit {
     this.allTodos[i].todo_list[j].value = event.checked;
 
     let data = {
-      updatedAt: new Date(),
       todo_list: this.allTodos[i].todo_list,
     };
 
@@ -280,9 +287,15 @@ export class NotesComponent implements OnInit {
     this.noteService.getTodo(this.profId).subscribe((item) => {
       this.allTodos = item.result;
 
+      console.log(this.allTodos);
+
       if (this.allTodos.length > 0) {
         this.allTodos = this.allTodos.reverse();
       }
+
+      this.anyTaskPinned = this.allTodos.some((item) => {
+        return item.pinned == true;
+      });
     });
   }
 
@@ -300,17 +313,18 @@ export class NotesComponent implements OnInit {
 
     let todoObj = {
       todo_id: `TD${Date.now().toString()}`,
-      createdAt: new Date(),
-      updatedAt: new Date(),
       todo_title: this.todo_title,
       todo_list: this.todoArr,
       profileId: this.profId,
+      readonly: true,
+      pinned: false,
     };
 
     this.noteService.postTodo(todoObj).subscribe(
       (item) => {
         this.uiService.showSnackbar(`${item.message}`, null, 3500);
 
+        this.selectedTab = 2;
         $('#uploadSpinner').css({
           display: 'none',
         });
@@ -357,6 +371,66 @@ export class NotesComponent implements OnInit {
       }
     );
   }
+  editTodo(i) {
+    this.allTodos[i].readonly = false;
+  }
+
+  cancelEditTodo(i) {
+    this.allTodos[i].readonly = true;
+    this.getTodo();
+  }
+
+  addMore(i) {
+    let todoStruct = {
+      name: '',
+      value: false,
+    };
+    this.allTodos[i].todo_list.push(todoStruct);
+  }
+
+  deleteEditOption(i, j) {
+    this.allTodos[i].todo_list.splice(j, 1);
+  }
+
+  pinTodo(i, param) {
+    let todoObj = this.allTodos[i];
+
+    var msg = '';
+    if (param == 'pin') {
+      todoObj.pinned = true;
+      msg = 'pinned';
+    } else if (param == 'unpin') {
+      todoObj.pinned = false;
+      msg = 'unpinned';
+    }
+
+    this.noteService.editTodo(this.allTodos[i]._id, todoObj).subscribe(
+      (item) => {
+        this.uiService.showSnackbar(`Task ${msg}`, null, 3500);
+
+        this.getTodo();
+      },
+      (err) => {
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
+      }
+    );
+  }
+
+  updateTodo(i) {
+    let data = this.allTodos[i];
+    data.readonly = true;
+    this.noteService.editTodo(this.allTodos[i]._id, data).subscribe(
+      (item) => {
+        this.uiService.showSnackbar(`${item.message}`, null, 3500);
+        this.getTodo();
+      },
+      (err) => {
+        this.uiService.showSnackbar(`${err.error.message}`, null, 3500);
+      }
+    );
+  }
+
+  // ------------------- snippets -------------------------
 
   getSnippets() {
     this.snippetService.getSnippets().subscribe((item) => {

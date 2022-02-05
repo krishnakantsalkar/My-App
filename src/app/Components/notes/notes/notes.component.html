@@ -152,7 +152,7 @@
         type="button"
         class="btn-primary mr-3"
         (click)="addOption()"
-        [disabled]="!todo_opt"
+        [disabled]="!todo_opt || !todo_title"
       >
         Add
       </button>
@@ -202,21 +202,11 @@
           </div>
 
           <div class="saveTodo">
-            <div class="btn-group" style="float: right; margin-top: 10px">
+            <div class="btn-group" style="margin-top: 10px">
               <button
-                type="button"
-                class="btn"
-                (click)="showAddTodo()"
-                style="background-color: rgb(233, 233, 233); color: black"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                class="ml-3"
-                [ngStyle]="{
-                  'background-color': brightness ? 'orangered' : ' violet'
-                }"
+                mat-raised-button
+                type="btn-primary"
+                class="mr-3"
                 style="color: white"
                 [disabled]="!todo_title || todoArr.length == 0"
                 (click)="saveTodo()"
@@ -232,6 +222,14 @@
                 <span id="uploadCheckErr">
                   <i class="fas fa-times-circle"></i
                 ></span>
+              </button>
+              <button
+                mat-raised-button
+                type="button"
+                class="btn-danger"
+                (click)="showAddTodo()"
+              >
+                Cancel
               </button>
             </div>
           </div>
@@ -263,7 +261,10 @@
     </div>
 
     <br />
-    <mat-tab-group (selectedTabChange)="tabChange($event)">
+    <mat-tab-group
+      (selectedTabChange)="tabChange($event)"
+      [selectedIndex]="selectedTab"
+    >
       <mat-tab label="All Notes">
         <mat-card
           class="noNotes"
@@ -296,6 +297,10 @@
         >
           <mat-card-content>
             <div class="row">
+              <div class="col-12" *ngIf="anyNotePinned">
+                <h4><mat-icon class="icon_align">push_pin</mat-icon> Notes</h4>
+              </div>
+
               <div
                 class="col-sm-6 col-lg-6"
                 *ngFor="let note of notesData; let i = index"
@@ -493,6 +498,12 @@
             </div>
             <!-- <hr *ngIf="note.readonly && note.pinned" /> -->
             <div class="row">
+              <div class="col-12">
+                <h4>
+                  <mat-icon class="icon_align">description</mat-icon> Notes
+                </h4>
+              </div>
+
               <div
                 class="col-sm-6 col-lg-6"
                 *ngFor="let note of notesData; let i = index"
@@ -677,7 +688,7 @@
                     </div>
                   </div>
                   <div
-                    class="col-1"
+                    class="col-2"
                     style="padding-top: 15px; text-align: center"
                   >
                     <h4 *ngIf="note.readonly == false">
@@ -839,12 +850,20 @@
         >
           <mat-card-content>
             <div class="row">
+              <div class="col-12" *ngIf="anyTaskPinned">
+                <h4><mat-icon class="icon_align">push_pin</mat-icon> Tasks</h4>
+              </div>
+
               <div
                 class="col-sm-6 col-lg-6"
                 *ngFor="let todo of allTodos; let i = index"
+                [hidden]="todo.pinned == false"
               >
-                <div class="row">
-                  <div class="col-12">
+                <div
+                  class="row pinnedTodo"
+                  *ngIf="todo.readonly == true && todo.pinned == true"
+                >
+                  <div class="col-10">
                     <mat-card
                       class="mb-5 todoList"
                       [ngStyle]="{
@@ -859,14 +878,13 @@
                           <span> {{ todo.todo_title }} </span>
                           <span>
                             <mat-icon
-                              style="cursor: pointer"
                               [ngStyle]="{
                                 color: brightness ? 'orangered' : 'violet'
                               }"
-                              (click)="deleteTodo(i)"
+                              (click)="pinTodo(i, 'unpin')"
                               matTooltipPosition="above"
-                              matTooltip="delete"
-                              >delete_forever</mat-icon
+                              matTooltip="unpin"
+                              >push_pin</mat-icon
                             >
                           </span>
                         </h5>
@@ -878,6 +896,7 @@
                           class="p-field-checkbox"
                         >
                           <mat-checkbox
+                            class="checkbox_content"
                             name="group2"
                             [value]="list.value"
                             (change)="updateCheck($event, i, j)"
@@ -904,6 +923,292 @@
                         </h5>
                       </mat-card-footer>
                     </mat-card>
+                  </div>
+
+                  <div class="col-2 controlIcons" style="padding-top: 5px">
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="editTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="edit note"
+                        >edit</mat-icon
+                      >
+                    </h4>
+                    <h4 *ngIf="todo.readonly == false">
+                      <mat-icon (click)="cancelEditTodo(i)">cancel</mat-icon>
+                    </h4>
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="deleteTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="delete todo"
+                        >delete_forever</mat-icon
+                      >
+                    </h4>
+                  </div>
+                </div>
+
+                <div
+                  class="row editTodo"
+                  *ngIf="todo.readonly == false && todo.pinned == true"
+                >
+                  <div class="col-10">
+                    <mat-card
+                      class="mb-5 todoList"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <input
+                        type="text"
+                        class="form-control"
+                        style="width: 100%"
+                        [(ngModel)]="todo.todo_title"
+                        placeholder="title"
+                      />
+                      <br />
+                      <div *ngFor="let list of todo.todo_list; let j = index">
+                        <div class="row">
+                          <div class="col-10">
+                            <textarea
+                              type="text"
+                              class="form-control"
+                              style="width: 100%"
+                              [(ngModel)]="list.name"
+                              placeholder="options"
+                              rows="4"
+                            ></textarea>
+                            <br />
+                          </div>
+                          <div class="col-2">
+                            <mat-icon
+                              (click)="deleteEditOption(i, j)"
+                              style="cursor: pointer"
+                              >cancel</mat-icon
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <br />
+                      <button
+                        mat-raised-button
+                        type="button"
+                        class="btn-primary mr-3"
+                        (click)="addMore(i)"
+                      >
+                        Add option
+                      </button>
+                      <button
+                        mat-raised-button
+                        type="button"
+                        class="btn-primary mr-3"
+                        (click)="updateTodo(i)"
+                      >
+                        Save
+                      </button>
+                    </mat-card>
+                  </div>
+                  <div class="col-2" style="padding-top: 15px">
+                    <h4 *ngIf="todo.readonly == false">
+                      <mat-icon
+                        (click)="cancelEditTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="cancel edit"
+                        >cancel</mat-icon
+                      >
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <h4>
+                  <mat-icon class="icon_align">description</mat-icon> Tasks
+                </h4>
+              </div>
+
+              <div
+                class="col-sm-6 col-lg-6"
+                *ngFor="let todo of allTodos; let i = index"
+                [hidden]="todo.pinned == true"
+              >
+                <div
+                  class="row pinnedTodo"
+                  *ngIf="todo.readonly == true && todo.pinned == false"
+                >
+                  <div class="col-10">
+                    <mat-card
+                      class="mb-5 todoList"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <mat-card-title>
+                        <h5>
+                          <span> {{ todo.todo_title }} </span>
+                          <span>
+                            <mat-icon
+                              class="pin_icon"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              (click)="pinTodo(i, 'pin')"
+                              matTooltipPosition="above"
+                              matTooltip="pin"
+                              >push_pin</mat-icon
+                            >
+                          </span>
+                        </h5>
+                      </mat-card-title>
+                      <hr />
+                      <mat-card-content>
+                        <div
+                          *ngFor="let list of todo.todo_list; let j = index"
+                          class="p-field-checkbox"
+                        >
+                          <mat-checkbox
+                            class="checkbox_content"
+                            name="group2"
+                            [value]="list.value"
+                            (change)="updateCheck($event, i, j)"
+                            [(ngModel)]="list.value"
+                            >{{ list.name }}</mat-checkbox
+                          >
+                        </div>
+                      </mat-card-content>
+                      <mat-card-footer>
+                        <h5
+                          class="text-muted d-flex justify-content-between px-2"
+                        >
+                          <span>
+                            {{
+                              todo.createdAt | date: "dd MMM | hh:mm a"
+                            }}</span
+                          >
+                          <span *ngIf="todo.createdAt != todo.updatedAt">
+                            <i class="fas fa-pencil-alt fa-fw"></i>
+                            {{
+                              todo.updatedAt | date: "dd MMM | hh:mm a"
+                            }}</span
+                          >
+                        </h5>
+                      </mat-card-footer>
+                    </mat-card>
+                  </div>
+                  <div class="col-2 controlIcons" style="padding-top: 5px">
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="editTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="edit todo"
+                        >edit</mat-icon
+                      >
+                    </h4>
+                    <h4 *ngIf="todo.readonly == false">
+                      <mat-icon (click)="cancelEditTodo(i)">cancel</mat-icon>
+                    </h4>
+                    <h4>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="deleteTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="delete todo"
+                        >delete_forever</mat-icon
+                      >
+                    </h4>
+                  </div>
+                </div>
+
+                <div
+                  class="row editTodo"
+                  *ngIf="todo.readonly == false && todo.pinned == false"
+                >
+                  <div class="col-10">
+                    <mat-card
+                      class="mb-5 todoList"
+                      [ngStyle]="{
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)',
+                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                      }"
+                    >
+                      <input
+                        type="text"
+                        class="form-control"
+                        style="width: 100%"
+                        [(ngModel)]="todo.todo_title"
+                        placeholder="title"
+                      />
+                      <br />
+                      <div *ngFor="let list of todo.todo_list; let j = index">
+                        <div class="row">
+                          <div class="col-10">
+                            <textarea
+                              type="text"
+                              class="form-control"
+                              style="width: 100%"
+                              [(ngModel)]="list.name"
+                              placeholder="options"
+                              rows="4"
+                            ></textarea>
+                            <br />
+                          </div>
+                          <div class="col-2">
+                            <mat-icon
+                              (click)="deleteEditOption(i, j)"
+                              style="cursor: pointer"
+                              >cancel</mat-icon
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <br />
+                      <button
+                        mat-raised-button
+                        type="button"
+                        class="btn-primary mr-3"
+                        (click)="addMore(i)"
+                      >
+                        Add option
+                      </button>
+                      <button
+                        mat-raised-button
+                        type="button"
+                        class="btn-primary mr-3"
+                        (click)="updateTodo(i)"
+                      >
+                        Save
+                      </button>
+                    </mat-card>
+                  </div>
+                  <div class="col-2" style="padding-top: 15px">
+                    <h4 *ngIf="todo.readonly == false">
+                      <mat-icon
+                        (click)="cancelEditTodo(i)"
+                        matTooltipPosition="above"
+                        matTooltip="cancel edit"
+                        >cancel</mat-icon
+                      >
+                    </h4>
                   </div>
                 </div>
               </div>

@@ -196,3 +196,7 @@ mat-bottom-sheet-container {
 .mat-tooltip {
   font-size: 14px;
 }
+
+.mat-checkbox-layout {
+  white-space: normal !important;
+}

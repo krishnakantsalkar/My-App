@@ -247,7 +247,9 @@ div.imagesection img {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: -110px;
-  animation: preloaderBgAnimL 0.95s infinite;
+  /* animation: preloaderBgAnimL 0.95s infinite; */
+  animation: pulse-animationL 2s infinite;
+
   border-radius: 10px;
 }
 .preloaderLogoD {
@@ -260,7 +262,8 @@ div.imagesection img {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: -110px;
-  animation: preloaderBgAnimD 0.95s infinite;
+  /* animation: preloaderBgAnimD 0.95s infinite; */
+  animation: pulse-animationD 2s infinite;
   border-radius: 10px;
 }
 @keyframes preloaderBgAnimD {
@@ -279,6 +282,28 @@ div.imagesection img {
   }
   50% {
     box-shadow: 0 2px 4px black, 0 8px 8px orangered;
+  }
+}
+
+@keyframes pulse-animationD {
+  0% {
+    /* box-shadow: 0 0 0 0px rgba(238, 130, 238, 1); */
+    box-shadow: 0 2px 4px black, 0 0 0 0px violet;
+  }
+  100% {
+    /* box-shadow: 0 0 0 30px rgba(238, 130, 238, 0); */
+    box-shadow: 0 2px 4px black, 0 0 0 30px rgba(238, 130, 238, 0);
+  }
+}
+
+@keyframes pulse-animationL {
+  0% {
+    /* box-shadow: 0 0 0 0px rgba(255, 68, 0, 1); */
+    box-shadow: 0 2px 4px black, 0 0 0 0px orangered;
+  }
+  100% {
+    /* box-shadow: 0 0 0 30px rgba(255, 68, 0, 0); */
+    box-shadow: 0 2px 4px black, 0 0 0 30px rgba(255, 68, 0, 0);
   }
 }
 

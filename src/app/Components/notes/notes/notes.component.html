@@ -901,8 +901,28 @@
                             [value]="list.value"
                             (change)="updateCheck($event, i, j)"
                             [(ngModel)]="list.value"
-                            >{{ list.name }}</mat-checkbox
                           >
+                            <span
+                              *ngIf="list.value == true"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              style="text-decoration: line-through"
+                            >
+                              <span
+                                [ngStyle]="{
+                                  color: brightness
+                                    ? 'black'
+                                    : 'rgb(129,129,129)'
+                                }"
+                              >
+                                {{ list.name }}</span
+                              ></span
+                            >
+                            <span *ngIf="list.value == false">{{
+                              list.name
+                            }}</span>
+                          </mat-checkbox>
                         </div>
                       </mat-card-content>
                       <mat-card-footer>
@@ -1058,7 +1078,22 @@
                     >
                       <mat-card-title>
                         <h5>
-                          <span> {{ todo.todo_title }} </span>
+                          <span>
+                            {{ todo.todo_title }}
+                            <mat-icon
+                              class="mx-1"
+                              *ngIf="checkAllTasks(todo)"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              style="
+                                position: relative;
+                                top: 2px;
+                                font-size: 20px;
+                              "
+                              >task_alt</mat-icon
+                            >
+                          </span>
                           <span>
                             <mat-icon
                               class="pin_icon"
@@ -1072,6 +1107,24 @@
                             >
                           </span>
                         </h5>
+
+                        <div class="taskProgress">
+                          <div class="progress" style="height: 7px">
+                            <div
+                              class="progress-bar"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'orangered'
+                                  : 'violet'
+                              }"
+                              role="progressbar"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              [style.width]="calcTaskProgress(todo)"
+                              style="height: 7px"
+                            ></div>
+                          </div>
+                        </div>
                       </mat-card-title>
                       <hr />
                       <mat-card-content>
@@ -1085,8 +1138,27 @@
                             [value]="list.value"
                             (change)="updateCheck($event, i, j)"
                             [(ngModel)]="list.value"
-                            >{{ list.name }}</mat-checkbox
                           >
+                            <span
+                              *ngIf="list.value == true"
+                              [ngStyle]="{
+                                color: brightness ? 'orangered' : 'violet'
+                              }"
+                              style="text-decoration: line-through"
+                            >
+                              <span
+                                [ngStyle]="{
+                                  color: brightness
+                                    ? 'black'
+                                    : 'rgb(129,129,129)'
+                                }"
+                              >
+                                {{ list.name }}</span
+                              ></span
+                            ><span *ngIf="list.value == false">{{
+                              list.name
+                            }}</span>
+                          </mat-checkbox>
                         </div>
                       </mat-card-content>
                       <mat-card-footer>

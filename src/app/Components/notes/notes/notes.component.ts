@@ -430,6 +430,24 @@ export class NotesComponent implements OnInit {
     );
   }
 
+  checkAllTasks(todo) {
+    return todo.todo_list.every((x) => {
+      return x.value == true;
+    });
+  }
+
+  calcTaskProgress(todo) {
+    let taskLength = todo.todo_list.length;
+    let count = 0;
+    todo.todo_list.forEach((x) => {
+      if (x.value == true) {
+        count++;
+      }
+    });
+
+    return `${Math.round((count / taskLength) * 100)}%`;
+  }
+
   // ------------------- snippets -------------------------
 
   getSnippets() {

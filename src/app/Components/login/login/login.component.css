@@ -99,7 +99,7 @@ div.buttons .btn {
   div.motto h5 {
     font-size: 14px;
   }
-  div.login-card .card {
+  div.login-card mat-card {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -116,6 +116,12 @@ div.buttons .btn {
   .shortInfo {
     padding: 30px 5px 30px;
     text-align: center;
+  }
+
+  .login_dialog {
+    min-height: 20vh;
+    padding: 24px;
+    width: 80vw;
   }
 }
 
@@ -139,6 +145,7 @@ div.logindata {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 /* .bgImage {
   margin: 0;
@@ -184,6 +191,7 @@ div.login-card .card-header {
 .login_dialog {
   min-height: 20vh;
   padding: 24px;
+  min-width: 30vw;
 }
 
 .form-dark {

@@ -12,13 +12,16 @@ nav {
 } */
 
 .logout_icon {
-  padding: 2px;
-  transition: 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 2px; */
+  /* transition: 0.3s ease-in-out; */
 }
 
-.logout_icon mat-icon {
+/* .logout_icon mat-icon {
   width: 100%;
-}
+} */
 .sidenav a,
 .sidenavL a {
   text-decoration: none;
@@ -30,15 +33,15 @@ nav {
   transition: 0.3s ease-in-out;
 }
 /* dark mode hover */
-.sidenav a:hover,
-.sidenav .logout_icon:hover {
+.sidenav a:hover
+/*, .sidenav .logout_icon:hover  */ {
   background-color: violet;
   color: white !important;
   cursor: pointer;
   border-radius: 5px;
 }
-.sidenavL a:hover,
-.sidenavL .logout_icon:hover {
+.sidenavL a:hover
+/* ,.sidenavL .logout_icon:hover  */ {
   background-color: rgb(243, 61, 61);
   color: white !important;
   border-radius: 5px;
@@ -163,5 +166,9 @@ span.two {
   div.nametag h4 {
     font-size: 17px;
     padding-top: 5px;
+  }
+
+  .logout_icon {
+    justify-content: flex-start;
   }
 }

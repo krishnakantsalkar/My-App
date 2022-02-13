@@ -3,6 +3,7 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { MainPageComponent } from './Components/main-page/main-page.component';
 import { authGuard } from './Shared/services/authguard';
 import { Page404Component } from './Components/page404/page404.component';
+import { LoginPageGuardGuard } from './Shared/services/login-page-guard.guard';
 
 const routes: Routes = [
   // default route
@@ -48,6 +49,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./Components/login/login.module').then((m) => m.LoginModule),
+    canActivate: [LoginPageGuardGuard],
   },
 
   // profile page

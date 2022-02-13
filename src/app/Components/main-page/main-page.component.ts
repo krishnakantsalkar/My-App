@@ -282,10 +282,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show special
   getspecials() {
-    // let temp = JSON.parse(localStorage.getItem('credentials'));
-    let loggedinUser = this.cookies.get('credentials');
+    // let temp = JSON.parse(localStorage.getItem('userToken'));
+    let loggedinUser = this.cookies.get('userToken');
     if (loggedinUser) {
-      let temp = JSON.parse(this.cookies.get('credentials'));
+      let temp = JSON.parse(this.cookies.get('userToken'));
       if (temp) {
         this.special = true;
       } else {
@@ -296,7 +296,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show admin
   showAdmin() {
-    let loggedinUser = this.cookies.get('credentials');
+    let loggedinUser = this.cookies.get('userToken');
 
     if (loggedinUser) {
       let userData = JSON.parse(localStorage.getItem('user'));

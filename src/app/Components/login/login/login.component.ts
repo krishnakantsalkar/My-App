@@ -127,16 +127,19 @@ export class LoginComponent implements OnInit {
     this.loginservice.Login(data).subscribe(
       (item) => {
         if (item && item.token) {
-          // localStorage.setItem('credentials', JSON.stringify(item.token));
+          // localStorage.setItem('userToken', JSON.stringify(item.token));
 
           if (data.keepSignedIn) {
-            this.cookies.set('credentials', JSON.stringify(item.token));
+            let expDate = new Date();
+            expDate.setFullYear(expDate.getFullYear() + 1);
+
+            this.cookies.set('userToken', JSON.stringify(item.token), expDate);
           } else {
-            this.cookies.set('credentials', JSON.stringify(item.token), 2);
+            this.cookies.set('userToken', JSON.stringify(item.token), 1);
           }
           localStorage.setItem('user', JSON.stringify(item));
           localStorage.setItem('id', JSON.stringify(item.id));
-          localStorage.setItem('userToken', JSON.stringify(item.token));
+          // localStorage.setItem('userToken', JSON.stringify(item.token));
           localStorage.setItem('profileId', JSON.stringify(item.profileId));
           this.loginresponse = item;
           // let elemnt = document.getElementById('overlay');
@@ -145,8 +148,8 @@ export class LoginComponent implements OnInit {
           d.getElementById('uploadCheck').style.display = 'inline-block';
           // elemnt.style.zIndex = '3';
           let dialogRes = this.dialog.open(this.loginDialog, {
-            minWidth: '30vw',
-            minHeight: '20vh',
+            // minWidth: '30vw',
+            // minHeight: '20vh',
           });
 
           dialogRes.afterClosed().subscribe((item) => {
@@ -157,7 +160,9 @@ export class LoginComponent implements OnInit {
       (error) => {
         d.getElementById('uploadSpinner').style.display = 'none';
         d.getElementById('uploadCheckErr').style.display = 'inline-block';
-        this.response = error.error.message;
+        this.response = error;
+
+        console.log(error);
       }
     );
   }

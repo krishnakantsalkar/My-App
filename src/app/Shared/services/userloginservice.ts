@@ -40,7 +40,7 @@ export class userloginservices {
   ) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
     //  behavior subject for login/logout
-    this.loggedIn = new BehaviorSubject<any>(this.cookies.get('credentials'));
+    this.loggedIn = new BehaviorSubject<any>(this.cookies.get('userToken'));
     this.currentUsers = this.loggedIn.asObservable();
   }
 
@@ -58,12 +58,12 @@ export class userloginservices {
   }
 
   Logout() {
-    // localStorage.removeItem('credentials');
-    this.cookies.delete('credentials');
+    // localStorage.removeItem('userToken');
+    this.cookies.delete('userToken');
     localStorage.removeItem('user');
     localStorage.removeItem('id');
     localStorage.removeItem('profileId');
-    localStorage.removeItem('userToken');
+    // localStorage.removeItem('userToken');
     this.loggedIn.next(null);
     this.router.navigate(['/login']);
   }

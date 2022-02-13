@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Iblog } from '../model/blogmodel';
 import { IsearchResult } from '../model/searchResult';
 import { catchError } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class blogpostservice {
@@ -42,14 +43,22 @@ export class blogpostservice {
   public searchByTagApi: string =
     'https://my-app-backend-node.vercel.app/api/blog/searchByTag';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookies: CookieService
+  ) {
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+      'x-auth-token': this.cookies.get('userToken')
+        ? JSON.parse(this.cookies.get('userToken'))
+        : '',
     });
 
     this.blogImgHeader = new HttpHeaders({
-      'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+      'x-auth-token': this.cookies.get('userToken')
+        ? JSON.parse(this.cookies.get('userToken'))
+        : '',
     });
   }
 
@@ -78,7 +87,9 @@ export class blogpostservice {
   uploadImg(data) {
     return this.http.post<any>(this.uploadApi, data, {
       headers: {
-        'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+        'x-auth-token': this.cookies.get('userToken')
+          ? JSON.parse(this.cookies.get('userToken'))
+          : '',
       },
     });
   }

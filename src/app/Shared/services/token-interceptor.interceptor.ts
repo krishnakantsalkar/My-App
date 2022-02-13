@@ -11,13 +11,15 @@ import { userloginservices } from './userloginservice';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UiService } from './ui.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class TokenInterceptorInterceptor implements HttpInterceptor {
   constructor(
     private logonServices: userloginservices,
     private router: Router,
-    private uiService: UiService
+    private uiService: UiService,
+    private cookies: CookieService
   ) {}
 
   intercept(
@@ -31,13 +33,9 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
       });
       return next.handle(request);
     } else {
-      let token = undefined;
-
-      if (localStorage.getItem('userToken')) {
-        token = JSON.parse(localStorage.getItem('userToken'));
-      } else {
-        token = '';
-      }
+      let token = this.cookies.get('userToken')
+        ? JSON.parse(this.cookies.get('userToken'))
+        : '';
 
       let tokenizedReq = request.clone({
         setHeaders: {

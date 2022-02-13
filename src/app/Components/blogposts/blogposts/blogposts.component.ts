@@ -199,8 +199,8 @@ export class BlogpostsComponent implements OnInit {
 
   //check if user logged in
   checkUserPresent() {
-    // this.checkUser = localStorage.getItem('credentials');
-    this.checkUser = this.cookies.get('credentials');
+    // this.checkUser = localStorage.getItem('userToken');
+    this.checkUser = this.cookies.get('userToken');
     if (!this.checkUser) {
     }
   }

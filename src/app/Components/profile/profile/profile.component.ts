@@ -92,8 +92,8 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    // localStorage.removeItem('credentials');
-    this.cookies.delete('credentials');
+    // localStorage.removeItem('userToken');
+    this.cookies.delete('userToken');
     localStorage.removeItem('id');
     this.router.navigateByUrl('/home');
   }

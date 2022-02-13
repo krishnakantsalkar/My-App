@@ -87,8 +87,6 @@ export class NotesComponent implements OnInit {
       this.anyNotePinned = this.notesData.some((item) => {
         return item.pinned == true;
       });
-
-      console.log(this.notesData, this.anyNotePinned);
     });
   }
 
@@ -286,8 +284,6 @@ export class NotesComponent implements OnInit {
     this.todo_opt = undefined;
     this.noteService.getTodo(this.profId).subscribe((item) => {
       this.allTodos = item.result;
-
-      console.log(this.allTodos);
 
       if (this.allTodos.length > 0) {
         this.allTodos = this.allTodos.reverse();

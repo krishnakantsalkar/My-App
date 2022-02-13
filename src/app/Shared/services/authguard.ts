@@ -14,7 +14,9 @@ export class authGuard implements CanActivate {
   ) {}
 
   canActivate(): Promise<boolean> {
-    let token = JSON.parse(localStorage.getItem('userToken'));
+    let token = this.cookies.get('userToken')
+      ? JSON.parse(this.cookies.get('userToken'))
+      : '';
     if (!token) {
       return new Promise<boolean>((resolve, reject) => {
         this.uiService.showSnackbar('You need to login first!', null, 3500);

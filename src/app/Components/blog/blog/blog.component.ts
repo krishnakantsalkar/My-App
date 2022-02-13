@@ -277,7 +277,7 @@ export class BlogComponent implements OnInit {
 
   // check if admin present
   checkUserPresent() {
-    this.checkUser = this.cookies.get('credentials');
+    this.checkUser = this.cookies.get('userToken');
     if (!this.checkUser) {
     }
   }

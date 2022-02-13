@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class noteService {
   public header: HttpHeaders;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookies: CookieService) {
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-auth-token': JSON.parse(localStorage.getItem('userToken')),
+      'x-auth-token': this.cookies.get('userToken')
+        ? JSON.parse(this.cookies.get('userToken'))
+        : '',
     });
   }
 

@@ -12,5 +12,8 @@
         "api/index.js": {
             "includeFiles": "dist/My-App/browser/**"
         }
+    },
+    "github": {
+        "enabled": true
     }
 }

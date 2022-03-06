@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,9 +8,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UiService {
   public checkSession$ = new BehaviorSubject<boolean>(false);
-  constructor(private snackbar: MatSnackBar) {
-    if (sessionStorage.getItem('session')) {
-      this.checkSession$.next(true);
+  constructor(
+    private snackbar: MatSnackBar,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      if (sessionStorage.getItem('session')) {
+        this.checkSession$.next(true);
+      }
     }
   }
 

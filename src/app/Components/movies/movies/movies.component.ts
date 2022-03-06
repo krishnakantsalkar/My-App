@@ -5,7 +5,8 @@ import * as superplaceholder from 'superplaceholder';
 import * as AOS from 'aos';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-movies',
@@ -89,7 +90,8 @@ export class MoviesComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private defaultModeService: modeService,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -111,7 +113,7 @@ export class MoviesComponent implements OnInit {
 
     // animated placeholder
     superplaceholder({
-      el: document.getElementById('movieTvSearch'),
+      el: this.document.getElementById('movieTvSearch'),
       sentences: [
         'Breaking Bad',
         'F.R.I.E.N.D.S',
@@ -193,7 +195,7 @@ export class MoviesComponent implements OnInit {
         this.movieData = item.results;
 
         this.router.navigateByUrl('/movies&tv').then(() => {
-          let elemnt = document.getElementById('movieList');
+          let elemnt = this.document.getElementById('movieList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });
           }
@@ -211,7 +213,7 @@ export class MoviesComponent implements OnInit {
 
   // remove active button
   removeActiveBtn() {
-    let activeBtn = document
+    let activeBtn = this.document
       .getElementById('now_playing')
       .classList.remove('active');
   }
@@ -281,7 +283,7 @@ export class MoviesComponent implements OnInit {
       .subscribe((item) => {
         this.genreData = item.results;
         this.router.navigateByUrl('/movies&tv').then(() => {
-          let elemnt = document.getElementById('genreList');
+          let elemnt = this.document.getElementById('genreList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });
           }

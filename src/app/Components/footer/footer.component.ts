@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -32,17 +33,17 @@ export class FooterComponent implements OnInit {
     private fb: FormBuilder,
     private contactServices: contactService,
     private cookies: CookieService,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
-
     // method calls
 
     // brightness mode
-    this.defaultModeService.modeSwitch.subscribe(item => {
-      this.brightness = item
-    })
+    this.defaultModeService.modeSwitch.subscribe((item) => {
+      this.brightness = item;
+    });
 
     AOS.init({
       startEvent: 'DOMContentLoaded',
@@ -76,30 +77,30 @@ export class FooterComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    let d = document
-    d.getElementById('uploadSpinner2').style.display='inline-block'
-    d.getElementById('uploadCheckErr2').style.display='none'
+    let d = this.document;
+    d.getElementById('uploadSpinner2').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr2').style.display = 'none';
     this.contactServices.contact(data).subscribe(
       (item) => {
         this.logResponse = item;
-        let elemnt = document.getElementById('overlayFooter');
+        let elemnt = this.document.getElementById('overlayFooter');
         elemnt.style.zIndex = '3';
-        d.getElementById('uploadSpinner2').style.display='none'
-        d.getElementById('uploadCheckErr2').style.display='none'
-        d.getElementById('uploadCheck2').style.display='inline-block'
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'none';
+        d.getElementById('uploadCheck2').style.display = 'inline-block';
       },
       (error) => {
         this.errResponse = error.error;
-        let elemnt = document.getElementById('overlayFooter');
+        let elemnt = this.document.getElementById('overlayFooter');
         elemnt.style.zIndex = '3';
-        d.getElementById('uploadSpinner2').style.display='none'
-        d.getElementById('uploadCheckErr2').style.display='inline-block'
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'inline-block';
       }
     );
   }
 
   off() {
-    var elemnt = document.getElementById('overlayFooter');
+    var elemnt = this.document.getElementById('overlayFooter');
 
     elemnt.style.zIndex = '-10';
     location.reload();
@@ -110,20 +111,20 @@ export class FooterComponent implements OnInit {
     if (!this.newsLetterForm.valid) {
       return;
     }
-    let d = document
-    d.getElementById('uploadSpinner1').style.display='inline-block'
-    d.getElementById('uploadCheckErr1').style.display='none'
+    let d = this.document;
+    d.getElementById('uploadSpinner1').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr1').style.display = 'none';
     this.blogservice.subscribeNewsLetter(data).subscribe(
       (item) => {
         this.newsLetterSuccess = item;
-        d.getElementById('uploadSpinner1').style.display='none'
-        d.getElementById('uploadCheckErr1').style.display='none'
-        d.getElementById('uploadCheck1').style.display='inline-block'
+        d.getElementById('uploadSpinner1').style.display = 'none';
+        d.getElementById('uploadCheckErr1').style.display = 'none';
+        d.getElementById('uploadCheck1').style.display = 'inline-block';
       },
       (err) => {
         this.newsLetterError = err.error.message;
-        d.getElementById('uploadSpinner1').style.display='none'
-        d.getElementById('uploadCheckErr1').style.display='inline-block'
+        d.getElementById('uploadSpinner1').style.display = 'none';
+        d.getElementById('uploadCheckErr1').style.display = 'inline-block';
       }
     );
   }

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { noteService } from '../../../Shared/services/notesService';
 import { Title } from '@angular/platform-browser';
 import { UiService } from 'src/app/Shared/services/ui.service';
 import { SnippetsService } from '../../../Shared/services/snippets.service';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-notes',
@@ -35,7 +37,9 @@ export class NotesComponent implements OnInit {
     private noteService: noteService,
     private titleService: Title,
     private uiService: UiService,
-    private snippetService: SnippetsService
+    private snippetService: SnippetsService,
+    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -465,18 +469,21 @@ export class NotesComponent implements OnInit {
   }
 
   copyShareLink(val) {
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      const selBox = this.document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = val;
+      this.document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      this.document.execCommand('copy');
+      this.document.body.removeChild(selBox);
 
-    this.uiService.showSnackbar('link copied to clipboard', null, 3500);
+      this.uiService.showSnackbar('link copied to clipboard', null, 3500);
+    }
   }
 }

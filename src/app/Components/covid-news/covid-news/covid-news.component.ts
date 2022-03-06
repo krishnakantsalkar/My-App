@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { covidNewsService } from 'src/app/Shared/services/covidNews';
 import { ActivatedRoute, Router } from '@angular/router';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
-import { Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { TabView } from 'primeng/tabview';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
@@ -44,7 +44,8 @@ export class CovidNewsComponent implements OnInit {
     private router: Router,
     private location: Location,
     private titleService: Title,
-    private uiService: UiService
+    private uiService: UiService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -186,17 +187,17 @@ export class CovidNewsComponent implements OnInit {
   //copy link
   copyShareLink(link: string) {
     let val = link;
-    const selBox = document.createElement('textarea');
+    const selBox = this.document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = val;
-    document.body.appendChild(selBox);
+    this.document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    this.document.execCommand('copy');
+    this.document.body.removeChild(selBox);
 
     this.uiService.showSnackbar('link copied to clipboard', null, 3500);
   }

@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewChild,
+  Inject,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -15,6 +21,7 @@ import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { ReCaptchaV3Service } from 'ngx-captcha';
 import { MatDialog } from '@angular/material/dialog';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -63,7 +70,8 @@ export class LoginComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private titleService: Title,
     private defaultModeService: modeService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -103,7 +111,7 @@ export class LoginComponent implements OnInit {
 
     footerBackground();
     function footerBackground() {
-      var footerArea = document.getElementsByClassName(
+      var footerArea = this.document.getElementsByClassName(
         'content-new'
       ) as unknown as HTMLCollectionOf<HTMLElement>;
       if (footerArea) {
@@ -121,7 +129,7 @@ export class LoginComponent implements OnInit {
     //   alert('login details not valid!');
     //   return;
     // }
-    let d = document;
+    let d = this.document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
     d.getElementById('uploadCheckErr').style.display = 'none';
     this.loginservice.Login(data).subscribe(
@@ -142,7 +150,7 @@ export class LoginComponent implements OnInit {
           // localStorage.setItem('userToken', JSON.stringify(item.token));
           localStorage.setItem('profileId', JSON.stringify(item.profileId));
           this.loginresponse = item;
-          // let elemnt = document.getElementById('overlay');
+          // let elemnt = this.document.getElementById('overlay');
           d.getElementById('uploadSpinner').style.display = 'none';
           d.getElementById('uploadCheckErr').style.display = 'none';
           d.getElementById('uploadCheck').style.display = 'inline-block';
@@ -178,7 +186,7 @@ export class LoginComponent implements OnInit {
     this.loginservice.forgotPassMailer(data).subscribe(
       (item) => {
         this.loginresponse = item;
-        let elemnt = document.getElementById('overlay');
+        let elemnt = this.document.getElementById('overlay');
         elemnt.style.zIndex = '3';
       },
       (error) => {
@@ -201,7 +209,7 @@ export class LoginComponent implements OnInit {
   }
 
   off() {
-    var elemnt = document.getElementById('overlay');
+    var elemnt = this.document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/home');

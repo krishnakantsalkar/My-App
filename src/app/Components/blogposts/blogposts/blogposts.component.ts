@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,11 +10,12 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { link } from 'fs';
 import { UiService } from 'src/app/Shared/services/ui.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
 import { environment } from 'src/environments/environment';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-blogposts',
@@ -75,12 +76,11 @@ export class BlogpostsComponent implements OnInit {
     private dialog: MatDialog,
     private location: Location,
     private matBottomSheet: MatBottomSheet,
-    private locationService: Location
+    private locationService: Location,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
-    // $(() => {});
-
     // method calls
 
     this.postId = `${environment.baseUrl}${this.router.url}`.split('/');
@@ -377,17 +377,17 @@ export class BlogpostsComponent implements OnInit {
   // copy sharing link
   copyShareLink() {
     let val = environment.baseUrl + this.router.url;
-    const selBox = document.createElement('textarea');
+    const selBox = this.document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = val;
-    document.body.appendChild(selBox);
+    this.document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    this.document.execCommand('copy');
+    this.document.body.removeChild(selBox);
     // this.snackbar.open("Link copied to clipboard !", "x", {
     //   duration: 2000,
     // });

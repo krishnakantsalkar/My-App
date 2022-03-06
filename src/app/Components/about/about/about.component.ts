@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import * as AOS from 'aos';
 import { SwiperOptions } from 'swiper';
 import { Title, Meta } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import Swiper, {
 
 import { MessageService } from 'primeng/api';
 import { UiService } from 'src/app/Shared/services/ui.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-about',
@@ -106,7 +107,8 @@ export class AboutComponent implements OnInit {
     private titleService: Title,
     private defaultModeService: modeService,
     private meta: Meta,
-    private uiService: UiService
+    private uiService: UiService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
@@ -168,12 +170,13 @@ export class AboutComponent implements OnInit {
         '"It’s not a bug – it’s an undocumented feature!"',
       ];
 
-      if (document.getElementById('loopQuotes')) {
+      if (this.document.getElementById('loopQuotes')) {
         if (textLoop.length > i) {
           setTimeout(function () {
-            if (document.getElementById('loopQuotes')) {
-              document.getElementById('loopQuotes').innerHTML = textLoop[i];
-              document.getElementById('loopQuotes').style.fontFamily =
+            if (this.document.getElementById('loopQuotes')) {
+              this.document.getElementById('loopQuotes').innerHTML =
+                textLoop[i];
+              this.document.getElementById('loopQuotes').style.fontFamily =
                 "'Lucida Console', 'LucidaConsole', 'monospace'";
               textSequence(++i);
             }
@@ -188,23 +191,23 @@ export class AboutComponent implements OnInit {
 
   // scroll to page section
   scrollTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    this.document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
   // copy to clipboard
   copyShareLink(param, type) {
     let val = param;
-    const selBox = document.createElement('textarea');
+    const selBox = this.document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = val;
-    document.body.appendChild(selBox);
+    this.document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    this.document.execCommand('copy');
+    this.document.body.removeChild(selBox);
     // this.snackbar.open("Link copied to clipboard !", "x", {
     //   duration: 2000,
     // });

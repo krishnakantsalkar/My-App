@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
@@ -6,6 +6,7 @@ import { Iforgot } from '../../../Shared/model/forgotPass';
 import { Router } from '@angular/router';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { environment } from 'src/environments/environment';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-resetpassword',
@@ -23,7 +24,9 @@ export class ResetpasswordComponent implements OnInit {
     private fb: FormBuilder,
     private loginServices: userloginservices,
     private router: Router,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +65,7 @@ export class ResetpasswordComponent implements OnInit {
     this.loginServices.resetPass(data, getUrl[4]).subscribe(
       (item) => {
         this.logResponse = item;
-        let elemnt = document.getElementById('overlay');
+        let elemnt = this.document.getElementById('overlay');
         elemnt.style.zIndex = '3';
       },
       (error) => {
@@ -75,7 +78,7 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   off() {
-    var elemnt = document.getElementById('overlay');
+    var elemnt = this.document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/login');

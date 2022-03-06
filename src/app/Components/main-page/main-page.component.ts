@@ -18,12 +18,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { Title, Meta } from '@angular/platform-browser';
 import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { UiService } from '../../Shared/services/ui.service';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-main-page',
@@ -82,7 +83,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: any,
     private uiService: UiService,
-    private bottomSheetDiag: MatBottomSheet
+    private bottomSheetDiag: MatBottomSheet,
+    @Inject(DOCUMENT) private document: Document
   ) {
     // switch wallpaper method call
     // $(() => {
@@ -180,12 +182,12 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     //     'Systems Ready..',
     //   ];
 
-    //   if (document.getElementById('loopText')) {
+    //   if (this.document.getElementById('loopText')) {
     //     if (textLoop.length > i) {
     //       setTimeout(function () {
-    //         if (document.getElementById('loopText')) {
-    //           document.getElementById('loopText').innerHTML = textLoop[i];
-    //           document.getElementById('loopText').style.fontFamily =
+    //         if (this.document.getElementById('loopText')) {
+    //           this.document.getElementById('loopText').innerHTML = textLoop[i];
+    //           this.document.getElementById('loopText').style.fontFamily =
     //             "'Lucida Console', 'LucidaConsole', 'monospace'";
     //           textSequence(++i);
     //         }
@@ -200,8 +202,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     // progress bar logic
 
     // async function update() {
-    //   if (document.getElementById('progress')) {
-    //     var element = document.getElementById('progress');
+    //   if (this.document.getElementById('progress')) {
+    //     var element = this.document.getElementById('progress');
     //     var width = 1;
     //     var identity = setInterval(scene, 50);
     //     function scene() {
@@ -217,7 +219,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     //         // increase progessbar and % width
     //         element.style.width = width + '%';
-    //         document.getElementById('percent').innerHTML = width * 1 + '%';
+    //         this.document.getElementById('percent').innerHTML = width * 1 + '%';
     //       }
     //     }
     //   }
@@ -323,14 +325,14 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    let d = document;
+    let d = this.document;
     d.getElementById('uploadSpinner2').style.display = 'inline-block';
     d.getElementById('uploadCheckErr2').style.display = 'none';
 
     this.contactServices.contact(data).subscribe(
       (item) => {
         this.logResponse = item;
-        let elemnt = document.getElementById('overlay');
+        let elemnt = this.document.getElementById('overlay');
         elemnt.style.zIndex = '3';
         d.getElementById('uploadSpinner2').style.display = 'none';
         d.getElementById('uploadCheckErr2').style.display = 'none';
@@ -338,7 +340,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         this.errResponse = error.error;
-        let elemnt = document.getElementById('overlay');
+        let elemnt = this.document.getElementById('overlay');
         elemnt.style.zIndex = '3';
         d.getElementById('uploadSpinner2').style.display = 'none';
         d.getElementById('uploadCheckErr2').style.display = 'inline-block';
@@ -348,7 +350,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // turn off notif overlay
   off() {
-    var elemnt = document.getElementById('overlay');
+    var elemnt = this.document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
     location.reload();
@@ -359,7 +361,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     //
     let adblockPreference = this.cookies.get('adblockPref');
     if (!adblockPreference && isDetected === true) {
-      document.getElementById('adblockOverlays').style.display = 'block';
+      this.document.getElementById('adblockOverlays').style.display = 'block';
     }
   }
 
@@ -376,7 +378,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // website uses cookies dialog
   websiteUsesDiag() {
-    document.getElementById('websiteUsesDialog').style.display = 'none';
+    this.document.getElementById('websiteUsesDialog').style.display = 'none';
 
     this.cookies.set('websiteUsesDiag', 'done', 5);
   }
@@ -400,7 +402,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     if (!this.newsLetterForm.valid) {
       return;
     }
-    let d = document;
+    let d = this.document;
     d.getElementById('uploadSpinner1').style.display = 'inline-block';
     d.getElementById('uploadCheckErr1').style.display = 'none';
     this.blogservice.subscribeNewsLetter(data).subscribe(

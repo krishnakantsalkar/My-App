@@ -1,4 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -22,6 +28,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 import { environment } from 'src/environments/environment';
+import { DOCUMENT } from '@angular/common';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-blog',
@@ -119,7 +127,8 @@ export class BlogComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private meta: Meta,
     private dialog: MatDialog,
-    private matBottomSheet: MatBottomSheet
+    private matBottomSheet: MatBottomSheet,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
@@ -195,7 +204,7 @@ export class BlogComponent implements OnInit {
 
     // animated placeholder text
     superplaceholder({
-      el: document.getElementById('searchbar'),
+      el: this.document.getElementById('searchbar'),
       sentences: [
         'roms..',
         'pixel experience..',
@@ -340,7 +349,7 @@ export class BlogComponent implements OnInit {
     const formData = new FormData();
 
     // visual feedback
-    let d = document;
+    let d = this.document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
 
     // form data element for blog image since files can't be sent via json
@@ -418,7 +427,7 @@ export class BlogComponent implements OnInit {
 
   // cancel post
   cancelPost() {
-    let d = document;
+    let d = this.document;
     d.getElementById('uploadSpinner2').style.display = 'none';
     d.getElementById('uploadCheck').style.display = 'none';
 
@@ -450,7 +459,7 @@ export class BlogComponent implements OnInit {
     if (data) {
       this.blogservice.searchBlog(data).subscribe((item) => {
         this.searchResult = item.data;
-        document
+        this.document
           .getElementById('twothousandtwenty')
           .scrollIntoView({ behavior: 'smooth' });
       });

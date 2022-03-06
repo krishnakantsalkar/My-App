@@ -21,6 +21,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog',
@@ -126,7 +127,10 @@ export class BlogComponent implements OnInit {
 
     this.meta.updateTag({ property: 'og:type', content: 'blog' });
     this.meta.updateTag({ property: 'og:title', content: 'Blog' });
-    this.meta.updateTag({ property: 'og:url', content: window.location.href });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: environment.baseUrl + this.router.url,
+    }); //window.location.href
     this.meta.updateTag({
       property: 'og:site_name',
       content: 'https://krishnakantsalkar.in',
@@ -146,7 +150,7 @@ export class BlogComponent implements OnInit {
     });
 
     // activated routing hax
-    let pageRouting = window.location.href.split('/');
+    let pageRouting = `${environment.baseUrl}${this.router.url}`.split('/');
     this.blogsP(pageRouting[4]);
 
     // check admin
@@ -240,7 +244,7 @@ export class BlogComponent implements OnInit {
     this.blogservice.getBlogsP(pg, this.year).subscribe((item) => {
       // blogURL for share btns
       this.blogURL = null;
-      this.blogURL = window.location.href;
+      this.blogURL = environment.baseUrl + this.router.url;
 
       this.pgSize = item.pageSize;
       this.data = item.dataSize;

@@ -7,6 +7,7 @@ import { TabView } from 'primeng/tabview';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { UiService } from 'src/app/Shared/services/ui.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-covid-news',
@@ -59,7 +60,9 @@ export class CovidNewsComponent implements OnInit {
     this.AR.params.subscribe((item) => {
       let pg = item['page'];
       let section = item['section'];
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
 
       if (section == 'covid') {
         this.activeIndex = 0;
@@ -90,13 +93,19 @@ export class CovidNewsComponent implements OnInit {
     this.activeIndex = event.index;
     if (event.index == 0) {
       this.location.replaceState(`/covid-news/covid/${this.covidPageNo}`);
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
     } else if (event.index == 1) {
       this.location.replaceState(`/covid-news/health/${this.healthPageNo}`);
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
     } else if (event.index == 2) {
       this.location.replaceState(`/covid-news/vaccine/${this.vaccinePageNo}`);
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
     }
   }
 
@@ -111,7 +120,9 @@ export class CovidNewsComponent implements OnInit {
       this.getCovidNews(page);
       this.covidPageNo = page;
       this.location.replaceState(`/covid-news/covid/${page}`);
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
     } else if (section == 'health') {
       if (page > 1) {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
@@ -119,7 +130,9 @@ export class CovidNewsComponent implements OnInit {
 
       this.getHealthNews(page);
       this.healthPageNo = page;
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
 
       this.location.replaceState(`/covid-news/health/${page}`);
     } else if (section == 'vaccine') {
@@ -129,7 +142,9 @@ export class CovidNewsComponent implements OnInit {
 
       this.getVaccineNews(page);
       this.vaccinePageNo = page;
-      this.currentPgNo = parseInt(window.location.href.split('/')[5]);
+      this.currentPgNo = parseInt(
+        `${environment.baseUrl}${this.router.url}`.split('/')[5]
+      );
 
       this.location.replaceState(`/covid-news/vaccine/${page}`);
     }

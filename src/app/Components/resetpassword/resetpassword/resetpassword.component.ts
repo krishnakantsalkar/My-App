@@ -5,6 +5,7 @@ import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Iforgot } from '../../../Shared/model/forgotPass';
 import { Router } from '@angular/router';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-resetpassword',
@@ -55,7 +56,9 @@ export class ResetpasswordComponent implements OnInit {
       this.response = ' Passwords dont match! ';
       return;
     }
-    let getUrl = window.location.href.split('/');
+    // let getUrl = window.location.href.split('/');
+    let getUrl = `${environment.baseUrl}${this.router.url}`.split('/');
+
     this.loginServices.resetPass(data, getUrl[4]).subscribe(
       (item) => {
         this.logResponse = item;

@@ -266,8 +266,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     });
     $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
 
-    sessionStorage.setItem('session', 'onGoing');
-
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      sessionStorage.setItem('session', 'onGoing');
+    }
     // website uses cookies check
     this.checkWebsiteUsesDiag();
 

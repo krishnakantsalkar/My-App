@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blogposts',
@@ -82,7 +83,7 @@ export class BlogpostsComponent implements OnInit {
 
     // method calls
 
-    this.postId = window.location.href.split('/');
+    this.postId = `${environment.baseUrl}${this.router.url}`.split('/');
 
     this.blogservice
       .trackPostViews(this.postId[6], {})
@@ -110,7 +111,7 @@ export class BlogpostsComponent implements OnInit {
       this.blogservice.getBlogsbyId(id).subscribe((items) => {
         this.data = items;
         this.markdown = this.data.post;
-        this.blogURL = window.location.href;
+        this.blogURL = environment.baseUrl + this.router.url;
 
         let urlReplace = this.blogURL
           .replace(/%20/g, '-')
@@ -212,7 +213,7 @@ export class BlogpostsComponent implements OnInit {
 
   //edit post by id [4], here id = [5] because the array elements are higher in the deployed page
   async editPostById(data) {
-    let getBlogId = window.location.href.split('/');
+    let getBlogId = `${environment.baseUrl}${this.router.url}`.split('/');
     let id = getBlogId[6];
     let postData = { ...data };
 
@@ -257,7 +258,7 @@ export class BlogpostsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((item) => {
       if (item && item.confirm == true) {
-        let getBlogId = window.location.href.split('/');
+        let getBlogId = `${environment.baseUrl}${this.router.url}`.split('/');
         let id = getBlogId[6];
         this.blogservice.deleteBlog(id).subscribe(
           (item) => {
@@ -293,7 +294,7 @@ export class BlogpostsComponent implements OnInit {
   // next and prev post method
   getNextandPrev() {
     // get current post details
-    let currentPostId = window.location.href.split('/');
+    let currentPostId = `${environment.baseUrl}${this.router.url}`.split('/');
     let currentPostNumber = parseInt(currentPostId[4]);
 
     // wait for all blog posts in collection
@@ -375,7 +376,7 @@ export class BlogpostsComponent implements OnInit {
 
   // copy sharing link
   copyShareLink() {
-    let val = window.location.href;
+    let val = environment.baseUrl + this.router.url;
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';

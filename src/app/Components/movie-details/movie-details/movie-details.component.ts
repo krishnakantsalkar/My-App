@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-movie-details',
@@ -53,7 +54,7 @@ export class MovieDetailsComponent implements OnInit {
     this.AR.params.subscribe((item) => {
       let id = item['id'];
 
-      let url = window.location.href.split('/');
+      let url = `${environment.baseUrl}${this.router.url}`.split('/');
       if (url[4] == 'Movie') {
         this.listType = 'movie';
       } else if (url[4] == 'TV') {

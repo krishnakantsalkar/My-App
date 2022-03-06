@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MovieServices } from 'src/app/Shared/services/movieservice';
 import { Router } from '@angular/router';
 import * as superplaceholder from 'superplaceholder';
 import * as AOS from 'aos';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-movies',
@@ -87,7 +88,8 @@ export class MoviesComponent implements OnInit {
     private movieService: MovieServices,
     private router: Router,
     private titleService: Title,
-    private defaultModeService: modeService
+    private defaultModeService: modeService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnInit(): void {
@@ -180,8 +182,11 @@ export class MoviesComponent implements OnInit {
   getTheLists(pageNo, listType, listName) {
     this.currentList = listName;
     this.currentListType = listType;
-    sessionStorage.setItem('listType', this.currentListType);
 
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      sessionStorage.setItem('listType', this.currentListType);
+    }
     this.movieService
       .getTheList(pageNo, listType, listName)
       .subscribe((item) => {
@@ -231,7 +236,10 @@ export class MoviesComponent implements OnInit {
 
   // set listtype while navigating from search result!!
   setSearchListType(listType) {
-    sessionStorage.setItem('listType', listType);
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      sessionStorage.setItem('listType', listType);
+    }
   }
 
   // genre switch
@@ -256,8 +264,11 @@ export class MoviesComponent implements OnInit {
   discoverByGenre(pageNo, listType, genreId) {
     this.currentGenreId = genreId;
     this.currentListType = listType;
-    sessionStorage.setItem('listType', listType);
 
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      sessionStorage.setItem('listType', listType);
+    }
     if (listType == 'movie') {
       this.currentGenre =
         this.movieGenreCollectString[`${this.currentGenreId}`];

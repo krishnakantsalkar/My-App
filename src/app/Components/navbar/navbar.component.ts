@@ -140,9 +140,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setInterval(() => {
-      this.liveDate = new Date();
-    }, 60000);
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      setInterval(() => {
+        this.liveDate = new Date();
+      }, 60000);
+    }
   }
   // set global Light/Dark mode
   mode() {

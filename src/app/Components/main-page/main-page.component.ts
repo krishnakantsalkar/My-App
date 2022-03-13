@@ -108,7 +108,25 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         });
         $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
       }
+
+      // set wallpaper preference default
+      let wallpaperPref = localStorage.getItem('wallpaperNum');
+      if (!wallpaperPref) {
+        localStorage.setItem('wallpaperNum', '0');
+      }
+
+      // disable brightness toggle
+      $(() => {
+        $('.modeLD a').css('pointer-events', 'all');
+        $('.modeLD a').css('opacity', 1);
+      });
+
+      // aos animation init.
+      AOS.init({
+        startEvent: 'DOMContentLoaded',
+      });
     }
+
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });
     this.meta.updateTag({
@@ -128,7 +146,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     this.meta.updateTag({ property: 'og:height', content: '630' });
 
-    this.getspecials();
+    // this.getspecials();
     this.recentUpdates();
     this.getUserId();
     this.showAdmin();
@@ -148,11 +166,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     //title service
     this.titleService.setTitle(this.pageTitle);
-
-    // aos animation init.
-    AOS.init({
-      startEvent: 'DOMContentLoaded',
-    });
 
     // Feedback, Reactive form
     this.sendFeedback = this.fb.group({
@@ -238,25 +251,16 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     //   }
     //   sessionStorage.setItem('session', 'onGoing');
     // }
-
-    // set wallpaper preference default
-    let wallpaperPref = localStorage.getItem('wallpaperNum');
-    if (!wallpaperPref) {
-      localStorage.setItem('wallpaperNum', '0');
-    }
-
-    // disable brightness toggle
-    $(() => {
-      $('.modeLD a').css('pointer-events', 'all');
-      $('.modeLD a').css('opacity', 1);
-    });
   }
 
   ngAfterViewInit() {
-    this.showWalls();
-    setTimeout(() => {
-      $('.enterBtn').css({ opacity: '1' });
-    }, 1000);
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      this.showWalls();
+      setTimeout(() => {
+        $('.enterBtn').css({ opacity: '1' });
+      }, 1000);
+    }
   }
 
   enter() {
@@ -300,11 +304,14 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show admin
   showAdmin() {
-    let loggedinUser = this.cookies.get('userToken');
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      let loggedinUser = this.cookies.get('userToken');
 
-    if (loggedinUser) {
-      let userData = JSON.parse(localStorage.getItem('user'));
-      this.userName = userData;
+      if (loggedinUser) {
+        let userData = JSON.parse(localStorage.getItem('user'));
+        this.userName = userData;
+      }
     }
   }
 
@@ -317,7 +324,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // get id for profile page navigation
   getUserId() {
-    this.loggedInUser = JSON.parse(localStorage.getItem('id'));
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      this.loggedInUser = JSON.parse(localStorage.getItem('id'));
+    }
   }
 
   // send feedback

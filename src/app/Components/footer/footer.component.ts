@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -34,7 +34,8 @@ export class FooterComponent implements OnInit {
     private contactServices: contactService,
     private cookies: CookieService,
     private defaultModeService: modeService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnInit(): void {
@@ -45,11 +46,13 @@ export class FooterComponent implements OnInit {
       this.brightness = item;
     });
 
-    AOS.init({
-      startEvent: 'DOMContentLoaded',
-    });
-    this.recentUpdates();
-
+    if (!isPlatformBrowser(this.platformId)) {
+    } else {
+      AOS.init({
+        startEvent: 'DOMContentLoaded',
+      });
+      this.recentUpdates();
+    }
     // feedback form
     this.sendFeedback = this.fb.group({
       name: ['', [Validators.required]],

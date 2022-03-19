@@ -4,9 +4,9 @@
   height: auto;
 }
 
-.covidNews .card,
-.vaccineNews .card,
-.healthNews .card {
+.covidNews mat-card,
+.vaccineNews mat-card,
+.healthNews mat-card {
   margin: 15px auto;
 }
 
@@ -17,22 +17,22 @@
   margin: 50px auto;
 }
 
-.covid_news_title .card {
+.covid_news_title mat-card {
   padding: 20px;
   border-radius: 10px;
 }
 
-.covidNews .card-header,
-.vaccineNews .card-header,
-.healthNews .card-header {
+.covidNews mat-card-title,
+.vaccineNews mat-card-title,
+.healthNews mat-card-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.covidNews .card-header .material-icons,
-.vaccineNews .card-header .material-icons,
-.healthNews .card-header .material-icons {
+.covidNews mat-card-title .material-icons,
+.vaccineNews mat-card-title .material-icons,
+.healthNews mat-card-title .material-icons {
   cursor: pointer;
   padding: 0 10px;
 }
@@ -108,7 +108,7 @@
   text-align: center;
 }
 
-.confirmed .card {
+.confirmed mat-card {
   background-color: rgba(255, 68, 0, 0.527);
   color: orangered;
   height: 120px;
@@ -116,35 +116,35 @@
   margin-bottom: 30px;
 }
 
-.recovered .card {
+.recovered mat-card {
   background-color: rgba(94, 219, 136, 0.326);
   color: rgb(94, 219, 136);
   height: 120px;
   width: 100%;
   margin-bottom: 30px;
 }
-.deaths .card {
+.deaths mat-card {
   background-color: rgba(50, 52, 51, 0.326);
   color: rgb(255, 255, 255);
   height: 120px;
   width: 100%;
   margin-bottom: 30px;
 }
-.totalConfirmed .card {
+.totalConfirmed mat-card {
   background-color: rgba(73, 136, 252, 0.326);
   color: rgb(73, 136, 252);
   height: 120px;
   width: 100%;
   margin-bottom: 30px;
 }
-.totalRecovered .card {
+.totalRecovered mat-card {
   background-color: rgba(94, 219, 136, 0.326);
   color: rgb(94, 219, 136);
   height: 120px;
   width: 100%;
   margin-bottom: 30px;
 }
-.totalDeaths .card {
+.totalDeaths mat-card {
   background-color: rgba(50, 52, 51, 0.326);
   color: rgb(255, 255, 255);
   height: 120px;
@@ -158,7 +158,7 @@
   width: 100%;
 }
 
-.moreStats .card {
+.moreStats mat-card {
   margin: 10px 10px;
   height: 120px;
   width: 158px;
@@ -200,7 +200,7 @@
     margin: 20px auto;
   }
 
-  .moreStats .card {
+  .moreStats mat-card {
     height: 130px;
     width: 158px;
     margin-bottom: 30px;

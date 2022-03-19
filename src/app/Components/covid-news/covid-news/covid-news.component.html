@@ -1,7 +1,7 @@
 <div
   class="main"
   [ngStyle]="{
-    'background-color': brightness ? ' white' : 'rgb(41, 42, 45)',
+    'background-color': brightness ? 'rgb(200,200,200)' : 'rgb(41, 42, 45)',
     color: brightness ? 'black' : 'white'
   }"
 >
@@ -9,10 +9,9 @@
     <!-- current time -->
 
     <div class="covid_news_title">
-      <div
-        class="card"
+      <mat-card
         [ngStyle]="{
-          'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+          'background-color': brightness ? 'rgb(235,235,235)' : 'rgb(31,33,35)',
           color: brightness ? 'black' : 'white'
         }"
       >
@@ -27,7 +26,7 @@
           <span class="material-icons"> api </span> API by
           <a target="_blank" href="https://vaccovid.live">Vaccovid.live</a>
         </h2>
-      </div>
+      </mat-card>
     </div>
 
     <h5
@@ -72,73 +71,73 @@
     <div class="totalStatsArea" *ngIf="covidIndiaStats">
       <div class="row">
         <div class="col-6 col-sm-3 col-lg-2 confirmed">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>New Cases</h5>
               {{ covidIndiaStats.NewCases | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 recovered">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>New Recovered</h5>
               {{ covidIndiaStats.NewRecovered | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 deaths">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>New Deaths</h5>
               {{ covidIndiaStats.NewDeaths | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalConfirmed">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>Total Cases</h5>
               {{ covidIndiaStats.TotalCases | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalRecovered">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>Total Recovered</h5>
               {{ covidIndiaStats.TotalRecovered | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalDeaths">
-          <div class="card">
-            <div class="card-body">
+          <mat-card>
+            <mat-card-content>
               <h5>Total Deaths</h5>
               {{ covidIndiaStats.TotalDeaths | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
 
         <div class="moreStats">
-          <div class="card totalActive">
-            <div class="card-body">
+          <mat-card class="totalActive">
+            <mat-card-content>
               <h5>Total Active</h5>
               {{ covidIndiaStats.ActiveCases | number }}
-            </div>
-          </div>
-          <div class="card totalTests">
-            <div class="card-body">
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="totalTests">
+            <mat-card-content>
               <h5>Total Tests</h5>
               {{ covidIndiaStats.TotalTests | number }}
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body critical">
+            </mat-card-content>
+          </mat-card>
+          <mat-card>
+            <mat-card-content class="critical">
               <h5>Critical Cases</h5>
               {{ covidIndiaStats.Serious_Critical | number }}
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
     </div>
@@ -169,23 +168,24 @@
             <p-skeleton height="30px" width="100%"></p-skeleton>
           </div>
           <div class="covidNews" *ngIf="covidNews">
-            <div
-              class="card"
+            <mat-card
               [ngStyle]="{
-                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                'background-color': brightness
+                  ? 'rgb(235,235,235)'
+                  : 'rgb(31,33,35)',
                 color: brightness ? 'black' : 'white'
               }"
               *ngFor="let data of covidNews; let i = index"
             >
-              <div class="card-header">
+              <mat-card-title>
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
                 <span class="material-icons" (click)="copyShareLink(data.link)">
                   content_copy
                 </span>
-              </div>
-              <div class="card-body">
+              </mat-card-title>
+              <mat-card-content>
                 <div class="newsImg">
                   <img src="{{ data.urlToImage }}" alt="" />
                 </div>
@@ -199,11 +199,11 @@
                     >
                   </p>
                 </div>
-              </div>
-              <div class="card-footer">
+              </mat-card-content>
+              <mat-card-footer>
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
-              </div>
-            </div>
+              </mat-card-footer>
+            </mat-card>
 
             <div class="pagination">
               <button
@@ -269,23 +269,24 @@
             <p-skeleton height="30px" width="100%"></p-skeleton>
           </div>
           <div class="healthNews" *ngIf="healthNews">
-            <div
-              class="card"
+            <mat-card
               [ngStyle]="{
-                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                'background-color': brightness
+                  ? 'rgb(235,235,235)'
+                  : 'rgb(31,33,35)',
                 color: brightness ? 'black' : 'white'
               }"
               *ngFor="let data of healthNews; let i = index"
             >
-              <div class="card-header">
+              <mat-card-title>
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
                 <span class="material-icons" (click)="copyShareLink(data.link)">
                   content_copy
                 </span>
-              </div>
-              <div class="card-body">
+              </mat-card-title>
+              <mat-card-content>
                 <div class="newsImg">
                   <img src="{{ data.urlToImage }}" alt="" />
                 </div>
@@ -299,11 +300,11 @@
                     >
                   </p>
                 </div>
-              </div>
-              <div class="card-footer">
+              </mat-card-content>
+              <mat-card-footer>
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
-              </div>
-            </div>
+              </mat-card-footer>
+            </mat-card>
 
             <div class="pagination">
               <button
@@ -369,23 +370,24 @@
             <p-skeleton height="30px" width="100%"></p-skeleton>
           </div>
           <div class="vaccineNews" *ngIf="vaccineNews">
-            <div
-              class="card"
+            <mat-card
               [ngStyle]="{
-                'background-color': brightness ? ' white' : 'rgb(31,33,35)',
+                'background-color': brightness
+                  ? 'rgb(235,235,235)'
+                  : 'rgb(31,33,35)',
                 color: brightness ? 'black' : 'white'
               }"
               *ngFor="let data of vaccineNews; let i = index"
             >
-              <div class="card-header">
+              <mat-card-title>
                 <a target="_blank" href="{{ data.link }}">
                   <h4>{{ data.title }}</h4></a
                 >
                 <span class="material-icons" (click)="copyShareLink(data.link)">
                   content_copy
                 </span>
-              </div>
-              <div class="card-body">
+              </mat-card-title>
+              <div>
                 <div class="newsImg">
                   <img src="{{ data.urlToImage }}" alt="" />
                 </div>
@@ -400,10 +402,10 @@
                   </p>
                 </div>
               </div>
-              <div class="card-footer">
+              <div>
                 <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
-            </div>
+            </mat-card>
 
             <!-- pagination -->
             <div class="pagination">
@@ -446,8 +448,9 @@
                 (click)="pageNoChange('vaccine', vaccinePageNo + 1)"
                 ><i class="fas fa-chevron-right"></i
               ></span>
-            </div></div
-        ></mat-tab>
+            </div>
+          </div>
+        </mat-tab>
       </mat-tab-group>
 
       <!-- credits -->

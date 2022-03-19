@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../shared-module/confirmation-dialog/confirmation-dialog.component';
 import * as $ from 'jquery';
@@ -28,9 +28,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   public dynamicCss: string;
   public liveDate = new Date();
   public activeCss: string;
-  public window = !isPlatformBrowser(this.platformId)
-    ? { innerWidth: 1920 }
-    : window;
+  public window = window;
   constructor(
     private cookies: CookieService,
     private logonServices: userloginservices,
@@ -38,8 +36,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private defaultModeService: modeService,
     @Inject(PLATFORM_ID) private platformId: any,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog,
-    @Inject(DOCUMENT) private document: Document
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -56,24 +53,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
       if (this.brightness) {
         this.activeCss = 'activeCssL';
-        Array.from(this.document.querySelectorAll('.nav-link')).forEach(
-          (el) => {
-            if (el.classList.contains('activeCssD')) {
-              el.classList.remove('activeCssD');
-              el.classList.add('activeCssL');
-            }
+        Array.from(document.querySelectorAll('.nav-link')).forEach((el) => {
+          if (el.classList.contains('activeCssD')) {
+            el.classList.remove('activeCssD');
+            el.classList.add('activeCssL');
           }
-        );
+        });
       } else {
         this.activeCss = 'activeCssD';
-        Array.from(this.document.querySelectorAll('.nav-link')).forEach(
-          (el) => {
-            if (el.classList.contains('activeCssL')) {
-              el.classList.remove('activeCssL');
-              el.classList.add('activeCssD');
-            }
+        Array.from(document.querySelectorAll('.nav-link')).forEach((el) => {
+          if (el.classList.contains('activeCssL')) {
+            el.classList.remove('activeCssL');
+            el.classList.add('activeCssD');
           }
-        );
+        });
       }
     });
     // animate navbar on scroll
@@ -89,37 +82,34 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
       function scrollFunction() {
         if (
-          this.document.body.scrollTop > 50 ||
-          this.document.documentElement.scrollTop > 50
+          document.body.scrollTop > 50 ||
+          document.documentElement.scrollTop > 50
         ) {
-          this.document.getElementById('top-panel').style.padding =
-            '5px 10px 5px';
-          this.document.getElementById('top-panel').style.transitionDuration =
+          document.getElementById('top-panel').style.padding = '5px 10px 5px';
+          document.getElementById('top-panel').style.transitionDuration =
             '0.2s';
-          this.document.getElementById(
-            'top-panel'
-          ).style.transitionTimingFunction = 'ease-in';
+          document.getElementById('top-panel').style.transitionTimingFunction =
+            'ease-in';
         } else {
-          this.document.getElementById('top-panel').style.padding =
-            '20px 10px 20px';
+          document.getElementById('top-panel').style.padding = '20px 10px 20px';
         }
       }
 
       function scrollFunctionMedia(mediaQuery) {
         if (
-          (mediaQuery.matches && this.document.body.scrollTop > 50) ||
-          (mediaQuery.matches && this.document.documentElement.scrollTop > 50)
+          (mediaQuery.matches && document.body.scrollTop > 50) ||
+          (mediaQuery.matches && document.documentElement.scrollTop > 50)
         ) {
-          if (this.document.getElementById('top-panel')) {
-            this.document.getElementById('top-panel').style.padding =
+          if (document.getElementById('top-panel')) {
+            document.getElementById('top-panel').style.padding =
               '12px 10px 12px';
           }
         } else if (
-          (mediaQuery.matches && this.document.body.scrollTop < 50) ||
-          (mediaQuery.matches && this.document.documentElement.scrollTop < 50)
+          (mediaQuery.matches && document.body.scrollTop < 50) ||
+          (mediaQuery.matches && document.documentElement.scrollTop < 50)
         ) {
-          if (this.document.getElementById('top-panel')) {
-            this.document.getElementById('top-panel').style.padding =
+          if (document.getElementById('top-panel')) {
+            document.getElementById('top-panel').style.padding =
               '20px 10px 20px';
           }
         }

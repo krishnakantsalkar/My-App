@@ -78,6 +78,7 @@ const MaterialComponents = [
   MatNativeDateModule,
   MatRadioModule,
   MatBottomSheetModule,
+  MatSidenavModule,
 ];
 
 @NgModule({

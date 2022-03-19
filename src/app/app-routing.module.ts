@@ -148,6 +148,15 @@ const routes: Routes = [
       ),
   },
 
+  //  search by tag
+  {
+    path: 'updates',
+    loadChildren: () =>
+      import('./Components/general-updates/general-updates.module').then(
+        (m) => m.GeneralUpdatesModule
+      ),
+  },
+
   //wildcard route
 
   {

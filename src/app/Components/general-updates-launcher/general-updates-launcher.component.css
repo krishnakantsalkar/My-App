@@ -1,0 +1,52 @@
+.fab_menu {
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 100;
+  width: 100%;
+}
+.fab_menu button {
+  margin: 5px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.example-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  /* height: 100%; */
+}
+
+mat-sidenav {
+  width: 20vw !important;
+  z-index: 99;
+}
+
+.fab_menu button:hover {
+  opacity: 1 !important;
+}
+
+.new_update {
+  padding: 10px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  mat-sidenav {
+    width: 50vw !important;
+    z-index: 99;
+  }
+}

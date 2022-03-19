@@ -21,6 +21,7 @@ import { QuillModule } from 'ngx-quill';
 import { SkeletonModule } from 'primeng/skeleton';
 import { FooterComponent } from './Components/footer/footer.component';
 import { TokenInterceptorInterceptor } from './Shared/services/token-interceptor.interceptor';
+import { GeneralUpdatesLauncherComponent } from './Components/general-updates-launcher/general-updates-launcher.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TokenInterceptorInterceptor } from './Shared/services/token-interceptor
     NavbarComponent,
     FooterComponent,
     BottomSheetOverviewExampleSheet,
+    GeneralUpdatesLauncherComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

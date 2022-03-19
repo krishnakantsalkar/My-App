@@ -1,0 +1,107 @@
+<!-- button fab -->
+<div
+  class="fab_menu"
+  [ngStyle]="{
+    right:
+      side && window.innerWidth > 600
+        ? '21vw'
+        : side && window.innerWidth < 600
+        ? '51vw'
+        : '10px'
+  }"
+>
+  <button
+    mat-fab
+    (click)="open()"
+    [ngStyle]="{
+      'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
+      color: brightness ? 'red' : 'violet',
+      opacity: side ? '1' : '0.3'
+    }"
+  >
+    <mat-icon>menu_open</mat-icon>
+  </button>
+
+  <button
+    mat-fab
+    *ngIf="checkUser"
+    [ngStyle]="{
+      'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
+      color: brightness ? 'red' : 'violet'
+    }"
+    (click)="newUpdateDialog()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<ng-template #newUpdate>
+  <div
+    class="container-fluid new_update"
+    [ngStyle]="{
+      'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
+      color: brightness ? 'black' : 'white'
+    }"
+  >
+    <h5>Add New Update</h5>
+    <hr />
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>image url</mat-label>
+      <input type="text" matInput placeholder="img url" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>content</mat-label>
+
+      <textarea matInput placeholder="" rows="5"></textarea>
+    </mat-form-field>
+
+    <div class="links">
+      <mat-form-field appearance="outline">
+        <mat-label>links</mat-label>
+
+        <input type="text" matInput placeholder="img links" />
+      </mat-form-field>
+      <span
+        ><button mat-icon-button><mat-icon>add</mat-icon></button></span
+      >
+    </div>
+
+    <div class="links_list" *ngIf="updateLinksArr.length > 0">
+      <hr />
+      <ng-template *ngFor="let links of updateLinksArr">
+        {{ links }}
+        <span
+          ><button mat-icon-button><mat-icon>add</mat-icon></button></span
+        >
+      </ng-template>
+    </div>
+  </div>
+</ng-template>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    class="example-sidenav"
+    mode="side"
+    [opened]="side"
+    [ngStyle]="{
+      'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
+      color: brightness ? 'red' : 'violet'
+    }"
+  >
+    <mat-card *ngFor="let up of updates">
+      <img mat-card-image *ngIf="up.updateImgUrl" src="{{ up.updateImgUrl }}" />
+
+      <mat-card-content>
+        {{ up.updateText }}
+
+        <hr />
+        <ng-template *ngIf="up.updateLinks.length > 0">
+          <ng-template *ngFor="let link of up.updateLinks">
+            <a href="{{ link }}" target="_blank">{{ link }}</a>
+          </ng-template>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav>
+</mat-sidenav-container>

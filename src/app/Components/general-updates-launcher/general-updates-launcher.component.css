@@ -27,6 +27,21 @@
 mat-sidenav {
   width: 20vw !important;
   z-index: 99;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+}
+
+.updates_card {
+  margin-bottom: 10px;
+}
+
+.updates_card mat-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 0 15px;
 }
 
 .fab_menu button:hover {
@@ -42,6 +57,15 @@ mat-sidenav {
   justify-content: space-between;
   justify-content: center;
   align-items: center;
+}
+
+.btns_list {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btns_list button {
+  margin: auto 5px;
 }
 
 @media screen and (max-width: 600px) {

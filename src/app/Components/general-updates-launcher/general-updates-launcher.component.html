@@ -47,34 +47,67 @@
     <hr />
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>image url</mat-label>
-      <input type="text" matInput placeholder="img url" />
+      <input
+        type="text"
+        matInput
+        placeholder="img url"
+        [(ngModel)]="_imgUrlModel"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>content</mat-label>
 
-      <textarea matInput placeholder="" rows="5"></textarea>
+      <textarea
+        matInput
+        placeholder=""
+        rows="5"
+        [(ngModel)]="_contentModel"
+      ></textarea>
     </mat-form-field>
 
     <div class="links">
       <mat-form-field appearance="outline">
         <mat-label>links</mat-label>
 
-        <input type="text" matInput placeholder="img links" />
+        <input
+          type="text"
+          matInput
+          placeholder="img links"
+          [(ngModel)]="_linkModel"
+        />
       </mat-form-field>
       <span
-        ><button mat-icon-button><mat-icon>add</mat-icon></button></span
+        ><button mat-icon-button (click)="addLink()">
+          <mat-icon>add</mat-icon>
+        </button></span
       >
     </div>
 
-    <div class="links_list" *ngIf="updateLinksArr.length > 0">
+    <div class="btns_list">
+      <button class="btn-danger" mat-raised-button (click)="cancelUpdate()">
+        Cancel
+      </button>
+      <button
+        class="btn-primary"
+        mat-raised-button
+        (click)="saveUpdate()"
+        [disabled]="!_contentModel"
+      >
+        Save
+      </button>
+    </div>
+
+    <div class="links_list" *ngIf="updateLinksArr.length > 0; let i = index">
       <hr />
-      <ng-template *ngFor="let links of updateLinksArr">
+      <ng-container *ngFor="let links of updateLinksArr">
         {{ links }}
         <span
-          ><button mat-icon-button><mat-icon>add</mat-icon></button></span
+          ><button mat-icon-button (click)="removeLink(i)">
+            <mat-icon>close</mat-icon>
+          </button></span
         >
-      </ng-template>
+      </ng-container>
     </div>
   </div>
 </ng-template>
@@ -89,19 +122,58 @@
       color: brightness ? 'red' : 'violet'
     }"
   >
-    <mat-card *ngFor="let up of updates">
-      <img mat-card-image *ngIf="up.updateImgUrl" src="{{ up.updateImgUrl }}" />
+    <div
+      class="skeleton_loader"
+      *ngIf="updates?.length == 0"
+      [ngStyle]="{
+        'background-color': brightness ? '#dc3545' : ' rgb(32, 33, 33)',
+        color: brightness ? 'black' : 'rgb(160,160,160)'
+      }"
+    >
+      <p-skeleton width="100%" height="300px"></p-skeleton>
+      <br /><br />
+      <p-skeleton width="100%" height="100px"></p-skeleton>
+    </div>
 
-      <mat-card-content>
-        {{ up.updateText }}
+    <ng-container *ngFor="let up of updates; let i = index">
+      <mat-card
+        class="updates_card"
+        [ngStyle]="{
+          'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
+          color: brightness ? 'black' : 'white'
+        }"
+      >
+        <img
+          mat-card-image
+          *ngIf="up.updateImgUrl"
+          src="{{ up.updateImgUrl }}"
+        />
 
-        <hr />
-        <ng-template *ngIf="up.updateLinks.length > 0">
-          <ng-template *ngFor="let link of up.updateLinks">
-            <a href="{{ link }}" target="_blank">{{ link }}</a>
-          </ng-template>
-        </ng-template>
-      </mat-card-content>
-    </mat-card>
+        <mat-card-content>
+          {{ up.updateText }}
+
+          <span *ngIf="up.updateLinks.length > 0">
+            <ng-container *ngFor="let link of up.updateLinks">
+              <a href="{{ link }}" target="_blank">{{ link }}</a>
+            </ng-container>
+          </span>
+        </mat-card-content>
+        <mat-card-footer
+          [ngStyle]="{
+            color: brightness ? 'red' : 'violet'
+          }"
+        >
+          <span>{{ up.createdAt | date: "dd MMM | hh:mm a" }}</span>
+          <button
+            *ngIf="checkUser"
+            mat-icon-button
+            (click)="deleteUpdate(updates[i].updateId)"
+          >
+            <mat-icon> delete </mat-icon>
+          </button>
+        </mat-card-footer>
+      </mat-card>
+      <hr *ngIf="i < updates?.length - 1" />
+    </ng-container>
   </mat-sidenav>
 </mat-sidenav-container>

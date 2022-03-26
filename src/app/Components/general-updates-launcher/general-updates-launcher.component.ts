@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from '../../Shared/services/userloginservice';
 import { GeneralUpdatesService } from '../../Shared/services/general-updates.service';
 import { MatDialog } from '@angular/material/dialog';
+import { UiService } from '../../Shared/services/ui.service';
 
 @Component({
   selector: 'app-general-updates-launcher',
@@ -23,15 +24,21 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
 
   updateLinksArr = [];
 
+  _imgUrlModel;
+  _contentModel;
+  _linkModel;
+
   @ViewChild('newUpdate')
   newUpdate;
+  updDialog: any;
 
   constructor(
     private defaultModeService: modeService,
     private cookies: CookieService,
     private logonServices: userloginservices,
     private updateService: GeneralUpdatesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -62,9 +69,48 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
       });
   }
 
+  addLink() {
+    this.updateLinksArr.push(this._linkModel);
+    this._linkModel = null;
+  }
+
+  removeLink(i) {
+    this.updateLinksArr.splice(i, 1);
+  }
+
+  cancelUpdate() {
+    this.updDialog.close();
+  }
+
   newUpdateDialog() {
-    let diag = this.dialog.open(this.newUpdate, {
+    this.updDialog = this.dialog.open(this.newUpdate, {
       minWidth: '30vw',
+    });
+  }
+
+  saveUpdate() {
+    this.updDialog.close();
+    let obj = {
+      updateImgUrl: this._imgUrlModel,
+      updateText: this._contentModel,
+      updateLinks: this.updateLinksArr,
+    };
+
+    this.updateService.postUpdate(obj).subscribe(
+      (item: any) => {
+        this.uiService.showSnackbar(item.message, null, 3000);
+        this.getUpdates();
+      },
+      (err) => {
+        this.uiService.showSnackbar(err.error.message, null, 3000);
+      }
+    );
+  }
+
+  deleteUpdate(id) {
+    this.updateService.deleteUpdate(id).subscribe((item) => {
+      this.uiService.showSnackbar('Update deleted!', null, 3000);
+      this.getUpdates();
     });
   }
 }

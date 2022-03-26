@@ -21,15 +21,16 @@ export class GeneralUpdatesService {
   }
 
   editUpdate(data, id) {
-    return this.http.put(
+    return this.http.post(
       `https://my-app-backend-node.vercel.app/api/updates/editUpdate/${id}`,
       data
     );
   }
 
   deleteUpdate(id) {
-    return this.http.delete(
-      `https://my-app-backend-node.vercel.app/api/updates/deleteUpdate/${id}`
+    return this.http.post(
+      `https://my-app-backend-node.vercel.app/api/updates/deleteUpdate/${id}`,
+      {}
     );
   }
 }

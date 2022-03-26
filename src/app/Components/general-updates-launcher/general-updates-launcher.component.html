@@ -18,6 +18,8 @@
       color: brightness ? 'red' : 'violet',
       opacity: side ? '1' : '0.3'
     }"
+    matTooltip="updates"
+    matTooltipPosition="left"
   >
     <mat-icon>menu_open</mat-icon>
   </button>
@@ -30,6 +32,8 @@
       color: brightness ? 'red' : 'violet'
     }"
     (click)="newUpdateDialog()"
+    matTooltip="add update"
+    matTooltipPosition="left"
   >
     <mat-icon>add</mat-icon>
   </button>
@@ -175,5 +179,14 @@
       </mat-card>
       <hr *ngIf="i < updates?.length - 1" />
     </ng-container>
+
+    <div
+      style="text-align: center"
+      *ngIf="dataCount > 10 && updates.length < dataCount"
+    >
+      <button mat-raised-button class="btn-primary mt-2" (click)="loadMore()">
+        Load more
+      </button>
+    </div>
   </mat-sidenav>
 </mat-sidenav-container>

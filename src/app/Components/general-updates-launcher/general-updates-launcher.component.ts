@@ -31,6 +31,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   @ViewChild('newUpdate')
   newUpdate;
   updDialog: any;
+  dataCount: number;
+  pageSize: number;
 
   constructor(
     private defaultModeService: modeService,
@@ -65,7 +67,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
       .getUpdates(this.currentPage, this.sortBy, this.dateStart)
       .subscribe((item: any) => {
         this.updates = item.dataSize;
-        console.log(item);
+        this.dataCount = item.dataCount;
+        this.pageSize = item.pageSize;
       });
   }
 
@@ -112,5 +115,20 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
       this.uiService.showSnackbar('Update deleted!', null, 3000);
       this.getUpdates();
     });
+  }
+
+  loadMore() {
+    if (this.currentPage == this.pageSize) {
+      return;
+    }
+
+    this.currentPage += 1;
+    this.updateService
+      .getUpdates(this.currentPage, this.sortBy, this.dateStart)
+      .subscribe((item: any) => {
+        this.updates.push(...item.dataSize);
+        this.dataCount = item.dataCount;
+        this.pageSize = item.pageSize;
+      });
   }
 }

@@ -65,7 +65,7 @@ export class ResetpasswordComponent implements OnInit {
     this.loginServices.resetPass(data, getUrl[4]).subscribe(
       (item) => {
         this.logResponse = item;
-        let elemnt = this.document.getElementById('overlay');
+        let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
       },
       (error) => {
@@ -78,7 +78,7 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   off() {
-    var elemnt = this.document.getElementById('overlay');
+    var elemnt = document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/login');

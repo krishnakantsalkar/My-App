@@ -170,13 +170,12 @@ export class AboutComponent implements OnInit {
         '"It’s not a bug – it’s an undocumented feature!"',
       ];
 
-      if (this.document.getElementById('loopQuotes')) {
+      if (document.getElementById('loopQuotes')) {
         if (textLoop.length > i) {
           setTimeout(function () {
-            if (this.document.getElementById('loopQuotes')) {
-              this.document.getElementById('loopQuotes').innerHTML =
-                textLoop[i];
-              this.document.getElementById('loopQuotes').style.fontFamily =
+            if (document.getElementById('loopQuotes')) {
+              document.getElementById('loopQuotes').innerHTML = textLoop[i];
+              document.getElementById('loopQuotes').style.fontFamily =
                 "'Lucida Console', 'LucidaConsole', 'monospace'";
               textSequence(++i);
             }
@@ -191,23 +190,23 @@ export class AboutComponent implements OnInit {
 
   // scroll to page section
   scrollTo(id) {
-    this.document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 
   // copy to clipboard
   copyShareLink(param, type) {
     let val = param;
-    const selBox = this.document.createElement('textarea');
+    const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
     selBox.value = val;
-    this.document.body.appendChild(selBox);
+    document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
-    this.document.execCommand('copy');
-    this.document.body.removeChild(selBox);
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
     // this.snackbar.open("Link copied to clipboard !", "x", {
     //   duration: 2000,
     // });

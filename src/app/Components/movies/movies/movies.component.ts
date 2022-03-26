@@ -113,7 +113,7 @@ export class MoviesComponent implements OnInit {
 
     // animated placeholder
     superplaceholder({
-      el: this.document.getElementById('movieTvSearch'),
+      el: document.getElementById('movieTvSearch'),
       sentences: [
         'Breaking Bad',
         'F.R.I.E.N.D.S',
@@ -195,7 +195,7 @@ export class MoviesComponent implements OnInit {
         this.movieData = item.results;
 
         this.router.navigateByUrl('/movies&tv').then(() => {
-          let elemnt = this.document.getElementById('movieList');
+          let elemnt = document.getElementById('movieList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });
           }
@@ -213,7 +213,7 @@ export class MoviesComponent implements OnInit {
 
   // remove active button
   removeActiveBtn() {
-    let activeBtn = this.document
+    let activeBtn = document
       .getElementById('now_playing')
       .classList.remove('active');
   }
@@ -283,7 +283,7 @@ export class MoviesComponent implements OnInit {
       .subscribe((item) => {
         this.genreData = item.results;
         this.router.navigateByUrl('/movies&tv').then(() => {
-          let elemnt = this.document.getElementById('genreList');
+          let elemnt = document.getElementById('genreList');
           if (elemnt) {
             elemnt.scrollIntoView({ behavior: 'smooth' });
           }

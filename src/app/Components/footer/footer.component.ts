@@ -80,13 +80,13 @@ export class FooterComponent implements OnInit {
     if (!this.sendFeedback.valid) {
       return;
     }
-    let d = this.document;
+    let d = document;
     d.getElementById('uploadSpinner2').style.display = 'inline-block';
     d.getElementById('uploadCheckErr2').style.display = 'none';
     this.contactServices.contact(data).subscribe(
       (item) => {
         this.logResponse = item;
-        let elemnt = this.document.getElementById('overlayFooter');
+        let elemnt = document.getElementById('overlayFooter');
         elemnt.style.zIndex = '3';
         d.getElementById('uploadSpinner2').style.display = 'none';
         d.getElementById('uploadCheckErr2').style.display = 'none';
@@ -94,7 +94,7 @@ export class FooterComponent implements OnInit {
       },
       (error) => {
         this.errResponse = error.error;
-        let elemnt = this.document.getElementById('overlayFooter');
+        let elemnt = document.getElementById('overlayFooter');
         elemnt.style.zIndex = '3';
         d.getElementById('uploadSpinner2').style.display = 'none';
         d.getElementById('uploadCheckErr2').style.display = 'inline-block';
@@ -103,7 +103,7 @@ export class FooterComponent implements OnInit {
   }
 
   off() {
-    var elemnt = this.document.getElementById('overlayFooter');
+    var elemnt = document.getElementById('overlayFooter');
 
     elemnt.style.zIndex = '-10';
     location.reload();
@@ -114,7 +114,7 @@ export class FooterComponent implements OnInit {
     if (!this.newsLetterForm.valid) {
       return;
     }
-    let d = this.document;
+    let d = document;
     d.getElementById('uploadSpinner1').style.display = 'inline-block';
     d.getElementById('uploadCheckErr1').style.display = 'none';
     this.blogservice.subscribeNewsLetter(data).subscribe(

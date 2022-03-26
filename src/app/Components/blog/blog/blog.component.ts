@@ -204,7 +204,7 @@ export class BlogComponent implements OnInit {
 
     // animated placeholder text
     superplaceholder({
-      el: this.document.getElementById('searchbar'),
+      el: document.getElementById('searchbar'),
       sentences: [
         'roms..',
         'pixel experience..',
@@ -349,7 +349,7 @@ export class BlogComponent implements OnInit {
     const formData = new FormData();
 
     // visual feedback
-    let d = this.document;
+    let d = document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
 
     // form data element for blog image since files can't be sent via json
@@ -371,8 +371,11 @@ export class BlogComponent implements OnInit {
         });
         data.postLinks = linksArr;
         if (this.tags.length > 0) {
-          data.tags = this.tags;
+          data.tags = this.tags.map((x) => {
+            return x.name;
+          });
         }
+
         this.blogservice.publishBlog(data).subscribe(
           (item2) => {
             this.logResponse = item2.result;
@@ -427,7 +430,7 @@ export class BlogComponent implements OnInit {
 
   // cancel post
   cancelPost() {
-    let d = this.document;
+    let d = document;
     d.getElementById('uploadSpinner2').style.display = 'none';
     d.getElementById('uploadCheck').style.display = 'none';
 
@@ -459,7 +462,7 @@ export class BlogComponent implements OnInit {
     if (data) {
       this.blogservice.searchBlog(data).subscribe((item) => {
         this.searchResult = item.data;
-        this.document
+        document
           .getElementById('twothousandtwenty')
           .scrollIntoView({ behavior: 'smooth' });
       });

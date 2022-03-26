@@ -471,17 +471,17 @@ export class NotesComponent implements OnInit {
   copyShareLink(val) {
     if (!isPlatformBrowser(this.platformId)) {
     } else {
-      const selBox = this.document.createElement('textarea');
+      const selBox = document.createElement('textarea');
       selBox.style.position = 'fixed';
       selBox.style.left = '0';
       selBox.style.top = '0';
       selBox.style.opacity = '0';
       selBox.value = val;
-      this.document.body.appendChild(selBox);
+      document.body.appendChild(selBox);
       selBox.focus();
       selBox.select();
-      this.document.execCommand('copy');
-      this.document.body.removeChild(selBox);
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
 
       this.uiService.showSnackbar('link copied to clipboard', null, 3500);
     }

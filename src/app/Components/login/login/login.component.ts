@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
 
     footerBackground();
     function footerBackground() {
-      var footerArea = this.document.getElementsByClassName(
+      var footerArea = document.getElementsByClassName(
         'content-new'
       ) as unknown as HTMLCollectionOf<HTMLElement>;
       if (footerArea) {
@@ -129,7 +129,7 @@ export class LoginComponent implements OnInit {
     //   alert('login details not valid!');
     //   return;
     // }
-    let d = this.document;
+    let d = document;
     d.getElementById('uploadSpinner').style.display = 'inline-block';
     d.getElementById('uploadCheckErr').style.display = 'none';
     this.loginservice.Login(data).subscribe(
@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit {
           // localStorage.setItem('userToken', JSON.stringify(item.token));
           localStorage.setItem('profileId', JSON.stringify(item.profileId));
           this.loginresponse = item;
-          // let elemnt = this.document.getElementById('overlay');
+          // let elemnt = document.getElementById('overlay');
           d.getElementById('uploadSpinner').style.display = 'none';
           d.getElementById('uploadCheckErr').style.display = 'none';
           d.getElementById('uploadCheck').style.display = 'inline-block';
@@ -186,7 +186,7 @@ export class LoginComponent implements OnInit {
     this.loginservice.forgotPassMailer(data).subscribe(
       (item) => {
         this.loginresponse = item;
-        let elemnt = this.document.getElementById('overlay');
+        let elemnt = document.getElementById('overlay');
         elemnt.style.zIndex = '3';
       },
       (error) => {
@@ -209,7 +209,7 @@ export class LoginComponent implements OnInit {
   }
 
   off() {
-    var elemnt = this.document.getElementById('overlay');
+    var elemnt = document.getElementById('overlay');
 
     elemnt.style.zIndex = '-10';
     this.router.navigateByUrl('/home');

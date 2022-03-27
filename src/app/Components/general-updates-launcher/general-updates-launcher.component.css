@@ -36,6 +36,17 @@ mat-sidenav {
   margin-bottom: 10px;
 }
 
+.update_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.update_img img {
+  width: auto;
+  max-height: 250px;
+  max-width: 100%;
+}
+
 .updates_card mat-card-footer {
   display: flex;
   justify-content: space-between;

@@ -139,6 +139,10 @@
       <p-skeleton width="100%" height="100px"></p-skeleton>
     </div>
 
+    <h5 class="text-center text-muted">Updates</h5>
+
+    <p *ngIf="updates.length == 0">nothing here.....</p>
+
     <ng-container *ngFor="let up of updates; let i = index">
       <mat-card
         class="updates_card"
@@ -147,11 +151,13 @@
           color: brightness ? 'black' : 'white'
         }"
       >
-        <img
-          mat-card-image
-          *ngIf="up.updateImgUrl"
-          src="{{ up.updateImgUrl }}"
-        />
+        <div class="update_img">
+          <img
+            mat-card-image
+            *ngIf="up.updateImgUrl"
+            src="{{ up.updateImgUrl }}"
+          />
+        </div>
 
         <mat-card-content>
           {{ up.updateText }}

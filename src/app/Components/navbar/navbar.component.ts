@@ -165,4 +165,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   getUserId() {
     this.loggedInUser = JSON.parse(localStorage.getItem('id'));
   }
+
+  routeHome() {
+    let url = window.location.href.split('/');
+    console.log(url);
+
+    if (url.length > 3 && url[3] != 'home' && url[3] != '') {
+      this.router.navigateByUrl('/home');
+    } else {
+      return;
+    }
+  }
 }

@@ -91,6 +91,11 @@
   font-feature-settings: "liga";
 }
 
+@font-face {
+  font-family: "League Gothic Italic";
+  src: url("./fonts/LeagueGothic-Italic.otf");
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;

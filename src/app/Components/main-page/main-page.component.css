@@ -195,6 +195,8 @@ div.imagesection img {
   opacity: 0;
   transition: 1s ease-in-out;
   color: white;
+  position: relative;
+  top: 20px;
 }
 .preloader {
   margin: 0;
@@ -321,6 +323,7 @@ div.imagesection img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 .progressText h6 {
   margin-top: -40px;
@@ -417,6 +420,16 @@ div.websiteUsesDialog mat-icon {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.preloader_quote {
+  font-family: "League Gothic Italic";
+  transform: rotate(-8deg);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 30px;
+  position: relative;
+  top: 70px;
 }
 
 @media only screen and (max-width: 600px) {

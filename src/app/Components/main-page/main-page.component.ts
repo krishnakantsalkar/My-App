@@ -260,6 +260,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         $('.enterBtn').css({ opacity: '1' });
       }, 1000);
+
+      setTimeout(() => {
+        $('.preloader_quote').css({ opacity: '1' });
+      }, 2000);
     }
   }
 

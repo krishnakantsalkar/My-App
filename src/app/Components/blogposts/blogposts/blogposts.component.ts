@@ -377,20 +377,21 @@ export class BlogpostsComponent implements OnInit {
   // copy sharing link
   copyShareLink() {
     let val = environment.baseUrl + this.router.url;
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    // const selBox = document.createElement('textarea');
+    // selBox.style.position = 'fixed';
+    // selBox.style.left = '0';
+    // selBox.style.top = '0';
+    // selBox.style.opacity = '0';
+    // selBox.value = val;
+    // document.body.appendChild(selBox);
+    // selBox.focus();
+    // selBox.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(selBox);
     // this.snackbar.open("Link copied to clipboard !", "x", {
     //   duration: 2000,
     // });
+    navigator.clipboard?.writeText && navigator.clipboard.writeText(val);
 
     this.uiService.showSnackbar('link copied to clipboard', null, 3500);
   }

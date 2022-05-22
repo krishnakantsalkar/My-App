@@ -732,7 +732,8 @@
                             [ngStyle]="{
                               color: brightness ? 'red' : 'violet'
                             }"
-                            ><span class="material-icons"> feed </span>
+                          >
+                            <!-- <span class="material-icons"> feed </span> -->
                             {{ d.postNumber }}: {{ d.postTitle }}</a
                           >
                           <span
@@ -830,7 +831,8 @@
                           color: brightness ? 'black' : 'rgb(129,129,129)'
                         }"
                       >
-                        <a
+                        <button
+                          mat-stroked-button
                           routerLink="/blog/{{ d.postNumber }}/{{
                             d.postTitle
                           }}/{{ d._id }}"
@@ -838,8 +840,8 @@
                             color: brightness ? 'red' : 'violet'
                           }"
                         >
-                          Read more</a
-                        ></span
+                          Read more <mat-icon>chevron_right</mat-icon>
+                        </button></span
                       >
                     </div>
                     <hr />

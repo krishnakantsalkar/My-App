@@ -57,8 +57,19 @@ mat-icon:hover {
   margin: 20px auto;
 }
 
-.controlIcons mat-icon {
+.action_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in-out;
+}
+
+.action_icon mat-icon {
   font-size: 20px;
+}
+
+.action_icon:hover {
+  box-shadow: none !important;
 }
 
 /* ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {

@@ -664,254 +664,369 @@
         </div>
         <div class="row">
           <div class="blogdata col-sm-8" *ngIf="data">
-            <div class="loopdata" *ngFor="let d of data; let i = index">
-              <!-- <hr *ngIf="data" style="background-color: white;" /> -->
-              <!-- <br /> -->
-              <div>
-                <mat-card
-                  class="blogdataCard"
-                  data-aos="fade-up"
-                  data-aos-delay="300"
-                  data-aos-duration="1000"
-                  [ngStyle]="{
-                    'background-color': brightness
-                      ? 'rgb(223, 223, 223)'
-                      : ' rgb(35, 36, 38)'
-                  }"
-                >
-                  <!-- blogpost image -->
-                  <div class="pstimg">
-                    <a
-                      routerLink="/blog/{{ d.postNumber }}/{{ d.postTitle }}/{{
-                        d._id
-                      }}"
-                    >
-                      <img
-                        mat-card-image
-                        data-aos="fade-right"
-                        data-aos-delay="300"
-                        data-aos-duration="1000"
-                        *ngIf="d.postImage"
-                        [ngStyle]="{
-                          'border-color': brightness
-                            ? 'rgb(255, 77, 77)'
-                            : 'violet'
-                        }"
-                        [ngClass]="{
-                          blgdata: d.postImage
-                        }"
-                        src="{{ d.postImage }}"
-                      />
-                      <div class="floatingNewsPaperIcon">
-                        <i class="fas fa-newspaper"></i>
-                      </div>
-                    </a>
-                  </div>
-                  <mat-card-content
-                    id="scrolldata"
-                    data-aos="fade-up"
+            <ng-container *ngFor="let d of data; let i = index">
+              <div class="row">
+                <div class="col-2 post_actions" *ngIf="window.innerWidth > 600">
+                  <button
+                    class="action_icon"
+                    *ngIf="checkUser"
+                    tabindex="-1"
+                    mat-mini-fab
+                    data-aos="fade-left"
                     data-aos-delay="300"
                     data-aos-duration="1000"
                     [ngStyle]="{
-                      'border-color': brightness ? 'rgb(255, 77, 77)' : 'violet'
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(41, 42, 45)'
                     }"
                   >
-                    <h3
+                    <mat-icon
                       [ngStyle]="{
-                        color: brightness ? 'black' : 'rgb(129,129,129)'
+                        color: brightness ? 'orangered' : 'violet'
                       }"
-                      style="padding-top: 10px; padding-bottom: 10px"
+                      (click)="clickEditPost(i)"
+                      matTooltipPosition="above"
+                      matTooltip="edit post"
+                      >edit</mat-icon
                     >
-                      <div class="post_title_area">
-                        <div class="post_name">
+                  </button>
+                  <button
+                    class="action_icon"
+                    *ngIf="checkUser"
+                    tabindex="-1"
+                    mat-mini-fab
+                    data-aos="fade-left"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(41, 42, 45)'
+                    }"
+                  >
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      (click)="deletePost(i)"
+                      matTooltipPosition="above"
+                      matTooltip="delete post"
+                      >delete_forever</mat-icon
+                    >
+                  </button>
+                  <button
+                    class="action_icon"
+                    mat-mini-fab
+                    tabindex="-1"
+                    data-aos="fade-left"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(41, 42, 45)'
+                    }"
+                  >
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      (click)="copyPost(i)"
+                      matTooltipPosition="above"
+                      matTooltip="copy post url"
+                      >content_copy</mat-icon
+                    >
+                  </button>
+                  <button
+                    class="action_icon"
+                    mat-mini-fab
+                    tabindex="-1"
+                    data-aos="fade-left"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(245, 245, 245)'
+                        : ' rgb(41, 42, 45)'
+                    }"
+                  >
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      (click)="sharePost(i)"
+                      matTooltipPosition="above"
+                      matTooltip="share post"
+                      >share</mat-icon
+                    >
+                  </button>
+                </div>
+                <div
+                  class=""
+                  [ngClass]="window.innerWidth < 600 ? 'col-12' : 'col-10'"
+                >
+                  <div class="loopdata">
+                    <!-- <hr *ngIf="data" style="background-color: white;" /> -->
+                    <!-- <br /> -->
+                    <div>
+                      <mat-card
+                        class="blogdataCard"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                        data-aos-duration="1000"
+                        [ngStyle]="{
+                          'background-color': brightness
+                            ? 'rgb(223, 223, 223)'
+                            : ' rgb(35, 36, 38)'
+                        }"
+                      >
+                        <!-- blogpost image -->
+                        <div class="pstimg">
                           <a
                             routerLink="/blog/{{ d.postNumber }}/{{
                               d.postTitle
                             }}/{{ d._id }}"
-                            *ngIf="data"
-                            [ngStyle]="{
-                              color: brightness ? 'red' : 'violet'
-                            }"
                           >
-                            <!-- <span class="material-icons"> feed </span> -->
-                            {{ d.postNumber }}: {{ d.postTitle }}</a
-                          >
-                          <span
-                            *ngIf="
-                              moment(today).format('YYYY-MM-DD') <=
-                                moment(d.postDate).format('YYYY-MM-DD') &&
-                              moment(d.postDate).format('YYYY-MM-DD') <=
-                                moment(today)
-                                  .add(3, 'days')
-                                  .format('YYYY-MM-DD')
-                            "
-                            [ngStyle]="{
-                              'background-color': brightness
-                                ? 'violet'
-                                : 'orangered'
-                            }"
-                            class="badge badge-secondary ml-3"
-                            >New
-                            <mat-icon class="icon_align"
-                              >new_releases</mat-icon
-                            ></span
-                          >
-
-                          <!-- new post badge -->
-                          <h3></h3>
+                            <img
+                              mat-card-image
+                              data-aos="fade-right"
+                              data-aos-delay="300"
+                              data-aos-duration="1000"
+                              *ngIf="d.postImage"
+                              [ngStyle]="{
+                                'border-color': brightness
+                                  ? 'rgb(255, 77, 77)'
+                                  : 'violet'
+                              }"
+                              [ngClass]="{
+                                blgdata: d.postImage
+                              }"
+                              src="{{ d.postImage }}"
+                            />
+                            <div class="floatingNewsPaperIcon">
+                              <i class="fas fa-newspaper"></i>
+                            </div>
+                          </a>
                         </div>
-                        <span
-                          *ngIf="d.edited == true"
+                        <mat-card-content
+                          id="scrolldata"
+                          data-aos="fade-up"
+                          data-aos-delay="300"
+                          data-aos-duration="1000"
                           [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
-                          }"
-                          style="font-size: 14px"
-                          ><i class="fas fa-pencil-alt"></i> edited.</span
-                        >
-                      </div>
-
-                      <!-- post edited or not -->
-
-                      <!-- post date -->
-                      <h6
-                        *ngIf="data"
-                        class="card-subtitle text-muted"
-                        [ngStyle]="{
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                      >
-                        <span>
-                          <i class="fas fa-clock"></i>
-                          {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
-                        </span>
-                        <span
-                          style="
-                            display: flex;
-
-                            justify-content: center;
-                            align-items: center;
-                          "
-                          [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
-                          }"
-                          >{{ d.userViews.length }}
-                          <span class="material-icons mx-1">
-                            visibility
-                          </span></span
-                        >
-                      </h6>
-                    </h3>
-                    <hr />
-                    <!-- main post rendered in markdown -->
-                    <div *ngIf="data" style="margin: 10px auto">
-                      <markdown
-                        class="variable-binding"
-                        emoji
-                        style="width: 100%"
-                        [ngStyle]="{
-                          'background-color': brightness
-                            ? 'rgb(223, 223, 223)'
-                            : ' rgb(35, 36, 38)',
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                      >
-                        {{ d.post | slice: 0:150 }}...
-                      </markdown>
-                      <span
-                        [ngStyle]="{
-                          'background-color': brightness
-                            ? 'rgb(223, 223, 223)'
-                            : ' rgb(35, 36, 38)',
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                        [ngStyle]="{
-                          'background-color': brightness
-                            ? 'rgb(223, 223, 223)'
-                            : ' rgb(35, 36, 38)',
-                          color: brightness ? 'black' : 'rgb(129,129,129)'
-                        }"
-                      >
-                        <button
-                          mat-stroked-button
-                          routerLink="/blog/{{ d.postNumber }}/{{
-                            d.postTitle
-                          }}/{{ d._id }}"
-                          [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
+                            'border-color': brightness
+                              ? 'rgb(255, 77, 77)'
+                              : 'violet'
                           }"
                         >
-                          Read more <mat-icon>chevron_right</mat-icon>
-                        </button></span
-                      >
-                    </div>
-                    <hr />
-                    <!-- display approx reading time -->
-                    <div class="card_footer">
-                      <div class="readingTime">
-                        <h6
-                          [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
-                          }"
-                          *ngIf="readTimeCheck.length > 0"
-                        >
-                          {{ readTimeCheck[i] }}
-                          <span
+                          <h3
                             [ngStyle]="{
                               color: brightness ? 'black' : 'rgb(129,129,129)'
                             }"
-                            >|</span
+                            style="padding-top: 10px; padding-bottom: 10px"
                           >
-                          {{ totalWordsCheck[i] }}
-                          <span
-                            [ngStyle]="{
-                              color: brightness ? 'black' : 'rgb(129,129,129)'
-                            }"
-                            >words</span
-                          >
-                        </h6>
-                      </div>
+                            <div class="post_title_area">
+                              <div class="post_name">
+                                <a
+                                  routerLink="/blog/{{ d.postNumber }}/{{
+                                    d.postTitle
+                                  }}/{{ d._id }}"
+                                  *ngIf="data"
+                                  [ngStyle]="{
+                                    color: brightness ? 'red' : 'violet'
+                                  }"
+                                >
+                                  <!-- <span class="material-icons"> feed </span> -->
+                                  {{ d.postNumber }}: {{ d.postTitle }}</a
+                                >
+                                <span
+                                  *ngIf="
+                                    moment(today).format('YYYY-MM-DD') <=
+                                      moment(d.postDate).format('YYYY-MM-DD') &&
+                                    moment(d.postDate).format('YYYY-MM-DD') <=
+                                      moment(today)
+                                        .add(3, 'days')
+                                        .format('YYYY-MM-DD')
+                                  "
+                                  [ngStyle]="{
+                                    'background-color': brightness
+                                      ? 'violet'
+                                      : 'orangered'
+                                  }"
+                                  class="badge badge-secondary ml-3"
+                                  >New
+                                  <mat-icon class="icon_align"
+                                    >new_releases</mat-icon
+                                  ></span
+                                >
 
-                      <!-- post author -->
-                      <div class="postauthor">
-                        <h6
-                          *ngIf="d.postAuthor"
-                          [ngStyle]="{
-                            color: brightness ? 'black' : 'rgb(129,129,129)'
-                          }"
-                        >
-                          <i class="fas fa-user"></i> By:
-                          <span
-                            class="postauthor"
-                            [ngStyle]="{
-                              color: brightness ? 'red' : 'violet'
-                            }"
-                            (click)="gotoAuthor()"
-                            style="cursor: pointer"
-                          >
-                            {{ d.postAuthor }}</span
-                          >
-                        </h6>
-                        <h6
-                          *ngIf="!d.postAuthor"
-                          [ngStyle]="{
-                            color: brightness ? 'black' : 'rgb(129,129,129)'
-                          }"
-                        >
-                          <i class="fas fa-user"></i> By:
-                          <span
-                            [ngStyle]="{
-                              color: brightness ? 'red' : 'violet'
-                            }"
-                            >Admin</span
-                          >
-                        </h6>
-                      </div>
+                                <!-- new post badge -->
+                                <h3></h3>
+                              </div>
+                              <span
+                                *ngIf="d.edited == true"
+                                [ngStyle]="{
+                                  color: brightness ? 'red' : 'violet'
+                                }"
+                                style="font-size: 14px"
+                                ><i class="fas fa-pencil-alt"></i> edited.</span
+                              >
+                            </div>
+
+                            <!-- post edited or not -->
+
+                            <!-- post date -->
+                            <h6
+                              *ngIf="data"
+                              class="card-subtitle text-muted"
+                              [ngStyle]="{
+                                color: brightness ? 'black' : 'rgb(129,129,129)'
+                              }"
+                            >
+                              <span>
+                                <i class="fas fa-clock"></i>
+                                {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
+                              </span>
+                              <span
+                                style="
+                                  display: flex;
+
+                                  justify-content: center;
+                                  align-items: center;
+                                "
+                                [ngStyle]="{
+                                  color: brightness ? 'red' : 'violet'
+                                }"
+                                >{{ d.userViews.length }}
+                                <span class="material-icons mx-1">
+                                  visibility
+                                </span></span
+                              >
+                            </h6>
+                          </h3>
+                          <hr />
+                          <!-- main post rendered in markdown -->
+                          <div *ngIf="data" style="margin: 10px auto">
+                            <markdown
+                              class="variable-binding"
+                              emoji
+                              style="width: 100%"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'rgb(223, 223, 223)'
+                                  : ' rgb(35, 36, 38)',
+                                color: brightness ? 'black' : 'rgb(129,129,129)'
+                              }"
+                            >
+                              {{ d.post | slice: 0:150 }}...
+                            </markdown>
+                            <span
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'rgb(223, 223, 223)'
+                                  : ' rgb(35, 36, 38)',
+                                color: brightness ? 'black' : 'rgb(129,129,129)'
+                              }"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'rgb(223, 223, 223)'
+                                  : ' rgb(35, 36, 38)',
+                                color: brightness ? 'black' : 'rgb(129,129,129)'
+                              }"
+                            >
+                              <button
+                                mat-stroked-button
+                                routerLink="/blog/{{ d.postNumber }}/{{
+                                  d.postTitle
+                                }}/{{ d._id }}"
+                                [ngStyle]="{
+                                  color: brightness ? 'red' : 'violet'
+                                }"
+                              >
+                                Read more <mat-icon>chevron_right</mat-icon>
+                              </button></span
+                            >
+                          </div>
+                          <hr />
+                          <!-- display approx reading time -->
+                          <div class="card_footer">
+                            <div class="readingTime">
+                              <h6
+                                [ngStyle]="{
+                                  color: brightness ? 'red' : 'violet'
+                                }"
+                                *ngIf="readTimeCheck.length > 0"
+                              >
+                                {{ readTimeCheck[i] }}
+                                <span
+                                  [ngStyle]="{
+                                    color: brightness
+                                      ? 'black'
+                                      : 'rgb(129,129,129)'
+                                  }"
+                                  >|</span
+                                >
+                                {{ totalWordsCheck[i] }}
+                                <span
+                                  [ngStyle]="{
+                                    color: brightness
+                                      ? 'black'
+                                      : 'rgb(129,129,129)'
+                                  }"
+                                  >words</span
+                                >
+                              </h6>
+                            </div>
+
+                            <!-- post author -->
+                            <div class="postauthor">
+                              <h6
+                                *ngIf="d.postAuthor"
+                                [ngStyle]="{
+                                  color: brightness
+                                    ? 'black'
+                                    : 'rgb(129,129,129)'
+                                }"
+                              >
+                                <i class="fas fa-user"></i> By:
+                                <span
+                                  class="postauthor"
+                                  [ngStyle]="{
+                                    color: brightness ? 'red' : 'violet'
+                                  }"
+                                  (click)="gotoAuthor()"
+                                  style="cursor: pointer"
+                                >
+                                  {{ d.postAuthor }}</span
+                                >
+                              </h6>
+                              <h6
+                                *ngIf="!d.postAuthor"
+                                [ngStyle]="{
+                                  color: brightness
+                                    ? 'black'
+                                    : 'rgb(129,129,129)'
+                                }"
+                              >
+                                <i class="fas fa-user"></i> By:
+                                <span
+                                  [ngStyle]="{
+                                    color: brightness ? 'red' : 'violet'
+                                  }"
+                                  >Admin</span
+                                >
+                              </h6>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card>
                     </div>
-                  </mat-card-content>
-                </mat-card>
+                    <br />
+                  </div>
+                </div>
               </div>
-              <br />
-            </div>
+            </ng-container>
           </div>
 
           <!-- other column for info -->
@@ -1081,7 +1196,7 @@
             *ngFor="let pg of [].constructor(pgSize); let i = index"
           >
             <button
-              mat-raised-button
+              mat-mini-fab
               [disabled]="pageNo == i + 1"
               [ngStyle]="{
                 'background-color': brightness ? ' rgb(41, 42, 45)' : 'white',

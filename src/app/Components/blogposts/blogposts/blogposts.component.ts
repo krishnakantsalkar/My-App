@@ -132,7 +132,6 @@ export class BlogpostsComponent implements OnInit {
           postTitle: this.data.postTitle,
           post: this.data.post,
         });
-
         if (localStorage.getItem('user')) {
           this.adminName = `${JSON.parse(localStorage.getItem('user')).name} ${
             JSON.parse(localStorage.getItem('user')).surname
@@ -178,6 +177,13 @@ export class BlogpostsComponent implements OnInit {
         this.prevPostData = undefined;
         this.getAllBlogsId();
       });
+    });
+
+    this.AR.queryParams.subscribe((item) => {
+      console.log(item);
+      if (item && item.edit && this.checkUser) {
+        this.switchtoedit = true;
+      }
     });
 
     // reactive form method

@@ -30,6 +30,8 @@ import { BottomShareSheetComponent } from '../../shared-module/bottom-share-shee
 import { environment } from 'src/environments/environment';
 import { DOCUMENT } from '@angular/common';
 import * as $ from 'jquery';
+import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
+import { UiService } from '../../../Shared/services/ui.service';
 
 @Component({
   selector: 'app-blog',
@@ -78,7 +80,7 @@ export class BlogComponent implements OnInit {
   public movieName;
   public movieQ;
   public movieQArr;
-
+  window = window;
   public months = [
     'January',
     'February',
@@ -128,7 +130,8 @@ export class BlogComponent implements OnInit {
     private meta: Meta,
     private dialog: MatDialog,
     private matBottomSheet: MatBottomSheet,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -580,6 +583,56 @@ export class BlogComponent implements OnInit {
       data: {
         blogURL: this.blogURL,
         calledFrom: 'blog',
+      },
+    });
+  }
+  clickEditPost(i) {
+    let post = this.data[i];
+    this.router.navigate(
+      [`/blog/${post.postNumber}/${post.postTitle}/${post._id}`],
+      { queryParams: { edit: true } }
+    );
+  }
+  //delete post by id
+  deletePost(i) {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      minWidth: '30vw',
+      data: {
+        msg: 'Would you like to delete this post?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((item) => {
+      if (item && item.confirm == true) {
+        let id = this.data[i]._id;
+        this.blogservice.deleteBlog(id).subscribe(
+          (item) => {
+            this.uiService.showSnackbar(`${item.message}`, null, 3500);
+            this.blogsP(1);
+          },
+          (err) => {
+            this.uiService.showSnackbar(`${err.message}`, null, 3500);
+          }
+        );
+      } else {
+        return;
+      }
+    });
+  }
+
+  copyPost(i) {
+    let post = this.data[i];
+    let blogURL = `https://krishnakantsalkar.in/blog/${post.postNumber}/${post.postTitle}/${post._id}`;
+
+    navigator.clipboard?.writeText && navigator.clipboard.writeText(blogURL);
+    this.uiService.showSnackbar(`post url copied to clipboard`, null, 2500);
+  }
+  sharePost(i) {
+    let post = this.data[i];
+    this.matBottomSheet.open(BottomShareSheetComponent, {
+      data: {
+        blogURL: `https://krishnakantsalkar.in/blog/${post.postNumber}/${post.postTitle}/${post._id}`,
+        calledFrom: 'blogpost',
       },
     });
   }

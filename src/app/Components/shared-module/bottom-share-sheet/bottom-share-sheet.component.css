@@ -18,14 +18,16 @@ div.sharingBtns:hover {
   opacity: 1;
 } */
 div.sharingBtns button {
-  display: block;
+  display: flex;
   color: white;
-  line-height: 40px;
-  font-size: 17px;
+  /* line-height: 40px; */
+  font-size: 20px;
   text-align: center;
   transition: 0.3s ease-in-out;
-  border-radius: 2px;
+  /* border-radius: 2px; */
   margin: 10px auto;
+  justify-content: center;
+  align-items: center;
 }
 
 div.sharingBtns button i {
@@ -37,34 +39,34 @@ div.sharingBtns button:hover {
 }
 div.sharingBtns .fbShare button {
   background-color: #314a83;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 div.sharingBtns .twitterShare button {
   background-color: #0092cc;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 div.sharingBtns .mailShare button {
   background-color: rgb(245, 23, 23);
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 
 div.sharingBtns .linkedInShare button {
   background-color: #0f699b;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 div.sharingBtns .redditShare button {
   background-color: #ff471e;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 div.sharingBtns .tgShare button {
   background-color: #0088cc;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 
 /* div.sharingBtns .fbShare:hover button {

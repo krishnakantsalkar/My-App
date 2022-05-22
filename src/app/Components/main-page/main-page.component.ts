@@ -69,6 +69,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   public bottomSheetDialog: TemplateRef<any>;
 
   public currentDate = new Date();
+  tagLine: string = '';
 
   constructor(
     private loginservice: userloginservices,
@@ -264,6 +265,18 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         $('.preloader_quote').css({ opacity: '1' });
       }, 2000);
+      setTimeout(() => {
+        $('.preloader_quote_part1').css({ opacity: '1' });
+      }, 2300);
+      setTimeout(() => {
+        $('.preloader_quote_part2').css({ opacity: '1' });
+      }, 2500);
+      setTimeout(() => {
+        $('.preloader_quote_part3').css({ opacity: '1' });
+      }, 3300);
+      setTimeout(() => {
+        $('.preloader_quote_part4').css({ opacity: '1' });
+      }, 3900);
     }
   }
 

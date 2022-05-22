@@ -294,7 +294,7 @@ div.imagesection img {
   }
   100% {
     /* box-shadow: 0 0 0 30px rgba(238, 130, 238, 0); */
-    box-shadow: 0 2px 4px black, 0 0 0 30px rgba(238, 130, 238, 0);
+    box-shadow: 0 2px 4px black, 0 0 0 100px rgba(238, 130, 238, 0);
   }
 }
 
@@ -305,7 +305,29 @@ div.imagesection img {
   }
   100% {
     /* box-shadow: 0 0 0 30px rgba(255, 68, 0, 0); */
-    box-shadow: 0 2px 4px black, 0 0 0 30px rgba(255, 68, 0, 0);
+    box-shadow: 0 2px 4px black, 0 0 0 100px rgba(255, 68, 0, 0);
+  }
+}
+
+@keyframes pulse-animationD-mob {
+  0% {
+    /* box-shadow: 0 0 0 0px rgba(238, 130, 238, 1); */
+    box-shadow: 0 2px 4px black, 0 0 0 0px violet;
+  }
+  100% {
+    /* box-shadow: 0 0 0 30px rgba(238, 130, 238, 0); */
+    box-shadow: 0 2px 4px black, 0 0 0 500px rgba(238, 130, 238, 0);
+  }
+}
+
+@keyframes pulse-animationL-mob {
+  0% {
+    /* box-shadow: 0 0 0 0px rgba(255, 68, 0, 1); */
+    box-shadow: 0 2px 4px black, 0 0 0 0px orangered;
+  }
+  100% {
+    /* box-shadow: 0 0 0 30px rgba(255, 68, 0, 0); */
+    box-shadow: 0 2px 4px black, 0 0 0 500px rgba(255, 68, 0, 0);
   }
 }
 
@@ -431,6 +453,13 @@ div.websiteUsesDialog mat-icon {
   position: relative;
   top: 70px;
 }
+.preloader_quote_part1,
+.preloader_quote_part2,
+.preloader_quote_part3,
+.preloader_quote_part4 {
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+}
 
 @media only screen and (max-width: 600px) {
   div.footer {
@@ -473,10 +502,12 @@ div.websiteUsesDialog mat-icon {
   .preloaderLogoL {
     height: auto;
     width: 90%;
+    animation: pulse-animationL-mob 2s infinite;
   }
   .preloaderLogoD {
     height: auto;
     width: 90%;
+    animation: pulse-animationD-mob 2s infinite;
   }
 
   .progressBar {

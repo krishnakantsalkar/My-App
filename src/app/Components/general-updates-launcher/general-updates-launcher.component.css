@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: flex-end;
   z-index: 100;
-  width: 100%;
 }
 .fab_menu button {
   margin: 5px;
@@ -79,9 +78,18 @@ mat-sidenav {
   margin: auto 5px;
 }
 
+.update_image_preview {
+  text-align: center;
+  margin: 10px auto;
+}
+.update_image_preview img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
 @media screen and (max-width: 600px) {
   mat-sidenav {
-    width: 50vw !important;
+    width: 60vw !important;
     z-index: 99;
   }
 }

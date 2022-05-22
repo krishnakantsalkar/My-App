@@ -6,7 +6,7 @@
       side && window.innerWidth > 600
         ? '21vw'
         : side && window.innerWidth < 600
-        ? '51vw'
+        ? '61vw'
         : '10px'
   }"
 >
@@ -47,8 +47,14 @@
       color: brightness ? 'black' : 'white'
     }"
   >
-    <h5>Add New Update</h5>
+    <h5 *ngIf="!isEditUpdate; else editUpdateTemplate">Add New Update</h5>
+    <ng-template #editUpdateTemplate>Edit Update </ng-template>
     <hr />
+    <div class="update_image_preview">
+      <img class="updateImg" [src]="_imgUrlModel" *ngIf="_imgUrlModel" />
+    </div>
+
+    <br />
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>image url</mat-label>
       <input
@@ -93,9 +99,19 @@
         Cancel
       </button>
       <button
+        *ngIf="!isEditUpdate"
         class="btn-primary"
         mat-raised-button
         (click)="saveUpdate()"
+        [disabled]="!_contentModel"
+      >
+        Save
+      </button>
+      <button
+        *ngIf="isEditUpdate"
+        class="btn-primary"
+        mat-raised-button
+        (click)="editUpdate()"
         [disabled]="!_contentModel"
       >
         Save
@@ -139,7 +155,14 @@
       <p-skeleton width="100%" height="100px"></p-skeleton>
     </div>
 
-    <h5 class="text-center text-muted">Updates</h5>
+    <h5
+      class="text-center"
+      [ngStyle]="{
+        color: brightness ? 'orangered' : 'violet'
+      }"
+    >
+      Updates
+    </h5>
 
     <p *ngIf="updates.length == 0">nothing here.....</p>
 
@@ -161,12 +184,13 @@
 
         <mat-card-content>
           {{ up.updateText }}
+          <div *ngIf="up.updateLinks.length > 0">
+            <hr />
 
-          <span *ngIf="up.updateLinks.length > 0">
             <ng-container *ngFor="let link of up.updateLinks">
               <a href="{{ link }}" target="_blank">{{ link }}</a>
             </ng-container>
-          </span>
+          </div>
         </mat-card-content>
         <mat-card-footer
           [ngStyle]="{
@@ -174,13 +198,23 @@
           }"
         >
           <span>{{ up.createdAt | date: "dd MMM | hh:mm a" }}</span>
-          <button
-            *ngIf="checkUser"
-            mat-icon-button
-            (click)="deleteUpdate(updates[i].updateId)"
-          >
-            <mat-icon> delete </mat-icon>
-          </button>
+          <div>
+            <button
+              *ngIf="checkUser"
+              mat-icon-button
+              (click)="editUpdateDialog(i)"
+            >
+              <mat-icon> edit</mat-icon>
+            </button>
+
+            <button
+              *ngIf="checkUser"
+              mat-icon-button
+              (click)="deleteUpdate(updates[i].updateId)"
+            >
+              <mat-icon> delete </mat-icon>
+            </button>
+          </div>
         </mat-card-footer>
       </mat-card>
       <hr *ngIf="i < updates?.length - 1" />

@@ -33,6 +33,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   updDialog: any;
   dataCount: number;
   pageSize: number;
+  isEditUpdate: boolean;
+  updateId: any;
 
   constructor(
     private defaultModeService: modeService,
@@ -51,6 +53,12 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
 
     this.logonServices.currentUsers.subscribe((data) => {
       this.checkUser = data;
+    });
+
+    this.uiService.domClick$.subscribe((item) => {
+      if (item.clientX <= window.innerWidth - window.innerWidth * 0.25) {
+        this.side = false;
+      }
     });
   }
 
@@ -86,6 +94,18 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   }
 
   newUpdateDialog() {
+    this.isEditUpdate = false;
+    this.updDialog = this.dialog.open(this.newUpdate, {
+      minWidth: '30vw',
+    });
+  }
+
+  editUpdateDialog(i) {
+    this.isEditUpdate = true;
+    this._contentModel = this.updates[i].updateText;
+    this._imgUrlModel = this.updates[i].updateImgUrl;
+    this.updateLinksArr = this.updates[i].updateLinks;
+    this.updateId = this.updates[i].updateId;
     this.updDialog = this.dialog.open(this.newUpdate, {
       minWidth: '30vw',
     });
@@ -99,6 +119,9 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
       updateLinks: this.updateLinksArr,
     };
 
+    console.log(obj);
+    return;
+
     this.updateService.postUpdate(obj).subscribe(
       (item: any) => {
         this.uiService.showSnackbar(item.message, null, 3000);
@@ -110,6 +133,25 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
     );
   }
 
+  editUpdate() {
+    this.updDialog.close();
+    this.isEditUpdate = false;
+    let obj = {
+      updateImgUrl: this._imgUrlModel,
+      updateText: this._contentModel,
+      updateLinks: this.updateLinksArr,
+    };
+
+    this.updateService.editUpdate(obj, this.updateId).subscribe(
+      (item: any) => {
+        this.uiService.showSnackbar(item.message, null, 3000);
+        this.getUpdates();
+      },
+      (err) => {
+        this.uiService.showSnackbar(err.error.message, null, 3000);
+      }
+    );
+  }
   deleteUpdate(id) {
     this.updateService.deleteUpdate(id).subscribe((item) => {
       this.uiService.showSnackbar('Update deleted!', null, 3000);

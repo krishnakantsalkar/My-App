@@ -119,9 +119,6 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
       updateLinks: this.updateLinksArr,
     };
 
-    console.log(obj);
-    return;
-
     this.updateService.postUpdate(obj).subscribe(
       (item: any) => {
         this.uiService.showSnackbar(item.message, null, 3000);

@@ -188,7 +188,14 @@
             <hr />
 
             <ng-container *ngFor="let link of up.updateLinks">
-              <a href="{{ link }}" target="_blank">{{ link }}</a>
+              <a
+                href="{{ link }}"
+                target="_blank"
+                [matTooltip]="link"
+                matTooltipPosition="left"
+                >{{ link | slice: 0:50
+                }}<span *ngIf="link.length > 50">...</span></a
+              >
             </ng-container>
           </div>
         </mat-card-content>

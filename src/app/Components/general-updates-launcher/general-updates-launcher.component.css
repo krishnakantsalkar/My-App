@@ -33,6 +33,7 @@ mat-sidenav {
 
 .updates_card {
   margin-bottom: 10px;
+  word-break: break-all;
 }
 
 .update_img {

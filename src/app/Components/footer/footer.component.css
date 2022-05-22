@@ -16,6 +16,7 @@
 .menu a {
   display: block;
   padding: 5px 0;
+  transition: 0.3s ease-in-out;
 }
 
 .feedback input {
@@ -25,8 +26,12 @@
   margin-bottom: 3px;
 }
 .feedback-form {
-  padding-top: 10px;
-  text-align: center;
+  /* padding-top: 10px;
+  text-align: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .feedback-form ::placeholder {
   color: black;
@@ -187,6 +192,82 @@ div.shortbio h4 span {
 #uploadCheck2,
 #uploadCheckErr2 {
   display: none;
+}
+
+.social-icons {
+  width: 70%;
+}
+.social-icons ul {
+  padding-inline-start: 0px !important;
+}
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons a {
+  background-color: #33353d;
+  color: #707070;
+  height: 40px;
+  width: 40px;
+  margin: 7px;
+  border-radius: 100%;
+  line-height: 40px;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  transition: 0.4s ease-in-out;
+}
+
+.social-icons .telegram-icon:hover {
+  background-color: #0088cc;
+  color: white;
+}
+.social-icons .facebook-icon:hover {
+  background-color: #1da1f2;
+  color: white;
+}
+.social-icons .git-icon:hover {
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+.social-icons .email-icon:hover {
+  background-color: rgb(245, 23, 23);
+  color: white;
+}
+.social-icons .instagram-icon:hover {
+  background-color: deeppink;
+  color: white;
+}
+.social-icons .snapchat-icon:hover {
+  background-color: rgb(255, 252, 0);
+  color: white;
+}
+.social-icons .blog-icon:hover {
+  background-color: violet;
+  color: white;
+}
+.social-icons .steam-icon:hover {
+  background-color: darkblue;
+  color: white;
+}
+.social-icons .linkedIn-icon:hover {
+  background-color: #1da1f2;
+  color: white;
+}
+.social-icons ul {
+  padding-inline-start: 20px;
+}
+
+/* dark mode hover */
+.darkHover:hover
+/*, .sidenav .logout_icon:hover  */ {
+  cursor: pointer;
+  color: violet !important;
+}
+.lightHover:hover
+/* ,.sidenavL .logout_icon:hover  */ {
+  color: orangered !important;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

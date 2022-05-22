@@ -166,14 +166,15 @@
                         </h6>
                         <hr *ngIf="i < 3" />
                       </div>
-                      <a
-                        style="text-decoration: none"
+                      <button
+                        mat-stroked-button
                         [ngStyle]="{
                           color: brightness ? 'orangered' : 'violet'
                         }"
                         routerLink="/blog/1"
-                        >..more</a
                       >
+                        more <mat-icon>chevron_right</mat-icon>
+                      </button>
                     </div>
                   </div>
                 </mat-card>
@@ -188,6 +189,7 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       ><span class="material-icons icon_align"> article </span>
                       Blog</a
                     >
@@ -195,6 +197,7 @@
                   <li>
                     <a
                       routerLink="/movies&tv"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -209,6 +212,7 @@
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       ><span class="material-icons icon_align">
                         cloud_download
                       </span>
@@ -218,6 +222,7 @@
                   <li>
                     <a
                       href="http://snippets.krishnakantsalkar.in/"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -232,6 +237,7 @@
                   <li>
                     <a
                       routerLink="/privacy"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -244,6 +250,7 @@
                   <li>
                     <a
                       routerLink="/disclaimer"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -254,6 +261,7 @@
                   <li>
                     <a
                       href="https://github.com/krishnakantsalkar/My-App"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -264,6 +272,7 @@
                   <li>
                     <a
                       routerLink="/about"
+                      [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                       [ngStyle]="{
                         color: brightness ? 'black' : 'rgb(129,129,129)'
                       }"
@@ -277,7 +286,96 @@
               </div>
             </div>
             <div class="col-sm-3 feedback-form">
-              <div class="feedbckfrm">
+              <h5
+                [ngStyle]="{
+                  color: brightness ? 'orangered' : 'violet'
+                }"
+              >
+                < Social Media />
+              </h5>
+              <div
+                class="social-icons"
+                style="padding-left: 0; margin-bottom: 0; list-style: none"
+              >
+                <ul>
+                  <li>
+                    <a
+                      class="linkedIn-icon"
+                      href="https://www.linkedin.com/in/krishnakant-salkar-6320861bb/"
+                      target="_blank"
+                      ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="telegram-icon"
+                      href="https://t.me/Alex_merecer09"
+                      target="_blank"
+                      ><i class="fab fa-telegram-plane"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="git-icon"
+                      href="https://github.com/krishnakantsalkar"
+                      target="_blank"
+                    >
+                      <i class="fab fa-github"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="facebook-icon"
+                      href="https://www.facebook.com/Supremegod.of.war"
+                      target="_blank"
+                      ><i class="fab fa-facebook"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="email-icon"
+                      href="mailto:dev@krishnakantsalkar.in"
+                      target="_blank"
+                      ><i class="fas fa-at"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="instagram-icon"
+                      href="https://instagram.com/that_detective_kid"
+                      target="_blank"
+                    >
+                      <i class="fab fa-instagram" style="font-style: bold"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="snapchat-icon"
+                      href="https://www.snapchat.com/add/aaron_stone99"
+                      target="_blank"
+                      ><i class="fab fa-snapchat-ghost"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="blog-icon"
+                      href="https://www.krishnakantsalkar.in/blog/1"
+                      target="_blank"
+                      ><i class="fab fa-blogger-b"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="steam-icon"
+                      href="https://steamcommunity.com/id/alex_mercer09"
+                      target="_blank"
+                      ><i class="fab fa-steam"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- <div class="feedbckfrm">
                 <h2 class="footer-wid-title">Feedback?</h2>
                 <p>
                   Hey there, Send us a quick feedback or any message regarding
@@ -348,7 +446,7 @@
                     </button>
                   </form>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div

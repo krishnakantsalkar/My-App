@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { PrimeNGConfig } from 'primeng/api';
+import { fromEvent } from 'rxjs';
 import { UiService } from './Shared/services/ui.service';
 
 @Component({
@@ -47,6 +48,11 @@ export class AppComponent {
 
     this.uiService.checkSession$.subscribe((item) => {
       this.checkSession = item;
+    });
+
+    let source = fromEvent(document, 'click');
+    source.subscribe((item) => {
+      this.uiService.domClick$.next(item);
     });
   }
 }

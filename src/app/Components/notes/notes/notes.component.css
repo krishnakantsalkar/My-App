@@ -118,6 +118,17 @@ mat-card-footer h5 {
   justify-content: flex-end;
 }
 
+.copy_ip {
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
   .notes mat-card-footer h5 {
     font-size: 9px;

@@ -5,6 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({ providedIn: 'root' })
 export class noteService {
   public header: HttpHeaders;
+  public clientIpApi: string = 'https://api.ipify.org/?format=json';
+
   constructor(private http: HttpClient, private cookies: CookieService) {
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -62,5 +64,13 @@ export class noteService {
       `https://my-app-backend-node.vercel.app/api/notes/deleteTodo/${id}`,
       { headers: this.header }
     );
+  }
+
+  getClientIp() {
+    return this.http.get<any>(this.clientIpApi, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

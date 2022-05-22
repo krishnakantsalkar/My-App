@@ -17,6 +17,21 @@
   }"
 >
   <div class="container">
+    <div
+      class="copy_ip float-left"
+      *ngIf="clientIp"
+      matTooltip="copy IP address"
+      matTooltipPosition="right"
+      (click)="copyIp()"
+      [ngStyle]="{
+        color: brightness ? 'orangered' : 'violet',
+        'border-color': brightness ? 'orangered' : 'violet'
+      }"
+    >
+      <span class="">Your IP: {{ clientIp }} </span>
+      <mat-icon>content_copy</mat-icon>
+    </div>
+
     <button
       mat-raised-button
       *ngIf="!noteSwitch"

@@ -32,6 +32,8 @@ export class NotesComponent implements OnInit {
   anyNotePinned: boolean = false;
   anyTaskPinned: boolean = false;
   selectedTab = 0;
+
+  clientIp: string;
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
@@ -53,6 +55,9 @@ export class NotesComponent implements OnInit {
     this.getNotes();
     this.getTodo();
     this.getSnippets();
+    this.noteService.getClientIp().subscribe((item) => {
+      this.clientIp = JSON.parse(item).ip;
+    });
   }
 
   showAddNote() {
@@ -468,20 +473,27 @@ export class NotesComponent implements OnInit {
     }
   }
 
+  copyIp() {
+    navigator.clipboard?.writeText &&
+      navigator.clipboard.writeText(this.clientIp);
+    this.uiService.showSnackbar('IP copied to clipboard', null, 3500);
+  }
+
   copyShareLink(val) {
     if (!isPlatformBrowser(this.platformId)) {
     } else {
-      const selBox = document.createElement('textarea');
-      selBox.style.position = 'fixed';
-      selBox.style.left = '0';
-      selBox.style.top = '0';
-      selBox.style.opacity = '0';
-      selBox.value = val;
-      document.body.appendChild(selBox);
-      selBox.focus();
-      selBox.select();
-      document.execCommand('copy');
-      document.body.removeChild(selBox);
+      // const selBox = document.createElement('textarea');
+      // selBox.style.position = 'fixed';
+      // selBox.style.left = '0';
+      // selBox.style.top = '0';
+      // selBox.style.opacity = '0';
+      // selBox.value = val;
+      // document.body.appendChild(selBox);
+      // selBox.focus();
+      // selBox.select();
+      // document.execCommand('copy');
+      // document.body.removeChild(selBox);
+      navigator.clipboard?.writeText && navigator.clipboard.writeText(val);
 
       this.uiService.showSnackbar('link copied to clipboard', null, 3500);
     }

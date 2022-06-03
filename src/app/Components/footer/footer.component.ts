@@ -3,7 +3,7 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
@@ -19,10 +19,10 @@ export class FooterComponent implements OnInit {
   public brightness: boolean;
   public recentblogs;
   public loggedInUser;
-  public sendFeedback: FormGroup;
+  public sendFeedback: UntypedFormGroup;
   public logResponse;
   public errResponse;
-  public newsLetterForm: FormGroup;
+  public newsLetterForm: UntypedFormGroup;
   public newsLetterSuccess;
   public newsLetterError;
 
@@ -30,7 +30,7 @@ export class FooterComponent implements OnInit {
     private loginservice: userloginservices,
     private router: Router,
     private blogservice: blogpostservice,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private contactServices: contactService,
     private cookies: CookieService,
     private defaultModeService: modeService,

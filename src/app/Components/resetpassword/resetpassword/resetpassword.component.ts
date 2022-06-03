@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Iforgot } from '../../../Shared/model/forgotPass';
@@ -14,14 +14,14 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
   styleUrls: ['./resetpassword.component.css'],
 })
 export class ResetpasswordComponent implements OnInit {
-  public resetForm: FormGroup;
+  public resetForm: UntypedFormGroup;
   public brightness: boolean;
   public showpass: boolean;
   public submitted: boolean;
   public response: any;
   public logResponse;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private loginServices: userloginservices,
     private router: Router,
     private defaultModeService: modeService,

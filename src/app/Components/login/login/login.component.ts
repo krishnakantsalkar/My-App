@@ -6,8 +6,8 @@ import {
   Inject,
 } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
+  UntypedFormGroup,
+  UntypedFormBuilder,
   Validators,
   FormControl,
 } from '@angular/forms';
@@ -29,8 +29,8 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public newLogin: FormGroup;
-  public forgotPass: FormGroup;
+  public newLogin: UntypedFormGroup;
+  public forgotPass: UntypedFormGroup;
   public brightness: boolean;
   public showpass: boolean;
   public submitted: boolean;
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   public loginDialog;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private loginservice: userloginservices,
     private cookies: CookieService,

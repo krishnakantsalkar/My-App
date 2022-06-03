@@ -3,7 +3,7 @@ import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
@@ -33,7 +33,7 @@ export class BlogpostsComponent implements OnInit {
   public checkUser; //check user logged in
   public switchtoedit: boolean; //switch edit > blog panel
 
-  public newEdit: FormGroup; // update by Id method
+  public newEdit: UntypedFormGroup; // update by Id method
 
   public post;
   public adminName;
@@ -66,7 +66,7 @@ export class BlogpostsComponent implements OnInit {
     private blogservice: blogpostservice,
     private AR: ActivatedRoute,
     private sanitizer: DomSanitizer, // to sanitize urls , method below
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private cookies: CookieService,
     private titleService: Title,

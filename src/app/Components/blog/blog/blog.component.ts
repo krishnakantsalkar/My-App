@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -50,8 +50,8 @@ export class BlogComponent implements OnInit {
 
   public createPost: boolean;
 
-  public newPost: FormGroup;
-  public newSearch: FormGroup;
+  public newPost: UntypedFormGroup;
+  public newSearch: UntypedFormGroup;
   public currentBlogImgP;
   public currentBlogImg;
   public storeBlogImg;
@@ -121,7 +121,7 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private blogservice: blogpostservice,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private cookies: CookieService,
     private titleService: Title,

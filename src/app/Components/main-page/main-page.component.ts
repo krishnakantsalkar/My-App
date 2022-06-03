@@ -11,7 +11,7 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
@@ -37,11 +37,11 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   public session: boolean;
   public recentblogs;
   public loggedInUser;
-  public sendFeedback: FormGroup;
+  public sendFeedback: UntypedFormGroup;
   public logResponse;
   public errResponse;
   public userName;
-  public newsLetterForm: FormGroup;
+  public newsLetterForm: UntypedFormGroup;
   public newsLetterSuccess;
   public newsLetterError;
   public checkStatus;
@@ -75,7 +75,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private loginservice: userloginservices,
     private router: Router,
     private blogservice: blogpostservice,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private contactServices: contactService,
     private cookies: CookieService,
     private titleService: Title,

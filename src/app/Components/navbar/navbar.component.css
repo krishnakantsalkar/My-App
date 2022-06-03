@@ -155,6 +155,16 @@ span.two {
   font-weight: 600;
 }
 
+.adjust_nav_link {
+  position: relative;
+  top: -6px;
+}
+
+.adjust_nav_link--icon {
+  position: relative;
+  top: 6px;
+}
+
 @media only screen and (max-width: 600px) {
   #navbarNav {
     margin-left: 0;

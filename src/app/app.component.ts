@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { PrimeNGConfig } from 'primeng/api';
 import { fromEvent } from 'rxjs';
 import { UiService } from './Shared/services/ui.service';
+import { userloginservices } from './Shared/services/userloginservice';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
     private titleService: Title,
     private primengConfig: PrimeNGConfig,
     private meta: Meta,
-    private uiService: UiService
+    private uiService: UiService,
+    private userloginService: userloginservices
   ) {}
 
   // onActivate(event) {
@@ -54,5 +56,13 @@ export class AppComponent {
     source.subscribe((item) => {
       this.uiService.domClick$.next(item);
     });
+
+    //log site visitor
+    this.userloginService.logSiteVisitor().subscribe(
+      (item) => {},
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

@@ -33,6 +33,12 @@ export class userloginservices {
   public header: HttpHeaders;
   public loggedIn: BehaviorSubject<any>;
   public currentUsers: Observable<any>;
+
+  logSiteVisitorAPI: string =
+    'https://my-app-backend-node.vercel.app/api/users/logSiteVisitor';
+
+  getSiteVisitorAPI: string =
+    'https://my-app-backend-node.vercel.app/api/users/getSiteVisitor';
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -96,5 +102,12 @@ export class userloginservices {
 
   verifyAuth(token) {
     return this.http.post(this.verifyAuthApi, { token });
+  }
+
+  logSiteVisitor() {
+    return this.http.post(this.logSiteVisitorAPI, {});
+  }
+  getSiteVisitor() {
+    return this.http.get<any>(this.getSiteVisitorAPI);
   }
 }

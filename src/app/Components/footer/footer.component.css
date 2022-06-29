@@ -26,11 +26,11 @@
   margin-bottom: 3px;
 }
 .feedback-form {
-  /* padding-top: 10px;
-  text-align: center; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+  gap: 30px;
   align-items: center;
 }
 .feedback-form ::placeholder {

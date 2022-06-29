@@ -3,12 +3,17 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -25,7 +30,10 @@ export class FooterComponent implements OnInit {
   public newsLetterForm: UntypedFormGroup;
   public newsLetterSuccess;
   public newsLetterError;
-
+  currentDate: Date = new Date();
+  siteVisitors: number;
+  countsInterval: number;
+  visitorCount: number = 0;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -64,6 +72,8 @@ export class FooterComponent implements OnInit {
     this.newsLetterForm = this.fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
     });
+
+    this.getSiteVisitor();
   }
 
   getUserId() {
@@ -132,8 +142,25 @@ export class FooterComponent implements OnInit {
     );
   }
 
-  // scroll to topg
+  // scroll to top
   topFunction() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  getSiteVisitor() {
+    this.loginservice.getSiteVisitor().subscribe((item) => {
+      this.siteVisitors = item.result;
+      this.visitorCount = 0;
+      if (this.siteVisitors > 0) {
+        this.countsInterval = setInterval(() => {
+          this.visitorCount += 1;
+          if (this.visitorCount === this.siteVisitors) {
+            clearInterval(this.countsInterval);
+          }
+        });
+      }
+    });
+  }
+
+  counter() {}
 }

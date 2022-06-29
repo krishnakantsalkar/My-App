@@ -342,7 +342,7 @@
                   <li>
                     <a
                       class="instagram-icon"
-                      href="https://instagram.com/that_detective_kid"
+                      href="https://instagram.com/that_developer_kid"
                       target="_blank"
                     >
                       <i class="fab fa-instagram" style="font-style: bold"></i
@@ -373,6 +373,15 @@
                     ></a>
                   </li>
                 </ul>
+              </div>
+              <div *ngIf="siteVisitors > 0" id="total-views">
+                <h5>
+                  Views <mat-icon class="icon_align">visibility</mat-icon> :
+                  <span
+                    id="total-views-count"
+                    [innerHtml]="visitorCount"
+                  ></span>
+                </h5>
               </div>
 
               <!-- <div class="feedbckfrm">
@@ -481,7 +490,7 @@
             class="fas fa-copyright"
             [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
           ></i>
-          2020-2022 |
+          2020-{{ currentDate.getFullYear() }} |
           <span [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }">
             Krishnakant Salkar</span
           >, Made with

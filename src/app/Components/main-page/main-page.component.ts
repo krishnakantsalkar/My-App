@@ -11,7 +11,11 @@ import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
@@ -108,6 +112,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
           display: 'none',
         });
         $('#MainPage').css({ 'max-height': 'initial', overflow: 'auto' });
+
+        this.checkWebsiteUsesDiag();
       }
 
       // set wallpaper preference default
@@ -403,18 +409,14 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     location.reload();
   }
 
-  // website uses cookies dialog
-  websiteUsesDiag() {
-    document.getElementById('websiteUsesDialog').style.display = 'none';
-
-    this.cookies.set('websiteUsesDiag', 'done', 5);
-  }
-
   // check website uses dialog
   checkWebsiteUsesDiag() {
     let temp = this.cookies.get('websiteUsesDiag');
     if (!temp) {
-      let sheetRef = this.bottomSheetDiag.open(BottomSheetOverviewExampleSheet);
+      let sheetRef = this.bottomSheetDiag.open(
+        BottomSheetOverviewExampleSheet,
+        { backdropClass: 'bgBlur' }
+      );
 
       sheetRef.afterDismissed().subscribe((item) => {
         if (item.save) {

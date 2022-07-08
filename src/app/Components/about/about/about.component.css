@@ -2,63 +2,52 @@
 html,
 body {
   height: 100%;
-  min-height: 500vh;
 }
 body {
   margin: 0;
 }
 
 /* main page content */
-
-/* first content */
-.first-content {
-  height: 100vh;
-  width: 100%;
-  background-color: #292a2d;
-
-  float: left;
-}
-.second-content {
-  height: 100vh;
-  width: 100%;
-  background-color: #db4437;
-
-  float: left;
+.main_about {
+  /* background: url("../../../../assets/images/pexels-negative-space-169573.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;*/
+  padding-bottom: 70px;
+  position: relative;
 }
 
-.third-content {
-  height: 100vh;
+.main_about:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
-  background-color: #036ffc;
-
-  float: left;
-}
-
-.fourth-content {
-  height: 100vh;
-  width: 100%;
-  background-color: #fe9700;
-
-  float: left;
+  height: 100%;
+  opacity: 0.6;
+  background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  filter: blur(3px);
 }
 
 .fifth-content {
-  height: 120vh;
+  /* height: 120vh; */
   width: 100%;
   /* background-color: #17b86a; */
-  background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
+  /* background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
   margin-bottom: 60px;
-  float: left;
-  position: relative;
 }
 
 .fifth-content-credits {
   position: absolute;
-  left: 10%;
-  bottom: 10%;
+  left: 5%;
+  bottom: 2%;
   cursor: pointer;
   color: yellow;
   opacity: 0.6;
@@ -124,76 +113,19 @@ div.buttons button {
   height: 300px;
   width: auto;
 }
-
-/* global css for image areas */
-.images-area {
-  display: flex;
-  justify-content: center;
-}
-.images-area img {
-  max-height: 300px;
-  width: auto;
-}
-
-/* custom css for node and angular img */
-.nodeimg {
-  max-height: 300px;
-  width: auto;
-}
-.images-area .img1 {
-  margin-top: -10px;
-  max-height: 200px;
-  border-radius: 10px;
-  width: auto;
-}
-
-/* font color and family */
-div.angular,
-div.backend,
-div.extras {
-  font-family: "Andale Mono", AndaleMono, monospace;
-  padding-top: 110px;
-  color: white;
-}
-
-/* font color and family for fifth content */
-div.developer {
-  font-family: "Andale Mono", AndaleMono, monospace;
-  /* padding-top: 80px; */
-  color: white;
-}
-
-/* card font color and background color */
-div.angular .card,
-div.backend .card,
-div.extras .card,
 div.developer .card {
   color: #32325d;
   background-color: white;
   border-radius: 10px;
 }
 
-/* anchor links color for second and third */
-.second-content a,
-.third-content a {
-  color: #32325d;
-  text-decoration: none;
-}
-
-/* title text css for contents */
-div.angular .card h1,
-div.backend .card h1,
-div.extras .card h1 {
-  text-align: center;
-}
-
 .devinfo {
   text-align: center;
-  padding-top: 10%;
+  /* padding-top: 125px; */
 }
-.dev {
-  padding-top: 3%;
-}
+/* .dev {
+ padding-top: 3%; 
+} */
 
 div.devinfo1 h6 {
   font-family: "Andale Mono", AndaleMono, monospace;
@@ -243,88 +175,9 @@ div.connections .fa-telegram {
   color: #0099ff;
 }
 
-/* Position the tooltip 1 */
-.tooltips1 {
-  position: absolute;
-  visibility: hidden;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -70px;
-  padding: 5px;
-}
-.tooltipText1 {
-  background-color: black;
-  width: 150px;
-  color: #fff;
+.social-icons {
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 5px;
 }
-
-.tooltipHover1:hover > .tooltips1 {
-  visibility: visible;
-}
-
-.tooltips1 .tooltipText1::after {
-  content: " ";
-  position: absolute;
-  top: 98%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-
-/* Position the tooltip 2 */
-.tooltips2 {
-  position: absolute;
-  visibility: hidden;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -70px;
-  padding: 5px;
-}
-.tooltipText2 {
-  background-color: black;
-  width: 150px;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 5px;
-}
-
-.tooltipHover2:hover > .tooltips2 {
-  visibility: visible;
-}
-
-.tooltips2 .tooltipText2::after {
-  content: " ";
-  position: absolute;
-  top: 98%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-
-div.content-new {
-  margin-top: 60px;
-}
-
-/* new updated third & fifth component */
-.screenshots {
-  margin-top: 20px;
-  display: inline-block;
-}
-
-swiper {
-  margin-top: 8%;
-}
-
 .social-icons ul {
   padding-inline-start: 0px !important;
 }
@@ -386,63 +239,39 @@ swiper {
   padding-inline-start: 20px;
 }
 
-/* framework, second component, angular */
-#angularDesc {
-  margin-top: 17%;
-  text-align: center;
-  color: white;
-}
-#angularDesc h1,
-#angularDesc p {
-  font-family: Bahnschrift SemiBold, BahnschriftSemiBold;
-}
-.angularNodeIcons h2 {
-  margin-top: 45%;
-  font-size: 150px;
-  color: white;
-}
-#angularDesc a button,
-div.extras-component a button {
-  background-color: white;
-  color: #3288db;
-  border-radius: 10px;
-  box-shadow: 1px 2px 5px rgb(20, 20, 20);
+#uploadSpinner1,
+#uploadCheck1,
+#uploadCheckErr1,
+#uploadSpinner2,
+#uploadCheck2,
+#uploadCheckErr2 {
+  display: none;
 }
 
-#angularDesc a button:hover,
-div.extras-component a button:hover {
-  color: orangered;
-  box-shadow: 0 0 1px rgb(20, 20, 20);
+.dev_info_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 125px;
+}
+.langAndfr {
+  text-align: center;
 }
 
-/* extras component */
-div.extras-component h1 {
-  margin-top: 10%;
-  font-family: Bahnschrift SemiBold, BahnschriftSemiBold;
+.form_action {
   display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  text-align: center;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-}
-div.extras-component h2 {
-  text-align: center;
-  margin-top: 5%;
-  font-size: 100px;
-}
-div.extras-component a {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
 }
 
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
+  .contact_me_form {
+    flex-direction: column;
+  }
+  .dev_info_container {
+    flex-direction: column;
+  }
   div.buttons .btn {
     margin: 5px;
   }
@@ -450,9 +279,9 @@ div.extras-component a {
     text-align: center;
   }
 
-  .fifth-content {
+  /* .fifth-content {
     height: 190vh;
-  }
+  } */
 
   .fifth-content .container-fluid {
     width: 95%;
@@ -460,12 +289,7 @@ div.extras-component a {
 
   .fifth-content-credits {
     left: 5%;
-    bottom: 5%;
-  }
-  div.angular,
-  div.backend,
-  div.extras {
-    padding-top: 100px;
+    bottom: 1%;
   }
   div.devinfo {
     padding-top: 10%;
@@ -474,33 +298,6 @@ div.extras-component a {
 
   .devinfo1 h6 {
     font-size: 20px;
-  }
-  div.angular .card h1,
-  div.backend .card h1,
-  div.extras .card h1 {
-    text-align: center;
-    font-size: 25px;
-  }
-  div.angular .card h3,
-  div.backend .card h4,
-  div.extras .card h4 {
-    font-size: 15px;
-  }
-  .first-content .buttons {
-    margin-top: 20px;
-  }
-  .images-area img {
-    max-height: 150px;
-  }
-  .images-area .img1 {
-    margin-top: -10px;
-    max-height: 150px;
-    border-radius: 10px;
-    width: auto;
-  }
-
-  div.extras {
-    padding-top: 40%;
   }
 
   div.developer {
@@ -537,20 +334,6 @@ div.extras-component a {
   .devinfo2 {
     margin-top: 10px;
   }
-
-  .tooltips1,
-  .tooltips2 {
-    margin-left: -100px;
-  }
-  .third-content .screenshots {
-    margin-top: 40%;
-  }
-  .third-content swiper {
-    margin-top: 50%;
-  }
-  swiper .swiper-pagination {
-    margin-bottom: -7px;
-  }
   .social-icons a {
     height: 30px;
     width: 30px;
@@ -571,24 +354,6 @@ div.extras-component a {
   .social-icons ul {
     padding-inline-start: 0px;
   }
-
-  #angularDesc {
-    margin-top: 30%;
-  }
-  .angularNodeIcons h2 {
-    margin-top: 5px;
-    font-size: 100px;
-    color: white;
-  }
-  div.extras-component h1 {
-    margin-top: 25%;
-    width: 100%;
-  }
-  div.extras-component h2 {
-    font-size: 60px;
-    margin: 13px;
-  }
-
   .langAndFrData ul {
     padding-left: 24px;
   }

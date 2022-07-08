@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { fromEvent } from 'rxjs';
 import { UiService } from './Shared/services/ui.service';
@@ -12,12 +13,14 @@ import { userloginservices } from './Shared/services/userloginservice';
 })
 export class AppComponent {
   public checkSession: boolean;
+  allowFooter: boolean = true;
   constructor(
     private titleService: Title,
     private primengConfig: PrimeNGConfig,
     private meta: Meta,
     private uiService: UiService,
-    private userloginService: userloginservices
+    private userloginService: userloginservices,
+    private router: Router
   ) {}
 
   // onActivate(event) {
@@ -64,5 +67,16 @@ export class AppComponent {
         console.log(err);
       }
     );
+
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        console.log(event.url);
+        if (event.url != '/about') {
+          this.allowFooter = true;
+        } else {
+          this.allowFooter = false;
+        }
+      }
+    });
   }
 }

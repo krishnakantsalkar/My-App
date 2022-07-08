@@ -3,5 +3,5 @@
 <router-outlet></router-outlet>
 
 <app-general-updates-launcher></app-general-updates-launcher>
-<app-footer *ngIf="checkSession"></app-footer>
+<app-footer *ngIf="checkSession && allowFooter"></app-footer>
 <ng-snotify></ng-snotify>

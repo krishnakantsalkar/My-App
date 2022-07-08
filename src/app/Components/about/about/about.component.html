@@ -10,7 +10,9 @@
     <!-- Main page html content -->
 
     <!-- first content -->
-    <div
+    <!-- loop text using javascript -->
+
+    <!-- <div
       class="first-content"
       [ngStyle]="{
         'background-color': brightness
@@ -19,270 +21,33 @@
         color: brightness ? 'black' : 'white'
       }"
     >
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <!-- left row -->
-          <div class="col-sm-6"></div>
-          <!-- right row -->
-          <div class="col-sm-6">
-            <div class="buttons">
-              <button
-                mat-raised-button
-                class="btn1"
-                data-aos="zoom-in"
-                data-aos-delay="100"
-                data-aos-duration="1000"
-                data-aos-once="true"
-                (click)="scrollTo('frontend')"
-              >
-                Frameworks
-              </button>
-              <button
-                mat-raised-button
-                class="btn2"
-                data-aos="zoom-in"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-                data-aos-once="true"
-                (click)="scrollTo('backend')"
-              >
-                Screenshots
-              </button>
-              <button
-                mat-raised-button
-                class="btn3"
-                data-aos="zoom-in"
-                data-aos-delay="900"
-                data-aos-duration="1000"
-                data-aos-once="true"
-                (click)="scrollTo('extras')"
-              >
-                Extras
-              </button>
-              <button
-                mat-raised-button
-                class="btn4"
-                data-aos="zoom-in"
-                data-aos-delay="1300"
-                data-aos-duration="1000"
-                data-aos-once="true"
-                (click)="scrollTo('developer')"
-              >
-                Author
-              </button>
-            </div>
-          </div>
-        </div>
-        <!-- loop text using javascript -->
-        <div class="message">
-          <h1
-            id="loopQuotes"
-            [ngStyle]="{
-              color: brightness ? 'black' : 'white'
-            }"
-          ></h1>
-        </div>
+      <div class="message">
+        <h1
+          id="loopQuotes"
+          [ngStyle]="{
+            color: brightness ? 'black' : 'white'
+          }"
+        ></h1>
       </div>
-    </div>
-
-    <!-- second content -->
-    <div class="second-content" id="frontend">
-      <!-- container -->
-      <div class="frontend-component container">
+    </div> -->
+    <div
+      class="container-fluid main_about"
+      [ngStyle]="{
+        'background-color': brightness
+          ? 'rgb(223, 223, 223)'
+          : ' rgb(33, 34, 34)',
+        color: brightness ? 'black' : 'white'
+      }"
+    >
+      <!-- fifth content -->
+      <div class="fifth-content" id="developer">
+        <!-- container -->
+        <!-- <div class="container-fluid"> -->
         <!-- row -->
-        <div class="row">
-          <!-- angular framework -->
-          <div
-            class="col-sm-6"
-            id="angularDesc"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-            data-aos-duration="1000"
-          >
-            <h1>Built using Angular</h1>
-            <p>One framework. Mobile & desktop.</p>
-            <a href="https://angular.io/docs" target="_blank"
-              ><button class="btn">LEARN MORE</button></a
-            >
-            <hr style="border-top: 1px dashed white" />
-
-            <!-- backend nodejs -->
-            <h1>NodeJS Backend</h1>
-            <p>NodeJS server & ExpressJS APIs with MongoDB support.</p>
-            <a href="https://nodejs.org/en/docs/" target="_blank"
-              ><button class="btn">Documentation</button></a
-            >
-            <br />
-            <br />
-            <!-- other logos -->
-            <h2>
-              <i class="fab fa-html5"></i>&nbsp;
-              <i class="fab fa-css3-alt"></i>&nbsp;
-              <i class="fab fa-js"></i>&nbsp;
-              <i class="fas fa-server"></i>
-            </h2>
-          </div>
-          <!-- angular & node logo icon -->
-          <div class="col-sm-6" style="display: flex; justify-content: center">
-            <div
-              class="angularNodeIcons"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-            >
-              <h2>
-                <i class="fab fa-angular"></i> + <i class="fab fa-node"> </i>
-              </h2>
-            </div>
-            <br />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- third content -->
-    <div class="third-content" id="backend">
-      <!-- container -->
-      <div class="backend-component container-fluid">
-        <!-- swiper component -->
-        <swiper
-          [config]="config"
-          #usefulSwiper
-          style="
-            width: 80%;
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: 60px;
-          "
-        >
-          <div class="swiper-wrapper">
-            <!-- image slides -->
-            <img
-              class="swiper-slide"
-              *ngFor="let slide of slides"
-              [src]="slide"
-              style="height: auto; object-fit: contain; border-radius: 8px"
-            />
-          </div>
-          <br />
-
-          <!-- swiper options -->
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-scrollbar"></div>
-        </swiper>
-      </div>
-    </div>
-
-    <!-- fourth content -->
-    <div class="fourth-content" id="extras">
-      <!-- container -->
-      <div class="extras-component container">
-        <!-- row -->
-
-        <h1>Source Code & Extras</h1>
-        <br />
-        <br />
-        <div class="row">
-          <!-- github link -->
-          <div class="col-6 col-sm-4">
-            <div
-              class="aos"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-              data-aos-duration="1000"
-            >
-              <h2><i class="fab fa-github"></i></h2>
-              <a
-                href="https://github.com/krishnakantsalkar/My-App"
-                target="_blank"
-                ><button class="btn">Source Code</button></a
-              >
-            </div>
-          </div>
-          <!-- wallpapers link -->
-          <div class="col-6 col-sm-4">
-            <div
-              class="aos"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-            >
-              <h2><i class="fas fa-image" style="color: white"></i></h2>
-              <a
-                href="https://downloads.krishnakantsalkar.in/0:/Wallpapers/"
-                target="_blank"
-                ><button class="btn">Mobile Wallpapers</button></a
-              >
-            </div>
-          </div>
-
-          <!-- movie db link -->
-          <div class="col-6 col-sm-4">
-            <div
-              class="aos"
-              data-aos="zoom-in"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h2>
-                <i class="fas fa-video" style="color: royalblue"></i>
-              </h2>
-              <a
-                href="https://www.krishnakantsalkar.in/movies&tv"
-                target="_blank"
-                ><button class="btn">The MovieDB</button></a
-              >
-            </div>
-          </div>
-
-          <!-- blog link -->
-          <div class="col-6 col-sm-4">
-            <div
-              class="aos"
-              data-aos="zoom-in"
-              data-aos-delay="700"
-              data-aos-duration="1000"
-            >
-              <h2><i class="fas fa-blog" style="color: blueviolet"></i></h2>
-              <a href="https://www.krishnakantsalkar.in/blog/1" target="_blank"
-                ><button class="btn">blog</button></a
-              >
-            </div>
-          </div>
-
-          <!-- pastebin -->
-          <div class="col-6 col-sm-4">
-            <div
-              class="aos"
-              data-aos="zoom-in"
-              data-aos-delay="900"
-              data-aos-duration="1000"
-            >
-              <h2>
-                <i class="fas fa-paste" style="color: rgb(102, 102, 102)"></i>
-              </h2>
-              <a href="http://snippets.krishnakantsalkar.in" target="_blank"
-                ><button class="btn">Memochō: A pastebin alternative</button></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- fifth content -->
-    <div class="fifth-content" id="developer">
-      <!-- container -->
-      <div class="container-fluid">
-        <!-- row -->
-        <div class="row">
+        <div class="dev_info_container">
           <!-- dev info section -->
           <!-- lefr column -->
-          <div class="col-sm-6 devinfo">
+          <div class="devinfo">
             <img
               data-aos="zoom-in"
               data-aos-delay="300"
@@ -293,7 +58,7 @@
             />
           </div>
           <!-- right column -->
-          <div class="col-sm-6 dev">
+          <div class="dev">
             <div class="developer">
               <!-- dev info card -->
               <mat-card
@@ -311,7 +76,7 @@
                   <!-- dev details -->
                   <div class="devdetails">
                     <h4><strong> Krishnakant S. Salkar</strong></h4>
-                    <h5>Full Stack Web Developer</h5>
+                    <h5>Full Stack Developer</h5>
                   </div>
                   <hr />
 
@@ -327,7 +92,7 @@
                     <div class="col-6 col-xs-4 col-lg-4">
                       <ul>
                         <li>Angular</li>
-                        <li>Angular Material</li>
+                        <li>ReactJS</li>
                         <li>Typescript</li>
                         <li>Javascript</li>
                         <li>HTML</li>
@@ -350,9 +115,7 @@
                     <!-- column 3 -->
                     <div class="col-6 col-xs-4 col-lg-4">
                       <ul>
-                        <li>OOPs</li>
-                        <li>GCloud | Heroku</li>
-                        <li>Shell</li>
+                        <li>GCloud | Heroku | AWS</li>
                       </ul>
                     </div>
                   </div>
@@ -361,7 +124,7 @@
                   <!-- currently learning -->
                   <h5 class="currentlyLearning">
                     <i class="fas fa-laptop-code"></i> Currently Learning:
-                    Advance Python
+                    Android
                   </h5>
                   <hr />
 
@@ -377,7 +140,9 @@
                   <hr />
 
                   <!-- social links -->
-                  <h5><i class="fas fa-link"></i> Socials</h5>
+                  <h5 class="text-center">
+                    <i class="fas fa-link"></i> Socials
+                  </h5>
                   <div
                     class="social-icons"
                     style="padding-left: 0; margin-bottom: 0; list-style: none"
@@ -462,6 +227,64 @@
                       </li>
                     </ul>
                   </div>
+                  <hr />
+                  <div
+                    [ngStyle]="{ color: this.brightness ? 'black' : 'white' }"
+                  >
+                    <h4 class="text-center">Send me a message....</h4>
+                  </div>
+
+                  <div class="contact_me_form">
+                    <div>
+                      <form
+                        [formGroup]="sendContact"
+                        (ngSubmit)="SendMessage(sendContact.value)"
+                      >
+                        <mat-form-field appearance="outline">
+                          <mat-label>Name</mat-label>
+                          <input type="text" matInput formControlName="name" />
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Email</mat-label>
+
+                          <input
+                            type="email"
+                            matInput
+                            formControlName="email"
+                          />
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Message</mat-label>
+
+                          <textarea
+                            type="text"
+                            matInput
+                            formControlName="message"
+                          ></textarea>
+                        </mat-form-field>
+                        <div class="form_action">
+                          <button
+                            mat-raised-button
+                            class="btn-success"
+                            type="submit"
+                            [disabled]="!sendContact.valid"
+                          >
+                            Send
+                            <span
+                              id="uploadSpinner2"
+                              class="spinner-border spinner-border-sm"
+                            ></span>
+                            <span id="uploadCheck2">
+                              <i class="fas fa-check-circle"></i
+                            ></span>
+                            <span id="uploadCheckErr2">
+                              <i class="fas fa-times-circle"></i
+                            ></span>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </mat-card-content>
               </mat-card>
               <!-- dev details section -->
@@ -527,7 +350,10 @@
             >Photo by Negative Space, Pexels</a
           >
         </div>
+        <!-- </div> -->
       </div>
+      <!-- <div class="container">
+      </div> -->
     </div>
   </body>
 </html>

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { aboutRoute } from './about-routes';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AboutComponent],
@@ -13,6 +14,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     RouterModule.forChild(aboutRoute),
     SharedModuleModule,
     NgxUsefulSwiperModule,
+    ReactiveFormsModule,
   ],
 })
 export class AboutModule {}

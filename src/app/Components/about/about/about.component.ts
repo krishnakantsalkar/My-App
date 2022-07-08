@@ -15,6 +15,9 @@ import Swiper, {
 import { MessageService } from 'primeng/api';
 import { UiService } from 'src/app/Shared/services/ui.service';
 import { DOCUMENT } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IcontactUs } from 'src/app/Shared/model/contactUsmodel';
+import { contactService } from 'src/app/Shared/services/contactUSservice';
 
 @Component({
   selector: 'app-about',
@@ -86,6 +89,7 @@ export class AboutComponent implements OnInit {
     },
   };
 
+  sendContact: FormGroup;
   // image slides
   public slides = [
     'https://res.cloudinary.com/dq766ltjh/image/upload/v1601097257/about-swiper/Screenshot_20200925-205454_Brave_njcqby.png',
@@ -108,7 +112,9 @@ export class AboutComponent implements OnInit {
     private defaultModeService: modeService,
     private meta: Meta,
     private uiService: UiService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private fb: FormBuilder,
+    private contactServices: contactService
   ) {}
 
   ngOnInit() {
@@ -137,6 +143,14 @@ export class AboutComponent implements OnInit {
     AOS.init({
       startEvent: 'DomContentLoaded',
     });
+
+    // feedback form
+    this.sendContact = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required, Validators.min(5)]],
+    });
+
     // swiper force use following features
     Swiper.use([
       Autoplay,
@@ -217,5 +231,40 @@ export class AboutComponent implements OnInit {
     } else if (type == 'mail') {
       this.uiService.showSnackbar('Email copied to clipboard', null, 3500);
     }
+  }
+
+  SendMessage(data: IcontactUs) {
+    if (!this.sendContact.valid) {
+      this.uiService.showSnackbar('All fields required!', null, 3500);
+      return;
+    }
+    let d = document;
+    d.getElementById('uploadSpinner2').style.display = 'inline-block';
+    d.getElementById('uploadCheckErr2').style.display = 'none';
+    this.contactServices.contact(data).subscribe(
+      (item) => {
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'none';
+        d.getElementById('uploadCheck2').style.display = 'inline-block';
+        this.uiService.showSnackbar(
+          'Message sent!, will get back to you soon!',
+          null,
+          3500
+        );
+
+        this.sendContact.reset();
+        setTimeout(() => {
+          d.getElementById('uploadSpinner2').style.display = 'none';
+          d.getElementById('uploadCheckErr2').style.display = 'none';
+          d.getElementById('uploadCheck2').style.display = 'none';
+        }, 3500);
+      },
+      (error) => {
+        d.getElementById('uploadSpinner2').style.display = 'none';
+        d.getElementById('uploadCheckErr2').style.display = 'inline-block';
+        this.uiService.showSnackbar('Something went wrong!', null, 3500);
+        this.sendContact.reset();
+      }
+    );
   }
 }

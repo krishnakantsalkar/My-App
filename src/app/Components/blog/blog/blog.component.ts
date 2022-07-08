@@ -7,7 +7,11 @@ import {
 } from '@angular/core';
 import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Iblog } from 'src/app/Shared/model/blogmodel';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -390,6 +394,7 @@ export class BlogComponent implements OnInit {
             let dialogRes = this.dialog.open(this.blogPostDialog, {
               minHeight: '20vh',
               minWidth: '30vw',
+              backdropClass: 'bgBlur',
             });
 
             dialogRes.afterClosed().subscribe((item) => {
@@ -584,6 +589,7 @@ export class BlogComponent implements OnInit {
         blogURL: this.blogURL,
         calledFrom: 'blog',
       },
+      backdropClass: 'bgBlur',
     });
   }
   clickEditPost(i) {
@@ -600,6 +606,7 @@ export class BlogComponent implements OnInit {
       data: {
         msg: 'Would you like to delete this post?',
       },
+      backdropClass: 'bgBlur',
     });
 
     dialogRef.afterClosed().subscribe((item) => {
@@ -634,6 +641,7 @@ export class BlogComponent implements OnInit {
         blogURL: `https://krishnakantsalkar.in/blog/${post.postNumber}/${post.postTitle}/${post._id}`,
         calledFrom: 'blogpost',
       },
+      backdropClass: 'bgBlur',
     });
   }
 }

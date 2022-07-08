@@ -3,7 +3,11 @@ import * as AOS from 'aos';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
@@ -260,6 +264,7 @@ export class BlogpostsComponent implements OnInit {
       data: {
         msg: 'Would you like to delete this post?',
       },
+      backdropClass: 'bgBlur',
     });
 
     dialogRef.afterClosed().subscribe((item) => {
@@ -429,6 +434,7 @@ export class BlogpostsComponent implements OnInit {
         blogURL: this.blogURL,
         calledFrom: 'blogposts',
       },
+      backdropClass: 'bgBlur',
     });
   }
 

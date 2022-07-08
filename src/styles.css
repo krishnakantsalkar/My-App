@@ -210,3 +210,8 @@ mat-bottom-sheet-container {
 .mat-checkbox-layout {
   white-space: normal !important;
 }
+
+.bgBlur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}

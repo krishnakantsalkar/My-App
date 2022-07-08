@@ -152,6 +152,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       data: {
         msg: `Would you like to Logout, ${userData}?`,
       },
+      backdropClass: 'bgBlur',
     });
 
     dialogRef.afterClosed().subscribe((item) => {

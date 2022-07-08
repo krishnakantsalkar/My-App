@@ -97,6 +97,7 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
     this.isEditUpdate = false;
     this.updDialog = this.dialog.open(this.newUpdate, {
       minWidth: '30vw',
+      backdropClass: 'bgBlur',
     });
   }
 
@@ -108,6 +109,7 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
     this.updateId = this.updates[i].updateId;
     this.updDialog = this.dialog.open(this.newUpdate, {
       minWidth: '30vw',
+      backdropClass: 'bgBlur',
     });
   }
 

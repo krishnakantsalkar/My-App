@@ -158,6 +158,7 @@ export class LoginComponent implements OnInit {
           let dialogRes = this.dialog.open(this.loginDialog, {
             // minWidth: '30vw',
             // minHeight: '20vh',
+            backdropClass: 'bgBlur',
           });
 
           dialogRes.afterClosed().subscribe((item) => {

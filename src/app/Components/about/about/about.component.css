@@ -123,9 +123,9 @@ div.developer .card {
   text-align: center;
   /* padding-top: 125px; */
 }
-/* .dev {
- padding-top: 3%; 
-} */
+.dev {
+  max-width: 800px;
+}
 
 div.devinfo1 h6 {
   font-family: "Andale Mono", AndaleMono, monospace;
@@ -263,9 +263,16 @@ div.connections .fa-telegram {
   justify-content: center;
 }
 
+.langfr img {
+  margin: 5px;
+}
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
+  .dev {
+    max-width: auto;
+  }
+
   .contact_me_form {
     flex-direction: column;
   }

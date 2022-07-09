@@ -462,6 +462,13 @@ div.websiteUsesDialog mat-icon {
 }
 
 @media only screen and (max-width: 600px) {
+  div.websiteUsesDialog mat-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .cookie_content {
+    flex-direction: column;
+  }
   div.footer {
     height: 30px;
     z-index: 2;
@@ -535,9 +542,6 @@ div.websiteUsesDialog mat-icon {
   }
   div.websiteUsesDialog h3 {
     font-size: 18px;
-  }
-  div.websiteUsesDialog mat-icon {
-    font-size: 30px;
   }
   div.websiteUsesDialog {
     /* bottom: 30px; */

@@ -8,13 +8,26 @@
       }"
   >
     <mat-card-content class="cookie_content">
-      <mat-icon style="width: auto"> verified_user </mat-icon>
+      <mat-icon
+        style="width: auto"
+        [ngStyle]="{
+        color: brightness ? 'orangered' : 'violet'
+      }"
+      >
+        verified_user
+      </mat-icon>
       <div>
         <h3>This website uses Cookies to enhance user experience,</h3>
         <p>
           By Using this website you agree to your data being used for delivering
           optimal user experience. You can read how user data is handled in our
-          <a routerLink="/privacy">privacy policy</a>
+          <a
+            [ngStyle]="{
+            color: brightness ? 'orangered' : 'violet'
+          }"
+            routerLink="/privacy"
+            >privacy policy</a
+          >
         </p>
       </div>
 

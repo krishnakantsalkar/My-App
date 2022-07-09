@@ -56,7 +56,7 @@ export class NotesComponent implements OnInit {
     this.getTodo();
     this.getSnippets();
     this.noteService.getClientIp().subscribe((item) => {
-      this.clientIp = JSON.parse(item).ip;
+      this.clientIp = item.result;
     });
   }
 

@@ -270,10 +270,6 @@ div.shortbio h4 span {
   cursor: pointer;
 }
 
-.total-views-count {
-  margin-left: 10px;
-}
-
 @media only screen and (max-width: 600px) {
   div.footer {
     height: 30px;

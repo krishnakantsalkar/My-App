@@ -83,31 +83,61 @@
           </li>
           <li class="nav-item">
             <a
-              class="nav-link"
-              routerLink="/movies&tv"
-              [routerLinkActive]="activeCss"
-              >MoviesDB</a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="contentsDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              routerLink="/covid-news/covid/1"
-              [routerLinkActive]="activeCss"
-              >Covid-19</a
+              Contents
+            </a>
+            <div
+              class="dropdown-menu"
+              aria-labelledby="contentsDropdown"
+              [ngStyle]="{
+                'background-color': brightness
+                  ? 'rgb(223, 223, 223)'
+                  : ' rgb(60, 60, 61)',
+                color: brightness ? 'black' : 'rgb(129,129,129)'
+              }"
+              style="transition: 0.4s ease-in-out"
             >
+              <a
+                class="nav-link"
+                routerLink="/movies&tv"
+                [routerLinkActive]="activeCss"
+                >MoviesDB</a
+              >
+
+              <a
+                class="nav-link"
+                routerLink="/covid-news/covid/1"
+                [routerLinkActive]="activeCss"
+                >Covid-19</a
+              >
+              <a
+                class="nav-link adjust_nav_link"
+                href="https://downloads.krishnakantsalkar.in"
+                target="_blank"
+                >Downloads
+                <mat-icon style="font-size: 18px" class="adjust_nav_link--icon"
+                  >open_in_new</mat-icon
+                ></a
+              >
+              <a
+                class="nav-link adjust_nav_link"
+                href="http://snippets.krishnakantsalkar.in"
+                target="_blank"
+                >PasteBin
+                <mat-icon class="adjust_nav_link--icon" style="font-size: 18px"
+                  >open_in_new</mat-icon
+                ></a
+              >
+            </div>
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link adjust_nav_link"
-              href="https://downloads.krishnakantsalkar.in"
-              target="_blank"
-              >Downloads
-              <mat-icon style="font-size: 18px" class="adjust_nav_link--icon"
-                >open_in_new</mat-icon
-              ></a
-            >
-          </li>
+
           <li class="nav-item" *ngIf="checkStatus">
             <a
               class="nav-link"
@@ -116,22 +146,6 @@
               >Notes</a
             >
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link adjust_nav_link"
-              href="http://snippets.krishnakantsalkar.in"
-              target="_blank"
-              >PasteBin
-              <mat-icon class="adjust_nav_link--icon" style="font-size: 18px"
-                >open_in_new</mat-icon
-              ></a
-            >
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/polls" [routerLinkActive]="dynamicCss"
-              >Polls</a
-            >
-          </li> -->
 
           <li class="nav-item" *ngIf="!checkStatus">
             <a
@@ -169,7 +183,7 @@
             <a
               class="nav-link dropdown-toggle"
               href="#"
-              id="navbarDropdownMenuLink"
+              id="legalDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -179,7 +193,7 @@
             </a>
             <div
               class="dropdown-menu"
-              aria-labelledby="navbarDropdownMenuLink"
+              aria-labelledby="legalDropdown"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(223, 223, 223)'

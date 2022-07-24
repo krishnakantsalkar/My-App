@@ -106,7 +106,7 @@ div.floatingNewsPaperIcon {
 }
 
 div.pstimg img:hover {
-  filter: brightness(140%) blur(2px);
+  filter: blur(2px);
 }
 
 div.pstimg:hover div.floatingNewsPaperIcon {
@@ -116,7 +116,7 @@ div.pstimg:hover div.floatingNewsPaperIcon {
 }
 
 .blgdata {
-  border-left: 8px solid violet;
+  border-bottom: 8px solid violet;
 }
 
 div.links .aLight:hover {

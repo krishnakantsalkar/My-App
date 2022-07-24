@@ -112,9 +112,14 @@
         <div>
           <img
             src="assets/images/preloadLogo.png"
+            (click)="switchPulse()"
+            [matTooltip]="!isPulse ? 'Pulse~~' : null"
+            matTooltipPosition="above"
             [ngClass]="{
               preloaderLogoL: brightness,
-              preloaderLogoD: !brightness
+              preloaderLogoD: !brightness,
+              pulseLight: brightness && isPulse,
+              pulseDark: !brightness && isPulse
             }"
           />
           <div class="progressText">

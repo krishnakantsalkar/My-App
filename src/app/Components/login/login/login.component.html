@@ -48,19 +48,25 @@
       </ng-template>
     </ng-container>
 
-    <div class="logindata">
+    <div
+      class="logindata"
+      [ngStyle]="{
+        background: brightness ? 'white' : ' rgb(41, 42, 45)'
+      }"
+    >
       <div class="bgImage"></div>
       <div class="container loginContainer">
-        <div class="row">
+        <div class="row align-items-center">
           <div
             class="col-sm-6 shortInfo"
-            [ngStyle]="{ color: brightness ? 'white' : 'rgb(129,129,129)' }"
+            [ngStyle]="{ color: brightness ? 'rgb(41,42,45)' : 'white' }"
           >
             <h1
               data-aos="zoom-in"
               data-aos-delay="200"
               data-aos-duration="1000"
               data-aos-once="true"
+              style="font-weight: 600"
             >
               Web Development
             </h1>
@@ -69,7 +75,8 @@
               data-aos-delay="500"
               data-aos-duration="1000"
               data-aos-once="true"
-              [ngStyle]="{ color: brightness ? 'white' : 'rgb(129,129,129)' }"
+              [ngStyle]="{ color: brightness ? 'rgb(41,42,45)' : 'white' }"
+              style="font-weight: 500"
             >
               Welcome superuser, Join me & my team in a venture to develop and
               build fast & mobile Web Apps for the greatest platform available!

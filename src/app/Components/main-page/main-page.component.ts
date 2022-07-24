@@ -75,6 +75,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   public currentDate = new Date();
   tagLine: string = '';
 
+  isPulse: boolean = true;
+
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -284,6 +286,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         $('.preloader_quote_part4').css({ opacity: '1' });
       }, 3900);
     }
+  }
+
+  switchPulse() {
+    this.isPulse = !this.isPulse;
   }
 
   enter() {

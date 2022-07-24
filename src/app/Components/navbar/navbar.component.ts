@@ -169,7 +169,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   routeHome() {
     let url = window.location.href.split('/');
-    console.log(url);
 
     if (url.length > 3 && url[3] != 'home' && url[3] != '') {
       this.router.navigateByUrl('/home');

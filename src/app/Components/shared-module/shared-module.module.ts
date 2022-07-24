@@ -47,6 +47,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from './bottom-share-sheet/bottom-share-sheet.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 // Shared module
 
 const MaterialComponents = [
@@ -90,12 +92,14 @@ const MaterialComponents = [
     SkeletonModule,
     QuillModule,
     MaterialComponents,
+    CKEditorModule,
   ],
   exports: [
     SkeletonModule,
     QuillModule,
     MaterialComponents,
     BottomShareSheetComponent,
+    CKEditorModule,
   ],
   providers: [
     {

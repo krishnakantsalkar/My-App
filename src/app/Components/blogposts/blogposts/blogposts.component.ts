@@ -20,6 +20,8 @@ import { BottomShareSheetComponent } from '../../shared-module/bottom-share-shee
 import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
 import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
+import { MyUploadAdapter } from 'src/app/Shared/services/ckeditor-upload-adapter';
+import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
 
 @Component({
   selector: 'app-blogposts',
@@ -27,6 +29,8 @@ import * as $ from 'jquery';
   styleUrls: ['./blogposts.component.css'],
 })
 export class BlogpostsComponent implements OnInit {
+  public Editor = Editor;
+
   public brightness: boolean;
   public data;
   public url; // dom sanitizer url
@@ -184,7 +188,6 @@ export class BlogpostsComponent implements OnInit {
     });
 
     this.AR.queryParams.subscribe((item) => {
-      console.log(item);
       if (item && item.edit && this.checkUser) {
         this.switchtoedit = true;
       }
@@ -440,6 +443,14 @@ export class BlogpostsComponent implements OnInit {
 
   back() {
     this.locationService.back();
+  }
+
+  onCkReady(event) {
+    console.log(event);
+    event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      // Configure the URL to the upload script in your back-end here!
+      return new MyUploadAdapter(loader);
+    };
   }
 }
 

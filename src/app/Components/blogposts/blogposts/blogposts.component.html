@@ -369,13 +369,13 @@
                     [data]="markdown"
                     emoji
                   ></markdown>
-                  <!-- <div
+                  <div
                     [innerHtml]="markdown"
                     [ngStyle]="{
                       color: brightness ? 'black' : 'white'
                     }"
-                  ></div> -->
-                  <quill-view
+                  ></div>
+                  <!-- <quill-view
                     class="quillContent"
                     *ngIf="data.postNumber > 22"
                     [ngStyle]="{
@@ -386,7 +386,7 @@
                     }"
                     [content]="markdown"
                     theme="snow"
-                  ></quill-view>
+                  ></quill-view> -->
 
                   <br />
                   <div class="tagsList">
@@ -658,14 +658,24 @@
                     />
                   </div>
                   <br />
-                  <quill-editor
+                  <!-- <quill-editor
                     theme="snow"
                     formControlName="post"
                     [modules]="config"
                     class="quillText"
                   >
-                  </quill-editor>
-
+                  </quill-editor> -->
+                  <ckeditor
+                    formControlName="post"
+                    [editor]="Editor"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(223, 223, 223)'
+                        : ' rgb(35, 36, 38)',
+                      color: brightness ? 'black' : 'rgb(129,129,129)'
+                    }"
+                    (ready)="onCkReady($event)"
+                  ></ckeditor>
                   <br />
                 </div>
               </form>

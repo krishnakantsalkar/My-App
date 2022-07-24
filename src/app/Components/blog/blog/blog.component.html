@@ -558,14 +558,27 @@
                 <label>Post Content</label>
                 <br />
 
-                <quill-editor
+                <!-- <quill-editor
                   theme="snow"
                   [(ngModel)]="markdown"
                   [modules]="config"
                   class="quillText"
                   (ngModelChange)="cachePost()"
                 >
-                </quill-editor>
+                </quill-editor> -->
+                <ckeditor
+                  [(ngModel)]="markdown"
+                  [editor]="Editor"
+                  [ngStyle]="{
+                    'background-color': brightness
+                      ? 'rgb(223, 223, 223)'
+                      : ' rgb(35, 36, 38)',
+                    color: brightness ? 'black' : 'rgb(129,129,129)'
+                  }"
+                  (ngModelChange)="cachePost()"
+                  (ready)="onCkReady($event)"
+                ></ckeditor>
+
                 <br />
                 <br />
               </div>
@@ -886,7 +899,7 @@
                             >
                               <span>
                                 <i class="fas fa-clock"></i>
-                                {{ d.postDate | date: "EEEE MMM dd, YYYY" }}
+                                {{ d.postDate | date: "MMM dd, YYYY" }}
                               </span>
                               <span
                                 style="
@@ -921,6 +934,18 @@
                             >
                               {{ d.post | slice: 0:150 }}...
                             </markdown>
+                            <!-- <ckeditor
+                              style="width: 100%"
+                              [editor]="Editor"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'rgb(223, 223, 223)'
+                                  : ' rgb(35, 36, 38)',
+                                color: brightness ? 'black' : 'rgb(129,129,129)'
+                              }"
+                              [data]="d.post | slice: 0:150"
+                            ></ckeditor> -->
+
                             <span
                               [ngStyle]="{
                                 'background-color': brightness

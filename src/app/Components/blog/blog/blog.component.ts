@@ -36,6 +36,8 @@ import { DOCUMENT } from '@angular/common';
 import * as $ from 'jquery';
 import { ConfirmationDialogComponent } from '../../shared-module/confirmation-dialog/confirmation-dialog.component';
 import { UiService } from '../../../Shared/services/ui.service';
+import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { MyUploadAdapter } from '../../../Shared/services/ckeditor-upload-adapter';
 
 @Component({
   selector: 'app-blog',
@@ -47,6 +49,11 @@ export class BlogComponent implements OnInit {
   public brightness: boolean;
   public date = new Date();
 
+  public Editor = Editor;
+  editorConfig;
+  // = {
+  //   extraPlugins: [this.MyCustomUploadAdapterPlugin],
+  // };
   public data;
   public allData;
 
@@ -243,6 +250,14 @@ export class BlogComponent implements OnInit {
       this.markdown = cache.post;
       this.postLinks = cache.postLinks;
     }
+  }
+
+  onCkReady(event) {
+    console.log(event);
+    event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      // Configure the URL to the upload script in your back-end here!
+      return new MyUploadAdapter(loader);
+    };
   }
 
   // get all blogs
@@ -643,5 +658,12 @@ export class BlogComponent implements OnInit {
       },
       backdropClass: 'bgBlur',
     });
+  }
+
+  MyCustomUploadAdapterPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      // Configure the URL to the upload script in your back-end here!
+      return new MyUploadAdapter(loader);
+    };
   }
 }

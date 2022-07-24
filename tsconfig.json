@@ -14,7 +14,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "allowJs": true,
+    // "target": "es2015"
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

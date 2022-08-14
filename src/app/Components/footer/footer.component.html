@@ -145,13 +145,21 @@
                       >
                         <h5>
                           <a
+                            class="recent_postlink"
                             routerLink="/blog/{{ recent.postNumber }}/{{
                               recent.postTitle
                             }}/{{ recent._id }}"
                             [ngStyle]="{
                               color: brightness ? 'orangered' : 'violet'
                             }"
-                            >#{{ recent.postNumber }}. {{ recent.postTitle }}</a
+                          >
+                            <span class="recentPostImg"
+                              ><img src="{{ recent.postImage }}"
+                            /></span>
+                            <span>
+                              #{{ recent.postNumber }}.
+                              {{ recent.postTitle }}</span
+                            ></a
                           >
                         </h5>
                         <h6 class="text-muted">
@@ -164,7 +172,14 @@
                               | slice: 0:70
                           }}
                         </h6>
-                        <hr *ngIf="i < 3" />
+                        <hr
+                          *ngIf="i < 3"
+                          [ngStyle]="{
+                            'background-color': brightness
+                              ? 'black'
+                              : 'rgb(129,129,129)'
+                          }"
+                        />
                       </div>
                       <button
                         mat-stroked-button

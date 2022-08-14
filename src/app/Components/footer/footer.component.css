@@ -80,6 +80,22 @@ div.footer h6 {
 .recentposts {
   margin-left: auto;
   margin-right: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.recent_postlink {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  word-break: break-word;
+}
+
+.recentPostImg img {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 10px;
 }
 
 .recentposts mat-card {

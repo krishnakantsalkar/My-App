@@ -88,11 +88,18 @@ div.pstimg img {
   border-top-right-radius: 12px;
 }
 
+.postImgContainer {
+  position: relative;
+}
+
 div.floatingNewsPaperIcon {
   position: absolute;
-  top: 20%;
-  left: 48%;
-  transform: rotate(180deg);
+  /* top: 20%;
+  left: 48%; */
+  /* transform: rotate(180deg); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
   z-index: -10;
   padding: 5px 10px;
   border-radius: 50px;
@@ -111,7 +118,7 @@ div.pstimg img:hover {
 
 div.pstimg:hover div.floatingNewsPaperIcon {
   z-index: 2;
-  transform: rotate(360deg);
+  transform: translate(-50%, -50%) rotate(360deg);
   opacity: 1;
 }
 

@@ -801,25 +801,27 @@
                               d.postTitle
                             }}/{{ d._id }}"
                           >
-                            <img
-                              mat-card-image
-                              data-aos="fade-right"
-                              data-aos-delay="300"
-                              data-aos-duration="1000"
-                              *ngIf="d.postImage"
-                              [ngStyle]="{
-                                'border-color': brightness
-                                  ? 'rgb(255, 77, 77)'
-                                  : 'violet'
-                              }"
-                              [ngClass]="{
-                                blgdata: d.postImage
-                              }"
-                              src="{{ d.postImage }}"
-                            />
-                            <div class="floatingNewsPaperIcon">
-                              <i class="fas fa-newspaper"></i>
-                            </div>
+                            <span class="postImgContainer">
+                              <img
+                                mat-card-image
+                                data-aos="fade-right"
+                                data-aos-delay="300"
+                                data-aos-duration="1000"
+                                *ngIf="d.postImage"
+                                [ngStyle]="{
+                                  'border-color': brightness
+                                    ? 'rgb(255, 77, 77)'
+                                    : 'violet'
+                                }"
+                                [ngClass]="{
+                                  blgdata: d.postImage
+                                }"
+                                src="{{ d.postImage }}"
+                              />
+                              <div class="floatingNewsPaperIcon">
+                                <i class="fas fa-newspaper"></i>
+                              </div>
+                            </span>
                           </a>
                         </div>
                         <mat-card-content
@@ -863,13 +865,14 @@
                                         .format('YYYY-MM-DD')
                                   "
                                   [ngStyle]="{
-                                    'background-color': brightness
-                                      ? 'violet'
-                                      : 'orangered'
+                                    color: brightness ? 'orangered' : 'violet'
                                   }"
-                                  class="badge badge-secondary ml-3"
-                                  >New
-                                  <mat-icon class="icon_align"
+                                  class="ml-2"
+                                  matTooltip="New"
+                                  matTooltipPosition="above"
+                                >
+                                  <!-- New -->
+                                  <mat-icon class="icon_align3"
                                     >new_releases</mat-icon
                                   ></span
                                 >

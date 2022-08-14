@@ -215,3 +215,7 @@ mat-bottom-sheet-container {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
+
+.variable-binding img {
+  max-width: 100% !important;
+}

@@ -370,11 +370,13 @@
                     emoji
                   ></markdown>
                   <div
+                    class="variable-binding"
+                    *ngIf="data.postNumber > 22"
                     [innerHtml]="markdown"
-                    [ngStyle]="{
-                      color: brightness ? 'black' : 'white'
-                    }"
                   ></div>
+                  <!-- [ngStyle]="{
+                      color: brightness ? 'black' : 'white'
+                    }" -->
                   <!-- <quill-view
                     class="quillContent"
                     *ngIf="data.postNumber > 22"

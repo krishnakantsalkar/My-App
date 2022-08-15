@@ -73,6 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     if (!isPlatformBrowser(this.platformId)) {
     } else {
+      console.log('called');
       let mediaQ = window.matchMedia('(max-width: 600px)');
 
       window.onscroll = function () {
@@ -90,8 +91,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             '0.2s';
           document.getElementById('top-panel').style.transitionTimingFunction =
             'ease-in';
+          document.getElementById('top-panel').style.boxShadow =
+            '0px 0px 35px black';
         } else {
           document.getElementById('top-panel').style.padding = '20px 10px 20px';
+          document.getElementById('top-panel').style.boxShadow = 'none';
         }
       }
 
@@ -103,6 +107,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           if (document.getElementById('top-panel')) {
             document.getElementById('top-panel').style.padding =
               '12px 10px 12px';
+
+            document.getElementById('top-panel').style.boxShadow =
+              '0px 0px 35px black';
           }
         } else if (
           (mediaQuery.matches && document.body.scrollTop < 50) ||
@@ -111,6 +118,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           if (document.getElementById('top-panel')) {
             document.getElementById('top-panel').style.padding =
               '20px 10px 20px';
+            document.getElementById('top-panel').style.boxShadow = 'none';
           }
         }
       }

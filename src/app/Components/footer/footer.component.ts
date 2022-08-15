@@ -77,8 +77,7 @@ export class FooterComponent implements OnInit {
 
   ngAfterViewInit() {
     if (window && !this.siteVisitorCalled && !this.siteVisitors) {
-      window.addEventListener('scroll', () => {
-        console.log('catching scroll');
+      window?.addEventListener('scroll', () => {
         this.scrollDetection();
       });
     }
@@ -179,8 +178,6 @@ export class FooterComponent implements OnInit {
     ) {
       this.siteVisitorCalled = true;
       this.getSiteVisitor();
-
-      window?.removeAllListeners('scroll');
     } else {
       return;
     }

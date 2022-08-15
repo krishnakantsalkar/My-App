@@ -1,6 +1,6 @@
 .content-new {
   padding-top: 40px;
-  padding-bottom: 60px;
+  /* padding-bottom: 20px; */
   z-index: 1;
 }
 
@@ -47,20 +47,25 @@
   } */
 
 div.footer {
-  position: fixed;
-  bottom: 0;
+  /* position: fixed;
+  bottom: 0; */
   width: 100%;
   background-color: rgb(37, 38, 39);
   height: 55px;
 
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 div.footer-text {
   display: flex;
   justify-content: center;
-  /* text-align: center; */
-  padding-top: 17px;
+  /* padding-top: 17px; */
+  height: 100%;
+  align-items: center;
+}
+
+.footer-text h6 {
+  margin-bottom: 0 !important;
 }
 div.footer h6,
 div.footer i {
@@ -284,6 +289,12 @@ div.shortbio h4 span {
 /* ,.sidenavL .logout_icon:hover  */ {
   color: orangered !important;
   cursor: pointer;
+}
+
+.privacyPolicy h6 {
+  margin-bottom: 0 !important;
+  padding: 20px 0;
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

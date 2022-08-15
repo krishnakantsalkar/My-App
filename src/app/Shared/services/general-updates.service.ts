@@ -9,27 +9,24 @@ export class GeneralUpdatesService {
 
   getUpdates(currentPage, sortBy?, dateStart?, dateEnd?) {
     return this.http.get(
-      `https://my-app-backend-node.vercel.app/api/updates/getAllUpdates?currentPage=${currentPage}&sortBy=${sortBy}&dateStart=${dateStart}&dateEnd=${dateEnd}`
+      `http://localhost:3000/api/updates/getAllUpdates?currentPage=${currentPage}&sortBy=${sortBy}&dateStart=${dateStart}&dateEnd=${dateEnd}`
     );
   }
 
   postUpdate(data) {
-    return this.http.post(
-      `https://my-app-backend-node.vercel.app/api/updates/postUpdate`,
-      data
-    );
+    return this.http.post(`http://localhost:3000/api/updates/postUpdate`, data);
   }
 
   editUpdate(data, id) {
     return this.http.post(
-      `https://my-app-backend-node.vercel.app/api/updates/editUpdate/${id}`,
+      `http://localhost:3000/api/updates/editUpdate/${id}`,
       data
     );
   }
 
   deleteUpdate(id) {
     return this.http.post(
-      `https://my-app-backend-node.vercel.app/api/updates/deleteUpdate/${id}`,
+      `http://localhost:3000/api/updates/deleteUpdate/${id}`,
       {}
     );
   }

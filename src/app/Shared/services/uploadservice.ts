@@ -5,8 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class uploadservices {
   public header: HttpHeaders;
 
-  public uploadApi: string =
-    'https://my-app-backend-node.vercel.app/api/file/fileUpload';
+  public uploadApi: string = 'http://localhost:3000/api/file/fileUpload';
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders({ 'Content-Type': 'application/json' });
   }

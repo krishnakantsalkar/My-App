@@ -5,8 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({ providedIn: 'root' })
 export class noteService {
   public header: HttpHeaders;
-  public clientIpApi: string =
-    'https://my-app-backend-node.vercel.app/api/users/getMyIp';
+  public clientIpApi: string = 'http://localhost:3000/api/users/getMyIp';
 
   constructor(private http: HttpClient, private cookies: CookieService) {
     this.header = new HttpHeaders({
@@ -19,50 +18,50 @@ export class noteService {
 
   getNotes(profileId) {
     return this.http.get<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/getNotes/${profileId}`
+      `http://localhost:3000/api/notes/getNotes/${profileId}`
     );
   }
   postNote(data) {
     return this.http.post<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/postNote`,
+      `http://localhost:3000/api/notes/postNote`,
       data
     );
   }
   editNote(id, data) {
     return this.http.put<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/editNote/${id}`,
+      `http://localhost:3000/api/notes/editNote/${id}`,
       data,
       { headers: this.header }
     );
   }
   deleteNote(id) {
     return this.http.delete<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/deleteNote/${id}`,
+      `http://localhost:3000/api/notes/deleteNote/${id}`,
       { headers: this.header }
     );
   }
 
   getTodo(profileId) {
     return this.http.get<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/getTodo/${profileId}`
+      `http://localhost:3000/api/notes/getTodo/${profileId}`
     );
   }
   postTodo(data) {
     return this.http.post<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/postTodo`,
+      `http://localhost:3000/api/notes/postTodo`,
       data
     );
   }
   editTodo(id, data) {
     return this.http.put<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/editTodo/${id}`,
+      `http://localhost:3000/api/notes/editTodo/${id}`,
       data,
       { headers: this.header }
     );
   }
   deleteTodo(id) {
     return this.http.delete<any>(
-      `https://my-app-backend-node.vercel.app/api/notes/deleteTodo/${id}`,
+      `http://localhost:3000/api/notes/deleteTodo/${id}`,
       { headers: this.header }
     );
   }

@@ -9,14 +9,12 @@ export class SnippetsService {
   constructor(private http: HttpClient, private uiService: UiService) {}
 
   getSnippets() {
-    return this.http.get<any>(
-      `https://my-app-backend-node.vercel.app/api/snippets/allSnippets`
-    );
+    return this.http.get<any>(`http://localhost:3000/api/snippets/allSnippets`);
   }
 
   deleteSnippet(id: string) {
     return this.http.delete<any>(
-      `https://my-app-backend-node.vercel.app/api/snippets/deleteSnippet/${id}`
+      `http://localhost:3000/api/snippets/deleteSnippet/${id}`
     );
   }
 }

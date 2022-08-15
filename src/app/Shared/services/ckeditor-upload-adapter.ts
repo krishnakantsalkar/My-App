@@ -35,11 +35,7 @@ export class MyUploadAdapter {
     // a POST request with JSON as a data structure but your configuration
     // could be different.
 
-    xhr.open(
-      'POST',
-      'https://my-app-backend-node.vercel.app/api/blog/blogImage',
-      true
-    );
+    xhr.open('POST', 'http://localhost:3000/api/blog/blogImage', true);
     xhr.responseType = 'json';
     xhr.setRequestHeader('x-auth-token', this.userToken);
   }

@@ -9,36 +9,29 @@ import { Iforgot } from '../model/forgotPass';
 
 @Injectable({ providedIn: 'root' })
 export class userloginservices {
-  public loginAPI: string =
-    'https://my-app-backend-node.vercel.app/api/users/login';
+  public loginAPI: string = 'http://localhost:3000/api/users/login';
 
-  public profileAPI: string =
-    'https://my-app-backend-node.vercel.app/api/users/getUsers/';
+  public profileAPI: string = 'http://localhost:3000/api/users/getUsers/';
 
-  public profilePicAPI: string =
-    'https://my-app-backend-node.vercel.app/api/users/editProfImg/';
+  public profilePicAPI: string = 'http://localhost:3000/api/users/editProfImg/';
 
-  public forgotPassAPI: string =
-    'https://my-app-backend-node.vercel.app/api/reset/resetMailer';
+  public forgotPassAPI: string = 'http://localhost:3000/api/reset/resetMailer';
 
   public resetPassAPI: string =
-    'https://my-app-backend-node.vercel.app/api/reset/forgotPassword/';
+    'http://localhost:3000/api/reset/forgotPassword/';
 
   public verifyCaptcha: string =
-    'https://my-app-backend-node.vercel.app/api/users/verifyCaptcha';
+    'http://localhost:3000/api/users/verifyCaptcha';
 
-  public verifyAuthApi: string =
-    'https://my-app-backend-node.vercel.app/api/users/verifyAuth';
+  public verifyAuthApi: string = 'http://localhost:3000/api/users/verifyAuth';
 
   public header: HttpHeaders;
   public loggedIn: BehaviorSubject<any>;
   public currentUsers: Observable<any>;
 
-  logSiteVisitorAPI: string =
-    'https://my-app-backend-node.vercel.app/api/users/logSiteVisitor';
+  logSiteVisitorAPI: string = 'http://localhost:3000/api/users/logSiteVisitor';
 
-  getSiteVisitorAPI: string =
-    'https://my-app-backend-node.vercel.app/api/users/getSiteVisitor';
+  getSiteVisitorAPI: string = 'http://localhost:3000/api/users/getSiteVisitor';
   constructor(
     private http: HttpClient,
     private router: Router,

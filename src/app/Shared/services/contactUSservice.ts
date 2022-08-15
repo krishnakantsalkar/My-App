@@ -6,8 +6,7 @@ import { IcontactUs } from '../model/contactUsmodel';
 @Injectable({ providedIn: 'root' })
 export class contactService {
   public header: HttpHeaders;
-  public contactAPI: string =
-    'https://my-app-backend-node.vercel.app/api/contact/contactUs';
+  public contactAPI: string = 'http://localhost:3000/api/contact/contactUs';
   constructor(private http: HttpClient) {
     {
       this.header = new HttpHeaders({ 'Content-Type': 'application/json' });

@@ -11,37 +11,28 @@ import { CookieService } from 'ngx-cookie-service';
 export class blogpostservice {
   public header: HttpHeaders;
   public blogImgHeader: HttpHeaders;
-  public blogAPI: string =
-    'https://my-app-backend-node.vercel.app/api/blog/Blog/';
+  public blogAPI: string = 'http://localhost:3000/api/blog/Blog/';
 
-  public testPage: string =
-    'https://my-app-backend-node.vercel.app/api/blog/Blog/page/';
+  public testPage: string = 'http://localhost:3000/api/blog/Blog/page/';
 
-  public addBlogApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/AddBlog';
+  public addBlogApi: string = 'http://localhost:3000/api/blog/AddBlog';
 
-  public uploadApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/blogImage';
+  public uploadApi: string = 'http://localhost:3000/api/blog/blogImage';
 
-  public updateBlogApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/updateBlog/';
+  public updateBlogApi: string = 'http://localhost:3000/api/blog/updateBlog/';
 
-  public deleteBlogApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/deleteBlog/';
+  public deleteBlogApi: string = 'http://localhost:3000/api/blog/deleteBlog/';
 
   public telegrampostApi: string = ''; // removed bot token for github upload
 
-  public searchApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/search';
+  public searchApi: string = 'http://localhost:3000/api/blog/search';
 
-  public postViewApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/postView/';
+  public postViewApi: string = 'http://localhost:3000/api/blog/postView/';
 
   public newsLetterApi: string =
-    'https://my-app-backend-node.vercel.app/api/subscribe/newsLetterSub/';
+    'http://localhost:3000/api/subscribe/newsLetterSub/';
 
-  public searchByTagApi: string =
-    'https://my-app-backend-node.vercel.app/api/blog/searchByTag';
+  public searchByTagApi: string = 'http://localhost:3000/api/blog/searchByTag';
 
   constructor(
     private http: HttpClient,

@@ -44,30 +44,6 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
       });
 
       return next.handle(tokenizedReq);
-      // .pipe(
-      //   map((event: HttpEvent<any>) => {
-      //     console.log(event);
-
-      //     if (event instanceof HttpErrorResponse) {
-      //       if (
-      //         event.status == 403 &&
-      //         (event.message == 'token expired/invalid!' ||
-      //           event.message == 'user not found!')
-      //       ) {
-      //         console.log(event);
-
-      //         this.uiService.showSnackbar(
-      //           'Auth Invalid, please login again',
-      //           null,
-      //           3500
-      //         );
-
-      //         this.logonServices.Logout();
-      //       }
-      //     }
-      //     return event;
-      //   })
-      // );
     }
   }
 }

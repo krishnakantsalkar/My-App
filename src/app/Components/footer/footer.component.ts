@@ -13,7 +13,7 @@ import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -34,6 +34,7 @@ export class FooterComponent implements OnInit {
   siteVisitors: number;
   countsInterval: number;
   visitorCount: number = 0;
+  siteVisitorCalled: boolean = false;
   constructor(
     private loginservice: userloginservices,
     private router: Router,
@@ -72,8 +73,15 @@ export class FooterComponent implements OnInit {
     this.newsLetterForm = this.fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
     });
+  }
 
-    this.getSiteVisitor();
+  ngAfterViewInit() {
+    if (window && !this.siteVisitorCalled && !this.siteVisitors) {
+      window.addEventListener('scroll', () => {
+        console.log('catching scroll');
+        this.scrollDetection();
+      });
+    }
   }
 
   getUserId() {
@@ -162,5 +170,19 @@ export class FooterComponent implements OnInit {
     });
   }
 
-  counter() {}
+  scrollDetection() {
+    if (
+      (document?.body?.scrollTop > 300 ||
+        document?.documentElement?.scrollTop > 300) &&
+      !this.visitorCount &&
+      !this.siteVisitorCalled
+    ) {
+      this.siteVisitorCalled = true;
+      this.getSiteVisitor();
+
+      window?.removeAllListeners('scroll');
+    } else {
+      return;
+    }
+  }
 }

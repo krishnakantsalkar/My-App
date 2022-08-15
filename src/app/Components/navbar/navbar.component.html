@@ -234,7 +234,8 @@
             *ngIf="window.innerWidth > 1600"
             class="nav_date nav-link"
             [ngStyle]="{
-              color: brightness ? '#818181' : 'rgb(129,129,129)'
+              'background-color': brightness ? '#ff450021' : '#ee82d521',
+              color: brightness ? 'orangered' : 'violet'
             }"
           >
             {{ liveDate | date: "dd MMM | hh:mm a" }}

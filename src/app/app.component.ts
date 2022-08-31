@@ -39,7 +39,7 @@ export class AppComponent {
     this.meta.addTags([
       { property: 'og:locale', content: 'en_US' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'Blog' },
+      { property: 'og:title', content: 'Home' },
       { property: 'og:url', content: 'https://krishnakantsalkar.in/home' },
       { property: 'og:site_name', content: 'https://krishnakantsalkar.in' },
       {

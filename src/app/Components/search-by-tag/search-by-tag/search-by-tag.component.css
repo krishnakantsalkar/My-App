@@ -26,8 +26,29 @@
   max-height: 200px;
   max-width: 100%;
   width: 100%;
+  border-radius: 10px;
 }
 .skeleton,
 .noData {
   margin-top: 40px;
+}
+
+.tag_post_details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tag_post_details span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: auto 10px;
+}
+
+@media (max-width: 767px) {
+  .tag_post_details {
+    margin: 30px auto;
+  }
 }

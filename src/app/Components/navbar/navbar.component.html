@@ -81,21 +81,16 @@
               >Blog</a
             >
           </li>
-          <li class="nav-item">
+          <li class="dropdown">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
-              id="contentsDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+              [matMenuTriggerFor]="contentsMenu"
+              (click)="stopPropagation($event)"
             >
               Contents
             </a>
-            <div
-              class="dropdown-menu"
-              aria-labelledby="contentsDropdown"
+            <mat-menu
+              #contentsMenu="matMenu"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(223, 223, 223)'
@@ -105,6 +100,7 @@
               style="transition: 0.4s ease-in-out"
             >
               <a
+                mat-menu-item
                 class="nav-link"
                 routerLink="/movies&tv"
                 [routerLinkActive]="activeCss"
@@ -112,30 +108,29 @@
               >
 
               <a
+                mat-menu-item
                 class="nav-link"
                 routerLink="/covid-news/covid/1"
                 [routerLinkActive]="activeCss"
                 >Covid-19</a
               >
               <a
+                mat-menu-item
                 class="nav-link adjust_nav_link"
                 href="https://downloads.krishnakantsalkar.in"
                 target="_blank"
                 >Downloads
-                <mat-icon style="font-size: 18px" class="adjust_nav_link--icon"
-                  >open_in_new</mat-icon
-                ></a
+                <mat-icon style="font-size: 18px">open_in_new</mat-icon></a
               >
               <a
+                mat-menu-item
                 class="nav-link adjust_nav_link"
                 href="http://snippets.krishnakantsalkar.in"
                 target="_blank"
                 >PasteBin
-                <mat-icon class="adjust_nav_link--icon" style="font-size: 18px"
-                  >open_in_new</mat-icon
-                ></a
+                <mat-icon style="font-size: 18px">open_in_new</mat-icon></a
               >
-            </div>
+            </mat-menu>
           </li>
 
           <li class="nav-item" *ngIf="checkStatus">
@@ -179,21 +174,16 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/disclaimer">disclaimer</a>
           </li> -->
-          <li class="nav-item dropdown">
+          <li class="nav-item">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
-              id="legalDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+              [matMenuTriggerFor]="legalMenu"
+              (click)="stopPropagation($event)"
             >
               Legal
             </a>
-            <div
-              class="dropdown-menu"
-              aria-labelledby="legalDropdown"
+            <mat-menu
+              #legalMenu="matMenu"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(223, 223, 223)'
@@ -203,36 +193,34 @@
               style="transition: 0.4s ease-in-out"
             >
               <a
-                class="dropdown-item"
+                mat-menu-item
+                class="nav-link"
                 routerLink="/privacy"
                 [routerLinkActive]="activeCss"
                 >Privacy Policy</a
               >
               <a
-                class="dropdown-item"
+                mat-menu-item
+                class="nav-link"
                 routerLink="/disclaimer"
                 [routerLinkActive]="activeCss"
                 >Disclaimer</a
               >
-            </div>
+            </mat-menu>
           </li>
-          <li class="modeLD">
-            <a (click)="mode()"
-              ><mat-icon
-                class="icon_align"
-                *ngIf="brightness; else notBrightness"
+          <li class="modeLD nav-item">
+            <a (click)="mode()" class="nav-item"
+              ><mat-icon *ngIf="brightness; else notBrightness"
                 >dark_mode</mat-icon
               >
               <ng-template #notBrightness
-                ><mat-icon class="icon_align"
-                  >brightness_7</mat-icon
-                ></ng-template
+                ><mat-icon>brightness_7</mat-icon></ng-template
               ></a
             >
           </li>
           <li
-            *ngIf="window.innerWidth > 1600"
-            class="nav_date nav-link"
+            *ngIf="window.innerWidth > 1300"
+            class="nav_date"
             [ngStyle]="{
               'background-color': brightness ? '#ff450021' : '#ee82d521',
               color: brightness ? 'orangered' : 'violet'
@@ -248,11 +236,9 @@
               color: brightness ? '#818181' : 'rgb(129,129,129)'
             }"
           >
-            <a>
+            <a (click)="logout()" class="nav-item">
               <!-- class="clickable nav-link" -->
-              <mat-icon style="cursor: pointer" (click)="logout()"
-                >logout</mat-icon
-              ></a
+              <mat-icon style="cursor: pointer">logout</mat-icon></a
             >
           </li>
         </ul>

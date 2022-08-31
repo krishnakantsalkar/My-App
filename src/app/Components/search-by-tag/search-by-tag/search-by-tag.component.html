@@ -48,14 +48,34 @@
             />
           </div>
           <div class="col-sm-8">
-            <h4>
-              <a
+            <div class="tag_post_details">
+              <h4
                 [ngStyle]="{
                   color: brightness ? 'orangered' : 'violet'
                 }"
-                >#{{ blog.postNumber }}. {{ blog.postTitle }}</a
               >
-            </h4>
+                #{{ blog.postNumber }}. {{ blog.postTitle }}
+              </h4>
+              <div class="d-inline-flex justify-content-center">
+                <span>
+                  <i
+                    class="fas fa-clock"
+                    [ngStyle]="{
+                      color: brightness ? 'orangered' : 'violet'
+                    }"
+                  ></i>
+                  {{ blog.postDate | date: "MMM dd, YYYY" }}
+                </span>
+                <span
+                  [ngStyle]="{
+                    color: brightness ? 'orangered' : 'violet'
+                  }"
+                >
+                  <small class="material-icons mx-1"> visibility </small
+                  >{{ blog.userViews.length }}</span
+                >
+              </div>
+            </div>
           </div>
         </div>
       </mat-card>

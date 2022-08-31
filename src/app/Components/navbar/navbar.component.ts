@@ -184,4 +184,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       return;
     }
   }
+
+  stopPropagation(e) {
+    e.stopPropagation();
+  }
 }

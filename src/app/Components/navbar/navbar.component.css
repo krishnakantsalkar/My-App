@@ -52,9 +52,9 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
-.modeLD {
+/* .modeLD {
   margin-top: 5px;
-}
+} */
 
 #navbarNav {
   position: absolute;
@@ -164,6 +164,7 @@ span.two {
   align-items: center;
   margin-top: 0px;
   margin-left: 10px;
+  padding: 5px 10px;
 }
 
 .adjust_nav_link {
@@ -174,6 +175,18 @@ span.two {
 .adjust_nav_link--icon {
   position: relative;
   top: 6px;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link:hover {
+  color: white !important;
+  font-weight: 500 !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -190,6 +203,10 @@ span.two {
   }
 
   .logout_icon {
+    justify-content: flex-start;
+  }
+
+  .nav-item {
     justify-content: flex-start;
   }
 }

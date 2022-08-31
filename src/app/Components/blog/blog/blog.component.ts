@@ -130,6 +130,10 @@ export class BlogComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: any[] = [];
 
+  mostViewed = [];
+
+  recommendedPosts = [28, 27, 26, 23];
+  tagsList = [];
   constructor(
     private blogservice: blogpostservice,
     private fb: UntypedFormBuilder,
@@ -264,6 +268,41 @@ export class BlogComponent implements OnInit {
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.allData = item;
+
+      this.mostViewed = this.allData.sort((a, b) => {
+        if (a.userViews.length > b.userViews.length) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+
+      this.allData = this.allData.map((item) => {
+        if (this.recommendedPosts.includes(item.postNumber)) {
+          return { ...item, recommended: true };
+        } else {
+          delete item['recommended'];
+          return item;
+        }
+      });
+
+      this.getTags();
+    });
+  }
+
+  getTags() {
+    this.tagsList = [];
+
+    this.allData.forEach((item) => {
+      item.tags.forEach((tag) => {
+        let index = this.tagsList.findIndex((x) => {
+          return x == tag;
+        });
+
+        if (index == -1) {
+          this.tagsList.push(tag);
+        }
+      });
     });
   }
 

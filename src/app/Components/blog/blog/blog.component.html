@@ -315,6 +315,7 @@
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1000"
+            data-aos-once="true"
             [ngStyle]="{
               'background-color': brightness
                 ? 'rgb(223, 223, 223)'
@@ -678,102 +679,108 @@
         <div class="row">
           <div class="blogdata col-sm-8" *ngIf="data">
             <ng-container *ngFor="let d of data; let i = index">
-              <div class="row">
-                <div class="col-2 post_actions" *ngIf="window.innerWidth > 600">
-                  <button
-                    class="action_icon"
-                    *ngIf="checkUser"
-                    tabindex="-1"
-                    mat-mini-fab
-                    data-aos="fade-left"
-                    data-aos-delay="300"
-                    data-aos-duration="1000"
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'rgb(245, 245, 245)'
-                        : ' rgb(41, 42, 45)'
-                    }"
-                  >
-                    <mat-icon
+              <div class="row blog-item">
+                <div class="col-2" *ngIf="window.innerWidth > 600">
+                  <div class="post_actions">
+                    <button
+                      class="action_icon"
+                      *ngIf="checkUser"
+                      tabindex="-1"
+                      mat-mini-fab
+                      data-aos="fade-left"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
+                      data-aos-once="true"
                       [ngStyle]="{
-                        color: brightness ? 'orangered' : 'violet'
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)'
                       }"
-                      (click)="clickEditPost(i)"
-                      matTooltipPosition="above"
-                      matTooltip="edit post"
-                      >edit</mat-icon
                     >
-                  </button>
-                  <button
-                    class="action_icon"
-                    *ngIf="checkUser"
-                    tabindex="-1"
-                    mat-mini-fab
-                    data-aos="fade-left"
-                    data-aos-delay="300"
-                    data-aos-duration="1000"
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'rgb(245, 245, 245)'
-                        : ' rgb(41, 42, 45)'
-                    }"
-                  >
-                    <mat-icon
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="clickEditPost(i)"
+                        matTooltipPosition="above"
+                        matTooltip="edit post"
+                        >edit</mat-icon
+                      >
+                    </button>
+                    <button
+                      class="action_icon"
+                      *ngIf="checkUser"
+                      tabindex="-1"
+                      mat-mini-fab
+                      data-aos="fade-left"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
+                      data-aos-once="true"
                       [ngStyle]="{
-                        color: brightness ? 'orangered' : 'violet'
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)'
                       }"
-                      (click)="deletePost(i)"
-                      matTooltipPosition="above"
-                      matTooltip="delete post"
-                      >delete_forever</mat-icon
                     >
-                  </button>
-                  <button
-                    class="action_icon"
-                    mat-mini-fab
-                    tabindex="-1"
-                    data-aos="fade-left"
-                    data-aos-delay="300"
-                    data-aos-duration="1000"
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'rgb(245, 245, 245)'
-                        : ' rgb(41, 42, 45)'
-                    }"
-                  >
-                    <mat-icon
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="deletePost(i)"
+                        matTooltipPosition="above"
+                        matTooltip="delete post"
+                        >delete_forever</mat-icon
+                      >
+                    </button>
+                    <button
+                      class="action_icon"
+                      mat-mini-fab
+                      tabindex="-1"
+                      data-aos="fade-left"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
+                      data-aos-once="true"
                       [ngStyle]="{
-                        color: brightness ? 'orangered' : 'violet'
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)'
                       }"
-                      (click)="copyPost(i)"
-                      matTooltipPosition="above"
-                      matTooltip="copy post url"
-                      >content_copy</mat-icon
                     >
-                  </button>
-                  <button
-                    class="action_icon"
-                    mat-mini-fab
-                    tabindex="-1"
-                    data-aos="fade-left"
-                    data-aos-delay="300"
-                    data-aos-duration="1000"
-                    [ngStyle]="{
-                      'background-color': brightness
-                        ? 'rgb(245, 245, 245)'
-                        : ' rgb(41, 42, 45)'
-                    }"
-                  >
-                    <mat-icon
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="copyPost(i)"
+                        matTooltipPosition="above"
+                        matTooltip="copy post url"
+                        >content_copy</mat-icon
+                      >
+                    </button>
+                    <button
+                      class="action_icon"
+                      mat-mini-fab
+                      tabindex="-1"
+                      data-aos="fade-left"
+                      data-aos-delay="300"
+                      data-aos-duration="1000"
+                      data-aos-once="true"
                       [ngStyle]="{
-                        color: brightness ? 'orangered' : 'violet'
+                        'background-color': brightness
+                          ? 'rgb(245, 245, 245)'
+                          : ' rgb(41, 42, 45)'
                       }"
-                      (click)="sharePost(i)"
-                      matTooltipPosition="above"
-                      matTooltip="share post"
-                      >share</mat-icon
                     >
-                  </button>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        (click)="sharePost(i)"
+                        matTooltipPosition="above"
+                        matTooltip="share post"
+                        >share</mat-icon
+                      >
+                    </button>
+                  </div>
                 </div>
                 <div
                   class=""
@@ -788,6 +795,7 @@
                         data-aos="fade-up"
                         data-aos-delay="300"
                         data-aos-duration="1000"
+                        data-aos-once="true"
                         [ngStyle]="{
                           'background-color': brightness
                             ? 'rgb(223, 223, 223)'
@@ -807,6 +815,7 @@
                                 data-aos="fade-right"
                                 data-aos-delay="300"
                                 data-aos-duration="1000"
+                                data-aos-once="true"
                                 *ngIf="d.postImage"
                                 [ngStyle]="{
                                   'border-color': brightness
@@ -829,6 +838,7 @@
                           data-aos="fade-up"
                           data-aos-delay="300"
                           data-aos-duration="1000"
+                          data-aos-once="true"
                           [ngStyle]="{
                             'border-color': brightness
                               ? 'rgb(255, 77, 77)'
@@ -1050,7 +1060,6 @@
                         </mat-card-content>
                       </mat-card>
                     </div>
-                    <br />
                   </div>
                 </div>
               </div>
@@ -1059,160 +1068,176 @@
 
           <!-- other column for info -->
           <div class="col-sm-4" *ngIf="data">
-            <mat-card
-              *ngIf="data"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(35, 36, 38)',
-                color: brightness ? 'black' : 'white'
-              }"
-            >
-              <!-- recommended posts -->
-              <div class="recommended">
-                <mat-card-title>
-                  <h5>Recommended posts</h5>
-                </mat-card-title>
-                <mat-card-content>
-                  <div class="recommendedPosts" *ngFor="let d of allData">
-                    <h5 *ngIf="d.recommended">
-                      <a
-                        [ngStyle]="{
-                          color: brightness ? 'red' : 'violet'
-                        }"
-                        routerLink="/blog/{{ d.postNumber }}/{{
-                          d.postTitle
-                        }}/{{ d._id }}"
-                        >#{{ d.postNumber }}: {{ d.postTitle }}</a
-                      >
-                    </h5>
-                  </div>
-                </mat-card-content>
-              </div>
-            </mat-card>
-            <br />
+            <div class="right_blog_content">
+              <mat-card
+                *ngIf="data"
+                data-aos="zoom-in"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                [ngStyle]="{
+                  'background-color': brightness
+                    ? 'rgb(223, 223, 223)'
+                    : ' rgb(35, 36, 38)',
+                  color: brightness ? 'black' : 'white'
+                }"
+              >
+                <!-- recommended posts -->
+                <div class="recommended">
+                  <mat-card-title>
+                    <h5>Recommended posts</h5>
+                  </mat-card-title>
+                  <mat-card-content>
+                    <div class="recommendedPosts" *ngFor="let d of allData">
+                      <h5 *ngIf="d.recommended">
+                        <a
+                          [ngStyle]="{
+                            color: brightness ? 'red' : 'violet'
+                          }"
+                          routerLink="/blog/{{ d.postNumber }}/{{
+                            d.postTitle
+                          }}/{{ d._id }}"
+                          >{{ d.postNumber }}: {{ d.postTitle }}</a
+                        >
+                      </h5>
+                    </div>
+                  </mat-card-content>
+                </div>
+              </mat-card>
+              <br />
 
-            <mat-card
-              *ngIf="data"
-              data-aos="slide-up"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(35, 36, 38)',
-                color: brightness ? 'black' : 'white'
-              }"
-            >
-              <!-- most viewed posts -->
-              <div class="mostViewed">
-                <mat-card-title>
-                  <h5>Most Viewed</h5>
-                </mat-card-title>
+              <mat-card
+                *ngIf="data"
+                data-aos="slide-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                [ngStyle]="{
+                  'background-color': brightness
+                    ? 'rgb(223, 223, 223)'
+                    : ' rgb(35, 36, 38)',
+                  color: brightness ? 'black' : 'white'
+                }"
+              >
+                <!-- most viewed posts -->
+                <div class="mostViewed">
+                  <mat-card-title>
+                    <h5>Most Viewed</h5>
+                  </mat-card-title>
+                  <mat-card-content>
+                    <div
+                      class="mostViewedPosts"
+                      *ngFor="let d of mostViewed | slice: 0:5"
+                    >
+                      <h5 *ngIf="d.userViews.length >= 2">
+                        <a
+                          [ngStyle]="{
+                            color: brightness ? 'red' : 'violet'
+                          }"
+                          routerLink="/blog/{{ d.postNumber }}/{{
+                            d.postTitle
+                          }}/{{ d._id }}"
+                          >{{ d.postNumber }}: {{ d.postTitle }}</a
+                        >
+                      </h5>
+                    </div>
+                  </mat-card-content>
+                </div>
+              </mat-card>
+              <br />
+              <mat-card
+                *ngIf="data"
+                class="hashtags"
+                data-aos="slide-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                [ngStyle]="{
+                  'background-color': brightness
+                    ? 'rgb(223, 223, 223)'
+                    : ' rgb(35, 36, 38)',
+                  color: brightness ? 'red' : 'violet'
+                }"
+              >
+                <!-- some hashtags to search blogposts -->
                 <mat-card-content>
-                  <div
-                    class="mostViewedPosts"
-                    *ngFor="let d of allData | slice: 0:5"
-                  >
-                    <h5 *ngIf="d.userViews.length >= 2">
-                      <a
-                        [ngStyle]="{
-                          color: brightness ? 'red' : 'violet'
-                        }"
-                        routerLink="/blog/{{ d.postNumber }}/{{
-                          d.postTitle
-                        }}/{{ d._id }}"
-                        >#{{ d.postNumber }}: {{ d.postTitle }}</a
+                  <p>
+                    <strong>
+                      <!-- <span (click)="Search('pixel experience')">
+                        #pixelexperience</span
                       >
-                    </h5>
-                  </div>
-                </mat-card-content>
-              </div>
-            </mat-card>
-            <br />
-            <mat-card
-              *ngIf="data"
-              class="hashtags"
-              data-aos="slide-up"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(35, 36, 38)',
-                color: brightness ? 'red' : 'violet'
-              }"
-            >
-              <!-- some hashtags to search blogposts -->
-              <mat-card-content>
-                <p>
-                  <strong>
-                    <span (click)="Search('pixel experience')">
-                      #pixelexperience</span
-                    >
-                    &nbsp;
-                    <span (click)="Search('android')">#android</span>&nbsp;
-                    <span (click)="Search('corvus')">#corvus</span>&nbsp;
-                    <span (click)="Search('heroku')">#heroku</span>&nbsp;
-                    <span (click)="Search('python')">#python</span>&nbsp;
-                    <span (click)="Search('pixys')">#pixys</span>&nbsp;
-                    <span (click)="Search('angular')">#angular</span>&nbsp;
-                    <span (click)="Search('node')">#node</span>&nbsp;
-                    <span (click)="Search('counter strike')">#csgo</span>&nbsp;
-                    <span (click)="Search('markdown')">#markdown</span>&nbsp;
+                      &nbsp;
+                      <span (click)="Search('android')">#android</span>&nbsp;
+                      <span (click)="Search('corvus')">#corvus</span>&nbsp;
+                      <span (click)="Search('heroku')">#heroku</span>&nbsp;
+                      <span (click)="Search('python')">#python</span>&nbsp;
+                      <span (click)="Search('pixys')">#pixys</span>&nbsp;
+                      <span (click)="Search('angular')">#angular</span>&nbsp;
+                      <span (click)="Search('node')">#node</span>&nbsp;
+                      <span (click)="Search('counter strike')">#csgo</span
+                      >&nbsp;
+                      <span (click)="Search('markdown')">#markdown</span>&nbsp;
 
-                    <span routerLink="/movies&tv">#movieDB</span>&nbsp;
-                  </strong>
-                </p>
-              </mat-card-content>
-            </mat-card>
-            <br />
-            <mat-card
-              *ngIf="data"
-              data-aos="slide-up"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-              [ngStyle]="{
-                'background-color': brightness
-                  ? 'rgb(223, 223, 223)'
-                  : ' rgb(35, 36, 38)',
-                color: brightness ? 'red' : 'violet'
-              }"
-            >
-              <!-- one more search field -->
-              <mat-card-content>
-                <form>
-                  <div class="extraSearch">
-                    <label for="extraSearchBar">
-                      <strong> Search:</strong>
-                    </label>
-                    <input
-                      name="extraSearchBar"
-                      type="text"
-                      id="extraSearchBar"
-                      placeholder=""
-                      class="form-control"
-                      #extraInput
-                    />
-                    <button
-                      mat-raised-button
-                      class="btn-success"
-                      id="searchsubmit1"
-                      type="submit"
-                    >
-                      <i
-                        class="fas fa-check-square"
-                        (click)="Search(extraInput.value)"
-                      ></i>
-                    </button>
-                  </div>
-                </form>
-              </mat-card-content>
-            </mat-card>
-            <br />
+                      <span routerLink="/movies&tv">#movieDB</span>&nbsp; -->
+
+                      <ng-container *ngFor="let tag of tagsList">
+                        <span
+                          [ngClass]="brightness ? 'blog_tagsL' : 'blog_tagsD'"
+                          [routerLink]="['/searchTag']"
+                          [queryParams]="{ search: tag }"
+                          >#{{ tag }}</span
+                        >&nbsp;
+                      </ng-container>
+                    </strong>
+                  </p>
+                </mat-card-content>
+              </mat-card>
+              <br />
+              <!-- <mat-card
+                *ngIf="data"
+                data-aos="slide-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                data-aos-once="true"
+                [ngStyle]="{
+                  'background-color': brightness
+                    ? 'rgb(223, 223, 223)'
+                    : ' rgb(35, 36, 38)',
+                  color: brightness ? 'red' : 'violet'
+                }"
+              >
+                 one more search field 
+                <mat-card-content>
+                  <form>
+                    <div class="extraSearch">
+                      <label for="extraSearchBar">
+                        <strong> Search:</strong>
+                      </label>
+                      <input
+                        name="extraSearchBar"
+                        type="text"
+                        id="extraSearchBar"
+                        placeholder=""
+                        class="form-control"
+                        #extraInput
+                      />
+                      <button
+                        mat-raised-button
+                        class="btn-success"
+                        id="searchsubmit1"
+                        type="submit"
+                      >
+                        <i
+                          class="fas fa-check-square"
+                          (click)="Search(extraInput.value)"
+                        ></i>
+                      </button>
+                    </div>
+                  </form>
+                </mat-card-content>
+              </mat-card> -->
+              <br />
+            </div>
           </div>
         </div>
 

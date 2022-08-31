@@ -512,6 +512,32 @@ div.nextprev button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 80px;
+}
+
+.blog-item {
+  margin-bottom: 70px;
+}
+
+.blog_tagsL {
+  background-color: rgba(255, 69, 0, 0.13);
+  color: orangered;
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.blog_tagsD {
+  background-color: rgba(238, 130, 213, 0.13);
+  color: violet;
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .post_actions button {
@@ -524,6 +550,11 @@ div.nextprev button {
 
 .action_icon:hover {
   box-shadow: none !important;
+}
+
+.right_blog_content {
+  position: sticky;
+  top: 80px;
 }
 
 /* media query for mobile */

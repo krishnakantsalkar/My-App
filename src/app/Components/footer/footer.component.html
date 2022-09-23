@@ -20,7 +20,7 @@
       }"
     >
       <!-- <i class="fas fa-angle-up" aria-hidden="true"></i> -->
-      <mat-icon>call_merge</mat-icon>
+      <mat-icon>keyboard_arrow_up</mat-icon>
     </button>
 
     <!-- shaorangered footer template -->
@@ -51,10 +51,15 @@
           >
             <div class="col-sm-3">
               <div class="shortbio">
-                <h4>
+                <h4
+                  [ngClass]="
+                    brightness
+                      ? 'theme_highlight_light'
+                      : 'theme_highlight_dark'
+                  "
+                >
                   <span>TheArsonist~ </span>
                 </h4>
-                <p>It'll Blow you Away!</p>
                 <p>
                   Hey there, Welcome to my blog page, If you like what you see,
                   read... feel free to share it with your friends! Subscribe to
@@ -119,7 +124,7 @@
                     [ngStyle]="{ color: brightness ? 'black' : 'white' }"
                   >
                     <div class="card-body">
-                      <h3>Recent Updates</h3>
+                      <h3>Recent Blog Updates</h3>
                       <!-- Skeleton Loading animation -->
                       <div
                         class="skeletonData"
@@ -164,11 +169,7 @@
                         </h5>
                         <h6 class="text-muted">
                           <mat-icon class="icon_align"> watch_later </mat-icon>
-                          {{
-                            recent.postDate
-                              | date: "EEEE MMM dd, YYYY"
-                              | slice: 0:70
-                          }}
+                          {{ recent.postDate | date: "EEEE MMM dd, YYYY" }}
                         </h6>
                         <hr
                           *ngIf="i < 3"
@@ -300,9 +301,9 @@
             </div>
             <div class="col-sm-3 feedback-form">
               <h5
-                [ngStyle]="{
-                  color: brightness ? 'orangered' : 'violet'
-                }"
+                [ngClass]="
+                  brightness ? 'theme_highlight_light' : 'theme_highlight_dark'
+                "
               >
                 < Let's Connect..... />
               </h5>
@@ -387,7 +388,13 @@
                   </li>
                 </ul>
               </div>
-              <div *ngIf="siteVisitors > 0" id="total-views">
+              <div
+                *ngIf="siteVisitors > 0"
+                id="total-views"
+                [ngClass]="
+                  brightness ? 'theme_highlight_light' : 'theme_highlight_dark'
+                "
+              >
                 <h5>
                   <mat-icon class="icon_align">visibility</mat-icon>
                   <span
@@ -472,8 +479,25 @@
               </div> -->
             </div>
           </div>
+<<<<<<< HEAD
           <div class="privacyPolicy">
+=======
+<<<<<<< HEAD
+          <div
+            class="privacyPolicy"
+            style="text-align: center; margin-top: 10px"
+          >
+>>>>>>> app: update UI
             <h6>
+=======
+          <div class="privacyPolicy">
+            <h6
+              class="w"
+              [ngClass]="
+                brightness ? 'theme_highlight_light' : 'theme_highlight_dark'
+              "
+            >
+>>>>>>> ea3d344... app: update UI
               *By visiting here you agree to the
               <span
                 routerLink="/privacy"

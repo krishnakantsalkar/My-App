@@ -500,8 +500,9 @@ div.nextprev button {
 
 .card-subtitle {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  gap: 16px;
 }
 .post_title_area {
   display: flex;
@@ -579,6 +580,14 @@ div.nextprev button {
   }
   .widget-area {
     padding: 0px 0px 40px;
+  }
+
+  .card-subtitle {
+    flex-wrap: wrap;
+  }
+
+  .card-main-footer {
+    max-width: 150px;
   }
 
   /* share btns mobile css */

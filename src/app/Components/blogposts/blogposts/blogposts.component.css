@@ -274,13 +274,15 @@ div.sharingBtns2 a {
 
 .blog_dashboard {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   width: 100%;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .blog_dashboard div {
-  margin: 10px;
+  margin: 0 10px;
 }
 
 .edit_del {

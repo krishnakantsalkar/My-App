@@ -890,14 +890,6 @@
                                 <!-- new post badge -->
                                 <h3></h3>
                               </div>
-                              <span
-                                *ngIf="d.edited == true"
-                                [ngStyle]="{
-                                  color: brightness ? 'red' : 'violet'
-                                }"
-                                style="font-size: 14px"
-                                ><i class="fas fa-pencil-alt"></i> edited.</span
-                              >
                             </div>
 
                             <!-- post edited or not -->
@@ -910,10 +902,37 @@
                                 color: brightness ? 'black' : 'rgb(129,129,129)'
                               }"
                             >
-                              <span>
+                              <span
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
+                              >
                                 <i class="fas fa-clock"></i>
                                 {{ d.postDate | date: "MMM dd, YYYY" }}
                               </span>
+                              <span
+                                *ngIf="d.edited == true"
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
+                                style="font-size: 14px"
+                                ><i class="fas fa-pencil-alt"></i> edited.</span
+                              >
+
+                              <span
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
+                                *ngFor="let t of d.tags.slice(0, 2)"
+                                >#{{ t }}</span
+                              >
+
                               <span
                                 style="
                                   display: flex;
@@ -921,9 +940,11 @@
                                   justify-content: center;
                                   align-items: center;
                                 "
-                                [ngStyle]="{
-                                  color: brightness ? 'red' : 'violet'
-                                }"
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
                                 >{{ d.userViews.length }}
                                 <span class="material-icons mx-1">
                                   visibility
@@ -991,10 +1012,16 @@
                           <div class="card_footer">
                             <div class="readingTime">
                               <h6
+                                class="card-main-footer"
                                 [ngStyle]="{
                                   color: brightness ? 'red' : 'violet'
                                 }"
                                 *ngIf="readTimeCheck.length > 0"
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
                               >
                                 {{ readTimeCheck[i] }}
                                 <span
@@ -1026,6 +1053,11 @@
                                     ? 'black'
                                     : 'rgb(129,129,129)'
                                 }"
+                                [ngClass]="
+                                  brightness
+                                    ? 'theme_highlight_light'
+                                    : 'theme_highlight_dark'
+                                "
                               >
                                 <i class="fas fa-user"></i> By:
                                 <span

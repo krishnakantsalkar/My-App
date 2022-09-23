@@ -223,3 +223,18 @@ mat-bottom-sheet-container {
 .variable-binding img {
   max-width: 100% !important;
 }
+
+.theme_highlight_light {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #ff450021;
+  color: orangered;
+  padding: 10px;
+}
+.theme_highlight_dark {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: #ee82d521;
+  color: violet;
+  padding: 10px;
+}

@@ -291,9 +291,14 @@ div.shortbio h4 span {
   cursor: pointer;
 }
 
+.privacyPolicy {
+  text-align: center;
+}
 .privacyPolicy h6 {
-  margin-bottom: 0 !important;
-  padding: 20px 0;
+  margin: 10px 0;
+  /* margin-bottom: 0 !important; */
+  padding: 10px 20px;
+
   text-align: center;
 }
 

@@ -270,7 +270,7 @@ export class BlogComponent implements OnInit {
       this.allData = item;
 
       this.mostViewed = this.allData.sort((a, b) => {
-        if (a.userViews.length > b.userViews.length) {
+        if (a.userViews > b.userViews) {
           return -1;
         } else {
           return 1;

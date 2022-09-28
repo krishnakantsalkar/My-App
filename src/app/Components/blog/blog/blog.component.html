@@ -945,7 +945,7 @@
                                     ? 'theme_highlight_light'
                                     : 'theme_highlight_dark'
                                 "
-                                >{{ d.userViews.length }}
+                                >{{ d.userViews }}
                                 <span class="material-icons mx-1">
                                   visibility
                                 </span></span
@@ -1161,7 +1161,7 @@
                       class="mostViewedPosts"
                       *ngFor="let d of mostViewed | slice: 0:5"
                     >
-                      <h5 *ngIf="d.userViews.length >= 2">
+                      <h5 *ngIf="d.userViews >= 2">
                         <a
                           [ngStyle]="{
                             color: brightness ? 'red' : 'violet'

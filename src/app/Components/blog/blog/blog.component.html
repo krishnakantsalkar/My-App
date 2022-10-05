@@ -956,6 +956,7 @@
                           <!-- main post rendered in markdown -->
                           <div *ngIf="data" style="margin: 10px auto">
                             <markdown
+                              *ngIf="d.postNumber <= 22"
                               class="variable-binding"
                               emoji
                               style="width: 100%"
@@ -966,8 +967,31 @@
                                 color: brightness ? 'black' : 'rgb(129,129,129)'
                               }"
                             >
-                              {{ d.post | slice: 0:150 }}...
+                              {{ d.post | slice: 0:150 }}
                             </markdown>
+
+                            <ckeditor
+                              *ngIf="d.postNumber > 22"
+                              [data]="(d.post | slice: 0:350) + '.....'"
+                              [editor]="Editor"
+                              [disabled]="true"
+                              [ngStyle]="{
+                                'background-color': brightness
+                                  ? 'rgb(223, 223, 223)'
+                                  : ' rgb(35, 36, 38)',
+                                color: brightness ? 'black' : 'white'
+                              }"
+                              (ready)="onCkReady($event)"
+                            ></ckeditor>
+                            <!-- <span
+                              *ngIf="d.post.length > 350"
+                              [ngStyle]="{
+                                color: brightness ? 'black' : 'white'
+                              }"
+                            >
+                              ......</span
+                            >
+                            <br /> -->
                             <!-- <ckeditor
                               style="width: 100%"
                               [editor]="Editor"

@@ -69,6 +69,8 @@ export class BlogpostsComponent implements OnInit {
   currentBlogImgP: string | ArrayBuffer;
   currentBlogImg: any;
   storeBlogImg: any;
+  toolbarElement: any;
+  editorElement: any;
 
   constructor(
     private blogservice: blogpostservice,
@@ -100,6 +102,14 @@ export class BlogpostsComponent implements OnInit {
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
+
+      if (this.editorElement) {
+        if (this.brightness) {
+          this.editorElement.style.backgroundColor = 'rgb(245, 245, 245)';
+        } else {
+          this.editorElement.style.backgroundColor = 'rgb(32,33,33)';
+        }
+      }
     });
 
     // check admin presence
@@ -447,6 +457,20 @@ export class BlogpostsComponent implements OnInit {
 
   onCkReady(event) {
     console.log(event);
+    this.toolbarElement = event.ui.view.toolbar.element;
+    this.editorElement = event.ui.view.editable.element;
+    this.editorElement.style.border = 'none';
+    if (this.switchtoedit) {
+      this.toolbarElement.style.display = 'flex';
+    } else {
+      this.toolbarElement.style.display = 'none';
+    }
+
+    if (this.brightness) {
+      this.editorElement.style.backgroundColor = 'rgb(245, 245, 245)';
+    } else {
+      this.editorElement.style.backgroundColor = 'rgb(32,33,33)';
+    }
     event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
       // Configure the URL to the upload script in your back-end here!
       return new MyUploadAdapter(loader);

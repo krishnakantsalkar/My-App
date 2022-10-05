@@ -134,6 +134,10 @@ export class BlogComponent implements OnInit {
 
   recommendedPosts = [28, 27, 26, 23];
   tagsList = [];
+
+  toolbarElement: any;
+  editorElement: any;
+
   constructor(
     private blogservice: blogpostservice,
     private fb: UntypedFormBuilder,
@@ -174,6 +178,13 @@ export class BlogComponent implements OnInit {
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
+      if (this.editorElement) {
+        if (this.brightness) {
+          this.editorElement.style.backgroundColor = 'rgb(223, 223, 223)';
+        } else {
+          this.editorElement.style.backgroundColor = 'rgb(35, 36, 38)';
+        }
+      }
     });
 
     // activated routing hax
@@ -258,12 +269,21 @@ export class BlogComponent implements OnInit {
 
   onCkReady(event) {
     console.log(event);
+    this.toolbarElement = event.ui.view.toolbar.element;
+    this.editorElement = event.ui.view.editable.element;
+    this.editorElement.style.border = 'none';
+    this.toolbarElement.style.display = 'none';
+
+    if (this.brightness) {
+      this.editorElement.style.backgroundColor = 'rgb(223, 223, 223)';
+    } else {
+      this.editorElement.style.backgroundColor = 'rgb(35, 36, 38)';
+    }
     event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
       // Configure the URL to the upload script in your back-end here!
       return new MyUploadAdapter(loader);
     };
   }
-
   // get all blogs
   blogs() {
     this.blogservice.getBlogs().subscribe((item) => {

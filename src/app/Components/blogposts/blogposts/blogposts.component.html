@@ -281,7 +281,7 @@
                         color: brightness ? 'red' : 'violet'
                       }"
                     ></i>
-                    {{ data.editedDate | date: "EEE MMM dd, YYYY" }}
+                    edited
                   </span>
                 </div>
                 <div
@@ -369,8 +369,7 @@
                 [ngStyle]="{
                   'background-color': brightness
                     ? 'rgb(245, 245, 245)'
-                    : ' rgb(32, 33, 33)',
-                  color: brightness ? 'black' : 'white'
+                    : ' rgb(32, 33, 33)'
                 }"
               >
                 <mat-card-content>
@@ -385,11 +384,25 @@
                     [data]="markdown"
                     emoji
                   ></markdown>
-                  <div
+                  <!-- <div
                     class="variable-binding"
                     *ngIf="data.postNumber > 22"
                     [innerHtml]="markdown"
-                  ></div>
+                  ></div> -->
+                  <ckeditor
+                    *ngIf="data.postNumber > 22"
+                    [(ngModel)]="markdown"
+                    [editor]="Editor"
+                    [disabled]="!switchtoedit"
+                    [ngStyle]="{
+                      'background-color': brightness
+                        ? 'rgb(223, 223, 223)'
+                        : ' rgb(35, 36, 38)',
+                      color: brightness ? 'black' : 'white'
+                    }"
+                    (ready)="onCkReady($event)"
+                  ></ckeditor>
+
                   <!-- [ngStyle]="{
                       color: brightness ? 'black' : 'white'
                     }" -->
@@ -686,11 +699,11 @@
                   <ckeditor
                     formControlName="post"
                     [editor]="Editor"
+                    [disabled]="!switchtoedit"
                     [ngStyle]="{
                       'background-color': brightness
                         ? 'rgb(223, 223, 223)'
-                        : ' rgb(35, 36, 38)',
-                      color: brightness ? 'black' : 'rgb(129,129,129)'
+                        : ' rgb(35, 36, 38)'
                     }"
                     (ready)="onCkReady($event)"
                   ></ckeditor>

@@ -77,59 +77,34 @@
                   <div
                     class="devdetails"
                     [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
+                      color: brightness ? 'rgb(41,42,45)' : 'rgb(233,233,233)'
                     }"
                   >
                     <h4><strong> Krishnakant S. Salkar</strong></h4>
-                    <h5>Full Stack Developer</h5>
+                    <h5
+                      [ngClass]="
+                        brightness
+                          ? 'theme_highlight_light'
+                          : 'theme_highlight_dark'
+                      "
+                    >
+                      Full Stack Developer
+                    </h5>
                   </div>
                   <hr />
 
-                  <h4
-                    class="langAndfr"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                  >
-                    <i class="fas fa-code"></i>
+                  <h5 class="langAndfr">
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      class="icon_align"
+                      >code</mat-icon
+                    >
                     <!-- Languages && Frameworks && -->
                     Skillset:
-                  </h4>
+                  </h5>
 
-                  <!-- languages row -->
-                  <!-- <div class="row w-100 langAndFrData">
-                    <br /> -->
-                  <!-- column 1 -->
-                  <!-- <div class="col-6 col-xs-4 col-lg-4">
-                      <ul>
-                        <li>Angular</li>
-                        <li>ReactJS</li>
-                        <li>Typescript</li>
-                        <li>Javascript</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Vue</li>
-                      </ul>
-                    </div> -->
-                  <!-- column 2 -->
-                  <!-- <div class="col-6 col-xs-4 col-lg-4">
-                      <ul>
-                        <li>Python</li>
-                        <li>NodeJS</li>
-                        <li>ExpressJS</li>
-                        <li>MongoDB</li>
-                        <li>NGINX</li>
-                        <li>Webhosting</li>
-                        <li>Server Management</li>
-                      </ul>
-                    </div> -->
-                  <!-- column 3 -->
-                  <!-- <div class="col-6 col-xs-4 col-lg-4">
-                      <ul>
-                        <li>GCloud | Heroku | AWS</li>
-                      </ul>
-                    </div>
-                  </div> -->
                   <div class="langfr">
                     <img
                       alt="Angular"
@@ -216,26 +191,34 @@
                   <hr />
 
                   <!-- currently learning -->
-                  <h5
-                    class="currentlyLearning"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                  >
-                    <i class="fas fa-laptop-code"></i> Currently Learning:
-                    <span>Android</span>
+                  <h5 class="currentlyLearning">
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      class="icon_align"
+                      >devices</mat-icon
+                    >
+                    Currently Learning:
+                    <span
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                    >
+                      Android</span
+                    >
                   </h5>
                   <hr />
 
                   <!-- hobbies -->
-                  <h5
-                    class="hobbies"
-                    style="margin-top: 12px"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                  >
-                    <i class="fas fa-check-circle" style="color: green"></i>
+                  <h5 class="hobbies" style="margin-top: 12px">
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      class="icon_align"
+                      >hub</mat-icon
+                    >
                     Hobbies:
                   </h5>
                   <p>
@@ -245,13 +228,15 @@
                   <hr />
 
                   <!-- social links -->
-                  <h5
-                    class="text-center"
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                  >
-                    <i class="fas fa-link"></i> Socials
+                  <h5 class="text-center">
+                    <mat-icon
+                      [ngStyle]="{
+                        color: brightness ? 'orangered' : 'violet'
+                      }"
+                      class="icon_align"
+                      >add_link</mat-icon
+                    >
+                    Socials
                   </h5>
                   <div
                     class="social-icons"
@@ -338,12 +323,17 @@
                     </ul>
                   </div>
                   <hr />
-                  <div
-                    [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
-                    }"
-                  >
-                    <h4 class="text-center">Send me a message....</h4>
+                  <div>
+                    <h5 class="text-center">
+                      <mat-icon
+                        class="icon_align"
+                        [ngStyle]="{
+                          color: brightness ? 'orangered' : 'violet'
+                        }"
+                        >chat</mat-icon
+                      >
+                      Send me a message....
+                    </h5>
                   </div>
 
                   <div class="contact_me_form">
@@ -413,8 +403,8 @@
                     }"
                   >
                     <mat-card-content style="text-align: center">
-                      <div>
-                        <h6
+                      <div class="copy_content">
+                        <h5
                           class="tooltipHover1"
                           (click)="
                             copyShareLink('dev@krishnakantsalkar.in', 'mail')
@@ -430,7 +420,10 @@
                             >email</mat-icon
                           >
                           dev@krishnakantsalkar.in
-                        </h6>
+                        </h5>
+                        <span class="copy_content_suggest"
+                          ><mat-icon>content_copy</mat-icon></span
+                        >
                       </div>
                     </mat-card-content>
                   </mat-card>
@@ -446,22 +439,27 @@
                     }"
                   >
                     <mat-card-content>
-                      <h6
-                        class="tooltipHover2"
-                        (click)="copyShareLink('+919619705613', 'number')"
-                        matTooltip="copy number"
-                        matTooltipPosition="above"
-                        style="text-align: center"
-                      >
-                        <mat-icon
-                          class="icon_align"
-                          [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
-                          }"
-                          >textsms</mat-icon
+                      <div class="copy_content">
+                        <h5
+                          class="tooltipHover2"
+                          (click)="copyShareLink('+919619705613', 'number')"
+                          matTooltip="copy number"
+                          matTooltipPosition="above"
+                          style="text-align: center"
                         >
-                        +919619705613
-                      </h6>
+                          <mat-icon
+                            class="icon_align"
+                            [ngStyle]="{
+                              color: brightness ? 'orangered' : 'violet'
+                            }"
+                            >textsms</mat-icon
+                          >
+                          +919619705613
+                        </h5>
+                        <span class="copy_content_suggest"
+                          ><mat-icon>content_copy</mat-icon></span
+                        >
+                      </div>
                     </mat-card-content>
                   </mat-card>
                 </div>

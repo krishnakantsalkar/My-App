@@ -127,7 +127,7 @@ div.developer .card {
   max-width: 800px;
 }
 
-div.devinfo1 h6 {
+div.devinfo1 h5 {
   font-family: "Andale Mono", AndaleMono, monospace;
   font-size: 18px;
   margin-bottom: 0;
@@ -139,7 +139,7 @@ div.devinfo1 h6 {
   color: #32325d;
   border-radius: 10px;
 }
-.devinfo1 h6 {
+.devinfo1 h5 {
   cursor: pointer;
 }
 
@@ -266,9 +266,29 @@ div.connections .fa-telegram {
 .langfr img {
   margin: 5px;
 }
+
+.copy_content {
+  position: relative;
+}
+
+.copy_content_suggest {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 5px;
+}
+
+.copy_content_suggest mat-icon {
+  font-size: 13px;
+  height: 15px;
+  width: 12px;
+}
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
+  .langfr {
+    text-align: center;
+  }
   .dev {
     max-width: auto;
   }
@@ -303,7 +323,7 @@ div.connections .fa-telegram {
     margin-bottom: 20px;
   }
 
-  .devinfo1 h6 {
+  .devinfo1 h5 {
     font-size: 20px;
   }
 

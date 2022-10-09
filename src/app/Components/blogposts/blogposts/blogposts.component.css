@@ -65,6 +65,10 @@ div.links a:hover {
 }
 
 @media only screen and (max-width: 600px) {
+  .mob-actionBtn-skeleton {
+    flex-direction: column;
+    gap: 10px;
+  }
   div.motto h5 {
     font-size: 14px;
   }

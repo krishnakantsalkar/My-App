@@ -9,6 +9,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class UiService {
   public checkSession$ = new BehaviorSubject<boolean>(false);
   domClick$ = new Subject<any>();
+  latestUpdate$ = new BehaviorSubject<any>(null);
+  latestBlog$ = new BehaviorSubject<any>(null);
+
   constructor(
     private snackbar: MatSnackBar,
     @Inject(PLATFORM_ID) private platformId: any

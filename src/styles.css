@@ -239,6 +239,6 @@ mat-bottom-sheet-container {
   padding: 10px;
 }
 
-*:not(.material-icons, .material-icons-outlined, .fab, .fas) {
+*:not(.material-icons, .material-icons-outlined, .fab, .fas, .preloader_quote, .preloader_quote_part1, .preloader_quote_part2, .preloader_quote_part3, .preloader_quote_part4) {
   font-family: "JetBrains Mono" !important;
 }

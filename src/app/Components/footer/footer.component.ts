@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { fromEvent, Subject } from 'rxjs';
+import { UiService } from '../../Shared/services/ui.service';
 
 @Component({
   selector: 'app-footer',
@@ -44,7 +45,8 @@ export class FooterComponent implements OnInit {
     private cookies: CookieService,
     private defaultModeService: modeService,
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: any
+    @Inject(PLATFORM_ID) private platformId: any,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -90,6 +92,8 @@ export class FooterComponent implements OnInit {
   recentUpdates() {
     this.blogservice.getBlogs().subscribe((item) => {
       this.recentblogs = item;
+
+      this.uiService.latestBlog$.next(this.recentblogs[0]);
     });
   }
 

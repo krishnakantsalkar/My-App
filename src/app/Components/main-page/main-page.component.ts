@@ -30,6 +30,8 @@ import {
 } from '@angular/material/bottom-sheet';
 import * as $ from 'jquery';
 
+import { delay } from 'rxjs/operators';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -464,37 +466,79 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     } else {
-      setTimeout(() => {
-        if (!sessionStorage.getItem('mainPageToast')) {
-          this.snotifyService.info(
-            'Welcome User, Search for your fav Movies & TV shows!',
-            'TheArsonist',
-            {
-              timeout: 12000,
-              showProgressBar: true,
-              closeOnClick: false,
-              pauseOnHover: true,
-              icon: 'assets/images/mylogo.jpg',
-              buttons: [
-                {
-                  text: 'Movies & TV',
-                  action: () => this.router.navigateByUrl('/movies&tv'),
-                  bold: false,
-                },
-                {
-                  text: 'Close',
-                  action: (toast) => {
-                    this.snotifyService.remove(toast.id);
+      // setTimeout(() => {
+      if (!sessionStorage.getItem('mainPageToast')) {
+        from(['load'])
+          .pipe(delay(3000))
+          .subscribe((item) => {
+            this.snotifyService.info(
+              'Welcome User, Search for your fav Movies & TV shows!',
+              'TheArsonist',
+              {
+                timeout: 12000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                icon: 'assets/images/mylogo.jpg',
+                buttons: [
+                  {
+                    text: 'Movies & TV',
+                    action: () => this.router.navigateByUrl('/movies&tv'),
+                    bold: false,
                   },
-                  bold: true,
-                },
-              ],
-              position: SnotifyPosition.rightBottom,
-            }
-          );
-        }
-        sessionStorage.setItem('mainPageToast', 'notified');
-      }, 8000);
+                  {
+                    text: 'Close',
+                    action: (toast) => {
+                      this.snotifyService.remove(toast.id);
+                    },
+                    bold: true,
+                  },
+                ],
+                position: SnotifyPosition.rightBottom,
+              }
+            );
+          });
+
+        this.uiService.latestBlog$.pipe(delay(4000)).subscribe((item) => {
+          if (item) {
+            console.log(item);
+            this.snotifyService.success(
+              `Checkout my latest blog post.... \n
+              
+              ${item.postTitle}
+              `,
+              'TheArsonist',
+              {
+                timeout: 12000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                icon: item.postImage,
+                buttons: [
+                  {
+                    text: 'open',
+                    action: () =>
+                      this.router.navigateByUrl(
+                        `/blog/${item.postNumber}/${item.postTitle}/${item._id}`
+                      ),
+                    bold: false,
+                  },
+                  {
+                    text: 'Close',
+                    action: (toast) => {
+                      this.snotifyService.remove(toast.id);
+                    },
+                    bold: true,
+                  },
+                ],
+                position: SnotifyPosition.rightBottom,
+              }
+            );
+          }
+        });
+      }
+      sessionStorage.setItem('mainPageToast', 'notified');
+      // }, 6000);
     }
   }
 

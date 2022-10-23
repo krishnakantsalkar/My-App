@@ -238,7 +238,9 @@
               data-aos-delay="100"
               data-aos-duration="1000"
             >
-              Learn
+              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+                >Learn</span
+              >
               <i
                 class="fab fa-leanpub"
                 data-aos="fade-in"
@@ -246,7 +248,10 @@
                 data-aos-duration="1000"
                 [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
               ></i>
-              &#8226; <span>Build</span>
+              &#8226;
+              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+                >Build</span
+              >
               <i
                 class="fas fa-sync-alt"
                 data-aos="fade-in"
@@ -254,7 +259,10 @@
                 data-aos-duration="1000"
                 [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
               ></i>
-              &#8226; <span>Fix</span>
+              &#8226;
+              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+                >Fix</span
+              >
               <i
                 class="fas fa-tools"
                 data-aos="fade-in"
@@ -262,7 +270,10 @@
                 data-aos-duration="1000"
                 [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
               ></i>
-              &#8226; <span>Repeat</span>
+              &#8226;
+              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+                >Repeat</span
+              >
               <i
                 class="fas fa-redo"
                 data-aos="fade-in"

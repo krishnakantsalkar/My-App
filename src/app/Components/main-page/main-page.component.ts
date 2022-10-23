@@ -135,6 +135,10 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         startEvent: 'DOMContentLoaded',
       });
     }
+    this.meta.updateTag({
+      property: 'description',
+      content: "Hi, I'm Krishnakant Salkar, full-stack developer from mumbai.",
+    });
 
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'TheArsonist' });

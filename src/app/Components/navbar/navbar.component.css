@@ -56,6 +56,11 @@ nav {
   margin-top: 5px;
 } */
 
+#top-panel-nametag {
+  font-size: 21px;
+  font-weight: 600;
+}
+
 #navbarNav {
   position: absolute;
   right: 30px;

@@ -3,7 +3,7 @@ import { MovieServices } from 'src/app/Shared/services/movieservice';
 import { Router } from '@angular/router';
 import * as superplaceholder from 'superplaceholder';
 import * as AOS from 'aos';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import * as $ from 'jquery';
@@ -90,6 +90,7 @@ export class MoviesComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private defaultModeService: modeService,
+    private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: any,
     @Inject(DOCUMENT) private document: Document
   ) {}
@@ -105,6 +106,8 @@ export class MoviesComponent implements OnInit {
 
     // set page title
     this.titleService.setTitle(this.pageTitle);
+
+    this.meta.updateTag({ property: 'description', content: 'The Movie DB' });
 
     // aos animations
     AOS.init({

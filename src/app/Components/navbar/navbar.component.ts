@@ -92,7 +92,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           document.getElementById('top-panel').style.transitionTimingFunction =
             'ease-in';
           document.getElementById('top-panel').style.boxShadow =
-            '0px 0px 35px black';
+            '0px -5px 20px black';
         } else {
           document.getElementById('top-panel').style.padding = '20px 10px 20px';
           document.getElementById('top-panel').style.boxShadow = 'none';
@@ -109,7 +109,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
               '12px 10px 12px';
 
             document.getElementById('top-panel').style.boxShadow =
-              '0px 0px 35px black';
+              '0px -5px 20px black';
           }
         } else if (
           (mediaQuery.matches && document.body.scrollTop < 50) ||

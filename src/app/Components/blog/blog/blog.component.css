@@ -1,4 +1,7 @@
 /* loading spinner for footer */
+/* *:not(.material-icons) {
+  font-family: "JetBrains Mono";
+} */
 
 .loadinganimDark {
   color: violet;
@@ -529,6 +532,7 @@ div.nextprev button {
   display: inline-block;
   padding: 5px 10px;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .blog_tagsD {
@@ -539,6 +543,7 @@ div.nextprev button {
   display: inline-block;
   padding: 5px 10px;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .post_actions button {
@@ -555,7 +560,16 @@ div.nextprev button {
 
 .right_blog_content {
   position: sticky;
-  top: 80px;
+  top: 70px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .blog_tagsL,
+  .blog_tagsD {
+    font-size: 12px;
+    max-height: 100px;
+    overflow-y: auto;
+  }
 }
 
 /* media query for mobile */

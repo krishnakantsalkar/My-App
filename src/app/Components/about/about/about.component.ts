@@ -120,6 +120,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     // page title
     this.titleService.setTitle(this.pageTitle);
+    this.meta.updateTag({ property: 'description', content: 'About me...' });
 
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: 'About' });

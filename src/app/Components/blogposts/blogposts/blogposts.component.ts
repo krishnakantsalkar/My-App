@@ -155,6 +155,10 @@ export class BlogpostsComponent implements OnInit {
             JSON.parse(localStorage.getItem('user')).surname
           }`;
         }
+        this.meta.updateTag({
+          property: 'description',
+          content: `${this.data.postTitle}`,
+        });
 
         this.meta.updateTag({ property: 'og:type', content: 'blog' });
         this.meta.updateTag({ property: 'og:title', content: 'Blog' });

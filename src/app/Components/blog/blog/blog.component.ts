@@ -155,6 +155,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     // method calls
+    this.meta.updateTag({ property: 'description', content: 'My blog page, where I post random content...' });
 
     this.meta.updateTag({ property: 'og:type', content: 'blog' });
     this.meta.updateTag({ property: 'og:title', content: 'Blog' });

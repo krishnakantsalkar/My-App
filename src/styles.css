@@ -96,6 +96,11 @@
   src: url("./fonts/LeagueGothic-Italic.otf");
 }
 
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Regular.ttf");
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;

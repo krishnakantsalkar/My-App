@@ -1,6 +1,6 @@
 .fab_menu {
   position: fixed;
-  right: 10px;
+  right: 16px;
   bottom: 80px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
 }
 
 mat-sidenav {
-  width: 20vw !important;
+  width: 22vw !important;
   z-index: 99;
   overflow-y: auto;
   overflow-x: hidden;
@@ -45,6 +45,7 @@ mat-sidenav {
   width: auto;
   max-height: 250px;
   max-width: 100%;
+  border-radius: 10px;
 }
 
 .updates_card mat-card-footer {
@@ -88,9 +89,26 @@ mat-sidenav {
   width: 100%;
   height: auto;
 }
+
+.example-sidenav {
+  padding: 0 15px;
+}
+.customFab {
+  height: 45px !important;
+  width: 45px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  right: 16px !important;
+}
+
 @media screen and (max-width: 600px) {
   mat-sidenav {
-    width: 60vw !important;
+    width: 75vw !important;
     z-index: 99;
+  }
+
+  .customFab {
+    right: 0px !important;
   }
 }

@@ -27,7 +27,7 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   _imgUrlModel;
   _contentModel;
   _linkModel;
-
+  badgeHidden: boolean = false;
   @ViewChild('newUpdate')
   newUpdate;
   updDialog: any;
@@ -35,6 +35,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   pageSize: number;
   isEditUpdate: boolean;
   updateId: any;
+  badgeCount: any;
+  badgeCountSaved: number;
 
   constructor(
     private defaultModeService: modeService,
@@ -60,6 +62,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
         this.side = false;
       }
     });
+
+    this.getUpdates();
   }
 
   open() {
@@ -68,6 +72,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
     if (this.side) {
       this.getUpdates();
     }
+
+    this.badgeHidden = true;
   }
 
   getUpdates() {
@@ -77,6 +83,36 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
         this.updates = item.dataSize;
         this.dataCount = item.dataCount;
         this.pageSize = item.pageSize;
+
+        //calc updates
+
+        if (localStorage.getItem('badgeCount')) {
+          this.badgeCountSaved = JSON.parse(localStorage.getItem('badgeCount'));
+        } else {
+          this.badgeCount = this.updates.length;
+          this.badgeCountSaved = this.updates.length;
+          localStorage.setItem('badgeCount', JSON.stringify(this.badgeCount));
+
+          return;
+        }
+
+        if (this.badgeCountSaved < this.updates.length) {
+          this.badgeHidden = false;
+
+          this.badgeCount = this.updates.length - this.badgeCountSaved;
+          this.badgeCountSaved = this.updates.length;
+          localStorage.setItem(
+            'badgeCount',
+            JSON.stringify(this.badgeCountSaved)
+          );
+        } else if (this.badgeCountSaved > this.updates.length) {
+          this.badgeHidden = true;
+
+          this.badgeCount = this.updates.length;
+          localStorage.setItem('badgeCount', JSON.stringify(this.badgeCount));
+        } else {
+          this.badgeHidden = true;
+        }
       });
   }
 
@@ -95,6 +131,10 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
 
   newUpdateDialog() {
     this.isEditUpdate = false;
+    this._contentModel = '';
+    this._imgUrlModel = '';
+    this._linkModel = '';
+    this.updateLinksArr = [];
     this.updDialog = this.dialog.open(this.newUpdate, {
       minWidth: '30vw',
       backdropClass: 'bgBlur',
@@ -103,6 +143,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
 
   editUpdateDialog(i) {
     this.isEditUpdate = true;
+    this._linkModel = '';
+
     this._contentModel = this.updates[i].updateText;
     this._imgUrlModel = this.updates[i].updateImgUrl;
     this.updateLinksArr = this.updates[i].updateLinks;

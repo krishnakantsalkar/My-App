@@ -511,6 +511,7 @@ div.websiteUsesDialog mat-icon {
   .motto h5 {
     padding: 10px 15px;
     font-size: 14px;
+    gap: 5px;
   }
 
   div.recentposts h3 {

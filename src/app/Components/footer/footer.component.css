@@ -202,10 +202,6 @@ div.footer h6 {
   background-color: #555;
 }
 
-div.shortbio h4 span {
-  border-bottom: 1px solid white;
-}
-
 #uploadSpinner1,
 #uploadCheck1,
 #uploadCheckErr1,
@@ -332,13 +328,13 @@ div.shortbio h4 span {
     text-align: center;
   }
   div.footer-text .footerAngularLogo {
-    margin-top: -7px;
+    margin-top: -2px;
   }
 
   .footerAngularLogo .fa-angular {
     font-size: 11px;
     color: #c82333;
-    margin-top: 2px;
+    margin-top: 5px;
   }
 
   #myBtn {

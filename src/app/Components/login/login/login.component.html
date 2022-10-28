@@ -135,7 +135,12 @@
                 >
                   <div class="form-row">
                     <div class="col form-group" formGroupName="userLogin">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field
+                        appearance="outline"
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
+                      >
                         <mat-label>Email Id</mat-label>
                         <input
                           class="email-tag"
@@ -165,7 +170,12 @@
                       </div>
                       <br />
                       <div class="form-group">
-                        <mat-form-field appearance="outline">
+                        <mat-form-field
+                          appearance="outline"
+                          [ngClass]="
+                            brightness ? 'inputTextColorD' : 'inputTextColorL'
+                          "
+                        >
                           <mat-label>Password</mat-label>
                           <input
                             class="password-tag col-11"
@@ -289,7 +299,12 @@
                 >
                   <div class="form-row">
                     <div class="col form-group" formGroupName="userLogin">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field
+                        appearance="outline"
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
+                      >
                         <mat-label>Email Id</mat-label>
                         <input
                           class="email-tag"

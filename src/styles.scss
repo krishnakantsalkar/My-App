@@ -1,3 +1,67 @@
 .material {
   @import "~ng-snotify/styles/material";
 }
+.inputTextColorD {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: black !important;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: black !important;
+  }
+
+  .mat-form-field-label,
+  .mat-input-element {
+    color: black !important;
+  }
+
+  ::-webkit-input-placeholder {
+    /* Edge */
+    color: black !important;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer */
+    color: black !important;
+  }
+
+  ::placeholder {
+    color: black !important;
+  }
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: violet !important;
+  }
+}
+
+.inputTextColorL {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white !important;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: white !important;
+  }
+
+  .mat-form-field-label,
+  .mat-input-element {
+    color: white !important;
+  }
+
+  ::-webkit-input-placeholder {
+    /* Edge */
+    color: white !important;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer */
+    color: white !important;
+  }
+
+  ::placeholder {
+    color: white !important;
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: orangered !important;
+  }
+}

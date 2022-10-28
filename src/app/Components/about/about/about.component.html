@@ -342,11 +342,26 @@
                         [formGroup]="sendContact"
                         (ngSubmit)="SendMessage(sendContact.value)"
                       >
-                        <mat-form-field appearance="outline">
+                        <mat-form-field
+                          appearance="outline"
+                          [ngClass]="
+                            brightness ? 'inputTextColorD' : 'inputTextColorL'
+                          "
+                        >
                           <mat-label>Name</mat-label>
-                          <input type="text" matInput formControlName="name" />
+                          <input
+                            type="text"
+                            matInput
+                            formControlName="name"
+                            autofocus
+                          />
                         </mat-form-field>
-                        <mat-form-field appearance="outline">
+                        <mat-form-field
+                          appearance="outline"
+                          [ngClass]="
+                            brightness ? 'inputTextColorD' : 'inputTextColorL'
+                          "
+                        >
                           <mat-label>Email</mat-label>
 
                           <input
@@ -355,7 +370,12 @@
                             formControlName="email"
                           />
                         </mat-form-field>
-                        <mat-form-field appearance="outline">
+                        <mat-form-field
+                          appearance="outline"
+                          [ngClass]="
+                            brightness ? 'inputTextColorD' : 'inputTextColorL'
+                          "
+                        >
                           <mat-label>Message</mat-label>
 
                           <textarea

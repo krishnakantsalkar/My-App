@@ -65,8 +65,12 @@ div.links a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  .mob-actionBtn-skeleton {
+  .floatItems {
     flex-direction: column;
+    gap: 20px;
+  }
+  .mob-actionBtn-skeleton {
+    /* flex-direction: column; */
     gap: 10px;
   }
   div.motto h5 {
@@ -308,6 +312,12 @@ div.sharingBtns2 a {
   opacity: 1;
 }
 
+.post_title_area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+}
 .actionBtns {
   display: flex;
   justify-content: flex-end;
@@ -454,5 +464,10 @@ div.sharingBtns2 a {
   .actionBtns button {
     max-height: 45px;
     margin: 5px auto;
+  }
+
+  .post_title_area {
+    flex-direction: column;
+    justify-content: center;
   }
 }

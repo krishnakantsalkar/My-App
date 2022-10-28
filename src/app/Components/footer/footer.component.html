@@ -82,12 +82,21 @@
                   [formGroup]="newsLetterForm"
                   (ngSubmit)="subscribeNewsLetter(newsLetterForm.value)"
                 >
-                  <input
-                    type="email"
-                    placeholder="enter email"
-                    class="form-control"
-                    formControlName="userEmail"
-                  />
+                  <mat-form-field
+                    appearance="outline"
+                    [ngClass]="
+                      brightness ? 'inputTextColorD' : 'inputTextColorL'
+                    "
+                  >
+                    <mat-label>email</mat-label>
+                    <input
+                      type="email"
+                      placeholder="enter email"
+                      matInput
+                      formControlName="userEmail"
+                    />
+                  </mat-form-field>
+
                   <button
                     mat-raised-button
                     type="submit"
@@ -124,7 +133,7 @@
                     [ngStyle]="{ color: brightness ? 'black' : 'white' }"
                   >
                     <div class="card-body">
-                      <h3>Recent Blog Updates</h3>
+                      <h3 class="mb-4">Recent Blog Updates</h3>
                       <!-- Skeleton Loading animation -->
                       <div
                         class="skeletonData"
@@ -151,13 +160,17 @@
                         <h5>
                           <a
                             class="recent_postlink"
+                            [ngClass]="brightness ? 'lightHover' : 'darkHover'"
                             routerLink="/blog/{{ recent.postNumber }}/{{
                               recent.postTitle
                             }}/{{ recent._id }}"
                             [ngStyle]="{
-                              color: brightness ? 'orangered' : 'violet'
+                              color: brightness ? 'black' : 'rgb(129,129,129)'
                             }"
                           >
+                            <!-- [ngStyle]="{
+                              color: brightness ? 'orangered' : 'violet'
+                            }" -->
                             <span class="recentPostImg"
                               ><img src="{{ recent.postImage }}"
                             /></span>
@@ -308,6 +321,9 @@
                 < Let's Connect..... />
               </h5>
               <div
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
                 class="social-icons"
                 style="padding-left: 0; margin-bottom: 0; list-style: none"
               >
@@ -391,6 +407,10 @@
               <div
                 *ngIf="siteVisitors > 0"
                 id="total-views"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="1000"
+                data-aos-once="true"
                 [ngClass]="
                   brightness ? 'theme_highlight_light' : 'theme_highlight_dark'
                 "
@@ -479,27 +499,22 @@
               </div> -->
             </div>
           </div>
-<<<<<<< HEAD
-          <div class="privacyPolicy">
-=======
-<<<<<<< HEAD
           <div
             class="privacyPolicy"
-            style="text-align: center; margin-top: 10px"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-duration="1000"
+            data-aos-once="true"
           >
->>>>>>> app: update UI
-            <h6>
-=======
-          <div class="privacyPolicy">
             <h6
               class="w"
               [ngClass]="
                 brightness ? 'theme_highlight_light' : 'theme_highlight_dark'
               "
             >
->>>>>>> ea3d344... app: update UI
               *By visiting here you agree to the
               <span
+                class="text-underline"
                 routerLink="/privacy"
                 style="cursor: pointer"
                 [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"

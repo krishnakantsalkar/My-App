@@ -207,14 +207,25 @@
             </mat-menu>
           </li>
           <li class="modeLD nav-item">
-            <a (click)="mode()" class="nav-item"
+            <!-- <a (click)="mode()" class="nav-item"
               ><mat-icon *ngIf="brightness; else notBrightness"
                 >dark_mode</mat-icon
               >
               <ng-template #notBrightness
                 ><mat-icon>brightness_7</mat-icon></ng-template
               ></a
-            >
+            > -->
+
+            <div class="button r" id="button-3">
+              <input
+                type="checkbox"
+                [checked]="brightness"
+                (change)="mode()"
+                class="checkbox"
+              />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
           </li>
           <li
             *ngIf="window.innerWidth > 1300"

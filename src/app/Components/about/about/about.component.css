@@ -28,8 +28,9 @@ body {
   opacity: 0.6;
   background-image: url("../../../../assets/images/pexels-negative-space-169573.jpg");
   background-repeat: no-repeat;
-  background-position: 50% 0;
+  background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   filter: blur(3px);
 }
 

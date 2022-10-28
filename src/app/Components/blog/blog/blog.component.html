@@ -427,7 +427,12 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="postNumberInput col-sm-6">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field
+                        appearance="outline"
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
+                      >
                         <mat-label for="postNumberInput">Post Number</mat-label>
                         <input
                           matInput
@@ -440,7 +445,12 @@
                       </mat-form-field>
                     </div>
                     <div class="postTitleInput col-sm-6">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field
+                        appearance="outline"
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
+                      >
                         <mat-label for="postTitleInput">Post Title</mat-label>
                         <input
                           matInput
@@ -482,7 +492,12 @@
                     >
                       <div class="row">
                         <div class="col-11">
-                          <mat-form-field appearance="outline">
+                          <mat-form-field
+                            appearance="outline"
+                            [ngClass]="
+                              brightness ? 'inputTextColorD' : 'inputTextColorL'
+                            "
+                          >
                             <input
                               type="text"
                               matInput
@@ -511,7 +526,12 @@
                   </div>
                   <div class="row">
                     <div class="col-12">
-                      <mat-form-field appearance="outline">
+                      <mat-form-field
+                        appearance="outline"
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
+                      >
                         <mat-label>Author</mat-label>
                         <input
                           type="text"
@@ -530,6 +550,9 @@
                   <mat-form-field
                     class="example-chip-list"
                     appearance="outline"
+                    [ngClass]="
+                      brightness ? 'inputTextColorD' : 'inputTextColorL'
+                    "
                   >
                     <mat-label>Tags</mat-label>
                     <mat-chip-list #chipList aria-label="Fruit selection">

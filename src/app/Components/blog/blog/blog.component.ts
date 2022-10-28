@@ -155,7 +155,10 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     // method calls
-    this.meta.updateTag({ property: 'description', content: 'My blog page, where I post random content...' });
+    this.meta.updateTag({
+      property: 'description',
+      content: 'My blog page, where I post random content...',
+    });
 
     this.meta.updateTag({ property: 'og:type', content: 'blog' });
     this.meta.updateTag({ property: 'og:title', content: 'Blog' });
@@ -269,17 +272,21 @@ export class BlogComponent implements OnInit {
   }
 
   onCkReady(event) {
-    console.log(event);
-    this.toolbarElement = event.ui.view.toolbar.element;
-    this.editorElement = event.ui.view.editable.element;
-    this.editorElement.style.border = 'none';
-    this.toolbarElement.style.display = 'none';
+    if (!this.createPost) {
+      this.toolbarElement = event.ui.view.toolbar.element;
+      this.editorElement = event.ui.view.editable.element;
+      if (this.toolbarElement.style && this.editorElement.style) {
+        this.editorElement.style.border = 'none';
+        this.toolbarElement.style.display = 'none';
+      }
+    }
 
     if (this.brightness) {
       this.editorElement.style.backgroundColor = 'rgb(223, 223, 223)';
     } else {
       this.editorElement.style.backgroundColor = 'rgb(35, 36, 38)';
     }
+
     event.plugins.get('FileRepository').createUploadAdapter = (loader) => {
       // Configure the URL to the upload script in your back-end here!
       return new MyUploadAdapter(loader);
@@ -474,6 +481,13 @@ export class BlogComponent implements OnInit {
 
             dialogRes.afterClosed().subscribe((item) => {
               this.createPost = !this.createPost;
+
+              this.router.routeReuseStrategy.shouldReuseRoute = (
+                curr,
+                route
+              ) => {
+                return false;
+              };
 
               this.router.navigateByUrl('/blog/1');
             });

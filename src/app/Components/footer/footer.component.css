@@ -93,14 +93,15 @@ div.footer h6 {
   display: inline-flex;
   width: 100%;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
   word-break: break-word;
+  transition: all 0.3s ease-in-out;
 }
 
 .recentPostImg img {
   max-width: 80px;
   max-height: 80px;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .recentposts mat-card {

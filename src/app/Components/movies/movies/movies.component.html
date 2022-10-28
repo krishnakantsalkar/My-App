@@ -145,7 +145,10 @@
         <div class="searchArea">
           <div class="input" style="display: flex; justify-content: center">
             <form (ngSubmit)="SearchMedia($event)">
-              <mat-form-field appearance="outline">
+              <mat-form-field
+                appearance="outline"
+                [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+              >
                 <input
                   type="text"
                   placeholder=""

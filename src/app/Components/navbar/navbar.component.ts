@@ -73,7 +73,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     if (!isPlatformBrowser(this.platformId)) {
     } else {
-      console.log('called');
       let mediaQ = window.matchMedia('(max-width: 600px)');
 
       window.onscroll = function () {

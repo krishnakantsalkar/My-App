@@ -62,7 +62,11 @@
     </div>
 
     <br />
-    <mat-form-field appearance="outline" class="w-100">
+    <mat-form-field
+      appearance="outline"
+      [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+      class="w-100"
+    >
       <mat-label>image url</mat-label>
       <input
         type="text"
@@ -72,7 +76,11 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-100">
+    <mat-form-field
+      appearance="outline"
+      [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+      class="w-100"
+    >
       <mat-label>content</mat-label>
 
       <textarea
@@ -84,7 +92,10 @@
     </mat-form-field>
 
     <div class="links">
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+      >
         <mat-label>links</mat-label>
 
         <input

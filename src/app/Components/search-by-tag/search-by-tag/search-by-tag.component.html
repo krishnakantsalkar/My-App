@@ -8,7 +8,7 @@
   <div class="container">
     <h3
       [ngStyle]="{
-        color: brightness ? 'orangered' : 'violet'
+        color: brightness ? '#E84858' : 'violet'
       }"
     >
       < Search Results />
@@ -51,7 +51,7 @@
             <div class="tag_post_details">
               <h4
                 [ngStyle]="{
-                  color: brightness ? 'orangered' : 'violet'
+                  color: brightness ? '#E84858' : 'violet'
                 }"
               >
                 #{{ blog.postNumber }}. {{ blog.postTitle }}
@@ -61,14 +61,14 @@
                   <i
                     class="fas fa-clock"
                     [ngStyle]="{
-                      color: brightness ? 'orangered' : 'violet'
+                      color: brightness ? '#E84858' : 'violet'
                     }"
                   ></i>
                   {{ blog.postDate | date: "MMM dd, YYYY" }}
                 </span>
                 <span
                   [ngStyle]="{
-                    color: brightness ? 'orangered' : 'violet'
+                    color: brightness ? '#E84858' : 'violet'
                   }"
                 >
                   <small class="material-icons mx-1"> visibility </small
@@ -93,7 +93,7 @@
         <mat-card-content>
           <h3
             [ngStyle]="{
-              color: brightness ? 'orangered' : 'violet'
+              color: brightness ? '#E84858' : 'violet'
             }"
           >
             No posts found with that tag...

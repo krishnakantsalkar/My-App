@@ -15,7 +15,7 @@
       matTooltip="go to Top"
       matTooltipPosition="left"
       [ngStyle]="{
-        'background-color': brightness ? 'orangered' : ' violet',
+        'background-color': brightness ? '#E84858' : ' violet',
         color: brightness ? 'white' : 'black'
       }"
     >
@@ -23,7 +23,7 @@
       <mat-icon>keyboard_arrow_up</mat-icon>
     </button>
 
-    <!-- shaorangered footer template -->
+    <!-- sha#E84858 footer template -->
 
     <!-- Footer top area -->
     <div
@@ -139,7 +139,7 @@
                         class="skeletonData"
                         [ngStyle]="{
                           'background-color': brightness
-                            ? '#dc3545'
+                            ? '#E84858'
                             : ' rgb(32, 33, 33)',
                           color: brightness ? 'black' : 'rgb(160,160,160)'
                         }"
@@ -169,7 +169,7 @@
                             }"
                           >
                             <!-- [ngStyle]="{
-                              color: brightness ? 'orangered' : 'violet'
+                              color: brightness ? '#E84858' : 'violet'
                             }" -->
                             <span class="recentPostImg"
                               ><img src="{{ recent.postImage }}"
@@ -196,7 +196,7 @@
                       <button
                         mat-stroked-button
                         [ngStyle]="{
-                          color: brightness ? 'orangered' : 'violet'
+                          color: brightness ? '#E84858' : 'violet'
                         }"
                         routerLink="/blog/1"
                       >
@@ -517,7 +517,7 @@
                 class="text-underline"
                 routerLink="/privacy"
                 style="cursor: pointer"
-                [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+                [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
                 >privacy policy</span
               >
             </h6>
@@ -538,21 +538,24 @@
         <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
           <i
             class="fas fa-copyright"
-            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
           ></i>
           2020-{{ currentDate.getFullYear() }} |
-          <span [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }">
+          <span
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+            style="font-weight: 600"
+          >
             Krishnakant Salkar</span
           >, Made with
           <i
             class="fas fa-code"
-            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
           ></i>
         </h6>
         <span class="footerAngularLogo"
           ><i
             class="fab fa-angular"
-            [ngStyle]="{ color: brightness ? 'orangered' : 'violet' }"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
           ></i
         ></span>
       </div>

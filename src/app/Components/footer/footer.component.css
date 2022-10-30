@@ -284,7 +284,7 @@ div.footer h6 {
 }
 .lightHover:hover
 /* ,.sidenavL .logout_icon:hover  */ {
-  color: orangered !important;
+  color: #e84858 !important;
   cursor: pointer;
 }
 

@@ -154,8 +154,8 @@ span.two {
   font-weight: 500;
 }
 .activeCssL {
-  color: orangered !important;
-  border-bottom: 2px solid orangered;
+  color: #e84858 !important;
+  border-bottom: 2px solid #e84858;
   font-weight: 500;
 }
 
@@ -306,7 +306,7 @@ span.two {
 #button-3 .checkbox:checked + .knobs:before {
   content: "\e3ac";
   left: 42px;
-  background-color: orangered;
+  background-color: #e84858;
 }
 
 #button-3 .checkbox:checked ~ .layer {

@@ -439,7 +439,7 @@ div.nextprev button {
 }
 .lightHover:hover
 /* ,.sidenavL .logout_icon:hover  */ {
-  color: orangered !important;
+  color: #e84858 !important;
   cursor: pointer;
 }
 
@@ -534,7 +534,7 @@ div.nextprev button {
 
 .blog_tagsL {
   background-color: rgba(255, 69, 0, 0.13);
-  color: orangered;
+  color: #e84858;
   border-radius: 10px;
   margin: 5px;
   display: inline-block;

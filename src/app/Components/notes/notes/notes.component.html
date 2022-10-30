@@ -24,8 +24,8 @@
       matTooltipPosition="right"
       (click)="copyIp()"
       [ngStyle]="{
-        color: brightness ? 'orangered' : 'violet',
-        'border-color': brightness ? 'orangered' : 'violet'
+        color: brightness ? '#E84858' : 'violet',
+        'border-color': brightness ? '#E84858' : 'violet'
       }"
     >
       <span class="">Your IP: {{ clientIp }} </span>
@@ -38,7 +38,7 @@
       type="button"
       class="float-right mx-2"
       [ngStyle]="{
-        'background-color': brightness ? 'orangered' : ' violet',
+        'background-color': brightness ? '#E84858' : ' violet',
         color: brightness ? 'white' : 'black'
       }"
       (click)="showAddNote()"
@@ -53,7 +53,7 @@
       *ngIf="!todoSwitch"
       class="float-right mx-2"
       [ngStyle]="{
-        'background-color': brightness ? 'orangered' : ' violet',
+        'background-color': brightness ? '#E84858' : ' violet',
         color: brightness ? 'white' : 'black'
       }"
       (click)="showAddTodo()"
@@ -75,7 +75,7 @@
     >
       <h3
         [ngStyle]="{
-          color: brightness ? 'orangered' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
       >
         Add New Note
@@ -139,7 +139,7 @@
     >
       <h3
         [ngStyle]="{
-          color: brightness ? 'orangered' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
       >
         Add New Task
@@ -207,7 +207,7 @@
             <span
               ><mat-icon
                 [ngStyle]="{
-                  color: brightness ? 'orangered' : 'violet'
+                  color: brightness ? '#E84858' : 'violet'
                 }"
                 style="margin-left: 10px"
                 (click)="deleteOpt(i)"
@@ -269,7 +269,7 @@
     >
       <mat-icon
         [ngStyle]="{
-          color: brightness ? 'orangered' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
         >note_add</mat-icon
       >
@@ -345,7 +345,7 @@
                             <mat-icon
                               class="icon_align"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               >description</mat-icon
                             >
@@ -354,7 +354,7 @@
                           <span
                             ><mat-icon
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               (click)="pinNote(i, 'unpin')"
                               matTooltipPosition="above"
@@ -406,7 +406,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="clickEditNote(i)"
                           matTooltipPosition="above"
@@ -431,7 +431,7 @@
                         <mat-icon
                           style="cursor: pointer"
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="deleteNote(i)"
                           matTooltipPosition="above"
@@ -452,7 +452,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="archive(i, 'archive')"
                           matTooltipPosition="above"
@@ -542,7 +542,7 @@
                         <mat-icon
                           (click)="cancelEditNote(i)"
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           matTooltipPosition="above"
                           matTooltip="cancel edit"
@@ -593,7 +593,7 @@
                             <mat-icon
                               class="icon_align"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               >description</mat-icon
                             >
@@ -603,7 +603,7 @@
                             ><mat-icon
                               class="pin_icon"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               (click)="pinNote(i, 'pin')"
                               matTooltipPosition="above"
@@ -655,7 +655,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="clickEditNote(i)"
                           matTooltipPosition="above"
@@ -677,7 +677,7 @@
                         <mat-icon
                           (click)="cancelEditNote(i)"
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           >cancel</mat-icon
                         >
@@ -695,7 +695,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="deleteNote(i)"
                           matTooltipPosition="above"
@@ -716,7 +716,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="archive(i, 'archive')"
                           matTooltipPosition="above"
@@ -816,7 +816,7 @@
           'background-color': brightness
             ? 'rgb(245, 245, 245)'
             : ' rgb(31, 32, 35)',
-          color: brightness ? 'orangered' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
       >
         <mat-card
@@ -852,7 +852,7 @@
                           <mat-icon
                             class="icon_align"
                             [ngStyle]="{
-                              color: brightness ? 'orangered' : 'violet'
+                              color: brightness ? '#E84858' : 'violet'
                             }"
                             >description</mat-icon
                           >
@@ -863,7 +863,7 @@
                             class="mx-2"
                             style="cursor: pointer"
                             [ngStyle]="{
-                              color: brightness ? 'orangered' : 'violet'
+                              color: brightness ? '#E84858' : 'violet'
                             }"
                             (click)="deleteNote(i)"
                             matTooltipPosition="above"
@@ -874,7 +874,7 @@
                           <mat-icon
                             class="mx-2"
                             [ngStyle]="{
-                              color: brightness ? 'orangered' : 'violet'
+                              color: brightness ? '#E84858' : 'violet'
                             }"
                             (click)="unArchive(i)"
                             matTooltipPosition="above"
@@ -924,7 +924,7 @@
           'background-color': brightness
             ? 'rgb(245, 245, 245)'
             : ' rgb(31, 32, 35)',
-          color: brightness ? 'orangered' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
       >
         <mat-card
@@ -989,7 +989,7 @@
                               class="mx-1"
                               *ngIf="checkAllTasks(todo)"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               style="
                                 position: relative;
@@ -1002,7 +1002,7 @@
                           <span>
                             <mat-icon
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               (click)="pinTodo(i, 'unpin')"
                               matTooltipPosition="above"
@@ -1017,7 +1017,7 @@
                               class="progress-bar"
                               [ngStyle]="{
                                 'background-color': brightness
-                                  ? 'orangered'
+                                  ? '#E84858'
                                   : 'violet'
                               }"
                               role="progressbar"
@@ -1045,7 +1045,7 @@
                             <span
                               *ngIf="list.value == true"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               style="text-decoration: line-through"
                             >
@@ -1098,7 +1098,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="editTodo(i)"
                           matTooltipPosition="above"
@@ -1132,7 +1132,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="deleteTodo(i)"
                           matTooltipPosition="above"
@@ -1220,7 +1220,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="cancelEditTodo(i)"
                           matTooltipPosition="above"
@@ -1267,7 +1267,7 @@
                               class="mx-1"
                               *ngIf="checkAllTasks(todo)"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               style="
                                 position: relative;
@@ -1281,7 +1281,7 @@
                             <mat-icon
                               class="pin_icon"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               (click)="pinTodo(i, 'pin')"
                               matTooltipPosition="above"
@@ -1297,7 +1297,7 @@
                               class="progress-bar"
                               [ngStyle]="{
                                 'background-color': brightness
-                                  ? 'orangered'
+                                  ? '#E84858'
                                   : 'violet'
                               }"
                               role="progressbar"
@@ -1325,7 +1325,7 @@
                             <span
                               *ngIf="list.value == true"
                               [ngStyle]="{
-                                color: brightness ? 'orangered' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               style="text-decoration: line-through"
                             >
@@ -1376,7 +1376,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="editTodo(i)"
                           matTooltipPosition="above"
@@ -1398,7 +1398,7 @@
                         <mat-icon
                           (click)="cancelEditTodo(i)"
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           >cancel</mat-icon
                         >
@@ -1416,7 +1416,7 @@
                       >
                         <mat-icon
                           [ngStyle]="{
-                            color: brightness ? 'orangered' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           (click)="deleteTodo(i)"
                           matTooltipPosition="above"
@@ -1513,7 +1513,7 @@
             'background-color': brightness
               ? 'rgb(245, 245, 245)'
               : ' rgb(31, 32, 35)',
-            color: brightness ? 'orangered' : 'violet'
+            color: brightness ? '#E84858' : 'violet'
           }"
           style="margin-top: 20px; min-height: 200px"
         >
@@ -1575,7 +1575,7 @@
                       <mat-icon
                         style="cursor: pointer"
                         [ngStyle]="{
-                          color: brightness ? 'orangered' : 'violet'
+                          color: brightness ? '#E84858' : 'violet'
                         }"
                         matTooltip="delete snippet"
                         matTooltipPosition="above"
@@ -1597,7 +1597,7 @@
                       <mat-icon
                         style="cursor: pointer"
                         [ngStyle]="{
-                          color: brightness ? 'orangered' : 'violet'
+                          color: brightness ? '#E84858' : 'violet'
                         }"
                         matTooltip="copy snippet link"
                         matTooltipPosition="above"
@@ -1636,7 +1636,7 @@
       class="skeletonData"
       style="margin-top: 20px"
       [ngStyle]="{
-        'background-color': brightness ? '#dc3545' : ' rgb(32, 33, 33)',
+        'background-color': brightness ? '#E84858' : ' rgb(32, 33, 33)',
         color: brightness ? 'black' : 'rgb(160,160,160)'
       }"
     >

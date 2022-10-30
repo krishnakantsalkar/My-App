@@ -147,10 +147,10 @@ div.imagesection img {
   from,
   to {
     color: transparent;
-    box-shadow: 0 0 0 1px black, 0 0 5px 4px orangered;
+    box-shadow: 0 0 0 1px black, 0 0 5px 4px #e84858;
   }
   50% {
-    box-shadow: 0 0 1px 1px black, 0 0 20px 20px orangered;
+    box-shadow: 0 0 1px 1px black, 0 0 20px 20px #e84858;
   }
 }
 
@@ -294,7 +294,7 @@ div.imagesection img {
     color: transparent;
   }
   50% {
-    box-shadow: 0 2px 4px black, 0 8px 8px orangered;
+    box-shadow: 0 2px 4px black, 0 8px 8px #e84858;
   }
 }
 
@@ -312,7 +312,7 @@ div.imagesection img {
 @keyframes pulse-animationL {
   0% {
     /* box-shadow: 0 0 0 0px rgba(255, 68, 0, 1); */
-    box-shadow: 0 2px 4px black, 0 0 0 0px orangered;
+    box-shadow: 0 2px 4px black, 0 0 0 0px #e84858;
   }
   100% {
     /* box-shadow: 0 0 0 30px rgba(255, 68, 0, 0); */
@@ -334,7 +334,7 @@ div.imagesection img {
 @keyframes pulse-animationL-mob {
   0% {
     /* box-shadow: 0 0 0 0px rgba(255, 68, 0, 1); */
-    box-shadow: 0 2px 4px black, 0 0 0 0px orangered;
+    box-shadow: 0 2px 4px black, 0 0 0 0px #e84858;
   }
   100% {
     /* box-shadow: 0 0 0 30px rgba(255, 68, 0, 0); */
@@ -421,7 +421,7 @@ div.adblockOverlays .card {
 }
 
 div.adblockOverlays .crossBtn:hover i {
-  color: orangered;
+  color: #e84858;
 }
 
 div.adblockOverlays .card-body button {
@@ -477,9 +477,9 @@ div.websiteUsesDialog mat-icon {
   transition: 0.3s ease-in-out;
 }
 .front_textL:hover {
-  /* border-bottom: 2px solid orangered; */
+  /* border-bottom: 2px solid #E84858; */
   text-decoration: underline;
-  text-decoration-color: orangered;
+  text-decoration-color: #e84858;
 }
 
 .front_textD:hover {

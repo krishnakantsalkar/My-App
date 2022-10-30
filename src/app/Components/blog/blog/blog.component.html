@@ -226,13 +226,19 @@
     >
       <div class="container" id="main">
         <br />
-        <div class="row">
-          <div class="col-2 col-lg-1">
+        <div class="quotes_container">
+          <div class="AllFilter">
             <h1>
-              <b id="twothousandtwenty" (click)="showAllList()">All</b>
+              <!-- <b
+                id="twothousandtwenty"
+                [ngClass]="brightness ? 'lightHover' : 'darkHover'"
+                (click)="showAllList()"
+                >All</b
+              > -->
+              Blogs
             </h1>
           </div>
-          <div class="col-2 col-lg-1">
+          <!-- <div class="col-2 col-lg-1 YearFilter">
             <h1>
               <i
                 class="fab fa-searchengin"
@@ -245,9 +251,9 @@
                 title="Search!"
               ></i>
             </h1>
-          </div>
+          </div> -->
           <div
-            class="col-md-8 col-lg-10"
+            class="quotes_card"
             style="height: auto; width: 100%; text-align: center"
           >
             <mat-card
@@ -260,8 +266,17 @@
               >"{{ movieQ }}" ~ {{ movieName }}</mat-card
             >
           </div>
+          <mat-icon
+            class="quote_refresh"
+            [ngClass]="brightness ? 'lightHover' : 'darkHover'"
+            [ngStyle]="{
+              color: brightness ? 'rgb(51,52,56)' : 'rgb(160,160,160)'
+            }"
+            (click)="getMovieQuotes()"
+            >autorenew</mat-icon
+          >
         </div>
-        <div style="display: inline-block">
+        <!-- <div style="display: inline-block">
           <h1
             (click)="showYearList()"
             style="cursor: pointer; display: inline-block"
@@ -291,25 +306,88 @@
               </h1>
             </span>
           </div>
+        </div> -->
+
+        <div class="blog-toolbar">
+          <!-- search input field -->
+          <div>
+            <mat-form-field
+              class="no-pad"
+              appearance="outline"
+              [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+            >
+              <mat-label>year</mat-label>
+              <mat-select (selectionChange)="blogsP(1, $event.value)">
+                <mat-option selected> All </mat-option>
+                <mat-option
+                  *ngFor="
+                    let year of [].constructor(date.getFullYear() - 2019);
+                    let i = index
+                  "
+                  [value]="date.getFullYear() - i"
+                >
+                  {{ date.getFullYear() - i }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <form>
+            <div class="input-container" id="input-container">
+              <mat-form-field
+                class="no-pad"
+                appearance="outline"
+                [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
+              >
+                <input
+                  type="text"
+                  id="searchbar"
+                  placeholder=""
+                  #search
+                  matInput
+                />
+
+                <i
+                  matSuffix
+                  class="fas fa-search"
+                  (click)="Search(search.value)"
+                  [ngStyle]="{
+                    color: brightness ? 'black' : 'white'
+                  }"
+                ></i>
+              </mat-form-field>
+
+              <br />
+            </div>
+          </form>
+
+          <button
+            id="createPost_btn"
+            mat-raised-button
+            class="btn-warning mx-1"
+            style="float: right"
+            (click)="createPostmethod($event)"
+            *ngIf="checkUser"
+            [ngStyle]="{
+              'background-color': brightness ? 'orangered' : 'violet',
+              color: brightness ? 'white' : 'initial'
+            }"
+          >
+            <span class="material-icons" *ngIf="!createPost"> feed </span>
+            <span class="material-icons" *ngIf="createPost"> close </span>
+
+            <!-- Create post -->
+          </button>
+
+          <button
+            mat-raised-button
+            class="btn-primary mx-1"
+            (click)="openShareSheet()"
+          >
+            <mat-icon>share</mat-icon>
+          </button>
         </div>
 
-        <!-- search input field -->
-        <form>
-          <div class="input-container" id="input-container">
-            <input
-              type="text"
-              id="searchbar"
-              placeholder=""
-              #search
-              class="form-control"
-              [ngStyle]="{
-                'background-color': brightness ? 'rgb(223, 223, 223)' : ' white'
-              }"
-            />
-            <i class="fas fa-search icon" (click)="Search(search.value)"></i>
-            <br />
-          </div>
-        </form>
         <div class="searchResult" id="searchResult" *ngIf="searchResult">
           <mat-card
             data-aos="fade-up"
@@ -353,26 +431,6 @@
           <br />
         </div>
 
-        <div class="row justify-content-end mx-0">
-          <button
-            id="createPost_btn"
-            mat-raised-button
-            class="btn-warning mx-1"
-            style="float: right"
-            (click)="createPostmethod($event)"
-            *ngIf="checkUser"
-          >
-            <span class="material-icons"> feed </span> Create post
-          </button>
-
-          <button
-            mat-raised-button
-            class="btn-primary mx-1"
-            (click)="openShareSheet()"
-          >
-            <mat-icon>share</mat-icon>
-          </button>
-        </div>
         <br />
         <!-- Create post area -->
 
@@ -464,7 +522,7 @@
                   </div>
                   <div class="link row">
                     <div class="col-12">
-                      <label for="">Link</label>
+                      <label for="">add Link</label>
                       <mat-icon
                         class="mx-2"
                         (click)="addLink()"
@@ -472,7 +530,7 @@
                           color: #1f7ce0;
                           cursor: pointer;
                           position: relative;
-                          top: 3px;
+                          top: 5px;
                         "
                         [ngStyle]="{
                           'pointer-events':
@@ -498,6 +556,7 @@
                               brightness ? 'inputTextColorD' : 'inputTextColorL'
                             "
                           >
+                            <mat-label>link</mat-label>
                             <input
                               type="text"
                               matInput
@@ -642,8 +701,9 @@
               </div>
             </div>
           </mat-card>
+
+          <br />
         </div>
-        <br />
 
         <!-- blog data -->
 
@@ -720,6 +780,10 @@
             </div>
           </div>
         </div>
+
+        <hr />
+        <br />
+
         <div class="row">
           <div class="blogdata col-sm-8" *ngIf="data">
             <ng-container *ngFor="let d of data; let i = index">

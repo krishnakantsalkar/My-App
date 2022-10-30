@@ -175,10 +175,10 @@ div.cvrimg {
   padding-top: 120px;
 }
 
-.input-container {
+/* .input-container {
   z-index: -10;
   display: none;
-}
+} */
 
 #searchbar {
   margin-left: auto;
@@ -420,19 +420,27 @@ div.nextprev button {
 .alert-custom {
   color: white;
   font-size: 22px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   text-align: center;
   display: inline-block;
+  flex: 0 1 95%;
 }
 
 #twothousandtwenty {
   transition: 0.3s ease-in-out;
 }
 
-#twothousandtwenty:hover {
+/* dark mode hover */
+.darkHover:hover
+/*, .sidenav .logout_icon:hover  */ {
   cursor: pointer;
-  color: rgb(49, 223, 107) !important;
+  color: violet !important;
+}
+.lightHover:hover
+/* ,.sidenavL .logout_icon:hover  */ {
+  color: orangered !important;
+  cursor: pointer;
 }
 
 .showYearOpt {
@@ -563,6 +571,45 @@ div.nextprev button {
   top: 70px;
 }
 
+.quotes_card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote_refresh {
+  transition: 0.3s ease-in-out;
+  font-size: 40px;
+  width: 50px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.YearFilter,
+.AllFilter {
+  display: flex;
+  align-items: center;
+}
+
+.quotes_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 40px;
+}
+
+.blog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  gap: 12px;
+}
+
+.blog-toolbar form {
+  width: 100%;
+}
 @media only screen and (max-width: 1400px) {
   .blog_tagsL,
   .blog_tagsD {
@@ -680,5 +727,13 @@ div.nextprev button {
   }
   .showYearsDefault {
     font-size: 22px;
+  }
+
+  .quotes_container {
+    flex-direction: column;
+  }
+
+  .blog-toolbar {
+    flex-direction: column;
   }
 }

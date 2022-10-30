@@ -90,7 +90,7 @@ export class BlogComponent implements OnInit {
 
   public movieName;
   public movieQ;
-  public movieQArr;
+  public movieQArr = movieQuotesJson;
   window = window;
   public months = [
     'January',
@@ -114,6 +114,8 @@ export class BlogComponent implements OnInit {
     'emoji-textarea': true,
     'emoji-shortname': true,
   };
+
+  selectedYear;
 
   public blogErrMsg;
   public scrollbarOptions = { axis: 'yx', theme: 'minimal-dark' };
@@ -615,7 +617,6 @@ export class BlogComponent implements OnInit {
   }
 
   getMovieQuotes() {
-    this.movieQArr = movieQuotesJson;
     let random = Math.floor(Math.random() * this.movieQArr.length);
 
     this.movieQ = this.movieQArr[random].quote;

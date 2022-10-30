@@ -31,6 +31,17 @@
   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: violet !important;
   }
+
+  .mat-select-value-text {
+    color: black !important;
+  }
+  .mat-select-arrow {
+    color: black !important;
+  }
+
+  .mat-primary .mat-option .mat-selected:not(.mat-option-disabled) {
+    color: black !important;
+  }
 }
 
 .inputTextColorL {
@@ -63,5 +74,24 @@
 
   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: orangered !important;
+  }
+
+  .mat-select-value-text {
+    color: white !important;
+  }
+
+  .mat-select-arrow {
+    color: white !important;
+  }
+
+  .mat-primary .mat-option .mat-selected:not(.mat-option-disabled) {
+    color: white !important;
+  }
+}
+
+.no-pad {
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }

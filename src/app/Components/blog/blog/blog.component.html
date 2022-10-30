@@ -21,7 +21,7 @@
           'background-color': brightness
             ? 'rgb(235, 235, 235)'
             : ' rgb(41, 42, 45)',
-          color: brightness ? 'red' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
         *ngIf="logResponse"
       >
@@ -31,7 +31,7 @@
           <h5>Post Title: {{ logResponse.postTitle }}</h5>
         </h3>
         <div
-          [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+          [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
           *ngIf="errResponse"
         >
           <h3 style="text-align: center">
@@ -48,7 +48,7 @@
               'background-color': brightness
                 ? 'rgb(235, 235, 235)'
                 : ' rgb(31, 32, 35)',
-              color: brightness ? 'red' : 'violet'
+              color: brightness ? '#E84858' : 'violet'
             }"
             tabindex="-1"
           >
@@ -235,7 +235,7 @@
                 (click)="showAllList()"
                 >All</b
               > -->
-              Blogs
+              Blog
             </h1>
           </div>
           <!-- <div class="col-2 col-lg-1 YearFilter">
@@ -415,7 +415,7 @@
                     routerLink="/blog/{{ result.postNumber }}/{{
                       result.postTitle
                     }}/{{ result._id }}"
-                    [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+                    [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
                   >
                     {{ result.postNumber }}: {{ result.postTitle }}</a
                   >
@@ -967,7 +967,7 @@
                                   }}/{{ d._id }}"
                                   *ngIf="data"
                                   [ngStyle]="{
-                                    color: brightness ? 'red' : 'violet'
+                                    color: brightness ? '#E84858' : 'violet'
                                   }"
                                 >
                                   <!-- <span class="material-icons"> feed </span> -->
@@ -1132,7 +1132,7 @@
                                   d.postTitle
                                 }}/{{ d._id }}"
                                 [ngStyle]="{
-                                  color: brightness ? 'red' : 'violet'
+                                  color: brightness ? '#E84858' : 'violet'
                                 }"
                               >
                                 Read more <mat-icon>chevron_right</mat-icon>
@@ -1146,7 +1146,7 @@
                               <h6
                                 class="card-main-footer"
                                 [ngStyle]="{
-                                  color: brightness ? 'red' : 'violet'
+                                  color: brightness ? '#E84858' : 'violet'
                                 }"
                                 *ngIf="readTimeCheck.length > 0"
                                 [ngClass]="
@@ -1195,7 +1195,7 @@
                                 <span
                                   class="postauthor"
                                   [ngStyle]="{
-                                    color: brightness ? 'red' : 'violet'
+                                    color: brightness ? '#E84858' : 'violet'
                                   }"
                                   (click)="gotoAuthor()"
                                   style="cursor: pointer"
@@ -1214,7 +1214,7 @@
                                 <i class="fas fa-user"></i> By:
                                 <span
                                   [ngStyle]="{
-                                    color: brightness ? 'red' : 'violet'
+                                    color: brightness ? '#E84858' : 'violet'
                                   }"
                                   >Admin</span
                                 >
@@ -1256,7 +1256,7 @@
                       <h5 *ngIf="d.recommended">
                         <a
                           [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           routerLink="/blog/{{ d.postNumber }}/{{
                             d.postTitle
@@ -1296,7 +1296,7 @@
                       <h5 *ngIf="d.userViews >= 2">
                         <a
                           [ngStyle]="{
-                            color: brightness ? 'red' : 'violet'
+                            color: brightness ? '#E84858' : 'violet'
                           }"
                           routerLink="/blog/{{ d.postNumber }}/{{
                             d.postTitle
@@ -1320,7 +1320,7 @@
                   'background-color': brightness
                     ? 'rgb(223, 223, 223)'
                     : ' rgb(35, 36, 38)',
-                  color: brightness ? 'red' : 'violet'
+                  color: brightness ? '#E84858' : 'violet'
                 }"
               >
                 <!-- some hashtags to search blogposts -->
@@ -1367,7 +1367,7 @@
                   'background-color': brightness
                     ? 'rgb(223, 223, 223)'
                     : ' rgb(35, 36, 38)',
-                  color: brightness ? 'red' : 'violet'
+                  color: brightness ? '#E84858' : 'violet'
                 }"
               >
                  one more search field 

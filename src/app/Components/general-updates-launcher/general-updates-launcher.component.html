@@ -19,7 +19,7 @@
     class="customFab"
     [ngStyle]="{
       'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
-      color: brightness ? 'red' : 'violet',
+      color: brightness ? '#E84858' : 'violet',
       opacity: side ? '1' : '0.3'
     }"
     matTooltip="updates"
@@ -36,7 +36,7 @@
     class="customFab"
     [ngStyle]="{
       'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
-      color: brightness ? 'red' : 'violet'
+      color: brightness ? '#E84858' : 'violet'
     }"
     (click)="newUpdateDialog()"
     matTooltip="add update"
@@ -157,7 +157,7 @@
     [opened]="side"
     [ngStyle]="{
       'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
-      color: brightness ? 'red' : 'violet'
+      color: brightness ? '#E84858' : 'violet'
     }"
   >
     <h5
@@ -217,7 +217,7 @@
         </mat-card-content>
         <mat-card-footer
           [ngStyle]="{
-            color: brightness ? 'red' : 'violet'
+            color: brightness ? '#E84858' : 'violet'
           }"
         >
           <span>{{ up.createdAt | date: "dd MMM | hh:mm a" }}</span>

@@ -68,17 +68,18 @@
         class="preloadDate"
         *ngIf="!session"
         [ngStyle]="{
+          'background-color': brightness ? '#ff450021' : '#ee82d521',
           color: brightness ? '#E84858' : 'violet'
         }"
       >
         {{ currentDate | date: "dd MMM | hh:mm a" }}
       </span>
-      <a
+      <!-- <a
         *ngIf="!session"
         class="preloadModeChange"
         (click)="mode()"
         [ngStyle]="{
-          color: brightness ? 'red' : 'violet'
+          color: brightness ? '#E84858' : 'violet'
         }"
         matTooltip="switch brightness"
         matTooltipPosition="left"
@@ -88,7 +89,23 @@
         <ng-template #notBrightness
           ><mat-icon class="icon_align">brightness_7</mat-icon></ng-template
         ></a
+      > -->
+      <div
+        class="button r preloadModeChange"
+        id="button-3"
+        *ngIf="!session"
+        matTooltip="switch brightness"
+        matTooltipPosition="left"
       >
+        <input
+          type="checkbox"
+          [checked]="brightness"
+          (change)="mode()"
+          class="checkbox"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
 
       <div
         class="preloadContent card"
@@ -124,7 +141,7 @@
           />
           <div class="progressText">
             <h6
-              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
               id="loopText"
             ></h6>
 
@@ -141,7 +158,7 @@
 
             <h4
               class="preloader_quote"
-              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
             >
               <span class="preloader_quote_part1">To Infinity</span>
               <span class="preloader_quote_part2">...</span>
@@ -162,14 +179,14 @@
               class="progress"
               id="progress"
               [ngStyle]="{
-                'background-color': brightness ? 'red' : 'violet'
+                'background-color': brightness ? '#E84858' : 'violet'
               }"
             ></div>
           </div>
           <div class="preloaderImgArea">
             <span
               id="percent"
-              [ngStyle]="{ color: brightness ? 'red' : 'violet' }"
+              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
             >
               1%</span
             >

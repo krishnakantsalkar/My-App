@@ -349,12 +349,7 @@
                           "
                         >
                           <mat-label>Name</mat-label>
-                          <input
-                            type="text"
-                            matInput
-                            formControlName="name"
-                            autofocus
-                          />
+                          <input type="text" matInput formControlName="name" />
                         </mat-form-field>
                         <mat-form-field
                           appearance="outline"
@@ -488,6 +483,9 @@
           </div>
           <a
             class="fifth-content-credits"
+            [ngStyle]="{
+              color: brightness ? '#E84858' : 'violet'
+            }"
             href="https://www.pexels.com/photo/grayscale-photo-of-computer-laptop-near-white-notebook-and-ceramic-mug-on-table-169573/"
             >Photo by Negative Space, Pexels</a
           >

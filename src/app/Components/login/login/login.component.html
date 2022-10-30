@@ -21,7 +21,7 @@
         >
           <h3 style="text-align: center">
             Welcome,
-            <span [ngStyle]="{ color: brightness ? 'red' : 'violet' }">
+            <span [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }">
               {{ loginresponse.name }}</span
             >
           </h3>
@@ -38,7 +38,7 @@
                 'background-color': brightness
                   ? 'rgb(235, 235, 235)'
                   : ' rgb(31, 32, 35)',
-                color: brightness ? 'red' : 'violet'
+                color: brightness ? '#E84858' : 'violet'
               }"
             >
               OK
@@ -91,7 +91,7 @@
               <i
                 class="fas fa-fire-alt"
                 [ngStyle]="{
-                  color: brightness ? 'red' : 'rgb(255, 144, 8)'
+                  color: brightness ? '#E84858' : 'rgb(255, 144, 8)'
                 }"
               ></i>
               <br />
@@ -202,7 +202,7 @@
                               type="button"
                               (click)="showPass()"
                               [ngStyle]="{
-                                color: brightness ? 'red' : 'violet'
+                                color: brightness ? '#E84858' : 'violet'
                               }"
                               >{{
                                 showpass ? "visibility_on" : "visibility_off"

@@ -3,7 +3,7 @@
   animation: cursor 1s infinite;
 }
 .loadinganimLight {
-  color: red;
+  color: #e84858;
   animation: cursor1 1s infinite;
 }
 
@@ -24,7 +24,7 @@
     color: transparent;
   }
   50% {
-    color: red;
+    color: #e84858;
     text-shadow: 0px 0px 15px rgb(243, 50, 82);
   }
 }

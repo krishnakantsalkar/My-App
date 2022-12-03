@@ -3,7 +3,7 @@ import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from '../../Shared/services/userloginservice';
 import { GeneralUpdatesService } from '../../Shared/services/general-updates.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { UiService } from '../../Shared/services/ui.service';
 
 @Component({

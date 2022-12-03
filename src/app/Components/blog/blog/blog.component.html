@@ -614,7 +614,7 @@
                     "
                   >
                     <mat-label>Tags</mat-label>
-                    <mat-chip-list #chipList aria-label="Fruit selection">
+                    <!-- <mat-chip-list #chipList aria-label="Fruit selection">
                       <mat-chip
                         *ngFor="let tag of tags"
                         (removed)="removeTag(tag)"
@@ -631,7 +631,7 @@
                         [matChipInputAddOnBlur]="addOnBlur"
                         (matChipInputTokenEnd)="addTag($event)"
                       />
-                    </mat-chip-list>
+                    </mat-chip-list> -->
                   </mat-form-field>
                 </div>
               </div>
@@ -1018,7 +1018,7 @@
                                 "
                               >
                                 <i class="fas fa-clock"></i>
-                                {{ d.postDate | date: "MMM dd, YYYY" }}
+                                {{ d.postDate | date : "MMM dd, YYYY" }}
                               </span>
                               <span
                                 *ngIf="d.edited == true"
@@ -1075,12 +1075,12 @@
                                 color: brightness ? 'black' : 'rgb(129,129,129)'
                               }"
                             >
-                              {{ d.post | slice: 0:150 }}
+                              {{ d.post | slice : 0 : 150 }}
                             </markdown>
 
                             <ckeditor
                               *ngIf="d.postNumber > 22"
-                              [data]="(d.post | slice: 0:350) + '.....'"
+                              [data]="(d.post | slice : 0 : 350) + '.....'"
                               [editor]="Editor"
                               [disabled]="true"
                               [ngStyle]="{
@@ -1291,7 +1291,7 @@
                   <mat-card-content>
                     <div
                       class="mostViewedPosts"
-                      *ngFor="let d of mostViewed | slice: 0:5"
+                      *ngFor="let d of mostViewed | slice : 0 : 5"
                     >
                       <h5 *ngIf="d.userViews >= 2">
                         <a

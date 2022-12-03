@@ -162,7 +162,6 @@ const routes: Routes = [
       onSameUrlNavigation: 'reload',
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
-      relativeLinkResolution: 'legacy',
       initialNavigation: 'enabledBlocking',
     }),
   ],

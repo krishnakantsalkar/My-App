@@ -41,7 +41,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   public brightness: boolean;
   public special: boolean;
   public session: boolean;
-  public recentblogs;
   public loggedInUser;
   public sendFeedback: UntypedFormGroup;
   public logResponse;
@@ -162,7 +161,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     this.meta.updateTag({ property: 'og:height', content: '630' });
 
     // this.getspecials();
-    this.recentUpdates();
     this.getUserId();
     this.showAdmin();
 
@@ -348,13 +346,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         this.userName = userData;
       }
     }
-  }
-
-  // show latest blog post
-  recentUpdates() {
-    this.blogservice.getBlogs().subscribe((item) => {
-      this.recentblogs = item;
-    });
   }
 
   // get id for profile page navigation

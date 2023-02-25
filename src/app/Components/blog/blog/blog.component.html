@@ -614,7 +614,7 @@
                     "
                   >
                     <mat-label>Tags</mat-label>
-                    <!-- <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
                       <mat-chip
                         *ngFor="let tag of tags"
                         (removed)="removeTag(tag)"
@@ -631,7 +631,7 @@
                         [matChipInputAddOnBlur]="addOnBlur"
                         (matChipInputTokenEnd)="addTag($event)"
                       />
-                    </mat-chip-list> -->
+                    </mat-chip-list>
                   </mat-form-field>
                 </div>
               </div>
@@ -1249,11 +1249,14 @@
                 <!-- recommended posts -->
                 <div class="recommended">
                   <mat-card-title>
-                    <h5>Recommended posts</h5>
+                    <h5><mat-icon>auto_awesome</mat-icon>Recommended posts</h5>
                   </mat-card-title>
                   <mat-card-content>
-                    <div class="recommendedPosts" *ngFor="let d of allData">
-                      <h5 *ngIf="d.recommended">
+                    <div
+                      class="recommendedPosts"
+                      *ngFor="let d of recommendedBlogs"
+                    >
+                      <h5>
                         <a
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
@@ -1286,7 +1289,7 @@
                 <!-- most viewed posts -->
                 <div class="mostViewed">
                   <mat-card-title>
-                    <h5>Most Viewed</h5>
+                    <h5><mat-icon>visibility</mat-icon> Most Viewed</h5>
                   </mat-card-title>
                   <mat-card-content>
                     <div
@@ -1309,25 +1312,26 @@
                 </div>
               </mat-card>
               <br />
-              <mat-card
-                *ngIf="data"
-                class="hashtags"
-                data-aos="slide-up"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-                data-aos-once="true"
-                [ngStyle]="{
-                  'background-color': brightness
-                    ? 'rgb(223, 223, 223)'
-                    : ' rgb(35, 36, 38)',
-                  color: brightness ? '#E84858' : 'violet'
-                }"
-              >
-                <!-- some hashtags to search blogposts -->
-                <mat-card-content>
-                  <p>
-                    <strong>
-                      <!-- <span (click)="Search('pixel experience')">
+              <div class="tags">
+                <mat-card
+                  *ngIf="data"
+                  class="hashtags"
+                  data-aos="slide-up"
+                  data-aos-delay="300"
+                  data-aos-duration="1000"
+                  data-aos-once="true"
+                  [ngStyle]="{
+                    'background-color': brightness
+                      ? 'rgb(223, 223, 223)'
+                      : ' rgb(35, 36, 38)',
+                    color: brightness ? '#E84858' : 'violet'
+                  }"
+                >
+                  <!-- some hashtags to search blogposts -->
+                  <mat-card-content>
+                    <p>
+                      <strong>
+                        <!-- <span (click)="Search('pixel experience')">
                         #pixelexperience</span
                       >
                       &nbsp;
@@ -1344,18 +1348,20 @@
 
                       <span routerLink="/movies&tv">#movieDB</span>&nbsp; -->
 
-                      <ng-container *ngFor="let tag of tagsList">
-                        <span
-                          [ngClass]="brightness ? 'blog_tagsL' : 'blog_tagsD'"
-                          [routerLink]="['/searchTag']"
-                          [queryParams]="{ search: tag }"
-                          >#{{ tag }}</span
-                        >&nbsp;
-                      </ng-container>
-                    </strong>
-                  </p>
-                </mat-card-content>
-              </mat-card>
+                        <ng-container *ngFor="let tag of tagsList">
+                          <span
+                            [ngClass]="brightness ? 'blog_tagsL' : 'blog_tagsD'"
+                            [routerLink]="['/searchTag']"
+                            [queryParams]="{ search: tag }"
+                            >#{{ tag }}</span
+                          >&nbsp;
+                        </ng-container>
+                      </strong>
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+
               <br />
               <!-- <mat-card
                 *ngIf="data"

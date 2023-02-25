@@ -90,8 +90,8 @@ export class FooterComponent implements OnInit {
   }
 
   recentUpdates() {
-    this.blogservice.getBlogs().subscribe((item) => {
-      this.recentblogs = item;
+    this.blogservice.getRecentPosts().subscribe((item) => {
+      this.recentblogs = item.result;
 
       this.uiService.latestBlog$.next(this.recentblogs[0]);
     });

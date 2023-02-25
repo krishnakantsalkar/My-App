@@ -19,9 +19,15 @@ import {
   MatDatepickerModule,
   MatDatepicker,
 } from '@angular/material/datepicker';
-import { MatLegacyDialogActions as MatDialogActions, MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import {
+  MatLegacyDialogActions as MatDialogActions,
+  MatLegacyDialogModule as MatDialogModule,
+} from '@angular/material/legacy-dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatLegacyFormFieldModule as MatFormFieldModule, MatLegacyLabel as MatLabel } from '@angular/material/legacy-form-field';
+import {
+  MatLegacyFormFieldModule as MatFormFieldModule,
+  MatLegacyLabel as MatLabel,
+} from '@angular/material/legacy-form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';

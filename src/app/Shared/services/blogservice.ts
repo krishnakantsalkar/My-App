@@ -34,6 +34,17 @@ export class blogpostservice {
 
   public searchByTagApi: string = 'http://localhost:3000/api/blog/searchByTag';
 
+  getRecentPostsApi: string =
+    'https://my-app-backend-node.vercel.app/api/blog/getRecentPosts';
+
+  getMvApi: string = 'https://my-app-backend-node.vercel.app/api/blog/getMv';
+
+  getPostByNumberApi: string =
+    'https://my-app-backend-node.vercel.app/api/blog/getPostByNumber';
+
+  getTagsApi: string =
+    'https://my-app-backend-node.vercel.app/api/blog/getTags';
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -132,5 +143,27 @@ export class blogpostservice {
     return this.http.get<any>(`${this.searchByTagApi}?search=${data}`, {
       headers: this.header,
     });
+  }
+
+  getRecentPosts() {
+    return this.http.post<any>(
+      `${this.getRecentPostsApi}`,
+      {},
+      { headers: this.header }
+    );
+  }
+
+  getMv() {
+    return this.http.get<any>(`${this.getMvApi}`, { headers: this.header });
+  }
+
+  getPostByNumber(data) {
+    return this.http.post<any>(`${this.getPostByNumberApi}`, data, {
+      headers: this.header,
+    });
+  }
+
+  getTags() {
+    return this.http.get<any>(`${this.getTagsApi}`, { headers: this.header });
   }
 }

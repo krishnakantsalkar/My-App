@@ -26,7 +26,10 @@ var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import {
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef,
+} from '@angular/material/legacy-dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -38,6 +41,8 @@ import { ConfirmationDialogComponent } from '../../shared-module/confirmation-di
 import { UiService } from '../../../Shared/services/ui.service';
 import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { MyUploadAdapter } from '../../../Shared/services/ckeditor-upload-adapter';
+import { catchError } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -196,6 +201,8 @@ export class BlogComponent implements OnInit {
     // activated routing hax
     let pageRouting = `${environment.baseUrl}${this.router.url}`.split('/');
     this.blogsP(pageRouting[4]);
+    this.getRecommended();
+    this.getMv();
 
     // check admin
     this.checkUserPresent();
@@ -204,7 +211,7 @@ export class BlogComponent implements OnInit {
     this.titleService.setTitle(this.pageTitle);
 
     // // get all blogs
-    this.blogs();
+    // this.blogs();
 
     // aos animation
     AOS.init({
@@ -299,41 +306,74 @@ export class BlogComponent implements OnInit {
     this.blogservice.getBlogs().subscribe((item) => {
       this.allData = item;
 
-      this.mostViewed = this.allData.sort((a, b) => {
-        if (a.userViews > b.userViews) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
+      // this.mostViewed = this.allData.sort((a, b) => {
+      //   if (a.userViews > b.userViews) {
+      //     return -1;
+      //   } else {
+      //     return 1;
+      //   }
+      // });
 
-      this.allData = this.allData.map((item) => {
-        if (this.recommendedPosts.includes(item.postNumber)) {
-          return { ...item, recommended: true };
-        } else {
-          delete item['recommended'];
-          return item;
-        }
-      });
+      // this.allData = this.allData.map((item) => {
+      //   if (this.recommendedPosts.includes(item.postNumber)) {
+      //     return { ...item, recommended: true };
+      //   } else {
+      //     delete item['recommended'];
+      //     return item;
+      //   }
+      // });
 
-      this.getTags();
+      // this.getTags();
+    });
+  }
+
+  getMv() {
+    this.blogservice.getMv().subscribe((item) => {
+      this.mostViewed = item.result;
+    });
+  }
+
+  recommendedBlogs = [];
+  getRecommended() {
+    let apiArr$ = [];
+
+    this.recommendedPosts.forEach((item) => {
+      apiArr$.push(
+        this.blogservice
+          .getPostByNumber({ postNumber: item })
+          .pipe(catchError((err) => of(err)))
+      );
+    });
+
+    forkJoin(apiArr$).subscribe((item: any[]) => {
+      for (let blog of item) {
+        if (!blog.error) {
+          this.recommendedBlogs.push({
+            postNumber: blog.result.postNumber,
+            postTitle: blog.result.postTitle,
+            _id: blog.result._id,
+          });
+        }
+      }
     });
   }
 
   getTags() {
     this.tagsList = [];
-
-    this.allData.forEach((item) => {
-      item.tags.forEach((tag) => {
-        let index = this.tagsList.findIndex((x) => {
-          return x == tag;
-        });
-
-        if (index == -1) {
-          this.tagsList.push(tag);
-        }
-      });
+    this.blogservice.getTags().subscribe((item) => {
+      this.tagsList = item.result;
     });
+    // this.allData.forEach((item) => {
+    //   item.tags.forEach((tag) => {
+    //     let index = this.tagsList.findIndex((x) => {
+    //       return x == tag;
+    //     });
+
+    //     if (index == -1) {
+    //       this.tagsList.push(tag);
+    //     }
+    //   });
+    // });
   }
 
   // get blogs by pagination
@@ -361,6 +401,8 @@ export class BlogComponent implements OnInit {
           window.scrollTo({ left: 0, top: 400, behavior: 'smooth' });
         }
       });
+
+      this.getTags();
     });
 
     this.pageYear = year;

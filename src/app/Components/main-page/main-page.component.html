@@ -72,7 +72,7 @@
           color: brightness ? '#E84858' : 'violet'
         }"
       >
-        {{ currentDate | date: "dd MMM | hh:mm a" }}
+        {{ currentDate | date : "dd MMM | hh:mm a" }}
       </span>
       <!-- <a
         *ngIf="!session"
@@ -130,7 +130,7 @@
           <img
             src="assets/images/preloadLogo.png"
             (click)="switchPulse()"
-            [matTooltip]="!isPulse ? 'Pulse~~' : null"
+            [matTooltip]="!isPulse ? 'Pulse~~ on ?' : 'Pulse~~ off ?'"
             matTooltipPosition="above"
             [ngClass]="{
               preloaderLogoL: brightness,

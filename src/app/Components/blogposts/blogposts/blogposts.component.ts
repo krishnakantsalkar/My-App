@@ -13,7 +13,7 @@ import { userIp } from '../../../Shared/model/userViewModel';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { link } from 'fs';
 import { UiService } from 'src/app/Shared/services/ui.service';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DOCUMENT, Location } from '@angular/common';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';

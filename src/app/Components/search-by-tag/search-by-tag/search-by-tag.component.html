@@ -28,6 +28,8 @@
 
     <div class="search_results" *ngIf="blogposts.length > 0">
       <mat-card
+        appearance="raised"
+        appearance="raised"
         *ngFor="let blog of blogposts; let i = index"
         routerLink="/blog/{{ blog.postNumber }}/{{ blog.postTitle }}/{{
           blog._id
@@ -64,7 +66,7 @@
                       color: brightness ? '#E84858' : 'violet'
                     }"
                   ></i>
-                  {{ blog.postDate | date: "MMM dd, YYYY" }}
+                  {{ blog.postDate | date : "MMM dd, YYYY" }}
                 </span>
                 <span
                   [ngStyle]="{
@@ -83,6 +85,8 @@
 
     <div class="noData" *ngIf="isLoaded && blogposts.length == 0">
       <mat-card
+        appearance="raised"
+        appearance="raised"
         [ngStyle]="{
           'background-color': brightness
             ? 'rgb(245, 245, 245)'

@@ -27,11 +27,11 @@ import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
 import {
-  MatLegacyDialog as MatDialog,
-  MatLegacyDialogRef as MatDialogRef,
-} from '@angular/material/legacy-dialog';
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomShareSheetComponent } from '../../shared-module/bottom-share-sheet/bottom-share-sheet.component';
 import { environment } from 'src/environments/environment';

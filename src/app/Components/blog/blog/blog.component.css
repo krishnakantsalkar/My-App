@@ -81,9 +81,11 @@ div.card-body h2 {
   text-decoration: dotted;
 }
 
-div.pstimg img {
+.pstimg img {
   height: auto;
-  max-height: 100%;
+  max-height: 400px;
+  max-width: 100%;
+
   object-fit: contain;
   position: relative;
   cursor: pointer;
@@ -563,6 +565,9 @@ div.nextprev button {
   margin: 10px auto;
 }
 
+.action_icon {
+  transition: 0.3s ease-in-out;
+}
 .action_icon mat-icon {
   font-size: 20px;
 }
@@ -581,6 +586,10 @@ div.nextprev button {
   align-items: center;
   gap: 10px;
   margin: -3.9px;
+}
+
+.right_blog_content mat-card-title {
+  text-align: center;
 }
 
 .quotes_card {
@@ -646,6 +655,16 @@ div.nextprev button {
   .carousel-inner img {
     height: 200px;
     width: 100%;
+  }
+
+  .readingTime {
+    flex: 0 0 40% !important;
+    text-align: center;
+  }
+
+  .postauthor {
+    flex: 0 0 40% !important;
+    text-align: center;
   }
 
   .widget-area .col-sm-6 {

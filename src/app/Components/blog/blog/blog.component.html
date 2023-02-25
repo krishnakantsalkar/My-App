@@ -257,6 +257,7 @@
             style="height: auto; width: 100%; text-align: center"
           >
             <mat-card
+              appearance="raised"
               class="alert alert-custom"
               [ngStyle]="{
                 'background-color': brightness ? '#E84858' : ' rgb(32, 33, 33)',
@@ -390,6 +391,8 @@
 
         <div class="searchResult" id="searchResult" *ngIf="searchResult">
           <mat-card
+            appearance="raised"
+            appearance="raised"
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1000"
@@ -436,6 +439,8 @@
 
         <div class="createpost" *ngIf="createPost">
           <mat-card
+            appearance="raised"
+            appearance="raised"
             [ngStyle]="{
               'background-color': brightness
                 ? 'rgb(223, 223, 223)'
@@ -614,8 +619,8 @@
                     "
                   >
                     <mat-label>Tags</mat-label>
-                    <mat-chip-list #chipList aria-label="Fruit selection">
-                      <mat-chip
+                    <mat-chip-grid #chipList aria-label="Fruit selection">
+                      <mat-chip-row
                         *ngFor="let tag of tags"
                         (removed)="removeTag(tag)"
                       >
@@ -623,7 +628,7 @@
                         <button matChipRemove>
                           <mat-icon>cancel</mat-icon>
                         </button>
-                      </mat-chip>
+                      </mat-chip-row>
                       <input
                         placeholder="New tag..."
                         [matChipInputFor]="chipList"
@@ -631,7 +636,7 @@
                         [matChipInputAddOnBlur]="addOnBlur"
                         (matChipInputTokenEnd)="addTag($event)"
                       />
-                    </mat-chip-list>
+                    </mat-chip-grid>
                   </mat-form-field>
                 </div>
               </div>
@@ -899,6 +904,7 @@
                     <!-- <br /> -->
                     <div>
                       <mat-card
+                        appearance="raised"
                         class="blogdataCard"
                         data-aos="fade-up"
                         data-aos-delay="300"
@@ -1134,6 +1140,7 @@
                                 [ngStyle]="{
                                   color: brightness ? '#E84858' : 'violet'
                                 }"
+                                class="bigBtn"
                               >
                                 Read more <mat-icon>chevron_right</mat-icon>
                               </button></span
@@ -1234,6 +1241,8 @@
           <div class="col-sm-4" *ngIf="data">
             <div class="right_blog_content">
               <mat-card
+                appearance="raised"
+                appearance="raised"
                 *ngIf="data"
                 data-aos="zoom-in"
                 data-aos-delay="300"
@@ -1249,7 +1258,14 @@
                 <!-- recommended posts -->
                 <div class="recommended">
                   <mat-card-title>
-                    <h5><mat-icon>auto_awesome</mat-icon>Recommended posts</h5>
+                    <h5>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? '#e84858' : 'violet'
+                        }"
+                        >auto_awesome</mat-icon
+                      >Recommended posts
+                    </h5>
                   </mat-card-title>
                   <mat-card-content>
                     <div
@@ -1274,6 +1290,8 @@
               <br />
 
               <mat-card
+                appearance="raised"
+                appearance="raised"
                 *ngIf="data"
                 data-aos="slide-up"
                 data-aos-delay="300"
@@ -1289,7 +1307,15 @@
                 <!-- most viewed posts -->
                 <div class="mostViewed">
                   <mat-card-title>
-                    <h5><mat-icon>visibility</mat-icon> Most Viewed</h5>
+                    <h5>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? '#e84858' : 'violet'
+                        }"
+                        >visibility</mat-icon
+                      >
+                      Most Viewed
+                    </h5>
                   </mat-card-title>
                   <mat-card-content>
                     <div
@@ -1314,6 +1340,7 @@
               <br />
               <div class="tags">
                 <mat-card
+                  appearance="raised"
                   *ngIf="data"
                   class="hashtags"
                   data-aos="slide-up"
@@ -1327,6 +1354,18 @@
                     color: brightness ? '#E84858' : 'violet'
                   }"
                 >
+                  <mat-card-title>
+                    <h5>
+                      <mat-icon
+                        [ngStyle]="{
+                          color: brightness ? '#e84858' : 'violet'
+                        }"
+                        >search</mat-icon
+                      >
+                      Search by tags
+                    </h5>
+                  </mat-card-title>
+
                   <!-- some hashtags to search blogposts -->
                   <mat-card-content>
                     <p>
@@ -1363,8 +1402,7 @@
               </div>
 
               <br />
-              <!-- <mat-card
-                *ngIf="data"
+              <!-- <mat-card  appearance="raised"                *ngIf="data"
                 data-aos="slide-up"
                 data-aos-delay="300"
                 data-aos-duration="1000"

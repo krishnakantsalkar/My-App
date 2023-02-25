@@ -195,6 +195,8 @@
 
           <!-- display search results -->
           <mat-card
+            appearance="raised"
+            appearance="raised"
             *ngIf="searchResults && searchResults.results.length > 0"
             [ngStyle]="{
               'background-color': brightness
@@ -214,7 +216,9 @@
                   <h6>Movies:</h6>
                   <div
                     class="resultData col-12 col-sm-12"
-                    *ngFor="let results of searchResults.results | slice: 0:20"
+                    *ngFor="
+                      let results of searchResults.results | slice : 0 : 20
+                    "
                   >
                     <div class="movieSearchResults">
                       <div class="row">
@@ -262,7 +266,9 @@
                   <h6>TV:</h6>
                   <div
                     class="tvSearchResults col-12 col-sm-12"
-                    *ngFor="let results of searchResults.results | slice: 0:20"
+                    *ngFor="
+                      let results of searchResults.results | slice : 0 : 20
+                    "
                   >
                     <div class="row">
                       <div
@@ -312,10 +318,12 @@
         <div class="genreList" id="genreList">
           <!-- genre drop down menu -->
           <mat-card
+            appearance="raised"
+            appearance="raised"
             class="genreListCard"
             id="genreListCard"
             [ngStyle]="{
-              height: genreSwitch ? '100%' : '30px',
+              height: genreSwitch ? '100%' : '43px',
               'background-color': brightness
                 ? 'rgb(223, 223, 223)'
                 : ' rgb(33, 34, 34)',
@@ -614,7 +622,7 @@
               *ngFor="let genre of genreData"
             >
               <!-- genre card -->
-              <mat-card id="genreCard">
+              <mat-card appearance="raised" id="genreCard">
                 <!-- genre data image -->
                 <a
                   *ngIf="genre.original_title"
@@ -695,7 +703,7 @@
             <div
               class="pages"
               *ngFor="
-                let pg of [].constructor(genrePageSize) | slice: 0:5;
+                let pg of [].constructor(genrePageSize) | slice : 0 : 5;
                 let i = index
               "
             >
@@ -833,7 +841,7 @@
                 class="col-6 col-sm-3 trendingMovieData"
                 *ngFor="let mov of trendingMovies.results"
               >
-                <mat-card>
+                <mat-card appearance="raised">
                   <a
                     *ngIf="mov.original_title"
                     routerLink="/movies&tv/Movie/{{ mov.title }}/{{ mov.id }}"
@@ -890,7 +898,7 @@
                 class="col-6 col-sm-3 trendingMovieData"
                 *ngFor="let tv of trendingTv.results"
               >
-                <mat-card>
+                <mat-card appearance="raised">
                   <a
                     *ngIf="tv.name"
                     routerLink="/movies&tv/TV/{{ tv.name }}/{{ tv.id }}"
@@ -959,7 +967,7 @@
             *ngFor="let movies of movieData"
           >
             <!-- movie card -->
-            <mat-card id="movieCard" *ngIf="movieData">
+            <mat-card appearance="raised" id="movieCard" *ngIf="movieData">
               <!-- movie image -->
               <a
                 *ngIf="movies.original_title"
@@ -1045,7 +1053,7 @@
           <div
             class="pages"
             *ngFor="
-              let pg of [].constructor(pageSize) | slice: 0:5;
+              let pg of [].constructor(pageSize) | slice : 0 : 5;
               let i = index
             "
           >

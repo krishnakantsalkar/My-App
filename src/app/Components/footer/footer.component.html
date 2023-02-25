@@ -122,6 +122,7 @@
             <div class="col-sm-3">
               <div class="recentposts">
                 <mat-card
+                  appearance="raised"
                   [ngStyle]="{
                     'background-color': brightness
                       ? 'white'
@@ -153,7 +154,7 @@
                       <div
                         class="recentcontent"
                         *ngFor="
-                          let recent of recentblogs | slice: 0:3;
+                          let recent of recentblogs | slice : 0 : 3;
                           let i = index
                         "
                       >
@@ -182,7 +183,7 @@
                         </h5>
                         <h6 class="text-muted">
                           <mat-icon class="icon_align"> watch_later </mat-icon>
-                          {{ recent.postDate | date: "EEEE MMM dd, YYYY" }}
+                          {{ recent.postDate | date : "EEEE MMM dd, YYYY" }}
                         </h6>
                         <hr
                           *ngIf="i < 3"

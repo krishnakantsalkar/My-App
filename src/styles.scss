@@ -2,15 +2,16 @@
 //   @import "~ng-snotify/styles/material";
 // }
 .inputTextColorD {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-form-field-appearance-outline /*.mat-mdc-form-field-outline*/ {
     color: black !important;
   }
-
-  .mat-focused .mat-form-field-label {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-focused .mat-mdc-floating-label {
     color: black !important;
   }
-
-  .mat-form-field-label,
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-floating-label,
   .mat-input-element {
     color: black !important;
   }
@@ -28,32 +29,62 @@
   ::placeholder {
     color: black !important;
   }
-  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-form-field-appearance-outline.mat-focused
+    /*.mat-mdc-form-field-outline*/-thick {
     color: violet !important;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
   .mat-select-value-text {
     color: black !important;
   }
+  /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
   .mat-select-arrow {
     color: black !important;
   }
+  /* TODO(mdc-migration): The following rule targets internal classes of option that may no longer apply for the MDC version.*/
+  .mat-primary .mat-mdc-option .mat-selected:not(.mat-option-disabled) {
+    color: black !important;
+  }
 
-  .mat-primary .mat-option .mat-selected:not(.mat-option-disabled) {
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: black !important;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled)
+    .mdc-tab-indicator__content--underline,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled)
+    .mdc-tab-indicator__content--underline {
+    border-color: #e84858 !important;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label {
+    color: #e84858 !important;
+  }
+
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: black !important;
   }
 }
 
 .inputTextColorL {
-  .mat-form-field-appearance-outline .mat-form-field-outline {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-form-field-appearance-outline /*.mat-mdc-form-field-outline*/ {
     color: white !important;
   }
-
-  .mat-focused .mat-form-field-label {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-focused .mat-mdc-floating-label {
     color: white !important;
   }
-
-  .mat-form-field-label,
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-floating-label,
   .mat-input-element {
     color: white !important;
   }
@@ -71,27 +102,102 @@
   ::placeholder {
     color: white !important;
   }
-
-  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-form-field-appearance-outline.mat-focused
+    /*.mat-mdc-form-field-outline*/-thick {
     color: #e84858 !important;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
   .mat-select-value-text {
     color: white !important;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
   .mat-select-arrow {
     color: white !important;
   }
+  /* TODO(mdc-migration): The following rule targets internal classes of option that may no longer apply for the MDC version.*/
+  .mat-primary .mat-mdc-option .mat-selected:not(.mat-option-disabled) {
+    color: white !important;
+  }
 
-  .mat-primary .mat-option .mat-selected:not(.mat-option-disabled) {
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: white !important;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled)
+    .mdc-tab-indicator__content--underline,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled)
+    .mdc-tab-indicator__content--underline {
+    border-color: violet !important;
+  }
+
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+    .mdc-tab__text-label {
+    color: violet !important;
+  }
+
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: white !important;
   }
 }
 
 .no-pad {
-  .mat-form-field-wrapper {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+  .mat-mdc-form-field-wrapper {
     padding: 0 !important;
     margin: 0 !important;
   }
+}
+
+mat-card {
+  padding: 10px !important;
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 20%) !important;
+}
+
+.mat-mdc-unelevated-button > .mat-icon,
+.mat-mdc-raised-button > .mat-icon,
+.mat-mdc-outlined-button > .mat-icon {
+  margin-left: 0;
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  font-size: x-large !important;
+  height: auto !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.mat-mdc-form-field-icon-suffix,
+[dir="rtl"] .mat-mdc-form-field-icon-prefix {
+  padding: 0 18px 0px 4px !important;
+}
+
+.btn-danger {
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.btn-info {
+  color: #fff !important;
+  background-color: #17a2b8 !important;
+  border-color: #17a2b8 !important;
+}
+
+.bigBtn {
+  height: 52px !important;
 }

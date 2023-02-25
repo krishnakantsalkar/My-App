@@ -166,6 +166,10 @@ div.videoFrame iframe {
   height: 300px;
 }
 
+.posterImg {
+  position: sticky;
+  top: 70px;
+}
 /* .movieReviewsArea {
   display: flex;
   flex-wrap: nowrap;

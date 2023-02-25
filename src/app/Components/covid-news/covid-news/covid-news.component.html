@@ -10,6 +10,8 @@
 
     <div class="covid_news_title">
       <mat-card
+        appearance="raised"
+        appearance="raised"
         [ngStyle]="{
           'background-color': brightness ? 'rgb(235,235,235)' : 'rgb(31,33,35)',
           color: brightness ? 'black' : 'white'
@@ -34,7 +36,7 @@
         color: brightness ? 'black' : 'rgb(160,160,160)'
       }"
     >
-      <i class="fas fa-clock"></i> {{ todayDate | date: "dd MMM | hh:mm a" }}
+      <i class="fas fa-clock"></i> {{ todayDate | date : "dd MMM | hh:mm a" }}
     </h5>
     <hr />
 
@@ -71,7 +73,7 @@
     <div class="totalStatsArea" *ngIf="covidIndiaStats">
       <div class="row">
         <div class="col-6 col-sm-3 col-lg-2 confirmed">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>New Cases</h5>
               {{ covidIndiaStats.NewCases | number }}
@@ -79,7 +81,7 @@
           </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 recovered">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>New Recovered</h5>
               {{ covidIndiaStats.NewRecovered | number }}
@@ -87,7 +89,7 @@
           </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 deaths">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>New Deaths</h5>
               {{ covidIndiaStats.NewDeaths | number }}
@@ -95,7 +97,7 @@
           </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalConfirmed">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>Total Cases</h5>
               {{ covidIndiaStats.TotalCases | number }}
@@ -103,7 +105,7 @@
           </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalRecovered">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>Total Recovered</h5>
               {{ covidIndiaStats.TotalRecovered | number }}
@@ -111,7 +113,7 @@
           </mat-card>
         </div>
         <div class="col-6 col-sm-3 col-lg-2 totalDeaths">
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content>
               <h5>Total Deaths</h5>
               {{ covidIndiaStats.TotalDeaths | number }}
@@ -120,19 +122,19 @@
         </div>
 
         <div class="moreStats">
-          <mat-card class="totalActive">
+          <mat-card appearance="raised" class="totalActive">
             <mat-card-content>
               <h5>Total Active</h5>
               {{ covidIndiaStats.ActiveCases | number }}
             </mat-card-content>
           </mat-card>
-          <mat-card class="totalTests">
+          <mat-card appearance="raised" class="totalTests">
             <mat-card-content>
               <h5>Total Tests</h5>
               {{ covidIndiaStats.TotalTests | number }}
             </mat-card-content>
           </mat-card>
-          <mat-card>
+          <mat-card appearance="raised">
             <mat-card-content class="critical">
               <h5>Critical Cases</h5>
               {{ covidIndiaStats.Serious_Critical | number }}
@@ -145,6 +147,7 @@
     <!-- news  -->
     <div class="news">
       <mat-tab-group
+        [ngClass]="brightness ? 'inputTextColorD' : 'inputTextColorL'"
         [selectedIndex]="activeIndex"
         (selectedTabChange)="navToTab($event)"
       >
@@ -169,6 +172,8 @@
           </div>
           <div class="covidNews" *ngIf="covidNews">
             <mat-card
+              appearance="raised"
+              appearance="raised"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(235,235,235)'
@@ -191,7 +196,7 @@
                 </div>
                 <div class="newsContent">
                   <p>
-                    {{ data.content | slice: 0:200 }}...
+                    {{ data.content | slice : 0 : 200 }}...
                     <span>
                       <a target="_blank" href="{{ data.link }}">
                         read more
@@ -201,7 +206,7 @@
                 </div>
               </mat-card-content>
               <mat-card-footer>
-                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+                <h6>{{ data.pubDate | date : "dd MMM YYYY | hh:mm a" }}</h6>
               </mat-card-footer>
             </mat-card>
 
@@ -225,7 +230,7 @@
               <div
                 class="pages"
                 *ngFor="
-                  let pg of [].constructor(10) | slice: 0:5;
+                  let pg of [].constructor(10) | slice : 0 : 5;
                   let i = index
                 "
               >
@@ -270,6 +275,8 @@
           </div>
           <div class="healthNews" *ngIf="healthNews">
             <mat-card
+              appearance="raised"
+              appearance="raised"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(235,235,235)'
@@ -292,7 +299,7 @@
                 </div>
                 <div class="newsContent">
                   <p>
-                    {{ data.content | slice: 0:200 }}...
+                    {{ data.content | slice : 0 : 200 }}...
                     <span>
                       <a target="_blank" href="{{ data.link }}">
                         read more
@@ -302,7 +309,7 @@
                 </div>
               </mat-card-content>
               <mat-card-footer>
-                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+                <h6>{{ data.pubDate | date : "dd MMM YYYY | hh:mm a" }}</h6>
               </mat-card-footer>
             </mat-card>
 
@@ -326,7 +333,7 @@
               <div
                 class="pages"
                 *ngFor="
-                  let pg of [].constructor(10) | slice: 0:5;
+                  let pg of [].constructor(10) | slice : 0 : 5;
                   let i = index
                 "
               >
@@ -371,6 +378,8 @@
           </div>
           <div class="vaccineNews" *ngIf="vaccineNews">
             <mat-card
+              appearance="raised"
+              appearance="raised"
               [ngStyle]="{
                 'background-color': brightness
                   ? 'rgb(235,235,235)'
@@ -393,7 +402,7 @@
                 </div>
                 <div class="newsContent">
                   <p>
-                    {{ data.content | slice: 0:200 }}...
+                    {{ data.content | slice : 0 : 200 }}...
                     <span>
                       <a target="_blank" href="{{ data.link }}">
                         read more
@@ -403,7 +412,7 @@
                 </div>
               </div>
               <div>
-                <h6>{{ data.pubDate | date: "dd MMM YYYY | hh:mm a" }}</h6>
+                <h6>{{ data.pubDate | date : "dd MMM YYYY | hh:mm a" }}</h6>
               </div>
             </mat-card>
 
@@ -428,7 +437,7 @@
               <div
                 class="pages"
                 *ngFor="
-                  let pg of [].constructor(10) | slice: 0:5;
+                  let pg of [].constructor(10) | slice : 0 : 5;
                   let i = index
                 "
               >

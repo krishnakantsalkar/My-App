@@ -220,6 +220,7 @@
               </div>
             </div>
             <mat-card
+              appearance="raised"
               *ngIf="data"
               class="blogPostInfoBar"
               [ngStyle]="{
@@ -260,7 +261,7 @@
                       color: brightness ? '#E84858' : 'violet'
                     }"
                   ></i>
-                  {{ data.postDate | date: "EEE MMM dd, YYYY" }}
+                  {{ data.postDate | date : "EEE MMM dd, YYYY" }}
                 </div>
                 <!-- post edited or not -->
                 <div
@@ -364,6 +365,8 @@
           <div class="body">
             <div *ngIf="data">
               <mat-card
+                appearance="raised"
+                appearance="raised"
                 [ngStyle]="{
                   'background-color': brightness
                     ? 'rgb(245, 245, 245)'
@@ -555,12 +558,14 @@
                 <div class="row">
                   <div class="col-6 col-sm-6">
                     <mat-card
+                      appearance="raised"
                       *ngIf="prevPostData"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(223, 223, 223)'
                           : ' rgb(32, 33, 33)'
                       }"
+                      [ngClass]="brightness ? 'navPostL' : 'navPostD'"
                       style="cursor: pointer"
                       (click)="
                         navigate(
@@ -589,12 +594,14 @@
                   </div>
                   <div class="col-6 col-sm-6">
                     <mat-card
+                      appearance="raised"
                       *ngIf="nextPostData"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(223, 223, 223)'
                           : ' rgb(32, 33, 33)'
                       }"
+                      [ngClass]="brightness ? 'navPostL' : 'navPostD'"
                       style="cursor: pointer"
                       (click)="
                         navigate(

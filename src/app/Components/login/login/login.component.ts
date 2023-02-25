@@ -20,7 +20,7 @@ import { Iforgot } from 'src/app/Shared/model/forgotPass';
 import { Title } from '@angular/platform-browser';
 import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { ReCaptchaV3Service } from 'ngx-captcha';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

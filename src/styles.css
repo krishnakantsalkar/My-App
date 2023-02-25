@@ -141,23 +141,23 @@
 /* Material css */
 
 /* custom disabled button css */
-.mat-flat-button.mat-primary.mat-button-disabled,
+.mat-mdc-flat-button.mat-primary.mat-button-disabled,
 .mat-flat-button.mat-accent.mat-button-disabled,
 .mat-flat-button.mat-warn.mat-button-disabled,
 .mat-flat-button.mat-button-disabled.mat-button-disabled,
-.mat-stroked-button.mat-primary.mat-button-disabled,
+.mat-mdc-outlined-button.mat-primary.mat-button-disabled,
 .mat-stroked-button.mat-accent.mat-button-disabled,
 .mat-stroked-button.mat-warn.mat-button-disabled,
 .mat-stroked-button.mat-button-disabled.mat-button-disabled,
-.mat-raised-button.mat-primary.mat-button-disabled,
+.mat-mdc-raised-button.mat-primary.mat-button-disabled,
 .mat-raised-button.mat-accent.mat-button-disabled,
 .mat-raised-button.mat-warn.mat-button-disabled,
 .mat-raised-button.mat-button-disabled.mat-button-disabled,
-.mat-fab.mat-primary.mat-button-disabled,
+.mat-mdc-fab.mat-primary.mat-button-disabled,
 .mat-fab.mat-accent.mat-button-disabled,
 .mat-fab.mat-warn.mat-button-disabled,
 .mat-fab.mat-button-disabled.mat-button-disabled,
-.mat-mini-fab.mat-primary.mat-button-disabled,
+.mat-mdc-mini-fab.mat-primary.mat-button-disabled,
 .mat-mini-fab.mat-accent.mat-button-disabled,
 .mat-mini-fab.mat-warn.mat-button-disabled,
 .mat-mini-fab.mat-button-disabled.mat-button-disabled {
@@ -166,7 +166,13 @@
   box-shadow: none;
 }
 
-.mat-dialog-container {
+.mat-mdc-raised-button[disabled][disabled] {
+  background-color: rgba(65, 65, 65, 0.5) !important;
+  /* color: rgba(0, 0, 0, 0.5) !important; */
+  box-shadow: none !important;
+}
+
+.mat-mdc-dialog-container {
   padding: 0 !important;
   overflow: hidden !important;
 }
@@ -175,18 +181,22 @@ mat-form-field {
   width: 100%;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: #1f7ce0;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: gray;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
 .mat-focused .mat-form-field-label {
   color: gray !important;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
 .mat-form-field-label,
 .mat-input-element {
   color: gray !important;
@@ -196,26 +206,29 @@ mat-bottom-sheet-container {
   padding: 0 !important;
 }
 
-.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary
+.mat-mdc-checkbox-checked:not(.mat-checkbox-disabled).mat-primary
   .mat-ripple-element,
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary
   .mat-ripple-element {
   background: #1f7ce0 !important;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
 .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
 .mat-checkbox-checked.mat-primary .mat-checkbox-background {
   background-color: #1f7ce0 !important;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
 .mat-checkbox-frame {
   border-color: #1f7ce0;
 }
 
-.mat-tooltip {
+.mat-mdc-tooltip {
   font-size: 14px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
 .mat-checkbox-layout {
   white-space: normal !important;
 }
@@ -244,7 +257,17 @@ mat-bottom-sheet-container {
   padding: 10px;
 }
 
-*:not(.material-icons, .material-icons-outlined, .fab, .fas, .preloader_quote, .preloader_quote_part1, .preloader_quote_part2, .preloader_quote_part3, .preloader_quote_part4) {
+*:not(
+    .material-icons,
+    .material-icons-outlined,
+    .fab,
+    .fas,
+    .preloader_quote,
+    .preloader_quote_part1,
+    .preloader_quote_part2,
+    .preloader_quote_part3,
+    .preloader_quote_part4
+  ) {
   font-family: "JetBrains Mono" !important;
 }
 .text-underline {

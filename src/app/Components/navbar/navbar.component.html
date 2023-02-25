@@ -107,13 +107,13 @@
                 >MoviesDB</a
               >
 
-              <a
+              <!-- <a
                 mat-menu-item
                 class="nav-link"
                 routerLink="/covid-news/covid/1"
                 [routerLinkActive]="activeCss"
                 >Covid-19</a
-              >
+              > -->
               <a
                 mat-menu-item
                 class="nav-link adjust_nav_link"
@@ -237,7 +237,7 @@
               color: brightness ? '#E84858' : 'violet'
             }"
           >
-            {{ liveDate | date: "dd MMM | hh:mm a" }}
+            {{ liveDate | date : "dd MMM | hh:mm a" }}
           </li>
 
           <li

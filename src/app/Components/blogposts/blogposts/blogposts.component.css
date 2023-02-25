@@ -108,6 +108,34 @@ div.blogimg img,
   height: 400px;
 }
 
+.navPostL,
+.navPostD {
+  transition: 0.3s ease-in-out;
+}
+
+.navPostL:hover {
+  background-color: #e84858 !important;
+  color: white !important;
+}
+
+.navPostD:hover {
+  background-color: violet !important;
+  color: white !important;
+}
+
+.navPostD:hover h5 {
+  color: white !important;
+}
+.navPostL:hover h5 {
+  color: white !important;
+}
+.navPostD:hover span {
+  color: white !important;
+}
+.navPostL:hover span {
+  color: white !important;
+}
+
 /* .linkbtns a {
   max-width: 53px;
   transition: max-width 1s;

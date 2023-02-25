@@ -11,7 +11,7 @@ import { userloginservices } from 'src/app/Shared/services/userloginservice';
 import { Router } from '@angular/router';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { isPlatformBrowser } from '@angular/common';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../shared-module/confirmation-dialog/confirmation-dialog.component';
 import * as $ from 'jquery';
 

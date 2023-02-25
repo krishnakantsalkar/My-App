@@ -34,6 +34,8 @@
         </div>
 
         <mat-card
+          appearance="raised"
+          appearance="raised"
           [ngStyle]="{
             'background-color': brightness ? 'white' : ' rgb(35, 37, 37)',
             color: brightness ? 'black' : 'white'
@@ -119,7 +121,9 @@
                     <button mat-raised-button class="btn-primary">
                       Genre:
                       <span
-                        *ngFor="let genre of movieDetails.genres | slice: 0:2"
+                        *ngFor="
+                          let genre of movieDetails.genres | slice : 0 : 2
+                        "
                         style="margin-right: 5px"
                         >{{ genre.name }}</span
                       >
@@ -243,7 +247,7 @@
                       *ngIf="movieDetails.budget"
                       style="background-color: darksalmon; color: black"
                     >
-                      Budget: {{ movieDetails.budget | currency: "USD" }}
+                      Budget: {{ movieDetails.budget | currency : "USD" }}
                     </button>
                     <button
                       mat-raised-button
@@ -251,7 +255,7 @@
                       *ngIf="movieDetails.revenue"
                       style="background-color: darksalmon; color: black"
                     >
-                      Revenue: {{ movieDetails.revenue | currency: "USD" }}
+                      Revenue: {{ movieDetails.revenue | currency : "USD" }}
                     </button>
                   </div>
 
@@ -278,6 +282,8 @@
                   <!-- movie credits area -->
                   <div class="movieCreditsArea" *ngIf="movieCredits">
                     <mat-card
+                      appearance="raised"
+                      appearance="raised"
                       [ngStyle]="{
                         'background-color': brightness
                           ? 'rgb(223, 223, 223)'
@@ -314,7 +320,7 @@
                               class="trailers"
                               *ngFor="
                                 let trailer of this.contentTrailers.results
-                                  | slice: 0:4
+                                  | slice : 0 : 4
                               "
                             >
                               <iframe
@@ -335,7 +341,7 @@
                           <div
                             class="col-12 col-sm-6"
                             *ngFor="
-                              let credits of movieCredits.cast | slice: 0:8
+                              let credits of movieCredits.cast | slice : 0 : 8
                             "
                           >
                             <h6>
@@ -361,6 +367,8 @@
                   <!-- movie season/ep list area -->
 
                   <mat-card
+                    appearance="raised"
+                    appearance="raised"
                     class="epListCard"
                     id="epListCard"
                     *ngIf="listType == 'tv'"
@@ -589,6 +597,8 @@
                   <br />
                   <!-- movie reviews card -->
                   <mat-card
+                    appearance="raised"
+                    appearance="raised"
                     *ngIf="movieReviews && movieReviews.results.length > 0"
                     [ngStyle]="{
                       'background-color': brightness
@@ -614,7 +624,7 @@
                           <br />
                           <h6>Author: {{ review.author }}</h6>
                           <p>
-                            {{ review.content | slice: 0:300 }}..
+                            {{ review.content | slice : 0 : 300 }}..
                             <a href="{{ review.url }}">more</a>
                           </p>
                         </div>
@@ -636,7 +646,7 @@
                   class="col-6 col-sm-3 similarsData"
                   *ngFor="let similars of movieSimilars.results"
                 >
-                  <mat-card id="similarsCard">
+                  <mat-card appearance="raised" id="similarsCard">
                     <a
                       *ngIf="similars.original_title"
                       routerLink="/movies&tv/Movie/{{ similars.title }}/{{

@@ -34,7 +34,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^4.4.1",
     "ckeditor5-custom-build": "file:ckeditor",
-    "datatables.net": "^1.10.22",
+    "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.10.22",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",

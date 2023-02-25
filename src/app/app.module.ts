@@ -22,6 +22,42 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { FooterComponent } from './Components/footer/footer.component';
 import { TokenInterceptorInterceptor } from './Shared/services/token-interceptor.interceptor';
 import { GeneralUpdatesLauncherComponent } from './Components/general-updates-launcher/general-updates-launcher.component';
+import {
+  NgxUiLoaderRouterModule,
+  NgxUiLoaderConfig,
+  NgxUiLoaderModule,
+} from 'ngx-ui-loader';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: 'blue',
+  bgsOpacity: 0.5,
+  bgsPosition: 'bottom-right',
+  bgsSize: 60,
+  bgsType: 'ball-spin-clockwise',
+  blur: 0,
+  delay: 0,
+  fastFadeOut: true,
+  fgsColor: 'blue',
+  fgsPosition: 'bottom-right',
+  fgsSize: 20,
+  fgsType: 'three-strings',
+  gap: 24,
+  logoPosition: 'center-center',
+  logoSize: 80,
+  logoUrl: '',
+  masterLoaderId: 'master',
+  overlayBorderRadius: '0',
+  overlayColor: 'rgba(40,40,40,0.17)',
+  pbColor: 'blue',
+  pbDirection: 'ltr',
+  pbThickness: 3,
+  hasProgressBar: true,
+  text: '',
+  textColor: '#FFFFFF',
+  textPosition: 'center-center',
+  maxTime: -1,
+  minTime: 300,
+};
 
 @NgModule({
   declarations: [
@@ -45,6 +81,8 @@ import { GeneralUpdatesLauncherComponent } from './Components/general-updates-la
     SkeletonModule,
     SharedModuleModule,
     QuillModule.forRoot(),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule,
   ],
   providers: [
     userloginservices,

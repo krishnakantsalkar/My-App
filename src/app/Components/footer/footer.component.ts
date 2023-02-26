@@ -90,11 +90,17 @@ export class FooterComponent implements OnInit {
   }
 
   recentUpdates() {
-    this.blogservice.getRecentPosts().subscribe((item) => {
-      this.recentblogs = item.result;
+    if (this.blogservice.recentBlogCache.get('recentBlogs')) {
+      this.recentblogs = this.blogservice.recentBlogCache.get('recentBlogs');
+    } else {
+      this.blogservice.getRecentPosts().subscribe((item) => {
+        this.recentblogs = item.result;
 
-      this.uiService.latestBlog$.next(this.recentblogs[0]);
-    });
+        this.uiService.latestBlog$.next(this.recentblogs[0]);
+
+        this.blogservice.recentBlogCache.set('recentBlogs', this.recentblogs);
+      });
+    }
   }
 
   Send(data: IcontactUs) {

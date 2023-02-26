@@ -303,7 +303,7 @@ div.searchResult h3 {
   justify-content: space-between;
 }
 
-.tags {
+.tags mat-card {
   max-height: 300px;
   overflow-y: auto;
 }
@@ -518,9 +518,10 @@ div.nextprev button {
 
 .card-subtitle {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 .post_title_area {
   display: flex;

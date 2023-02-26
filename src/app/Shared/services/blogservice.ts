@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Iblog } from '../model/blogmodel';
 import { IsearchResult } from '../model/searchResult';
 import { catchError } from 'rxjs/operators';
@@ -44,6 +44,13 @@ export class blogpostservice {
 
   getTagsApi: string =
     'https://my-app-backend-node.vercel.app/api/blog/getTags';
+
+  //memoize blog apis
+  blogCache = new Map();
+  recentBlogCache = new Map();
+  mvBlogsCache = new Map();
+  recommendedBlogsCache = new Map();
+  tagsCache = new Map();
 
   constructor(
     private http: HttpClient,

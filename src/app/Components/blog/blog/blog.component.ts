@@ -26,10 +26,7 @@ var movieQuotesJson = require('../../../../assets/movie-quotes.json');
 import { ConfirmationService } from 'primeng/api';
 import 'quill-emoji/dist/quill-emoji.js';
 import * as moment from 'moment';
-import {
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -42,7 +39,7 @@ import { UiService } from '../../../Shared/services/ui.service';
 import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { MyUploadAdapter } from '../../../Shared/services/ckeditor-upload-adapter';
 import { catchError } from 'rxjs/operators';
-import { forkJoin, of } from 'rxjs';
+import { forkJoin, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -145,6 +142,7 @@ export class BlogComponent implements OnInit {
   toolbarElement: any;
   editorElement: any;
 
+  cachedBlogs: Map<any, any>;
   constructor(
     private blogservice: blogpostservice,
     private fb: UntypedFormBuilder,
@@ -186,6 +184,15 @@ export class BlogComponent implements OnInit {
 
     this.meta.updateTag({ property: 'og:height', content: '630' });
 
+    // blog post reactive form
+    this.newPost = this.fb.group({
+      postImage: [''],
+      postNumber: ['', [Validators.required]],
+      postTitle: ['', Validators.required],
+      post: [''],
+      postAuthor: [''],
+    });
+
     // brightness mode
     this.defaultModeService.modeSwitch.subscribe((item) => {
       this.brightness = item;
@@ -200,6 +207,7 @@ export class BlogComponent implements OnInit {
 
     // activated routing hax
     let pageRouting = `${environment.baseUrl}${this.router.url}`.split('/');
+
     this.blogsP(pageRouting[4]);
     this.getRecommended();
     this.getMv();
@@ -216,15 +224,6 @@ export class BlogComponent implements OnInit {
     // aos animation
     AOS.init({
       startEvent: 'DOMContentLoaded',
-    });
-
-    // blog post reactive form
-    this.newPost = this.fb.group({
-      postImage: [''],
-      postNumber: ['', [Validators.required]],
-      postTitle: ['', Validators.required],
-      post: [''],
-      postAuthor: [''],
     });
 
     this.addLink();
@@ -328,52 +327,73 @@ export class BlogComponent implements OnInit {
   }
 
   getMv() {
-    this.blogservice.getMv().subscribe((item) => {
-      this.mostViewed = item.result;
-    });
+    if (this.blogservice.mvBlogsCache.get('mvBlogs')) {
+      this.mostViewed = this.blogservice.mvBlogsCache.get('mvBlogs');
+    } else {
+      this.blogservice.getMv().subscribe((item) => {
+        this.mostViewed = item.result;
+
+        this.blogservice.mvBlogsCache.set('mvBlogs', this.mostViewed);
+      });
+    }
   }
 
   recommendedBlogs = [];
   getRecommended() {
-    let apiArr$ = [];
+    if (this.blogservice.recommendedBlogsCache.get('recommendedBlogs')) {
+      this.recommendedBlogs =
+        this.blogservice.recommendedBlogsCache.get('recommendedBlogs');
+    } else {
+      let apiArr$ = [];
 
-    this.recommendedPosts.forEach((item) => {
-      apiArr$.push(
-        this.blogservice
-          .getPostByNumber({ postNumber: item })
-          .pipe(catchError((err) => of(err)))
-      );
-    });
+      this.recommendedPosts.forEach((item) => {
+        apiArr$.push(
+          this.blogservice
+            .getPostByNumber({ postNumber: item })
+            .pipe(catchError((err) => of(err)))
+        );
+      });
 
-    forkJoin(apiArr$).subscribe((item: any[]) => {
-      for (let blog of item) {
-        if (!blog.error) {
-          this.recommendedBlogs.push({
-            postNumber: blog.result.postNumber,
-            postTitle: blog.result.postTitle,
-            _id: blog.result._id,
-          });
+      forkJoin(apiArr$).subscribe((item: any[]) => {
+        for (let blog of item) {
+          if (!blog.error) {
+            this.recommendedBlogs.push({
+              postNumber: blog.result.postNumber,
+              postTitle: blog.result.postTitle,
+              _id: blog.result._id,
+            });
+          }
         }
-      }
-    });
+
+        this.blogservice.recommendedBlogsCache.set(
+          'recommendedBlogs',
+          this.recommendedBlogs
+        );
+      });
+    }
   }
 
   getTags() {
     this.tagsList = [];
-    this.blogservice.getTags().subscribe((item) => {
-      this.tagsList = item.result;
-    });
-    // this.allData.forEach((item) => {
-    //   item.tags.forEach((tag) => {
-    //     let index = this.tagsList.findIndex((x) => {
-    //       return x == tag;
-    //     });
+    if (this.blogservice.tagsCache.get('tags')) {
+      this.tagsList = this.blogservice.tagsCache.get('tags');
+    } else {
+      this.blogservice.getTags().subscribe((item) => {
+        this.tagsList = item.result;
+        this.blogservice.tagsCache.set('tags', this.tagsList);
+      });
+      // this.allData.forEach((item) => {
+      //   item.tags.forEach((tag) => {
+      //     let index = this.tagsList.findIndex((x) => {
+      //       return x == tag;
+      //     });
 
-    //     if (index == -1) {
-    //       this.tagsList.push(tag);
-    //     }
-    //   });
-    // });
+      //     if (index == -1) {
+      //       this.tagsList.push(tag);
+      //     }
+      //   });
+      // });
+    }
   }
 
   // get blogs by pagination
@@ -381,7 +401,45 @@ export class BlogComponent implements OnInit {
     if (year) {
       this.year = year;
     }
+
+    if (this.blogservice.blogCache.get(`${pg}-${this.year}`)) {
+      let data = this.blogservice.blogCache.get(`${pg}-${this.year}`);
+      // blogURL for share btns
+      this.blogURL = null;
+      this.blogURL = environment.baseUrl + this.router.url;
+
+      this.pgSize = data.pageSize;
+      this.data = data.dataSize;
+      this.datacount = data.dataCount;
+      this.postNumVal = this.datacount;
+
+      // set postNumber based on incoming blog postNumber
+      this.setPostNum();
+
+      //get approx blog post read time
+      this.getreadTime();
+
+      this.router.navigateByUrl(`/blog/${pg}`).then(() => {
+        if (pg > 1) {
+          window.scrollTo({ left: 0, top: 400, behavior: 'smooth' });
+        }
+      });
+
+      this.getTags();
+    } else {
+      this.getBlogsPLive(pg, year);
+    }
+
+    this.pageYear = year;
+    this.pageNo = pg;
+  }
+
+  getBlogsPLive(pg, year?) {
+    if (year) {
+      this.year = year;
+    }
     this.blogservice.getBlogsP(pg, this.year).subscribe((item) => {
+      this.blogservice.blogCache.set(`${pg}-${year}`, item);
       // blogURL for share btns
       this.blogURL = null;
       this.blogURL = environment.baseUrl + this.router.url;
@@ -404,7 +462,6 @@ export class BlogComponent implements OnInit {
 
       this.getTags();
     });
-
     this.pageYear = year;
     this.pageNo = pg;
   }

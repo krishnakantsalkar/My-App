@@ -21,6 +21,7 @@ export class NotesComponent implements OnInit {
 
   pageTitle: string = 'Notes';
   profId = JSON.parse(localStorage.getItem('profileId'));
+  f;
 
   todoSwitch: boolean = false;
   todoArr = [];
@@ -55,6 +56,11 @@ export class NotesComponent implements OnInit {
     this.getNotes();
     this.getTodo();
     this.getSnippets();
+
+    this.getIp();
+  }
+
+  getIp() {
     this.noteService.getClientIp().subscribe((item) => {
       this.clientIp = item.result;
     });

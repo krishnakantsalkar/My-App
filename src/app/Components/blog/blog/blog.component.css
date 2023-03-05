@@ -522,6 +522,7 @@ div.nextprev button {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 .post_title_area {
   display: flex;
@@ -676,6 +677,8 @@ div.nextprev button {
   }
 
   .card-subtitle {
+    justify-content: flex-start !important;
+    gap: 10px !important;
     flex-wrap: wrap;
   }
 

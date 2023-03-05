@@ -123,6 +123,15 @@ mat-card-footer h5 {
   overflow: hidden;
 }
 
+.pinnedNotes pre,
+.allNotes pre,
+.archivedNotes pre {
+  max-height: 300px !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-break: break-word;
+}
+
 .checkbox_content {
   word-wrap: break-word;
 }

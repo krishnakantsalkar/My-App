@@ -253,13 +253,17 @@
                         formControlName="recaptcha"
                       >
                       </ngx-recaptcha2>
-                      <mat-checkbox
-                        [ngStyle]="{
-                          color: brightness ? 'black' : 'white'
-                        }"
-                        (change)="keepSignedInToggle($event.checked)"
-                        >Keep Signed In</mat-checkbox
+                      <div
+                        [ngClass]="
+                          brightness ? 'inputTextColorD' : 'inputTextColorL'
+                        "
                       >
+                        <mat-checkbox
+                          (change)="keepSignedInToggle($event.checked)"
+                          >Keep Signed In</mat-checkbox
+                        >
+                      </div>
+
                       <div class="form-group">
                         <div class="buttons">
                           <button
@@ -267,7 +271,7 @@
                             mat-raised-button
                             class="btn-primary float-right submit"
                             style="color: white"
-                            [disabled]="!newLogin.valid"
+                            [disabled]="!newLogin.valid && env"
                           >
                             Log In
                             <!-- some visual feedback while login -->

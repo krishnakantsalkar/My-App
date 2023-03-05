@@ -360,7 +360,7 @@
           id="createPost_btn"
           mat-raised-button
           class="btn-warning mx-1"
-          style="float: right"
+          style="float: right; height: 56px"
           (click)="createPostmethod($event)"
           *ngIf="checkUser"
           [ngStyle]="{
@@ -378,6 +378,7 @@
           mat-raised-button
           class="btn-primary mx-1"
           (click)="openShareSheet()"
+          style="height: 56px"
         >
           <mat-icon>share</mat-icon>
         </button>
@@ -796,12 +797,12 @@
                         ? 'rgb(245, 245, 245)'
                         : ' rgb(41, 42, 45)'
                     }"
+                    (click)="clickEditPost(i)"
                   >
                     <mat-icon
                       [ngStyle]="{
                         color: brightness ? '#E84858' : 'violet'
                       }"
-                      (click)="clickEditPost(i)"
                       matTooltipPosition="above"
                       matTooltip="edit post"
                       >edit</mat-icon
@@ -821,12 +822,12 @@
                         ? 'rgb(245, 245, 245)'
                         : ' rgb(41, 42, 45)'
                     }"
+                    (click)="deletePost(i)"
                   >
                     <mat-icon
                       [ngStyle]="{
                         color: brightness ? '#E84858' : 'violet'
                       }"
-                      (click)="deletePost(i)"
                       matTooltipPosition="above"
                       matTooltip="delete post"
                       >delete_forever</mat-icon
@@ -845,12 +846,12 @@
                         ? 'rgb(245, 245, 245)'
                         : ' rgb(41, 42, 45)'
                     }"
+                    (click)="copyPost(i)"
                   >
                     <mat-icon
                       [ngStyle]="{
                         color: brightness ? '#E84858' : 'violet'
                       }"
-                      (click)="copyPost(i)"
                       matTooltipPosition="above"
                       matTooltip="copy post url"
                       >content_copy</mat-icon
@@ -869,12 +870,12 @@
                         ? 'rgb(245, 245, 245)'
                         : ' rgb(41, 42, 45)'
                     }"
+                    (click)="sharePost(i)"
                   >
                     <mat-icon
                       [ngStyle]="{
                         color: brightness ? '#E84858' : 'violet'
                       }"
-                      (click)="sharePost(i)"
                       matTooltipPosition="above"
                       matTooltip="share post"
                       >share</mat-icon
@@ -1030,6 +1031,11 @@
                                   ? 'theme_highlight_light'
                                   : 'theme_highlight_dark'
                               "
+                              [routerLink]="['/searchTag']"
+                              [queryParams]="{ search: t }"
+                              matTooltip="search by tag '{{ t }}' ?"
+                              matTooltipPosition="above"
+                              style="cursor: pointer"
                               *ngFor="let t of d.tags.slice(0, 2)"
                               >#{{ t }}</span
                             >
@@ -1375,6 +1381,8 @@
                           [ngClass]="brightness ? 'blog_tagsL' : 'blog_tagsD'"
                           [routerLink]="['/searchTag']"
                           [queryParams]="{ search: tag }"
+                          matTooltip="search '{{ tag }}' ?"
+                          matTooltipPosition="above"
                           >#{{ tag }}</span
                         >&nbsp;
                       </ng-container>

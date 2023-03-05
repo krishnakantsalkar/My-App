@@ -72,6 +72,19 @@
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: black !important;
   }
+
+  .mdc-checkbox__background {
+    border-color: #e84858 !important;
+  }
+
+  .mat-mdc-checkbox {
+    label {
+      position: relative !important;
+      top: 2px;
+
+      color: black !important;
+    }
+  }
 }
 
 .inputTextColorL {
@@ -144,6 +157,18 @@
 
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: white !important;
+  }
+
+  .mdc-checkbox__background {
+    border-color: violet !important;
+  }
+
+  .mat-mdc-checkbox {
+    label {
+      position: relative !important;
+      top: 2px;
+      color: white !important;
+    }
   }
 }
 

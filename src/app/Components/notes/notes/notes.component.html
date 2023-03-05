@@ -33,7 +33,7 @@
         matTooltipPosition="right"
         >content_copy</mat-icon
       >
-      <mat-icon (click)="getIp()">refresh</mat-icon>
+      <mat-icon (click)="getIp(true)">refresh</mat-icon>
     </div>
 
     <button
@@ -286,7 +286,7 @@
       (selectedTabChange)="tabChange($event)"
       [selectedIndex]="selectedTab"
     >
-      <mat-tab label="All Notes">
+      <mat-tab label="Notes">
         <mat-card
           appearance="raised"
           class="noNotes"
@@ -309,7 +309,6 @@
         </mat-card>
         <mat-card
           appearance="raised"
-          appearance="raised"
           *ngIf="notesData && notesData.length > 0 && !areAllArchived"
           [ngStyle]="{
             'background-color': brightness
@@ -322,7 +321,9 @@
           <mat-card-content>
             <div class="row">
               <div class="col-12" *ngIf="anyNotePinned">
-                <h4><mat-icon class="icon_align">push_pin</mat-icon> Notes</h4>
+                <h4>
+                  <mat-icon class="icon_align">push_pin</mat-icon> Pinned Notes
+                </h4>
               </div>
 
               <div
@@ -340,7 +341,6 @@
                 >
                   <div class="col-10">
                     <mat-card
-                      appearance="raised"
                       appearance="raised"
                       class="mb-5"
                       [ngStyle]="{
@@ -409,6 +409,7 @@
                       <button
                         class="action_icon"
                         mat-mini-fab
+                        (click)="clickEditNote(i)"
                         [ngStyle]="{
                           'background-color': brightness
                             ? 'rgb(245, 245, 245)'
@@ -419,7 +420,6 @@
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="clickEditNote(i)"
                           matTooltipPosition="above"
                           matTooltip="edit note"
                           >edit</mat-icon
@@ -438,13 +438,13 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="deleteNote(i)"
                       >
                         <mat-icon
                           style="cursor: pointer"
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="deleteNote(i)"
                           matTooltipPosition="above"
                           matTooltip="delete note"
                           >delete_forever</mat-icon
@@ -460,12 +460,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="archive(i, 'archive')"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="archive(i, 'archive')"
                           matTooltipPosition="above"
                           matTooltip="archive note"
                           >archive</mat-icon
@@ -553,9 +553,9 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="cancelEditNote(i)"
                       >
                         <mat-icon
-                          (click)="cancelEditNote(i)"
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
@@ -573,7 +573,7 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <mat-icon class="icon_align">description</mat-icon> Notes
+                  <mat-icon class="icon_align">description</mat-icon> All Notes
                 </h4>
               </div>
 
@@ -595,7 +595,6 @@
                   <div class="col-10">
                     <mat-card
                       appearance="raised"
-                      appearance="raised"
                       class="mb-5"
                       [ngStyle]="{
                         'background-color': brightness
@@ -616,13 +615,12 @@
                             >
                             {{ note.notes_title }}
                           </span>
-                          <span
+                          <span (click)="pinNote(i, 'pin')"
                             ><mat-icon
                               class="pin_icon"
                               [ngStyle]="{
                                 color: brightness ? '#E84858' : 'violet'
                               }"
-                              (click)="pinNote(i, 'pin')"
                               matTooltipPosition="above"
                               matTooltip="pin"
                               >push_pin</mat-icon
@@ -669,12 +667,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="clickEditNote(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="clickEditNote(i)"
                           matTooltipPosition="above"
                           matTooltip="edit note"
                           >edit</mat-icon
@@ -690,9 +688,9 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="cancelEditNote(i)"
                       >
                         <mat-icon
-                          (click)="cancelEditNote(i)"
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
@@ -709,12 +707,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="deleteNote(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="deleteNote(i)"
                           matTooltipPosition="above"
                           matTooltip="delete note"
                           >delete_forever</mat-icon
@@ -730,12 +728,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="archive(i, 'archive')"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="archive(i, 'archive')"
                           matTooltipPosition="above"
                           matTooltip="archive note"
                           >archive</mat-icon
@@ -816,9 +814,11 @@
                     class="col-2"
                     style="padding-top: 15px; text-align: center"
                   >
-                    <h4 *ngIf="note.readonly == false">
+                    <h4
+                      *ngIf="note.readonly == false"
+                      (click)="cancelEditNote(i)"
+                    >
                       <mat-icon
-                        (click)="cancelEditNote(i)"
                         matTooltipPosition="above"
                         matTooltip="cancel edit"
                         >cancel</mat-icon
@@ -842,7 +842,6 @@
       >
         <mat-card
           appearance="raised"
-          appearance="raised"
           *ngIf="notesData && notesData.length > 0"
           [ngStyle]="{
             'background-color': brightness
@@ -861,7 +860,6 @@
               >
                 <div class="archivedNotes" *ngIf="note.archived">
                   <mat-card
-                    appearance="raised"
                     appearance="raised"
                     class="mb-5"
                     [ngStyle]="{
@@ -884,29 +882,31 @@
                           {{ note.notes_title }}
                         </span>
                         <span>
-                          <mat-icon
-                            class="mx-2"
-                            style="cursor: pointer"
-                            [ngStyle]="{
-                              color: brightness ? '#E84858' : 'violet'
-                            }"
-                            (click)="deleteNote(i)"
-                            matTooltipPosition="above"
-                            matTooltip="delete"
-                            >delete_forever</mat-icon
-                          >
+                          <span (click)="deleteNote(i)">
+                            <mat-icon
+                              class="mx-2"
+                              style="cursor: pointer"
+                              [ngStyle]="{
+                                color: brightness ? '#E84858' : 'violet'
+                              }"
+                              matTooltipPosition="above"
+                              matTooltip="delete"
+                              >delete_forever</mat-icon
+                            >
+                          </span>
 
-                          <mat-icon
-                            class="mx-2"
-                            [ngStyle]="{
-                              color: brightness ? '#E84858' : 'violet'
-                            }"
-                            (click)="unArchive(i)"
-                            matTooltipPosition="above"
-                            matTooltip="unarchive"
-                            >unarchive</mat-icon
-                          ></span
-                        >
+                          <span (click)="unArchive(i)">
+                            <mat-icon
+                              class="mx-2"
+                              [ngStyle]="{
+                                color: brightness ? '#E84858' : 'violet'
+                              }"
+                              matTooltipPosition="above"
+                              matTooltip="unarchive"
+                              >unarchive</mat-icon
+                            >
+                          </span>
+                        </span>
                       </h5>
                     </mat-card-title>
                     <hr />
@@ -954,7 +954,6 @@
       >
         <mat-card
           appearance="raised"
-          appearance="raised"
           class="noTodos"
           *ngIf="allTodos && allTodos.length == 0"
           [ngStyle]="{
@@ -974,7 +973,6 @@
           <h3><i class="fas fa-info-circle"></i> Nothing here 🙄</h3>
         </mat-card>
         <mat-card
-          appearance="raised"
           appearance="raised"
           *ngIf="allTodos && allTodos.length > 0"
           [ngStyle]="{
@@ -1003,7 +1001,6 @@
                   <div class="col-10">
                     <mat-card
                       appearance="raised"
-                      appearance="raised"
                       class="mb-5 todoList"
                       [ngStyle]="{
                         'background-color': brightness
@@ -1030,12 +1027,11 @@
                               >task_alt</mat-icon
                             >
                           </span>
-                          <span>
+                          <span (click)="pinTodo(i, 'unpin')">
                             <mat-icon
                               [ngStyle]="{
                                 color: brightness ? '#E84858' : 'violet'
                               }"
-                              (click)="pinTodo(i, 'unpin')"
                               matTooltipPosition="above"
                               matTooltip="unpin"
                               >push_pin</mat-icon
@@ -1126,12 +1122,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="editTodo(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="editTodo(i)"
                           matTooltipPosition="above"
                           matTooltip="edit note"
                           >edit</mat-icon
@@ -1147,8 +1143,9 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="cancelEditTodo(i)"
                       >
-                        <mat-icon (click)="cancelEditTodo(i)">cancel</mat-icon>
+                        <mat-icon>cancel</mat-icon>
                       </button>
                     </h4>
                     <h4>
@@ -1160,12 +1157,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="deleteTodo(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="deleteTodo(i)"
                           matTooltipPosition="above"
                           matTooltip="delete todo"
                           >delete_forever</mat-icon
@@ -1181,7 +1178,6 @@
                 >
                   <div class="col-10">
                     <mat-card
-                      appearance="raised"
                       appearance="raised"
                       class="mb-5 todoList"
                       [ngStyle]="{
@@ -1213,10 +1209,10 @@
                             <br />
                           </div>
                           <div class="col-2">
-                            <mat-icon
-                              (click)="deleteEditOption(i, j)"
-                              style="cursor: pointer"
-                              >cancel</mat-icon
+                            <span (click)="deleteEditOption(i, j)">
+                              <mat-icon style="cursor: pointer"
+                                >cancel</mat-icon
+                              ></span
                             >
                           </div>
                         </div>
@@ -1250,12 +1246,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="cancelEditTodo(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="cancelEditTodo(i)"
                           matTooltipPosition="above"
                           matTooltip="cancel edit"
                           >cancel</mat-icon
@@ -1285,7 +1281,6 @@
                   <div class="col-10">
                     <mat-card
                       appearance="raised"
-                      appearance="raised"
                       class="mb-5 todoList"
                       [ngStyle]="{
                         'background-color': brightness
@@ -1312,13 +1307,12 @@
                               >task_alt</mat-icon
                             >
                           </span>
-                          <span>
+                          <span (click)="pinTodo(i, 'pin')">
                             <mat-icon
                               class="pin_icon"
                               [ngStyle]="{
                                 color: brightness ? '#E84858' : 'violet'
                               }"
-                              (click)="pinTodo(i, 'pin')"
                               matTooltipPosition="above"
                               matTooltip="pin"
                               >push_pin</mat-icon
@@ -1408,12 +1402,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="editTodo(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="editTodo(i)"
                           matTooltipPosition="above"
                           matTooltip="edit todo"
                           >edit</mat-icon
@@ -1429,9 +1423,9 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="cancelEditTodo(i)"
                       >
                         <mat-icon
-                          (click)="cancelEditTodo(i)"
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
@@ -1448,12 +1442,12 @@
                             ? 'rgb(245, 245, 245)'
                             : ' rgb(41, 42, 45)'
                         }"
+                        (click)="deleteTodo(i)"
                       >
                         <mat-icon
                           [ngStyle]="{
                             color: brightness ? '#E84858' : 'violet'
                           }"
-                          (click)="deleteTodo(i)"
                           matTooltipPosition="above"
                           matTooltip="delete todo"
                           >delete_forever</mat-icon
@@ -1469,7 +1463,6 @@
                 >
                   <div class="col-10">
                     <mat-card
-                      appearance="raised"
                       appearance="raised"
                       class="mb-5 todoList"
                       [ngStyle]="{
@@ -1501,11 +1494,11 @@
                             <br />
                           </div>
                           <div class="col-2">
-                            <mat-icon
-                              (click)="deleteEditOption(i, j)"
-                              style="cursor: pointer"
-                              >cancel</mat-icon
-                            >
+                            <span (click)="deleteEditOption(i, j)">
+                              <mat-icon style="cursor: pointer"
+                                >cancel</mat-icon
+                              >
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -1529,9 +1522,11 @@
                     </mat-card>
                   </div>
                   <div class="col-2" style="padding-top: 15px">
-                    <h4 *ngIf="todo.readonly == false">
+                    <h4
+                      *ngIf="todo.readonly == false"
+                      (click)="cancelEditTodo(i)"
+                    >
                       <mat-icon
-                        (click)="cancelEditTodo(i)"
                         matTooltipPosition="above"
                         matTooltip="cancel edit"
                         >cancel</mat-icon
@@ -1546,7 +1541,6 @@
       </mat-tab>
       <mat-tab label="Snippets">
         <mat-card
-          appearance="raised"
           appearance="raised"
           [ngStyle]="{
             'background-color': brightness
@@ -1576,7 +1570,6 @@
                         target="_blank"
                       >
                         <mat-card
-                          appearance="raised"
                           appearance="raised"
                           [ngStyle]="{
                             'background-color': brightness
@@ -1612,6 +1605,7 @@
                           ? 'rgb(245, 245, 245)'
                           : ' rgb(41, 42, 45)'
                       }"
+                      (click)="deleteSnippet(snip._id)"
                     >
                       <mat-icon
                         style="cursor: pointer"
@@ -1620,7 +1614,6 @@
                         }"
                         matTooltip="delete snippet"
                         matTooltipPosition="above"
-                        (click)="deleteSnippet(snip._id)"
                         >delete</mat-icon
                       >
                     </button>
@@ -1634,6 +1627,11 @@
                           ? 'rgb(245, 245, 245)'
                           : ' rgb(41, 42, 45)'
                       }"
+                      (click)="
+                        copyShareLink(
+                          'https://snippets.krishnakantsalkar.in/' + snip._id
+                        )
+                      "
                     >
                       <mat-icon
                         style="cursor: pointer"
@@ -1642,11 +1640,6 @@
                         }"
                         matTooltip="copy snippet link"
                         matTooltipPosition="above"
-                        (click)="
-                          copyShareLink(
-                            'https://snippets.krishnakantsalkar.in/' + snip._id
-                          )
-                        "
                         >content_copy</mat-icon
                       >
                     </button>

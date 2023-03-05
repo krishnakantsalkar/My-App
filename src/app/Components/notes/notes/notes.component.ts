@@ -60,9 +60,13 @@ export class NotesComponent implements OnInit {
     this.getIp();
   }
 
-  getIp() {
+  getIp(isRefresh?: boolean) {
     this.noteService.getClientIp().subscribe((item) => {
       this.clientIp = item.result;
+
+      if (isRefresh) {
+        this.uiService.showSnackbar('IP refreshed!', null, 3000);
+      }
     });
   }
 

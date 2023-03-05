@@ -22,6 +22,7 @@ import { modeService } from '../../../Shared/services/light-dark-Modeservice';
 import { ReCaptchaV3Service } from 'ngx-captcha';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -61,6 +62,8 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginDialog', { static: false })
   public loginDialog;
+
+  env = environment.production;
 
   constructor(
     private fb: UntypedFormBuilder,

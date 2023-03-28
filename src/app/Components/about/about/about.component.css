@@ -113,6 +113,11 @@ div.buttons button {
   height: 300px;
   width: auto;
   scale: 1;
+
+  position: sticky;
+  top: 100px;
+
+  margin-top: 100px;
 }
 div.developer .card {
   color: #32325d;
@@ -252,12 +257,26 @@ div.connections .fa-telegram {
 .dev_info_container {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  /* align-items: center; */
   padding-top: 125px;
 }
 .langAndfr {
   text-align: center;
 }
+
+.social_links {
+  scale: 1;
+  border: 1px solid gray;
+  border-radius: 12px;
+  margin-top: 30px;
+  padding: 10px 16px;
+  position: sticky;
+  top: 400px;
+}
+
+/* .social_links h5{
+  scale: ; 
+} */
 
 .form_action {
   display: flex;
@@ -269,10 +288,13 @@ div.connections .fa-telegram {
 }
 
 .copy_content {
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.copy_content_suggest {
+/* .copy_content_suggest {
   position: absolute;
   top: -8px;
   right: -8px;
@@ -283,7 +305,7 @@ div.connections .fa-telegram {
   font-size: 13px;
   height: 15px;
   width: 12px;
-}
+} */
 /* media query for above css */
 
 @media only screen and (max-width: 600px) {
@@ -333,7 +355,18 @@ div.connections .fa-telegram {
   }
 
   .aboutme-img {
-    height: 150px;
+    height: 200px !important;
+    margin-top: 0 !important;
+    position: relative !important;
+  }
+
+  div.devinfo1 h5 {
+    font-size: 16px !important;
+  }
+
+  .social_links {
+    margin-top: 120px !important;
+    position: initial !important;
   }
 
   .frameworks {

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html id="Page">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <!-- adblock overlay div -->
-    <!-- <div class="adblockOverlays" id="adblockOverlays">
+<!-- adblock overlay div -->
+<!-- <div class="adblockOverlays" id="adblockOverlays">
       <div
         class="card"
         [ngStyle]="{
@@ -59,22 +50,22 @@
       </div>
     </div> -->
 
-    <!-- website uses cookies dialog -->
+<!-- website uses cookies dialog -->
 
-    <!-- Preload page component -->
-    <div class="preloader" id="preloader">
-      <!-- preload page card fixed and covers entire page using css -->
-      <span
-        class="preloadDate"
-        *ngIf="!session"
-        [ngStyle]="{
-          'background-color': brightness ? '#ff450021' : '#ee82d521',
-          color: brightness ? '#E84858' : 'violet'
-        }"
-      >
-        {{ currentDate | date : "dd MMM | hh:mm a" }}
-      </span>
-      <!-- <a
+<!-- Preload page component -->
+<div class="preloader" id="preloader">
+  <!-- preload page card fixed and covers entire page using css -->
+  <span
+    class="preloadDate"
+    *ngIf="!session"
+    [ngStyle]="{
+      'background-color': brightness ? '#ff450021' : '#ee82d521',
+      color: brightness ? '#E84858' : 'violet'
+    }"
+  >
+    {{ currentDate | date : "dd MMM | hh:mm a" }}
+  </span>
+  <!-- <a
         *ngIf="!session"
         class="preloadModeChange"
         (click)="mode()"
@@ -90,92 +81,92 @@
           ><mat-icon class="icon_align">brightness_7</mat-icon></ng-template
         ></a
       > -->
-      <div
-        class="button r preloadModeChange"
-        id="button-3"
-        *ngIf="!session"
-        matTooltip="switch brightness"
-        matTooltipPosition="left"
-      >
-        <input
-          type="checkbox"
-          [checked]="brightness"
-          (change)="mode()"
-          class="checkbox"
-        />
-        <div class="knobs"></div>
-        <div class="layer"></div>
-      </div>
+  <div
+    class="button r preloadModeChange"
+    id="button-3"
+    *ngIf="!session"
+    matTooltip="switch brightness"
+    matTooltipPosition="left"
+  >
+    <input
+      type="checkbox"
+      [checked]="brightness"
+      (change)="mode()"
+      class="checkbox"
+    />
+    <div class="knobs"></div>
+    <div class="layer"></div>
+  </div>
 
-      <div
-        class="preloadContent card"
+  <div
+    class="preloadContent card"
+    [ngStyle]="{
+      background: brightness ? 'white' : ' rgb(41, 42, 45)'
+    }"
+  >
+    <div class="preloaderBg"></div>
+    <div class="preloaderBgCredits">
+      <a
+        href="https://www.pexels.com/@markusspiske"
         [ngStyle]="{
-          background: brightness ? 'white' : ' rgb(41, 42, 45)'
+          color: brightness ? '#E84858' : 'violet'
         }"
       >
-        <div class="preloaderBg"></div>
-        <div class="preloaderBgCredits">
-          <a
-            href="https://www.pexels.com/@markusspiske"
-            [ngStyle]="{
-              color: brightness ? '#E84858' : 'violet'
-            }"
-          >
-            Photo by Markus Spiske, Pexels</a
-          >
-        </div>
+        Photo by Markus Spiske, Pexels</a
+      >
+    </div>
 
-        <!-- Preload page Logo  -->
-        <div>
-          <img
-            src="assets/images/preloadLogo.png"
-            (click)="switchPulse()"
-            [matTooltip]="!isPulse ? 'Pulse~~ on ?' : 'Pulse~~ off ?'"
-            matTooltipPosition="above"
-            [ngClass]="{
-              preloaderLogoL: brightness,
-              preloaderLogoD: !brightness,
-              pulseLight: brightness && isPulse,
-              pulseDark: !brightness && isPulse
-            }"
-          />
-          <div class="progressText">
-            <h6
-              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              id="loopText"
-            ></h6>
+    <!-- Preload page Logo  -->
+    <div>
+      <img
+        src="assets/images/preloadLogo.png"
+        (click)="switchPulse()"
+        [matTooltip]="!isPulse ? 'Pulse~~ on ?' : 'Pulse~~ off ?'"
+        matTooltipPosition="above"
+        [ngClass]="{
+          preloaderLogoL: brightness,
+          preloaderLogoD: !brightness,
+          pulseLight: brightness && isPulse,
+          pulseDark: !brightness && isPulse
+        }"
+      />
+      <div class="progressText">
+        <h6
+          [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          id="loopText"
+        ></h6>
 
-            <button
-              mat-raised-button
-              class="enterBtn"
-              (click)="enter()"
-              [ngStyle]="{
-                'background-color': brightness ? '#E84858' : 'violet'
-              }"
-            >
-              Enter
-            </button>
+        <button
+          mat-raised-button
+          class="enterBtn"
+          (click)="enter()"
+          [ngStyle]="{
+            'background-color': brightness ? '#E84858' : 'violet'
+          }"
+        >
+          Enter
+        </button>
 
-            <h4
-              class="preloader_quote"
-              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-            >
-              <span class="preloader_quote_part1">To Infinity</span>
-              <span class="preloader_quote_part2">...</span>
-              <span class="preloader_quote_part3"> And</span>
-              <span class="preloader_quote_part4"> Beyond!</span>
-            </h4>
-          </div>
+        <h4
+          class="preloader_quote"
+          [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+        >
+          <span class="preloader_quote_part1">To Infinity</span>
+          <span class="preloader_quote_part2">...</span>
+          <span class="preloader_quote_part3"> And</span>
+          <span class="preloader_quote_part4"> Beyond!</span>
+        </h4>
+      </div>
 
-          <!-- Progress bar container -->
-          <!-- <div
+      <!-- Progress bar container -->
+      <!-- <div
             class="progressBar"
             [ngStyle]="{
               'background-color': brightness ? 'rgb(223, 223, 223)' : ' black'
             }" -->
 
-          <!-- Progress bar animation by Javascript -->
-          <!-- <div
+      <!-- Progress bar animation by Javascript -->
+      <!-- <div
               class="progress"
               id="progress"
               [ngStyle]="{
@@ -191,162 +182,160 @@
               1%</span
             >
           </div> -->
-        </div>
-        <!-- Preloader page footer -->
-        <div class="preloaderFooter">
-          <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
-            <i
-              class="fas fa-copyright"
-              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-            ></i>
-            2020-{{ currentDate.getFullYear() }} |
-            <span
-              [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              style="font-weight: 600"
-            >
-              Krishnakant Salkar</span
-            >
-          </h6>
-        </div>
-      </div>
+    </div>
+    <!-- Preloader page footer -->
+    <div class="preloaderFooter">
+      <h6 [ngStyle]="{ color: brightness ? 'black' : 'rgb(129,129,129)' }">
+        <i
+          class="fas fa-copyright"
+          [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+        ></i>
+        2020-{{ currentDate.getFullYear() }} |
+        <span
+          [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          style="font-weight: 600"
+        >
+          Krishnakant Salkar</span
+        >
+      </h6>
+    </div>
+  </div>
+</div>
+
+<!--  Add a div with id to Wrap entire Main Page -->
+<div id="MainPage" class="content">
+  <!-- Add personal image -->
+  <div
+    id="bgImg"
+    [ngStyle]="{
+      'background-color':
+        brightness && wallpaperNum == 0
+          ? 'rgb(200, 200, 200)'
+          : ' rgb(41, 42, 45)',
+      opacity: brightness && wallpaperNum == 0 ? '1' : '0.5'
+    }"
+  ></div>
+  <div class="nametag">
+    <div class="imagesection" id="imagesection">
+      <img
+        data-aos="zoom-in"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        class="rounded-circle"
+        src="assets/images/mylogo.jpg"
+        [ngClass]="{ imageShadowL: brightness, imageShadowD: !brightness }"
+      />
+
+      <!-- Add motto -->
+      <mat-card
+        appearance="raised"
+        appearance="raised"
+        class="motto"
+        [ngStyle]="{
+          'background-color': brightness
+            ? 'rgba(255, 69, 0,0.2)'
+            : ' rgba(35, 36, 38, 0.8)'
+        }"
+      >
+        <h5
+          [ngStyle]="{
+            color:
+              brightness && wallpaperNum == 0
+                ? 'black'
+                : brightness && wallpaperNum > 0
+                ? 'white'
+                : 'rgb(129,129,129)'
+          }"
+          class="learn-build"
+          data-aos="fade-in"
+          data-aos-delay="100"
+          data-aos-duration="1000"
+        >
+          <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+            >Learn</span
+          >
+          <i
+            class="fab fa-leanpub"
+            data-aos="fade-in"
+            data-aos-delay="100"
+            data-aos-duration="1000"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          ></i>
+          &#8226;
+          <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+            >Build</span
+          >
+          <i
+            class="fas fa-sync-alt"
+            data-aos="fade-in"
+            data-aos-delay="500"
+            data-aos-duration="1000"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          ></i>
+          &#8226;
+          <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+            >Fix</span
+          >
+          <i
+            class="fas fa-tools"
+            data-aos="fade-in"
+            data-aos-delay="1000"
+            data-aos-duration="1000"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          ></i>
+          &#8226;
+          <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
+            >Repeat</span
+          >
+          <i
+            class="fas fa-redo"
+            data-aos="fade-in"
+            data-aos-delay="1500"
+            data-aos-duration="1000"
+            [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
+          ></i>
+        </h5>
+      </mat-card>
     </div>
 
-    <!--  Add a div with id to Wrap entire Main Page -->
-    <div id="MainPage" class="content">
-      <!-- Add personal image -->
-      <div
-        id="bgImg"
+    <!-- wallpaper switch -->
+    <div class="bgCredits">
+      <button
+        mat-raised-button
+        class=""
+        (click)="switchWalls()"
+        matTooltip="switch background"
+        matTooltipPosition="right"
         [ngStyle]="{
-          'background-color':
-            brightness && wallpaperNum == 0
-              ? 'rgb(200, 200, 200)'
-              : ' rgb(41, 42, 45)',
-          opacity: brightness && wallpaperNum == 0 ? '1' : '0.5'
+          'background-color': brightness
+            ? 'rgb(223, 223, 223)'
+            : ' rgb(41, 42, 45)'
         }"
-      ></div>
-      <div class="nametag">
-        <div class="imagesection" id="imagesection">
-          <img
-            data-aos="zoom-in"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            class="rounded-circle"
-            src="assets/images/mylogo.jpg"
-            [ngClass]="{ imageShadowL: brightness, imageShadowD: !brightness }"
-          />
-
-          <!-- Add motto -->
-          <mat-card
-            appearance="raised"
-            appearance="raised"
-            class="motto"
-            [ngStyle]="{
-              'background-color': brightness
-                ? 'rgba(255, 69, 0,0.2)'
-                : ' rgba(35, 36, 38, 0.8)'
-            }"
-          >
-            <h5
-              [ngStyle]="{
-                color:
-                  brightness && wallpaperNum == 0
-                    ? 'black'
-                    : brightness && wallpaperNum > 0
-                    ? 'white'
-                    : 'rgb(129,129,129)'
-              }"
-              class="learn-build"
-              data-aos="fade-in"
-              data-aos-delay="100"
-              data-aos-duration="1000"
-            >
-              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
-                >Learn</span
-              >
-              <i
-                class="fab fa-leanpub"
-                data-aos="fade-in"
-                data-aos-delay="100"
-                data-aos-duration="1000"
-                [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              ></i>
-              &#8226;
-              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
-                >Build</span
-              >
-              <i
-                class="fas fa-sync-alt"
-                data-aos="fade-in"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-                [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              ></i>
-              &#8226;
-              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
-                >Fix</span
-              >
-              <i
-                class="fas fa-tools"
-                data-aos="fade-in"
-                data-aos-delay="1000"
-                data-aos-duration="1000"
-                [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              ></i>
-              &#8226;
-              <span [ngClass]="brightness ? 'front_textL' : 'front_textD'"
-                >Repeat</span
-              >
-              <i
-                class="fas fa-redo"
-                data-aos="fade-in"
-                data-aos-delay="1500"
-                data-aos-duration="1000"
-                [ngStyle]="{ color: brightness ? '#E84858' : 'violet' }"
-              ></i>
-            </h5>
-          </mat-card>
-        </div>
-
-        <!-- wallpaper switch -->
-        <div class="bgCredits">
-          <button
-            mat-raised-button
-            class=""
-            (click)="switchWalls()"
-            matTooltip="switch background"
-            matTooltipPosition="right"
-            [ngStyle]="{
-              'background-color': brightness
-                ? 'rgb(223, 223, 223)'
-                : ' rgb(41, 42, 45)'
-            }"
-          >
-            <!-- <h5
+      >
+        <!-- <h5
              
             >
               <i class="fas fa-sync-alt"></i>
             </h5> -->
-            <mat-icon
-              [ngStyle]="{
-                color: brightness ? '#E84858' : 'violet'
-              }"
-              >sync</mat-icon
-            >
-          </button>
-          <br />
-          <br />
+        <mat-icon
+          [ngStyle]="{
+            color: brightness ? '#E84858' : 'violet'
+          }"
+          >sync</mat-icon
+        >
+      </button>
+      <br />
+      <br />
 
-          <h6
-            class="bgCreditsInfo"
-            *ngIf="wallpaperNum > 0"
-            [ngStyle]="{
-              color: brightness ? 'white' : 'violet'
-            }"
-          >
-            Photo by, {{ picSource }}
-          </h6>
-        </div>
-      </div>
+      <h6
+        class="bgCreditsInfo"
+        *ngIf="wallpaperNum > 0"
+        [ngStyle]="{
+          color: brightness ? 'white' : 'violet'
+        }"
+      >
+        Photo by, {{ picSource }}
+      </h6>
     </div>
-  </body>
-</html>
+  </div>
+</div>

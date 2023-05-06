@@ -15,7 +15,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DISQUS_SHORTNAME } from 'ngx-disqus';
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+// import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
 import { QuillModule } from 'ngx-quill';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -77,7 +77,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
-    SnotifyModule,
+    // SnotifyModule,
     SkeletonModule,
     SharedModuleModule,
     QuillModule.forRoot(),
@@ -89,8 +89,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CookieService,
     // disqus comments
     { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
-    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
-    SnotifyService,
+    // { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    // SnotifyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorInterceptor,

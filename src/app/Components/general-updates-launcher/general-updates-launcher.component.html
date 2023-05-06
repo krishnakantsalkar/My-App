@@ -155,6 +155,7 @@
     class="example-sidenav"
     mode="side"
     [opened]="side"
+    (closedStart)="onClose()"
     [ngStyle]="{
       'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
       color: brightness ? '#E84858' : 'violet'
@@ -190,6 +191,7 @@
           'background-color': brightness ? 'white' : ' rgb(100,100, 100)',
           color: brightness ? 'black' : 'white'
         }"
+        (click)="viewUpdate(up)"
       >
         <div class="update_img">
           <img
@@ -253,3 +255,43 @@
     </div>
   </mat-sidenav>
 </mat-sidenav-container>
+
+<ng-template #showDialog>
+  <div
+    class="login_dialog"
+    mat-dialog-content
+    [ngStyle]="{
+      'background-color': brightness
+        ? 'rgb(245, 245, 245)'
+        : ' rgb(31, 32, 35)',
+      color: brightness ? 'black' : 'rgb(129,129,129)'
+    }"
+  >
+    <mat-icon mat-dialog-close class="viewClose">close</mat-icon>
+
+    <img src="{{ viewUpdateObj.updateImgUrl }}" />
+
+    <p>{{ viewUpdateObj.updateText }}</p>
+
+    <div *ngIf="viewUpdateObj.updateLinks.length > 0">
+      <hr />
+
+      <ng-container *ngFor="let link of viewUpdateObj.updateLinks">
+        <a
+          href="{{ link }}"
+          target="_blank"
+          [matTooltip]="link"
+          matTooltipPosition="left"
+          >{{ link | slice : 0 : 50
+          }}<span *ngIf="link.length > 50">...</span></a
+        >
+      </ng-container>
+    </div>
+    <div
+      class="d-flex justify-content-end align-items-center"
+      style="margin-top: 20px"
+    >
+      <span>{{ viewUpdateObj.createdAt | date : "dd MMM | hh:mm a" }}</span>
+    </div>
+  </div>
+</ng-template>

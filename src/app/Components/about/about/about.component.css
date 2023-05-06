@@ -133,6 +133,12 @@ div.developer .card {
   max-width: 800px;
 }
 
+.devinfo1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 div.devinfo1 h5 {
   font-family: "Andale Mono", AndaleMono, monospace;
   font-size: 18px;
@@ -206,40 +212,40 @@ div.connections .fa-telegram {
 }
 
 .social-icons .telegram-icon:hover {
-  background-color: #0088cc;
-  color: white;
+  background-color: #0088cc !important;
+  color: white !important;
 }
 .social-icons .facebook-icon:hover {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #1da1f2 !important;
+  color: white !important;
 }
 .social-icons .git-icon:hover {
-  background-color: rgb(20, 20, 20);
-  color: white;
+  background-color: rgb(20, 20, 20) !important;
+  color: white !important;
 }
 .social-icons .email-icon:hover {
-  background-color: rgb(245, 23, 23);
-  color: white;
+  background-color: rgb(245, 23, 23) !important;
+  color: white !important;
 }
 .social-icons .instagram-icon:hover {
-  background-color: deeppink;
-  color: white;
+  background-color: deeppink !important;
+  color: white !important;
 }
 .social-icons .snapchat-icon:hover {
-  background-color: rgb(255, 252, 0);
-  color: white;
+  background-color: rgb(255, 252, 0) !important;
+  color: white !important;
 }
 .social-icons .blog-icon:hover {
-  background-color: violet;
-  color: white;
+  background-color: violet !important;
+  color: white !important;
 }
 .social-icons .steam-icon:hover {
-  background-color: darkblue;
-  color: white;
+  background-color: darkblue !important;
+  color: white !important;
 }
 .social-icons .linkedIn-icon:hover {
-  background-color: #1da1f2;
-  color: white;
+  background-color: #1da1f2 !important;
+  color: white !important;
 }
 .social-icons ul {
   padding-inline-start: 20px;
@@ -272,6 +278,8 @@ div.connections .fa-telegram {
   padding: 10px 16px;
   position: sticky;
   top: 400px;
+  width: 600px;
+  max-width: 100%;
 }
 
 /* .social_links h5{
@@ -292,6 +300,9 @@ div.connections .fa-telegram {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  flex: 0 0 50%;
+  gap: 20px;
 }
 
 /* .copy_content_suggest {

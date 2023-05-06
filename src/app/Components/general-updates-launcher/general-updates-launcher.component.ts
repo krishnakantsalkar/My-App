@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { modeService } from '../../Shared/services/light-dark-Modeservice';
 import { CookieService } from 'ngx-cookie-service';
 import { userloginservices } from '../../Shared/services/userloginservice';
@@ -38,6 +38,8 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
   badgeCount: any;
   badgeCountSaved: number;
 
+  viewUpdateObj: any;
+  @ViewChild('showDialog') showDialog: TemplateRef<any>;
   constructor(
     private defaultModeService: modeService,
     private cookies: CookieService,
@@ -58,7 +60,7 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
     });
 
     this.uiService.domClick$.subscribe((item) => {
-      if (item.clientX <= window.innerWidth - window.innerWidth * 0.25) {
+      if (item.clientX <= window.innerWidth - window.innerWidth * 0.35) {
         this.side = false;
       }
     });
@@ -213,5 +215,19 @@ export class GeneralUpdatesLauncherComponent implements OnInit {
         this.dataCount = item.dataCount;
         this.pageSize = item.pageSize;
       });
+  }
+
+  viewUpdate(upd) {
+    this.viewUpdateObj = upd;
+
+    this.dialog.open(this.showDialog, {
+      minWidth: '30vw',
+      backdropClass: 'bgBlur',
+      panelClass: 'p-relative',
+    });
+  }
+
+  onClose() {
+    this.currentPage = 1;
   }
 }

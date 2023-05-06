@@ -20,7 +20,7 @@ import { contactService } from '../../Shared/services/contactUSservice';
 import { IcontactUs } from '../../Shared/model/contactUsmodel';
 import { CookieService } from 'ngx-cookie-service';
 import { Title, Meta } from '@angular/platform-browser';
-import { SnotifyService, SnotifyPosition } from 'ng-snotify';
+// import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 import { modeService } from 'src/app/Shared/services/light-dark-Modeservice';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { UiService } from '../../Shared/services/ui.service';
@@ -87,7 +87,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     private contactServices: contactService,
     private cookies: CookieService,
     private titleService: Title,
-    private snotifyService: SnotifyService,
+    // private snotifyService: SnotifyService,
     private defaultModeService: modeService,
     private meta: Meta,
     @Inject(PLATFORM_ID) private platformId: any,
@@ -456,83 +456,81 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   // show notification to user
   async showNotif() {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    } else {
-      // setTimeout(() => {
-      if (!sessionStorage.getItem('mainPageToast')) {
-        from(['load'])
-          .pipe(delay(3000))
-          .subscribe((item) => {
-            this.snotifyService.info(
-              'Welcome User, Search for your fav Movies & TV shows!',
-              'TheArsonist',
-              {
-                timeout: 12000,
-                showProgressBar: true,
-                closeOnClick: false,
-                pauseOnHover: true,
-                icon: 'assets/images/mylogo.jpg',
-                buttons: [
-                  {
-                    text: 'Movies & TV',
-                    action: () => this.router.navigateByUrl('/movies&tv'),
-                    bold: false,
-                  },
-                  {
-                    text: 'Close',
-                    action: (toast) => {
-                      this.snotifyService.remove(toast.id);
-                    },
-                    bold: true,
-                  },
-                ],
-                position: SnotifyPosition.rightBottom,
-              }
-            );
-          });
-
-        this.uiService.latestBlog$.pipe(delay(4000)).subscribe((item) => {
-          if (item) {
-            console.log(item);
-            this.snotifyService.success(
-              `Checkout my latest blog post.... \n
-              
-              ${item.postTitle}
-              `,
-              'TheArsonist',
-              {
-                timeout: 12000,
-                showProgressBar: true,
-                closeOnClick: false,
-                pauseOnHover: true,
-                icon: item.postImage,
-                buttons: [
-                  {
-                    text: 'open',
-                    action: () =>
-                      this.router.navigateByUrl(
-                        `/blog/${item.postNumber}/${item.postTitle}/${item._id}`
-                      ),
-                    bold: false,
-                  },
-                  {
-                    text: 'Close',
-                    action: (toast) => {
-                      this.snotifyService.remove(toast.id);
-                    },
-                    bold: true,
-                  },
-                ],
-                position: SnotifyPosition.rightBottom,
-              }
-            );
-          }
-        });
-      }
-      sessionStorage.setItem('mainPageToast', 'notified');
-      // }, 6000);
-    }
+    // if (!isPlatformBrowser(this.platformId)) {
+    //   return;
+    // } else {
+    //   // setTimeout(() => {
+    //   if (!sessionStorage.getItem('mainPageToast')) {
+    //     from(['load'])
+    //       .pipe(delay(3000))
+    //       .subscribe((item) => {
+    //         this.snotifyService.info(
+    //           'Welcome User, Search for your fav Movies & TV shows!',
+    //           'TheArsonist',
+    //           {
+    //             timeout: 12000,
+    //             showProgressBar: true,
+    //             closeOnClick: false,
+    //             pauseOnHover: true,
+    //             icon: 'assets/images/mylogo.jpg',
+    //             buttons: [
+    //               {
+    //                 text: 'Movies & TV',
+    //                 action: () => this.router.navigateByUrl('/movies&tv'),
+    //                 bold: false,
+    //               },
+    //               {
+    //                 text: 'Close',
+    //                 action: (toast) => {
+    //                   this.snotifyService.remove(toast.id);
+    //                 },
+    //                 bold: true,
+    //               },
+    //             ],
+    //             position: SnotifyPosition.rightBottom,
+    //           }
+    //         );
+    //       });
+    //     this.uiService.latestBlog$.pipe(delay(4000)).subscribe((item) => {
+    //       if (item) {
+    //         console.log(item);
+    //         this.snotifyService.success(
+    //           `Checkout my latest blog post.... \n
+    //           ${item.postTitle}
+    //           `,
+    //           'TheArsonist',
+    //           {
+    //             timeout: 12000,
+    //             showProgressBar: true,
+    //             closeOnClick: false,
+    //             pauseOnHover: true,
+    //             icon: item.postImage,
+    //             buttons: [
+    //               {
+    //                 text: 'open',
+    //                 action: () =>
+    //                   this.router.navigateByUrl(
+    //                     `/blog/${item.postNumber}/${item.postTitle}/${item._id}`
+    //                   ),
+    //                 bold: false,
+    //               },
+    //               {
+    //                 text: 'Close',
+    //                 action: (toast) => {
+    //                   this.snotifyService.remove(toast.id);
+    //                 },
+    //                 bold: true,
+    //               },
+    //             ],
+    //             position: SnotifyPosition.rightBottom,
+    //           }
+    //         );
+    //       }
+    //     });
+    //   }
+    //   sessionStorage.setItem('mainPageToast', 'notified');
+    //   // }, 6000);
+    // }
   }
 
   // show wallpaper from wallpaperPref

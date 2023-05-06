@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import * as AOS from 'aos';
 import { userloginservices } from 'src/app/Shared/services/userloginservice';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Routes } from '@angular/router';
 import { blogpostservice } from 'src/app/Shared/services/blogservice';
 import {
   UntypedFormGroup,
@@ -29,6 +29,7 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import * as $ from 'jquery';
+// import { routes } from '../../app-routing.module';
 
 import { delay } from 'rxjs/operators';
 import { from } from 'rxjs';
@@ -314,6 +315,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     this.uiService.checkSession$.next(true);
     this.showNotif();
+    // this.generateSitemap();
   }
 
   // set global Light/Dark mode
@@ -568,6 +570,89 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       localStorage.setItem('wallpaperNum', `${this.wallpaperNum}`);
       this.showWalls();
     }
+  }
+
+  sitemap = '';
+  dynamicRoutes: string[];
+  generateSitemap(): void {
+    let routes = [];
+
+    this.router.config.forEach((route) => {
+      if (route.path && route.path !== '**') {
+        routes.push({ path: route.path });
+      } else if (route.loadChildren) {
+        const childRoutes = Array.isArray(route.loadChildren)
+          ? route.loadChildren
+          : [route.loadChildren];
+        childRoutes.forEach((childRoute: any) => {
+          routes.push({ loadChildren: childRoute });
+        });
+      }
+    });
+
+    // const routes: Routes = this.router.config;
+    console.log({ routes });
+    this.dynamicRoutes = []; // Array to hold dynamically generated routes
+    const sitemapUrls: string[] = [];
+
+    routes.forEach((route) => {
+      if (route.loadChildren) {
+        // If the route is lazy-loaded, load the module and get its routes
+        this.router.config.unshift(...route.loadChildren());
+
+        // Remove the loadChildren property so the module is not loaded again
+        delete route.loadChildren;
+      }
+
+      if (route.path === '**') {
+        // Skip wildcard routes
+        return;
+      }
+
+      if (route.path) {
+        // Add the route path to the sitemap
+        sitemapUrls.push(`https://krishnakantsalkar.in/${route.path}`);
+      }
+
+      if (route.children) {
+        // If the route has children, generate the child routes
+        this.generateChildRoutes(route.children, route.path || '');
+      }
+    });
+
+    // Add the dynamically generated routes to the sitemap
+    this.dynamicRoutes.forEach((route) =>
+      sitemapUrls.push(`https://krishnakantsalkar.in/${route}`)
+    );
+
+    // Generate the sitemap XML
+    this.sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    this.sitemap +=
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+    sitemapUrls.forEach((url) => {
+      this.sitemap += `<url><loc>${url}</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>\n`;
+    });
+
+    this.sitemap += '</urlset>\n';
+
+    console.log(this.sitemap);
+  }
+
+  generateChildRoutes(routes: Routes, parentPath: string): void {
+    routes.forEach((route) => {
+      if (route.path) {
+        // If the route has a path, add it to the dynamic routes array
+        const fullPath = `${parentPath}/${route.path}`;
+        this.dynamicRoutes.push(fullPath);
+      }
+
+      if (route.children) {
+        // If the route has children, generate the child routes
+        this.generateChildRoutes(route.children, `${parentPath}/${route.path}`);
+      }
+    });
   }
 }
 

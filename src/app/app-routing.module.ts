@@ -5,7 +5,7 @@ import { authGuard } from './Shared/services/authguard';
 import { Page404Component } from './Components/page404/page404.component';
 import { LoginPageGuardGuard } from './Shared/services/login-page-guard.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   // default route
   {
     path: '',

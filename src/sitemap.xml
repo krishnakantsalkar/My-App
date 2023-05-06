@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://krishnakantsalkar.in/home</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/about</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/blog/:page</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/blog/:postNumber/:id</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/blog/:postNumber/:postTitle/:id</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/login</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/Profile/:id</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/ResetPassword/:id</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/movies&amp;tv</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+
+<url><loc>https://krishnakantsalkar.in/privacy</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/disclaimer</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/notes</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+<url><loc>https://krishnakantsalkar.in/covid-news/:section/:page</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+
+<url><loc>https://krishnakantsalkar.in/searchTag</loc> <changefreq>weekly</changefreq>
+      <priority>1.0</priority></url>
+</urlset>

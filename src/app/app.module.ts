@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { Page404Component } from './Components/page404/page404.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { DISQUS_SHORTNAME } from 'ngx-disqus';
+// import { DISQUS_SHORTNAME } from 'ngx-disqus';
 // import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModuleModule } from './Components/shared-module/shared-module.module';
 import { QuillModule } from 'ngx-quill';
@@ -88,7 +88,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     userloginservices,
     CookieService,
     // disqus comments
-    { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
+    // { provide: DISQUS_SHORTNAME, useValue: 'prototype-8' },
     // { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     // SnotifyService,
     {

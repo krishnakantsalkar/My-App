@@ -152,6 +152,18 @@ mat-card-footer h5 {
   font-weight: 600;
   cursor: pointer;
 }
+
+.blurredCard {
+  height: 150px;
+  filter: blur(5px);
+}
+
+.noteUnlock {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
   .notes mat-card-footer h5 {
     font-size: 9px;

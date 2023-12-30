@@ -104,7 +104,17 @@
       ></textarea>
       <br />
       <!-- <div class="btn-group" style="float: right; margin-top: 10px"> -->
-
+      @if(isLockNote){
+      <input
+        type="text"
+        class="form-control"
+        style="width: 100%"
+        [(ngModel)]="notePassword"
+        placeholder="password"
+        min="8"
+      />
+      <br />
+      }
       <button
         mat-raised-button
         type="button"
@@ -124,11 +134,21 @@
       <button
         mat-raised-button
         type="button"
-        class="btn-danger"
+        class="btn-danger mr-3"
         (click)="showAddNote()"
       >
         Cancel
       </button>
+
+      <button
+        mat-raised-button
+        type="button"
+        class="btn-success"
+        (click)="isLockNote = !isLockNote"
+      >
+        Lock <mat-icon>lock</mat-icon>
+      </button>
+
       <!-- </div> -->
     </div>
 
@@ -361,6 +381,12 @@
                               >description</mat-icon
                             >
                             {{ note.notes_title }}
+                            <mat-icon
+                              class="icon_align"
+                              *ngIf="note.isLocked"
+                              (click)="note.isUnlocking = !note.isUnlocking"
+                              >lock</mat-icon
+                            >
                           </span>
                           <span
                             ><mat-icon
@@ -376,6 +402,23 @@
                         </h5>
                       </mat-card-title>
                       <hr />
+
+                      @if(note.isLocked && note.isUnlocking){
+                      <div class="noteUnlock">
+                        <input
+                          class="form-control"
+                          placeholder="password"
+                          [(ngModel)]="note.unlockingPassword"
+                        />
+                        <button
+                          mat-raised-button
+                          class="btn-primary"
+                          (click)="unlockNote(note, note.unlockingPassword)"
+                        >
+                          submit
+                        </button>
+                      </div>
+                      } @if(!note.isLocked){
                       <mat-card-content>
                         <pre
                           class="notes_message"
@@ -385,6 +428,14 @@
                           >{{ note.notes_message }}</pre
                         >
                       </mat-card-content>
+                      } @else{
+                      <mat-card-content>
+                        <div class="blurredCard">
+                          THIS IS SOME RANDOM GIBBBBBERRISSSSHH, THIS IS REALLY
+                          loCKED... WUBBA LUBBA DUB DUB !!!!!!!!!!!!!!!!
+                        </div>
+                      </mat-card-content>
+                      }
                       <mat-card-footer>
                         <h5
                           class="text-muted d-flex justify-content-between px-2"
@@ -614,6 +665,12 @@
                               >description</mat-icon
                             >
                             {{ note.notes_title }}
+                            <mat-icon
+                              class="icon_align"
+                              *ngIf="note.isLocked"
+                              (click)="note.isUnlocking = !note.isUnlocking"
+                              >lock</mat-icon
+                            >
                           </span>
                           <span (click)="pinNote(i, 'pin')"
                             ><mat-icon
@@ -629,6 +686,22 @@
                         </h5>
                       </mat-card-title>
                       <hr />
+                      @if(note.isLocked && note.isUnlocking){
+                      <div class="noteUnlock">
+                        <input
+                          class="form-control"
+                          placeholder="password"
+                          [(ngModel)]="note.unlockingPassword"
+                        />
+                        <button
+                          mat-raised-button
+                          class="btn-primary"
+                          (click)="unlockNote(note, note.unlockingPassword)"
+                        >
+                          submit
+                        </button>
+                      </div>
+                      } @if(!note.isLocked){
                       <mat-card-content>
                         <pre
                           class="notes_message"
@@ -638,6 +711,14 @@
                           >{{ note.notes_message }}</pre
                         >
                       </mat-card-content>
+                      }@else{
+                      <mat-card-content>
+                        <div class="blurredCard">
+                          THIS IS SOME RANDOM GIBBBBBERRISSSSHH, THIS IS REALLY
+                          loCKED... WUBBA LUBBA DUB DUB !!!!!!!!!!!!!!!!
+                        </div>
+                      </mat-card-content>
+                      }
                       <mat-card-footer>
                         <h5
                           class="text-muted d-flex justify-content-between px-2"
@@ -880,6 +961,12 @@
                             >description</mat-icon
                           >
                           {{ note.notes_title }}
+                          <mat-icon
+                            class="icon_align"
+                            *ngIf="note.isLocked"
+                            (click)="note.isUnlocking = !note.isUnlocking"
+                            >lock</mat-icon
+                          >
                         </span>
                         <span>
                           <span (click)="deleteNote(i)">
@@ -910,6 +997,22 @@
                       </h5>
                     </mat-card-title>
                     <hr />
+                    @if(note.isLocked && note.isUnlocking){
+                    <div class="noteUnlock">
+                      <input
+                        class="form-control"
+                        placeholder="password"
+                        [(ngModel)]="note.unlockingPassword"
+                      />
+                      <button
+                        mat-raised-button
+                        class="btn-primary"
+                        (click)="unlockNote(note, note.unlockingPassword)"
+                      >
+                        submit
+                      </button>
+                    </div>
+                    } @if(!note.isLocked && note.notes_message){
                     <mat-card-content>
                       <pre
                         class="notes_message"
@@ -919,6 +1022,14 @@
                         >{{ note.notes_message }}</pre
                       >
                     </mat-card-content>
+                    }@else{
+                    <mat-card-content>
+                      <div class="blurredCard">
+                        THIS IS SOME RANDOM GIBBBBBERRISSSSHH, THIS IS REALLY
+                        loCKED... WUBBA LUBBA DUB DUB !!!!!!!!!!!!!!!!
+                      </div>
+                    </mat-card-content>
+                    }
                     <mat-card-footer>
                       <h5
                         class="text-muted d-flex justify-content-between px-2"

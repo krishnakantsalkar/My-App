@@ -34,6 +34,13 @@ export class noteService {
       { headers: this.header }
     );
   }
+  unlockNote(data) {
+    return this.http.post<any>(
+      `https://my-app-backend-node.vercel.app/api/notes/unlockNote/`,
+      data,
+      { headers: this.header }
+    );
+  }
   deleteNote(id) {
     return this.http.delete<any>(
       `http://localhost:3000/api/notes/deleteNote/${id}`,

@@ -35,6 +35,11 @@ export class NotesComponent implements OnInit {
   selectedTab = 0;
 
   clientIp: string;
+
+  isNoteLocked = false;
+  notePassword = '';
+
+  isLockNote = false;
   constructor(
     private defaultModeService: modeService,
     private noteService: noteService,
@@ -90,7 +95,9 @@ export class NotesComponent implements OnInit {
       this.notesData = item.result;
 
       if (this.notesData.length > 0) {
-        this.notesData = this.notesData.reverse();
+        this.notesData = this.notesData.reverse().map((item) => {
+          return { ...item, isUnlocking: false, isUnlockingPassword: '' };
+        });
       }
 
       let checkArchived = this.notesData.some((item) => {
@@ -109,7 +116,44 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  unlockNote(note: any, password: string) {
+    try {
+      let params = {
+        noteId: note._id,
+        notePassword: password,
+      };
+
+      this.noteService.unlockNote(params).subscribe(
+        (item) => {
+          note.notes_message = item.notes_message;
+          note.isLocked = false;
+
+          console.log(note);
+        },
+        (err) => {
+          this.uiService.showSnackbar(
+            'Something went wrong: ' + err.error.message,
+            '',
+            4000
+          );
+        }
+      );
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
   saveNote() {
+    if (
+      (this.isLockNote && !this.notePassword) ||
+      this.notePassword.length < 8
+    ) {
+      this.uiService.showSnackbar(
+        'password need to be set correctly!',
+        '',
+        4000
+      );
+      return;
+    }
     $('#uploadSpinner').css({
       display: 'inline-block',
     });
@@ -125,6 +169,8 @@ export class NotesComponent implements OnInit {
       readonly: true,
       pinned: false,
       archived: false,
+      isLocked: this.isLockNote ? true : false,
+      password: this.notePassword,
     };
 
     this.noteService.postNote(noteObj).subscribe(

@@ -179,6 +179,9 @@ export class NotesComponent implements OnInit {
 
         this.selectedTab = 0;
 
+        this.notePassword = '';
+        this.isLockNote = false;
+
         $('#uploadSpinner').css({
           display: 'none',
         });
